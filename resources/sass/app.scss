@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Krub:300,400,600&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Krub:300,400,600,800&display=swap');
 $primary-color : #00C7C7;
 body{
   margin : 0;
@@ -37,7 +37,7 @@ input {
   padding-left: 0.25em;
   font-size: 1.6em;
   border: 0;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #EDEDED;
   font-family: 'Krub', sans-serif;
   font-weight: 300;
   -webkit-appearance: none;
@@ -110,3 +110,56 @@ input:focus + label {
   padding-left: 0.25em;
   font-size: 1em;
 }
+.title{
+  font-size: 2.250em;
+  font-family: 'Krub', sans-serif;
+  border-bottom: 1px solid #EDEDED;
+  &:first-letter{
+    text-transform: capitalize;
+  }
+
+}
+.square{
+   width: 12px;
+   height: 12px;
+   border: 1px solid $primary-color;
+   border-radius : 2px;
+ }
+.circle{
+  width: 12px;
+  height: 12px;
+  border: 1px solid $primary-color;
+  border-radius : 5px;
+}
+.circle-filled{
+  width: 12px;
+  height: 12px;
+  background: $primary-color;
+  border-radius : 5px;
+}
+.square-filled{
+  width: 12px;
+  height: 12px;
+  background: $primary-color;
+  border-radius : 2px;
+}
+.main-title{
+  font-size: 4em;
+  font-family: 'Krub', sans-serif;
+  font-weight: 800;
+  color: #2C393F;
+  text-transform: uppercase;
+}
+.doth{
+  color : $primary-color;
+}
+.add{
+  font-family: 'Krub', serif;
+  color : $primary-color;
+}
+.languages .title-small, .driving_licence .title-small{
+   font-family: "Krub", sans-serif;
+   text-transform: uppercase;
+   letter-spacing: 0.05em;
+   padding-left: 0.25em;
+ }

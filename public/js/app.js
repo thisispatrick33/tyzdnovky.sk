@@ -51245,29 +51245,39 @@ var RegistrationForm = function RegistrationForm() {
   return console.log(data), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "registration-form container-fluid row m-0 p-0 justify-content-center"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-    className: "col-12 text-center"
-  }, "registr\xE1cia", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, ".")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "content-frame row col-10 shadow rounded p-0"
+    className: "col-12 text-center main-title my-4"
+  }, "registr\xE1cia", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "doth"
+  }, ".")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "content-frame row col-10 shadow rounded p-5"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row side-bar col-3 m-0"
-  }, data.type ? Object.values(data).map(function (value, index) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "col-12"
-    }, value);
+  }, data.type ? Object.keys(data).map(function (key, index) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, key, " - ", data[key]);
   }) : "logo", categories ? categories.map(function (category) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, category.value, " ", category.practise);
   }) : ""), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-    className: "row col-9 m-0"
+    className: "row col-9 m-0 align-items-start"
   }, function () {
     switch (slide) {
       case 1:
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "koho registrujeme ?");
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-12 title mb-3"
+        }, "koho registrujeme ?");
 
       case 2:
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "v\u0161eobecn\xE9 inform\xE1cie");
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-12 title mb-3"
+        }, "v\u0161eobecn\xE9 inform\xE1cie", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "doth"
+        }, "."));
 
       case 3:
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "dopl\u0148ujuce inform\xE1cie");
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-12 title mb-3"
+        }, "dopl\u0148uj\xFAce inform\xE1cie", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "doth"
+        }, "."));
     }
   }(), function () {
     switch (slide) {
@@ -51275,17 +51285,17 @@ var RegistrationForm = function RegistrationForm() {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: 'data col-12 row'
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-12",
+          className: "col-4",
           onClick: function onClick() {
             return choose(1);
           }
         }, "firma"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-12",
+          className: "col-4",
           onClick: function onClick() {
             return choose(2);
           }
         }, "jednotlivec"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-12",
+          className: "col-4",
           onClick: function onClick() {
             return choose(3);
           }
@@ -51293,39 +51303,43 @@ var RegistrationForm = function RegistrationForm() {
 
       case 2:
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-12 row"
+          className: "col-12 row align-items-start"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "field col-6"
+          className: "field col-6 p-0"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           id: "firstName",
           type: "text",
           name: "firstName",
           placeholder: data.type === 1 ? "Zadajte n\xE1zov firmy" : "Nap\xED\u0161te va\u0161e meno",
           onChange: function onChange(e) {
-            return setData(_objectSpread({}, data, {
+            return setData(data.type === 1 ? _objectSpread({}, data, {
+              name: e.target.value
+            }) : _objectSpread({}, data, {
               firstName: e.target.value
             }));
           },
-          value: data.firstName ? data.firstName : ""
+          value: data.type === 1 ? data.name ? data.name : "" : data.firstName ? data.firstName : ""
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           htmlFor: "firstName"
         }, data.type === 1 ? "n\xE1zov" : "meno")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "field col-6"
+          className: "field col-6 p-0"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           id: "lastName",
           type: "text",
           name: "lastName",
           placeholder: data.type === 1 ? "Zadajte i\u010Do firmy" : "Nap\xED\u0161te va\u0161e priezvisko",
           onChange: function onChange(e) {
-            return setData(_objectSpread({}, data, {
+            return setData(data.type === 1 ? _objectSpread({}, data, {
+              ico: e.target.value
+            }) : _objectSpread({}, data, {
               lastName: e.target.value
             }));
           },
-          value: data.lastName ? data.lastName : ""
+          value: data.type === 1 ? data.ico ? data.ico : "" : data.lastName ? data.lastName : ""
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           htmlFor: "lastName"
         }, data.type === 1 ? "i\u010Do" : "priezvisko")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "field col-6"
+          className: "field col-6 p-0"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           id: "phone",
           type: "text",
@@ -51340,7 +51354,7 @@ var RegistrationForm = function RegistrationForm() {
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           htmlFor: "phone"
         }, "telef\xF3n")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "field col-6"
+          className: "field col-6 p-0"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           id: "email",
           type: "email",
@@ -51358,13 +51372,17 @@ var RegistrationForm = function RegistrationForm() {
 
       case 3:
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-12 row"
+          className: "data-group-3 | col-12"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row p-0"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "categories | col-12 | p-0"
         }, categories.map(function (input, i) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             key: i,
             className: "row col-12"
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "field col-9"
+            className: "field ".concat(data.type === 1 ? "col-12" : "col-9")
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
             id: "category-".concat(i),
             type: "text",
@@ -51391,13 +51409,17 @@ var RegistrationForm = function RegistrationForm() {
           }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
             htmlFor: "practise-".concat(i)
           }, "prax")));
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "add col-12",
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "add col-12 mb-4",
           onClick: function onClick() {
             return handleAdd();
           }
-        }, "+ pridat"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "field col-3"
+        }, data.type === 1 ? "+ h\u013Ead\xE1te viacero profesi\xED?" : "+ ovl\xE1date viacero profesi\xED ?", " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "date col-12 mb-4"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row p-0"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "field col-12"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           id: "date",
           type: "date",
@@ -51412,39 +51434,64 @@ var RegistrationForm = function RegistrationForm() {
           value: data.ready ? data.ready : ""
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           htmlFor: "date"
-        }, "d\xE1tum n\xE1stupu")), data.type !== 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "jazykove shopnosti"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, lan.map(function (language, i) {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        }, "d\xE1tum n\xE1stupu")))), data.type !== 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "languages row col-12 mb-4"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-12 row justify-content-center"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-12 pl-4 title-small"
+        }, "jazykov\xE9 znalosti"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row col-11 pl-4 p-2 justify-content-between"
+        }, lan.map(function (language, i) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "row col-2 align-items-center p-0",
             onClick: function onClick() {
               return addLanguage(language, i);
             }
-          }, language);
-        }))) : "", data.type !== 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "col-1 p-0"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "".concat(languages.includes(language) ? "square-filled" : "square")
+          })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+            className: "mb-0 ml-2 col-10 p-0",
+            style: {
+              color: languages.includes(language) ? "#00C7C7" : ""
+            }
+          }, language));
+        })))) : "", data.type !== 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "driving_licence row col-12 my-4"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-12 row justify-content-center"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-12 pl-4 title-small"
+        }, "Ste dr\u017Eite\u013Eom vodick\xE9 opr\xE1vnenie pre skupinu b?"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row col-12 pl-4 align-items-center",
           onClick: function onClick() {
             return setData(_objectSpread({}, data, {
               driving_licence: data.driving_licence === undefined ? true : !data.driving_licence
             }));
           }
-        }, "vodicak"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, lan.map(function (language, i) {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-            onClick: function onClick() {
-              return addLanguage(language, i);
-            }
-          }, language);
-        }))) : "");
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-auto ml-3 p-0"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "".concat(data.driving_licence === undefined || data.driving_licence === false ? "circle" : "circle-filled")
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "col-11 mb-0"
+        }, "\xC1no, som")))) : ""));
     }
-  }(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "navigators col-12"
+  }(), slide <= 1 ? "" : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "navigators row col-12"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-6",
     onClick: function onClick() {
       return setSlide(slide - 1);
-    },
-    disabled: slide - 1 < 1
+    }
   }, "prev"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-6",
     onClick: function onClick() {
       return slide + 1 > 3 ? submit() : setSlide(slide + 1);
-    },
-    disabled: slide + 1 > 3
-  }, "next")))));
+    }
+  }, slide + 1 > 3 ? "submit" : "next")))));
 };
 
 /***/ }),
