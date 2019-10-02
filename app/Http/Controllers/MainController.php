@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use sIlluminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use DB;
 use App\Branch;
@@ -13,17 +13,16 @@ use App\Language;
 class MainController extends Controller
 {
     public function store(Request $request){
-
-
+        return "a";
         $validator = Validator::make($request->all(), [
             'type' => 'required|numeric|max:3|min:1',
         ]);
-         
+
         if ($validator->fails()) {
              return response("Nie je zadaný typ alebo má zlú hodnotu.",400);
         };
 
-      
+
         if($request->type == 1){
 
             $validator = Validator::make($request->all(), [
@@ -34,10 +33,10 @@ class MainController extends Controller
                 'phone' => 'required|string',
                 'ready' => 'required|date',
             ]);
-             
+
             if ($validator->fails()) {
                 $error = $validator->messages();
-                return response($error,400);            
+                return response($error,400);
             };
 
             $success = false;
@@ -45,17 +44,17 @@ class MainController extends Controller
             DB::beginTransaction();
 
             try {
-        
+
                 $company= new Company;
                 $company->name = $request->name;
                 $company->ico = $request->ico;
                 $company->email = $request->email;
                 $company->phone = $request->phone;
                 $company->nastup = $request->ready;
-                
+
 
                 if($company->save()){
-        
+
                     $branch_arr = [];
                     foreach( $request->categories as $branch){
                         $branch_id = Branch::where('name','=',$branch['value'])->first();
@@ -69,11 +68,11 @@ class MainController extends Controller
                                 array_push($branch_arr,$NewBranch->id);
                             }
                         }
-                    }   
+                    }
                     $company->branches()->attach($branch_arr);
-            
+
                     $success = true;
-            
+
                 }
                 else{
                     $success = false;
@@ -91,9 +90,9 @@ class MainController extends Controller
                 }
             }
 
-        
+
         else{
-            
+
             $validator = Validator::make($request->all(), [
                 'categories' => 'required|array',
                 'driving_license' => 'required|boolean',
@@ -104,19 +103,19 @@ class MainController extends Controller
                 'phone' => 'required|string',
                 'ready' => 'required|date',
             ]);
-             
+
             if ($validator->fails()) {
                 $error = $validator->messages();
                 return response($error,400);
             };
-        
+
 
             $success = false;
 
             DB::beginTransaction();
 
             try {
-        
+
                 $user= new User;
                 $user->name = $request->firstName;
                 $user->lastname = $request->lastName;
@@ -129,7 +128,7 @@ class MainController extends Controller
 
                     $language_arr = [];
                     foreach( $request->languages as $language){
-                    
+
                         $language_id = Language::where('name','=',$language)->first();
                         if ($language_id) {
                             array_push($language_arr,$language_id->id);
@@ -140,9 +139,9 @@ class MainController extends Controller
                             if ($NewLanguage->save()) {
                                 array_push($language_arr,$NewLanguage->id);
                             }
-                        } 
+                        }
                     }
-        
+
                     $branch_arr = [];
                     foreach( $request->categories as $branch){
                         $branch_id = Branch::where('name','=',$branch['value'])->first();
@@ -156,19 +155,19 @@ class MainController extends Controller
                                 array_push($branch_arr,$NewBranch->id);
                             }
                         }
-                    }   
-            
+                    }
+
                     $user->languages()->syncWithoutDetaching($language_arr);
-            
+
                     for($i = 0 ; $i< sizeof($branch_arr);$i++){
                         if($request->categories[$i]['practise'] > 0){
                             $user->branches()->syncWithoutDetaching($branch_arr[$i]);
                             $user->branches()->updateExistingPivot($branch_arr[$i], ['years' => $request->categories[$i]['practise']]);
                         }
                     }
-            
+
                     $success = true;
-            
+
                 }
                 else{
                     $success = false;

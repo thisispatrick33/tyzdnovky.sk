@@ -1,20 +1,37 @@
 @import url('https://fonts.googleapis.com/css?family=Krub:300,400,600,800&display=swap');
+@import '~bootstrap/scss/bootstrap';
 $primary-color : #00C7C7;
 body{
-  margin : 0;
-  .registration-form{
-    .content-frame{
-      min-height: 70vh;
-      .side-bar{
-        border-right : 3px #EDEDED solid;
+  div#root{
+    .registration-form {
+      .main-title{
+        font-size: 4rem;
       }
-      form{
-        .data{
+      .content-frame {
+        min-height: 70vh;
+        .title{
+          font-size: 2.250em;
+          font-family: 'Krub', sans-serif;
+          border-bottom: 1px solid #EDEDED;
+          &:first-letter{
+            text-transform: capitalize;
+          }
 
+        }
+
+        .side-bar {
+          border-right: 3px #EDEDED solid;
+        }
+
+        form {
+          .data {
+
+          }
         }
       }
     }
   }
+
 }
 
 .field {
@@ -110,15 +127,6 @@ input:focus + label {
   padding-left: 0.25em;
   font-size: 1em;
 }
-.title{
-  font-size: 2.250em;
-  font-family: 'Krub', sans-serif;
-  border-bottom: 1px solid #EDEDED;
-  &:first-letter{
-    text-transform: capitalize;
-  }
-
-}
 .square{
    width: 12px;
    height: 12px;
@@ -163,3 +171,25 @@ input:focus + label {
    letter-spacing: 0.05em;
    padding-left: 0.25em;
  }
+.cls-1,.cls-2{font-size:1179.08px;font-family:Krub-Bold, Krub;font-weight:700;}.cls-1{fill:#2c393f;}.cls-2{fill:#00c7c7;}
+svg#company{
+  &:hover{
+    fill : red;
+  }
+}
+@include media-breakpoint-down(md) {
+  body{
+    div#root{
+      .registration-form {
+        .main-title{
+          font-size: 2em;
+        }
+        .content-frame{
+          .title{
+            font-size: 1.550em;
+          }
+        }
+      }
+    }
+  }
+}
