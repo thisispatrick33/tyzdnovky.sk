@@ -51209,10 +51209,10 @@ var RegistrationForm = function RegistrationForm() {
 
   var submit = function submit() {
     data["categories"] = categories;
+    data["driving_license"] = data.driving_license === undefined ? false : data.driving_license;
     axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/register", data, {
       headers: {
-        'Content-Type': "application/json",
-        'Accept': "application/json"
+        'Content-Type': "application/json"
       }
     }).then(function (response) {
       console.log(response);
@@ -51258,6 +51258,7 @@ var RegistrationForm = function RegistrationForm() {
 
   var _formValidator = function _formValidator() {
     console.log("validator");
+    console.log(data);
 
     if (slide === 2) {
       return data.firstName !== null && data.lastName !== null && data.email !== null && data.email.includes("@") && data.phone !== null;
@@ -51561,10 +51562,16 @@ var RegistrationForm = function RegistrationForm() {
 
       case 4:
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " col-12 | data-group-3 "
-        }, "complete");
+          className: " col-12 | data-group-3 justify-content-center align-items-center h-100 d-flex"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+          className: "main-title text-center h1 col-12"
+        }, "REGISTRACIA PREBEHLA"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+          className: "main-title text-center h1 col-12"
+        }, "USPESNE!")));
     }
-  }(), slide <= 1 ? "" : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }(), slide <= 1 || slide > 3 ? "" : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: " navigators | col-12 row | mt-4 p-0"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: " align-items-center | row arrow col-6 | justify-content-start m-0",
@@ -51587,7 +51594,7 @@ var RegistrationForm = function RegistrationForm() {
   }, "sp\xE4\u0165")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: " row arrow col-6 | align-items-center | justify-content-end m-0",
     onClick: function onClick() {
-      return slide + 1 > 3 ? _formValidator() ? setSlide(slide + 1) : console.log('err') : _formValidator() ? setSlide(slide + 1) : console.log('err');
+      return slide + 1 > 3 ? submit() : _formValidator() ? setSlide(slide + 1) : console.log('err');
     }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: " col-auto | mb-0 | d-xl-flex d-lg-flex d-md-flex d-none "
@@ -51663,8 +51670,8 @@ if (document.getElementById('root')) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/patrik/Projects/tyzdnovky.sk/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/patrik/Projects/tyzdnovky.sk/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Jakub\Desktop\tyzdnovky.sk\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Jakub\Desktop\tyzdnovky.sk\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

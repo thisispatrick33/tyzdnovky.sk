@@ -10648,6 +10648,10 @@ body div#root .registration-form .main-title {
   font-size: 4rem;
 }
 
+body div#root .registration-form .main-title.h1 {
+  font-size: 3rem;
+}
+
 body div#root .registration-form .content-frame {
   min-height: 70vh;
 }

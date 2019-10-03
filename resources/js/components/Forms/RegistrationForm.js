@@ -14,14 +14,15 @@ export const RegistrationForm = () => {
     };
     const submit = () => {
         data[`categories`] = categories;
+        data[`driving_license`] = data.driving_license === undefined ? false : data.driving_license;
         axios
-            .post(`/api/register`, data ,{
-                headers : {
-                    'Content-Type' : `application/json`,
-                    'Accept' : `application/json`,
-                }
-            })
-            .then((response) => {
+        .post(`/api/register`, data ,{
+            headers : {
+                'Content-Type' : `application/json`,
+            }
+        })
+        .then((response) => {
+            
                 console.log(response);
                 setSlide(slide + 1);
             })
@@ -53,6 +54,7 @@ export const RegistrationForm = () => {
     }
     const _formValidator = () => {
         console.log(`validator`)
+        console.log(data);
         if(slide === 2){
             return data.firstName !== null && data.lastName !== null && data.email !== null && data.email.includes(`@`) && data.phone !== null;
         }else{
@@ -281,9 +283,12 @@ export const RegistrationForm = () => {
                                 </div>
 
                             case 4 :
-                                return <div className={` col-12 | data-group-3 `}>
-
-                                    complete
+                                return <div className={` col-12 | data-group-3 justify-content-center align-items-center h-100 d-flex`}>
+                                    <div className="row">
+                                        <h1 className={`main-title text-center h1 col-12`}>REGISTRACIA PREBEHLA</h1>
+                                        <h1 className={`main-title text-center h1 col-12`}>USPESNE!</h1>
+                                    </div>
+                                    
                                 </div>
 
 
@@ -291,7 +296,7 @@ export const RegistrationForm = () => {
                         }
 
                     })()}
-                    { slide <= 1 ? `` :
+                    { slide <= 1 || slide > 3 ? `` :
                         <div className={` navigators | col-12 row | mt-4 p-0`}>
                                 <div className={` align-items-center | row arrow col-6 | justify-content-start m-0`} onClick={() => setSlide(slide-1)}>
                                     <div className={` col-xl-1 col-lg-1 col-md-1 col-sm-2 col-4 | p-0 `}>
@@ -299,7 +304,7 @@ export const RegistrationForm = () => {
                                     </div>
                                     <p className={` col-auto | mb-0 | d-xl-flex d-lg-flex d-md-flex d-none `}>späť</p>
                                 </div>
-                                <div className={` row arrow col-6 | align-items-center | justify-content-end m-0`} onClick={() => slide + 1 > 3 ? (_formValidator() ? setSlide(slide+1) : console.log('err')) : (_formValidator() ? setSlide(slide+1) : console.log('err')) }>
+                                <div className={` row arrow col-6 | align-items-center | justify-content-end m-0`} onClick={() => slide + 1 > 3 ?  submit()  : (_formValidator() ? setSlide(slide+1) : console.log('err')) }>
                                     <p className={` col-auto | mb-0 | d-xl-flex d-lg-flex d-md-flex d-none `}>{slide + 1 > 3 ? `odoslať` : `pokračovať`}</p>
 
                                     <div className={` col-xl-1 col-lg-1 col-md-1 col-sm-2 col-4 | p-0 `}>
