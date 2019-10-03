@@ -107,7 +107,7 @@ class MainController extends Controller
              
             if ($validator->fails()) {
                 $error = $validator->messages();
-                return response($error);
+                return response($error,400);
                 
             };
             
