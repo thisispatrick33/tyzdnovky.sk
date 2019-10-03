@@ -13,7 +13,6 @@ use App\Language;
 class MainController extends Controller
 {
     public function store(Request $request){
-        return "a";
         $validator = Validator::make($request->all(), [
             'type' => 'required|numeric|max:3|min:1',
         ]);

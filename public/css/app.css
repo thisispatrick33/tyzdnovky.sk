@@ -10655,7 +10655,6 @@ body div#root .registration-form .content-frame {
 body div#root .registration-form .content-frame .title {
   font-size: 2.25em;
   font-family: "Krub", sans-serif;
-  border-bottom: 1px solid #EDEDED;
 }
 
 body div#root .registration-form .content-frame .title:first-letter {
@@ -10663,7 +10662,41 @@ body div#root .registration-form .content-frame .title:first-letter {
 }
 
 body div#root .registration-form .content-frame .side-bar {
-  border-right: 3px #EDEDED solid;
+  border-right: 1.5px #EDEDED solid;
+}
+
+body div#root .registration-form .content-frame .slide {
+  transition: 0.5s;
+}
+
+body div#root .registration-form .content-frame .slide:not(:hover) {
+  fill: #2C393F;
+  color: #2C393F;
+}
+
+body div#root .registration-form .content-frame .slide:hover {
+  fill: #00C7C7;
+  color: #00C7C7;
+}
+
+body div#root .registration-form .content-frame .slide:nth-child(1) {
+  border-right: 1.5px solid #EDEDED;
+}
+
+body div#root .registration-form .content-frame .slide .name {
+  font-size: 2.4em;
+  font-family: "Krub", sans-serif;
+}
+
+body div#root .registration-form .content-frame .navigators {
+  font-family: "Krub", sans-serif;
+  text-transform: uppercase;
+  font-size: 1.2em;
+  color: #2c393f;
+}
+
+body div#root .registration-form .content-frame .navigators svg {
+  fill: #2c393f;
 }
 
 .field {
@@ -10852,10 +10885,6 @@ input:focus + label {
   fill: #00c7c7;
 }
 
-svg#company:hover {
-  fill: red;
-}
-
 @media (max-width: 991.98px) {
   body div#root .registration-form .main-title {
     font-size: 2em;
@@ -10863,6 +10892,44 @@ svg#company:hover {
 
   body div#root .registration-form .content-frame .title {
     font-size: 1.55em;
+  }
+
+  body div#root .registration-form .content-frame .slide:nth-child(1) {
+    border-bottom: 1.5px solid #EDEDED;
+    border-right: none;
+  }
+
+  body div#root .registration-form .content-frame .slide .name {
+    font-size: 1.8em;
+  }
+
+  body ::-webkit-input-placeholder {
+    font-size: 0.85em;
+    padding-left: 0;
+  }
+
+  body ::-moz-placeholder {
+    font-size: 0.85em;
+    padding-left: 0;
+  }
+
+  body :-ms-input-placeholder {
+    font-size: 0.85em;
+    padding-left: 0;
+  }
+
+  body ::-ms-input-placeholder {
+    font-size: 0.85em;
+    padding-left: 0;
+  }
+
+  body ::placeholder {
+    font-size: 0.85em;
+    padding-left: 0;
+  }
+
+  body input {
+    font-size: 1.4em;
   }
 }
 

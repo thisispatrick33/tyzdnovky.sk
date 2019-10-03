@@ -51209,7 +51209,6 @@ var RegistrationForm = function RegistrationForm() {
 
   var submit = function submit() {
     data["categories"] = categories;
-    console.log(data);
     axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/register", data, {
       headers: {
         'Content-Type': "application/json",
@@ -51218,9 +51217,10 @@ var RegistrationForm = function RegistrationForm() {
     }).then(function (response) {
       console.log(response);
       setSlide(slide + 1);
-    })["catch"](function (error) {
-      console.log(error);
     });
+    /*.catch((error) => {
+        console.log(error)
+    })*/
   };
 
   var addLanguage = function addLanguage(value, i) {
@@ -51256,209 +51256,131 @@ var RegistrationForm = function RegistrationForm() {
     setCategories(values);
   }
 
+  var _formValidator = function _formValidator() {
+    console.log("validator");
+
+    if (slide === 2) {
+      return data.firstName !== null && data.lastName !== null && data.email !== null && data.email.includes("@") && data.phone !== null;
+    } else {}
+  };
+
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "registration-form | container-fluid | row col-12 | justify-content-center | m-0 mb-5 p-0"
+    className: " registration-form | container-fluid | row col-12 | justify-content-center | mb-5 m-0 p-0 "
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-    className: "col-11 text-center main-title my-4 p-0"
+    className: " main-title | col-11 | my-4 p-0 | text-center "
   }, "registr\xE1cia", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "doth"
   }, ".")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "content-frame row col-xl-10 col-lg-10 col-11 shadow rounded py-5"
+    className: " content-frame rounded | row col-xl-10 col-lg-10 col-11 | justify-content-center | py-xl-5 py-lg-5 py-3 | shadow "
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row side-bar d-xl-flex d-lg-flex d-none col-3 m-0  align-item-center justify-content-center"
+    className: " side-bar | row col-xl-3 col-lg-3 col-0 | align-item-center | justify-content-center | m-0 | d-xl-flex d-lg-flex d-none "
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-xl-9 border-r  d-flex align-item-center justify-content-center text-center"
+    className: " col-xl-9 | align-item-center | justify-content-center | p-0 | border-r | d-flex | text-center "
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "svg d-flex align-item-center justify-content-center col-12"
+    className: " svg | col-12 | align-item-center | justify-content-center | d-flex "
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    className: "col-12",
-    id: "Layer_1",
-    "data-name": "Layer 1",
+    className: " col-12 ",
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 747.62 1696"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("defs", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("title", null, "logo"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("text", {
-    className: "cls-1",
+    className: " cls-1 ",
     transform: "translate(0 1002.2)"
   }, "T"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("text", {
-    className: "cls-2",
+    className: " cls-2 ",
     transform: "translate(118 1098.2)"
   }, "T"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-    className: "row col-xl-9 col-lg-9 col-12 m-0 align-items-start p-4"
+    className: " row col-xl-9 col-lg-9 col-12 | align-items-start | justify-content-center | m-0 p-4 "
   }, function () {
     switch (slide) {
       case 1:
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-12 title mb-3"
-        }, "koho registrujeme ?");
+          className: " title | col-12 | mb-3 pb-4 "
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "doth"
+        }, "koho"), " registrujeme ?");
 
       case 2:
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-12 title mb-3"
-        }, "v\u0161eobecn\xE9 inform\xE1cie", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: " title | col-12 | mb-3 pb-4 "
+        }, "v\u0161eobecn\xE9 ", window.innerWidth <= 991 ? "info" : " inform\xE1cie", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "doth"
-        }, "."));
+        }, window.innerWidth <= 991 ? "..." : " ."));
 
       case 3:
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-12 title mb-3"
-        }, "dopl\u0148uj\xFAce inform\xE1cie", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: " title | col-12 | mb-3 pb-4 "
+        }, "dopl\u0148uj\xFAce ", window.innerWidth <= 991 ? "info" : " inform\xE1cie", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "doth"
-        }, "."));
+        }, window.innerWidth <= 991 ? "..." : " ."));
     }
   }(), function () {
     switch (slide) {
       case 1:
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: 'data col-12 row'
+          className: " data | row col-12 | justify-content-center "
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-xl-4 border-r",
+          className: " slide | col-xl-6 ",
           onClick: function onClick() {
             return choose(1);
           }
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "svg menu-item pointer my-5 my-xl-0"
+          className: " menu-item pointer svg | my-xl-0 my-5 "
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-12 d-flex justify-content-center"
+          className: " col-12 | justify-content-center | d-flex "
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-          id: "company",
           xmlns: "http://www.w3.org/2000/svg",
           width: "56.253",
           height: "56.253",
           viewBox: "0 0 56.253 56.253"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-          id: "Group_2",
-          "data-name": "Group 2",
           transform: "translate(27.042)"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-          id: "Group_1",
-          "data-name": "Group 1"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-          id: "Path_1",
-          "data-name": "Path 1",
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
           d: "M248.005.322a1.1,1.1,0,0,0-1.875.777,1.1,1.1,0,1,0,1.875-.777Z",
-          transform: "translate(-246.13)",
-          fill: "#2c393f"
+          transform: "translate(-246.13)"
+        }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+          d: "M55.931,26.251,44.607,14.921V8.13a2.2,2.2,0,0,0-2.2-2.2h-2.2V1.1a1.1,1.1,0,0,0-1.1-1.1H32.265a1.1,1.1,0,0,0,0,2.2h5.75V5.933H18.238V2.2h5.786a1.1,1.1,0,0,0,0-2.2H17.139a1.1,1.1,0,0,0-1.1,1.1V5.933h-2.2a2.2,2.2,0,0,0-2.2,2.2V48.122H9.229a1.1,1.1,0,0,0-1.1,1.1v4.834H2.2V29.225H9.229a1.1,1.1,0,1,0,0-2.2H1.1a1.1,1.1,0,0,0-1.1,1.1V55.154a1.1,1.1,0,0,0,1.1,1.1H55.154a1.1,1.1,0,0,0,1.1-1.1V27.028A1.1,1.1,0,0,0,55.931,26.251ZM34.352,8.13h8.057v8.35H34.352Zm0,10.547h8.057v8.35H34.352Zm0,10.547h8.057v8.35H34.352Zm0,10.547h8.057v8.35H34.352ZM24.1,8.13h8.057v8.35H24.1Zm0,10.547h8.057v8.35H24.1Zm0,10.547h8.057v8.35H24.1Zm0,10.547h8.057v8.35H24.1ZM13.843,8.13H21.9v8.35H13.843Zm0,10.547H21.9v8.35H13.843Zm0,10.547H21.9v8.35H13.843Zm0,10.547H21.9v8.35H13.843ZM45.925,54.055h-35.6V50.32h35.6Zm8.13,0H48.122V49.221a1.1,1.1,0,0,0-1.1-1.1H44.607v-3.09h3.5a1.1,1.1,0,0,0,0-2.2h-3.5V39.763h3.5a1.1,1.1,0,1,0,0-2.2h-3.5V34.494h3.5a1.1,1.1,0,1,0,0-2.2h-3.5V29.225h3.5a1.1,1.1,0,1,0,0-2.2h-3.5v-9l9.449,9.453Z"
         }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-          id: "Group_4",
-          "data-name": "Group 4"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-          id: "Group_3",
-          "data-name": "Group 3"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-          id: "Path_2",
-          "data-name": "Path 2",
-          d: "M55.931,26.251,44.607,14.921V8.13a2.2,2.2,0,0,0-2.2-2.2h-2.2V1.1a1.1,1.1,0,0,0-1.1-1.1H32.265a1.1,1.1,0,0,0,0,2.2h5.75V5.933H18.238V2.2h5.786a1.1,1.1,0,0,0,0-2.2H17.139a1.1,1.1,0,0,0-1.1,1.1V5.933h-2.2a2.2,2.2,0,0,0-2.2,2.2V48.122H9.229a1.1,1.1,0,0,0-1.1,1.1v4.834H2.2V29.225H9.229a1.1,1.1,0,1,0,0-2.2H1.1a1.1,1.1,0,0,0-1.1,1.1V55.154a1.1,1.1,0,0,0,1.1,1.1H55.154a1.1,1.1,0,0,0,1.1-1.1V27.028A1.1,1.1,0,0,0,55.931,26.251ZM34.352,8.13h8.057v8.35H34.352Zm0,10.547h8.057v8.35H34.352Zm0,10.547h8.057v8.35H34.352Zm0,10.547h8.057v8.35H34.352ZM24.1,8.13h8.057v8.35H24.1Zm0,10.547h8.057v8.35H24.1Zm0,10.547h8.057v8.35H24.1Zm0,10.547h8.057v8.35H24.1ZM13.843,8.13H21.9v8.35H13.843Zm0,10.547H21.9v8.35H13.843Zm0,10.547H21.9v8.35H13.843Zm0,10.547H21.9v8.35H13.843ZM45.925,54.055h-35.6V50.32h35.6Zm8.13,0H48.122V49.221a1.1,1.1,0,0,0-1.1-1.1H44.607v-3.09h3.5a1.1,1.1,0,0,0,0-2.2h-3.5V39.763h3.5a1.1,1.1,0,1,0,0-2.2h-3.5V34.494h3.5a1.1,1.1,0,1,0,0-2.2h-3.5V29.225h3.5a1.1,1.1,0,1,0,0-2.2h-3.5v-9l9.449,9.453Z",
-          fill: "#2c393f"
-        }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-          id: "Group_6",
-          "data-name": "Group 6",
           transform: "translate(5.823 43.691)"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-          id: "Group_5",
-          "data-name": "Group 5"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-          id: "Path_3",
-          "data-name": "Path 3",
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
           d: "M54.875,397.992a1.1,1.1,0,1,0,.322.777A1.1,1.1,0,0,0,54.875,397.992Z",
-          transform: "translate(-53 -397.67)",
-          fill: "#2c393f"
+          transform: "translate(-53 -397.67)"
         }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-          id: "Group_8",
-          "data-name": "Group 8",
           transform: "translate(5.823 31.722)"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-          id: "Group_7",
-          "data-name": "Group 7"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-          id: "Path_4",
-          "data-name": "Path 4",
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
           d: "M54.1,288.724a1.1,1.1,0,0,0-1.1,1.1v7.831a1.1,1.1,0,1,0,2.2,0v-7.831A1.1,1.1,0,0,0,54.1,288.724Z",
-          transform: "translate(-53 -288.724)",
-          fill: "#2c393f"
+          transform: "translate(-53 -288.724)"
         }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
-          className: "h1 mt-3 col-12 text-center"
+          className: " name | col-12 | mt-3 | text-center "
         }, "Firma"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-xl-4 border-r",
+          className: " slide | col-xl-6 ",
           onClick: function onClick() {
             return choose(2);
           }
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "svg row menu-item pointer my-5 my-xl-0",
-          "data-href": "jednotlivec"
+          className: " menu-item pointer svg | row | my-xl-0 my-5 "
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-12 d-flex justify-content-center"
+          className: " col-12 | justify-content-center | d-flex "
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
           xmlns: "http://www.w3.org/2000/svg",
           width: "63.427",
           height: "63.427",
           viewBox: "0 0 63.427 63.427"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-          id: "engineer",
           transform: "translate(1 1)"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-          id: "Group_23",
-          "data-name": "Group 23",
           transform: "translate(-1 -1)"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-          id: "Path_12",
-          "data-name": "Path 12",
           d: "M59.255,51.644C52.946,48.3,48.107,46.422,43.8,45.7l.446-.613a.822.822,0,0,0,.211-.846l-.991-3.963a22.614,22.614,0,0,0,4.162-12.74V23.314H50.8a1.057,1.057,0,0,0,0-2.114H49.741V20.142A18.378,18.378,0,0,0,36,2.383V2.171A3.18,3.18,0,0,0,32.828-1H28.6a3.18,3.18,0,0,0-3.171,3.171v.211A18.378,18.378,0,0,0,11.685,20.142V21.2H10.628a1.057,1.057,0,0,0,0,2.114H13.8v4.228a22.615,22.615,0,0,0,4.162,12.74l-.991,3.963a1.271,1.271,0,0,0,.211.846l.446.613c-4.308.719-9.148,2.6-15.457,5.941A5.622,5.622,0,0,0-1,56.824V61.37A1,1,0,0,0,.057,62.427H61.37a1,1,0,0,0,1.057-1.057V56.824A6.061,6.061,0,0,0,59.255,51.644Zm-29.176-.978.64-1.44L32.3,52.7l1.033,2.325H28.176Zm-2.707,6.475h6.673l.6,3.171H26.739Zm14.44-14.8.423,1.9-1.08,1.483a.942.942,0,0,0-.189.209l-4.4,6.088-1.4,1.916-2.85-6.412a15.273,15.273,0,0,0,8.9-4.583l.082-.081.02-.02Q41.574,42.6,41.813,42.342ZM40.436,6.732q.176.117.349.238a18.38,18.38,0,0,1,3.566,3.447l-4.863.951Zm-18.5,4.637-4.863-.951A18.378,18.378,0,0,1,20.642,6.97q.172-.121.349-.238ZM13.8,20.142a16.033,16.033,0,0,1,1.99-7.786L23.1,13.8h.211a2.486,2.486,0,0,0,.846-.211.853.853,0,0,0,.317-.951L23.025,5.574a17.534,17.534,0,0,1,2.4-.943V7.457a1.057,1.057,0,0,0,2.114,0V2.171A1.059,1.059,0,0,1,28.6,1.114h4.228a1.059,1.059,0,0,1,1.057,1.057V7.457a1.057,1.057,0,1,0,2.114,0V4.63a17.518,17.518,0,0,1,2.479.98l-1.422,6.921a1.476,1.476,0,0,0,.317.951.96.96,0,0,0,.74.317h.211l7.265-1.53a16.032,16.032,0,0,1,2.037,7.872V21.2H13.8V20.142Zm2.114,3.171h29.6v4.228a19.476,19.476,0,0,1-3.955,11.819l-.062.021-.317.317a17.715,17.715,0,0,1-1.68,1.939A13.515,13.515,0,0,1,31.18,45.5a1.191,1.191,0,0,0-.467-.093,1.012,1.012,0,0,0-.44.094,11.952,11.952,0,0,1-5.242-1.585A17.173,17.173,0,0,1,20.248,39.7l-.317-.317-.062-.021a19.476,19.476,0,0,1-3.955-11.819V23.314ZM29.1,47.528l-2.85,6.412-1.4-1.916-4.4-6.088c-.034-.034-.071-.067-.109-.1l-1.159-1.592.423-1.9c.143.154.289.3.435.453A15.34,15.34,0,0,0,29.1,47.528Zm-27.987,9.3a3.629,3.629,0,0,1,2.009-3.277c6.738-3.58,11.589-5.376,15.91-5.913l6.308,8.674-.8,4H1.114Zm59.2,3.489H36.887l-.8-4,6.377-8.768c4.306.65,9.243,2.445,15.841,5.9a3.911,3.911,0,0,1,2.009,3.383Z",
           transform: "translate(1 1)"
         }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
-          className: "h1 mt-3 col-12 text-center"
-        }, "Jednotlivec"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-xl-4",
-          onClick: function onClick() {
-            return choose(3);
-          }
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "svg menu-item pointer my-5 my-xl-0",
-          "data-href": "skupina"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-12 d-flex justify-content-center"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-          xmlns: "http://www.w3.org/2000/svg",
-          width: "63.427",
-          height: "63.427",
-          viewBox: "0 0 63.427 63.427"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-          id: "engineer",
-          transform: "translate(1 1)"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-          id: "Group_23",
-          "data-name": "Group 23",
-          transform: "translate(-1 -1)"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-          id: "Path_12",
-          "data-name": "Path 12",
-          d: "M59.255,51.644C52.946,48.3,48.107,46.422,43.8,45.7l.446-.613a.822.822,0,0,0,.211-.846l-.991-3.963a22.614,22.614,0,0,0,4.162-12.74V23.314H50.8a1.057,1.057,0,0,0,0-2.114H49.741V20.142A18.378,18.378,0,0,0,36,2.383V2.171A3.18,3.18,0,0,0,32.828-1H28.6a3.18,3.18,0,0,0-3.171,3.171v.211A18.378,18.378,0,0,0,11.685,20.142V21.2H10.628a1.057,1.057,0,0,0,0,2.114H13.8v4.228a22.615,22.615,0,0,0,4.162,12.74l-.991,3.963a1.271,1.271,0,0,0,.211.846l.446.613c-4.308.719-9.148,2.6-15.457,5.941A5.622,5.622,0,0,0-1,56.824V61.37A1,1,0,0,0,.057,62.427H61.37a1,1,0,0,0,1.057-1.057V56.824A6.061,6.061,0,0,0,59.255,51.644Zm-29.176-.978.64-1.44L32.3,52.7l1.033,2.325H28.176Zm-2.707,6.475h6.673l.6,3.171H26.739Zm14.44-14.8.423,1.9-1.08,1.483a.942.942,0,0,0-.189.209l-4.4,6.088-1.4,1.916-2.85-6.412a15.273,15.273,0,0,0,8.9-4.583l.082-.081.02-.02Q41.574,42.6,41.813,42.342ZM40.436,6.732q.176.117.349.238a18.38,18.38,0,0,1,3.566,3.447l-4.863.951Zm-18.5,4.637-4.863-.951A18.378,18.378,0,0,1,20.642,6.97q.172-.121.349-.238ZM13.8,20.142a16.033,16.033,0,0,1,1.99-7.786L23.1,13.8h.211a2.486,2.486,0,0,0,.846-.211.853.853,0,0,0,.317-.951L23.025,5.574a17.534,17.534,0,0,1,2.4-.943V7.457a1.057,1.057,0,0,0,2.114,0V2.171A1.059,1.059,0,0,1,28.6,1.114h4.228a1.059,1.059,0,0,1,1.057,1.057V7.457a1.057,1.057,0,1,0,2.114,0V4.63a17.518,17.518,0,0,1,2.479.98l-1.422,6.921a1.476,1.476,0,0,0,.317.951.96.96,0,0,0,.74.317h.211l7.265-1.53a16.032,16.032,0,0,1,2.037,7.872V21.2H13.8V20.142Zm2.114,3.171h29.6v4.228a19.476,19.476,0,0,1-3.955,11.819l-.062.021-.317.317a17.715,17.715,0,0,1-1.68,1.939A13.515,13.515,0,0,1,31.18,45.5a1.191,1.191,0,0,0-.467-.093,1.012,1.012,0,0,0-.44.094,11.952,11.952,0,0,1-5.242-1.585A17.173,17.173,0,0,1,20.248,39.7l-.317-.317-.062-.021a19.476,19.476,0,0,1-3.955-11.819V23.314ZM29.1,47.528l-2.85,6.412-1.4-1.916-4.4-6.088c-.034-.034-.071-.067-.109-.1l-1.159-1.592.423-1.9c.143.154.289.3.435.453A15.34,15.34,0,0,0,29.1,47.528Zm-27.987,9.3a3.629,3.629,0,0,1,2.009-3.277c6.738-3.58,11.589-5.376,15.91-5.913l6.308,8.674-.8,4H1.114Zm59.2,3.489H36.887l-.8-4,6.377-8.768c4.306.65,9.243,2.445,15.841,5.9a3.911,3.911,0,0,1,2.009,3.383Z",
-          transform: "translate(1 1)"
-        })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-          xmlns: "http://www.w3.org/2000/svg",
-          width: "63.427",
-          height: "63.427",
-          viewBox: "0 0 63.427 63.427"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-          id: "engineer",
-          transform: "translate(1 1)"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-          id: "Group_23",
-          "data-name": "Group 23",
-          transform: "translate(-1 -1)"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-          id: "Path_12",
-          "data-name": "Path 12",
-          d: "M59.255,51.644C52.946,48.3,48.107,46.422,43.8,45.7l.446-.613a.822.822,0,0,0,.211-.846l-.991-3.963a22.614,22.614,0,0,0,4.162-12.74V23.314H50.8a1.057,1.057,0,0,0,0-2.114H49.741V20.142A18.378,18.378,0,0,0,36,2.383V2.171A3.18,3.18,0,0,0,32.828-1H28.6a3.18,3.18,0,0,0-3.171,3.171v.211A18.378,18.378,0,0,0,11.685,20.142V21.2H10.628a1.057,1.057,0,0,0,0,2.114H13.8v4.228a22.615,22.615,0,0,0,4.162,12.74l-.991,3.963a1.271,1.271,0,0,0,.211.846l.446.613c-4.308.719-9.148,2.6-15.457,5.941A5.622,5.622,0,0,0-1,56.824V61.37A1,1,0,0,0,.057,62.427H61.37a1,1,0,0,0,1.057-1.057V56.824A6.061,6.061,0,0,0,59.255,51.644Zm-29.176-.978.64-1.44L32.3,52.7l1.033,2.325H28.176Zm-2.707,6.475h6.673l.6,3.171H26.739Zm14.44-14.8.423,1.9-1.08,1.483a.942.942,0,0,0-.189.209l-4.4,6.088-1.4,1.916-2.85-6.412a15.273,15.273,0,0,0,8.9-4.583l.082-.081.02-.02Q41.574,42.6,41.813,42.342ZM40.436,6.732q.176.117.349.238a18.38,18.38,0,0,1,3.566,3.447l-4.863.951Zm-18.5,4.637-4.863-.951A18.378,18.378,0,0,1,20.642,6.97q.172-.121.349-.238ZM13.8,20.142a16.033,16.033,0,0,1,1.99-7.786L23.1,13.8h.211a2.486,2.486,0,0,0,.846-.211.853.853,0,0,0,.317-.951L23.025,5.574a17.534,17.534,0,0,1,2.4-.943V7.457a1.057,1.057,0,0,0,2.114,0V2.171A1.059,1.059,0,0,1,28.6,1.114h4.228a1.059,1.059,0,0,1,1.057,1.057V7.457a1.057,1.057,0,1,0,2.114,0V4.63a17.518,17.518,0,0,1,2.479.98l-1.422,6.921a1.476,1.476,0,0,0,.317.951.96.96,0,0,0,.74.317h.211l7.265-1.53a16.032,16.032,0,0,1,2.037,7.872V21.2H13.8V20.142Zm2.114,3.171h29.6v4.228a19.476,19.476,0,0,1-3.955,11.819l-.062.021-.317.317a17.715,17.715,0,0,1-1.68,1.939A13.515,13.515,0,0,1,31.18,45.5a1.191,1.191,0,0,0-.467-.093,1.012,1.012,0,0,0-.44.094,11.952,11.952,0,0,1-5.242-1.585A17.173,17.173,0,0,1,20.248,39.7l-.317-.317-.062-.021a19.476,19.476,0,0,1-3.955-11.819V23.314ZM29.1,47.528l-2.85,6.412-1.4-1.916-4.4-6.088c-.034-.034-.071-.067-.109-.1l-1.159-1.592.423-1.9c.143.154.289.3.435.453A15.34,15.34,0,0,0,29.1,47.528Zm-27.987,9.3a3.629,3.629,0,0,1,2.009-3.277c6.738-3.58,11.589-5.376,15.91-5.913l6.308,8.674-.8,4H1.114Zm59.2,3.489H36.887l-.8-4,6.377-8.768c4.306.65,9.243,2.445,15.841,5.9a3.911,3.911,0,0,1,2.009,3.383Z",
-          transform: "translate(1 1)"
-        }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
-          className: "h1 mt-3 col-12 text-center"
-        }, "Skupina"))));
+          className: " name | col-12 | mt-3 | text-center "
+        }, "Jednotlivec"))));
 
       case 2:
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-12 row align-items-start justify-content-between"
+          className: " row col-12 | align-items-start"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "field col-xl-5 col-lg-6 col-12 p-0"
+          className: " field | col-xl-5 col-lg-6 col-12 | p-0 ml-2 "
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           id: "firstName",
           type: "text",
@@ -51472,15 +51394,16 @@ var RegistrationForm = function RegistrationForm() {
             }));
           },
           value: data.type === 1 ? data.name ? data.name : "" : data.firstName ? data.firstName : "",
-          className: "col-12"
+          className: " px-2 "
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           htmlFor: "firstName"
         }, data.type === 1 ? "n\xE1zov" : "meno")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "field col-xl-5 col-lg-6 col-12 p-0"
+          className: " field | col-xl-5 col-lg-5 col-12 | p-0  ml-xl-5 ml-lg-3 ml-2"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           id: "lastName",
           type: "text",
           name: "lastName",
+          className: " px-2 ",
           placeholder: data.type === 1 ? "Zadajte i\u010Do firmy" : "Nap\xED\u0161te va\u0161e priezvisko",
           onChange: function onChange(e) {
             return setData(data.type === 1 ? _objectSpread({}, data, {
@@ -51493,7 +51416,7 @@ var RegistrationForm = function RegistrationForm() {
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           htmlFor: "lastName"
         }, data.type === 1 ? "i\u010Do" : "priezvisko")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "field col-xl-5 col-lg-6 col-12 p-0"
+          className: " field | col-xl-5 col-lg-6 col-12 | p-0 ml-2"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           id: "phone",
           type: "text",
@@ -51504,11 +51427,12 @@ var RegistrationForm = function RegistrationForm() {
               phone: e.target.value
             }));
           },
-          value: data.phone ? data.phone : ""
+          value: data.phone ? data.phone : "",
+          className: " px-2 "
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           htmlFor: "phone"
         }, "telef\xF3n")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "field col-xl-5 col-lg-6 col-12 p-0"
+          className: " field | col-xl-5 col-lg-5 col-12 | p-0 ml-xl-5 ml-lg-3 ml-2"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           id: "email",
           type: "email",
@@ -51519,24 +51443,25 @@ var RegistrationForm = function RegistrationForm() {
               email: e.target.value
             }));
           },
-          value: data.email ? data.email : ""
+          value: data.email ? data.email : "",
+          className: " px-2 "
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           htmlFor: "email"
         }, "email")));
 
       case 3:
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "data-group-3 | col-12"
+          className: " col-12 | data-group-3 "
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "row p-0"
+          className: " row | p-0 "
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "categories | col-12 | p-0"
+          className: " categories | col-12 | p-0 "
         }, categories.map(function (input, i) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             key: i,
-            className: "row col-12"
+            className: " row col-12 "
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "field ".concat(data.type === 1 ? "col-12" : "col-9")
+            className: " field ".concat(data.type === 1 ? "col-12" : "col-9")
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
             id: "category-".concat(i),
             type: "text",
@@ -51549,7 +51474,7 @@ var RegistrationForm = function RegistrationForm() {
           }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
             htmlFor: "category-".concat(i)
           }, "povolanie")), data.type === 1 ? "" : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "field col-3"
+            className: " field | col-3 p-0 pl-2"
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
             id: "practise-".concat(i),
             type: "number",
@@ -51565,16 +51490,16 @@ var RegistrationForm = function RegistrationForm() {
             htmlFor: "practise-".concat(i)
           }, "prax")));
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "add col-12 mb-4",
+          className: " add | col-12 | mb-4 ",
           onClick: function onClick() {
             return handleAdd();
           }
         }, data.type === 1 ? "+ h\u013Ead\xE1te viacero profesi\xED?" : "+ ovl\xE1date viacero profesi\xED ?", " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "date col-12 mb-4"
+          className: " date | col-12 | mb-4 "
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "row p-0"
+          className: " row | p-0 "
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "field col-12"
+          className: " field | col-12 "
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           id: "date",
           type: "date",
@@ -51590,64 +51515,66 @@ var RegistrationForm = function RegistrationForm() {
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           htmlFor: "date"
         }, "d\xE1tum n\xE1stupu")))), data.type !== 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "languages row col-12 mb-4"
+          className: " languages | row col-12 | mb-4 "
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-12 row justify-content-center"
+          className: " row col-12 | justify-content-center "
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-12 pl-4 title-small"
+          className: " title-small | col-12 | pl-4 "
         }, "jazykov\xE9 znalosti"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "row col-11 pl-4 p-2 justify-content-xl-between justify-content-lg-between justify-content-center"
+          className: " row col-11 | justify-content-xl-between justify-content-lg-between justify-content-center | pl-4 p-2 "
         }, lan.map(function (language, i) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "row col-xl-2 col-lg-2 col-10 align-items-center p-0",
+            className: " row col-xl-2 col-lg-2 col-10 | align-items-center | p-0 ",
             onClick: function onClick() {
               return addLanguage(language, i);
             }
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "col-2 p-0"
+            className: " col-auto | p-0 "
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "".concat(languages.includes(language) ? "square-filled" : "square")
+            className: " ".concat(languages.includes(language) ? "square-filled" : "square", " ")
           })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-            className: "mb-0 ml-2 col-9 p-0",
+            className: " col-9 | mb-0 ml-2 p-0 ",
             style: {
               color: languages.includes(language) ? "#00C7C7" : ""
             }
           }, language));
         })))) : "", data.type !== 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "driving_licence row col-12 my-4"
+          className: " driving_licence | row col-12 | my-4 "
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-12 row justify-content-center"
+          className: " row col-12 | justify-content-center "
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-12 pl-4 title-small"
+          className: " title-small | col-12 | pl-4 "
         }, "Ste dr\u017Eite\u013Eom vodick\xE9 opr\xE1vnenie pre skupinu b?"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "row col-12 pl-4 align-items-center",
+          className: " row col-12 | align-items-center | pl-4 ",
           onClick: function onClick() {
             return setData(_objectSpread({}, data, {
-              driving_licence: data.driving_licence === undefined ? true : !data.driving_licence
+              driving_license: data.driving_license === undefined ? true : !data.driving_license
             }));
           }
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-auto ml-3 p-0"
+          className: " col-auto | ml-3 p-0 "
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "".concat(data.driving_licence === undefined || data.driving_licence === false ? "circle" : "circle-filled")
+          className: " ".concat(data.driving_license === undefined || data.driving_license === false ? "circle" : "circle-filled", " ")
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-          className: "col-8 mb-0"
+          className: " col-9 | mb-0 p-0 pl-2"
         }, "\xC1no, som")))) : ""));
 
       case 4:
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "data-group-3 | col-12"
+          className: " col-12 | data-group-3 "
         }, "complete");
     }
   }(), slide <= 1 ? "" : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "navigators row col-12 mt-4"
+    className: " navigators | col-12 row | mt-4 p-0"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-6 row",
+    className: " align-items-center | row arrow col-6 | justify-content-start m-0",
     onClick: function onClick() {
       return setSlide(slide - 1);
     }
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: " col-xl-1 col-lg-1 col-md-1 col-sm-2 col-4 | p-0 "
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    className: "col-xl-2 col-lg-2 col-4",
+    className: " col-12 | p-0 ",
     enableBackground: "new 0 0 477.175 477.175",
     version: "1.1",
     viewBox: "0 0 477.175 477.175",
@@ -51655,19 +51582,25 @@ var RegistrationForm = function RegistrationForm() {
     xmlns: "http://www.w3.org/2000/svg"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
     d: "m145.19 238.58l215.5-215.5c5.3-5.3 5.3-13.8 0-19.1s-13.8-5.3-19.1 0l-225.1 225.1c-5.3 5.3-5.3 13.8 0 19.1l225.1 225c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.3-5.3 5.3-13.8 0-19.1l-215.4-215.5z"
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-6 row justify-content-end",
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: " col-auto | mb-0 | d-xl-flex d-lg-flex d-md-flex d-none "
+  }, "sp\xE4\u0165")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: " row arrow col-6 | align-items-center | justify-content-end m-0",
     onClick: function onClick() {
-      return slide + 1 > 3 ? submit() : setSlide(slide + 1);
+      return slide + 1 > 3 ? _formValidator() ? setSlide(slide + 1) : console.log('err') : _formValidator() ? setSlide(slide + 1) : console.log('err');
     }
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: " col-auto | mb-0 | d-xl-flex d-lg-flex d-md-flex d-none "
+  }, slide + 1 > 3 ? "odosla\u0165" : "pokra\u010Dova\u0165"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: " col-xl-1 col-lg-1 col-md-1 col-sm-2 col-4 | p-0 "
   }, slide + 1 > 3 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    className: "col-xl-2 col-lg-2 col-4",
+    className: " col-12 | p-0 ",
     viewBox: "0 -65 424.032 424",
     xmlns: "http://www.w3.org/2000/svg"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
     d: "m146.660156 293.367188c-4.09375 0-8.191406-1.558594-11.304687-4.695313l-130.667969-130.667969c-6.25-6.25-6.25-16.382812 0-22.632812s16.382812-6.25 22.636719 0l119.359375 119.359375 250.027344-250.027344c6.25-6.25 16.382812-6.25 22.632812 0s6.25 16.386719 0 22.636719l-261.332031 261.332031c-3.160157 3.136719-7.253907 4.695313-11.351563 4.695313zm0 0"
   })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    className: "col-xl-2 col-lg-2 col-4",
+    className: " col-12 | p-0 ",
     "enable-background": "new 0 0 477.175 477.175",
     version: "1.1",
     viewBox: "0 0 477.175 477.175",
@@ -51675,7 +51608,7 @@ var RegistrationForm = function RegistrationForm() {
     xmlns: "http://www.w3.org/2000/svg"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
     d: "m360.73 229.08l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8 0.1-19z"
-  })))))));
+  }))))))));
 };
 
 /***/ }),
