@@ -25,6 +25,7 @@
         "@reach/router": "^1.2.1",
         "boostrap": "^2.0.0",
         "bootstrap": "^4.3.1",
+        "jquery": "^3.4.1",
         "reach-router": "0.0.0"
     }
 }

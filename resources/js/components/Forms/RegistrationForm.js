@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import axios from "axios";
 
-export const RegistrationForm = () => {
+export const RegistrationForm = ({register = f => f}) => {
     const [slide, setSlide] = useState(1);
     const [data,setData] = useState({});
     const [categories,setCategories] = useState([{ value: null }]);
@@ -15,20 +15,7 @@ export const RegistrationForm = () => {
     const submit = () => {
         data[`categories`] = categories;
         data[`driving_license`] = data.driving_license === undefined ? false : data.driving_license;
-        axios
-        .post(`/api/register`, data ,{
-            headers : {
-                'Content-Type' : `application/json`,
-            }
-        })
-        .then((response) => {
-            
-                console.log(response);
-                setSlide(slide + 1);
-            })
-        /*.catch((error) => {
-            console.log(error)
-        })*/
+        register(data);
     };
     const addLanguage = (value,i) => {
         let values = [...languages];
