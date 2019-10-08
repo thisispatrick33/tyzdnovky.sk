@@ -61744,16 +61744,16 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/components/Forms/RegistrationForm.js":
-/*!***********************************************************!*\
-  !*** ./resources/js/components/Forms/RegistrationForm.js ***!
-  \***********************************************************/
-/*! exports provided: RegistrationForm */
+/***/ "./resources/js/components/Forms/Register.js":
+/*!***************************************************!*\
+  !*** ./resources/js/components/Forms/Register.js ***!
+  \***************************************************/
+/*! exports provided: Register */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegistrationForm", function() { return RegistrationForm; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Register", function() { return Register; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -61782,7 +61782,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var RegistrationForm = function RegistrationForm(_ref) {
+var Register = function Register(_ref) {
   var _ref$register = _ref.register,
       register = _ref$register === void 0 ? function (f) {
     return f;
@@ -61811,6 +61811,11 @@ var RegistrationForm = function RegistrationForm(_ref) {
       _useState8 = _slicedToArray(_useState7, 2),
       languages = _useState8[0],
       setLanguages = _useState8[1];
+
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState10 = _slicedToArray(_useState9, 2),
+      inputError = _useState10[0],
+      setInputError = _useState10[1];
 
   var choose = function choose(value) {
     setData({
@@ -61862,12 +61867,105 @@ var RegistrationForm = function RegistrationForm(_ref) {
   }
 
   var _formValidator = function _formValidator() {
-    console.log("validator");
-    console.log(data);
-
     if (slide === 2) {
-      return data.firstName !== null && data.lastName !== null && data.email !== null && data.email.includes("@") && data.phone !== null;
-    } else {}
+      /*return data.firstName !== null && data.lastName !== null && data.email !== null && data.email.includes(`@`) && data.phone !== null;*/
+      if (data.type === 1) {
+        if (data.name !== undefined && data.name.length > 0) {
+          if (data.ico !== undefined && data.ico.length > 0) {
+            if (data.phone !== undefined && data.phone.length > 0) {
+              if (data.email !== undefined && data.email.length > 0) {
+                if (data.email.includes('@')) {
+                  setSlide(slide + 1);
+                } else {
+                  setInputError('email missing @');
+                  console.log(inputError);
+                }
+              } else {
+                setInputError('missing email');
+                console.log(inputError);
+              }
+            } else {
+              setInputError('missing phone');
+              console.log(inputError);
+            }
+          } else {
+            setInputError('missing ico');
+            console.log(inputError);
+          }
+        } else {
+          setInputError('missing company_name');
+          console.log(inputError);
+        }
+      } else {
+        if (data.firstName !== undefined && data.firstName.length > 0) {
+          if (data.lastName !== undefined && data.lastName.length > 0) {
+            if (data.phone !== undefined && data.phone.length > 0) {
+              if (data.email !== undefined && data.email.length > 0) {
+                if (data.email.includes('@')) {
+                  setSlide(slide + 1);
+                } else {
+                  setInputError('email missing @');
+                  console.log(inputError);
+                }
+              } else {
+                setInputError('missing email');
+                console.log(inputError);
+              }
+            } else {
+              setInputError('missing phone');
+              console.log(inputError);
+            }
+          } else {
+            setInputError('missing late name');
+            console.log(inputError);
+          }
+        } else {
+          setInputError('missing first name');
+          console.log(inputError);
+        }
+      }
+    } else {
+      if (slide === 3) {
+        if (data.type === 1) {
+          if (categories[0].value !== null && categories[0].value.length > 0) {
+            if (data.ready != undefined && data.ready.length > 0) {
+              submit();
+            } else {
+              setInputError('missing ready date');
+              console.log(inputError);
+            }
+          } else {
+            setInputError('missing branch');
+            console.log(inputError);
+          }
+        } else {
+          console.log(data);
+          console.log(categories);
+
+          if (categories[0].value !== null && categories[0].value.length > 0) {
+            if (categories[0].practise !== undefined && categories[0].practise.length > 0) {
+              if (data.ready !== undefined && data.ready.length > 0) {
+                if (data.languages !== undefined && data.languages.length > 0) {
+                  submit();
+                } else {
+                  setInputError('no language selected');
+                  console.log(inputError);
+                }
+              } else {
+                setInputError('missing ready date');
+                console.log(inputError);
+              }
+            } else {
+              setInputError('missing branch practise');
+              console.log(inputError);
+            }
+          } else {
+            setInputError('missing branch name');
+            console.log(inputError);
+          }
+        }
+      }
+    }
   };
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -62199,7 +62297,7 @@ var RegistrationForm = function RegistrationForm(_ref) {
   }, "sp\xE4\u0165")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: " row arrow col-6 | align-items-center | justify-content-end m-0",
     onClick: function onClick() {
-      return slide + 1 > 3 ? submit() : _formValidator() ? setSlide(slide + 1) : console.log('err');
+      return _formValidator();
     }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: " col-auto | mb-0 | d-xl-flex d-lg-flex d-md-flex d-none "
@@ -62241,7 +62339,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _reach_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @reach/router */ "./node_modules/@reach/router/es/index.js");
-/* harmony import */ var _Forms_RegistrationForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Forms/RegistrationForm */ "./resources/js/components/Forms/RegistrationForm.js");
+/* harmony import */ var _Forms_Register__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Forms/Register */ "./resources/js/components/Forms/Register.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
 
@@ -62267,15 +62365,14 @@ var Main = function Main() {
 
   var _ipLocation = function _ipLocation() {
     jquery__WEBPACK_IMPORTED_MODULE_2___default.a.ajax('http://ip-api.com/json').then(function success(response) {
-      console.log('User\'s Location Data is ', response);
-      console.log('User\'s Country', response.country);
+      console.log(response.countryCode);
       getAdress(response.lat, response.lon);
     }, function fail(data, status) {
       console.log('Request failed.  Returned status of', status);
     });
   };
 
-  return console.log(_ipLocation()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reach_router__WEBPACK_IMPORTED_MODULE_3__["Router"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_RegistrationForm__WEBPACK_IMPORTED_MODULE_4__["RegistrationForm"], {
+  return console.log(_ipLocation()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reach_router__WEBPACK_IMPORTED_MODULE_3__["Router"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_Register__WEBPACK_IMPORTED_MODULE_4__["Register"], {
     path: "/",
     register: _submitRegistration
   }));

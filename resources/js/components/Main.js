@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import $ from "jquery";
 
 import { Router } from '@reach/router';
-import { RegistrationForm } from './Forms/RegistrationForm';
+import { Register } from './Forms/Register';
 import axios from "axios";
 
 
@@ -30,8 +30,7 @@ const Main = () => {
         $.ajax('http://ip-api.com/json')
             .then(
                 function success(response) {
-                    console.log('User\'s Location Data is ', response);
-                    console.log('User\'s Country', response.country);
+                    console.log(response.countryCode);
                     getAdress(response.lat, response.lon)
                 },
 
@@ -45,7 +44,7 @@ const Main = () => {
     return (
         console.log(_ipLocation()),
             <Router>
-                <RegistrationForm path={`/`} register={_submitRegistration}/>
+                <Register path={`/`} register={_submitRegistration}/>
             </Router>
 
     )

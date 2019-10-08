@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import axios from "axios";
 
-export const RegistrationForm = ({register = f => f}) => {
+export const Register = ({register = f => f}) => {
     const [slide, setSlide] = useState(1);
     const [data,setData] = useState({});
     const [categories,setCategories] = useState([{ value: null }]);
     const lan = ["slovensky", "nemecky", "anglicky", "holandsky", "francúzsky"];
     const [languages, setLanguages] = useState([]);
+    let [inputError,setInputError] = useState("");
     const choose = (value) => {
         setData({type : value});
         setCategories([{ value: null }]);
@@ -40,13 +41,108 @@ export const RegistrationForm = ({register = f => f}) => {
         setCategories(values);
     }
     const _formValidator = () => {
-        console.log(`validator`)
-        console.log(data);
         if(slide === 2){
-            return data.firstName !== null && data.lastName !== null && data.email !== null && data.email.includes(`@`) && data.phone !== null;
+            /*return data.firstName !== null && data.lastName !== null && data.email !== null && data.email.includes(`@`) && data.phone !== null;*/
+            if(data.type===1){
+                if(data.name!==undefined&&data.name.length>0){
+                    if(data.ico!==undefined&&data.ico.length>0){
+                        if(data.phone!==undefined&&data.phone.length>0){
+                            if(data.email!==undefined&&data.email.length>0){
+                                if(data.email.includes('@')){
+                                    setSlide(slide+1);
+                                }else {
+                                    setInputError('email missing @');
+                                    console.log(inputError);
+                                }
+                            }else{
+                                setInputError('missing email');
+                                console.log(inputError);
+                            }
+                        }else{
+                            setInputError('missing phone');
+                            console.log(inputError);
+                        }
+                    }else {
+                        setInputError('missing ico');
+                        console.log(inputError);
+                    }
+                }else{
+                    setInputError('missing company_name');
+                    console.log(inputError);
+                }
+            }
+            else{
+                if(data.firstName!==undefined&&data.firstName.length>0){
+                    if(data.lastName!==undefined&&data.lastName.length>0){
+                        if(data.phone!==undefined&&data.phone.length>0){
+                            if(data.email!==undefined&&data.email.length>0){
+                                if(data.email.includes('@')){
+                                    setSlide(slide+1);
+                                }else {
+                                    setInputError('email missing @');
+                                    console.log(inputError);
+                                }
+                            }else{
+                                setInputError('missing email');
+                                console.log(inputError);
+                            }
+                        }else {
+                            setInputError('missing phone');
+                            console.log(inputError);
+                        }
+                    }else {
+                        setInputError('missing late name');
+                        console.log(inputError);
+                    }
+                }else {
+                    setInputError('missing first name');
+                    console.log(inputError);
+                }
+            }
         }else{
-
+            if(slide === 3){
+                if(data.type===1){
+                    if(categories[0].value!==null&&categories[0].value.length>0){
+                        if(data.ready!=undefined&&data.ready.length>0){
+                            submit();
+                        }else {
+                            setInputError('missing ready date');
+                            console.log(inputError);
+                        }
+                    }else {
+                        setInputError('missing branch');
+                        console.log(inputError);
+                    }
+                }
+                else{
+                    console.log(data);
+                    console.log(categories);
+                    if(categories[0].value!==null&&categories[0].value.length>0){
+                        if(categories[0].practise!==undefined&&categories[0].practise.length>0){
+                            if(data.ready!==undefined&&data.ready.length>0){
+                                if(data.languages!==undefined&&data.languages.length>0){
+                                    submit();
+                                }else {
+                                    setInputError('no language selected');
+                                    console.log(inputError);
+                                }
+                            }else {
+                                setInputError('missing ready date');
+                                console.log(inputError);
+                            }
+                        }else {
+                            setInputError('missing branch practise');
+                            console.log(inputError);
+                        }
+                    }else {
+                        setInputError('missing branch name');
+                        console.log(inputError);
+                    }
+                }
+            }
         }
+
+
     };
     return (
         <div className={` registration-form | container-fluid | row col-12 | justify-content-center | mb-5 m-0 p-0 `}>
@@ -291,7 +387,7 @@ export const RegistrationForm = ({register = f => f}) => {
                                     </div>
                                     <p className={` col-auto | mb-0 | d-xl-flex d-lg-flex d-md-flex d-none `}>späť</p>
                                 </div>
-                                <div className={` row arrow col-6 | align-items-center | justify-content-end m-0`} onClick={() => slide + 1 > 3 ?  submit()  : (_formValidator() ? setSlide(slide+1) : console.log('err')) }>
+                                <div className={` row arrow col-6 | align-items-center | justify-content-end m-0`} onClick={() => _formValidator()}>
                                     <p className={` col-auto | mb-0 | d-xl-flex d-lg-flex d-md-flex d-none `}>{slide + 1 > 3 ? `odoslať` : `pokračovať`}</p>
 
                                     <div className={` col-xl-1 col-lg-1 col-md-1 col-sm-2 col-4 | p-0 `}>
