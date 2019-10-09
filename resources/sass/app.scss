@@ -1,31 +1,55 @@
 @import url('https://fonts.googleapis.com/css?family=Krub:300,400,600,800&display=swap');
 @import '~bootstrap/scss/bootstrap';
 $primary-color : #00C7C7;
+$secondary-color : #2c393f;
+$silver : #EDEDED;
 body{
   div#root{
     .registration-form {
       .main-title{
         font-size: 4rem;
       }
+      .main-title.h1{
+        font-size: 3rem;
+      }
       .content-frame {
         min-height: 70vh;
         .title{
           font-size: 2.250em;
           font-family: 'Krub', sans-serif;
-          border-bottom: 1px solid #EDEDED;
           &:first-letter{
             text-transform: capitalize;
           }
-
         }
 
         .side-bar {
-          border-right: 3px #EDEDED solid;
+          border-right:  1.5px $silver solid;
         }
-
-        form {
-          .data {
-
+        .slide{
+          &:not(:hover){
+            fill : #2C393F;
+            color : #2C393F;
+          }
+          &:hover{
+            fill : $primary-color;
+            color : $primary-color;
+          }
+          &:nth-child(1){
+            border-right: 1.5px solid $silver;
+          }
+          transition: 0.5s;
+          .name{
+            font-size: 2.4em;
+            font-family: 'Krub', sans-serif;
+          }
+        }
+        .navigators{
+          font-family: 'Krub', sans-serif;
+          text-transform: uppercase;
+          font-size: 1.2em;
+          color: $secondary-color;
+          svg{
+            fill: $secondary-color;
           }
         }
       }
@@ -54,7 +78,7 @@ input {
   padding-left: 0.25em;
   font-size: 1.6em;
   border: 0;
-  border-bottom: 1px solid #EDEDED;
+  border-bottom: 1px solid $silver;
   font-family: 'Krub', sans-serif;
   font-weight: 300;
   -webkit-appearance: none;
@@ -172,11 +196,6 @@ input:focus + label {
    padding-left: 0.25em;
  }
 .cls-1,.cls-2{font-size:1179.08px;font-family:Krub-Bold, Krub;font-weight:700;}.cls-1{fill:#2c393f;}.cls-2{fill:#00c7c7;}
-svg#company{
-  &:hover{
-    fill : red;
-  }
-}
 @include media-breakpoint-down(md) {
   body{
     div#root{
@@ -188,8 +207,25 @@ svg#company{
           .title{
             font-size: 1.550em;
           }
+          .slide{
+            &:nth-child(1){
+              border-bottom: 1.5px solid $silver;
+              border-right: none;
+            }
+            .name{
+              font-size: 1.8em;
+            }
+          }
         }
       }
     }
+    ::placeholder {
+      font-size: 0.85em;
+      padding-left: 0;
+    }
+    input {
+      font-size: 1.4em;
+    }
+
   }
 }

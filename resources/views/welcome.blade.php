@@ -13,7 +13,7 @@
         <noscript>
             Please enable JS.
         </noscript>
-        <div id="root" class="container-fluid row p-0 m-0">
+        <div id="root" class="container-fluid row p-0 m-0 justify-content-center">
         </div>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script src="{{ asset('js/app.js')}}"></script>
