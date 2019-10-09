@@ -19,16 +19,14 @@ export const RegistrationForm = () => {
             .post(`/api/register`, data ,{
                 headers : {
                     'Content-Type' : `application/json`,
-                    'Accept' : `application/json`,
+                    
                 }
             })
             .then((response) => {
                 console.log(response);
                 setSlide(slide + 1);
             })
-            .catch((error) => {
-                console.log(error)
-            })
+            
     };
     const addLanguage = (value,i) => {
         let values = [...languages];
