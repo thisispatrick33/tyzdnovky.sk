@@ -10644,6 +10644,10 @@ a.text-dark:focus {
   }
 }
 
+body div#root {
+  height: 100vh;
+}
+
 body div#root .registration-form .main-title {
   font-size: 4rem;
 }

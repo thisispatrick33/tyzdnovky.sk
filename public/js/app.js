@@ -62385,8 +62385,8 @@ if (document.getElementById('root')) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Mamuss\PhpstormProjects\tyzdnovky.sk\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Mamuss\PhpstormProjects\tyzdnovky.sk\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/patrik/Projects/tyzdnovky.sk/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/patrik/Projects/tyzdnovky.sk/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
