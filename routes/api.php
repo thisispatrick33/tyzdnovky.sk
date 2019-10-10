@@ -13,4 +13,14 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::post("/register","MainController@store");
+//,'jwt.auth'
+
+
+
+
+
+Route::group(['middleware' => ['api-header','localization']], function () {
+    Route::get("/register","TextController@formData");
+    Route::post("/register","RegisterController@store");
+    Route::post("/login","LoginController@login");
+});

@@ -62357,10 +62357,9 @@ var Main = function Main() {
       }
     }).then(function (response) {
       console.log(response);
+    })["catch"](function (error) {
+      console.log(error);
     });
-    /*.catch((error) => {
-        console.log(error)
-    })*/
   };
 
   var _ipLocation = function _ipLocation() {
@@ -62372,7 +62371,7 @@ var Main = function Main() {
     });
   };
 
-  return console.log(_ipLocation()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reach_router__WEBPACK_IMPORTED_MODULE_3__["Router"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_Register__WEBPACK_IMPORTED_MODULE_4__["Register"], {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reach_router__WEBPACK_IMPORTED_MODULE_3__["Router"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_Register__WEBPACK_IMPORTED_MODULE_4__["Register"], {
     path: "/",
     register: _submitRegistration
   }));

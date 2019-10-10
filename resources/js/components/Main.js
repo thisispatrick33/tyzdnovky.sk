@@ -21,9 +21,9 @@ const Main = () => {
                 console.log(response);
 
             })
-        /*.catch((error) => {
+        .catch((error) => {
             console.log(error)
-        })*/
+        });
     };
 
     const _ipLocation = () => {
@@ -42,7 +42,6 @@ const Main = () => {
     }
 
     return (
-        console.log(_ipLocation()),
             <Router>
                 <Register path={`/`} register={_submitRegistration}/>
             </Router>
