@@ -7,7 +7,7 @@ export const Register = ({register = f => f}) => {
     const [categories,setCategories] = useState([{ value: null }]);
     const lan = ["slovensky", "nemecky", "anglicky", "holandsky", "francúzsky"];
     const [languages, setLanguages] = useState([]);
-    let [inputError,setInputError] = useState("");
+    let [missing,setMissing] = useState("");
     const choose = (value) => {
         setData({type : value});
         setCategories([{ value: null }]);
@@ -42,7 +42,6 @@ export const Register = ({register = f => f}) => {
     }
     const _formValidator = () => {
         if(slide === 2){
-            /*return data.firstName !== null && data.lastName !== null && data.email !== null && data.email.includes(`@`) && data.phone !== null;*/
             if(data.type===1){
                 if(data.name!==undefined&&data.name.length>0){
                     if(data.ico!==undefined&&data.ico.length>0){
@@ -51,24 +50,19 @@ export const Register = ({register = f => f}) => {
                                 if(data.email.includes('@')){
                                     setSlide(slide+1);
                                 }else {
-                                    setInputError('email missing @');
-                                    console.log(inputError);
+                                    setMissing('@');
                                 }
                             }else{
-                                setInputError('missing email');
-                                console.log(inputError);
+                                setMissing('email');
                             }
                         }else{
-                            setInputError('missing phone');
-                            console.log(inputError);
+                            setMissing('phone');
                         }
                     }else {
-                        setInputError('missing ico');
-                        console.log(inputError);
+                        setMissing('ico');
                     }
                 }else{
-                    setInputError('missing company_name');
-                    console.log(inputError);
+                    setMissing('company name');
                 }
             }
             else{
@@ -79,24 +73,19 @@ export const Register = ({register = f => f}) => {
                                 if(data.email.includes('@')){
                                     setSlide(slide+1);
                                 }else {
-                                    setInputError('email missing @');
-                                    console.log(inputError);
+                                    setMissing('@');
                                 }
                             }else{
-                                setInputError('missing email');
-                                console.log(inputError);
+                                setMissing('email');
                             }
                         }else {
-                            setInputError('missing phone');
-                            console.log(inputError);
+                            setMissing('phone');
                         }
                     }else {
-                        setInputError('missing late name');
-                        console.log(inputError);
+                        setMissing('last name');
                     }
                 }else {
-                    setInputError('missing first name');
-                    console.log(inputError);
+                    setMissing('first name');
                 }
             }
         }else{
@@ -106,12 +95,10 @@ export const Register = ({register = f => f}) => {
                         if(data.ready!=undefined&&data.ready.length>0){
                             submit();
                         }else {
-                            setInputError('missing ready date');
-                            console.log(inputError);
+                            setMissing('date');
                         }
                     }else {
-                        setInputError('missing branch');
-                        console.log(inputError);
+                        setMissing('branch');
                     }
                 }
                 else{
@@ -123,20 +110,16 @@ export const Register = ({register = f => f}) => {
                                 if(data.languages!==undefined&&data.languages.length>0){
                                     submit();
                                 }else {
-                                    setInputError('no language selected');
-                                    console.log(inputError);
+                                    setMissing('language');
                                 }
                             }else {
-                                setInputError('missing ready date');
-                                console.log(inputError);
+                                setMissing('date');
                             }
                         }else {
-                            setInputError('missing branch practise');
-                            console.log(inputError);
+                            setMissing('practise');
                         }
                     }else {
-                        setInputError('missing branch name');
-                        console.log(inputError);
+                        setMissing('branch');
                     }
                 }
             }

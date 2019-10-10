@@ -4,8 +4,7 @@
     <list default="true" id="0754b76b-6ee4-4d7a-97ba-2bd79266dee9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Forms/RegistrationForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Forms/Register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Forms/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Forms/Register.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,8 +32,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/js/components/Forms/Register.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3336">
-              <caret line="139" column="21" lean-forward="true" selection-start-line="139" selection-start-column="21" selection-end-line="139" selection-end-column="21" />
+            <state relative-caret-position="2856">
+              <caret line="119" column="25" selection-start-line="119" selection-start-column="25" selection-end-line="119" selection-end-column="25" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -184,6 +183,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -249,7 +249,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -259,7 +258,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="settings.editor.selected.configurable" value="MTConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -324,18 +323,20 @@
       <workItem from="1570418557304" duration="5669000" />
       <workItem from="1570471119388" duration="5820000" />
       <workItem from="1570506326967" duration="3239000" />
-      <workItem from="1570537415097" duration="4591000" />
+      <workItem from="1570537415097" duration="5095000" />
+      <workItem from="1570705746874" duration="569000" />
+      <workItem from="1570707309401" duration="3293000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103048000" />
+    <option name="totallyTimeSpent" value="107414000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.35127932" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.358742" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -449,8 +450,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/components/Forms/Register.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3336">
-          <caret line="139" column="21" lean-forward="true" selection-start-line="139" selection-start-column="21" selection-end-line="139" selection-end-column="21" />
+        <state relative-caret-position="2856">
+          <caret line="119" column="25" selection-start-line="119" selection-start-column="25" selection-end-line="119" selection-end-column="25" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>

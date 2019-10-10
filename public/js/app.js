@@ -61814,8 +61814,8 @@ var Register = function Register(_ref) {
 
   var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
       _useState10 = _slicedToArray(_useState9, 2),
-      inputError = _useState10[0],
-      setInputError = _useState10[1];
+      missing = _useState10[0],
+      setMissing = _useState10[1];
 
   var choose = function choose(value) {
     setData({
@@ -61868,7 +61868,6 @@ var Register = function Register(_ref) {
 
   var _formValidator = function _formValidator() {
     if (slide === 2) {
-      /*return data.firstName !== null && data.lastName !== null && data.email !== null && data.email.includes(`@`) && data.phone !== null;*/
       if (data.type === 1) {
         if (data.name !== undefined && data.name.length > 0) {
           if (data.ico !== undefined && data.ico.length > 0) {
@@ -61877,24 +61876,19 @@ var Register = function Register(_ref) {
                 if (data.email.includes('@')) {
                   setSlide(slide + 1);
                 } else {
-                  setInputError('email missing @');
-                  console.log(inputError);
+                  setMissing('@');
                 }
               } else {
-                setInputError('missing email');
-                console.log(inputError);
+                setMissing('email');
               }
             } else {
-              setInputError('missing phone');
-              console.log(inputError);
+              setMissing('phone');
             }
           } else {
-            setInputError('missing ico');
-            console.log(inputError);
+            setMissing('ico');
           }
         } else {
-          setInputError('missing company_name');
-          console.log(inputError);
+          setMissing('company name');
         }
       } else {
         if (data.firstName !== undefined && data.firstName.length > 0) {
@@ -61904,24 +61898,19 @@ var Register = function Register(_ref) {
                 if (data.email.includes('@')) {
                   setSlide(slide + 1);
                 } else {
-                  setInputError('email missing @');
-                  console.log(inputError);
+                  setMissing('@');
                 }
               } else {
-                setInputError('missing email');
-                console.log(inputError);
+                setMissing('email');
               }
             } else {
-              setInputError('missing phone');
-              console.log(inputError);
+              setMissing('phone');
             }
           } else {
-            setInputError('missing late name');
-            console.log(inputError);
+            setMissing('last name');
           }
         } else {
-          setInputError('missing first name');
-          console.log(inputError);
+          setMissing('first name');
         }
       }
     } else {
@@ -61931,12 +61920,10 @@ var Register = function Register(_ref) {
             if (data.ready != undefined && data.ready.length > 0) {
               submit();
             } else {
-              setInputError('missing ready date');
-              console.log(inputError);
+              setMissing('date');
             }
           } else {
-            setInputError('missing branch');
-            console.log(inputError);
+            setMissing('branch');
           }
         } else {
           console.log(data);
@@ -61948,20 +61935,16 @@ var Register = function Register(_ref) {
                 if (data.languages !== undefined && data.languages.length > 0) {
                   submit();
                 } else {
-                  setInputError('no language selected');
-                  console.log(inputError);
+                  setMissing('language');
                 }
               } else {
-                setInputError('missing ready date');
-                console.log(inputError);
+                setMissing('date');
               }
             } else {
-              setInputError('missing branch practise');
-              console.log(inputError);
+              setMissing('practise');
             }
           } else {
-            setInputError('missing branch name');
-            console.log(inputError);
+            setMissing('branch');
           }
         }
       }
