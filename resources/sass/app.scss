@@ -5,6 +5,7 @@ $secondary-color : #2c393f;
 $silver : #EDEDED;
 body{
   div#root{
+    height: 100vh;
     .registration-form {
       .main-title{
         font-size: 4rem;
