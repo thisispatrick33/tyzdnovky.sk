@@ -37,8 +37,16 @@
       <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_21_000354_create_languages_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_21_000354_create_languages_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/resources/js/components/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+=======
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Forms/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Forms/Register.js" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
+>>>>>>> 785484a494b7055a18ff2c116f004ffad3415fa5
+>>>>>>> 4bcada72145b60a3bc54b4a895478a97cbbc9d1f
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -107,8 +115,18 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/js/components/Main.js">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="420">
               <caret line="25" column="11" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
+=======
+<<<<<<< HEAD
+            <state relative-caret-position="2856">
+              <caret line="119" column="25" selection-start-line="119" selection-start-column="25" selection-end-line="119" selection-end-column="25" />
+=======
+            <state relative-caret-position="1058">
+              <caret line="46" column="69" selection-start-line="46" selection-start-column="69" selection-end-line="46" selection-end-column="69" />
+>>>>>>> 785484a494b7055a18ff2c116f004ffad3415fa5
+>>>>>>> 4bcada72145b60a3bc54b4a895478a97cbbc9d1f
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -290,7 +308,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="settings.editor.selected.configurable" value="MTConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -355,18 +373,32 @@
       <workItem from="1570418557304" duration="5669000" />
       <workItem from="1570471119388" duration="5820000" />
       <workItem from="1570506326967" duration="3239000" />
-      <workItem from="1570537415097" duration="4591000" />
+      <workItem from="1570537415097" duration="5095000" />
+      <workItem from="1570705746874" duration="569000" />
+      <workItem from="1570707309401" duration="3293000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="107852000" />
+=======
+<<<<<<< HEAD
+    <option name="totallyTimeSpent" value="107414000" />
+=======
+    <option name="totallyTimeSpent" value="103686000" />
+>>>>>>> 785484a494b7055a18ff2c116f004ffad3415fa5
+>>>>>>> 4bcada72145b60a3bc54b4a895478a97cbbc9d1f
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
+<<<<<<< HEAD
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.358742" />
+=======
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.38340485" />
+>>>>>>> 785484a494b7055a18ff2c116f004ffad3415fa5
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -482,8 +514,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/components/Forms/Register.js">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="434">
           <caret line="370" column="100" selection-start-line="370" selection-start-column="100" selection-end-line="370" selection-end-column="100" />
+=======
+<<<<<<< HEAD
+        <state relative-caret-position="2856">
+          <caret line="119" column="25" selection-start-line="119" selection-start-column="25" selection-end-line="119" selection-end-column="25" />
+=======
+        <state relative-caret-position="23">
+          <caret line="69" selection-start-line="69" selection-end-line="70" />
+>>>>>>> 785484a494b7055a18ff2c116f004ffad3415fa5
+>>>>>>> 4bcada72145b60a3bc54b4a895478a97cbbc9d1f
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>

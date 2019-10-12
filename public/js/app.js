@@ -61756,8 +61756,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Register", function() { return Register; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -61779,7 +61777,6 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 var Register = function Register(_ref) {
@@ -61814,8 +61811,8 @@ var Register = function Register(_ref) {
 
   var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
       _useState10 = _slicedToArray(_useState9, 2),
-      inputError = _useState10[0],
-      setInputError = _useState10[1];
+      missing = _useState10[0],
+      setMissing = _useState10[1];
 
   var choose = function choose(value) {
     setData({
@@ -61868,7 +61865,6 @@ var Register = function Register(_ref) {
 
   var _formValidator = function _formValidator() {
     if (slide === 2) {
-      /*return data.firstName !== null && data.lastName !== null && data.email !== null && data.email.includes(`@`) && data.phone !== null;*/
       if (data.type === 1) {
         if (data.name !== undefined && data.name.length > 0) {
           if (data.ico !== undefined && data.ico.length > 0) {
@@ -61877,24 +61873,19 @@ var Register = function Register(_ref) {
                 if (data.email.includes('@')) {
                   setSlide(slide + 1);
                 } else {
-                  setInputError('email missing @');
-                  console.log(inputError);
+                  setMissing('@');
                 }
               } else {
-                setInputError('missing email');
-                console.log(inputError);
+                setMissing('email');
               }
             } else {
-              setInputError('missing phone');
-              console.log(inputError);
+              setMissing('phone');
             }
           } else {
-            setInputError('missing ico');
-            console.log(inputError);
+            setMissing('ico');
           }
         } else {
-          setInputError('missing company_name');
-          console.log(inputError);
+          setMissing('company name');
         }
       } else {
         if (data.firstName !== undefined && data.firstName.length > 0) {
@@ -61904,24 +61895,22 @@ var Register = function Register(_ref) {
                 if (data.email.includes('@')) {
                   setSlide(slide + 1);
                 } else {
-                  setInputError('email missing @');
-                  console.log(inputError);
+                  setMissing({
+                    value: '@',
+                    message: "Nezadali ste platn\xFD email."
+                  });
                 }
               } else {
-                setInputError('missing email');
-                console.log(inputError);
+                setMissing('email');
               }
             } else {
-              setInputError('missing phone');
-              console.log(inputError);
+              setMissing('phone');
             }
           } else {
-            setInputError('missing late name');
-            console.log(inputError);
+            setMissing('last name');
           }
         } else {
-          setInputError('missing first name');
-          console.log(inputError);
+          setMissing('first name');
         }
       }
     } else {
@@ -61931,12 +61920,10 @@ var Register = function Register(_ref) {
             if (data.ready != undefined && data.ready.length > 0) {
               submit();
             } else {
-              setInputError('missing ready date');
-              console.log(inputError);
+              setMissing('date');
             }
           } else {
-            setInputError('missing branch');
-            console.log(inputError);
+            setMissing('branch');
           }
         } else {
           console.log(data);
@@ -61948,27 +61935,23 @@ var Register = function Register(_ref) {
                 if (data.languages !== undefined && data.languages.length > 0) {
                   submit();
                 } else {
-                  setInputError('no language selected');
-                  console.log(inputError);
+                  setMissing('language');
                 }
               } else {
-                setInputError('missing ready date');
-                console.log(inputError);
+                setMissing('date');
               }
             } else {
-              setInputError('missing branch practise');
-              console.log(inputError);
+              setMissing('practise');
             }
           } else {
-            setInputError('missing branch name');
-            console.log(inputError);
+            setMissing('branch');
           }
         }
       }
     }
   };
 
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  return console.log(missing), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: " registration-form | container-fluid | row col-12 | justify-content-center | mb-5 m-0 p-0 "
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
     className: " main-title | col-11 | my-4 p-0 | text-center "
@@ -62008,14 +61991,14 @@ var Register = function Register(_ref) {
           className: " title | col-12 | mb-3 pb-4 "
         }, "v\u0161eobecn\xE9 ", window.innerWidth <= 991 ? "info" : " inform\xE1cie", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "doth"
-        }, window.innerWidth <= 991 ? "..." : " ."));
+        }, window.innerWidth <= 991 ? "..." : "."));
 
       case 3:
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: " title | col-12 | mb-3 pb-4 "
         }, "dopl\u0148uj\xFAce ", window.innerWidth <= 991 ? "info" : " inform\xE1cie", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "doth"
-        }, window.innerWidth <= 991 ? "..." : " ."));
+        }, window.innerWidth <= 991 ? "..." : "."));
     }
   }(), function () {
     switch (slide) {
@@ -62098,7 +62081,13 @@ var Register = function Register(_ref) {
             }));
           },
           value: data.type === 1 ? data.name ? data.name : "" : data.firstName ? data.firstName : "",
-          className: " px-2 "
+          className: " px-2 ",
+          onFocus: function onFocus() {
+            return setMissing("");
+          },
+          style: {
+            borderBottomColor: missing === "first name" ? "#DE0D0D" : ""
+          }
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           htmlFor: "firstName"
         }, data.type === 1 ? "n\xE1zov" : "meno")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -62116,7 +62105,13 @@ var Register = function Register(_ref) {
               lastName: e.target.value
             }));
           },
-          value: data.type === 1 ? data.ico ? data.ico : "" : data.lastName ? data.lastName : ""
+          value: data.type === 1 ? data.ico ? data.ico : "" : data.lastName ? data.lastName : "",
+          onFocus: function onFocus() {
+            return setMissing("");
+          },
+          style: {
+            borderBottomColor: missing === "last name" ? "#DE0D0D" : ""
+          }
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           htmlFor: "lastName"
         }, data.type === 1 ? "i\u010Do" : "priezvisko")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -62132,7 +62127,13 @@ var Register = function Register(_ref) {
             }));
           },
           value: data.phone ? data.phone : "",
-          className: " px-2 "
+          className: " px-2 ",
+          onFocus: function onFocus() {
+            return setMissing("");
+          },
+          style: {
+            borderBottomColor: missing === "phone" ? "#DE0D0D" : ""
+          }
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           htmlFor: "phone"
         }, "telef\xF3n")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -62148,7 +62149,13 @@ var Register = function Register(_ref) {
             }));
           },
           value: data.email ? data.email : "",
-          className: " px-2 "
+          className: " px-2 ",
+          onFocus: function onFocus() {
+            return setMissing("");
+          },
+          style: {
+            borderBottomColor: missing === "email" || "@" ? "#DE0D0D" : ""
+          }
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           htmlFor: "email"
         }, "email")));

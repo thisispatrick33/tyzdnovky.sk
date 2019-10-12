@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import axios from "axios";
 
 export const Register = ({register = f => f}) => {
     const [slide, setSlide] = useState(1);
@@ -7,7 +6,7 @@ export const Register = ({register = f => f}) => {
     const [categories,setCategories] = useState([{ value: null }]);
     const lan = ["slovensky", "nemecky", "anglicky", "holandsky", "francúzsky"];
     const [languages, setLanguages] = useState([]);
-    let [inputError,setInputError] = useState("");
+    const [missing, setMissing] = useState(``);
     const choose = (value) => {
         setData({type : value});
         setCategories([{ value: null }]);
@@ -42,7 +41,6 @@ export const Register = ({register = f => f}) => {
     }
     const _formValidator = () => {
         if(slide === 2){
-            /*return data.firstName !== null && data.lastName !== null && data.email !== null && data.email.includes(`@`) && data.phone !== null;*/
             if(data.type===1){
                 if(data.name!==undefined&&data.name.length>0){
                     if(data.ico!==undefined&&data.ico.length>0){
@@ -51,24 +49,19 @@ export const Register = ({register = f => f}) => {
                                 if(data.email.includes('@')){
                                     setSlide(slide+1);
                                 }else {
-                                    setInputError('email missing @');
-                                    console.log(inputError);
+                                    setMissing('@');
                                 }
                             }else{
-                                setInputError('missing email');
-                                console.log(inputError);
+                                setMissing('email');
                             }
                         }else{
-                            setInputError('missing phone');
-                            console.log(inputError);
+                            setMissing('phone');
                         }
                     }else {
-                        setInputError('missing ico');
-                        console.log(inputError);
+                        setMissing('ico');
                     }
                 }else{
-                    setInputError('missing company_name');
-                    console.log(inputError);
+                    setMissing('company name');
                 }
             }
             else{
@@ -79,24 +72,19 @@ export const Register = ({register = f => f}) => {
                                 if(data.email.includes('@')){
                                     setSlide(slide+1);
                                 }else {
-                                    setInputError('email missing @');
-                                    console.log(inputError);
+                                    setMissing({value : '@', message : `Nezadali ste platný email.`});
                                 }
                             }else{
-                                setInputError('missing email');
-                                console.log(inputError);
+                                setMissing('email');
                             }
                         }else {
-                            setInputError('missing phone');
-                            console.log(inputError);
+                            setMissing('phone');
                         }
                     }else {
-                        setInputError('missing late name');
-                        console.log(inputError);
+                        setMissing('last name');
                     }
                 }else {
-                    setInputError('missing first name');
-                    console.log(inputError);
+                    setMissing('first name');
                 }
             }
         }else{
@@ -106,12 +94,10 @@ export const Register = ({register = f => f}) => {
                         if(data.ready!=undefined&&data.ready.length>0){
                             submit();
                         }else {
-                            setInputError('missing ready date');
-                            console.log(inputError);
+                            setMissing('date');
                         }
                     }else {
-                        setInputError('missing branch');
-                        console.log(inputError);
+                        setMissing('branch');
                     }
                 }
                 else{
@@ -123,20 +109,16 @@ export const Register = ({register = f => f}) => {
                                 if(data.languages!==undefined&&data.languages.length>0){
                                     submit();
                                 }else {
-                                    setInputError('no language selected');
-                                    console.log(inputError);
+                                    setMissing('language');
                                 }
                             }else {
-                                setInputError('missing ready date');
-                                console.log(inputError);
+                                setMissing('date');
                             }
                         }else {
-                            setInputError('missing branch practise');
-                            console.log(inputError);
+                            setMissing('practise');
                         }
                     }else {
-                        setInputError('missing branch name');
-                        console.log(inputError);
+                        setMissing('branch');
                     }
                 }
             }
@@ -145,6 +127,7 @@ export const Register = ({register = f => f}) => {
 
     };
     return (
+        console.log(missing),
         <div className={` registration-form | container-fluid | row col-12 | justify-content-center | mb-5 m-0 p-0 `}>
             <h1 className={` main-title | col-11 | my-4 p-0 | text-center `}>registrácia<span className={`doth`}>.</span></h1>
             <div className={` content-frame rounded | row col-xl-10 col-lg-10 col-11 | justify-content-center | py-xl-5 py-lg-5 py-3 | shadow `}>
@@ -166,8 +149,8 @@ export const Register = ({register = f => f}) => {
                     {(() => {
                         switch (slide) {
                             case 1 : return <div className={` title | col-12 | mb-3 pb-4 `}><span className={`doth`}>koho</span> registrujeme ?</div>;
-                            case 2 : return <div className={` title | col-12 | mb-3 pb-4 `}>všeobecné {window.innerWidth <= 991 ? `info` : ` informácie` }<span className={`doth`}>{window.innerWidth <= 991 ? `...` : ` .` }</span></div>;
-                            case 3 : return <div className={` title | col-12 | mb-3 pb-4 `}>doplňujúce {window.innerWidth <= 991 ? `info` : ` informácie` }<span className={`doth`}>{window.innerWidth <= 991 ? `...` : ` .` }</span></div>;
+                            case 2 : return <div className={` title | col-12 | mb-3 pb-4 `}>všeobecné {window.innerWidth <= 991 ? `info` : ` informácie` }<span className={`doth`}>{window.innerWidth <= 991 ? `...` : `.` }</span></div>;
+                            case 3 : return <div className={` title | col-12 | mb-3 pb-4 `}>doplňujúce {window.innerWidth <= 991 ? `info` : ` informácie` }<span className={`doth`}>{window.innerWidth <= 991 ? `...` : `.` }</span></div>;
                         }
                     })()}
                     {(() => {
@@ -237,6 +220,8 @@ export const Register = ({register = f => f}) => {
                                             onChange={(e) =>  setData(data.type === 1 ? { ...data, name : e.target.value} : { ...data, firstName : e.target.value})}
                                             value={data.type === 1 ?(data.name ? data.name : `` ) : (data.firstName ? data.firstName : `` )}
                                             className={` px-2 `}
+                                            onFocus={() => setMissing(``)}
+                                            style={{borderBottomColor : (missing === `first name` ? `#DE0D0D` : ``) }}
                                         />
                                         <label htmlFor="firstName">{data.type === 1 ? `názov` : `meno`}</label>
                                     </div>
@@ -249,6 +234,8 @@ export const Register = ({register = f => f}) => {
                                             placeholder={data.type === 1 ? `Zadajte ičo firmy` : `Napíšte vaše priezvisko`}
                                             onChange={(e) =>  setData(data.type === 1 ? { ...data, ico : e.target.value} : { ...data, lastName : e.target.value})}
                                             value={data.type === 1 ?(data.ico? data.ico : `` ) : (data.lastName ? data.lastName : `` )}
+                                            onFocus={() => setMissing(``)}
+                                            style={{borderBottomColor : (missing === `last name` ? `#DE0D0D` : ``) }}
                                         />
                                         <label htmlFor={"lastName"}>{data.type === 1 ? `ičo` : `priezvisko`}</label>
                                     </div>
@@ -261,6 +248,8 @@ export const Register = ({register = f => f}) => {
                                             onChange={(e) => setData({ ...data, phone : e.target.value})}
                                             value={data.phone ? data.phone : ``}
                                             className={` px-2 `}
+                                            onFocus={() => setMissing(``)}
+                                            style={{borderBottomColor : (missing === `phone` ? `#DE0D0D` : ``) }}
                                         />
                                         <label htmlFor={`phone`}>{`telefón`}</label>
                                     </div>
@@ -273,6 +262,8 @@ export const Register = ({register = f => f}) => {
                                             onChange={(e) => setData({ ...data, email : e.target.value})}
                                             value={data.email ? data.email : ``}
                                             className={` px-2 `}
+                                            onFocus={() => setMissing(``)}
+                                            style={{borderBottomColor : ((missing === `email` || `@`) ? `#DE0D0D` : ``) }}
                                         />
                                         <label htmlFor={`email`}>{`email`}</label>
                                     </div>
@@ -371,7 +362,7 @@ export const Register = ({register = f => f}) => {
                                         <h1 className={`main-title text-center h1 col-12`}>REGISTRACIA PREBEHLA</h1>
                                         <h1 className={`main-title text-center h1 col-12`}>USPESNE!</h1>
                                     </div>
-                                    
+
                                 </div>
 
 
