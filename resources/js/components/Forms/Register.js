@@ -266,7 +266,7 @@ export const Register = ({register = f => f}) => {
                                             value={data.email ? data.email : ``}
                                             className={` px-2 `}
                                             onFocus={() => setMissing(``)}
-                                            style={{borderBottomColor: ((missing === `email` || `@`) ? `#DE0D0D` : ``)}}
+                                            style={{borderBottomColor: ((missing === `email` || missing === `@`) ? `#DE0D0D` : ``)}}
                                         />
                                         <label htmlFor={`email`}>{`email`}</label>
                                     </div>

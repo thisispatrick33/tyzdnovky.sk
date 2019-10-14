@@ -6,6 +6,7 @@ import { Router } from '@reach/router';
 import { Register } from './Forms/Register';
 import { Login } from './Forms/Login';
 import axios from "axios";
+import {Home} from "./Logged/Home";
 
 
 
@@ -59,6 +60,7 @@ const Main = () => {
             <Router>
                 <Register path={`/`} register={_submitRegistration}/>
                 <Login path={`/login`} login={_submitLogin}/>
+                <Home path={`/home`} login={_submitLogin}/>
             </Router>
 
     )
