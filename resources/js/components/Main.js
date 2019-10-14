@@ -10,22 +10,83 @@ import axios from "axios";
 
 
 const Main = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [user, setUser] = useState({});
+    const [authState, setAuthState] = useState({isLoggedIn : false, user : {}});
+    const [location, setLocation] = useState(``);
 
-    const _loginUser = (email, password) => {
-        const [formData, setFormData] = useState({});
-        formData[`email`] = email;
-        formData[`password`] = password;
-
+    const _loginUser = (data) => {
+        _ipLocation();
+        $("#login-form button")
+            .attr("disabled", "disabled")
+            .html(
+                '<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>'
+            );
         axios
-    }
+            .post("/api/login/", data, {
+                headers : {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    "X-localization" : location,
+                }
+            })
+            .then(response => {
+                console.log(response);
+                return response;
+            })
+            .then(json => {
+                if (json.data.success) {
+                    alert("Login Successful!");
+
+                    let userData = {
+                        name: json.data.data.name,
+                        id: json.data.data.id,
+                        email: json.data.data.email,
+                        auth_token: json.data.data.auth_token,
+                        timestamp: new Date().toString()
+                    };
+                    let appState = {
+                        isLoggedIn: true,
+                        user: userData
+                    };
+
+                    localStorage["appState"] = JSON.stringify(appState);
+
+                    setAuthState({isLoggedIn: appState.isLoggedIn, user: appState.user});
+                }else {
+                    alert("Login Failed!");
+                }
+
+                $("#login-form button")
+                    .removeAttr("disabled")
+                    .html("Login");
+
+            })
+            .catch(error => {
+                alert(`An Error Occured! ${error}`);
+                $("#login-form button")
+                    .removeAttr("disabled")
+                    .html("Login");
+            });
+    };
+
+    const _logoutUser = () => {
+        let appState = {
+            isLoggedIn: false,
+            user: {}
+        };
+        localStorage["appState"] = JSON.stringify(appState);
+
+        setAuthState({isLoggedIn: appState.isLoggedIn, user: appState.user});
+    };
 
     const _submitRegistration = (data) => {
+        _ipLocation();
+
+
         axios
             .post(`/api/register`, data ,{
                 headers : {
                     'Content-Type' : `application/json`,
+                    "X-localization" : location,
                 }
             })
             .then((response) => {
@@ -33,30 +94,41 @@ const Main = () => {
                 console.log(response);
 
             })
-        /*.catch((error) => {
-            console.log(error)
-        })*/
+            .then(json => {
+                if (json.data.success) {
+                    alert(`Registration Successful!`);
+
+                    let userData = {
+                        name: json.data.data.name,
+                        id: json.data.data.id,
+                        email: json.data.data.email,
+                        auth_token: json.data.data.auth_token,
+                        timestamp: new Date().toString()
+                    };
+                    let appState = {
+                        isLoggedIn: true,
+                        user: userData
+                    };
+                    localStorage["appState"] = JSON.stringify(appState);
+
+                    setAuthState({isLoggedIn: appState.isLoggedIn, user: appState.user});
+                }else {
+                    alert(`Registration Failed!`);
+                }
+            }).catch(error => {
+                alert("An Error Occured!" + error);
+                console.log(`${formData} ${error}`);
+        });
+
+
     };
-    const _submitLogin = (data) => {
-        axios
-            .post(`/api/login`, data ,{
-                headers : {
-                    'Content-Type' : `application/json`,
-                }
-            })
-            .then((response) => {
-                console.log("sem");
-                console.log(response);
 
-            })
-    }
 
     const _ipLocation = () => {
         $.ajax('http://ip-api.com/json')
             .then(
                 function success(response) {
-                    console.log(response.countryCode);
-                    getAdress(response.lat, response.lon)
+                    setLocation(response.countryCode);
                 },
 
                 function fail(data, status) {
@@ -64,13 +136,12 @@ const Main = () => {
                         status);
                 }
             );
-    }
+    };
 
     return (
-        console.log(_ipLocation()),
             <Router>
                 <Register path={`/`} register={_submitRegistration}/>
-                <Login path={`/login`} login={_submitLogin}/>
+                <Login path={`/login`} login={_loginUser}/>
             </Router>
 
     )

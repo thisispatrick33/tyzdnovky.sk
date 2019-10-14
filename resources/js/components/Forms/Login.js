@@ -3,10 +3,32 @@ import React, {useState} from 'react';
 
 export const Login = ({login = f => f}) => {
     const [data,setData] = useState({});
+    const [missing, setMissing] = useState(``);
 
     const submit = () => {
         login(data);
     };
+
+    const _formValidator = (e) => {
+        e.preventDefault();
+        if(data.email!==undefined&&data.email.length>0){
+            if(data.email.includes('@')) {
+                if (data.password !== undefined && data.password.length > 0) {
+                    submit();
+                } else {
+                    setMissing({value: 'password', message: `Nezadali ste heslo.`});
+                    console.log(missing);
+                }
+            }else {
+                setMissing({value : '@', message : `Nezadali ste platný email.`});
+                console.log(missing);
+            }
+        }else{
+            setMissing({value : 'email', message : `Nezadali ste email.`});
+            console.log(missing);
+        }
+    };
+
     return (
         <div className={` registration-form | container-fluid | row col-12 | justify-content-center | mb-5 m-0 p-0 `}>
             <h1 className={` main-title | col-11 | my-4 p-0 | text-center `}>Login<span className={`doth`}>.</span></h1>
@@ -25,11 +47,11 @@ export const Login = ({login = f => f}) => {
                         </div>
                     </div>
                 </div>
-                <form className={` row col-xl-9 col-lg-9 col-12 | align-items-start | justify-content-center | m-0 p-4 `}>
+                <form id={`login-form`} className={` row col-xl-9 col-lg-9 col-12 | align-items-start | justify-content-center | m-0 p-4 `}>
 
                     <input name={'email'} onChange={(e) => setData({...data, email : e.target.value})} value={data.email === undefined ? `` : data.email}/>
                     <input name={'password'} onChange={(e)=>setData({...data, password : e.target.value})} value={data.password ? data.password : ``}/>
-                    <input type={'button'} onClick={submit}/>
+                    <button onClick={_formValidator}/>
 
                 </form>
             </div>
