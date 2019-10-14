@@ -61848,25 +61848,42 @@ var Login = function Login(_ref) {
   }, "T"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     id: "login-form",
     className: " row col-xl-9 col-lg-9 col-12 | align-items-start | justify-content-center | m-0 p-4 "
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: " field | col-xl-5 col-lg-5 col-12 | p-0 ml-xl-5 ml-lg-3 ml-2"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    name: 'email',
+    id: "email",
+    type: "email",
+    name: "email",
+    placeholder: "Zadajte v\xE1\u0161 email",
     onChange: function onChange(e) {
       return setData(_objectSpread({}, data, {
         email: e.target.value
       }));
     },
-    value: data.email === undefined ? "" : data.email
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    name: 'password',
+    value: data.email ? data.email : "",
+    className: " px-2 "
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "email"
+  }, "email")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: " field | col-xl-5 col-lg-5 col-12 | p-0 ml-2"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    id: "password",
+    type: "password",
+    name: "password",
+    placeholder: "Zadajte v\xE1\u0161 password",
     onChange: function onChange(e) {
       return setData(_objectSpread({}, data, {
         password: e.target.value
       }));
     },
-    value: data.password ? data.password : ""
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: _formValidator
-  }))));
+    value: data.password ? data.password : "",
+    className: " px-2 "
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "password"
+  }, "password")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: _formValidator,
+    type: "none"
+  }, " send"))));
 };
 
 /***/ }),
@@ -62221,7 +62238,7 @@ var Register = function Register(_ref) {
             return setMissing("");
           },
           style: {
-            borderBottomColor: missing === "email" || "@" ? "#DE0D0D" : ""
+            borderBottomColor: missing === "email" || missing === "@" ? "#DE0D0D" : ""
           }
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           htmlFor: "email"
@@ -62298,6 +62315,94 @@ var Register = function Register(_ref) {
 
 /***/ }),
 
+/***/ "./resources/js/components/Logged/Home.js":
+/*!************************************************!*\
+  !*** ./resources/js/components/Logged/Home.js ***!
+  \************************************************/
+/*! exports provided: Home */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Home", function() { return Home; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+var Home = function Home() {
+  if (true) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: " home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 "
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "content col-11 row justify-content-center py-5"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "header col-11 row justify-content-between"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "menu col-1 row"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+      className: "col-10 p-0",
+      viewBox: "0 0 86.628 43.314",
+      xmlns: "http://www.w3.org/2000/svg"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
+      transform: "translate(0 -96.243)"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
+      transform: "translate(0 96.243)",
+      fill: "#2c393f"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+      transform: "translate(0 -96.243)",
+      d: "M2.707,101.657H83.921a2.707,2.707,0,0,0,0-5.414H2.707a2.707,2.707,0,0,0,0,5.414Z",
+      "data-name": "Path 41"
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+      transform: "translate(0 -161.5)",
+      d: "M83.921,180.455H2.707a2.707,2.707,0,1,0,0,5.414H83.921a2.707,2.707,0,1,0,0-5.414Z",
+      "data-name": "Path 42"
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+      transform: "translate(-93.232 -226.77)",
+      d: "m177.15 264.67h-54.143a2.707 2.707 0 1 0 0 5.414h54.143a2.707 2.707 0 1 0 0-5.414z",
+      "data-name": "Path 43"
+    }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "finder col-9 d-flex justify-content-center"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      type: "text",
+      className: "col-11 finder",
+      placeholder: "\u2026find work, company or group"
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "user-header-nofication col-1"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      src: "./images/profile-photo.png",
+      className: "profile-photo",
+      alt: ""
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "action-point text-center"
+    }, "7"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "message col-11 mt-5"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Thomas"), " !")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "work-options justify-content-between col-11 row my-5"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "work-option row justify-content-center col-3 p-0"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "content shadow p-0 col-10"
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "work-option row justify-content-center col-3 p-0"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "content shadow p-0 col-10"
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "work-option row justify-content-center col-3 p-0"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "content shadow p-0 col-10"
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "work-option row justify-content-center col-3 p-0"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "content shadow p-0 col-10"
+    })))));
+  }
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: " home | container-fluid | row col-12 | justify-content-center | mb-5 m-0 p-0 "
+  }, "unlogged");
+};
+
+/***/ }),
+
 /***/ "./resources/js/components/Main.js":
 /*!*****************************************!*\
   !*** ./resources/js/components/Main.js ***!
@@ -62318,6 +62423,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Forms_Login__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Forms/Login */ "./resources/js/components/Forms/Login.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _Logged_Home__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Logged/Home */ "./resources/js/components/Logged/Home.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -62325,6 +62431,7 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -62455,6 +62562,8 @@ var Main = function Main() {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_Login__WEBPACK_IMPORTED_MODULE_5__["Login"], {
     path: "/login",
     login: _loginUser
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Logged_Home__WEBPACK_IMPORTED_MODULE_7__["Home"], {
+    path: "/home"
   }));
 };
 

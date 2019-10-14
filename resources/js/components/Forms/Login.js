@@ -48,11 +48,31 @@ export const Login = ({login = f => f}) => {
                     </div>
                 </div>
                 <form id={`login-form`} className={` row col-xl-9 col-lg-9 col-12 | align-items-start | justify-content-center | m-0 p-4 `}>
-
-                    <input name={'email'} onChange={(e) => setData({...data, email : e.target.value})} value={data.email === undefined ? `` : data.email}/>
-                    <input name={'password'} onChange={(e)=>setData({...data, password : e.target.value})} value={data.password ? data.password : ``}/>
-                    <button onClick={_formValidator}/>
-
+                    <div className={` field | col-xl-5 col-lg-5 col-12 | p-0 ml-xl-5 ml-lg-3 ml-2`}>
+                        <input
+                            id={`email`}
+                            type={`email`}
+                            name={`email`}
+                            placeholder={`Zadajte váš email`}
+                            onChange={(e) => setData({...data, email: e.target.value})}
+                            value={data.email ? data.email : ``}
+                            className={` px-2 `}
+                        />
+                        <label htmlFor={`email`}>{`email`}</label>
+                    </div>
+                    <div className={` field | col-xl-5 col-lg-5 col-12 | p-0 ml-2`}>
+                        <input
+                            id={`password`}
+                            type={`password`}
+                            name={`password`}
+                            placeholder={`Zadajte váš password`}
+                            onChange={(e) => setData({...data, password: e.target.value})}
+                            value={data.password ? data.password : ``}
+                            className={` px-2 `}
+                        />
+                        <label htmlFor={`password`}>{`password`}</label>
+                    </div>
+                    <button onClick={_formValidator} type={`none`}> send</button>
                 </form>
             </div>
         </div>
