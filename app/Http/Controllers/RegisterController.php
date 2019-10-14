@@ -15,14 +15,18 @@ use App\Language;
 
 class RegisterController extends Controller
 {
-    public function store(Request $request){
+    public function register(Request $request){
         
         $validator = Validator::make($request->all(), [
             'type' => 'required|numeric|max:3|min:1',
         ]);
             
         if ($validator->fails()) {
-            return response("Nie je zadaný typ alebo má zlú hodnotu.",400);
+            return response()->json([
+                'success' => false,
+                'data' => [],
+                'messages' => $validator->messages()
+            ]);
         };
         
             
@@ -30,18 +34,19 @@ class RegisterController extends Controller
         if($request->type == 1){
                 
             $validator = Validator::make($request->all(), [
-                'categories' => 'required|array',
-                'email' => 'required|email|unique:companies',
+                'email' => 'required|email|unique:users|unique:companies',
                 'name' => 'required|string',
                 'ico' => 'required|string',
                 'phone' => 'required|string',
-                'ready' => 'required|date',
                 'password' => 'required'
             ]);
              
             if ($validator->fails()) {
-                $error = $validator->messages();
-                return response($error,400);            
+                return response()->json([
+                    'success' => false,
+                    'data' => [],
+                    'messages' => $validator->messages()
+                ]);           
             };
 
             $success = false;
@@ -55,7 +60,6 @@ class RegisterController extends Controller
                 $company->ico = $request->ico;
                 $company->email = $request->email;
                 $company->phone = $request->phone;
-                $company->nastup = $request->ready;
                 $company->password = \Hash::make($request->password);
                 
 
@@ -66,24 +70,6 @@ class RegisterController extends Controller
                     $company = Company::where('email', $request->email)->get()->first();
                     $company->auth_token = $token;
                     $company->save();
-        
-                    $branch_arr = [];
-                    foreach( $request->categories as $branch){
-                        $branch_id = Branch::where('name','=',$branch['value'])->first();
-                        if ($branch_id) {
-                            array_push($branch_arr,$branch_id->id);
-                        }
-                        else {
-                            $NewBranch = new Branch;
-                            $NewBranch->name = $branch['value'];
-                            $NewBranch->lang = ($request->hasHeader('X-localization')) ? $request->header('X-localization') : 'en';
-                            if ($NewBranch->save()) {
-                                array_push($branch_arr,$NewBranch->id);
-                            }
-                        }
-                    }   
-                    $company->branches()->attach($branch_arr);
-            
                     $success = true;
             
                 }
@@ -96,10 +82,18 @@ class RegisterController extends Controller
 
                 if ($success) {
                     DB::commit();
-                    return response(200);
+                    return response()->json([
+                        'success' => true,
+                        'data' => [],
+                        'messages' => trans('messages.accountCreated')
+                    ]);
                 } else {
                     DB::rollback();
-                    return response("Nastala chyba.. =(", 400);
+                    return response()->json([
+                        'success' => false,
+                        'data' => [],
+                        'messages' => trans('messages.error')
+                    ]);
                 }
             }
 
@@ -107,21 +101,19 @@ class RegisterController extends Controller
         else{
 
             $validator = Validator::make($request->all(), [
-                'categories' => 'required|array',
-                'driving_licence' => 'required|boolean',
-                'email' => 'required|email|unique:users',
+                'email' => 'required|email|unique:users|unique:companies',
                 'firstName' => 'required|string',
-                'languages' => 'required|array',
                 'lastName' => 'required|string',
                 'phone' => 'required|string',
-                'ready' => 'required|date',
                 'password' => 'required'
             ]);
              
             if ($validator->fails()) {
-                $error = $validator->messages();
-                return response($error);
-                
+                return response()->json([
+                    'success' => false,
+                    'data' => [],
+                    'messages' => $validator->messages()
+                ]);
             };
             
             
@@ -136,8 +128,6 @@ class RegisterController extends Controller
                 $user->lastname = $request->lastName;
                 $user->email = $request->email;
                 $user->phone = $request->phone;
-                $user->driving_license = $request->driving_licence;
-                $user->nastup = $request->ready;
                 $user->password = \Hash::make($request->password);
 
                 if($user->save()){
@@ -146,6 +136,64 @@ class RegisterController extends Controller
                     $user = User::where('email', $request->email)->get()->first();
                     $user->auth_token = $token;
                     $user->save();
+                    $success = true;
+            
+                }
+                else{
+                    $success = false;
+                }
+            } catch (\Exception $e) {
+                // maybe log this exception, but basically it's just here so we can rollback if we get a surprise
+            }
+
+            if ($success) {
+                DB::commit();
+                return response()->json([
+                    'success' => true,
+                    'data' => [],
+                    'messages' => trans('messages.accountCreated')
+                ]);
+            } else {
+                DB::rollback();
+                return response()->json([
+                    'success' => false,
+                    'data' => [],
+                    'messages' => trans('messages.error')
+                ]);
+            }
+        }
+
+    }
+
+    public function additionalInfo(Request $request){
+        if($user = User::where('email',$request->email)->first()){
+            $validator = Validator::make($request->all(), [
+                'categories' => 'required|array',
+                'driving_licence' => 'required|boolean',
+                'languages' => 'required|array',
+                'ready' => 'required|date',
+                'username' => 'required|unique:users|unique:companies'
+            ]);
+             
+            if ($validator->fails()) {
+                return response()->json([
+                    'success' => false,
+                    'data' => [],
+                    'messages' => $validator->messages()
+                ]);
+            };
+            
+            
+            $success = false;
+
+            DB::beginTransaction();
+
+            try {  
+                $user->driving_license = $request->driving_licence;
+                $user->nastup = $request->ready;
+                $user->username = $request->username;
+
+                if($user->save()){
 
                     $language_arr = [];
                     foreach( $request->languages as $language){
@@ -188,26 +236,120 @@ class RegisterController extends Controller
                             $user->branches()->updateExistingPivot($branch_arr[$i], ['years' => $request->categories[$i]['practise']]);
                         }
                     }
-            
-                    $success = true;
+                    
+                    $user->active = true;
+
+                    if($user->save()){
+                        $success = true;
+                    }
             
                 }
                 else{
                     $success = false;
                 }
-                } catch (\Exception $e) {
+            } catch (\Exception $e) {
                 // maybe log this exception, but basically it's just here so we can rollback if we get a surprise
-                }
+            }
 
-                if ($success) {
-                    DB::commit();
-                    return response(200);
-                } else {
-                    DB::rollback();
-                    return response("Nastala chyba.. =(", 400);
+            if ($success) {
+                DB::commit();
+                return response()->json([
+                    'success' => true,
+                    'data' => [],
+                    'messages' => trans('messages.dataAdded')
+                ]);
+            } else {
+                DB::rollback();
+                return response()->json([
+                    'success' => false,
+                    'data' => [],
+                    'messages' => trans('messages.error')
+                ]);
+            }
+        }
+        else if($company = Company::where('email',$request->email)->first()){
+            $validator = Validator::make($request->all(), [
+                'categories' => 'required|array',
+                'ready' => 'required|date',
+                'username' => 'required|unique:users|unique:companies'
+            ]);
+             
+            if ($validator->fails()) {
+                return response()->json([
+                    'success' => false,
+                    'data' => [],
+                    'messages' => $validator->messages()
+                ]);           
+            };
+
+            $success = false;
+
+            DB::beginTransaction();
+
+            try {        
+                $company->nastup = $request->ready;
+                $company->username = $request->username;
+
+                if($company->save()){
+                    $branch_arr = [];
+                    foreach( $request->categories as $branch){
+                        $branch_id = Branch::where('name','=',$branch['value'])->first();
+                        if ($branch_id) {
+                            array_push($branch_arr,$branch_id->id);
+                        }
+                        else {
+                            $NewBranch = new Branch;
+                            $NewBranch->name = $branch['value'];
+                            $NewBranch->lang = ($request->hasHeader('X-localization')) ? $request->header('X-localization') : 'en';
+                            if ($NewBranch->save()) {
+                                array_push($branch_arr,$NewBranch->id);
+                            }
+                        }
+                    }   
+                    $company->branches()->attach($branch_arr);
+                    
+                    $company->active = true;
+
+                    if($company->save()){
+                        $success = true;
+                    }
+
+            
                 }
+                else{
+                    $success = false;
+                }
+            } catch (\Exception $e) {
+                // maybe log this exception, but basically it's just here so we can rollback if we get a surprise
+            }
+
+            if ($success) {
+                DB::commit();
+                return response()->json([
+                    'success' => true,
+                    'data' => [],
+                    'messages' => trans('messages.dataAdded')
+                ]);
+            } else {
+                DB::rollback();
+                return response()->json([
+                    'success' => false,
+                    'data' => [],
+                    'messages' => trans('messages.error')
+                ]);
             }
 
         }
+        /*else if(){
+            TODO admin verification
+        }*/
+        else{
+            return response()->json([
+                'success' => false,
+                'data' => [],
+                'messages' => trans('messages.userNotFound')
+            ]);
+        }
+    }
 
 }
