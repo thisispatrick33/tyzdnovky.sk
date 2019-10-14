@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import $ from "jquery";
 
@@ -10,6 +10,17 @@ import axios from "axios";
 
 
 const Main = () => {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [user, setUser] = useState({});
+
+    const _loginUser = (email, password) => {
+        const [formData, setFormData] = useState({});
+        formData[`email`] = email;
+        formData[`password`] = password;
+
+        axios
+    }
+
     const _submitRegistration = (data) => {
         axios
             .post(`/api/register`, data ,{
@@ -34,7 +45,7 @@ const Main = () => {
                 }
             })
             .then((response) => {
-
+                console.log("sem");
                 console.log(response);
 
             })

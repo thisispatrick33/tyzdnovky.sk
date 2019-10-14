@@ -62412,6 +62412,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Forms_Login__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Forms/Login */ "./resources/js/components/Forms/Login.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -62421,6 +62429,27 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Main = function Main() {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      isLoggedIn = _useState2[0],
+      setIsLoggedIn = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
+      _useState4 = _slicedToArray(_useState3, 2),
+      user = _useState4[0],
+      setUser = _useState4[1];
+
+  var _loginUser = function _loginUser(email, password) {
+    var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
+        _useState6 = _slicedToArray(_useState5, 2),
+        formData = _useState6[0],
+        setFormData = _useState6[1];
+
+    formData["email"] = email;
+    formData["password"] = password;
+    axios__WEBPACK_IMPORTED_MODULE_6___default.a;
+  };
+
   var _submitRegistration = function _submitRegistration(data) {
     axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/api/register", data, {
       headers: {
@@ -62440,6 +62469,7 @@ var Main = function Main() {
         'Content-Type': "application/json"
       }
     }).then(function (response) {
+      console.log("sem");
       console.log(response);
     });
   };
@@ -62486,13 +62516,8 @@ if (document.getElementById('root')) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
 __webpack_require__(/*! C:\Users\Mamuss\PhpstormProjects\tyzdnovky.sk\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! C:\Users\Mamuss\PhpstormProjects\tyzdnovky.sk\resources\sass\app.scss */"./resources/sass/app.scss");
-=======
-__webpack_require__(/*! C:\Users\Jakub\Desktop\tyzdnovky.sk\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Jakub\Desktop\tyzdnovky.sk\resources\sass\app.scss */"./resources/sass/app.scss");
->>>>>>> c299aabeaea183c0b0dd4880e0227b1e86ab933e
 
 
 /***/ })
