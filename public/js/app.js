@@ -61887,32 +61887,15 @@ var Register = function Register(_ref) {
       data = _useState4[0],
       setData = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([{
-    value: null
-  }]),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
       _useState6 = _slicedToArray(_useState5, 2),
-      categories = _useState6[0],
-      setCategories = _useState6[1];
-
-  var lan = ["slovensky", "nemecky", "anglicky", "holandsky", "francúzsky"];
-
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
-      _useState8 = _slicedToArray(_useState7, 2),
-      languages = _useState8[0],
-      setLanguages = _useState8[1];
-
-  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
-      _useState10 = _slicedToArray(_useState9, 2),
-      missing = _useState10[0],
-      setMissing = _useState10[1];
+      missing = _useState6[0],
+      setMissing = _useState6[1];
 
   var choose = function choose(value) {
     setData({
       type: value
     });
-    setCategories([{
-      value: null
-    }]);
     setSlide(slide + 1);
   };
 
@@ -62081,13 +62064,6 @@ var Register = function Register(_ref) {
         }, "v\u0161eobecn\xE9 ", window.innerWidth <= 991 ? "info" : " inform\xE1cie", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "doth"
         }, window.innerWidth <= 991 ? "..." : "."));
-
-      case 3:
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " title | col-12 | mb-3 pb-4 "
-        }, "dopl\u0148uj\xFAce ", window.innerWidth <= 991 ? "info" : " inform\xE1cie", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "doth"
-        }, window.innerWidth <= 991 ? "..." : "."));
     }
   }(), function () {
     switch (slide) {
@@ -62247,130 +62223,31 @@ var Register = function Register(_ref) {
           }
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           htmlFor: "email"
-        }, "email")));
-
-      case 3:
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " col-12 | data-group-3 "
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " row | p-0 "
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " categories | col-12 | p-0 "
-        }, categories.map(function (input, i) {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            key: i,
-            className: " row col-12 "
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: " field ".concat(data.type === 1 ? "col-12" : "col-9")
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-            id: "category-".concat(i),
-            type: "text",
-            name: "category-".concat(i),
-            placeholder: "Zadajte v\xE1\u0161 odbor",
-            onChange: function onChange(e) {
-              return handleChange(i, e, "c");
-            },
-            value: categories[i].value
-          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-            htmlFor: "category-".concat(i)
-          }, "povolanie")), data.type === 1 ? "" : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: " field | col-3 p-0 pl-2"
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-            id: "practise-".concat(i),
-            type: "number",
-            name: "practise-".concat(i),
-            placeholder: "09",
-            onChange: function onChange(e) {
-              return handleChange(i, e, "p");
-            },
-            value: categories[i].practise,
-            max: "50",
-            min: "0"
-          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-            htmlFor: "practise-".concat(i)
-          }, "prax")));
-        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " add | col-12 | mb-4 ",
-          onClick: function onClick() {
-            return handleAdd();
-          }
-        }, data.type === 1 ? "+ h\u013Ead\xE1te viacero profesi\xED?" : "+ ovl\xE1date viacero profesi\xED ?", " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " date | col-12 | mb-4 "
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " row | p-0 "
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " field | col-12 "
+        }, "email")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: " field | col-xl-5 col-lg-5 col-12 | p-0 ml-2"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          id: "date",
-          type: "date",
-          name: "date",
-          min: "2019-09-26",
-          placeholder: "Vyberte vhodn\xFD d\xE1tum",
+          id: "password",
+          type: "password",
+          name: "password",
+          placeholder: "Zadajte v\xE1\u0161 password",
           onChange: function onChange(e) {
             return setData(_objectSpread({}, data, {
-              ready: e.target.value
+              password: e.target.value
             }));
           },
-          value: data.ready ? data.ready : ""
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-          htmlFor: "date"
-        }, "d\xE1tum n\xE1stupu")))), data.type !== 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " languages | row col-12 | mb-4 "
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " row col-12 | justify-content-center "
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " title-small | col-12 | pl-4 "
-        }, "jazykov\xE9 znalosti"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " row col-11 | justify-content-xl-between justify-content-lg-between justify-content-center | pl-4 p-2 "
-        }, lan.map(function (language, i) {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: " row col-xl-2 col-lg-2 col-10 | align-items-center | p-0 ",
-            onClick: function onClick() {
-              return addLanguage(language, i);
-            }
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: " col-auto | p-0 "
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: " ".concat(languages.includes(language) ? "square-filled" : "square", " ")
-          })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-            className: " col-9 | mb-0 ml-2 p-0 ",
-            style: {
-              color: languages.includes(language) ? "#00C7C7" : ""
-            }
-          }, language));
-        })))) : "", data.type !== 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " driving_licence | row col-12 | my-4 "
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " row col-12 | justify-content-center "
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " title-small | col-12 | pl-4 "
-        }, "Ste dr\u017Eite\u013Eom vodick\xE9 opr\xE1vnenie pre skupinu b?"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " row col-12 | align-items-center | pl-4 ",
-          onClick: function onClick() {
-            return setData(_objectSpread({}, data, {
-              driving_license: data.driving_license === undefined ? true : !data.driving_license
-            }));
+          value: data.password ? data.password : "",
+          className: " px-2 ",
+          onFocus: function onFocus() {
+            return setMissing("");
+          },
+          style: {
+            borderBottomColor: missing === "password" ? "#DE0D0D" : ""
           }
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " col-auto | ml-3 p-0 "
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " ".concat(data.driving_license === undefined || data.driving_license === false ? "circle" : "circle-filled", " ")
-        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-          className: " col-9 | mb-0 p-0 pl-2"
-        }, "\xC1no, som")))) : ""));
-
-      case 4:
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " col-12 | data-group-3 justify-content-center align-items-center h-100 d-flex"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "row"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-          className: "main-title text-center h1 col-12"
-        }, "REGISTRACIA PREBEHLA"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-          className: "main-title text-center h1 col-12"
-        }, "USPESNE!")));
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          htmlFor: "password"
+        }, "password")));
     }
-  }(), slide <= 1 || slide > 3 ? "" : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }(), slide <= 1 || slide > 2 ? "" : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: " navigators | col-12 row | mt-4 p-0"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: " align-items-center | row arrow col-6 | justify-content-start m-0",
@@ -62397,7 +62274,7 @@ var Register = function Register(_ref) {
     }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: " col-auto | mb-0 | d-xl-flex d-lg-flex d-md-flex d-none "
-  }, slide + 1 > 3 ? "odosla\u0165" : "pokra\u010Dova\u0165"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, slide + 1 > 2 ? "odosla\u0165" : "pokra\u010Dova\u0165"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: " col-xl-1 col-lg-1 col-md-1 col-sm-2 col-4 | p-0 "
   }, slide + 1 > 3 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
     className: " col-12 | p-0 ",
