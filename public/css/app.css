@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Krub:300,400,600,800&display=swap);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Krub:300,500,600,800&display=swap);@charset "UTF-8";
 
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
@@ -10644,69 +10644,6 @@ a.text-dark:focus {
   }
 }
 
-body div#root {
-  height: 100vh;
-}
-
-body div#root .registration-form .main-title {
-  font-size: 4rem;
-}
-
-body div#root .registration-form .main-title.h1 {
-  font-size: 3rem;
-}
-
-body div#root .registration-form .content-frame {
-  min-height: 70vh;
-}
-
-body div#root .registration-form .content-frame .title {
-  font-size: 2.25em;
-  font-family: "Krub", sans-serif;
-}
-
-body div#root .registration-form .content-frame .title:first-letter {
-  text-transform: capitalize;
-}
-
-body div#root .registration-form .content-frame .side-bar {
-  border-right: 1.5px #EDEDED solid;
-}
-
-body div#root .registration-form .content-frame .slide {
-  transition: 0.5s;
-}
-
-body div#root .registration-form .content-frame .slide:not(:hover) {
-  fill: #2C393F;
-  color: #2C393F;
-}
-
-body div#root .registration-form .content-frame .slide:hover {
-  fill: #00C7C7;
-  color: #00C7C7;
-}
-
-body div#root .registration-form .content-frame .slide:nth-child(1) {
-  border-right: 1.5px solid #EDEDED;
-}
-
-body div#root .registration-form .content-frame .slide .name {
-  font-size: 2.4em;
-  font-family: "Krub", sans-serif;
-}
-
-body div#root .registration-form .content-frame .navigators {
-  font-family: "Krub", sans-serif;
-  text-transform: uppercase;
-  font-size: 1.2em;
-  color: #2c393f;
-}
-
-body div#root .registration-form .content-frame .navigators svg {
-  fill: #2c393f;
-}
-
 .field {
   display: flex;
   flex-flow: column-reverse;
@@ -10891,6 +10828,171 @@ input:focus + label {
 
 .cls-2 {
   fill: #00c7c7;
+}
+
+body div#root {
+  height: 100vh;
+}
+
+body div#root .registration-form .main-title {
+  font-size: 4rem;
+}
+
+body div#root .registration-form .main-title.h1 {
+  font-size: 3rem;
+}
+
+body div#root .registration-form .content-frame {
+  min-height: 70vh;
+}
+
+body div#root .registration-form .content-frame .title {
+  font-size: 2.25em;
+  font-family: "Krub", sans-serif;
+}
+
+body div#root .registration-form .content-frame .title:first-letter {
+  text-transform: capitalize;
+}
+
+body div#root .registration-form .content-frame .side-bar {
+  border-right: 1.5px #EDEDED solid;
+}
+
+body div#root .registration-form .content-frame .slide {
+  transition: 0.5s;
+}
+
+body div#root .registration-form .content-frame .slide:not(:hover) {
+  fill: #2C393F;
+  color: #2C393F;
+}
+
+body div#root .registration-form .content-frame .slide:hover {
+  fill: #00C7C7;
+  color: #00C7C7;
+}
+
+body div#root .registration-form .content-frame .slide:nth-child(1) {
+  border-right: 1.5px solid #EDEDED;
+}
+
+body div#root .registration-form .content-frame .slide .name {
+  font-size: 2.4em;
+  font-family: "Krub", sans-serif;
+}
+
+body div#root .registration-form .content-frame .navigators {
+  font-family: "Krub", sans-serif;
+  text-transform: uppercase;
+  font-size: 1.2em;
+  color: #2c393f;
+}
+
+body div#root .registration-form .content-frame .navigators svg {
+  fill: #2c393f;
+}
+
+body div#root .home {
+  background-image: url(/images/background.png?a39eec6d26c795d34ff5a79f81914f16);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+body div#root .home .content {
+  background-color: white;
+  border-radius: 27px;
+}
+
+body div#root .home .content .header .finder {
+  border: none;
+  background-color: #EDEDED;
+  border-radius: 35px;
+  font-size: 1.2em;
+  font-family: Krub, serif;
+  font-weight: 300;
+  color: #2c393f;
+}
+
+body div#root .home .content .header .finder ::-webkit-input-placeholder {
+  /* Edge */
+  font-family: Krub, serif;
+  font-weight: 300;
+  color: #C9C9C9;
+  opacity: 1;
+}
+
+body div#root .home .content .header .finder :-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  font-family: Krub, serif;
+  font-weight: 300;
+  color: #C9C9C9;
+  opacity: 1;
+}
+
+body div#root .home .content .header .finder ::-moz-placeholder {
+  font-family: Krub, serif;
+  font-weight: 300;
+  color: #8E8E8E;
+  opacity: 1;
+}
+
+body div#root .home .content .header .finder ::-ms-input-placeholder {
+  font-family: Krub, serif;
+  font-weight: 300;
+  color: #8E8E8E;
+  opacity: 1;
+}
+
+body div#root .home .content .header .finder ::placeholder {
+  font-family: Krub, serif;
+  font-weight: 300;
+  color: #8E8E8E;
+  opacity: 1;
+}
+
+body div#root .home .content .header .user-header-nofication {
+  position: relative;
+}
+
+body div#root .home .content .header .user-header-nofication .profile-photo {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+body div#root .home .content .header .user-header-nofication .action-point {
+  background: #40C410;
+  position: absolute;
+  z-index: 2;
+  font-size: 0.8em;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  color: white;
+  left: 10px;
+  bottom: 0;
+}
+
+body div#root .home .content .message {
+  font-size: 1.45em;
+  font-family: Krub, serif;
+}
+
+body div#root .home .content .message p {
+  font-weight: 300;
+}
+
+body div#root .home .content .message p span {
+  font-weight: 500;
+}
+
+body div#root .home .content .work-options .work-option .content {
+  height: 300px;
+  border-radius: 27px;
 }
 
 @media (max-width: 991.98px) {

@@ -1,64 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Krub:300,400,600,800&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Krub:300,500,600,800&display=swap');
 @import '~bootstrap/scss/bootstrap';
 $primary-color : #00C7C7;
 $secondary-color : #2c393f;
 $silver : #EDEDED;
-body{
-  div#root{
-    height: 100vh;
-    .registration-form {
-      .main-title{
-        font-size: 4rem;
-      }
-      .main-title.h1{
-        font-size: 3rem;
-      }
-      .content-frame {
-        min-height: 70vh;
-        .title{
-          font-size: 2.250em;
-          font-family: 'Krub', sans-serif;
-          &:first-letter{
-            text-transform: capitalize;
-          }
-        }
-
-        .side-bar {
-          border-right:  1.5px $silver solid;
-        }
-        .slide{
-          &:not(:hover){
-            fill : #2C393F;
-            color : #2C393F;
-          }
-          &:hover{
-            fill : $primary-color;
-            color : $primary-color;
-          }
-          &:nth-child(1){
-            border-right: 1.5px solid $silver;
-          }
-          transition: 0.5s;
-          .name{
-            font-size: 2.4em;
-            font-family: 'Krub', sans-serif;
-          }
-        }
-        .navigators{
-          font-family: 'Krub', sans-serif;
-          text-transform: uppercase;
-          font-size: 1.2em;
-          color: $secondary-color;
-          svg{
-            fill: $secondary-color;
-          }
-        }
-      }
-    }
-  }
-
-}
-
+$error : #D50B0B;
 .field {
   display: flex;
   flex-flow: column-reverse;
@@ -153,11 +98,11 @@ input:focus + label {
   font-size: 1em;
 }
 .square{
-   width: 12px;
-   height: 12px;
-   border: 1px solid $primary-color;
-   border-radius : 2px;
- }
+  width: 12px;
+  height: 12px;
+  border: 1px solid $primary-color;
+  border-radius : 2px;
+}
 .circle{
   width: 12px;
   height: 12px;
@@ -191,12 +136,152 @@ input:focus + label {
   color : $primary-color;
 }
 .languages .title-small, .driving_licence .title-small{
-   font-family: "Krub", sans-serif;
-   text-transform: uppercase;
-   letter-spacing: 0.05em;
-   padding-left: 0.25em;
- }
+  font-family: "Krub", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding-left: 0.25em;
+}
 .cls-1,.cls-2{font-size:1179.08px;font-family:Krub-Bold, Krub;font-weight:700;}.cls-1{fill:#2c393f;}.cls-2{fill:#00c7c7;}
+body{
+  div#root{
+    height: 100vh;
+    .registration-form {
+      .main-title{
+        font-size: 4rem;
+      }
+      .main-title.h1{
+        font-size: 3rem;
+      }
+      .content-frame {
+        min-height: 70vh;
+        .title{
+          font-size: 2.250em;
+          font-family: 'Krub', sans-serif;
+          &:first-letter{
+            text-transform: capitalize;
+          }
+        }
+
+        .side-bar {
+          border-right:  1.5px $silver solid;
+        }
+        .slide{
+          &:not(:hover){
+            fill : #2C393F;
+            color : #2C393F;
+          }
+          &:hover{
+            fill : $primary-color;
+            color : $primary-color;
+          }
+          &:nth-child(1){
+            border-right: 1.5px solid $silver;
+          }
+          transition: 0.5s;
+          .name{
+            font-size: 2.4em;
+            font-family: 'Krub', sans-serif;
+          }
+        }
+        .navigators{
+          font-family: 'Krub', sans-serif;
+          text-transform: uppercase;
+          font-size: 1.2em;
+          color: $secondary-color;
+          svg{
+            fill: $secondary-color;
+          }
+        }
+      }
+    }
+    .home{
+      background: {
+        image : url('../images/background.png');
+        size: cover;
+        position: center;
+        attachment: fixed;
+      };
+      width: 100vw;
+      min-height: 100vh;
+      .content{
+        background-color: white;
+        border-radius: 27px;
+        .header{
+          .finder{
+            border: none;
+            background-color: $silver;
+            border-radius: 35px;
+            font-size: 1.2em;
+            font-family: Krub, serif;
+            font-weight: 300;
+            color: $secondary-color;
+
+            ::-webkit-input-placeholder { /* Edge */
+              font-family: Krub, serif;
+              font-weight: 300;
+              color: #C9C9C9;
+              opacity: 1;
+            }
+
+            :-ms-input-placeholder { /* Internet Explorer 10-11 */
+              font-family: Krub, serif;
+              font-weight: 300;
+              color: #C9C9C9;
+              opacity: 1;
+            }
+
+            ::placeholder {
+              font-family: Krub, serif;
+              font-weight: 300;
+              color: #8E8E8E;
+              opacity: 1;
+            }
+          }
+          .user-header-nofication{
+            position: relative;
+            .profile-photo{
+              border-radius: 50%;
+              width: 50px;
+              height: 50px;
+            }
+            .action-point{
+              background: #40C410;
+              position: absolute;
+              z-index: 2;
+              font-size: 0.8em;
+              border-radius: 50%;
+              width: 20px;
+              height: 20px;
+              color: white;
+              left: 10px;
+              bottom: 0;
+            }
+          }
+        }
+        .message{
+          font-size: 1.45em;
+          font-family: Krub, serif;
+          p{
+            font-weight: 300;
+            span{
+              font-weight: 500;
+            }
+          }
+        }
+        .work-options{
+          .work-option{
+            .content{
+              height: 300px;
+              border-radius: 27px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+
 @include media-breakpoint-down(md) {
   body{
     div#root{
