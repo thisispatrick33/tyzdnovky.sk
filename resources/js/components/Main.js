@@ -4,6 +4,7 @@ import $ from "jquery";
 
 import { Router } from '@reach/router';
 import { Register } from './Forms/Register';
+import { Login } from './Forms/Login';
 import axios from "axios";
 
 
@@ -25,6 +26,19 @@ const Main = () => {
             console.log(error)
         });
     };
+    const _submitLogin = (data) => {
+        axios
+            .post(`/api/login`, data ,{
+                headers : {
+                    'Content-Type' : `application/json`,
+                }
+            })
+            .then((response) => {
+
+                console.log(response);
+
+            })
+    }
 
     const _ipLocation = () => {
         $.ajax('http://ip-api.com/json')
@@ -44,6 +58,7 @@ const Main = () => {
     return (
             <Router>
                 <Register path={`/`} register={_submitRegistration}/>
+                <Login path={`/login`} login={_submitLogin}/>
             </Router>
 
     )

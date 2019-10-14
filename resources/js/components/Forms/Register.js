@@ -101,8 +101,6 @@ export const Register = ({register = f => f}) => {
                     }
                 }
                 else{
-                    console.log(data);
-                    console.log(categories);
                     if(categories[0].value!==null&&categories[0].value.length>0){
                         if(categories[0].practise!==undefined&&categories[0].practise.length>0){
                             if(data.ready!==undefined&&data.ready.length>0){
