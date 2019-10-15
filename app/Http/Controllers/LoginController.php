@@ -82,18 +82,18 @@ class LoginController extends Controller
                 $company->auth_token = $token;
                 $company->save();
                 $response = ['success'=>true, 
-                'data'=>['type' => 'company',
-                         'id' => $company->id,
-                         'auth_token' => $company->auth_token,
-                         'name' => $company->name, 
-                         'bussinesId' => $company->ico,
-                         'phone' => $company->phone,
-                         'ready' => $company->nastup,
-                         'email'=> $company->email,
-                         'active' => $company->active,
-                         'username' => $company->username
-                       ],
-                'messages' => trans('messages.loginSuccessful')
+                            'data'=>['type' => 'company',
+                                    'id' => $company->id,
+                                    'auth_token' => $company->auth_token,
+                                    'name' => $company->name, 
+                                    'bussinesId' => $company->ico,
+                                    'phone' => $company->phone,
+                                    'ready' => $company->nastup,
+                                    'email'=> $company->email,
+                                    'active' => $company->active,
+                                    'username' => $company->username
+                                ],
+                            'messages' => trans('messages.loginSuccessful')
                ];           
             }
             else{
