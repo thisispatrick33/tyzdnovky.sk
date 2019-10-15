@@ -25,7 +25,7 @@ class RegisterController extends Controller
             return response()->json([
                 'success' => false,
                 'data' => [],
-                'messages' => $validator->messages()
+                'messages' => $validator->messages()->all()
             ]);
         };
         
@@ -45,7 +45,7 @@ class RegisterController extends Controller
                 return response()->json([
                     'success' => false,
                     'data' => [],
-                    'messages' => $validator->messages()
+                    'messages' => $validator->messages()->all()
                 ]);           
             };
 
@@ -112,7 +112,7 @@ class RegisterController extends Controller
                 return response()->json([
                     'success' => false,
                     'data' => [],
-                    'messages' => $validator->messages()
+                    'messages' => $validator->messages()->all()
                 ]);
             };
             
@@ -166,6 +166,18 @@ class RegisterController extends Controller
     }
 
     public function additionalInfo(Request $request){
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+        ]);
+         
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'data' => [],
+                'messages' => $validator->messages()
+            ]);
+        };
+
         if($user = User::where('email',$request->email)->first()){
             $validator = Validator::make($request->all(), [
                 'categories' => 'required|array',
@@ -179,7 +191,7 @@ class RegisterController extends Controller
                 return response()->json([
                     'success' => false,
                     'data' => [],
-                    'messages' => $validator->messages()
+                    'messages' => $validator->messages()->all()
                 ]);
             };
             
@@ -278,7 +290,7 @@ class RegisterController extends Controller
                 return response()->json([
                     'success' => false,
                     'data' => [],
-                    'messages' => $validator->messages()
+                    'messages' => $validator->messages()->all()
                 ]);           
             };
 

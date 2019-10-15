@@ -61,7 +61,8 @@ class LoginController extends Controller
                                       'ready' => $user->nastup,
                                       'email'=> $user->email,
                                       'active' => $user->active,
-                                      'drivingLicense' => $user->driving_license
+                                      'drivingLicense' => $user->driving_license,
+                                      'username' => $user->username
                                     ],
                              'messages' => trans('messages.loginSuccessful')
                             ];           
@@ -89,7 +90,8 @@ class LoginController extends Controller
                          'phone' => $company->phone,
                          'ready' => $company->nastup,
                          'email'=> $company->email,
-                         'active' => $company->active
+                         'active' => $company->active,
+                         'username' => $company->username
                        ],
                 'messages' => trans('messages.loginSuccessful')
                ];           
