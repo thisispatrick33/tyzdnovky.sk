@@ -110,9 +110,8 @@ const Main = () => {
                 }
             })
             .then((response) => {
-
                 console.log(response);
-
+                return response;
             })
             .then(json => {
                 if (json.data.success) {

@@ -62531,6 +62531,7 @@ var Main = function Main() {
       }
     }).then(function (response) {
       console.log(response);
+      return response;
     }).then(function (json) {
       if (json.data.success) {
         alert("Registration Successful!");
