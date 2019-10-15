@@ -11,20 +11,15 @@ export const Login = ({login = f => f}) => {
 
     const _formValidator = (e) => {
         e.preventDefault();
-        if(data.email!==undefined&&data.email.length>0){
-            if(data.email.includes('@')) {
+        if(data.login!==undefined&&data.login.length>0){
                 if (data.password !== undefined && data.password.length > 0) {
                     submit();
                 } else {
                     setMissing({value: 'password', message: `Nezadali ste heslo.`});
                     console.log(missing);
                 }
-            }else {
-                setMissing({value : '@', message : `Nezadali ste platný email.`});
-                console.log(missing);
-            }
         }else{
-            setMissing({value : 'email', message : `Nezadali ste email.`});
+            setMissing({value : 'login', message : `Nezadali ste login.`});
             console.log(missing);
         }
     };
@@ -54,8 +49,8 @@ export const Login = ({login = f => f}) => {
                             type={`email`}
                             name={`email`}
                             placeholder={`Zadajte váš email`}
-                            onChange={(e) => setData({...data, email: e.target.value})}
-                            value={data.email ? data.email : ``}
+                            onChange={(e) => setData({...data, login: e.target.value})}
+                            value={data.login ? data.login : ``}
                             className={` px-2 `}
                         />
                         <label htmlFor={`email`}>{`email`}</label>

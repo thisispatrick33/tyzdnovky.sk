@@ -9,7 +9,6 @@ export const Register = ({register = f => f}) => {
         setSlide(slide + 1);
     };
     const submit = () => {
-        console.log(data);
         register(data);
     };
 
