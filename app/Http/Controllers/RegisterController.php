@@ -25,7 +25,7 @@ class RegisterController extends Controller
             return response()->json([
                 'success' => false,
                 'data' => [],
-                'messages' => $validator->messages()
+                'messages' => $validator->messages()->all()
             ]);
         };
         
@@ -45,7 +45,7 @@ class RegisterController extends Controller
                 return response()->json([
                     'success' => false,
                     'data' => [],
-                    'messages' => $validator->messages()
+                    'messages' => $validator->messages()->all()
                 ]);           
             };
 
@@ -84,7 +84,17 @@ class RegisterController extends Controller
                     DB::commit();
                     return response()->json([
                         'success' => true,
-                        'data' => [],
+                        'data'=>['type' => 'company',
+                                    'id' => $company->id,
+                                    'auth_token' => $company->auth_token,
+                                    'name' => $company->name, 
+                                    'bussinesId' => $company->ico,
+                                    'phone' => $company->phone,
+                                    'ready' => $company->nastup,
+                                    'email'=> $company->email,
+                                    'active' => $company->active,
+                                    'username' => $company->username
+                                ],
                         'messages' => trans('messages.accountCreated')
                     ]);
                 } else {
@@ -112,7 +122,7 @@ class RegisterController extends Controller
                 return response()->json([
                     'success' => false,
                     'data' => [],
-                    'messages' => $validator->messages()
+                    'messages' => $validator->messages()->all()
                 ]);
             };
             
@@ -150,7 +160,18 @@ class RegisterController extends Controller
                 DB::commit();
                 return response()->json([
                     'success' => true,
-                    'data' => [],
+                    'data'=>['type' => 'user',
+                                      'id' => $user->id,
+                                      'auth_token' => $user->auth_token,
+                                      'name' => $user->name, 
+                                      'lastName' => $user->lastname,
+                                      'phone' => $user->phone,
+                                      'ready' => $user->nastup,
+                                      'email'=> $user->email,
+                                      'active' => $user->active,
+                                      'drivingLicense' => $user->driving_license,
+                                      'username' => $user->username
+                                    ],
                     'messages' => trans('messages.accountCreated')
                 ]);
             } else {
@@ -166,6 +187,18 @@ class RegisterController extends Controller
     }
 
     public function additionalInfo(Request $request){
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+        ]);
+         
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'data' => [],
+                'messages' => $validator->messages()
+            ]);
+        };
+
         if($user = User::where('email',$request->email)->first()){
             $validator = Validator::make($request->all(), [
                 'categories' => 'required|array',
@@ -179,7 +212,7 @@ class RegisterController extends Controller
                 return response()->json([
                     'success' => false,
                     'data' => [],
-                    'messages' => $validator->messages()
+                    'messages' => $validator->messages()->all()
                 ]);
             };
             
@@ -255,7 +288,18 @@ class RegisterController extends Controller
                 DB::commit();
                 return response()->json([
                     'success' => true,
-                    'data' => [],
+                    'data'=>['type' => 'user',
+                                      'id' => $user->id,
+                                      'auth_token' => $user->auth_token,
+                                      'name' => $user->name, 
+                                      'lastName' => $user->lastname,
+                                      'phone' => $user->phone,
+                                      'ready' => $user->nastup,
+                                      'email'=> $user->email,
+                                      'active' => $user->active,
+                                      'drivingLicense' => $user->driving_license,
+                                      'username' => $user->username
+                                    ],
                     'messages' => trans('messages.dataAdded')
                 ]);
             } else {
@@ -278,7 +322,7 @@ class RegisterController extends Controller
                 return response()->json([
                     'success' => false,
                     'data' => [],
-                    'messages' => $validator->messages()
+                    'messages' => $validator->messages()->all()
                 ]);           
             };
 
@@ -327,7 +371,17 @@ class RegisterController extends Controller
                 DB::commit();
                 return response()->json([
                     'success' => true,
-                    'data' => [],
+                    'data'=>['type' => 'company',
+                                    'id' => $company->id,
+                                    'auth_token' => $company->auth_token,
+                                    'name' => $company->name, 
+                                    'bussinesId' => $company->ico,
+                                    'phone' => $company->phone,
+                                    'ready' => $company->nastup,
+                                    'email'=> $company->email,
+                                    'active' => $company->active,
+                                    'username' => $company->username
+                                ],
                     'messages' => trans('messages.dataAdded')
                 ]);
             } else {
