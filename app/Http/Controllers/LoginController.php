@@ -24,7 +24,7 @@ class LoginController extends Controller
             return response()->json([
                 'success' => false,
                 'data' => [],
-                'messages' => $validator->messages()
+                'messages' => $validator->messages()->all()
             ]);           
         };
 
