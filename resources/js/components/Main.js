@@ -6,7 +6,7 @@ import { Router } from '@reach/router';
 import { Register } from './Forms/Register';
 import { Login } from './Forms/Login';
 import axios from "axios";
-import {Home} from "./Home";
+import {Home} from "./Logged/Home";
 
 
 

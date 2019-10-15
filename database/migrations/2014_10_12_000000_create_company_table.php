@@ -18,10 +18,12 @@ class CreateCompanyTable extends Migration
             $table->string('name');
             $table->string('ico');
             $table->string('email')->unique();
+            $table->string('username')->unique()->nullable();
             $table->string('password');
             $table->string('phone');
-            $table->date('nastup');
+            $table->date('nastup')->nullable();
             $table->text('auth_token')->nullable();
+            $table->boolean('active')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
