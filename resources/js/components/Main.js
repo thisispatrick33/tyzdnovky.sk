@@ -16,7 +16,8 @@ const Main = () => {
 
 
     const _loginUser = (data) => {
-        $("#login-form button")
+        console.log(data);
+        $("#login-form .sign-in-button")
             .attr("disabled", "disabled")
             .html(
                 '<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>'
@@ -78,13 +79,15 @@ const Main = () => {
                     alert("Login Failed!");
                 }
 
-                $("#login-form button")
+                $("#login-form .sign-in-button")
                     .removeAttr("disabled")
+                    .html( '<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign in</span>')
 
             })
             .catch(error => {
-                $("#login-form button")
+                $("#login-form .sign-in-button")
                     .removeAttr("disabled")
+                    .html( '<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign in</span>')
             });
     };
 
@@ -99,6 +102,12 @@ const Main = () => {
     };
 
     const _submitRegistration = (data) => {
+        console.log(data);
+        $("#login-form .sign-up-button")
+            .attr("disabled", "disabled")
+            .html(
+                '<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>'
+            );
         axios
             .post(`/api/register`, data ,{
                 headers : {
@@ -152,10 +161,19 @@ const Main = () => {
                     setAuthState({isLoggedIn: appState.isLoggedIn, user: appState.user});
                 }else {
                     alert(`Registration Failed!`);
+
                 }
+                $("#login-form .sign-up-button")
+                    .removeAttr("disabled", "disabled")
+                    .html(
+                        '<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign up</span>'
+                    );
             }).catch(error => {
-                alert("An Error Occured!" + error);
-                console.log(`${data} ${error}`);
+                $("#login-form .sign-up-button")
+                    .removeAttr("disabled", "disabled")
+                    .html(
+                        '<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign up</span>'
+                    );
         });
 
 
@@ -180,7 +198,7 @@ const Main = () => {
             _ipLocation(),
             <Router>
                 <Register path={`/`} register={_submitRegistration}/>
-                <Login path={`/login`} login={_loginUser}/>
+                <Login path={`/login`} login={_loginUser} register={_submitRegistration}/>
                 <Home path={`/home`}/>
             </Router>
 

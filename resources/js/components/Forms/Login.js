@@ -1,42 +1,71 @@
 import React, {useState} from 'react';
-export const Login = ({login = f => f}) => {
+export const Login = ({login = f => f, register = f => f}) => {
 
     const [data,setData] = useState({type : 2});
 
     const [missing, setMissing] = useState(``);
 
-    const submit = () => {
-        login(data);
+    const submit = (control) => {
+        if(control=="r"){
+            register(data);
+        }
+        else {
+            if (control=="l"){
+                login(data);
+            }
+        }
     };
 
 
-    const _formValidator = (e) => {
+    const _formValidator = (e, control) => {
         e.preventDefault();
-
-        if (data.email !== undefined && data.email.length > 0) {
-            if (data.password !== undefined && data.password.length > 0) {
-                submit();
+        if(control == "r"){
+            if (data.email !== undefined && data.email.length > 0) {
+                if(data.email.includes('@')){
+                    if (data.passwordR !== undefined && data.passwordR.length > 0) {
+                        submit("r");
+                    } else {
+                        setMissing({value: 'password', message: `Nezadali ste heslo.`});
+                        console.log(missing);
+                    }
+                }else {
+                    setMissing({value: '@', message: `Nezadali ste nevhodny email.`});
+                    console.log(missing);
+                }
             } else {
-                setMissing({value: 'password', message: `Nezadali ste heslo.`});
+                setMissing({value: 'email', message: `Nezadali ste email.`});
                 console.log(missing);
             }
-        } else {
-            setMissing({value: 'login', message: `Nezadali ste login.`});
-            console.log(missing);
         }
-    }
+        else {
+            if (control == "l"){
+                if (data.login !== undefined && data.login.length > 0) {
+                    if (data.passwordL !== undefined && data.passwordL.length > 0) {
+                        submit("l");
+                    } else {
+                        setMissing({value: 'password', message: `Nezadali ste heslo.`});
+                        console.log(missing);
+                    }
+                } else {
+                    setMissing({value: 'login', message: `Nezadali ste login.`});
+                    console.log(missing);
+                }
+            }
+        }
+
+    };
 
     const _forgottenPassword = () => {
        console.log("forgotten password");
-    }
+    };
 
     const _loginFacebook = () => {
         console.log("login by facebook");
-    }
+    };
 
     const _loginLinkedIn = () => {
         console.log("login by linkedin");
-    }
+    };
     return (
         <div className={`form | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 `}>
                 <div className={`content-frame | row col-xl-10 col-lg-10 col-11 | justify-content-center | px-0 | shadow `} id="container">
@@ -65,13 +94,13 @@ export const Login = ({login = f => f}) => {
                                     type={`password`}
                                     name={`password`}
                                     placeholder={`Enter your password`}
-                                    onChange={(e) => setData({...data, password: e.target.value})}
-                                    value={data.password ? data.password : ``}
+                                    onChange={(e) => setData({...data, passwordR: e.target.value})}
+                                    value={data.passwordR ? data.passwordR : ``}
                                     className={` px-2 `}
                                 />
                                 <label htmlFor={`password`} className={`col-12 px-2`}>{`password`}</label>
                             </div>
-                            <button className={`submit-button sign-up-button col-4 text-center shadow py-2 mt-3`} onClick={_formValidator}><span>sign up</span></button>
+                            <button className={`submit-button sign-up-button col-4 text-center shadow py-2 mt-3`} onClick={(e)=>_formValidator(e,"r")}><span>sign up</span></button>
                         </form>
                     </div>
 
@@ -96,8 +125,8 @@ export const Login = ({login = f => f}) => {
                                     type={`password`}
                                     name={`password`}
                                     placeholder={`Enter your password`}
-                                    onChange={(e) => setData({...data, password: e.target.value})}
-                                    value={data.password ? data.password : ``}
+                                    onChange={(e) => setData({...data, passwordL: e.target.value})}
+                                    value={data.passwordL ? data.passwordL : ``}
                                     className={` px-2 `}
                                 />
                                 <label htmlFor={`password`} className={`col-12 px-2`}>{`password`}</label>
@@ -105,7 +134,7 @@ export const Login = ({login = f => f}) => {
                             <div className="sign-in-field forgotten col-11" onClick={() => _forgottenPassword()}>
                                 <p className={`text-right`}>forgotten password ?</p>
                             </div>
-                            <button className={`submit-button sign-in-button col-4 text-center shadow py-2 mb-5 mt-3`} onClick={_formValidator}><span>sign in</span></button>
+                            <button className={`submit-button sign-in-button col-4 text-center shadow py-2 mb-5 mt-3 `} onClick={(e)=>_formValidator(e,"l")}><span>sign in</span></button>
                             <div className="col-11 row justify-content-around align-items-center">
                                 <p className={`col-auto log-in-with m-0`}>or login with</p>
                                 <div onClick={() => _loginFacebook()} className={`col-3 row sign-in-with justify-content-center`} style={{background : `#3B5998`}}>
