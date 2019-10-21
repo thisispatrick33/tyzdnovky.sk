@@ -11061,6 +11061,14 @@ body div#root .home .content .work-options .work-option .content {
   color: #00C7C7;
 }
 
+.forgotten:hover {
+  cursor: pointer;
+}
+
+.sign-in-with:hover {
+  cursor: pointer;
+}
+
 @-webkit-keyframes show {
   0%, 49.99% {
     opacity: 0;

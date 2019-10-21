@@ -377,6 +377,14 @@ body{
   font-family: Krub;
   font-weight: 300;
   color: $primary-color;
+  &:hover{
+     cursor: pointer;
+   }
+}
+.sign-in-with{
+  &:hover{
+    cursor: pointer;
+  }
 }
 
 @keyframes show {

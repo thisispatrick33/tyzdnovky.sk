@@ -20,7 +20,11 @@ use Illuminate\Http\Request;
 
 
 Route::group(['middleware' => ['api-header','localization']], function () {
+    //TEXT
     //Route::get("/register","TextController@formData");
+
+    //AUTH
     Route::post("/register","RegisterController@register");
     Route::post("/login","LoginController@login");
+    Route::post("/register-additional","RegisterCOntroller@additionalInfo");
 });

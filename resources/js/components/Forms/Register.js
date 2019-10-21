@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 
+
+
 export const Register = ({register = f => f}) => {
     const [slide, setSlide] = useState(1);
     const [data,setData] = useState({});
@@ -9,7 +11,6 @@ export const Register = ({register = f => f}) => {
         setSlide(slide + 1);
     };
     const submit = () => {
-        console.log(data);
         register(data);
     };
 
@@ -263,9 +264,13 @@ export const Register = ({register = f => f}) => {
                                 </div>
                         </div>
                     }
+
                 </form>
+
             </div>
+
         </div>
+
     )
 
 };

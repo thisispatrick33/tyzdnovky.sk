@@ -61805,25 +61805,36 @@ var Login = function Login(_ref) {
 
   var _formValidator = function _formValidator(e) {
     e.preventDefault();
-    /*
-    if(data.email!==undefined&&data.email.length>0){
-        if(data.email.includes('@')) {
-            if (data.password !== undefined && data.password.length > 0) {
-                submit();
-            } else {
-                setMissing({value: 'password', message: `Nezadali ste heslo.`});
-                console.log(missing);
-            }
-        }else {
-            setMissing({value : '@', message : `Nezadali ste platný email.`});
-            console.log(missing);
-        }
-    }else{
-        setMissing({value : 'email', message : `Nezadali ste email.`});
-        console.log(missing);
-    }*/
 
-    submit();
+    if (data.email !== undefined && data.email.length > 0) {
+      if (data.password !== undefined && data.password.length > 0) {
+        submit();
+      } else {
+        setMissing({
+          value: 'password',
+          message: "Nezadali ste heslo."
+        });
+        console.log(missing);
+      }
+    } else {
+      setMissing({
+        value: 'login',
+        message: "Nezadali ste login."
+      });
+      console.log(missing);
+    }
+  };
+
+  var _forgottenPassword = function _forgottenPassword() {
+    console.log("forgotten password");
+  };
+
+  var _loginFacebook = function _loginFacebook() {
+    console.log("login by facebook");
+  };
+
+  var _loginLinkedIn = function _loginLinkedIn() {
+    console.log("login by linkedin");
   };
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -61929,7 +61940,10 @@ var Login = function Login(_ref) {
     htmlFor: "password",
     className: "col-12 px-2"
   }, "password")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "sign-in-field forgotten col-11"
+    className: "sign-in-field forgotten col-11",
+    onClick: function onClick() {
+      return _forgottenPassword();
+    }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "text-right"
   }, "forgotten password ?")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -61940,6 +61954,9 @@ var Login = function Login(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "col-auto log-in-with m-0"
   }, "or login with"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: function onClick() {
+      return _loginFacebook();
+    },
     className: "col-3 row sign-in-with justify-content-center",
     style: {
       background: "#3B5998"
@@ -61958,6 +61975,9 @@ var Login = function Login(_ref) {
     "data-old_color": "#000000",
     "data-original": "#000000"
   }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: function onClick() {
+      return _loginLinkedIn();
+    },
     className: "col-3 row sign-in-with justify-content-center",
     style: {
       background: "#0077b5"
@@ -62061,7 +62081,6 @@ var Register = function Register(_ref) {
   };
 
   var submit = function submit() {
-    console.log(data);
     register(data);
   };
 
@@ -62573,8 +62592,6 @@ var Main = function Main() {
       setLocation = _useState4[1];
 
   var _loginUser = function _loginUser(data) {
-    _ipLocation();
-
     jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form button").attr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>');
     axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/api/login/", data, {
       headers: {
@@ -62588,13 +62605,37 @@ var Main = function Main() {
     }).then(function (json) {
       if (json.data.success) {
         alert("Login Successful!");
-        var userData = {
-          name: json.data.data.name,
-          id: json.data.data.id,
-          email: json.data.data.email,
-          auth_token: json.data.data.auth_token,
-          timestamp: new Date().toString()
-        };
+        var userData = {};
+
+        if (json.data.data.type === "user") {
+          userData = {
+            active: json.data.data.active,
+            auth_token: json.data.data.auth_token,
+            drivingLicense: json.data.data.drivingLicense,
+            email: json.data.data.email,
+            id: json.data.data.id,
+            lastName: json.data.data.lastName,
+            name: json.data.data.name,
+            phone: json.data.data.phone,
+            ready: json.data.data.ready,
+            type: json.data.data.type,
+            timestamp: new Date().toString()
+          };
+        } else if (json.data.data.type === "company") {
+          userData = {
+            active: json.data.data.active,
+            auth_token: json.data.data.auth_token,
+            bussinesId: json.data.data.bussinesId,
+            email: json.data.data.email,
+            id: json.data.data.id,
+            name: json.data.data.name,
+            phone: json.data.data.phone,
+            ready: json.data.data.ready,
+            type: json.data.data.type,
+            timestamp: new Date().toString()
+          };
+        }
+
         var appState = {
           isLoggedIn: true,
           user: userData
@@ -62627,8 +62668,6 @@ var Main = function Main() {
   };
 
   var _submitRegistration = function _submitRegistration(data) {
-    _ipLocation();
-
     axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/api/register", data, {
       headers: {
         'Content-Type': "application/json",
@@ -62636,16 +62675,41 @@ var Main = function Main() {
       }
     }).then(function (response) {
       console.log(response);
+      return response;
     }).then(function (json) {
       if (json.data.success) {
         alert("Registration Successful!");
-        var userData = {
-          name: json.data.data.name,
-          id: json.data.data.id,
-          email: json.data.data.email,
-          auth_token: json.data.data.auth_token,
-          timestamp: new Date().toString()
-        };
+        var userData = {};
+
+        if (json.data.data.type === "user") {
+          userData = {
+            active: json.data.data.active,
+            auth_token: json.data.data.auth_token,
+            drivingLicense: json.data.data.drivingLicense,
+            email: json.data.data.email,
+            id: json.data.data.id,
+            lastName: json.data.data.lastName,
+            name: json.data.data.name,
+            phone: json.data.data.phone,
+            ready: json.data.data.ready,
+            type: json.data.data.type,
+            timestamp: new Date().toString()
+          };
+        } else if (json.data.data.type === "company") {
+          userData = {
+            active: json.data.data.active,
+            auth_token: json.data.data.auth_token,
+            bussinesId: json.data.data.bussinesId,
+            email: json.data.data.email,
+            id: json.data.data.id,
+            name: json.data.data.name,
+            phone: json.data.data.phone,
+            ready: json.data.data.ready,
+            type: json.data.data.type,
+            timestamp: new Date().toString()
+          };
+        }
+
         var appState = {
           isLoggedIn: true,
           user: userData
@@ -62660,7 +62724,7 @@ var Main = function Main() {
       }
     })["catch"](function (error) {
       alert("An Error Occured!" + error);
-      console.log("".concat(formData, " ").concat(error));
+      console.log("".concat(data, " ").concat(error));
     });
   };
 
@@ -62672,7 +62736,7 @@ var Main = function Main() {
     });
   };
 
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reach_router__WEBPACK_IMPORTED_MODULE_3__["Router"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_Register__WEBPACK_IMPORTED_MODULE_4__["Register"], {
+  return _ipLocation(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reach_router__WEBPACK_IMPORTED_MODULE_3__["Router"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_Register__WEBPACK_IMPORTED_MODULE_4__["Register"], {
     path: "/",
     register: _submitRegistration
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_Login__WEBPACK_IMPORTED_MODULE_5__["Login"], {

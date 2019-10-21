@@ -1,36 +1,42 @@
 import React, {useState} from 'react';
-
-
 export const Login = ({login = f => f}) => {
+
     const [data,setData] = useState({type : 2});
+
     const [missing, setMissing] = useState(``);
 
     const submit = () => {
         login(data);
     };
 
+
     const _formValidator = (e) => {
         e.preventDefault();
-        /*
-        if(data.email!==undefined&&data.email.length>0){
-            if(data.email.includes('@')) {
-                if (data.password !== undefined && data.password.length > 0) {
-                    submit();
-                } else {
-                    setMissing({value: 'password', message: `Nezadali ste heslo.`});
-                    console.log(missing);
-                }
-            }else {
-                setMissing({value : '@', message : `Nezadali ste platný email.`});
+
+        if (data.email !== undefined && data.email.length > 0) {
+            if (data.password !== undefined && data.password.length > 0) {
+                submit();
+            } else {
+                setMissing({value: 'password', message: `Nezadali ste heslo.`});
                 console.log(missing);
             }
-        }else{
-            setMissing({value : 'email', message : `Nezadali ste email.`});
+        } else {
+            setMissing({value: 'login', message: `Nezadali ste login.`});
             console.log(missing);
-        }*/
-        submit();
-    };
+        }
+    }
 
+    const _forgottenPassword = () => {
+       console.log("forgotten password");
+    }
+
+    const _loginFacebook = () => {
+        console.log("login by facebook");
+    }
+
+    const _loginLinkedIn = () => {
+        console.log("login by linkedin");
+    }
     return (
         <div className={`form | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 `}>
                 <div className={`content-frame | row col-xl-10 col-lg-10 col-11 | justify-content-center | px-0 | shadow `} id="container">
@@ -68,6 +74,7 @@ export const Login = ({login = f => f}) => {
                             <button className={`submit-button sign-up-button col-4 text-center shadow py-2 mt-3`} onClick={_formValidator}><span>sign up</span></button>
                         </form>
                     </div>
+
                     <div className="editable-content sign-in-container col-12 row m-0 justify-content-center align-items-center">
                         <form id={`login-form`} className={` row col-12 | align-items-start | justify-content-center | m-0`}>
                             <h1>Login</h1>
@@ -95,19 +102,19 @@ export const Login = ({login = f => f}) => {
                                 />
                                 <label htmlFor={`password`} className={`col-12 px-2`}>{`password`}</label>
                             </div>
-                            <div className="sign-in-field forgotten col-11">
+                            <div className="sign-in-field forgotten col-11" onClick={() => _forgottenPassword()}>
                                 <p className={`text-right`}>forgotten password ?</p>
                             </div>
                             <button className={`submit-button sign-in-button col-4 text-center shadow py-2 mb-5 mt-3`} onClick={_formValidator}><span>sign in</span></button>
                             <div className="col-11 row justify-content-around align-items-center">
                                 <p className={`col-auto log-in-with m-0`}>or login with</p>
-                                <div className={`col-3 row sign-in-with justify-content-center`} style={{background : `#3B5998`}}>
+                                <div onClick={() => _loginFacebook()} className={`col-3 row sign-in-with justify-content-center`} style={{background : `#3B5998`}}>
                                     <svg className="p-2" enableBackground="new 0 0 96.124 96.123" version="1.1" viewBox="0 0 96.124 96.123" space="preserve" xmlns="http://www.w3.org/2000/svg">
                                     <path className="active-path"
                                           d="m72.089 0.02-12.465-0.02c-14.004 0-23.054 9.285-23.054 23.656v10.907h-12.533c-1.083 0-1.96 0.878-1.96 1.961v15.803c0 1.083 0.878 1.96 1.96 1.96h12.533v39.876c0 1.083 0.877 1.96 1.96 1.96h16.352c1.083 0 1.96-0.878 1.96-1.96v-39.876h14.654c1.083 0 1.96-0.877 1.96-1.96l6e-3 -15.803c0-0.52-0.207-1.018-0.574-1.386s-0.867-0.575-1.387-0.575h-14.659v-9.246c0-4.444 1.059-6.7 6.848-6.7l8.397-3e-3c1.082 0 1.959-0.878 1.959-1.96v-14.674c0-1.081-0.876-1.958-1.957-1.96z"
                                           fill="#fff" data-old_color="#000000" data-original="#000000"/>
                                  </svg></div>
-                                <div className={`col-3 row sign-in-with justify-content-center`} style={{background : `#0077b5`}}>
+                                <div onClick={() => _loginLinkedIn()} className={`col-3 row sign-in-with justify-content-center`} style={{background : `#0077b5`}}>
                                     <svg className={`p-2`} xmlns="http://www.w3.org/2000/svg" id="Bold" enable-background="new 0 0 24 24"
                                          viewBox="0 0 24 24" >
                                         <g>
@@ -141,10 +148,9 @@ export const Login = ({login = f => f}) => {
                             </div>
                         </div>
                     </div>
-            </div>
-
-
+                </div>
         </div>
+
     )
 
 };
