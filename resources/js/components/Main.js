@@ -14,8 +14,8 @@ const Main = () => {
     const [authState, setAuthState] = useState({isLoggedIn : false, user : {}});
     const [location, setLocation] = useState(``);
 
+
     const _loginUser = (data) => {
-        _ipLocation();
         $("#login-form button")
             .attr("disabled", "disabled")
             .html(
@@ -36,14 +36,36 @@ const Main = () => {
             .then(json => {
                 if (json.data.success) {
                     alert("Login Successful!");
-
-                    let userData = {
-                        name: json.data.data.name,
-                        id: json.data.data.id,
-                        email: json.data.data.email,
-                        auth_token: json.data.data.auth_token,
-                        timestamp: new Date().toString()
-                    };
+                    let userData = {};
+                    if (json.data.data.type === "user") {
+                        userData = {
+                            active: json.data.data.active,
+                            auth_token: json.data.data.auth_token,
+                            drivingLicense: json.data.data.drivingLicense,
+                            email: json.data.data.email,
+                            id: json.data.data.id,
+                            lastName: json.data.data.lastName,
+                            name: json.data.data.name,
+                            phone: json.data.data.phone,
+                            ready: json.data.data.ready,
+                            type: json.data.data.type,
+                            timestamp: new Date().toString()
+                        };
+                    }
+                    else if(json.data.data.type === "company"){
+                        userData = {
+                            active: json.data.data.active,
+                            auth_token: json.data.data.auth_token,
+                            bussinesId: json.data.data.bussinesId,
+                            email: json.data.data.email,
+                            id: json.data.data.id,
+                            name: json.data.data.name,
+                            phone: json.data.data.phone,
+                            ready: json.data.data.ready,
+                            type: json.data.data.type,
+                            timestamp: new Date().toString()
+                        };
+                    }
                     let appState = {
                         isLoggedIn: true,
                         user: userData
@@ -58,14 +80,11 @@ const Main = () => {
 
                 $("#login-form button")
                     .removeAttr("disabled")
-                    .html("Login");
 
             })
             .catch(error => {
-                alert(`An Error Occured! ${error}`);
                 $("#login-form button")
                     .removeAttr("disabled")
-                    .html("Login");
             });
     };
 
@@ -80,9 +99,6 @@ const Main = () => {
     };
 
     const _submitRegistration = (data) => {
-        _ipLocation();
-
-
         axios
             .post(`/api/register`, data ,{
                 headers : {
@@ -91,21 +107,42 @@ const Main = () => {
                 }
             })
             .then((response) => {
-
                 console.log(response);
-
+                return response;
             })
             .then(json => {
                 if (json.data.success) {
                     alert(`Registration Successful!`);
-
-                    let userData = {
-                        name: json.data.data.name,
-                        id: json.data.data.id,
-                        email: json.data.data.email,
-                        auth_token: json.data.data.auth_token,
-                        timestamp: new Date().toString()
-                    };
+                    let userData = {};
+                    if (json.data.data.type === "user") {
+                        userData = {
+                            active: json.data.data.active,
+                            auth_token: json.data.data.auth_token,
+                            drivingLicense: json.data.data.drivingLicense,
+                            email: json.data.data.email,
+                            id: json.data.data.id,
+                            lastName: json.data.data.lastName,
+                            name: json.data.data.name,
+                            phone: json.data.data.phone,
+                            ready: json.data.data.ready,
+                            type: json.data.data.type,
+                            timestamp: new Date().toString()
+                        };
+                    }
+                    else if(json.data.data.type === "company"){
+                        userData = {
+                            active: json.data.data.active,
+                            auth_token: json.data.data.auth_token,
+                            bussinesId: json.data.data.bussinesId,
+                            email: json.data.data.email,
+                            id: json.data.data.id,
+                            name: json.data.data.name,
+                            phone: json.data.data.phone,
+                            ready: json.data.data.ready,
+                            type: json.data.data.type,
+                            timestamp: new Date().toString()
+                        };
+                    }
                     let appState = {
                         isLoggedIn: true,
                         user: userData
@@ -118,7 +155,7 @@ const Main = () => {
                 }
             }).catch(error => {
                 alert("An Error Occured!" + error);
-                console.log(`${formData} ${error}`);
+                console.log(`${data} ${error}`);
         });
 
 
@@ -140,6 +177,7 @@ const Main = () => {
     };
 
     return (
+            _ipLocation(),
             <Router>
                 <Register path={`/`} register={_submitRegistration}/>
                 <Login path={`/login`} login={_loginUser}/>

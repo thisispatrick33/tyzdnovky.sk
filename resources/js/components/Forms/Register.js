@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 
+
+
 export const Register = ({register = f => f}) => {
     const [slide, setSlide] = useState(1);
     const [data,setData] = useState({});
@@ -9,7 +11,6 @@ export const Register = ({register = f => f}) => {
         setSlide(slide + 1);
     };
     const submit = () => {
-        console.log(data);
         register(data);
     };
 
@@ -74,10 +75,10 @@ export const Register = ({register = f => f}) => {
     };
     return (
         console.log(missing),
-        <div className={` registration-form | container-fluid | row col-12 | justify-content-center | mb-5 m-0 p-0 `}>
+        <div className={` form | container-fluid | row col-12 | justify-content-center | mb-5 m-0 p-0 `}>
             <h1 className={` main-title | col-11 | my-4 p-0 | text-center `}>registrácia<span className={`doth`}>.</span></h1>
-            <div className={` content-frame rounded | row col-xl-10 col-lg-10 col-11 | justify-content-center | py-xl-5 py-lg-5 py-3 | shadow `}>
-                <div className={` side-bar | row col-xl-3 col-lg-3 col-0 | align-item-center | justify-content-center | m-0 | d-xl-flex d-lg-flex d-none `}>
+            <div className={` content-frame rounded | row col-xl-10 col-lg-10 col-11 | justify-content-center | py-xl-5 py-lg-5 py-3 px-0 | shadow `}>
+                <div className={` side-bar | row col-xl-3 col-lg-3 col-0 | align-item-center | justify-content-center | m-0 | d-xl-flex d-lg-flex d-none shadow p-0`}>
                     <div className={` col-xl-9 | align-item-center | justify-content-center | p-0 | border-r | d-flex | text-center `}>
                         <div className={` svg | col-12 | align-item-center | justify-content-center | d-flex `}>
                             <svg className={` col-12 `} xmlns="http://www.w3.org/2000/svg"
@@ -263,9 +264,13 @@ export const Register = ({register = f => f}) => {
                                 </div>
                         </div>
                     }
+
                 </form>
+
             </div>
+
         </div>
+
     )
 
 };

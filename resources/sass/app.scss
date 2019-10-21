@@ -1,197 +1,255 @@
-@import url('https://fonts.googleapis.com/css?family=Krub:300,500,600,800&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Krub:300,400,500,600,800&display=swap');
 @import '~bootstrap/scss/bootstrap';
 $primary-color : #00C7C7;
 $secondary-color : #2c393f;
 $silver : #EDEDED;
 $error : #D50B0B;
-.field {
-  display: flex;
-  flex-flow: column-reverse;
-  margin-bottom: 1em;
-}
+
 /**
 * Add a transition to the label and input.
 * I'm not even sure that touch-action: manipulation works on
 * inputs, but hey, it's new and cool and could remove the
 * pesky delay.
 */
-label, input {
-  transition: all 0.2s;
-  touch-action: manipulation;
-}
 
-input {
-  padding-left: 0.25em;
-  font-size: 1.6em;
-  border: 0;
-  border-bottom: 1px solid $silver;
-  font-family: 'Krub', sans-serif;
-  font-weight: 300;
-  -webkit-appearance: none;
-  border-radius: 0;
-  cursor: text;
-}
 
-input:focus {
-  outline: 0;
-  border-bottom: 1px solid $primary-color;
-}
-
-label {
-  font-family: 'Krub', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding-left: 0.25em;
-}
-/**
-* Translate down and scale the label up to cover the placeholder,
-* when following an input (with placeholder-shown support).
-* Also make sure the label is only on one row, at max 2/3rds of the
-* field—to make sure it scales properly and doesn't wrap.
-*/
-input:placeholder-shown + label {
-  cursor: text;
-  max-width: 66.66%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transform-origin: left bottom;
-  transform: translate(0, 2.125rem) scale(1.5);
-}
-/**
-* By default, the placeholder should be transparent. Also, it should
-* inherit the transition.
-*/
-::-webkit-input-placeholder {
-  opacity: 0;
-  transition: inherit;
-}
-/**
-* Show the placeholder when the input is focused.
-*/
-input:focus::-webkit-input-placeholder {
-  opacity: 1;
-}
-/**
-* When the element is focused, remove the label transform.
-* Also, do this when the placeholder is _not_ shown, i.e. when
-* there's something in the input at all.
-*/
-//input:not(:placeholder-shown) + label,
-input:focus + label {
-  color: $primary-color;
-  transform: translate(0, 0) scale(1);
-  cursor: pointer;
-}
-
-::-webkit-input-placeholder { /* Edge */
-  font-family: 'Krub', sans-serif;
-}
-
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
-  font-family: 'Krub', sans-serif;
-}
-
-::placeholder {
-  font-family: 'Krub', sans-serif;
-  padding-left: 0.25em;
-  font-size: 1em;
-}
-.square{
-  width: 12px;
-  height: 12px;
-  border: 1px solid $primary-color;
-  border-radius : 2px;
-}
-.circle{
-  width: 12px;
-  height: 12px;
-  border: 1px solid $primary-color;
-  border-radius : 5px;
-}
-.circle-filled{
-  width: 12px;
-  height: 12px;
-  background: $primary-color;
-  border-radius : 5px;
-}
-.square-filled{
-  width: 12px;
-  height: 12px;
-  background: $primary-color;
-  border-radius : 2px;
-}
-.main-title{
-  font-size: 4em;
-  font-family: 'Krub', sans-serif;
-  font-weight: 800;
-  color: #2C393F;
-  text-transform: uppercase;
-}
-.doth{
-  color : $primary-color;
-}
-.add{
-  font-family: 'Krub', serif;
-  color : $primary-color;
-}
-.languages .title-small, .driving_licence .title-small{
-  font-family: "Krub", sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding-left: 0.25em;
-}
-.cls-1,.cls-2{font-size:1179.08px;font-family:Krub-Bold, Krub;font-weight:700;}.cls-1{fill:#2c393f;}.cls-2{fill:#00c7c7;}
 body{
   div#root{
     height: 100vh;
-    .registration-form {
-      .main-title{
-        font-size: 4rem;
-      }
-      .main-title.h1{
-        font-size: 3rem;
-      }
+
+    .form {
+      background: {
+        image : url('../images/background.png');
+        size: cover;
+        position: center;
+        attachment: fixed;
+      };
+      width: 100vw;
+      min-height: 100vh;
       .content-frame {
+        border-radius: 20px;
+        background: white;
         min-height: 70vh;
-        .title{
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25),
+        0 10px 10px rgba(0,0,0,0.22);
+        position: relative;
+        overflow: hidden;
+        width: 768px;
+        max-width: 100%;
+        .choose{
+          font-family: 'Krub', sans-serif;
+        }
+        .on{
+          font-weight: 600;
+        }
+        &.right-panel-active .sign-in-container {
+          transform: translateX(100%);
+        }
+        &.right-panel-active .sign-up-container {
+          transform: translateX(100%);
+          opacity: 1;
+          z-index: 5;
+          animation: show 0.6s;
+        }
+        &.right-panel-active .overlay-container{
+          transform: translateX(-100%);
+        }
+        &.right-panel-active .overlay {
+          transform: translateX(50%);
+        }
+
+        &.right-panel-active .overlay-left {
+          transform: translateX(0);
+        }
+        &.right-panel-active .overlay-right {
+          transform: translateX(20%);
+        }
+        .sign-in-container {
+          left: 0;
+          width: 50%;
+          z-index: 2;
+        }
+        .sign-up-container {
+          left: 0;
+          width: 50%;
+          opacity: 0;
+          z-index: 1;
+        }
+        .log-in-with{
+          font-family: 'Krub', sans-serif;
+          font-size: 1em;
+          color: $primary-color;
+        }
+        .overlay-container {
+          position: absolute;
+          top: 0;
+          left: 50%;
+          width: 50%;
+          height: 100%;
+          overflow: hidden;
+          transition: transform 0.6s ease-in-out;
+          z-index: 100;
+        }
+
+        .overlay {
+          background: #3a7bd5;
+          background: -webkit-linear-gradient(to left, $primary-color,#3a7bd5);
+          background: linear-gradient(to left, $primary-color,#3a7bd5);
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: 0 0;
+          color: #FFFFFF;
+          position: relative;
+          left: -100%;
+          height: 100%;
+          width: 200%;
+          transform: translateX(0);
+          transition: transform 0.6s ease-in-out;
+          .ghost{
+            font-family: 'Krub', sans-serif;
+            font-size: 1em;
+            text-transform: uppercase;
+            border-radius: 50px;
+            border: 1px solid white;
+            background: none;
+            color: white;
+            &:focus{
+              outline: 0;
+            }
+          }
+        }
+        .overlay-panel {
+          font-family: 'Krub', sans-serif;
+          position: absolute;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          padding: 0 40px;
+          text-align: center;
+          top: 0;
+          height: 100%;
+          width: 50%;
+          transform: translateX(0);
+          transition: transform 0.6s ease-in-out;
+          h1{
+            text-transform: uppercase;
+          }
+        }
+
+        .overlay-left {
+          transform: translateX(-20%);
+        }
+
+
+        .overlay-right {
+          right: 0;
+          transform: translateX(0);
+        }
+
+        .editable-content{
+          background: white;
+          position: absolute;
+          top: 0;
+          height: 100%;
+          transition: all 0.6s ease-in-out;
+        }
+
+        .title {
           font-size: 2.250em;
           font-family: 'Krub', sans-serif;
-          &:first-letter{
+
+          &:first-letter {
             text-transform: capitalize;
           }
         }
 
-        .side-bar {
-          border-right:  1.5px $silver solid;
-        }
-        .slide{
-          &:not(:hover){
-            fill : #2C393F;
-            color : #2C393F;
+        .slide {
+          &:not(:hover) {
+            fill: #2C393F;
+            color: #2C393F;
           }
-          &:hover{
-            fill : $primary-color;
-            color : $primary-color;
+
+          &:hover {
+            fill: $primary-color;
+            color: $primary-color;
           }
-          &:nth-child(1){
+
+          &:nth-child(1) {
             border-right: 1.5px solid $silver;
           }
+
           transition: 0.5s;
-          .name{
+
+          .name {
             font-size: 2.4em;
             font-family: 'Krub', sans-serif;
           }
         }
-        .navigators{
+
+        .navigators {
           font-family: 'Krub', sans-serif;
           text-transform: uppercase;
           font-size: 1.2em;
           color: $secondary-color;
-          svg{
+
+          svg {
             fill: $secondary-color;
           }
         }
+        .submit-button {
+          font-size: 1.1em;
+          font-weight: 300;
+          border-radius: 50px;
+          text-transform: uppercase;
+          color: white;
+          position: relative;
+          text-decoration: none;
+          -webkit-backface-visibility: hidden;
+          z-index: 1;
+          border : none;
+          span{
+            position : relative;
+            z-index: 300;
+          }
+          &:focus{
+            outline: 0;
+          }
+        }
+        .sign-in-button{
+          background: linear-gradient(to left, $primary-color, #50a0ca);
+        }
+        .sign-up-button{
+          background: linear-gradient(to left, #50a0ca, #3a7bd5);
+        }
+        .submit-button:after {
+            position: absolute;
+            content: '';
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50px;
+            transition: opacity 0.5s ease-out;
+            z-index: 2;
+            opacity: 0;
+        }
+        .sign-in-button:after{
+          background: linear-gradient(to left, #50a0ca, $primary-color);
+        }
+        .sign-up-button:after{
+          background: linear-gradient(to left, #3a7bd5, #50a0ca);
+        }
+        .submit-button:hover:after {
+            opacity: 1;
+        }
+        .submit-button:hover{
+          cursor: pointer;
+        }
+        //#3a7bd5
+
+
+
       }
     }
     .home{
@@ -285,7 +343,7 @@ body{
 @include media-breakpoint-down(md) {
   body{
     div#root{
-      .registration-form {
+      .form {
         .main-title{
           font-size: 2em;
         }
@@ -309,9 +367,160 @@ body{
       font-size: 0.85em;
       padding-left: 0;
     }
-    input {
-      font-size: 1.4em;
-    }
 
   }
 }
+
+
+
+.forgotten{
+  font-family: Krub;
+  font-weight: 300;
+  color: $primary-color;
+  &:hover{
+     cursor: pointer;
+   }
+}
+.sign-in-with{
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+@keyframes show {
+  0%, 49.99% {
+    opacity: 0;
+    z-index: 1;
+  }
+
+  50%, 100% {
+    opacity: 1;
+    z-index: 5;
+  }
+}
+
+
+label, input {
+  transition: all 0.2s;
+  touch-action: manipulation;
+  font-family: Krub;
+  font-weight: 400;
+}
+
+input {
+  padding-left: 0.25em;
+  font-size: 1.2em;
+  border: 0;
+  border-bottom: 1px solid $silver;
+  font-family: 'Krub', sans-serif;
+  font-weight: 300;
+  -webkit-appearance: none;
+  border-radius: 0;
+  cursor: text;
+}
+
+input:focus {
+  outline: 0;
+}
+
+label {
+  font-family: 'Krub', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding-left: 0.25em;
+}
+/**
+* Translate down and scale the label up to cover the placeholder,
+* when following an input (with placeholder-shown support).
+* Also make sure the label is only on one row, at max 2/3rds of the
+* field—to make sure it scales properly and doesn't wrap.
+*/
+input:placeholder-shown + label {
+  cursor: text;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transform-origin: left bottom;
+  transform: translate(0, 2.125rem) scale(1.5);
+}
+/**
+* By default, the placeholder should be transparent. Also, it should
+* inherit the transition.
+*/
+::-webkit-input-placeholder {
+  opacity: 0;
+  transition: inherit;
+}
+/**
+* Show the placeholder when the input is focused.
+*/
+input:focus::-webkit-input-placeholder {
+  opacity: 1;
+}
+/**
+* When the element is focused, remove the label transform.
+* Also, do this when the placeholder is _not_ shown, i.e. when
+* there's something in the input at all.
+*/
+input:not(:placeholder-shown) + label,
+input:focus + label {
+  transform: translate(0, 0) scale(1);
+  cursor: pointer;
+}
+
+::-webkit-input-placeholder { /* Edge */
+  font-family: 'Krub', sans-serif;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  font-family: 'Krub', sans-serif;
+}
+
+::placeholder {
+  font-family: 'Krub', sans-serif;
+  padding-left: 0.25em;
+  font-size: 1em;
+}
+.field {
+  display: flex;
+  flex-flow: column-reverse;
+  margin-bottom: 1em;
+  position: relative;
+  z-index: 500;
+  input:not(:placeholder-shown) + label,
+  input:focus + label {
+    transform: translate(0, 0) scale(1);
+    cursor: pointer;
+  }
+}
+.sign-in-field {
+  input:not(:placeholder-shown) + label,
+  input:focus + label {
+    color: $primary-color;
+  }
+  input:focus {
+    border-bottom: 1px solid $primary-color;
+  }
+  .forgotten{
+    color: $primary-color;
+  }
+}
+  .sign-up-field{
+    input:not(:placeholder-shown) + label,
+    input:focus + label {
+      color:  #3a7bd5;
+  }
+   input:focus {
+      border-bottom: 1px solid #3a7bd5;
+   }
+}
+.sign-in-with{
+  svg{
+    width : 35px;
+    height : auto;
+  }
+  border-radius: 50px;
+}
+
+
