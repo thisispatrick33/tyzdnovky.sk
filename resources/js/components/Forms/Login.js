@@ -1,12 +1,24 @@
 import React, {useState} from 'react';
+import FacebookLogin from 'react-facebook-login';
+
+import GoogleLogin from 'react-google-login';
 
 
 export const Login = ({login = f => f}) => {
+
     const [data,setData] = useState({});
     const [missing, setMissing] = useState(``);
 
     const submit = () => {
         login(data);
+    };
+
+    const responseFacebook = (response) => {
+        console.log(response);
+    };
+
+    const responseGoogle = (response) => {
+        console.log(response);
     };
 
     const _formValidator = (e) => {
@@ -68,9 +80,26 @@ export const Login = ({login = f => f}) => {
                         <label htmlFor={`password`}>{`password`}</label>
                     </div>
                     <button onClick={_formValidator} type={`none`}> send</button>
+                    <h1>LOGIN WITH FACEBOOK AND GOOGLE</h1>
+                    <FacebookLogin
+                        appId="712658139246851" //APP ID NOT CREATED YET
+                        fields="name,email,picture"
+                        callback={responseFacebook}
+                    />
+
+
+                    <GoogleLogin
+                        clientId="168989153539-agnpj4p35g06dbgspmulq1ftpatttvel.apps.googleusercontent.com" //CLIENTID NOT CREATED YET
+                        buttonText="LOGIN WITH GOOGLE"
+                        onSuccess={responseGoogle}
+                        onFailure={responseGoogle}
+                    />
                 </form>
             </div>
         </div>
+
+
+
     )
 
 };
