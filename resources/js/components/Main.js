@@ -58,14 +58,11 @@ const Main = () => {
 
                 $("#login-form button")
                     .removeAttr("disabled")
-                    .html("Login");
 
             })
             .catch(error => {
-                alert(`An Error Occured! ${error}`);
                 $("#login-form button")
                     .removeAttr("disabled")
-                    .html("Login");
             });
     };
 

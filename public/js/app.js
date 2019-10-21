@@ -61710,6 +61710,16 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./components/Main */ "./resources/js/components/Main.js");
 
+var signUpButton = document.getElementById('signUp');
+var signInButton = document.getElementById('signIn');
+var container = document.getElementById('container');
+signUpButton.addEventListener('click', function () {
+  container.classList.add("right-panel-active");
+});
+signInButton.addEventListener('click', function () {
+  container.classList.remove("right-panel-active");
+});
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -61777,7 +61787,9 @@ var Login = function Login(_ref) {
     return f;
   } : _ref$login;
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    type: 2
+  }),
       _useState2 = _slicedToArray(_useState, 2),
       data = _useState2[0],
       setData = _useState2[1];
@@ -61793,68 +61805,60 @@ var Login = function Login(_ref) {
 
   var _formValidator = function _formValidator(e) {
     e.preventDefault();
-
-    if (data.email !== undefined && data.email.length > 0) {
-      if (data.email.includes('@')) {
-        if (data.password !== undefined && data.password.length > 0) {
-          submit();
-        } else {
-          setMissing({
-            value: 'password',
-            message: "Nezadali ste heslo."
-          });
-          console.log(missing);
+    /*
+    if(data.email!==undefined&&data.email.length>0){
+        if(data.email.includes('@')) {
+            if (data.password !== undefined && data.password.length > 0) {
+                submit();
+            } else {
+                setMissing({value: 'password', message: `Nezadali ste heslo.`});
+                console.log(missing);
+            }
+        }else {
+            setMissing({value : '@', message : `Nezadali ste platný email.`});
+            console.log(missing);
         }
-      } else {
-        setMissing({
-          value: '@',
-          message: "Nezadali ste platn\xFD email."
-        });
+    }else{
+        setMissing({value : 'email', message : `Nezadali ste email.`});
         console.log(missing);
-      }
-    } else {
-      setMissing({
-        value: 'email',
-        message: "Nezadali ste email."
-      });
-      console.log(missing);
-    }
+    }*/
+
+    submit();
   };
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " registration-form | container-fluid | row col-12 | justify-content-center | mb-5 m-0 p-0 "
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-    className: " main-title | col-11 | my-4 p-0 | text-center "
-  }, "Login", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "doth"
-  }, ".")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " content-frame rounded | row col-xl-10 col-lg-10 col-11 | justify-content-center | py-xl-5 py-lg-5 py-3 | shadow "
+    className: "form | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 "
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " side-bar | row col-xl-3 col-lg-3 col-0 | align-item-center | justify-content-center | m-0 | d-xl-flex d-lg-flex d-none "
+    className: "content-frame | row col-xl-10 col-lg-10 col-11 | justify-content-center | px-0 | shadow ",
+    id: "container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " col-xl-9 | align-item-center | justify-content-center | p-0 | border-r | d-flex | text-center "
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " svg | col-12 | align-item-center | justify-content-center | d-flex "
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    className: " col-12 ",
-    xmlns: "http://www.w3.org/2000/svg",
-    viewBox: "0 0 747.62 1696"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("defs", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("title", null, "logo"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("text", {
-    className: " cls-1 ",
-    transform: "translate(0 1002.2)"
-  }, "T"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("text", {
-    className: " cls-2 ",
-    transform: "translate(118 1098.2)"
-  }, "T"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    className: "editable-content sign-up-container col-12 row m-0 justify-content-center align-items-start"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     id: "login-form",
-    className: " row col-xl-9 col-lg-9 col-12 | align-items-start | justify-content-center | m-0 p-4 "
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " field | col-xl-5 col-lg-5 col-12 | p-0 ml-xl-5 ml-lg-3 ml-2"
+    className: " row col-12 | align-items-start | justify-content-center | m-0 p-3 "
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Register"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "choose row col-12"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "col-6 text-center p-0 ".concat(data.type === 1 ? "on" : ""),
+    onClick: function onClick() {
+      return setData(_objectSpread({}, data, {
+        type: 1
+      }));
+    }
+  }, "company"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "col-6 text-center p-0 ".concat(data.type === 2 ? "on" : ""),
+    onClick: function onClick() {
+      return setData(_objectSpread({}, data, {
+        type: 2
+      }));
+    }
+  }, "user")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: " field sign-up-field | col-11 "
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     id: "email",
-    type: "email",
+    type: "text",
     name: "email",
-    placeholder: "Zadajte v\xE1\u0161 email",
+    placeholder: "Enter your email",
     onChange: function onChange(e) {
       return setData(_objectSpread({}, data, {
         email: e.target.value
@@ -61863,14 +61867,15 @@ var Login = function Login(_ref) {
     value: data.email ? data.email : "",
     className: " px-2 "
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    htmlFor: "email"
+    htmlFor: "email",
+    className: "col-12 px-2"
   }, "email")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " field | col-xl-5 col-lg-5 col-12 | p-0 ml-2"
+    className: " field sign-up-field | col-11 mt-3"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     id: "password",
     type: "password",
     name: "password",
-    placeholder: "Zadajte v\xE1\u0161 password",
+    placeholder: "Enter your password",
     onChange: function onChange(e) {
       return setData(_objectSpread({}, data, {
         password: e.target.value
@@ -61879,11 +61884,123 @@ var Login = function Login(_ref) {
     value: data.password ? data.password : "",
     className: " px-2 "
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    htmlFor: "password"
+    htmlFor: "password",
+    className: "col-12 px-2"
   }, "password")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: _formValidator,
-    type: "none"
-  }, " send"))));
+    className: "submit-button sign-up-button col-4 text-center shadow py-2 mt-3",
+    onClick: _formValidator
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "sign up")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "editable-content sign-in-container col-12 row m-0 justify-content-center align-items-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    id: "login-form",
+    className: " row col-12 | align-items-start | justify-content-center | m-0"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Login"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: " field sign-in-field | col-11 "
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    id: "login",
+    type: "text",
+    name: "login",
+    placeholder: "Enter your username",
+    onChange: function onChange(e) {
+      return setData(_objectSpread({}, data, {
+        login: e.target.value
+      }));
+    },
+    value: data.login ? data.login : "",
+    className: " px-2 "
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "login",
+    className: "col-12 px-2"
+  }, "username")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: " field sign-in-field | col-11 mt-3"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    id: "password",
+    type: "password",
+    name: "password",
+    placeholder: "Enter your password",
+    onChange: function onChange(e) {
+      return setData(_objectSpread({}, data, {
+        password: e.target.value
+      }));
+    },
+    value: data.password ? data.password : "",
+    className: " px-2 "
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "password",
+    className: "col-12 px-2"
+  }, "password")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "sign-in-field forgotten col-11"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "text-right"
+  }, "forgotten password ?")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "submit-button sign-in-button col-4 text-center shadow py-2 mb-5 mt-3",
+    onClick: _formValidator
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "sign in")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-11 row justify-content-around align-items-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "col-auto log-in-with m-0"
+  }, "or login with"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-3 row sign-in-with justify-content-center",
+    style: {
+      background: "#3B5998"
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    className: "p-2",
+    enableBackground: "new 0 0 96.124 96.123",
+    version: "1.1",
+    viewBox: "0 0 96.124 96.123",
+    space: "preserve",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    className: "active-path",
+    d: "m72.089 0.02-12.465-0.02c-14.004 0-23.054 9.285-23.054 23.656v10.907h-12.533c-1.083 0-1.96 0.878-1.96 1.961v15.803c0 1.083 0.878 1.96 1.96 1.96h12.533v39.876c0 1.083 0.877 1.96 1.96 1.96h16.352c1.083 0 1.96-0.878 1.96-1.96v-39.876h14.654c1.083 0 1.96-0.877 1.96-1.96l6e-3 -15.803c0-0.52-0.207-1.018-0.574-1.386s-0.867-0.575-1.387-0.575h-14.659v-9.246c0-4.444 1.059-6.7 6.848-6.7l8.397-3e-3c1.082 0 1.959-0.878 1.959-1.96v-14.674c0-1.081-0.876-1.958-1.957-1.96z",
+    fill: "#fff",
+    "data-old_color": "#000000",
+    "data-original": "#000000"
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-3 row sign-in-with justify-content-center",
+    style: {
+      background: "#0077b5"
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    className: "p-2",
+    xmlns: "http://www.w3.org/2000/svg",
+    id: "Bold",
+    "enable-background": "new 0 0 24 24",
+    viewBox: "0 0 24 24"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "m23.994 24v-.001h.006v-8.802c0-4.306-.927-7.623-5.961-7.623-2.42 0-4.044 1.328-4.707 2.587h-.07v-2.185h-4.773v16.023h4.97v-7.934c0-2.089.396-4.109 2.983-4.109 2.549 0 2.587 2.384 2.587 4.243v7.801z",
+    "data-original": "#000000",
+    className: "active-path",
+    "data-old_color": "#000000",
+    fill: "#FFFFFF"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "m.396 7.977h4.976v16.023h-4.976z",
+    "data-original": "#000000",
+    className: "active-path",
+    "data-old_color": "#000000",
+    fill: "#FFFFFF"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "m2.882 0c-1.591 0-2.882 1.291-2.882 2.882s1.291 2.909 2.882 2.909 2.882-1.318 2.882-2.909c-.001-1.591-1.292-2.882-2.882-2.882z",
+    "data-original": "#000000",
+    className: "active-path",
+    "data-old_color": "#000000",
+    fill: "#FFFFFF"
+  }))))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "overlay-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "overlay"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "overlay-panel overlay-left"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Welcome Back!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "To keep connected with us please login with your personal info"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "ghost py-2 px-4",
+    id: "signIn"
+  }, "Sign In")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "overlay-panel overlay-right"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hello, Friend!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Enter your personal details and start journey with us"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "ghost py-2 px-4",
+    id: "signUp"
+  }, "Sign Up"))))));
 };
 
 /***/ }),
@@ -62043,15 +62160,15 @@ var Register = function Register(_ref) {
   };
 
   return console.log(missing), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " registration-form | container-fluid | row col-12 | justify-content-center | mb-5 m-0 p-0 "
+    className: " form | container-fluid | row col-12 | justify-content-center | mb-5 m-0 p-0 "
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
     className: " main-title | col-11 | my-4 p-0 | text-center "
   }, "registr\xE1cia", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "doth"
   }, ".")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " content-frame rounded | row col-xl-10 col-lg-10 col-11 | justify-content-center | py-xl-5 py-lg-5 py-3 | shadow "
+    className: " content-frame rounded | row col-xl-10 col-lg-10 col-11 | justify-content-center | py-xl-5 py-lg-5 py-3 px-0 | shadow "
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " side-bar | row col-xl-3 col-lg-3 col-0 | align-item-center | justify-content-center | m-0 | d-xl-flex d-lg-flex d-none "
+    className: " side-bar | row col-xl-3 col-lg-3 col-0 | align-item-center | justify-content-center | m-0 | d-xl-flex d-lg-flex d-none shadow p-0"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: " col-xl-9 | align-item-center | justify-content-center | p-0 | border-r | d-flex | text-center "
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -62491,10 +62608,9 @@ var Main = function Main() {
         alert("Login Failed!");
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form button").removeAttr("disabled").html("Login");
+      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form button").removeAttr("disabled");
     })["catch"](function (error) {
-      alert("An Error Occured! ".concat(error));
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form button").removeAttr("disabled").html("Login");
+      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form button").removeAttr("disabled");
     });
   };
 
