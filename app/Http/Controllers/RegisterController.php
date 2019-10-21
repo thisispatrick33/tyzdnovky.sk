@@ -18,7 +18,7 @@ class RegisterController extends Controller
     public function register(Request $request){
         
         $validator = Validator::make($request->all(), [
-            'type' => 'required|numeric|max:3|min:1',
+            'type' => 'required|numeric|max:2|min:1',
         ]);
             
         if ($validator->fails()) {
@@ -34,11 +34,11 @@ class RegisterController extends Controller
         if($request->type == 1){
                 
             $validator = Validator::make($request->all(), [
-                'email' => 'required|email|unique:users|unique:companies',
-                'name' => 'required|string',
-                'ico' => 'required|string',
-                'phone' => 'required|string',
-                'password' => 'required'
+                'email' => 'sometimes|email|unique:users|unique:companies',
+                /*'name' => 'required|string',
+                'ico' => 'required|string',*/
+                'phone' => 'sometimes|string|unique:users|unique:companies',
+                'passwordR' => 'required'
             ]);
              
             if ($validator->fails()) {
@@ -56,17 +56,21 @@ class RegisterController extends Controller
             try {
         
                 $company= new Company;
-                $company->name = $request->name;
-                $company->ico = $request->ico;
-                $company->email = $request->email;
-                $company->phone = $request->phone;
-                $company->password = \Hash::make($request->password);
+                /*$company->name = $request->name;
+                $company->ico = $request->ico;*/
+                if($request->email){
+                    $company->email = $request->email;
+                }
+                else{
+                    $company->phone = $request->phone;
+                }
+                $company->password = \Hash::make($request->passwordR);
                 
 
                 if($company->save()){
 
-                    $token = \Auth::guard('companies')->attempt(['email' => $request->email, 'password' => $request->password]);
-                    if (!is_string($token))  return response()->json(['success'=>false,'data'=>'Token generation failed'], 201);
+                    $token = \Auth::guard('companies')->attempt(['email' => $request->email, 'password' => $request->passwordR]);
+                    if (!is_string($token))  return response()->json(['success'=>false,'data'=>[],'messages'=>trans('messages.tokenFailed')]);
                     $company = Company::where('email', $request->email)->get()->first();
                     $company->auth_token = $token;
                     $company->save();
@@ -111,11 +115,11 @@ class RegisterController extends Controller
         else{
 
             $validator = Validator::make($request->all(), [
-                'email' => 'required|email|unique:users|unique:companies',
-                'firstName' => 'required|string',
-                'lastName' => 'required|string',
-                'phone' => 'required|string',
-                'password' => 'required'
+                'email' => 'sometimes|email|unique:users|unique:companies',
+                /*'firstName' => 'required|string',
+                'lastName' => 'required|string',*/
+                'phone' => 'sometimes|string|unique:users|unique:companies',
+                'passwordR' => 'required'
             ]);
              
             if ($validator->fails()) {
@@ -134,15 +138,19 @@ class RegisterController extends Controller
             try {
         
                 $user= new User;
-                $user->name = $request->firstName;
-                $user->lastname = $request->lastName;
-                $user->email = $request->email;
-                $user->phone = $request->phone;
-                $user->password = \Hash::make($request->password);
+                /*$user->name = $request->firstName;
+                $user->lastname = $request->lastName;*/
+                if($request->email){
+                    $user->email = $request->email;
+                }
+                else{
+                    $user->phone = $request->phone;
+                }
+                $user->password = \Hash::make($request->passwordR);
 
                 if($user->save()){
-                    $token = \Auth::guard('users')->attempt(['email' => $request->email, 'password' => $request->password]);
-                    if (!is_string($token))  return response()->json(['success'=>false,'data'=>'Token generation failed'], 201);
+                    $token = \Auth::guard('users')->attempt(['email' => $request->email, 'password' => $request->passwordR]);
+                    if (!is_string($token))  return response()->json(['success'=>false,'data'=>[],'messages'=>trans('messages.tokenFailed')]);
                     $user = User::where('email', $request->email)->get()->first();
                     $user->auth_token = $token;
                     $user->save();
