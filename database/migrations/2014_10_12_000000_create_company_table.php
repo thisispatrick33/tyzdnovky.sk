@@ -15,12 +15,12 @@ class CreateCompanyTable extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('ico');
-            $table->string('email')->unique();
+            $table->string('name')->nullable();
+            $table->string('ico')->nullable();
+            $table->string('email')->unique()->nullable();
             $table->string('username')->unique()->nullable();
             $table->string('password');
-            $table->string('phone');
+            $table->string('phone')->nullable();
             $table->date('nastup')->nullable();
             $table->text('auth_token')->nullable();
             $table->boolean('active')->default(false);

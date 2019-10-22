@@ -8,11 +8,12 @@ return [
     |
     */
 
-    'error' => 'Nastala chyba po nemecky',
-    'dataChanged' => 'Údaje boli zmenené po nemecky',
-    'dataAdded' => 'Údaje boli pridané po nemecky',
-    'accountCreated' => 'Účet bol vytvorený DE',
-    'userNotFound' => 'Tento použivateľ neexistuje DE',
-    'loginSuccessful' => 'Prihlásenie prebehlo úspešne DE'
+    'error' => 'Nastala chyba',
+    'dataChanged' => 'Údaje boli zmenené',
+    'dataAdded' => 'Údaje boli pridané',
+    'accountCreated' => 'Účet bol vytvorený',
+    'userNotFound' => 'Tento použivateľ neexistuje',
+    'loginSuccessful' => 'Prihlásenie prebehlo úspešne',
+    'tokenFailed' => 'Generovanie tokenu zlyhalo'
     
 ];

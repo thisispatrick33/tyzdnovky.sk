@@ -13,6 +13,7 @@ return [
     'dataAdded' => 'Údaje boli pridané',
     'accountCreated' => 'Účet bol vytvorený',
     'userNotFound' => 'Tento použivateľ neexistuje',
-    'loginSuccessful' => 'Prihlásenie prebehlo úspešne'
+    'loginSuccessful' => 'Prihlásenie prebehlo úspešne',
+    'tokenFailed' => 'Generovanie tokenu zlyhalo'
     
 ];

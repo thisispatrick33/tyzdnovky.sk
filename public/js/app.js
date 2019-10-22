@@ -61923,7 +61923,11 @@ var Login = function Login(_ref) {
   var _ref$login = _ref.login,
       login = _ref$login === void 0 ? function (f) {
     return f;
-  } : _ref$login;
+  } : _ref$login,
+      _ref$register = _ref.register,
+      register = _ref$register === void 0 ? function (f) {
+    return f;
+  } : _ref$register;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
     type: 2
@@ -61937,29 +61941,65 @@ var Login = function Login(_ref) {
       missing = _useState4[0],
       setMissing = _useState4[1];
 
-  var submit = function submit() {
-    login(data);
+  var submit = function submit(control) {
+    if (control == "r") {
+      register(data);
+    } else {
+      if (control == "l") {
+        login(data);
+      }
+    }
   };
 
-  var _formValidator = function _formValidator(e) {
+  var _formValidator = function _formValidator(e, control) {
     e.preventDefault();
 
-    if (data.email !== undefined && data.email.length > 0) {
-      if (data.password !== undefined && data.password.length > 0) {
-        submit();
+    if (control == "r") {
+      if (data.email !== undefined && data.email.length > 0) {
+        if (data.email.includes('@')) {
+          if (data.passwordR !== undefined && data.passwordR.length > 0) {
+            submit("r");
+          } else {
+            setMissing({
+              value: 'password',
+              message: "Nezadali ste heslo."
+            });
+            console.log(missing);
+          }
+        } else {
+          setMissing({
+            value: '@',
+            message: "Nezadali ste nevhodny email."
+          });
+          console.log(missing);
+        }
       } else {
         setMissing({
-          value: 'password',
-          message: "Nezadali ste heslo."
+          value: 'email',
+          message: "Nezadali ste email."
         });
         console.log(missing);
       }
     } else {
-      setMissing({
-        value: 'login',
-        message: "Nezadali ste login."
-      });
-      console.log(missing);
+      if (control == "l") {
+        if (data.login !== undefined && data.login.length > 0) {
+          if (data.passwordL !== undefined && data.passwordL.length > 0) {
+            submit("l");
+          } else {
+            setMissing({
+              value: 'password',
+              message: "Nezadali ste heslo."
+            });
+            console.log(missing);
+          }
+        } else {
+          setMissing({
+            value: 'login',
+            message: "Nezadali ste login."
+          });
+          console.log(missing);
+        }
+      }
     }
   };
 
@@ -62027,17 +62067,19 @@ var Login = function Login(_ref) {
     placeholder: "Enter your password",
     onChange: function onChange(e) {
       return setData(_objectSpread({}, data, {
-        password: e.target.value
+        passwordR: e.target.value
       }));
     },
-    value: data.password ? data.password : "",
+    value: data.passwordR ? data.passwordR : "",
     className: " px-2 "
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "password",
     className: "col-12 px-2"
   }, "password")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: "submit-button sign-up-button col-4 text-center shadow py-2 mt-3",
-    onClick: _formValidator
+    onClick: function onClick(e) {
+      return _formValidator(e, "r");
+    }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "sign up")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "editable-content sign-in-container col-12 row m-0 justify-content-center align-items-center"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -62069,10 +62111,10 @@ var Login = function Login(_ref) {
     placeholder: "Enter your password",
     onChange: function onChange(e) {
       return setData(_objectSpread({}, data, {
-        password: e.target.value
+        passwordL: e.target.value
       }));
     },
-    value: data.password ? data.password : "",
+    value: data.passwordL ? data.passwordL : "",
     className: " px-2 "
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "password",
@@ -62085,8 +62127,10 @@ var Login = function Login(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "text-right"
   }, "forgotten password ?")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "submit-button sign-in-button col-4 text-center shadow py-2 mb-5 mt-3",
-    onClick: _formValidator
+    className: "submit-button sign-in-button col-4 text-center shadow py-2 mb-5 mt-3 ",
+    onClick: function onClick(e) {
+      return _formValidator(e, "l");
+    }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "sign in")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-11 row justify-content-around align-items-center"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
@@ -62732,7 +62776,8 @@ var Main = function Main() {
       setLocation = _useState4[1];
 
   var _loginUser = function _loginUser(data) {
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form button").attr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>');
+    console.log(data);
+    jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form .sign-in-button").attr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>');
     axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/api/login/", data, {
       headers: {
         'Accept': 'application/json',
@@ -62789,9 +62834,9 @@ var Main = function Main() {
         alert("Login Failed!");
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form button").removeAttr("disabled");
+      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form .sign-in-button").removeAttr("disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign in</span>');
     })["catch"](function (error) {
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form button").removeAttr("disabled");
+      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form .sign-in-button").removeAttr("disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign in</span>');
     });
   };
 
@@ -62808,6 +62853,8 @@ var Main = function Main() {
   };
 
   var _submitRegistration = function _submitRegistration(data) {
+    console.log(data);
+    jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form .sign-up-button").attr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>');
     axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/api/register", data, {
       headers: {
         'Content-Type': "application/json",
@@ -62862,9 +62909,10 @@ var Main = function Main() {
       } else {
         alert("Registration Failed!");
       }
+
+      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form .sign-up-button").removeAttr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign up</span>');
     })["catch"](function (error) {
-      alert("An Error Occured!" + error);
-      console.log("".concat(data, " ").concat(error));
+      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form .sign-up-button").removeAttr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign up</span>');
     });
   };
 
@@ -62881,7 +62929,8 @@ var Main = function Main() {
     register: _submitRegistration
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_Login__WEBPACK_IMPORTED_MODULE_5__["Login"], {
     path: "/login",
-    login: _loginUser
+    login: _loginUser,
+    register: _submitRegistration
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Logged_Home__WEBPACK_IMPORTED_MODULE_7__["Home"], {
     path: "/home"
   }));
