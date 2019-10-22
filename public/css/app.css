@@ -10651,10 +10651,6 @@ a.text-dark:focus {
 * pesky delay.
 */
 
-body div#root {
-  height: 100vh;
-}
-
 body div#root .form {
   background-image: url(/images/background.png?a39eec6d26c795d34ff5a79f81914f16);
   background-size: cover;
@@ -10673,6 +10669,24 @@ body div#root .form .content-frame {
   overflow: hidden;
   width: 768px;
   max-width: 100%;
+  /**
+  * Translate down and scale the label up to cover the placeholder,
+  * when following an input (with placeholder-shown support).
+  * Also make sure the label is only on one row, at max 2/3rds of the
+  * field—to make sure it scales properly and doesn't wrap.
+  */
+  /**
+  * By default, the placeholder should be transparent. Also, it should
+  * inherit the transition.
+  */
+  /**
+  * Show the placeholder when the input is focused.
+  */
+  /**
+  * When the element is focused, remove the label transform.
+  * Also, do this when the placeholder is _not_ shown, i.e. when
+  * there's something in the input at all.
+  */
 }
 
 body div#root .form .content-frame .choose {
@@ -10816,40 +10830,6 @@ body div#root .form .content-frame .title:first-letter {
   text-transform: capitalize;
 }
 
-body div#root .form .content-frame .slide {
-  transition: 0.5s;
-}
-
-body div#root .form .content-frame .slide:not(:hover) {
-  fill: #2C393F;
-  color: #2C393F;
-}
-
-body div#root .form .content-frame .slide:hover {
-  fill: #00C7C7;
-  color: #00C7C7;
-}
-
-body div#root .form .content-frame .slide:nth-child(1) {
-  border-right: 1.5px solid #EDEDED;
-}
-
-body div#root .form .content-frame .slide .name {
-  font-size: 2.4em;
-  font-family: "Krub", sans-serif;
-}
-
-body div#root .form .content-frame .navigators {
-  font-family: "Krub", sans-serif;
-  text-transform: uppercase;
-  font-size: 1.2em;
-  color: #2c393f;
-}
-
-body div#root .form .content-frame .navigators svg {
-  fill: #2c393f;
-}
-
 body div#root .form .content-frame .submit-button {
   font-size: 1.1em;
   font-weight: 300;
@@ -10907,6 +10887,135 @@ body div#root .form .content-frame .submit-button:hover:after {
 
 body div#root .form .content-frame .submit-button:hover {
   cursor: pointer;
+}
+
+body div#root .form .content-frame label,
+body div#root .form .content-frame input {
+  transition: all 0.2s;
+  touch-action: manipulation;
+  font-family: Krub;
+  font-weight: 400;
+}
+
+body div#root .form .content-frame input {
+  padding-left: 0.25em;
+  font-size: 1.2em;
+  border: 0;
+  border-bottom: 1px solid #EDEDED;
+  font-family: "Krub", sans-serif;
+  font-weight: 300;
+  -webkit-appearance: none;
+  border-radius: 0;
+  cursor: text;
+}
+
+body div#root .form .content-frame input:focus {
+  outline: 0;
+}
+
+body div#root .form .content-frame label {
+  font-family: "Krub", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding-left: 0.25em;
+}
+
+body div#root .form .content-frame input:placeholder-shown + label {
+  cursor: text;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transform-origin: left bottom;
+  transform: translate(0, 2.125rem) scale(1.5);
+}
+
+body div#root .form .content-frame ::-webkit-input-placeholder {
+  opacity: 0;
+  transition: inherit;
+}
+
+body div#root .form .content-frame input:focus::-webkit-input-placeholder {
+  opacity: 1;
+}
+
+body div#root .form .content-frame input:not(:placeholder-shown) + label,
+body div#root .form .content-frame input:focus + label {
+  transform: translate(0, 0) scale(1);
+  cursor: pointer;
+}
+
+body div#root .form .content-frame ::-webkit-input-placeholder {
+  /* Edge */
+  font-family: "Krub", sans-serif;
+}
+
+body div#root .form .content-frame :-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  font-family: "Krub", sans-serif;
+}
+
+body div#root .form .content-frame ::-moz-placeholder {
+  font-family: "Krub", sans-serif;
+  padding-left: 0.25em;
+  font-size: 1em;
+}
+
+body div#root .form .content-frame ::-ms-input-placeholder {
+  font-family: "Krub", sans-serif;
+  padding-left: 0.25em;
+  font-size: 1em;
+}
+
+body div#root .form .content-frame ::placeholder {
+  font-family: "Krub", sans-serif;
+  padding-left: 0.25em;
+  font-size: 1em;
+}
+
+body div#root .form .content-frame .field {
+  display: flex;
+  flex-flow: column-reverse;
+  margin-bottom: 1em;
+  position: relative;
+  z-index: 500;
+}
+
+body div#root .form .content-frame .field input:not(:placeholder-shown) + label,
+body div#root .form .content-frame .field input:focus + label {
+  transform: translate(0, 0) scale(1);
+  cursor: pointer;
+}
+
+body div#root .form .content-frame .sign-in-field input:not(:placeholder-shown) + label,
+body div#root .form .content-frame .sign-in-field input:focus + label {
+  color: #00C7C7;
+}
+
+body div#root .form .content-frame .sign-in-field input:focus {
+  border-bottom: 1px solid #00C7C7;
+}
+
+body div#root .form .content-frame .sign-in-field .forgotten {
+  color: #00C7C7;
+}
+
+body div#root .form .content-frame .sign-up-field input:not(:placeholder-shown) + label,
+body div#root .form .content-frame .sign-up-field input:focus + label {
+  color: #3a7bd5;
+}
+
+body div#root .form .content-frame .sign-up-field input:focus {
+  border-bottom: 1px solid #3a7bd5;
+}
+
+body div#root .form .content-frame .sign-in-with {
+  border-radius: 50px;
+}
+
+body div#root .form .content-frame .sign-in-with svg {
+  width: 35px;
+  height: auto;
 }
 
 body div#root .home {
@@ -11011,6 +11120,89 @@ body div#root .home .content .work-options .work-option .content {
   border-radius: 27px;
 }
 
+body div#root .additional-info-form {
+  font-family: Krub;
+  position: fixed;
+  height: 100vh;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+body div#root .additional-info-form .content-frame {
+  background: white;
+  min-height: 70vh;
+  border-radius: 27px;
+}
+
+body div#root .additional-info-form .content-frame .main-info .profile-photo img {
+  border-radius: 50%;
+}
+
+body div#root .additional-info-form .content-frame input {
+  border: none;
+  background-color: #EDEDED;
+  border-radius: 35px;
+  font-size: 1.2em;
+  font-family: Krub, serif;
+  font-weight: 300;
+  color: #2c393f;
+}
+
+body div#root .additional-info-form .content-frame input ::-webkit-input-placeholder {
+  /* Edge */
+  font-family: Krub, serif;
+  font-weight: 300;
+  color: #C9C9C9;
+  opacity: 1;
+}
+
+body div#root .additional-info-form .content-frame input :-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  font-family: Krub, serif;
+  font-weight: 300;
+  color: #C9C9C9;
+  opacity: 1;
+}
+
+body div#root .additional-info-form .content-frame input ::-moz-placeholder {
+  font-family: Krub, serif;
+  font-weight: 300;
+  color: #8E8E8E;
+  opacity: 1;
+}
+
+body div#root .additional-info-form .content-frame input ::-ms-input-placeholder {
+  font-family: Krub, serif;
+  font-weight: 300;
+  color: #8E8E8E;
+  opacity: 1;
+}
+
+body div#root .additional-info-form .content-frame input ::placeholder {
+  font-family: Krub, serif;
+  font-weight: 300;
+  color: #8E8E8E;
+  opacity: 1;
+}
+
+body div#root .additional-info-form .content-frame input:focus {
+  outline: 0;
+  transition: 0.5s;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+}
+
+body div#root .additional-info-form .content-frame input:not(:focus) {
+  transition: 0.5s;
+  box-shadow: none;
+}
+
+body div#root .additional-info-form .content-frame .languages .language {
+  border-radius: 50px;
+  border: 1px solid #00C7C7;
+}
+
 @media (max-width: 991.98px) {
   body div#root .form .main-title {
     font-size: 2em;
@@ -11091,156 +11283,5 @@ body div#root .home .content .work-options .work-option .content {
     opacity: 1;
     z-index: 5;
   }
-}
-
-label,
-input {
-  transition: all 0.2s;
-  touch-action: manipulation;
-  font-family: Krub;
-  font-weight: 400;
-}
-
-input {
-  padding-left: 0.25em;
-  font-size: 1.2em;
-  border: 0;
-  border-bottom: 1px solid #EDEDED;
-  font-family: "Krub", sans-serif;
-  font-weight: 300;
-  -webkit-appearance: none;
-  border-radius: 0;
-  cursor: text;
-}
-
-input:focus {
-  outline: 0;
-}
-
-label {
-  font-family: "Krub", sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding-left: 0.25em;
-}
-
-/**
-* Translate down and scale the label up to cover the placeholder,
-* when following an input (with placeholder-shown support).
-* Also make sure the label is only on one row, at max 2/3rds of the
-* field—to make sure it scales properly and doesn't wrap.
-*/
-
-input:placeholder-shown + label {
-  cursor: text;
-  max-width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transform-origin: left bottom;
-  transform: translate(0, 2.125rem) scale(1.5);
-}
-
-/**
-* By default, the placeholder should be transparent. Also, it should
-* inherit the transition.
-*/
-
-::-webkit-input-placeholder {
-  opacity: 0;
-  transition: inherit;
-}
-
-/**
-* Show the placeholder when the input is focused.
-*/
-
-input:focus::-webkit-input-placeholder {
-  opacity: 1;
-}
-
-/**
-* When the element is focused, remove the label transform.
-* Also, do this when the placeholder is _not_ shown, i.e. when
-* there's something in the input at all.
-*/
-
-input:not(:placeholder-shown) + label,
-input:focus + label {
-  transform: translate(0, 0) scale(1);
-  cursor: pointer;
-}
-
-::-webkit-input-placeholder {
-  /* Edge */
-  font-family: "Krub", sans-serif;
-}
-
-:-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
-  font-family: "Krub", sans-serif;
-}
-
-::-moz-placeholder {
-  font-family: "Krub", sans-serif;
-  padding-left: 0.25em;
-  font-size: 1em;
-}
-
-::-ms-input-placeholder {
-  font-family: "Krub", sans-serif;
-  padding-left: 0.25em;
-  font-size: 1em;
-}
-
-::placeholder {
-  font-family: "Krub", sans-serif;
-  padding-left: 0.25em;
-  font-size: 1em;
-}
-
-.field {
-  display: flex;
-  flex-flow: column-reverse;
-  margin-bottom: 1em;
-  position: relative;
-  z-index: 500;
-}
-
-.field input:not(:placeholder-shown) + label,
-.field input:focus + label {
-  transform: translate(0, 0) scale(1);
-  cursor: pointer;
-}
-
-.sign-in-field input:not(:placeholder-shown) + label,
-.sign-in-field input:focus + label {
-  color: #00C7C7;
-}
-
-.sign-in-field input:focus {
-  border-bottom: 1px solid #00C7C7;
-}
-
-.sign-in-field .forgotten {
-  color: #00C7C7;
-}
-
-.sign-up-field input:not(:placeholder-shown) + label,
-.sign-up-field input:focus + label {
-  color: #3a7bd5;
-}
-
-.sign-up-field input:focus {
-  border-bottom: 1px solid #3a7bd5;
-}
-
-.sign-in-with {
-  border-radius: 50px;
-}
-
-.sign-in-with svg {
-  width: 35px;
-  height: auto;
 }
 

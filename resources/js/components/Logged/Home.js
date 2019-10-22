@@ -1,10 +1,12 @@
 import React from 'react';
+import {Additional} from "../Additional";
 
 
 export const Home = () => {
     if(true){
         return (
             <div className={` home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 `}>
+                <Additional/>
                     <div className="content col-11 row justify-content-center py-5">
                         <div className="header col-11 row justify-content-between">
                             <div className="menu col-1 row">
