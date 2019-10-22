@@ -35,8 +35,6 @@ class RegisterController extends Controller
                 
             $validator = Validator::make($request->all(), [
                 'email' => 'sometimes|email|unique:users|unique:companies',
-                /*'name' => 'required|string',
-                'ico' => 'required|string',*/
                 'phone' => 'sometimes|string|unique:users|unique:companies',
                 'passwordR' => 'required'
             ]);
@@ -56,8 +54,6 @@ class RegisterController extends Controller
             try {
         
                 $company= new Company;
-                /*$company->name = $request->name;
-                $company->ico = $request->ico;*/
                 if($request->email){
                     $company->email = $request->email;
                 }
@@ -116,8 +112,6 @@ class RegisterController extends Controller
 
             $validator = Validator::make($request->all(), [
                 'email' => 'sometimes|email|unique:users|unique:companies',
-                /*'firstName' => 'required|string',
-                'lastName' => 'required|string',*/
                 'phone' => 'sometimes|string|unique:users|unique:companies',
                 'passwordR' => 'required'
             ]);
@@ -138,8 +132,6 @@ class RegisterController extends Controller
             try {
         
                 $user= new User;
-                /*$user->name = $request->firstName;
-                $user->lastname = $request->lastName;*/
                 if($request->email){
                     $user->email = $request->email;
                 }
@@ -194,6 +186,9 @@ class RegisterController extends Controller
 
     }
 
+
+
+
     public function additionalInfo(Request $request){
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
@@ -207,13 +202,16 @@ class RegisterController extends Controller
             ]);
         };
 
-        if($user = User::where('email',$request->email)->first()){
+        if($user = User::where('email',$request->email)->where('active',false)->first()){
             $validator = Validator::make($request->all(), [
                 'categories' => 'required|array',
                 'driving_licence' => 'required|boolean',
                 'languages' => 'required|array',
                 'ready' => 'required|date',
-                'username' => 'required|unique:users|unique:companies'
+                'username' => 'required|unique:users|unique:companies',
+                'firstName' => 'required|string',
+                'lastName' => 'required|string',
+                'phone' => 'required|string'
             ]);
              
             if ($validator->fails()) {
@@ -232,7 +230,10 @@ class RegisterController extends Controller
             try {  
                 $user->driving_license = $request->driving_licence;
                 $user->nastup = $request->ready;
-                $user->username = $request->username;
+                $user->username = '@'.$request->username;
+                $user->name = $request->firstName;
+                $user->lastname = $request->lastName;
+                $user->phone = $request->phone;
 
                 if($user->save()){
 
@@ -319,11 +320,14 @@ class RegisterController extends Controller
                 ]);
             }
         }
-        else if($company = Company::where('email',$request->email)->first()){
+        else if($company = Company::where('email',$request->email)->where('active',false)->first()){
             $validator = Validator::make($request->all(), [
                 'categories' => 'required|array',
                 'ready' => 'required|date',
-                'username' => 'required|unique:users|unique:companies'
+                'username' => 'required|unique:users|unique:companies',
+                'name' => 'required|string',
+                'ico' => 'required|string',
+                'phone' => 'required|string'
             ]);
              
             if ($validator->fails()) {
@@ -340,7 +344,10 @@ class RegisterController extends Controller
 
             try {        
                 $company->nastup = $request->ready;
-                $company->username = $request->username;
+                $company->username = '@'.$request->username;
+                $company->name = $request->name;
+                $company->ico = $request->ico;
+                $company->phone = $request->phone;
 
                 if($company->save()){
                     $branch_arr = [];
