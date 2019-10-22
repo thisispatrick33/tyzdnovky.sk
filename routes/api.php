@@ -26,5 +26,5 @@ Route::group(['middleware' => ['api-header','localization']], function () {
     //AUTH
     Route::post("/register","RegisterController@register");
     Route::post("/login","LoginController@login");
-    Route::post("/register-additional","RegisterCOntroller@additionalInfo");
+    Route::post("/register-additional","RegisterController@additionalInfo");
 });
