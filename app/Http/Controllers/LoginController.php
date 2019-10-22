@@ -18,7 +18,7 @@ class LoginController extends Controller
     public function login(Request $request){
         $validator = Validator::make($request->all(), [
             'login' => 'required',
-            'password' => 'required'
+            'passwordL' => 'required'
         ]);   
         if ($validator->fails()) {
             return response()->json([
@@ -46,9 +46,9 @@ class LoginController extends Controller
 
         if($user){
             
-            if (\Hash::check($request->password, $user->password)){
+            if (\Hash::check($request->passwordL, $user->password)){
                 $token = \Auth::guard('users')->attempt(['email' => $user->email,
-                                                         'password' => $request->password]);
+                                                         'password' => $request->passwordL]);
                 $user->auth_token = $token;
                 $user->save();
                 $response = ['success'=>true, 
@@ -76,9 +76,9 @@ class LoginController extends Controller
             return response()->json($response);
         }
         else if($company){
-            if (\Hash::check($request->password, $company->password)){
+            if (\Hash::check($request->passwordL, $company->password)){
                 $token = \Auth::guard('companies')->attempt(['email' => $company->email,
-                                                             'password' => $request->password]);
+                                                             'password' => $request->passwordL]);
                 $company->auth_token = $token;
                 $company->save();
                 $response = ['success'=>true, 
