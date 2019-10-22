@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 export const Additional = () => {
 
-
     return (
         <div className={`additional-info-form | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0`} style={{overflowY : `scroll`}}>
             <div className="content-frame | row  col-10 | justify-content-center align-items-start | px-0 | shadow-sm py-5 my-5">

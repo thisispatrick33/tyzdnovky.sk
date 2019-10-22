@@ -62648,11 +62648,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Additional__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Additional */ "./resources/js/components/Additional.js");
 
 
-var Home = function Home() {
-  if (true) {
+var Home = function Home(props) {
+  console.log(props);
+
+  if (props.location.state != null) {
+    var additional = "";
+
+    if (props.location.state.data.user.active == 0) {
+      additional = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Additional__WEBPACK_IMPORTED_MODULE_1__["Additional"], null);
+    }
+
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: " home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 "
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Additional__WEBPACK_IMPORTED_MODULE_1__["Additional"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, additional, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "content col-11 row justify-content-center py-5"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "header col-11 row justify-content-between"
@@ -62776,7 +62784,6 @@ var Main = function Main() {
       setLocation = _useState4[1];
 
   var _loginUser = function _loginUser(data) {
-    console.log(data);
     jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form .sign-in-button").attr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>');
     axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/api/login/", data, {
       headers: {
@@ -62829,6 +62836,12 @@ var Main = function Main() {
         setAuthState({
           isLoggedIn: appState.isLoggedIn,
           user: appState.user
+        });
+        console.log(appState);
+        Object(_reach_router__WEBPACK_IMPORTED_MODULE_3__["navigate"])("/home", {
+          state: {
+            data: appState
+          }
         });
       } else {
         alert("Login Failed!");
@@ -62906,6 +62919,11 @@ var Main = function Main() {
           isLoggedIn: appState.isLoggedIn,
           user: appState.user
         });
+        Object(_reach_router__WEBPACK_IMPORTED_MODULE_3__["navigate"])("/home", {
+          state: {
+            data: appState
+          }
+        });
       } else {
         alert("Registration Failed!");
       }
@@ -62960,8 +62978,8 @@ if (document.getElementById('root')) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/patrik/Projects/tyzdnovky.sk/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/patrik/Projects/tyzdnovky.sk/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Mamuss\PhpstormProjects\tyzdnovky.sk\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Mamuss\PhpstormProjects\tyzdnovky.sk\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
