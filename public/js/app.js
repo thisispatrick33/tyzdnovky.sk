@@ -61754,6 +61754,144 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/components/Additional.js":
+/*!***********************************************!*\
+  !*** ./resources/js/components/Additional.js ***!
+  \***********************************************/
+/*! exports provided: Additional */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Additional", function() { return Additional; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+var Additional = function Additional() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "additional-info-form | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0",
+    style: {
+      overflowY: "scroll"
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "content-frame | row  col-10 | justify-content-center align-items-start | px-0 | shadow-sm py-5 my-5"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: 'pt-5'
+  }, "update your profile"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-10 row main-info p-0 m-0 align-items-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-3 row"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12 profile-photo"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: "./images/profile-photo.png",
+    alt: "",
+    className: "col-12"
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-9 row"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "col-12 p-0 my-2 py-2 px-4",
+    placeholder: "Username"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "col-12 p-0 my-2 py-2 px-4",
+    placeholder: "First name or Company name "
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "col-12 p-0 my-2 py-2 px-4",
+    placeholder: "Last name or Business ID"
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-10 row main-info"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "col-12"
+  }, "kontakt"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12 row justify-content-around"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "col-5 p-0 my-2 py-2 px-4",
+    placeholder: "Phone"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "col-5 p-0 my-2 py-2 px-4",
+    placeholder: "Email"
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-10 row languages justify-content-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "col-12"
+  }, "jazykov\xE9 znalosti"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-10 row justify-content-around"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-2 row m-0 px-0 py-2 justify-content-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "language col-10 px-0 py-2 text-center"
+  }, "english")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-2 row m-0 px-0 py-2 justify-content-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "language col-10 px-0 py-2 text-center"
+  }, "english")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-2 row m-0 px-0 py-2 justify-content-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "language col-10 px-0 py-2 text-center"
+  }, "english")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-2 row m-0 px-0 py-2 justify-content-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "language col-10 px-0 py-2 text-center"
+  }, "english")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-2 row m-0 px-0 py-2 justify-content-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "language col-10 px-0 py-2 text-center"
+  }, "english")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-2 row m-0 px-0 py-2 justify-content-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "language col-10 px-0 py-2 text-center"
+  }, "english")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-2 row m-0 px-0 py-2 justify-content-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "language col-10 px-0 py-2 text-center"
+  }, "english"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "col-6 p-0 my-2 py-2 px-4",
+    placeholder: "another"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-10 row work-info justify-content-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "col-12"
+  }, "work"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-10 row"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "col-8 p-0 my-2 py-2 px-4 mr-4",
+    placeholder: "work option"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "col-3 p-0 my-2 py-2 px-4",
+    placeholder: "practise"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-10 row"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "col-8 p-0 my-2 py-2 px-4 mr-4",
+    placeholder: "work option"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "col-3 p-0 my-2 py-2 px-4",
+    placeholder: "practise"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-10 row"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "col-8 p-0 my-2 py-2 px-4 mr-4",
+    placeholder: "work option"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "col-3 p-0 my-2 py-2 px-4",
+    placeholder: "practise"
+  })))));
+};
+
+/***/ }),
+
 /***/ "./resources/js/components/Forms/Login.js":
 /*!************************************************!*\
   !*** ./resources/js/components/Forms/Login.js ***!
@@ -62463,12 +62601,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Home", function() { return Home; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Additional__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Additional */ "./resources/js/components/Additional.js");
+
 
 var Home = function Home() {
   if (true) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: " home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 "
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Additional__WEBPACK_IMPORTED_MODULE_1__["Additional"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "content col-11 row justify-content-center py-5"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "header col-11 row justify-content-between"
