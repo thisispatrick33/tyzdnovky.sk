@@ -207,11 +207,11 @@ class RegisterController extends Controller
                 'categories' => 'required|array',
                 'driving_licence' => 'required|boolean',
                 'languages' => 'required|array',
-                'ready' => 'required|date',
                 'username' => 'required|unique:users|unique:companies',
                 'firstName' => 'required|string',
                 'lastName' => 'required|string',
-                'phone' => 'required|string'
+                'phone' => 'required|string',
+                'email' => 'required|email'
             ]);
              
             if ($validator->fails()) {
@@ -229,11 +229,11 @@ class RegisterController extends Controller
 
             try {  
                 $user->driving_license = $request->driving_licence;
-                $user->nastup = $request->ready;
                 $user->username = '@'.$request->username;
                 $user->name = $request->firstName;
                 $user->lastname = $request->lastName;
                 $user->phone = $request->phone;
+                $user->email = $request->email;
 
                 if($user->save()){
 
@@ -273,9 +273,10 @@ class RegisterController extends Controller
                     $user->languages()->syncWithoutDetaching($language_arr);
             
                     for($i = 0 ; $i< sizeof($branch_arr);$i++){
-                        if($request->categories[$i]['practise'] > 0){
+                        if($request->categories[$i]['practise'] > 0 && $request->categories[$i]['ready']){
                             $user->branches()->syncWithoutDetaching($branch_arr[$i]);
-                            $user->branches()->updateExistingPivot($branch_arr[$i], ['years' => $request->categories[$i]['practise']]);
+                            $user->branches()->updateExistingPivot($branch_arr[$i], ['years' => $request->categories[$i]['practise'],
+                                                                                     'ready' => $request->categories[$i]['ready']]);
                         }
                     }
                     
@@ -323,7 +324,7 @@ class RegisterController extends Controller
         else if($company = Company::where('email',$request->email)->where('active',false)->first()){
             $validator = Validator::make($request->all(), [
                 'categories' => 'required|array',
-                'ready' => 'required|date',
+                'email' => 'required|email',
                 'username' => 'required|unique:users|unique:companies',
                 'name' => 'required|string',
                 'ico' => 'required|string',
@@ -343,11 +344,12 @@ class RegisterController extends Controller
             DB::beginTransaction();
 
             try {        
-                $company->nastup = $request->ready;
+
                 $company->username = '@'.$request->username;
                 $company->name = $request->name;
                 $company->ico = $request->ico;
                 $company->phone = $request->phone;
+                $company->email = $request->email;
 
                 if($company->save()){
                     $branch_arr = [];
