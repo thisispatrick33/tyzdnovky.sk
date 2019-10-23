@@ -43,16 +43,13 @@ export const Additional = () => {
                     <div className="col-10 row">
                         <input type="text" className={`col-8 p-0 my-2 py-2 px-4 mr-4`} placeholder={`work option`}/>
                         <input type="text" className={`col-3 p-0 my-2 py-2 px-4`} placeholder={`practise`}/>
-                    </div>
-                    <div className="col-10 row">
-                        <input type="text" className={`col-8 p-0 my-2 py-2 px-4 mr-4`} placeholder={`work option`}/>
-                        <input type="text" className={`col-3 p-0 my-2 py-2 px-4`} placeholder={`practise`}/>
-                    </div>
-                    <div className="col-10 row">
-                        <input type="text" className={`col-8 p-0 my-2 py-2 px-4 mr-4`} placeholder={`work option`}/>
-                        <input type="text" className={`col-3 p-0 my-2 py-2 px-4`} placeholder={`practise`}/>
+                        <input type="text" className={`col-3 p-0 my-2 py-2 px-4`} placeholder={`ready`}/>
                     </div>
 
+                </div>
+                <div className="col-10 row work-info justify-content-center">vodicak</div>
+                <div className="submit">
+                    submit
                 </div>
             </div>
         </div>

@@ -10644,37 +10644,22 @@ a.text-dark:focus {
   }
 }
 
-/**
-* Add a transition to the label and input.
-* I'm not even sure that touch-action: manipulation works on
-* inputs, but hey, it's new and cool and could remove the
-* pesky delay.
-*/
-
-body div#root .form {
+.authentication-form {
+  width: 100vw;
+  min-height: 100vh;
   background-image: url(/images/background.png?a39eec6d26c795d34ff5a79f81914f16);
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  width: 100vw;
-  min-height: 100vh;
 }
 
-body div#root .form .content-frame {
-  border-radius: 20px;
+.authentication-form .content-frame {
+  border-radius: 27px;
   background: white;
   min-height: 70vh;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   position: relative;
   overflow: hidden;
-  width: 768px;
   max-width: 100%;
-  /**
-  * Translate down and scale the label up to cover the placeholder,
-  * when following an input (with placeholder-shown support).
-  * Also make sure the label is only on one row, at max 2/3rds of the
-  * field—to make sure it scales properly and doesn't wrap.
-  */
   /**
   * By default, the placeholder should be transparent. Also, it should
   * inherit the transition.
@@ -10689,19 +10674,15 @@ body div#root .form .content-frame {
   */
 }
 
-body div#root .form .content-frame .choose {
-  font-family: "Krub", sans-serif;
-}
-
-body div#root .form .content-frame .on {
+.authentication-form .content-frame .on {
   font-weight: 600;
 }
 
-body div#root .form .content-frame.right-panel-active .sign-in-container {
+.authentication-form .content-frame.right-panel-active .sign-in-container {
   transform: translateX(100%);
 }
 
-body div#root .form .content-frame.right-panel-active .sign-up-container {
+.authentication-form .content-frame.right-panel-active .sign-up-container {
   transform: translateX(100%);
   opacity: 1;
   z-index: 5;
@@ -10709,42 +10690,42 @@ body div#root .form .content-frame.right-panel-active .sign-up-container {
           animation: show 0.6s;
 }
 
-body div#root .form .content-frame.right-panel-active .overlay-container {
+.authentication-form .content-frame.right-panel-active .overlay-container {
   transform: translateX(-100%);
 }
 
-body div#root .form .content-frame.right-panel-active .overlay {
+.authentication-form .content-frame.right-panel-active .overlay {
   transform: translateX(50%);
 }
 
-body div#root .form .content-frame.right-panel-active .overlay-left {
+.authentication-form .content-frame.right-panel-active .overlay-left {
   transform: translateX(0);
 }
 
-body div#root .form .content-frame.right-panel-active .overlay-right {
+.authentication-form .content-frame.right-panel-active .overlay-right {
   transform: translateX(20%);
 }
 
-body div#root .form .content-frame .sign-in-container {
+.authentication-form .content-frame .sign-in-container {
   left: 0;
   width: 50%;
   z-index: 2;
 }
 
-body div#root .form .content-frame .sign-up-container {
+.authentication-form .content-frame .sign-up-container {
   left: 0;
   width: 50%;
   opacity: 0;
   z-index: 1;
 }
 
-body div#root .form .content-frame .log-in-with {
+.authentication-form .content-frame .log-in-with {
   font-family: "Krub", sans-serif;
   font-size: 1em;
   color: #00C7C7;
 }
 
-body div#root .form .content-frame .overlay-container {
+.authentication-form .content-frame .overlay-container {
   position: absolute;
   top: 0;
   left: 50%;
@@ -10755,7 +10736,7 @@ body div#root .form .content-frame .overlay-container {
   z-index: 100;
 }
 
-body div#root .form .content-frame .overlay {
+.authentication-form .content-frame .overlay {
   background: #3a7bd5;
   background: linear-gradient(to left, #00C7C7, #3a7bd5);
   background-repeat: no-repeat;
@@ -10770,7 +10751,7 @@ body div#root .form .content-frame .overlay {
   transition: transform 0.6s ease-in-out;
 }
 
-body div#root .form .content-frame .overlay .ghost {
+.authentication-form .content-frame .overlay .ghost {
   font-family: "Krub", sans-serif;
   font-size: 1em;
   text-transform: uppercase;
@@ -10780,11 +10761,11 @@ body div#root .form .content-frame .overlay .ghost {
   color: white;
 }
 
-body div#root .form .content-frame .overlay .ghost:focus {
+.authentication-form .content-frame .overlay .ghost:focus {
   outline: 0;
 }
 
-body div#root .form .content-frame .overlay-panel {
+.authentication-form .content-frame .overlay-panel {
   font-family: "Krub", sans-serif;
   position: absolute;
   display: flex;
@@ -10800,20 +10781,20 @@ body div#root .form .content-frame .overlay-panel {
   transition: transform 0.6s ease-in-out;
 }
 
-body div#root .form .content-frame .overlay-panel h1 {
+.authentication-form .content-frame .overlay-panel h1 {
   text-transform: uppercase;
 }
 
-body div#root .form .content-frame .overlay-left {
+.authentication-form .content-frame .overlay-left {
   transform: translateX(-20%);
 }
 
-body div#root .form .content-frame .overlay-right {
+.authentication-form .content-frame .overlay-right {
   right: 0;
   transform: translateX(0);
 }
 
-body div#root .form .content-frame .editable-content {
+.authentication-form .content-frame .editable-content {
   background: white;
   position: absolute;
   top: 0;
@@ -10821,16 +10802,16 @@ body div#root .form .content-frame .editable-content {
   transition: all 0.6s ease-in-out;
 }
 
-body div#root .form .content-frame .title {
+.authentication-form .content-frame .title {
   font-size: 2.25em;
   font-family: "Krub", sans-serif;
 }
 
-body div#root .form .content-frame .title:first-letter {
+.authentication-form .content-frame .title:first-letter {
   text-transform: capitalize;
 }
 
-body div#root .form .content-frame .submit-button {
+.authentication-form .content-frame .submit-button {
   font-size: 1.1em;
   font-weight: 300;
   border-radius: 50px;
@@ -10843,24 +10824,24 @@ body div#root .form .content-frame .submit-button {
   border: none;
 }
 
-body div#root .form .content-frame .submit-button span {
+.authentication-form .content-frame .submit-button span {
   position: relative;
   z-index: 300;
 }
 
-body div#root .form .content-frame .submit-button:focus {
+.authentication-form .content-frame .submit-button:focus {
   outline: 0;
 }
 
-body div#root .form .content-frame .sign-in-button {
+.authentication-form .content-frame .sign-in-button {
   background: linear-gradient(to left, #00C7C7, #50a0ca);
 }
 
-body div#root .form .content-frame .sign-up-button {
+.authentication-form .content-frame .sign-up-button {
   background: linear-gradient(to left, #50a0ca, #3a7bd5);
 }
 
-body div#root .form .content-frame .submit-button:after {
+.authentication-form .content-frame .submit-button:after {
   position: absolute;
   content: "";
   top: 0;
@@ -10873,31 +10854,31 @@ body div#root .form .content-frame .submit-button:after {
   opacity: 0;
 }
 
-body div#root .form .content-frame .sign-in-button:after {
+.authentication-form .content-frame .sign-in-button:after {
   background: linear-gradient(to left, #50a0ca, #00C7C7);
 }
 
-body div#root .form .content-frame .sign-up-button:after {
+.authentication-form .content-frame .sign-up-button:after {
   background: linear-gradient(to left, #3a7bd5, #50a0ca);
 }
 
-body div#root .form .content-frame .submit-button:hover:after {
+.authentication-form .content-frame .submit-button:hover:after {
   opacity: 1;
 }
 
-body div#root .form .content-frame .submit-button:hover {
+.authentication-form .content-frame .submit-button:hover {
   cursor: pointer;
 }
 
-body div#root .form .content-frame label,
-body div#root .form .content-frame input {
+.authentication-form .content-frame label,
+.authentication-form .content-frame input {
   transition: all 0.2s;
   touch-action: manipulation;
   font-family: Krub;
   font-weight: 400;
 }
 
-body div#root .form .content-frame input {
+.authentication-form .content-frame input {
   padding-left: 0.25em;
   font-size: 1.2em;
   border: 0;
@@ -10909,18 +10890,18 @@ body div#root .form .content-frame input {
   cursor: text;
 }
 
-body div#root .form .content-frame input:focus {
+.authentication-form .content-frame input:focus {
   outline: 0;
 }
 
-body div#root .form .content-frame label {
+.authentication-form .content-frame label {
   font-family: "Krub", sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding-left: 0.25em;
 }
 
-body div#root .form .content-frame input:placeholder-shown + label {
+.authentication-form .content-frame input:placeholder-shown + label {
   cursor: text;
   max-width: 100%;
   white-space: nowrap;
@@ -10930,50 +10911,50 @@ body div#root .form .content-frame input:placeholder-shown + label {
   transform: translate(0, 2.125rem) scale(1.5);
 }
 
-body div#root .form .content-frame ::-webkit-input-placeholder {
+.authentication-form .content-frame ::-webkit-input-placeholder {
   opacity: 0;
   transition: inherit;
 }
 
-body div#root .form .content-frame input:focus::-webkit-input-placeholder {
+.authentication-form .content-frame input:focus::-webkit-input-placeholder {
   opacity: 1;
 }
 
-body div#root .form .content-frame input:not(:placeholder-shown) + label,
-body div#root .form .content-frame input:focus + label {
+.authentication-form .content-frame input:not(:placeholder-shown) + label,
+.authentication-form .content-frame input:focus + label {
   transform: translate(0, 0) scale(1);
   cursor: pointer;
 }
 
-body div#root .form .content-frame ::-webkit-input-placeholder {
+.authentication-form .content-frame ::-webkit-input-placeholder {
   /* Edge */
   font-family: "Krub", sans-serif;
 }
 
-body div#root .form .content-frame :-ms-input-placeholder {
+.authentication-form .content-frame :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   font-family: "Krub", sans-serif;
 }
 
-body div#root .form .content-frame ::-moz-placeholder {
+.authentication-form .content-frame ::-moz-placeholder {
   font-family: "Krub", sans-serif;
   padding-left: 0.25em;
   font-size: 1em;
 }
 
-body div#root .form .content-frame ::-ms-input-placeholder {
+.authentication-form .content-frame ::-ms-input-placeholder {
   font-family: "Krub", sans-serif;
   padding-left: 0.25em;
   font-size: 1em;
 }
 
-body div#root .form .content-frame ::placeholder {
+.authentication-form .content-frame ::placeholder {
   font-family: "Krub", sans-serif;
   padding-left: 0.25em;
   font-size: 1em;
 }
 
-body div#root .form .content-frame .field {
+.authentication-form .content-frame .field {
   display: flex;
   flex-flow: column-reverse;
   margin-bottom: 1em;
@@ -10981,41 +10962,107 @@ body div#root .form .content-frame .field {
   z-index: 500;
 }
 
-body div#root .form .content-frame .field input:not(:placeholder-shown) + label,
-body div#root .form .content-frame .field input:focus + label {
+.authentication-form .content-frame .field input:not(:placeholder-shown) + label,
+.authentication-form .content-frame .field input:focus + label {
   transform: translate(0, 0) scale(1);
   cursor: pointer;
 }
 
-body div#root .form .content-frame .sign-in-field input:not(:placeholder-shown) + label,
-body div#root .form .content-frame .sign-in-field input:focus + label {
+.authentication-form .content-frame .sign-in-field input:not(:placeholder-shown) + label,
+.authentication-form .content-frame .sign-in-field input:focus + label {
   color: #00C7C7;
 }
 
-body div#root .form .content-frame .sign-in-field input:focus {
+.authentication-form .content-frame .sign-in-field input:focus {
   border-bottom: 1px solid #00C7C7;
 }
 
-body div#root .form .content-frame .sign-in-field .forgotten {
+.authentication-form .content-frame .sign-in-field .forgotten {
   color: #00C7C7;
 }
 
-body div#root .form .content-frame .sign-up-field input:not(:placeholder-shown) + label,
-body div#root .form .content-frame .sign-up-field input:focus + label {
+.authentication-form .content-frame .sign-up-field input:not(:placeholder-shown) + label,
+.authentication-form .content-frame .sign-up-field input:focus + label {
   color: #3a7bd5;
 }
 
-body div#root .form .content-frame .sign-up-field input:focus {
+.authentication-form .content-frame .sign-up-field input:focus {
   border-bottom: 1px solid #3a7bd5;
 }
 
-body div#root .form .content-frame .sign-in-with {
+.authentication-form .content-frame .sign-in-with {
   border-radius: 50px;
 }
 
-body div#root .form .content-frame .sign-in-with svg {
+.authentication-form .content-frame .sign-in-with svg {
   width: 35px;
   height: auto;
+}
+
+@media (max-width: 991.98px) {
+  .authentication-form .content-frame {
+    min-height: 90vh;
+  }
+
+  .authentication-form .content-frame .sign-up-container {
+    width: 100%;
+  }
+
+  .authentication-form .content-frame .sign-in-container {
+    width: 100%;
+  }
+
+  .authentication-form .content-frame .overlay-container {
+    display: none;
+  }
+}
+
+.forgotten {
+  font-weight: 300;
+  color: #00C7C7;
+}
+
+.forgotten:hover {
+  cursor: pointer;
+}
+
+.sign-in-with:hover {
+  cursor: pointer;
+}
+
+@-webkit-keyframes show {
+  0%, 49.99% {
+    opacity: 0;
+    z-index: 1;
+  }
+
+  50%, 100% {
+    opacity: 1;
+    z-index: 5;
+  }
+}
+
+@keyframes show {
+  0%, 49.99% {
+    opacity: 0;
+    z-index: 1;
+  }
+
+  50%, 100% {
+    opacity: 1;
+    z-index: 5;
+  }
+}
+
+/**
+* Add a transition to the label and input.
+* I'm not even sure that touch-action: manipulation works on
+* inputs, but hey, it's new and cool and could remove the
+* pesky delay.
+*/
+
+body {
+  font-family: "Krub", sans-serif;
 }
 
 body div#root .home {
@@ -11201,87 +11248,5 @@ body div#root .additional-info-form .content-frame input:not(:focus) {
 body div#root .additional-info-form .content-frame .languages .language {
   border-radius: 50px;
   border: 1px solid #00C7C7;
-}
-
-@media (max-width: 991.98px) {
-  body div#root .form .main-title {
-    font-size: 2em;
-  }
-
-  body div#root .form .content-frame .title {
-    font-size: 1.55em;
-  }
-
-  body div#root .form .content-frame .slide:nth-child(1) {
-    border-bottom: 1.5px solid #EDEDED;
-    border-right: none;
-  }
-
-  body div#root .form .content-frame .slide .name {
-    font-size: 1.8em;
-  }
-
-  body ::-webkit-input-placeholder {
-    font-size: 0.85em;
-    padding-left: 0;
-  }
-
-  body ::-moz-placeholder {
-    font-size: 0.85em;
-    padding-left: 0;
-  }
-
-  body :-ms-input-placeholder {
-    font-size: 0.85em;
-    padding-left: 0;
-  }
-
-  body ::-ms-input-placeholder {
-    font-size: 0.85em;
-    padding-left: 0;
-  }
-
-  body ::placeholder {
-    font-size: 0.85em;
-    padding-left: 0;
-  }
-}
-
-.forgotten {
-  font-family: Krub;
-  font-weight: 300;
-  color: #00C7C7;
-}
-
-.forgotten:hover {
-  cursor: pointer;
-}
-
-.sign-in-with:hover {
-  cursor: pointer;
-}
-
-@-webkit-keyframes show {
-  0%, 49.99% {
-    opacity: 0;
-    z-index: 1;
-  }
-
-  50%, 100% {
-    opacity: 1;
-    z-index: 5;
-  }
-}
-
-@keyframes show {
-  0%, 49.99% {
-    opacity: 0;
-    z-index: 1;
-  }
-
-  50%, 100% {
-    opacity: 1;
-    z-index: 5;
-  }
 }
 

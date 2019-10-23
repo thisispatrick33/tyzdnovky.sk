@@ -61867,27 +61867,15 @@ var Additional = function Additional() {
     type: "text",
     className: "col-3 p-0 my-2 py-2 px-4",
     placeholder: "practise"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-10 row"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "text",
-    className: "col-8 p-0 my-2 py-2 px-4 mr-4",
-    placeholder: "work option"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
     className: "col-3 p-0 my-2 py-2 px-4",
-    placeholder: "practise"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-10 row"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "text",
-    className: "col-8 p-0 my-2 py-2 px-4 mr-4",
-    placeholder: "work option"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "text",
-    className: "col-3 p-0 my-2 py-2 px-4",
-    placeholder: "practise"
-  })))));
+    placeholder: "ready"
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-10 row work-info justify-content-center"
+  }, "vodicak"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "submit"
+  }, "submit")));
 };
 
 /***/ }),
@@ -62016,7 +62004,7 @@ var Login = function Login(_ref) {
   };
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "form | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 "
+    className: "authentication-form | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 "
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "content-frame | row col-xl-10 col-lg-10 col-11 | justify-content-center | px-0 | shadow ",
     id: "container"
@@ -62134,12 +62122,12 @@ var Login = function Login(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "sign in")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-11 row justify-content-around align-items-center"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "col-auto log-in-with m-0"
+    className: "col-xl-auto col-lg-auto col-md-auto col-12 log-in-with m-0 text-center"
   }, "or login with"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     onClick: function onClick() {
       return _loginFacebook();
     },
-    className: "col-3 row sign-in-with justify-content-center",
+    className: "col-xl-3 col-lg-3 col-md-4 col-8 row sign-in-with justify-content-center",
     style: {
       background: "#3B5998"
     }
@@ -62160,7 +62148,7 @@ var Login = function Login(_ref) {
     onClick: function onClick() {
       return _loginLinkedIn();
     },
-    className: "col-3 row sign-in-with justify-content-center",
+    className: "col-xl-3 col-lg-3 col-md-4 col-8 row sign-in-with justify-content-center",
     style: {
       background: "#0077b5"
     }
