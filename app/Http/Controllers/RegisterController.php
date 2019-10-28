@@ -205,10 +205,10 @@ class RegisterController extends Controller
         if($user = User::where('email',$request->email)->where('active',false)->first()){
             $validator = Validator::make($request->all(), [
                 'categories' => 'required|array',
-                'driving_licence' => 'required|boolean',
+                'drivingLicense' => 'required|boolean',
                 'languages' => 'required|array',
                 'username' => 'required|unique:users|unique:companies',
-                'firstName' => 'required|string',
+                'name' => 'required|string',
                 'lastName' => 'required|string',
                 'phone' => 'required|string',
                 'email' => 'required|email'
@@ -228,9 +228,9 @@ class RegisterController extends Controller
             DB::beginTransaction();
 
             try {  
-                $user->driving_license = $request->driving_licence;
+                $user->driving_license = $request->drivingLicense;
                 $user->username = '@'.$request->username;
-                $user->name = $request->firstName;
+                $user->name = $request->name;
                 $user->lastname = $request->lastName;
                 $user->phone = $request->phone;
                 $user->email = $request->email;
