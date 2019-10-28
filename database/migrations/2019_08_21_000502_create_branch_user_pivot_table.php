@@ -17,7 +17,8 @@ class CreateBranchUserPivotTable extends Migration
             $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('years')->nullable();;
+            $table->integer('years')->nullable();
+            $table->date('ready')->nullable();
             $table->primary(['branch_id', 'user_id']);
         });
     }

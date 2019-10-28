@@ -23,7 +23,6 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('phone')->nullable();
             $table->boolean('driving_license')->nullable();
-            $table->date('nastup')->nullable();
             $table->text('auth_token')->nullable();
             $table->boolean('active')->default(false);
             $table->rememberToken();

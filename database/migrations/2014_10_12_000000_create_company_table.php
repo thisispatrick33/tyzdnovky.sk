@@ -21,7 +21,6 @@ class CreateCompanyTable extends Migration
             $table->string('username')->unique()->nullable();
             $table->string('password');
             $table->string('phone')->nullable();
-            $table->date('nastup')->nullable();
             $table->text('auth_token')->nullable();
             $table->boolean('active')->default(false);
             $table->rememberToken();
