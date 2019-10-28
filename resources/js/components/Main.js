@@ -14,7 +14,6 @@ import {Additional} from "./Additional";
 const Main = () => {
     const [authState, setAuthState] = useState({isLoggedIn : false, user : {}});
     const [location, setLocation] = useState(``);
-    const [addInfo, setAddInfo] = useState({});
 
 
     const _loginUser = (data) => {
@@ -188,7 +187,17 @@ const Main = () => {
     const _edit = (data) => {
         console.log("main");
         console.log(data);
-        setAddInfo(data);
+        axios
+            .post(`/api/register-additional`, data ,{
+                headers : {
+                    'Content-Type' : `application/json`,
+                    "X-localization" : location,
+                }
+            })
+            .then((response) => {
+                console.log(response);
+                return response;
+            })
     };
 
 

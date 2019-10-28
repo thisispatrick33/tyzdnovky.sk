@@ -34,10 +34,7 @@ export const Additional = ({user, func = f => f}) => {
                     if(additionalData.phone !== undefined && additionalData.phone.length > 0){
                         if(additionalData.email !== undefined && additionalData.email.length > 0){
                             if(additionalData.email.includes('@')){
-                                if(additionalLanguage!==""){
-                                    setLanguages([...languages, additionalLanguage]);
-                                }
-                                if(languages !== undefined && languages.length>0){
+                                if((languages !== undefined && languages.length>0)||(additionalLanguage!=""&&additionalLanguage.length>0)){
                                     if(categories[0].value!==null && categories[0].value.length>0){
                                         if(categories[0].practise!==null && categories[0].value.length>0){
                                             if(categories[0].practise>0){
@@ -172,7 +169,12 @@ export const Additional = ({user, func = f => f}) => {
     };
 
     const submit= async()=>{
-        await func({...additionalData, categories: categories,languages: languages});
+        if(additionalLanguage!=""){
+            await func({...additionalData, categories: categories,languages: [...languages, additionalLanguage]});
+        }
+        else {
+            await func({...additionalData, categories: categories,languages: languages});
+        }
         console.log("addit")
     };
 
