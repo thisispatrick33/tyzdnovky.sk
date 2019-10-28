@@ -2,21 +2,22 @@ import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import $ from "jquery";
 
-import { Router } from '@reach/router';
+import {Router, navigate} from '@reach/router';
 import { Register } from './Forms/Register';
 import { Login } from './Forms/Login';
 import axios from "axios";
 import {Home} from "./Logged/Home";
+import {Additional} from "./Additional";
 
 
 
 const Main = () => {
     const [authState, setAuthState] = useState({isLoggedIn : false, user : {}});
     const [location, setLocation] = useState(``);
+    const [addInfo, setAddInfo] = useState({});
 
 
     const _loginUser = (data) => {
-        console.log(data);
         $("#login-form .sign-in-button")
             .attr("disabled", "disabled")
             .html(
@@ -75,6 +76,9 @@ const Main = () => {
                     localStorage["appState"] = JSON.stringify(appState);
 
                     setAuthState({isLoggedIn: appState.isLoggedIn, user: appState.user});
+
+                    console.log(appState);
+                    navigate(`/home`, {state:{data:appState}});
                 }else {
                     alert("Login Failed!");
                 }
@@ -159,6 +163,8 @@ const Main = () => {
                     localStorage["appState"] = JSON.stringify(appState);
 
                     setAuthState({isLoggedIn: appState.isLoggedIn, user: appState.user});
+
+                    navigate(`/home`, {state:{data:appState}});
                 }else {
                     alert(`Registration Failed!`);
 
@@ -177,6 +183,12 @@ const Main = () => {
         });
 
 
+    };
+
+    const _edit = (data) => {
+        console.log("main");
+        console.log(data);
+        setAddInfo(data);
     };
 
 
@@ -199,7 +211,7 @@ const Main = () => {
             <Router>
                 <Register path={`/`} register={_submitRegistration}/>
                 <Login path={`/login`} login={_loginUser} register={_submitRegistration}/>
-                <Home path={`/home`}/>
+                <Home path={`/home`} edit={_edit}/>
             </Router>
 
     )
