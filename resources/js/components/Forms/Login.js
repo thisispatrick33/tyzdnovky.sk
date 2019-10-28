@@ -67,7 +67,7 @@ export const Login = ({login = f => f, register = f => f}) => {
         console.log("login by linkedin");
     };
     return (
-        <div className={`form | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 `}>
+        <div className={`authentication-form | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 `}>
                 <div className={`content-frame | row col-xl-10 col-lg-10 col-11 | justify-content-center | px-0 | shadow `} id="container">
                     <div className="editable-content sign-up-container col-12 row m-0 justify-content-center align-items-start">
                         <form id={`login-form`} className={` row col-12 | align-items-start | justify-content-center | m-0 p-3 `}>
@@ -136,14 +136,14 @@ export const Login = ({login = f => f, register = f => f}) => {
                             </div>
                             <button className={`submit-button sign-in-button col-4 text-center shadow py-2 mb-5 mt-3 `} onClick={(e)=>_formValidator(e,"l")}><span>sign in</span></button>
                             <div className="col-11 row justify-content-around align-items-center">
-                                <p className={`col-auto log-in-with m-0`}>or login with</p>
-                                <div onClick={() => _loginFacebook()} className={`col-3 row sign-in-with justify-content-center`} style={{background : `#3B5998`}}>
+                                <p className={`col-xl-auto col-lg-auto col-md-auto col-12 log-in-with m-0 text-center`}>or login with</p>
+                                <div onClick={() => _loginFacebook()} className={`col-xl-3 col-lg-3 col-md-4 col-8 row sign-in-with justify-content-center`} style={{background : `#3B5998`}}>
                                     <svg className="p-2" enableBackground="new 0 0 96.124 96.123" version="1.1" viewBox="0 0 96.124 96.123" space="preserve" xmlns="http://www.w3.org/2000/svg">
                                     <path className="active-path"
                                           d="m72.089 0.02-12.465-0.02c-14.004 0-23.054 9.285-23.054 23.656v10.907h-12.533c-1.083 0-1.96 0.878-1.96 1.961v15.803c0 1.083 0.878 1.96 1.96 1.96h12.533v39.876c0 1.083 0.877 1.96 1.96 1.96h16.352c1.083 0 1.96-0.878 1.96-1.96v-39.876h14.654c1.083 0 1.96-0.877 1.96-1.96l6e-3 -15.803c0-0.52-0.207-1.018-0.574-1.386s-0.867-0.575-1.387-0.575h-14.659v-9.246c0-4.444 1.059-6.7 6.848-6.7l8.397-3e-3c1.082 0 1.959-0.878 1.959-1.96v-14.674c0-1.081-0.876-1.958-1.957-1.96z"
                                           fill="#fff" data-old_color="#000000" data-original="#000000"/>
                                  </svg></div>
-                                <div onClick={() => _loginLinkedIn()} className={`col-3 row sign-in-with justify-content-center`} style={{background : `#0077b5`}}>
+                                <div onClick={() => _loginLinkedIn()} className={`col-xl-3 col-lg-3 col-md-4 col-8 row sign-in-with justify-content-center`} style={{background : `#0077b5`}}>
                                     <svg className={`p-2`} xmlns="http://www.w3.org/2000/svg" id="Bold" enable-background="new 0 0 24 24"
                                          viewBox="0 0 24 24" >
                                         <g>

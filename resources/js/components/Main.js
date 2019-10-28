@@ -7,12 +7,14 @@ import { Register } from './Forms/Register';
 import { Login } from './Forms/Login';
 import axios from "axios";
 import {Home} from "./Logged/Home";
+import {Additional} from "./Additional";
 
 
 
 const Main = () => {
     const [authState, setAuthState] = useState({isLoggedIn : false, user : {}});
     const [location, setLocation] = useState(``);
+    const [addInfo, setAddInfo] = useState({});
 
 
     const _loginUser = (data) => {
@@ -183,6 +185,12 @@ const Main = () => {
 
     };
 
+    const _edit = (data) => {
+        console.log("main");
+        console.log(data);
+        setAddInfo(data);
+    };
+
 
     const _ipLocation = () => {
         $.ajax('http://ip-api.com/json')
@@ -203,7 +211,7 @@ const Main = () => {
             <Router>
                 <Register path={`/`} register={_submitRegistration}/>
                 <Login path={`/login`} login={_loginUser} register={_submitRegistration}/>
-                <Home path={`/home`}/>
+                <Home path={`/home`} edit={_edit}/>
             </Router>
 
     )

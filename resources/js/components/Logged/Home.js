@@ -2,12 +2,16 @@ import React from 'react';
 import {Additional} from "../Additional";
 
 
-export const Home = (props) => {
-    console.log(props);
-    if(props.location.state!=null){
+export const Home = ({location, edit = f => f}) => {
+    const handleChange = (data) =>{
+        console.log("home");
+        edit(data);
+    };
+
+    if(location.state!=null){
         var additional = "";
-        if(props.location.state.data.user.active==0){
-            additional = <Additional/>
+        if(location.state.data.user.active==0){
+            additional = <Additional user={location.state.data.user} func={handleChange}/>
         }
         return (
             <div className={` home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 `}>

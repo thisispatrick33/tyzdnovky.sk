@@ -86,6 +86,18 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./node_modules/@babel/runtime/regenerator/index.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
+
+
+/***/ }),
+
 /***/ "./node_modules/@reach/router/es/index.js":
 /*!************************************************!*\
   !*** ./node_modules/@reach/router/es/index.js ***!
@@ -60127,6 +60139,743 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/regenerator-runtime/runtime.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/regenerator-runtime/runtime.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+var runtime = (function (exports) {
+  "use strict";
+
+  var Op = Object.prototype;
+  var hasOwn = Op.hasOwnProperty;
+  var undefined; // More compressible than void 0.
+  var $Symbol = typeof Symbol === "function" ? Symbol : {};
+  var iteratorSymbol = $Symbol.iterator || "@@iterator";
+  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
+  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+
+  function wrap(innerFn, outerFn, self, tryLocsList) {
+    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
+    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
+    var generator = Object.create(protoGenerator.prototype);
+    var context = new Context(tryLocsList || []);
+
+    // The ._invoke method unifies the implementations of the .next,
+    // .throw, and .return methods.
+    generator._invoke = makeInvokeMethod(innerFn, self, context);
+
+    return generator;
+  }
+  exports.wrap = wrap;
+
+  // Try/catch helper to minimize deoptimizations. Returns a completion
+  // record like context.tryEntries[i].completion. This interface could
+  // have been (and was previously) designed to take a closure to be
+  // invoked without arguments, but in all the cases we care about we
+  // already have an existing method we want to call, so there's no need
+  // to create a new function object. We can even get away with assuming
+  // the method takes exactly one argument, since that happens to be true
+  // in every case, so we don't have to touch the arguments object. The
+  // only additional allocation required is the completion record, which
+  // has a stable shape and so hopefully should be cheap to allocate.
+  function tryCatch(fn, obj, arg) {
+    try {
+      return { type: "normal", arg: fn.call(obj, arg) };
+    } catch (err) {
+      return { type: "throw", arg: err };
+    }
+  }
+
+  var GenStateSuspendedStart = "suspendedStart";
+  var GenStateSuspendedYield = "suspendedYield";
+  var GenStateExecuting = "executing";
+  var GenStateCompleted = "completed";
+
+  // Returning this object from the innerFn has the same effect as
+  // breaking out of the dispatch switch statement.
+  var ContinueSentinel = {};
+
+  // Dummy constructor functions that we use as the .constructor and
+  // .constructor.prototype properties for functions that return Generator
+  // objects. For full spec compliance, you may wish to configure your
+  // minifier not to mangle the names of these two functions.
+  function Generator() {}
+  function GeneratorFunction() {}
+  function GeneratorFunctionPrototype() {}
+
+  // This is a polyfill for %IteratorPrototype% for environments that
+  // don't natively support it.
+  var IteratorPrototype = {};
+  IteratorPrototype[iteratorSymbol] = function () {
+    return this;
+  };
+
+  var getProto = Object.getPrototypeOf;
+  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+  if (NativeIteratorPrototype &&
+      NativeIteratorPrototype !== Op &&
+      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
+    // This environment has a native %IteratorPrototype%; use it instead
+    // of the polyfill.
+    IteratorPrototype = NativeIteratorPrototype;
+  }
+
+  var Gp = GeneratorFunctionPrototype.prototype =
+    Generator.prototype = Object.create(IteratorPrototype);
+  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
+  GeneratorFunctionPrototype.constructor = GeneratorFunction;
+  GeneratorFunctionPrototype[toStringTagSymbol] =
+    GeneratorFunction.displayName = "GeneratorFunction";
+
+  // Helper for defining the .next, .throw, and .return methods of the
+  // Iterator interface in terms of a single ._invoke method.
+  function defineIteratorMethods(prototype) {
+    ["next", "throw", "return"].forEach(function(method) {
+      prototype[method] = function(arg) {
+        return this._invoke(method, arg);
+      };
+    });
+  }
+
+  exports.isGeneratorFunction = function(genFun) {
+    var ctor = typeof genFun === "function" && genFun.constructor;
+    return ctor
+      ? ctor === GeneratorFunction ||
+        // For the native GeneratorFunction constructor, the best we can
+        // do is to check its .name property.
+        (ctor.displayName || ctor.name) === "GeneratorFunction"
+      : false;
+  };
+
+  exports.mark = function(genFun) {
+    if (Object.setPrototypeOf) {
+      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
+    } else {
+      genFun.__proto__ = GeneratorFunctionPrototype;
+      if (!(toStringTagSymbol in genFun)) {
+        genFun[toStringTagSymbol] = "GeneratorFunction";
+      }
+    }
+    genFun.prototype = Object.create(Gp);
+    return genFun;
+  };
+
+  // Within the body of any async function, `await x` is transformed to
+  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
+  // `hasOwn.call(value, "__await")` to determine if the yielded value is
+  // meant to be awaited.
+  exports.awrap = function(arg) {
+    return { __await: arg };
+  };
+
+  function AsyncIterator(generator) {
+    function invoke(method, arg, resolve, reject) {
+      var record = tryCatch(generator[method], generator, arg);
+      if (record.type === "throw") {
+        reject(record.arg);
+      } else {
+        var result = record.arg;
+        var value = result.value;
+        if (value &&
+            typeof value === "object" &&
+            hasOwn.call(value, "__await")) {
+          return Promise.resolve(value.__await).then(function(value) {
+            invoke("next", value, resolve, reject);
+          }, function(err) {
+            invoke("throw", err, resolve, reject);
+          });
+        }
+
+        return Promise.resolve(value).then(function(unwrapped) {
+          // When a yielded Promise is resolved, its final value becomes
+          // the .value of the Promise<{value,done}> result for the
+          // current iteration.
+          result.value = unwrapped;
+          resolve(result);
+        }, function(error) {
+          // If a rejected Promise was yielded, throw the rejection back
+          // into the async generator function so it can be handled there.
+          return invoke("throw", error, resolve, reject);
+        });
+      }
+    }
+
+    var previousPromise;
+
+    function enqueue(method, arg) {
+      function callInvokeWithMethodAndArg() {
+        return new Promise(function(resolve, reject) {
+          invoke(method, arg, resolve, reject);
+        });
+      }
+
+      return previousPromise =
+        // If enqueue has been called before, then we want to wait until
+        // all previous Promises have been resolved before calling invoke,
+        // so that results are always delivered in the correct order. If
+        // enqueue has not been called before, then it is important to
+        // call invoke immediately, without waiting on a callback to fire,
+        // so that the async generator function has the opportunity to do
+        // any necessary setup in a predictable way. This predictability
+        // is why the Promise constructor synchronously invokes its
+        // executor callback, and why async functions synchronously
+        // execute code before the first await. Since we implement simple
+        // async functions in terms of async generators, it is especially
+        // important to get this right, even though it requires care.
+        previousPromise ? previousPromise.then(
+          callInvokeWithMethodAndArg,
+          // Avoid propagating failures to Promises returned by later
+          // invocations of the iterator.
+          callInvokeWithMethodAndArg
+        ) : callInvokeWithMethodAndArg();
+    }
+
+    // Define the unified helper method that is used to implement .next,
+    // .throw, and .return (see defineIteratorMethods).
+    this._invoke = enqueue;
+  }
+
+  defineIteratorMethods(AsyncIterator.prototype);
+  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
+    return this;
+  };
+  exports.AsyncIterator = AsyncIterator;
+
+  // Note that simple async functions are implemented on top of
+  // AsyncIterator objects; they just return a Promise for the value of
+  // the final result produced by the iterator.
+  exports.async = function(innerFn, outerFn, self, tryLocsList) {
+    var iter = new AsyncIterator(
+      wrap(innerFn, outerFn, self, tryLocsList)
+    );
+
+    return exports.isGeneratorFunction(outerFn)
+      ? iter // If outerFn is a generator, return the full iterator.
+      : iter.next().then(function(result) {
+          return result.done ? result.value : iter.next();
+        });
+  };
+
+  function makeInvokeMethod(innerFn, self, context) {
+    var state = GenStateSuspendedStart;
+
+    return function invoke(method, arg) {
+      if (state === GenStateExecuting) {
+        throw new Error("Generator is already running");
+      }
+
+      if (state === GenStateCompleted) {
+        if (method === "throw") {
+          throw arg;
+        }
+
+        // Be forgiving, per 25.3.3.3.3 of the spec:
+        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
+        return doneResult();
+      }
+
+      context.method = method;
+      context.arg = arg;
+
+      while (true) {
+        var delegate = context.delegate;
+        if (delegate) {
+          var delegateResult = maybeInvokeDelegate(delegate, context);
+          if (delegateResult) {
+            if (delegateResult === ContinueSentinel) continue;
+            return delegateResult;
+          }
+        }
+
+        if (context.method === "next") {
+          // Setting context._sent for legacy support of Babel's
+          // function.sent implementation.
+          context.sent = context._sent = context.arg;
+
+        } else if (context.method === "throw") {
+          if (state === GenStateSuspendedStart) {
+            state = GenStateCompleted;
+            throw context.arg;
+          }
+
+          context.dispatchException(context.arg);
+
+        } else if (context.method === "return") {
+          context.abrupt("return", context.arg);
+        }
+
+        state = GenStateExecuting;
+
+        var record = tryCatch(innerFn, self, context);
+        if (record.type === "normal") {
+          // If an exception is thrown from innerFn, we leave state ===
+          // GenStateExecuting and loop back for another invocation.
+          state = context.done
+            ? GenStateCompleted
+            : GenStateSuspendedYield;
+
+          if (record.arg === ContinueSentinel) {
+            continue;
+          }
+
+          return {
+            value: record.arg,
+            done: context.done
+          };
+
+        } else if (record.type === "throw") {
+          state = GenStateCompleted;
+          // Dispatch the exception by looping back around to the
+          // context.dispatchException(context.arg) call above.
+          context.method = "throw";
+          context.arg = record.arg;
+        }
+      }
+    };
+  }
+
+  // Call delegate.iterator[context.method](context.arg) and handle the
+  // result, either by returning a { value, done } result from the
+  // delegate iterator, or by modifying context.method and context.arg,
+  // setting context.delegate to null, and returning the ContinueSentinel.
+  function maybeInvokeDelegate(delegate, context) {
+    var method = delegate.iterator[context.method];
+    if (method === undefined) {
+      // A .throw or .return when the delegate iterator has no .throw
+      // method always terminates the yield* loop.
+      context.delegate = null;
+
+      if (context.method === "throw") {
+        // Note: ["return"] must be used for ES3 parsing compatibility.
+        if (delegate.iterator["return"]) {
+          // If the delegate iterator has a return method, give it a
+          // chance to clean up.
+          context.method = "return";
+          context.arg = undefined;
+          maybeInvokeDelegate(delegate, context);
+
+          if (context.method === "throw") {
+            // If maybeInvokeDelegate(context) changed context.method from
+            // "return" to "throw", let that override the TypeError below.
+            return ContinueSentinel;
+          }
+        }
+
+        context.method = "throw";
+        context.arg = new TypeError(
+          "The iterator does not provide a 'throw' method");
+      }
+
+      return ContinueSentinel;
+    }
+
+    var record = tryCatch(method, delegate.iterator, context.arg);
+
+    if (record.type === "throw") {
+      context.method = "throw";
+      context.arg = record.arg;
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    var info = record.arg;
+
+    if (! info) {
+      context.method = "throw";
+      context.arg = new TypeError("iterator result is not an object");
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    if (info.done) {
+      // Assign the result of the finished delegate to the temporary
+      // variable specified by delegate.resultName (see delegateYield).
+      context[delegate.resultName] = info.value;
+
+      // Resume execution at the desired location (see delegateYield).
+      context.next = delegate.nextLoc;
+
+      // If context.method was "throw" but the delegate handled the
+      // exception, let the outer generator proceed normally. If
+      // context.method was "next", forget context.arg since it has been
+      // "consumed" by the delegate iterator. If context.method was
+      // "return", allow the original .return call to continue in the
+      // outer generator.
+      if (context.method !== "return") {
+        context.method = "next";
+        context.arg = undefined;
+      }
+
+    } else {
+      // Re-yield the result returned by the delegate method.
+      return info;
+    }
+
+    // The delegate iterator is finished, so forget it and continue with
+    // the outer generator.
+    context.delegate = null;
+    return ContinueSentinel;
+  }
+
+  // Define Generator.prototype.{next,throw,return} in terms of the
+  // unified ._invoke helper method.
+  defineIteratorMethods(Gp);
+
+  Gp[toStringTagSymbol] = "Generator";
+
+  // A Generator should always return itself as the iterator object when the
+  // @@iterator function is called on it. Some browsers' implementations of the
+  // iterator prototype chain incorrectly implement this, causing the Generator
+  // object to not be returned from this call. This ensures that doesn't happen.
+  // See https://github.com/facebook/regenerator/issues/274 for more details.
+  Gp[iteratorSymbol] = function() {
+    return this;
+  };
+
+  Gp.toString = function() {
+    return "[object Generator]";
+  };
+
+  function pushTryEntry(locs) {
+    var entry = { tryLoc: locs[0] };
+
+    if (1 in locs) {
+      entry.catchLoc = locs[1];
+    }
+
+    if (2 in locs) {
+      entry.finallyLoc = locs[2];
+      entry.afterLoc = locs[3];
+    }
+
+    this.tryEntries.push(entry);
+  }
+
+  function resetTryEntry(entry) {
+    var record = entry.completion || {};
+    record.type = "normal";
+    delete record.arg;
+    entry.completion = record;
+  }
+
+  function Context(tryLocsList) {
+    // The root entry object (effectively a try statement without a catch
+    // or a finally block) gives us a place to store values thrown from
+    // locations where there is no enclosing try statement.
+    this.tryEntries = [{ tryLoc: "root" }];
+    tryLocsList.forEach(pushTryEntry, this);
+    this.reset(true);
+  }
+
+  exports.keys = function(object) {
+    var keys = [];
+    for (var key in object) {
+      keys.push(key);
+    }
+    keys.reverse();
+
+    // Rather than returning an object with a next method, we keep
+    // things simple and return the next function itself.
+    return function next() {
+      while (keys.length) {
+        var key = keys.pop();
+        if (key in object) {
+          next.value = key;
+          next.done = false;
+          return next;
+        }
+      }
+
+      // To avoid creating an additional object, we just hang the .value
+      // and .done properties off the next function object itself. This
+      // also ensures that the minifier will not anonymize the function.
+      next.done = true;
+      return next;
+    };
+  };
+
+  function values(iterable) {
+    if (iterable) {
+      var iteratorMethod = iterable[iteratorSymbol];
+      if (iteratorMethod) {
+        return iteratorMethod.call(iterable);
+      }
+
+      if (typeof iterable.next === "function") {
+        return iterable;
+      }
+
+      if (!isNaN(iterable.length)) {
+        var i = -1, next = function next() {
+          while (++i < iterable.length) {
+            if (hasOwn.call(iterable, i)) {
+              next.value = iterable[i];
+              next.done = false;
+              return next;
+            }
+          }
+
+          next.value = undefined;
+          next.done = true;
+
+          return next;
+        };
+
+        return next.next = next;
+      }
+    }
+
+    // Return an iterator with no values.
+    return { next: doneResult };
+  }
+  exports.values = values;
+
+  function doneResult() {
+    return { value: undefined, done: true };
+  }
+
+  Context.prototype = {
+    constructor: Context,
+
+    reset: function(skipTempReset) {
+      this.prev = 0;
+      this.next = 0;
+      // Resetting context._sent for legacy support of Babel's
+      // function.sent implementation.
+      this.sent = this._sent = undefined;
+      this.done = false;
+      this.delegate = null;
+
+      this.method = "next";
+      this.arg = undefined;
+
+      this.tryEntries.forEach(resetTryEntry);
+
+      if (!skipTempReset) {
+        for (var name in this) {
+          // Not sure about the optimal order of these conditions:
+          if (name.charAt(0) === "t" &&
+              hasOwn.call(this, name) &&
+              !isNaN(+name.slice(1))) {
+            this[name] = undefined;
+          }
+        }
+      }
+    },
+
+    stop: function() {
+      this.done = true;
+
+      var rootEntry = this.tryEntries[0];
+      var rootRecord = rootEntry.completion;
+      if (rootRecord.type === "throw") {
+        throw rootRecord.arg;
+      }
+
+      return this.rval;
+    },
+
+    dispatchException: function(exception) {
+      if (this.done) {
+        throw exception;
+      }
+
+      var context = this;
+      function handle(loc, caught) {
+        record.type = "throw";
+        record.arg = exception;
+        context.next = loc;
+
+        if (caught) {
+          // If the dispatched exception was caught by a catch block,
+          // then let that catch block handle the exception normally.
+          context.method = "next";
+          context.arg = undefined;
+        }
+
+        return !! caught;
+      }
+
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        var record = entry.completion;
+
+        if (entry.tryLoc === "root") {
+          // Exception thrown outside of any try block that could handle
+          // it, so set the completion value of the entire function to
+          // throw the exception.
+          return handle("end");
+        }
+
+        if (entry.tryLoc <= this.prev) {
+          var hasCatch = hasOwn.call(entry, "catchLoc");
+          var hasFinally = hasOwn.call(entry, "finallyLoc");
+
+          if (hasCatch && hasFinally) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            } else if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else if (hasCatch) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            }
+
+          } else if (hasFinally) {
+            if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else {
+            throw new Error("try statement without catch or finally");
+          }
+        }
+      }
+    },
+
+    abrupt: function(type, arg) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc <= this.prev &&
+            hasOwn.call(entry, "finallyLoc") &&
+            this.prev < entry.finallyLoc) {
+          var finallyEntry = entry;
+          break;
+        }
+      }
+
+      if (finallyEntry &&
+          (type === "break" ||
+           type === "continue") &&
+          finallyEntry.tryLoc <= arg &&
+          arg <= finallyEntry.finallyLoc) {
+        // Ignore the finally entry if control is not jumping to a
+        // location outside the try/catch block.
+        finallyEntry = null;
+      }
+
+      var record = finallyEntry ? finallyEntry.completion : {};
+      record.type = type;
+      record.arg = arg;
+
+      if (finallyEntry) {
+        this.method = "next";
+        this.next = finallyEntry.finallyLoc;
+        return ContinueSentinel;
+      }
+
+      return this.complete(record);
+    },
+
+    complete: function(record, afterLoc) {
+      if (record.type === "throw") {
+        throw record.arg;
+      }
+
+      if (record.type === "break" ||
+          record.type === "continue") {
+        this.next = record.arg;
+      } else if (record.type === "return") {
+        this.rval = this.arg = record.arg;
+        this.method = "return";
+        this.next = "end";
+      } else if (record.type === "normal" && afterLoc) {
+        this.next = afterLoc;
+      }
+
+      return ContinueSentinel;
+    },
+
+    finish: function(finallyLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.finallyLoc === finallyLoc) {
+          this.complete(entry.completion, entry.afterLoc);
+          resetTryEntry(entry);
+          return ContinueSentinel;
+        }
+      }
+    },
+
+    "catch": function(tryLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc === tryLoc) {
+          var record = entry.completion;
+          if (record.type === "throw") {
+            var thrown = record.arg;
+            resetTryEntry(entry);
+          }
+          return thrown;
+        }
+      }
+
+      // The context.catch method must only be called with a location
+      // argument that corresponds to a known catch block.
+      throw new Error("illegal catch attempt");
+    },
+
+    delegateYield: function(iterable, resultName, nextLoc) {
+      this.delegate = {
+        iterator: values(iterable),
+        resultName: resultName,
+        nextLoc: nextLoc
+      };
+
+      if (this.method === "next") {
+        // Deliberately forget the last sent value so that we don't
+        // accidentally pass it on to the delegate.
+        this.arg = undefined;
+      }
+
+      return ContinueSentinel;
+    }
+  };
+
+  // Regardless of whether this script is executing as a CommonJS module
+  // or not, return the runtime object so that we can declare the variable
+  // regeneratorRuntime in the outer scope, which allows this module to be
+  // injected easily by `bin/regenerator --include-runtime script.js`.
+  return exports;
+
+}(
+  // If this script is executing as a CommonJS module, use module.exports
+  // as the regeneratorRuntime namespace. Otherwise create a new empty
+  // object. Either way, the resulting object will be used to initialize
+  // the regeneratorRuntime variable at the top of this file.
+   true ? module.exports : undefined
+));
+
+try {
+  regeneratorRuntime = runtime;
+} catch (accidentalStrictMode) {
+  // This module should not be running in strict mode, so the above
+  // assignment should always work unless something is misconfigured. Just
+  // in case runtime.js accidentally runs in strict mode, we can escape
+  // strict mode using a global Function call. This could conceivably fail
+  // if a Content Security Policy forbids using Function, but in that case
+  // the proper solution is to fix the accidental strict mode problem. If
+  // you've misconfigured your bundler to force strict mode and applied a
+  // CSP to forbid Function, and you're not willing to fix either of those
+  // problems, please detail your unique predicament in a GitHub issue.
+  Function("r", "regeneratorRuntime = r")(runtime);
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/scheduler/cjs/scheduler-tracing.development.js":
 /*!*********************************************************************!*\
   !*** ./node_modules/scheduler/cjs/scheduler-tracing.development.js ***!
@@ -61764,130 +62513,572 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Additional", function() { return Additional; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 
-var Additional = function Additional() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+var Additional = function Additional(_ref) {
+  var user = _ref.user,
+      _ref$func = _ref.func,
+      func = _ref$func === void 0 ? function (f) {
+    return f;
+  } : _ref$func;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
+    drivingLicense: false
+  }),
+      _useState2 = _slicedToArray(_useState, 2),
+      additionalData = _useState2[0],
+      setAdditionalData = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([{
+    value: null,
+    practise: null,
+    ready: null
+  }]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      categories = _useState4[0],
+      setCategories = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+      _useState6 = _slicedToArray(_useState5, 2),
+      languages = _useState6[0],
+      setLanguages = _useState6[1];
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
+      _useState8 = _slicedToArray(_useState7, 2),
+      additionalLanguage = _useState8[0],
+      setAdditionalLanguage = _useState8[1];
+
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
+      _useState10 = _slicedToArray(_useState9, 2),
+      missing = _useState10[0],
+      setMissing = _useState10[1];
+
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth() + 1; //January is 0!
+
+  var yyyy = today.getFullYear();
+
+  if (dd < 10) {
+    dd = '0' + dd;
+  }
+
+  if (mm < 10) {
+    mm = '0' + mm;
+  }
+
+  today = yyyy + '-' + mm + '-' + dd;
+
+  var handleLang = function handleLang(value) {
+    var array = _toConsumableArray(languages);
+
+    array.includes(value) ? array = array.filter(function (lan) {
+      return value !== lan;
+    }) : array.push(value);
+    setLanguages(array);
+  };
+
+  var formValidator = function formValidator() {
+    if (additionalData.username !== undefined && additionalData.username.length > 0) {
+      if (additionalData.name !== undefined && additionalData.name.length > 0) {
+        if (user.type === "user" && additionalData.lastName !== undefined && additionalData.lastName.length > 0 || user.type === "company" && additionalData.ico !== undefined && additionalData.ico.length > 0) {
+          if (additionalData.phone !== undefined && additionalData.phone.length > 0) {
+            if (additionalData.email !== undefined && additionalData.email.length > 0) {
+              if (additionalData.email.includes('@')) {
+                if (additionalLanguage !== "") {
+                  setLanguages([].concat(_toConsumableArray(languages), [additionalLanguage]));
+                }
+
+                if (languages !== undefined && languages.length > 0) {
+                  if (categories[0].value !== null && categories[0].value.length > 0) {
+                    if (categories[0].practise !== null && categories[0].value.length > 0) {
+                      if (categories[0].practise > 0) {
+                        if (categories[0].ready !== null && categories[0].ready.length > 0) {
+                          if (categories[0].ready > today) {
+                            if (categories.length == 1) {
+                              submit();
+                            } else {
+                              if (categories.length == 2) {
+                                console.log("sem");
+
+                                if (categories[1].value !== null && categories[1].value.length > 0) {
+                                  if (categories[1].practise !== null && categories[1].value.length > 0) {
+                                    if (categories[1].practise > 0) {
+                                      if (categories[1].ready !== null && categories[1].ready.length > 0) {
+                                        if (categories[1].ready > today) {
+                                          submit();
+                                        } else {
+                                          setMissing({
+                                            value: 'ready',
+                                            message: "Nezadali ste platny datum nastupu."
+                                          });
+                                          console.log(missing);
+                                        }
+                                      } else {
+                                        setMissing({
+                                          value: 'ready',
+                                          message: "Nezadali ste datum nastupu."
+                                        });
+                                        console.log(missing);
+                                      }
+                                    } else {
+                                      setMissing({
+                                        value: 'practise',
+                                        message: "Nezadali ste platnu prax v odbore."
+                                      });
+                                      console.log(missing);
+                                    }
+                                  } else {
+                                    setMissing({
+                                      value: 'practise',
+                                      message: "Nezadali ste prax v odbore."
+                                    });
+                                    console.log(missing);
+                                  }
+                                } else {
+                                  setMissing({
+                                    value: 'category',
+                                    message: "Nezadali ste odbor."
+                                  });
+                                  console.log(missing);
+                                }
+                              }
+
+                              if (categories.length == 3) {
+                                if (categories[2].value !== null && categories[2].value.length > 0) {
+                                  if (categories[2].practise !== null && categories[2].value.length > 0) {
+                                    if (categories[2].practise > 0) {
+                                      if (categories[2].ready !== null && categories[1].ready.length > 0) {
+                                        if (categories[2].ready > today) {
+                                          submit();
+                                        } else {
+                                          setMissing({
+                                            value: 'ready',
+                                            message: "Nezadali ste platny datum nastupu."
+                                          });
+                                          console.log(missing);
+                                        }
+                                      } else {
+                                        setMissing({
+                                          value: 'ready',
+                                          message: "Nezadali ste datum nastupu."
+                                        });
+                                        console.log(missing);
+                                      }
+                                    } else {
+                                      setMissing({
+                                        value: 'practise',
+                                        message: "Nezadali ste platnu prax v odbore."
+                                      });
+                                      console.log(missing);
+                                    }
+                                  } else {
+                                    setMissing({
+                                      value: 'practise',
+                                      message: "Nezadali ste prax v odbore."
+                                    });
+                                    console.log(missing);
+                                  }
+                                } else {
+                                  setMissing({
+                                    value: 'category',
+                                    message: "Nezadali ste odbor."
+                                  });
+                                  console.log(missing);
+                                }
+                              }
+                            }
+                          } else {
+                            setMissing({
+                              value: 'ready',
+                              message: "Nezadali ste platny datum nastupu."
+                            });
+                            console.log(missing);
+                          }
+                        } else {
+                          setMissing({
+                            value: 'ready',
+                            message: "Nezadali ste datum nastupu."
+                          });
+                          console.log(missing);
+                        }
+                      } else {
+                        setMissing({
+                          value: 'practise',
+                          message: "Nezadali ste platnu prax v odbore."
+                        });
+                        console.log(missing);
+                      }
+                    } else {
+                      setMissing({
+                        value: 'practise',
+                        message: "Nezadali ste prax v odbore."
+                      });
+                      console.log(missing);
+                    }
+                  } else {
+                    setMissing({
+                      value: 'category',
+                      message: "Nezadali ste ziaden odbor."
+                    });
+                    console.log(missing);
+                  }
+                } else {
+                  setMissing({
+                    value: 'language',
+                    message: "Nezadali ste ziaden jazyk."
+                  });
+                  console.log(missing);
+                }
+              } else {
+                setMissing({
+                  value: '@',
+                  message: "Nezadali ste platny email."
+                });
+                console.log(missing);
+              }
+            } else {
+              setMissing({
+                value: 'email',
+                message: "Nezadali ste email."
+              });
+              console.log(missing);
+            }
+          } else {
+            setMissing({
+              value: 'phone',
+              message: "Nezadali ste telefon."
+            });
+            console.log(missing);
+          }
+        } else {
+          if (user.type === "user") {
+            setMissing({
+              value: 'lastName',
+              message: "Nezadali ste priezvisko."
+            });
+            console.log(missing);
+          }
+
+          if (user.type === "company") {
+            setMissing({
+              value: 'ico',
+              message: "Nezadali ste ICO."
+            });
+            console.log(missing);
+          }
+        }
+      } else {
+        setMissing({
+          value: 'name',
+          message: "Nezadali ste meno."
+        });
+        console.log(missing);
+      }
+    } else {
+      setMissing({
+        value: 'username',
+        message: "Nezadali ste username."
+      });
+      console.log(missing);
+    }
+  };
+
+  var submit =
+  /*#__PURE__*/
+  function () {
+    var _ref2 = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return func(_objectSpread({}, additionalData, {
+                categories: categories,
+                languages: languages
+              }));
+
+            case 2:
+              console.log("addit");
+
+            case 3:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function submit() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  var addWork = function addWork() {
+    var values = _toConsumableArray(categories);
+
+    if (categories.length < 3) {
+      values.push({
+        value: null,
+        practise: null,
+        ready: null
+      });
+      setCategories(values);
+    }
+  };
+
+  var removeWork = function removeWork(i) {
+    var values = _toConsumableArray(categories);
+
+    values = values.filter(function (value, index) {
+      return index !== i;
+    });
+    setCategories(values);
+  };
+
+  var onChangeInput = function onChangeInput(value, type, i) {
+    var values = _toConsumableArray(categories);
+
+    if (type == "w") {
+      values[i].value = value;
+    }
+
+    if (type == "p") {
+      values[i].practise = value;
+    }
+
+    if (type == "r") {
+      values[i].ready = value;
+    }
+
+    setCategories(values);
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "additional-info-form | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0",
     style: {
       overflowY: "scroll"
     }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "content-frame | row  col-10 | justify-content-center align-items-start | px-0 | shadow-sm py-5 my-5"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", {
     className: 'pt-5'
-  }, "update your profile"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "update your profile"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-10 row main-info p-0 m-0 align-items-center"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-3 row"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 profile-photo"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
     src: "./images/profile-photo.png",
     alt: "",
     className: "col-12"
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-9 row"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     type: "text",
     className: "col-12 p-0 my-2 py-2 px-4",
-    placeholder: "Username"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    placeholder: "Username",
+    onChange: function onChange(e) {
+      return setAdditionalData(_objectSpread({}, additionalData, {
+        username: e.target.value
+      }));
+    }
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     type: "text",
     className: "col-12 p-0 my-2 py-2 px-4",
-    placeholder: "First name or Company name "
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    placeholder: user.type === "user" ? "First name" : "Company name",
+    onChange: function onChange(e) {
+      return setAdditionalData(_objectSpread({}, additionalData, {
+        name: e.target.value
+      }));
+    }
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     type: "text",
     className: "col-12 p-0 my-2 py-2 px-4",
-    placeholder: "Last name or Business ID"
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    placeholder: user.type === "user" ? "Last name" : "Business ID",
+    onChange: function onChange(e) {
+      return setAdditionalData(user.type === "user" ? _objectSpread({}, additionalData, {
+        lastName: e.target.value
+      }) : _objectSpread({}, additionalData, {
+        ico: e.target.value
+      }));
+    }
+  }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-10 row main-info"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
     className: "col-12"
-  }, "kontakt"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "kontakt"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 row justify-content-around"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     type: "text",
     className: "col-5 p-0 my-2 py-2 px-4",
-    placeholder: "Phone"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    placeholder: "Phone",
+    onChange: function onChange(e) {
+      return setAdditionalData(_objectSpread({}, additionalData, {
+        phone: e.target.value
+      }));
+    }
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     type: "text",
     className: "col-5 p-0 my-2 py-2 px-4",
-    placeholder: "Email"
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    placeholder: "Email",
+    onChange: function onChange(e) {
+      return setAdditionalData(_objectSpread({}, additionalData, {
+        email: e.target.value
+      }));
+    }
+  }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-10 row languages justify-content-center"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
     className: "col-12"
-  }, "jazykov\xE9 znalosti"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "jazykov\xE9 znalosti"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-10 row justify-content-around"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-2 row m-0 px-0 py-2 justify-content-center"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "language col-10 px-0 py-2 text-center"
-  }, "english")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "language col-10 px-0 py-2 text-center",
+    onClick: function onClick() {
+      return handleLang("english");
+    }
+  }, "english")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-2 row m-0 px-0 py-2 justify-content-center"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "language col-10 px-0 py-2 text-center"
-  }, "english")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "language col-10 px-0 py-2 text-center",
+    onClick: function onClick() {
+      return handleLang("slovak");
+    }
+  }, "slovak")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-2 row m-0 px-0 py-2 justify-content-center"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "language col-10 px-0 py-2 text-center"
-  }, "english")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "language col-10 px-0 py-2 text-center",
+    onClick: function onClick() {
+      return handleLang("danish");
+    }
+  }, "danish")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-2 row m-0 px-0 py-2 justify-content-center"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "language col-10 px-0 py-2 text-center"
-  }, "english")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "language col-10 px-0 py-2 text-center",
+    onClick: function onClick() {
+      return handleLang("french");
+    }
+  }, "french")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-2 row m-0 px-0 py-2 justify-content-center"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "language col-10 px-0 py-2 text-center"
-  }, "english")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "language col-10 px-0 py-2 text-center",
+    onClick: function onClick() {
+      return handleLang("czech");
+    }
+  }, "czech")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-2 row m-0 px-0 py-2 justify-content-center"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "language col-10 px-0 py-2 text-center"
-  }, "english")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "language col-10 px-0 py-2 text-center",
+    onClick: function onClick() {
+      return handleLang("cigansky");
+    }
+  }, "cigansky")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-2 row m-0 px-0 py-2 justify-content-center"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "language col-10 px-0 py-2 text-center"
-  }, "english"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "language col-10 px-0 py-2 text-center",
+    onClick: function onClick() {
+      return handleLang("hungarian");
+    }
+  }, "hungarian"))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     type: "text",
     className: "col-6 p-0 my-2 py-2 px-4",
-    placeholder: "another"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    placeholder: "another",
+    onChange: function onChange(e) {
+      return setAdditionalLanguage(e.target.value);
+    }
+  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-10 row work-info justify-content-center"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
     className: "col-12"
-  }, "work"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-10 row"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "text",
-    className: "col-8 p-0 my-2 py-2 px-4 mr-4",
-    placeholder: "work option"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "text",
-    className: "col-3 p-0 my-2 py-2 px-4",
-    placeholder: "practise"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-10 row"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "text",
-    className: "col-8 p-0 my-2 py-2 px-4 mr-4",
-    placeholder: "work option"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "text",
-    className: "col-3 p-0 my-2 py-2 px-4",
-    placeholder: "practise"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-10 row"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "text",
-    className: "col-8 p-0 my-2 py-2 px-4 mr-4",
-    placeholder: "work option"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "text",
-    className: "col-3 p-0 my-2 py-2 px-4",
-    placeholder: "practise"
-  })))));
+  }, "work"), categories.map(function (_ref3, i) {
+    var value = _ref3.value,
+        practise = _ref3.practise,
+        ready = _ref3.ready;
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "col-10 row"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      type: "text",
+      className: "col-8 p-0 my-2 py-2 px-4 mr-4",
+      placeholder: "work option",
+      value: categories[i].value,
+      onChange: function onChange(e) {
+        return onChangeInput(e.target.value, "w", i);
+      }
+    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      type: "number",
+      className: "col-2 p-0 my-2 py-2 px-4",
+      placeholder: "practise",
+      value: categories[i].practise,
+      onChange: function onChange(e) {
+        return onChangeInput(e.target.value, "p", i);
+      }
+    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      type: "date",
+      className: "col-2 p-0 my-2 py-2 px-4",
+      placeholder: "ready",
+      value: categories[i].ready,
+      onChange: function onChange(e) {
+        return onChangeInput(e.target.value, "r", i);
+      }
+    })), categories.length > 1 ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "submit",
+      onClick: function onClick() {
+        return removeWork(i);
+      }
+    }, " X ") : "");
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "submit",
+    onClick: addWork
+  }, "dalsie")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "col-10 row work-info justify-content-center",
+    onClick: function onClick() {
+      return setAdditionalData(_objectSpread({}, additionalData, {
+        drivingLicense: true
+      }));
+    }
+  }, "vodicak"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "submit",
+    onClick: function onClick() {
+      return formValidator();
+    }
+  }, "submit")));
 };
 
 /***/ }),
@@ -62016,7 +63207,7 @@ var Login = function Login(_ref) {
   };
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "form | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 "
+    className: "authentication-form | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 "
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "content-frame | row col-xl-10 col-lg-10 col-11 | justify-content-center | px-0 | shadow ",
     id: "container"
@@ -62134,12 +63325,12 @@ var Login = function Login(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "sign in")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-11 row justify-content-around align-items-center"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "col-auto log-in-with m-0"
+    className: "col-xl-auto col-lg-auto col-md-auto col-12 log-in-with m-0 text-center"
   }, "or login with"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     onClick: function onClick() {
       return _loginFacebook();
     },
-    className: "col-3 row sign-in-with justify-content-center",
+    className: "col-xl-3 col-lg-3 col-md-4 col-8 row sign-in-with justify-content-center",
     style: {
       background: "#3B5998"
     }
@@ -62160,7 +63351,7 @@ var Login = function Login(_ref) {
     onClick: function onClick() {
       return _loginLinkedIn();
     },
-    className: "col-3 row sign-in-with justify-content-center",
+    className: "col-xl-3 col-lg-3 col-md-4 col-8 row sign-in-with justify-content-center",
     style: {
       background: "#0077b5"
     }
@@ -62648,14 +63839,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Additional__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Additional */ "./resources/js/components/Additional.js");
 
 
-var Home = function Home(props) {
-  console.log(props);
+var Home = function Home(_ref) {
+  var location = _ref.location,
+      _ref$edit = _ref.edit,
+      edit = _ref$edit === void 0 ? function (f) {
+    return f;
+  } : _ref$edit;
 
-  if (props.location.state != null) {
+  var handleChange = function handleChange(data) {
+    console.log("home");
+    edit(data);
+  };
+
+  if (location.state != null) {
     var additional = "";
 
-    if (props.location.state.data.user.active == 0) {
-      additional = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Additional__WEBPACK_IMPORTED_MODULE_1__["Additional"], null);
+    if (location.state.data.user.active == 0) {
+      additional = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Additional__WEBPACK_IMPORTED_MODULE_1__["Additional"], {
+        user: location.state.data.user,
+        func: handleChange
+      });
     }
 
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -62752,6 +63955,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _Logged_Home__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Logged/Home */ "./resources/js/components/Logged/Home.js");
+/* harmony import */ var _Additional__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Additional */ "./resources/js/components/Additional.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -62759,6 +63963,7 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -62782,6 +63987,11 @@ var Main = function Main() {
       _useState4 = _slicedToArray(_useState3, 2),
       location = _useState4[0],
       setLocation = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
+      _useState6 = _slicedToArray(_useState5, 2),
+      addInfo = _useState6[0],
+      setAddInfo = _useState6[1];
 
   var _loginUser = function _loginUser(data) {
     jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form .sign-in-button").attr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>');
@@ -62934,6 +64144,12 @@ var Main = function Main() {
     });
   };
 
+  var _edit = function _edit(data) {
+    console.log("main");
+    console.log(data);
+    setAddInfo(data);
+  };
+
   var _ipLocation = function _ipLocation() {
     jquery__WEBPACK_IMPORTED_MODULE_2___default.a.ajax('http://ip-api.com/json').then(function success(response) {
       setLocation(response.countryCode);
@@ -62950,7 +64166,8 @@ var Main = function Main() {
     login: _loginUser,
     register: _submitRegistration
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Logged_Home__WEBPACK_IMPORTED_MODULE_7__["Home"], {
-    path: "/home"
+    path: "/home",
+    edit: _edit
   }));
 };
 
