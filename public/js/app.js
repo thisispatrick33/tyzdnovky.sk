@@ -64162,6 +64162,57 @@ var Main = function Main() {
     }).then(function (response) {
       console.log(response);
       return response;
+    }).then(function (response) {
+      console.log("som tu");
+      console.log(response.data.success);
+
+      if (response.data.success) {
+        var userData = {};
+
+        if (response.data.data.type === "user") {
+          userData = {
+            active: response.data.data.active,
+            auth_token: response.data.data.auth_token,
+            drivingLicense: response.data.data.drivingLicense,
+            email: response.data.data.email,
+            id: response.data.data.id,
+            lastName: response.data.data.lastName,
+            name: response.data.data.name,
+            phone: response.data.data.phone,
+            ready: response.data.data.ready,
+            type: response.data.data.type,
+            timestamp: new Date().toString()
+          };
+        } else if (response.data.data.type === "company") {
+          userData = {
+            active: response.data.data.active,
+            auth_token: response.data.data.auth_token,
+            bussinesId: response.data.data.bussinesId,
+            email: response.data.data.email,
+            id: response.data.data.id,
+            name: response.data.data.name,
+            phone: response.data.data.phone,
+            ready: response.data.data.ready,
+            type: response.data.data.type,
+            timestamp: new Date().toString()
+          };
+        }
+
+        var appState = {
+          isLoggedIn: true,
+          user: userData
+        };
+        localStorage["appState"] = JSON.stringify(appState);
+        setAuthState({
+          isLoggedIn: appState.isLoggedIn,
+          user: appState.user
+        });
+        Object(_reach_router__WEBPACK_IMPORTED_MODULE_3__["navigate"])("/home", {
+          state: {
+            data: appState
+          }
+        });
+      }
     });
   };
 

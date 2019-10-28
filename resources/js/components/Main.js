@@ -198,6 +198,51 @@ const Main = () => {
                 console.log(response);
                 return response;
             })
+            .then(response =>{
+                console.log("som tu");
+                console.log(response.data.success);
+                if(response.data.success){
+                    let userData = {};
+                    if (response.data.data.type === "user") {
+                        userData = {
+                            active: response.data.data.active,
+                            auth_token: response.data.data.auth_token,
+                            drivingLicense: response.data.data.drivingLicense,
+                            email: response.data.data.email,
+                            id: response.data.data.id,
+                            lastName: response.data.data.lastName,
+                            name: response.data.data.name,
+                            phone: response.data.data.phone,
+                            ready: response.data.data.ready,
+                            type: response.data.data.type,
+                            timestamp: new Date().toString()
+                        };
+                    }
+                    else if(response.data.data.type === "company"){
+                        userData = {
+                            active: response.data.data.active,
+                            auth_token: response.data.data.auth_token,
+                            bussinesId: response.data.data.bussinesId,
+                            email: response.data.data.email,
+                            id: response.data.data.id,
+                            name: response.data.data.name,
+                            phone: response.data.data.phone,
+                            ready: response.data.data.ready,
+                            type: response.data.data.type,
+                            timestamp: new Date().toString()
+                        };
+                    }
+                    let appState = {
+                        isLoggedIn: true,
+                        user: userData
+                    };
+                    localStorage["appState"] = JSON.stringify(appState);
+
+                    setAuthState({isLoggedIn: appState.isLoggedIn, user: appState.user});
+
+                    navigate(`/home`, {state:{data:appState}});
+                }
+            })
     };
 
 
