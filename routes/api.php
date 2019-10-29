@@ -26,5 +26,11 @@ Route::group(['middleware' => ['api-header','localization']], function () {
     //AUTH
     Route::post("/register","RegisterController@register");
     Route::post("/login","LoginController@login");
-    Route::post("/register-additional","RegisterController@additionalInfo");
+    
+    Route::post("/password-reset-mail","LoginController@passResetEmail");
+    Route::post("/password-reset","LoginController@passResetDo");
+    Route::group(['middleware' => ['jwt.auth']], function () {
+        Route::post("/register-additional","RegisterController@additionalInfo");
+    });
+    
 });
