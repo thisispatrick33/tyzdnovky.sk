@@ -63092,7 +63092,9 @@ var ForgottenPassword = function ForgottenPassword(_ref) {
   var submit = function submit() {
     if (email !== undefined && email.length > 0) {
       if (email.includes("@")) {
-        reset(email);
+        reset({
+          login: email
+        });
       } else {
         setMissing({
           value: '@',
@@ -64289,10 +64291,12 @@ var Main = function Main() {
   var _edit = function _edit(data) {
     console.log("main");
     console.log(data);
+    console.log();
     axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/api/register-additional", data, {
       headers: {
         'Content-Type': "application/json",
-        "X-localization": location
+        "X-localization": location,
+        "Authorization": 'bearer' + JSON.parse(localStorage.appState).user.auth_token
       }
     }).then(function (response) {
       console.log(response);
@@ -64351,27 +64355,21 @@ var Main = function Main() {
   };
 
   var _reset = function _reset(login) {
-    //axios
-    //  .post(`/api/password-reset-mail`, login ,{
-    //    headers : {
-    //      'Content-Type' : `application/json`,
-    //    "X-localization" : location,
-    // }
-    // })
-    // .then((response) => {
-    //   console.log(response);
-    // return response;
-    //})
+    axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/api/password-reset-mail", login, {
+      headers: {
+        'Content-Type': "application/json",
+        "X-localization": location
+      }
+    }).then(function (response) {
+      console.log(response);
+      return response;
+    });
     console.log(login);
   };
 
-  var _resetPassword = function _resetPassword(password, token) {
-    console.log(password);
-    console.log(token);
-    axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/api/password-reset", {
-      password: password,
-      token: token
-    }, {
+  var _resetPassword = function _resetPassword(data) {
+    console.log(data);
+    axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/api/password-reset", data, {
       headers: {
         'Content-Type': "application/json",
         "X-localization": location

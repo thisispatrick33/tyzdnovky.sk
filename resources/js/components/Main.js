@@ -188,11 +188,13 @@ const Main = () => {
     const _edit = (data) => {
         console.log("main");
         console.log(data);
+        console.log();
         axios
             .post(`/api/register-additional`, data ,{
                 headers : {
                     'Content-Type' : `application/json`,
                     "X-localization" : location,
+                    "Authorization" : 'bearer'+JSON.parse(localStorage.appState).user.auth_token
                 }
             })
             .then((response) => {
@@ -246,26 +248,25 @@ const Main = () => {
     };
 
     const _reset = (login) =>{
-        //axios
-          //  .post(`/api/password-reset-mail`, login ,{
-            //    headers : {
-              //      'Content-Type' : `application/json`,
-                //    "X-localization" : location,
-               // }
-           // })
-           // .then((response) => {
-             //   console.log(response);
-               // return response;
-            //})
+        axios
+            .post(`/api/password-reset-mail`, login ,{
+                headers : {
+                    'Content-Type' : `application/json`,
+                    "X-localization" : location,
+                }
+            })
+            .then((response) => {
+                console.log(response);
+                return response;
+            });
         console.log(login);
     };
 
-    const _resetPassword =(password, token)=>{
-        console.log(password);
-        console.log(token);
+    const _resetPassword =(data)=>{
+        console.log(data);
 
         axios
-          .post(`/api/password-reset`, {password:password,token:token} ,{
+          .post(`/api/password-reset`, data ,{
             headers : {
               'Content-Type' : `application/json`,
             "X-localization" : location,

@@ -7,7 +7,7 @@ export const ForgottenPassword = ({reset=f=>f}) => {
     const submit = ()=>{
         if(email!==undefined && email.length>0){
             if(email.includes("@")){
-                reset(email);
+                reset({login: email});
             }
             else {
                 setMissing({value: '@', message: `Nezadali ste platny email.`});
