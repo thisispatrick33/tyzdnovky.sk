@@ -2,11 +2,12 @@ import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import $ from "jquery";
 
-import { Router } from '@reach/router';
+import {Router, navigate} from '@reach/router';
 import { Register } from './Forms/Register';
 import { Login } from './Forms/Login';
 import axios from "axios";
 import {Home} from "./Logged/Home";
+import {Additional} from "./Additional";
 
 
 
@@ -16,7 +17,6 @@ const Main = () => {
 
 
     const _loginUser = (data) => {
-        console.log(data);
         $("#login-form .sign-in-button")
             .attr("disabled", "disabled")
             .html(
@@ -75,6 +75,9 @@ const Main = () => {
                     localStorage["appState"] = JSON.stringify(appState);
 
                     setAuthState({isLoggedIn: appState.isLoggedIn, user: appState.user});
+
+                    console.log(appState);
+                    navigate(`/home`, {state:{data:appState}});
                 }else {
                     alert("Login Failed!");
                 }
@@ -159,6 +162,8 @@ const Main = () => {
                     localStorage["appState"] = JSON.stringify(appState);
 
                     setAuthState({isLoggedIn: appState.isLoggedIn, user: appState.user});
+
+                    navigate(`/home`, {state:{data:appState}});
                 }else {
                     alert(`Registration Failed!`);
 
@@ -177,6 +182,67 @@ const Main = () => {
         });
 
 
+    };
+
+    const _edit = (data) => {
+        console.log("main");
+        console.log(data);
+        axios
+            .post(`/api/register-additional`, data ,{
+                headers : {
+                    'Content-Type' : `application/json`,
+                    "X-localization" : location,
+                }
+            })
+            .then((response) => {
+                console.log(response);
+                return response;
+            })
+            .then(response =>{
+                console.log("som tu");
+                console.log(response.data.success);
+                if(response.data.success){
+                    let userData = {};
+                    if (response.data.data.type === "user") {
+                        userData = {
+                            active: response.data.data.active,
+                            auth_token: response.data.data.auth_token,
+                            drivingLicense: response.data.data.drivingLicense,
+                            email: response.data.data.email,
+                            id: response.data.data.id,
+                            lastName: response.data.data.lastName,
+                            name: response.data.data.name,
+                            phone: response.data.data.phone,
+                            ready: response.data.data.ready,
+                            type: response.data.data.type,
+                            timestamp: new Date().toString()
+                        };
+                    }
+                    else if(response.data.data.type === "company"){
+                        userData = {
+                            active: response.data.data.active,
+                            auth_token: response.data.data.auth_token,
+                            bussinesId: response.data.data.bussinesId,
+                            email: response.data.data.email,
+                            id: response.data.data.id,
+                            name: response.data.data.name,
+                            phone: response.data.data.phone,
+                            ready: response.data.data.ready,
+                            type: response.data.data.type,
+                            timestamp: new Date().toString()
+                        };
+                    }
+                    let appState = {
+                        isLoggedIn: true,
+                        user: userData
+                    };
+                    localStorage["appState"] = JSON.stringify(appState);
+
+                    setAuthState({isLoggedIn: appState.isLoggedIn, user: appState.user});
+
+                    navigate(`/home`, {state:{data:appState}});
+                }
+            })
     };
 
 
@@ -198,7 +264,7 @@ const Main = () => {
             _ipLocation(),
             <Router>
                 <Login path={`/`} login={_loginUser} register={_submitRegistration}/>
-                <Home path={`/home`}/>
+                <Home path={`/home`} edit={_edit}/>
             </Router>
 
     )

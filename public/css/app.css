@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Krub:300,400,500,600,800&display=swap);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Krub:300,400,500,600,800&display=swap);@import url(https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,700&display=swap);@charset "UTF-8";
 
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
@@ -10994,6 +10994,152 @@ hr {
   background: white;
 }
 
+.additional-info-form {
+  font-family: "Montserrat", sans-serif;
+  position: fixed;
+  height: 100vh;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.additional-info-form .doth {
+  font-weight: 500;
+  text-transform: uppercase;
+  background: linear-gradient(to left, #00C7C7 0%, #3a7bd5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.additional-info-form .content-frame {
+  background: white;
+  min-height: 70vh;
+  border-radius: 27px;
+}
+
+.additional-info-form .content-frame h1 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #2c393f;
+}
+
+.additional-info-form .content-frame h3 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  color: #2c393f;
+}
+
+.additional-info-form .content-frame .main-info .profile-photo img {
+  border-radius: 50%;
+}
+
+.additional-info-form .content-frame .input {
+  background: #EDEDED;
+  border-radius: 27px;
+}
+
+.additional-info-form .content-frame .input input {
+  background: transparent;
+  border: none;
+  color: #2c393f;
+}
+
+.additional-info-form .content-frame .input input[type=text] {
+  text-transform: capitalize;
+}
+
+.additional-info-form .content-frame .input input:focus {
+  outline: 0;
+}
+
+.additional-info-form .content-frame .languages .language {
+  font-weight: 500;
+  text-transform: uppercase;
+  background: linear-gradient(to left, #00C7C7 0%, #3a7bd5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: rgba(0, 0, 0, 0.0001);
+  border-radius: 27px;
+}
+
+.additional-info-form .content-frame .languages .language:hover {
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: white;
+  transition: 1s;
+}
+
+.additional-info-form .content-frame .languages .language.on {
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: white;
+}
+
+.additional-info-form .content-frame .work-option-frame {
+  border-radius: 27px;
+}
+
+.additional-info-form .content-frame .work-option-frame .remove-button {
+  position: absolute;
+  border-radius: 50%;
+  bottom: 0;
+  right: 5px;
+  z-index: 2000;
+  background: white;
+}
+
+.avatar-upload {
+  position: relative;
+  max-width: 205px;
+  margin: 50px auto;
+}
+
+.avatar-upload .avatar-edit {
+  position: absolute;
+  right: 12px;
+  z-index: 1;
+  top: 10px;
+}
+
+.avatar-upload .avatar-edit input {
+  display: none;
+}
+
+.avatar-upload .avatar-edit input + label {
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 0;
+  border-radius: 100%;
+  background: #FFFFFF;
+  border: 1px solid transparent;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  font-weight: normal;
+  transition: all 0.2s ease-in-out;
+}
+
+.avatar-upload .avatar-edit input + label:hover {
+  border-color: #00C7C7;
+}
+
+.avatar-upload .avatar-preview {
+  width: 192px;
+  height: 192px;
+  position: relative;
+  border-radius: 100%;
+  border: 6px solid #F8F8F8;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-upload .avatar-preview > div {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 /**
 * Add a transition to the label and input.
 * I'm not even sure that touch-action: manipulation works on
@@ -11105,88 +11251,5 @@ body div#root .home .content .message p span {
 body div#root .home .content .work-options .work-option .content {
   height: 300px;
   border-radius: 27px;
-}
-
-body div#root .additional-info-form {
-  font-family: Krub;
-  position: fixed;
-  height: 100vh;
-  z-index: 1000;
-  top: 0;
-  left: 0;
-  background: rgba(255, 255, 255, 0.85);
-}
-
-body div#root .additional-info-form .content-frame {
-  background: white;
-  min-height: 70vh;
-  border-radius: 27px;
-}
-
-body div#root .additional-info-form .content-frame .main-info .profile-photo img {
-  border-radius: 50%;
-}
-
-body div#root .additional-info-form .content-frame input {
-  border: none;
-  background-color: #EDEDED;
-  border-radius: 35px;
-  font-size: 1.2em;
-  font-family: Krub, serif;
-  font-weight: 300;
-  color: #2c393f;
-}
-
-body div#root .additional-info-form .content-frame input ::-webkit-input-placeholder {
-  /* Edge */
-  font-family: Krub, serif;
-  font-weight: 300;
-  color: #C9C9C9;
-  opacity: 1;
-}
-
-body div#root .additional-info-form .content-frame input :-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
-  font-family: Krub, serif;
-  font-weight: 300;
-  color: #C9C9C9;
-  opacity: 1;
-}
-
-body div#root .additional-info-form .content-frame input ::-moz-placeholder {
-  font-family: Krub, serif;
-  font-weight: 300;
-  color: #8E8E8E;
-  opacity: 1;
-}
-
-body div#root .additional-info-form .content-frame input ::-ms-input-placeholder {
-  font-family: Krub, serif;
-  font-weight: 300;
-  color: #8E8E8E;
-  opacity: 1;
-}
-
-body div#root .additional-info-form .content-frame input ::placeholder {
-  font-family: Krub, serif;
-  font-weight: 300;
-  color: #8E8E8E;
-  opacity: 1;
-}
-
-body div#root .additional-info-form .content-frame input:focus {
-  outline: 0;
-  transition: 0.5s;
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
-}
-
-body div#root .additional-info-form .content-frame input:not(:focus) {
-  transition: 0.5s;
-  box-shadow: none;
-}
-
-body div#root .additional-info-form .content-frame .languages .language {
-  border-radius: 50px;
-  border: 1px solid #00C7C7;
 }
 

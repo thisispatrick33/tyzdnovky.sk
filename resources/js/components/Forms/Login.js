@@ -110,7 +110,7 @@ export const Login = ({login = f => f, register = f => f}) => {
                     </div>
                     <form id={`login-form`} className={` row col-12 | align-items-start | justify-content-center | m-0`}>
                         {
-                            slide === 0 ? <div className="col-xl-9 col-lg-9 col-md-10 col-12 m-0 p-1 justify-content-center row">
+                            slide !== 0 ? <div className="col-xl-9 col-lg-9 col-md-10 col-12 m-0 p-1 justify-content-center row">
                                 <div className=" row m-0 p-0 col-12 header">
                                     <h1 className={`col-12 p-0 text-center sign-up`}>Register</h1>
                                 </div>

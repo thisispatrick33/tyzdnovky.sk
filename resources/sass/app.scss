@@ -5,6 +5,7 @@ $secondary-color : #2c393f;
 $silver : #EDEDED;
 $error : #D50B0B;
 @import './_authentication';
+@import './_additional';
 /**
 * Add a transition to the label and input.
 * I'm not even sure that touch-action: manipulation works on
@@ -100,73 +101,7 @@ body{
         }
       }
     }
-    .additional-info-form{
-      font-family: Krub;
-      position: fixed;
-      height: 100vh;
-      z-index : 1000;
-      top: 0;
-      left: 0;
-      background: rgba(255,255,255,0.85);
-      .content-frame{
-        background: white;
-        min-height: 70vh;
-        border-radius : 27px;
-        .main-info{
-          .profile-photo{
-            img{
-              border-radius: 50%;
-            }
-          }
-        }
-        input{
-          border: none;
-          background-color: $silver;
-          border-radius: 35px;
-          font-size: 1.2em;
-          font-family: Krub, serif;
-          font-weight: 300;
-          color: $secondary-color;
 
-          ::-webkit-input-placeholder { /* Edge */
-            font-family: Krub, serif;
-            font-weight: 300;
-            color: #C9C9C9;
-            opacity: 1;
-          }
-
-          :-ms-input-placeholder { /* Internet Explorer 10-11 */
-            font-family: Krub, serif;
-            font-weight: 300;
-            color: #C9C9C9;
-            opacity: 1;
-          }
-
-          ::placeholder {
-            font-family: Krub, serif;
-            font-weight: 300;
-            color: #8E8E8E;
-            opacity: 1;
-          }
-          &:focus{
-            outline: 0;
-            transition: 0.5s;
-            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
-          }
-          &:not(:focus){
-            transition: 0.5s;
-            box-shadow: none;
-          }
-        }
-        .languages{
-          .language{
-            border-radius: 50px;
-            border: 1px solid $primary-color;
-          }
-        }
-
-      }
-    }
   }
 
 }
