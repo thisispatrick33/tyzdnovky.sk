@@ -62616,11 +62616,7 @@ var Additional = function Additional(_ref) {
           if (additionalData.phone !== undefined && additionalData.phone.length > 0) {
             if (additionalData.email !== undefined && additionalData.email.length > 0) {
               if (additionalData.email.includes('@')) {
-                if (additionalLanguage !== "") {
-                  setLanguages([].concat(_toConsumableArray(languages), [additionalLanguage]));
-                }
-
-                if (languages !== undefined && languages.length > 0) {
+                if (languages !== undefined && languages.length > 0 || additionalLanguage != "" && additionalLanguage.length > 0) {
                   if (categories[0].value !== null && categories[0].value.length > 0) {
                     if (categories[0].practise !== null && categories[0].value.length > 0) {
                       if (categories[0].practise > 0) {
@@ -62825,16 +62821,32 @@ var Additional = function Additional(_ref) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
+              if (!(additionalLanguage != "")) {
+                _context.next = 5;
+                break;
+              }
+
+              _context.next = 3;
+              return func(_objectSpread({}, additionalData, {
+                categories: categories,
+                languages: [].concat(_toConsumableArray(languages), [additionalLanguage])
+              }));
+
+            case 3:
+              _context.next = 7;
+              break;
+
+            case 5:
+              _context.next = 7;
               return func(_objectSpread({}, additionalData, {
                 categories: categories,
                 languages: languages
               }));
 
-            case 2:
+            case 7:
               console.log("addit");
 
-            case 3:
+            case 8:
             case "end":
               return _context.stop();
           }
@@ -63988,11 +64000,6 @@ var Main = function Main() {
       location = _useState4[0],
       setLocation = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
-      _useState6 = _slicedToArray(_useState5, 2),
-      addInfo = _useState6[0],
-      setAddInfo = _useState6[1];
-
   var _loginUser = function _loginUser(data) {
     jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form .sign-in-button").attr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>');
     axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/api/login/", data, {
@@ -64147,7 +64154,66 @@ var Main = function Main() {
   var _edit = function _edit(data) {
     console.log("main");
     console.log(data);
-    setAddInfo(data);
+    axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/api/register-additional", data, {
+      headers: {
+        'Content-Type': "application/json",
+        "X-localization": location
+      }
+    }).then(function (response) {
+      console.log(response);
+      return response;
+    }).then(function (response) {
+      console.log("som tu");
+      console.log(response.data.success);
+
+      if (response.data.success) {
+        var userData = {};
+
+        if (response.data.data.type === "user") {
+          userData = {
+            active: response.data.data.active,
+            auth_token: response.data.data.auth_token,
+            drivingLicense: response.data.data.drivingLicense,
+            email: response.data.data.email,
+            id: response.data.data.id,
+            lastName: response.data.data.lastName,
+            name: response.data.data.name,
+            phone: response.data.data.phone,
+            ready: response.data.data.ready,
+            type: response.data.data.type,
+            timestamp: new Date().toString()
+          };
+        } else if (response.data.data.type === "company") {
+          userData = {
+            active: response.data.data.active,
+            auth_token: response.data.data.auth_token,
+            bussinesId: response.data.data.bussinesId,
+            email: response.data.data.email,
+            id: response.data.data.id,
+            name: response.data.data.name,
+            phone: response.data.data.phone,
+            ready: response.data.data.ready,
+            type: response.data.data.type,
+            timestamp: new Date().toString()
+          };
+        }
+
+        var appState = {
+          isLoggedIn: true,
+          user: userData
+        };
+        localStorage["appState"] = JSON.stringify(appState);
+        setAuthState({
+          isLoggedIn: appState.isLoggedIn,
+          user: appState.user
+        });
+        Object(_reach_router__WEBPACK_IMPORTED_MODULE_3__["navigate"])("/home", {
+          state: {
+            data: appState
+          }
+        });
+      }
+    });
   };
 
   var _ipLocation = function _ipLocation() {
