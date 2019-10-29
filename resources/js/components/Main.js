@@ -7,7 +7,8 @@ import { Register } from './Forms/Register';
 import { Login } from './Forms/Login';
 import axios from "axios";
 import {Home} from "./Logged/Home";
-import {Additional} from "./Additional";
+import {ForgottenPassword } from "./Forms/ForgottenPassword";
+import {PasswordReset} from "./Forms/PasswordReset";
 
 
 
@@ -199,7 +200,6 @@ const Main = () => {
                 return response;
             })
             .then(response =>{
-                console.log("som tu");
                 console.log(response.data.success);
                 if(response.data.success){
                     let userData = {};
@@ -245,6 +245,39 @@ const Main = () => {
             })
     };
 
+    const _reset = (login) =>{
+        //axios
+          //  .post(`/api/password-reset-mail`, login ,{
+            //    headers : {
+              //      'Content-Type' : `application/json`,
+                //    "X-localization" : location,
+               // }
+           // })
+           // .then((response) => {
+             //   console.log(response);
+               // return response;
+            //})
+        console.log(email);
+    };
+
+    const _resetPassword =(password, token)=>{
+        console.log(password);
+        console.log(token);
+
+        axios
+          .post(`/api/password-reset`, {password:password,token:token} ,{
+            headers : {
+              'Content-Type' : `application/json`,
+            "X-localization" : location,
+         }
+         })
+         .then((response) => {
+           console.log(response);
+         return response;
+        })
+
+    };
+
 
     const _ipLocation = () => {
         $.ajax('http://ip-api.com/json')
@@ -266,6 +299,8 @@ const Main = () => {
                 <Register path={`/`} register={_submitRegistration}/>
                 <Login path={`/login`} login={_loginUser} register={_submitRegistration}/>
                 <Home path={`/home`} edit={_edit}/>
+                <ForgottenPassword path={'/forgotten_password'} reset={_reset}/>
+                <PasswordReset path={'/reset-password'} reset={_resetPassword}/>
             </Router>
 
     )

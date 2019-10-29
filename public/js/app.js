@@ -62862,7 +62862,7 @@ var Additional = function Additional(_ref) {
   var addWork = function addWork() {
     var values = _toConsumableArray(categories);
 
-    if (categories.length < 3) {
+    if (categories.length < 2) {
       values.push({
         value: null,
         practise: null,
@@ -62889,7 +62889,15 @@ var Additional = function Additional(_ref) {
     }
 
     if (type == "p") {
-      values[i].practise = value;
+      var validatedValue = "";
+
+      for (var _i2 = 0; _i2 < value.length; _i2++) {
+        if (value.charCodeAt(_i2) > 47 && value.charCodeAt(_i2) < 58) {
+          validatedValue += value.charAt(_i2);
+        }
+      }
+
+      values[i].practise = validatedValue;
     }
 
     if (type == "r") {
@@ -62967,10 +62975,10 @@ var Additional = function Additional(_ref) {
   }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     type: "text",
     className: "col-5 p-0 my-2 py-2 px-4",
-    placeholder: "Email",
+    value: user.email,
     onChange: function onChange(e) {
       return setAdditionalData(_objectSpread({}, additionalData, {
-        email: e.target.value
+        email: user.email
       }));
     }
   }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -63054,7 +63062,7 @@ var Additional = function Additional(_ref) {
         return onChangeInput(e.target.value, "w", i);
       }
     }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-      type: "number",
+      type: "text",
       className: "col-2 p-0 my-2 py-2 px-4",
       placeholder: "practise",
       value: categories[i].practise,
@@ -63066,6 +63074,7 @@ var Additional = function Additional(_ref) {
       className: "col-2 p-0 my-2 py-2 px-4",
       placeholder: "ready",
       value: categories[i].ready,
+      min: today,
       onChange: function onChange(e) {
         return onChangeInput(e.target.value, "r", i);
       }
@@ -63091,6 +63100,80 @@ var Additional = function Additional(_ref) {
       return formValidator();
     }
   }, "submit")));
+};
+
+/***/ }),
+
+/***/ "./resources/js/components/Forms/ForgottenPassword.js":
+/*!************************************************************!*\
+  !*** ./resources/js/components/Forms/ForgottenPassword.js ***!
+  \************************************************************/
+/*! exports provided: ForgottenPassword */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ForgottenPassword", function() { return ForgottenPassword; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+var ForgottenPassword = function ForgottenPassword(_ref) {
+  var _ref$reset = _ref.reset,
+      reset = _ref$reset === void 0 ? function (f) {
+    return f;
+  } : _ref$reset;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState2 = _slicedToArray(_useState, 2),
+      email = _useState2[0],
+      setEmail = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState4 = _slicedToArray(_useState3, 2),
+      missing = _useState4[0],
+      setMissing = _useState4[1];
+
+  var submit = function submit() {
+    if (email !== undefined && email.length > 0) {
+      if (email.includes("@")) {
+        reset(email);
+      } else {
+        setMissing({
+          value: '@',
+          message: "Nezadali ste platny email."
+        });
+        console.log(missing);
+      }
+    } else {
+      setMissing({
+        value: 'email',
+        message: "Nezadali ste email."
+      });
+      console.log(missing);
+    }
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "email",
+    className: "col-5 p-0 my-2 py-2 px-4",
+    placeholder: "Email",
+    onChange: function onChange(e) {
+      return setEmail(e.target.value);
+    }
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "submit",
+    onClick: function onClick() {
+      return submit();
+    }
+  }, "submit"));
 };
 
 /***/ }),
@@ -63406,6 +63489,108 @@ var Login = function Login(_ref) {
     className: "ghost py-2 px-4",
     id: "signUp"
   }, "Sign Up"))))));
+};
+
+/***/ }),
+
+/***/ "./resources/js/components/Forms/PasswordReset.js":
+/*!********************************************************!*\
+  !*** ./resources/js/components/Forms/PasswordReset.js ***!
+  \********************************************************/
+/*! exports provided: PasswordReset */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PasswordReset", function() { return PasswordReset; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+var PasswordReset = function PasswordReset(_ref) {
+  var _ref$reset = _ref.reset,
+      reset = _ref$reset === void 0 ? function (f) {
+    return f;
+  } : _ref$reset;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState2 = _slicedToArray(_useState, 2),
+      password = _useState2[0],
+      setPassword = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState4 = _slicedToArray(_useState3, 2),
+      verify = _useState4[0],
+      setVerify = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState6 = _slicedToArray(_useState5, 2),
+      missing = _useState6[0],
+      setMissing = _useState6[1];
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(new URL(window.location.href).searchParams.get("token")),
+      _useState8 = _slicedToArray(_useState7, 2),
+      token = _useState8[0],
+      setToken = _useState8[1];
+
+  var submit = function submit() {
+    if (password !== undefined && password.length > 0) {
+      if (verify !== undefined && verify.length > 0) {
+        if (verify == password) {
+          reset({
+            password: password,
+            token: token
+          });
+        } else {
+          setMissing({
+            value: 'different',
+            message: "Hesla sa nezhoduju."
+          });
+          console.log(missing);
+        }
+      } else {
+        setMissing({
+          value: 'verify password',
+          message: "Nezadali ste heslo 2."
+        });
+        console.log(missing);
+      }
+    } else {
+      setMissing({
+        value: 'password',
+        message: "Nezadali ste heslo."
+      });
+      console.log(missing);
+    }
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "password",
+    className: "col-5 p-0 my-2 py-2 px-4",
+    placeholder: "password",
+    onChange: function onChange(e) {
+      return setPassword(e.target.value);
+    }
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "password",
+    className: "col-5 p-0 my-2 py-2 px-4",
+    placeholder: "Also password",
+    onChange: function onChange(e) {
+      return setVerify(e.target.value);
+    }
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "submit",
+    onClick: function onClick() {
+      return submit();
+    }
+  }, "submit"));
 };
 
 /***/ }),
@@ -63967,7 +64152,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _Logged_Home__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Logged/Home */ "./resources/js/components/Logged/Home.js");
-/* harmony import */ var _Additional__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Additional */ "./resources/js/components/Additional.js");
+/* harmony import */ var _Forms_ForgottenPassword__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Forms/ForgottenPassword */ "./resources/js/components/Forms/ForgottenPassword.js");
+/* harmony import */ var _Forms_PasswordReset__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Forms/PasswordReset */ "./resources/js/components/Forms/PasswordReset.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -63975,6 +64161,7 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -64163,7 +64350,6 @@ var Main = function Main() {
       console.log(response);
       return response;
     }).then(function (response) {
-      console.log("som tu");
       console.log(response.data.success);
 
       if (response.data.success) {
@@ -64216,6 +64402,38 @@ var Main = function Main() {
     });
   };
 
+  var _reset = function _reset(login) {
+    //axios
+    //  .post(`/api/password-reset-mail`, login ,{
+    //    headers : {
+    //      'Content-Type' : `application/json`,
+    //    "X-localization" : location,
+    // }
+    // })
+    // .then((response) => {
+    //   console.log(response);
+    // return response;
+    //})
+    console.log(email);
+  };
+
+  var _resetPassword = function _resetPassword(password, token) {
+    console.log(password);
+    console.log(token);
+    axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/api/password-reset", {
+      password: password,
+      token: token
+    }, {
+      headers: {
+        'Content-Type': "application/json",
+        "X-localization": location
+      }
+    }).then(function (response) {
+      console.log(response);
+      return response;
+    });
+  };
+
   var _ipLocation = function _ipLocation() {
     jquery__WEBPACK_IMPORTED_MODULE_2___default.a.ajax('http://ip-api.com/json').then(function success(response) {
       setLocation(response.countryCode);
@@ -64234,6 +64452,12 @@ var Main = function Main() {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Logged_Home__WEBPACK_IMPORTED_MODULE_7__["Home"], {
     path: "/home",
     edit: _edit
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_ForgottenPassword__WEBPACK_IMPORTED_MODULE_8__["ForgottenPassword"], {
+    path: '/forgotten_password',
+    reset: _reset
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_PasswordReset__WEBPACK_IMPORTED_MODULE_9__["PasswordReset"], {
+    path: '/reset-password',
+    reset: _resetPassword
   }));
 };
 

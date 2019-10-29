@@ -180,7 +180,7 @@ export const Additional = ({user, func = f => f}) => {
 
     const addWork=()=>{
         let values = [...categories];
-        if(categories.length<3){
+        if(categories.length<2){
             values.push({value: null, practise: null, ready: null});
             setCategories(values);
         }
@@ -199,7 +199,13 @@ export const Additional = ({user, func = f => f}) => {
             values[i].value = value;
         }
         if(type=="p"){
-            values[i].practise = value;
+            let validatedValue = "";
+            for (let i=0; i<value.length; i++){
+                if(value.charCodeAt(i)>47&&value.charCodeAt(i)<58){
+                    validatedValue+=value.charAt(i);
+                }
+            }
+            values[i].practise = validatedValue;
         }
         if(type=="r"){
             values[i].ready = value;
@@ -207,6 +213,7 @@ export const Additional = ({user, func = f => f}) => {
         setCategories(values)
 
     };
+
 
 
 
@@ -235,8 +242,8 @@ export const Additional = ({user, func = f => f}) => {
                     <div className="col-12 row justify-content-around">
                         <input type="text" className={`col-5 p-0 my-2 py-2 px-4`} placeholder={`Phone`}
                                onChange={(e) => setAdditionalData({...additionalData, phone: e.target.value})}/>
-                        <input type="text" className={`col-5 p-0 my-2 py-2 px-4`} placeholder={`Email`}
-                               onChange={(e) => setAdditionalData({...additionalData, email: e.target.value})}/>
+                        <input type="text" className={`col-5 p-0 my-2 py-2 px-4`} value={user.email}
+                               onChange={(e) => setAdditionalData({...additionalData, email: user.email})}/>
                     </div>
                 </div>
                 <div className="col-10 row languages justify-content-center">
@@ -253,6 +260,7 @@ export const Additional = ({user, func = f => f}) => {
                     <input type="text" className={`col-6 p-0 my-2 py-2 px-4`} placeholder={`another`}
                            onChange={(e) => setAdditionalLanguage(e.target.value)}/>
                 </div>
+
                 <div className="col-10 row work-info justify-content-center">
                     <h3 className="col-12">work</h3>
                     {
@@ -261,8 +269,8 @@ export const Additional = ({user, func = f => f}) => {
                                 <div>
                                     <div className="col-10 row">
                                         <input type="text" className={`col-8 p-0 my-2 py-2 px-4 mr-4`} placeholder={`work option`} value={categories[i].value} onChange={(e)=>onChangeInput(e.target.value, "w", i)}/>
-                                        <input type="number" className={`col-2 p-0 my-2 py-2 px-4`} placeholder={`practise`} value={categories[i].practise} onChange={(e)=>onChangeInput(e.target.value, "p", i)}/>
-                                        <input type="date" className={`col-2 p-0 my-2 py-2 px-4`} placeholder={`ready`} value={categories[i].ready} onChange={(e)=>onChangeInput(e.target.value, "r", i)}/>
+                                        <input type="text" className={`col-2 p-0 my-2 py-2 px-4`} placeholder={`practise`} value={categories[i].practise} onChange={(e)=>onChangeInput(e.target.value, "p", i)}/>
+                                        <input type="date" className={`col-2 p-0 my-2 py-2 px-4`} placeholder={`ready`} value={categories[i].ready} min={today} onChange={(e)=>onChangeInput(e.target.value, "r", i)}/>
                                     </div>
                                     {
                                         categories.length>1 ? <div className="submit" onClick={() => removeWork(i)}> X </div> : ``
