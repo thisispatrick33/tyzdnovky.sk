@@ -3,6 +3,14 @@ import {Additional} from "../Additional";
 
 
 export const Home = () => {
+
+    var settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1
+    };
     if(true){
         return (
             <div className={` home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 `}>

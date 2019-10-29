@@ -197,8 +197,7 @@ const Main = () => {
     return (
             _ipLocation(),
             <Router>
-                <Register path={`/`} register={_submitRegistration}/>
-                <Login path={`/login`} login={_loginUser} register={_submitRegistration}/>
+                <Login path={`/`} login={_loginUser} register={_submitRegistration}/>
                 <Home path={`/home`}/>
             </Router>
 

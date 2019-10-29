@@ -1,134 +1,47 @@
 .authentication-form {
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
   background: {
-    image : url('../images/background.png');
+    image : url('../images/background-image.jpg');
     size: cover;
     position: center;
     attachment: fixed;
   };
   .content-frame {
-    border-radius: 27px;
+    height : 100vh;
     background: white;
-    min-height: 70vh;
-    position: relative;
-    overflow: hidden;
-    max-width: 100%;
     .on{
       font-weight: 600;
-    }
-    &.right-panel-active .sign-in-container {
-      transform: translateX(100%);
-    }
-    &.right-panel-active .sign-up-container {
-      transform: translateX(100%);
-      opacity: 1;
-      z-index: 5;
-      animation: show 0.6s;
-    }
-    &.right-panel-active .overlay-container{
-      transform: translateX(-100%);
-    }
-    &.right-panel-active .overlay {
-      transform: translateX(50%);
-    }
-    &.right-panel-active .overlay-left {
-      transform: translateX(0);
-    }
-    &.right-panel-active .overlay-right {
-      transform: translateX(20%);
-    }
-    .sign-in-container {
-      left: 0;
-      width: 50%;
-      z-index: 2;
-    }
-    .sign-up-container {
-      left: 0;
-      width: 50%;
-      opacity: 0;
-      z-index: 1;
     }
     .log-in-with{
       font-family: 'Krub', sans-serif;
       font-size: 1em;
-      color: $primary-color;
+      color: #EDEDED;
+      text-transform: uppercase;
     }
-    .overlay-container {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      width: 50%;
-      height: 100%;
-      overflow: hidden;
-      transition: transform 0.6s ease-in-out;
-      z-index: 100;
-    }
-
-    .overlay {
-      background: #3a7bd5;
-      background: -webkit-linear-gradient(to left, $primary-color,#3a7bd5);
-      background: linear-gradient(to left, $primary-color,#3a7bd5);
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: 0 0;
-      color: #FFFFFF;
-      position: relative;
-      left: -100%;
-      height: 100%;
-      width: 200%;
-      transform: translateX(0);
-      transition: transform 0.6s ease-in-out;
-      .ghost{
-        font-family: 'Krub', sans-serif;
-        font-size: 1em;
-        text-transform: uppercase;
-        border-radius: 50px;
-        border: 1px solid white;
-        background: none;
-        color: white;
-        &:focus{
-          outline: 0;
+    .header{
+        h1{
+          text-transform: uppercase;
+          &.sign-in{
+            background: linear-gradient(to left, $primary-color, #50a0ca);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+          }
+          &.sign-up{
+            background: linear-gradient(to left, #50a0ca, #3a7bd5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+          }
         }
+
+    }
+    svg{
+      text{
+        text-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
       }
     }
-    .overlay-panel {
-      font-family: 'Krub', sans-serif;
-      position: absolute;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      padding: 0 40px;
-      text-align: center;
-      top: 0;
-      height: 100%;
-      width: 50%;
-      transform: translateX(0);
-      transition: transform 0.6s ease-in-out;
-      h1{
-        text-transform: uppercase;
-      }
-    }
-
-    .overlay-left {
-      transform: translateX(-20%);
-    }
-
-
-    .overlay-right {
-      right: 0;
-      transform: translateX(0);
-    }
-
-    .editable-content{
-      background: white;
-      position: absolute;
-      top: 0;
-      height: 100%;
-      transition: all 0.6s ease-in-out;
-    }
-
     .title {
       font-size: 2.250em;
       font-family: 'Krub', sans-serif;
@@ -215,7 +128,7 @@
     }
     input:placeholder-shown + label {
       cursor: text;
-      max-width: 100%;
+      max-width: 60%;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -305,8 +218,8 @@
 }
 @include media-breakpoint-down(md) {
   .authentication-form {
+    height: 100vh;
     .content-frame {
-      min-height: 90vh;
       .sign-up-container{
         width: 100%;
       }
@@ -350,3 +263,26 @@
 
 
 
+.st0{fill:#2C393F;}
+.st1{font-family:'Krub-Bold';}
+.st2{font-size:329.4049px;}
+.st3{fill:#00C7C7;}
+hr{
+  border-top: 1px solid #EDEDED !important;
+}
+.choose{
+  border-radius: 25px;
+  p{
+    text-transform: uppercase;
+    &.on{
+      text-transform: uppercase;
+      background:  linear-gradient(to left, #50a0ca, #3a7bd5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+}
+.ss{
+  background: white;
+}

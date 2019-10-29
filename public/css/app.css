@@ -10646,20 +10646,16 @@ a.text-dark:focus {
 
 .authentication-form {
   width: 100vw;
-  min-height: 100vh;
-  background-image: url(/images/background.png?a39eec6d26c795d34ff5a79f81914f16);
+  height: 100vh;
+  background-image: url(/images/background-image.jpg?dde4fbe4e668297f025195a2482ee452);
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
 }
 
 .authentication-form .content-frame {
-  border-radius: 27px;
+  height: 100vh;
   background: white;
-  min-height: 70vh;
-  position: relative;
-  overflow: hidden;
-  max-width: 100%;
   /**
   * By default, the placeholder should be transparent. Also, it should
   * inherit the transition.
@@ -10678,128 +10674,33 @@ a.text-dark:focus {
   font-weight: 600;
 }
 
-.authentication-form .content-frame.right-panel-active .sign-in-container {
-  transform: translateX(100%);
-}
-
-.authentication-form .content-frame.right-panel-active .sign-up-container {
-  transform: translateX(100%);
-  opacity: 1;
-  z-index: 5;
-  -webkit-animation: show 0.6s;
-          animation: show 0.6s;
-}
-
-.authentication-form .content-frame.right-panel-active .overlay-container {
-  transform: translateX(-100%);
-}
-
-.authentication-form .content-frame.right-panel-active .overlay {
-  transform: translateX(50%);
-}
-
-.authentication-form .content-frame.right-panel-active .overlay-left {
-  transform: translateX(0);
-}
-
-.authentication-form .content-frame.right-panel-active .overlay-right {
-  transform: translateX(20%);
-}
-
-.authentication-form .content-frame .sign-in-container {
-  left: 0;
-  width: 50%;
-  z-index: 2;
-}
-
-.authentication-form .content-frame .sign-up-container {
-  left: 0;
-  width: 50%;
-  opacity: 0;
-  z-index: 1;
-}
-
 .authentication-form .content-frame .log-in-with {
   font-family: "Krub", sans-serif;
   font-size: 1em;
-  color: #00C7C7;
-}
-
-.authentication-form .content-frame .overlay-container {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 50%;
-  height: 100%;
-  overflow: hidden;
-  transition: transform 0.6s ease-in-out;
-  z-index: 100;
-}
-
-.authentication-form .content-frame .overlay {
-  background: #3a7bd5;
-  background: linear-gradient(to left, #00C7C7, #3a7bd5);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 0 0;
-  color: #FFFFFF;
-  position: relative;
-  left: -100%;
-  height: 100%;
-  width: 200%;
-  transform: translateX(0);
-  transition: transform 0.6s ease-in-out;
-}
-
-.authentication-form .content-frame .overlay .ghost {
-  font-family: "Krub", sans-serif;
-  font-size: 1em;
-  text-transform: uppercase;
-  border-radius: 50px;
-  border: 1px solid white;
-  background: none;
-  color: white;
-}
-
-.authentication-form .content-frame .overlay .ghost:focus {
-  outline: 0;
-}
-
-.authentication-form .content-frame .overlay-panel {
-  font-family: "Krub", sans-serif;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 0 40px;
-  text-align: center;
-  top: 0;
-  height: 100%;
-  width: 50%;
-  transform: translateX(0);
-  transition: transform 0.6s ease-in-out;
-}
-
-.authentication-form .content-frame .overlay-panel h1 {
+  color: #EDEDED;
   text-transform: uppercase;
 }
 
-.authentication-form .content-frame .overlay-left {
-  transform: translateX(-20%);
+.authentication-form .content-frame .header h1 {
+  text-transform: uppercase;
 }
 
-.authentication-form .content-frame .overlay-right {
-  right: 0;
-  transform: translateX(0);
+.authentication-form .content-frame .header h1.sign-in {
+  background: linear-gradient(to left, #00C7C7, #50a0ca);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
 }
 
-.authentication-form .content-frame .editable-content {
-  background: white;
-  position: absolute;
-  top: 0;
-  height: 100%;
-  transition: all 0.6s ease-in-out;
+.authentication-form .content-frame .header h1.sign-up {
+  background: linear-gradient(to left, #50a0ca, #3a7bd5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+}
+
+.authentication-form .content-frame svg text {
+  text-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
 .authentication-form .content-frame .title {
@@ -10903,7 +10804,7 @@ a.text-dark:focus {
 
 .authentication-form .content-frame input:placeholder-shown + label {
   cursor: text;
-  max-width: 100%;
+  max-width: 60%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -11000,8 +10901,8 @@ a.text-dark:focus {
 }
 
 @media (max-width: 991.98px) {
-  .authentication-form .content-frame {
-    min-height: 90vh;
+  .authentication-form {
+    height: 100vh;
   }
 
   .authentication-form .content-frame .sign-up-container {
@@ -11052,6 +10953,45 @@ a.text-dark:focus {
     opacity: 1;
     z-index: 5;
   }
+}
+
+.st0 {
+  fill: #2C393F;
+}
+
+.st1 {
+  font-family: "Krub-Bold";
+}
+
+.st2 {
+  font-size: 329.4049px;
+}
+
+.st3 {
+  fill: #00C7C7;
+}
+
+hr {
+  border-top: 1px solid #EDEDED !important;
+}
+
+.choose {
+  border-radius: 25px;
+}
+
+.choose p {
+  text-transform: uppercase;
+}
+
+.choose p.on {
+  text-transform: uppercase;
+  background: linear-gradient(to left, #50a0ca, #3a7bd5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ss {
+  background: white;
 }
 
 /**
