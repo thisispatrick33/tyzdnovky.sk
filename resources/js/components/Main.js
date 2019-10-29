@@ -186,6 +186,8 @@ const Main = () => {
     };
 
     const _edit = (data) => {
+        console.log("main");
+        console.log(data);
         axios
             .post(`/api/register-additional`, data ,{
                 headers : {

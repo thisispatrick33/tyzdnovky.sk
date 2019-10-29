@@ -62554,7 +62554,8 @@ var Additional = function Additional(_ref) {
   } : _ref$func;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
-    drivingLicense: false
+    drivingLicense: false,
+    email: user.email
   }),
       _useState2 = _slicedToArray(_useState, 2),
       additionalData = _useState2[0],
@@ -62623,60 +62624,15 @@ var Additional = function Additional(_ref) {
                         if (categories[0].ready !== null && categories[0].ready.length > 0) {
                           if (categories[0].ready > today) {
                             if (categories.length == 1) {
+                              console.log(additionalData);
                               submit();
                             } else {
                               if (categories.length == 2) {
-                                console.log("sem");
-
                                 if (categories[1].value !== null && categories[1].value.length > 0) {
                                   if (categories[1].practise !== null && categories[1].value.length > 0) {
                                     if (categories[1].practise > 0) {
                                       if (categories[1].ready !== null && categories[1].ready.length > 0) {
                                         if (categories[1].ready > today) {
-                                          submit();
-                                        } else {
-                                          setMissing({
-                                            value: 'ready',
-                                            message: "Nezadali ste platny datum nastupu."
-                                          });
-                                          console.log(missing);
-                                        }
-                                      } else {
-                                        setMissing({
-                                          value: 'ready',
-                                          message: "Nezadali ste datum nastupu."
-                                        });
-                                        console.log(missing);
-                                      }
-                                    } else {
-                                      setMissing({
-                                        value: 'practise',
-                                        message: "Nezadali ste platnu prax v odbore."
-                                      });
-                                      console.log(missing);
-                                    }
-                                  } else {
-                                    setMissing({
-                                      value: 'practise',
-                                      message: "Nezadali ste prax v odbore."
-                                    });
-                                    console.log(missing);
-                                  }
-                                } else {
-                                  setMissing({
-                                    value: 'category',
-                                    message: "Nezadali ste odbor."
-                                  });
-                                  console.log(missing);
-                                }
-                              }
-
-                              if (categories.length == 3) {
-                                if (categories[2].value !== null && categories[2].value.length > 0) {
-                                  if (categories[2].practise !== null && categories[2].value.length > 0) {
-                                    if (categories[2].practise > 0) {
-                                      if (categories[2].ready !== null && categories[1].ready.length > 0) {
-                                        if (categories[2].ready > today) {
                                           submit();
                                         } else {
                                           setMissing({
@@ -62972,12 +62928,7 @@ var Additional = function Additional(_ref) {
   }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     type: "text",
     className: "col-5 p-0 my-2 py-2 px-4",
-    value: user.email,
-    onChange: function onChange(e) {
-      return setAdditionalData(_objectSpread({}, additionalData, {
-        email: user.email
-      }));
-    }
+    value: user.email
   }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-10 row languages justify-content-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
@@ -64041,6 +63992,7 @@ var Home = function Home(_ref) {
   } : _ref$edit;
 
   var handleChange = function handleChange(data) {
+    console.log("home");
     edit(data);
   };
 
@@ -64335,6 +64287,8 @@ var Main = function Main() {
   };
 
   var _edit = function _edit(data) {
+    console.log("main");
+    console.log(data);
     axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/api/register-additional", data, {
       headers: {
         'Content-Type': "application/json",

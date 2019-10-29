@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 export const Additional = ({user, func = f => f}) => {
 
-    const [additionalData,setAdditionalData] = useState({drivingLicense: false});
+    const [additionalData,setAdditionalData] = useState({drivingLicense: false, email: user.email});
     const [categories, setCategories] = useState([{value: null, practise: null, ready: null}]);
     const [languages, setLanguages] = useState([]);
     const [additionalLanguage, setAdditionalLanguage] = useState("");
@@ -19,6 +19,7 @@ export const Additional = ({user, func = f => f}) => {
     }
 
     today = yyyy+'-'+mm+'-'+dd;
+
 
 
     const handleLang = (value) => {
@@ -41,43 +42,15 @@ export const Additional = ({user, func = f => f}) => {
                                                 if(categories[0].ready!==null && categories[0].ready.length>0){
                                                     if(categories[0].ready>today){
                                                         if(categories.length==1){
+                                                            console.log(additionalData);
                                                             submit();
                                                         }else {
                                                             if(categories.length==2){
-                                                                console.log("sem");
                                                                 if(categories[1].value!==null && categories[1].value.length>0) {
                                                                     if (categories[1].practise !== null && categories[1].value.length > 0) {
                                                                         if (categories[1].practise > 0) {
                                                                             if (categories[1].ready !== null && categories[1].ready.length > 0) {
                                                                                 if (categories[1].ready > today) {
-                                                                                    submit();
-                                                                                }else {
-                                                                                    setMissing({value: 'ready', message: `Nezadali ste platny datum nastupu.`});
-                                                                                    console.log(missing);
-                                                                                }
-                                                                            }else {
-                                                                                setMissing({value: 'ready', message: `Nezadali ste datum nastupu.`});
-                                                                                console.log(missing);
-                                                                            }
-                                                                        }else {
-                                                                            setMissing({value: 'practise', message: `Nezadali ste platnu prax v odbore.`});
-                                                                            console.log(missing);
-                                                                        }
-                                                                    }else {
-                                                                        setMissing({value: 'practise', message: `Nezadali ste prax v odbore.`});
-                                                                        console.log(missing);
-                                                                    }
-                                                                }else {
-                                                                    setMissing({value: 'category', message: `Nezadali ste odbor.`});
-                                                                    console.log(missing);
-                                                                }
-                                                            }
-                                                            if(categories.length==3){
-                                                                if(categories[2].value!== null && categories[2].value.length>0) {
-                                                                    if (categories[2].practise !== null && categories[2].value.length > 0) {
-                                                                        if (categories[2].practise > 0) {
-                                                                            if (categories[2].ready !== null && categories[1].ready.length > 0) {
-                                                                                if (categories[2].ready > today) {
                                                                                     submit();
                                                                                 }else {
                                                                                     setMissing({value: 'ready', message: `Nezadali ste platny datum nastupu.`});
@@ -243,7 +216,7 @@ export const Additional = ({user, func = f => f}) => {
                         <input type="text" className={`col-5 p-0 my-2 py-2 px-4`} placeholder={`Phone`}
                                onChange={(e) => setAdditionalData({...additionalData, phone: e.target.value})}/>
                         <input type="text" className={`col-5 p-0 my-2 py-2 px-4`} value={user.email}
-                               onChange={(e) => setAdditionalData({...additionalData, email: user.email})}/>
+                               />
                     </div>
                 </div>
                 <div className="col-10 row languages justify-content-center">

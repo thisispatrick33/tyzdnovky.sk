@@ -4,6 +4,7 @@ import {Additional} from "../Additional";
 
 export const Home = ({location, edit = f => f}) => {
     const handleChange = (data) =>{
+        console.log("home");
         edit(data);
     };
 
