@@ -175,7 +175,7 @@ export const Additional = ({user, func = f => f}) => {
         else {
             await func({...additionalData, categories: categories,languages: languages});
         }
-        console.log("addit")
+
     };
 
     const addWork=()=>{

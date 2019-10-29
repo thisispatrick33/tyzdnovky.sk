@@ -62844,9 +62844,6 @@ var Additional = function Additional(_ref) {
               }));
 
             case 7:
-              console.log("addit");
-
-            case 8:
             case "end":
               return _context.stop();
           }
@@ -64044,7 +64041,6 @@ var Home = function Home(_ref) {
   } : _ref$edit;
 
   var handleChange = function handleChange(data) {
-    console.log("home");
     edit(data);
   };
 
@@ -64339,8 +64335,6 @@ var Main = function Main() {
   };
 
   var _edit = function _edit(data) {
-    console.log("main");
-    console.log(data);
     axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/api/register-additional", data, {
       headers: {
         'Content-Type': "application/json",
@@ -64414,7 +64408,7 @@ var Main = function Main() {
     //   console.log(response);
     // return response;
     //})
-    console.log(email);
+    console.log(login);
   };
 
   var _resetPassword = function _resetPassword(password, token) {
