@@ -14,6 +14,10 @@ return [
     'accountCreated' => 'Účet bol vytvorený',
     'userNotFound' => 'Tento použivateľ neexistuje',
     'loginSuccessful' => 'Prihlásenie prebehlo úspešne',
-    'tokenFailed' => 'Generovanie tokenu zlyhalo'
+    'tokenFailed' => 'Generovanie tokenu zlyhalo',
+    'passwordChanged' => 'Heslo bolo zmenené',
+    'passwordFail' => 'Heslo sa nepodarilo zmeniť',
+    'emailFailed' => 'Email nebol odoslaný',
+    'emailSent' => 'Email bol odoslaný'
     
 ];

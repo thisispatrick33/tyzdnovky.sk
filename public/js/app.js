@@ -68013,7 +68013,8 @@ var Additional = function Additional(_ref) {
   }
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
-    drivingLicense: false
+    drivingLicense: false,
+    email: user.email
   }),
       _useState2 = _slicedToArray(_useState, 2),
       additionalData = _useState2[0],
@@ -68089,12 +68090,17 @@ var Additional = function Additional(_ref) {
 
   var settings = {
     dots: true,
-    arrows: true,
+    arrows: false,
     infinite: false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    adaptiveHeight: true
+    responsive: [{
+      breakpoint: 330,
+      settings: {
+        adaptiveHeight: true
+      }
+    }]
   };
   var today = new Date();
   var dd = today.getDate();
@@ -68135,60 +68141,15 @@ var Additional = function Additional(_ref) {
                         if (categories[0].ready !== null && categories[0].ready.length > 0) {
                           if (categories[0].ready > today) {
                             if (categories.length == 1) {
+                              console.log(additionalData);
                               submit();
                             } else {
                               if (categories.length == 2) {
-                                console.log("sem");
-
                                 if (categories[1].value !== null && categories[1].value.length > 0) {
                                   if (categories[1].practise !== null && categories[1].value.length > 0) {
                                     if (categories[1].practise > 0) {
                                       if (categories[1].ready !== null && categories[1].ready.length > 0) {
                                         if (categories[1].ready > today) {
-                                          submit();
-                                        } else {
-                                          setMissing({
-                                            value: 'ready',
-                                            message: "Nezadali ste platny datum nastupu."
-                                          });
-                                          console.log(missing);
-                                        }
-                                      } else {
-                                        setMissing({
-                                          value: 'ready',
-                                          message: "Nezadali ste datum nastupu."
-                                        });
-                                        console.log(missing);
-                                      }
-                                    } else {
-                                      setMissing({
-                                        value: 'practise',
-                                        message: "Nezadali ste platnu prax v odbore."
-                                      });
-                                      console.log(missing);
-                                    }
-                                  } else {
-                                    setMissing({
-                                      value: 'practise',
-                                      message: "Nezadali ste prax v odbore."
-                                    });
-                                    console.log(missing);
-                                  }
-                                } else {
-                                  setMissing({
-                                    value: 'category',
-                                    message: "Nezadali ste odbor."
-                                  });
-                                  console.log(missing);
-                                }
-                              }
-
-                              if (categories.length == 3) {
-                                if (categories[2].value !== null && categories[2].value.length > 0) {
-                                  if (categories[2].practise !== null && categories[2].value.length > 0) {
-                                    if (categories[2].practise > 0) {
-                                      if (categories[2].ready !== null && categories[1].ready.length > 0) {
-                                        if (categories[2].ready > today) {
                                           submit();
                                         } else {
                                           setMissing({
@@ -68356,9 +68317,6 @@ var Additional = function Additional(_ref) {
               }));
 
             case 7:
-              console.log("addit");
-
-            case 8:
             case "end":
               return _context.stop();
           }
@@ -68374,7 +68332,7 @@ var Additional = function Additional(_ref) {
   var addWork = function addWork() {
     var values = _toConsumableArray(categories);
 
-    if (categories.length < 3) {
+    if (categories.length < 2) {
       values.push({
         value: null,
         practise: null,
@@ -68401,7 +68359,15 @@ var Additional = function Additional(_ref) {
     }
 
     if (type == "p") {
-      values[i].practise = value;
+      var validatedValue = "";
+
+      for (var _i2 = 0; _i2 < value.length; _i2++) {
+        if (value.charCodeAt(_i2) > 47 && value.charCodeAt(_i2) < 58) {
+          validatedValue += value.charAt(_i2);
+        }
+      }
+
+      values[i].practise = validatedValue;
     }
 
     if (type == "r") {
@@ -68417,9 +68383,9 @@ var Additional = function Additional(_ref) {
       overflowY: "scroll"
     }
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "content-frame | row  col-xl-6 col-lg-6 col-md-7 col-sm-9 col-11 | justify-content-center align-items-start | px-0 | shadow-sm py-5 my-5"
+    className: "content-frame | row  col-xl-6 col-lg-6 col-md-7 col-sm-9 col-11 | justify-content-center align-items-center | px-0 | shadow-sm py-5 my-5"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", {
-    className: 'pt-3'
+    className: 'pt-xl-3 pt-lg-3 pt-md-2 pt-sm-1 pt-1 text-center'
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
   }, "Set up"), " your profile ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
@@ -68427,11 +68393,11 @@ var Additional = function Additional(_ref) {
   }, "...")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-10 row main-info p-0 m-0 align-items-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_2___default.a, _extends({}, settings, {
-    className: "col-12 p-0 py-3"
+    className: "col-12 p-0 py-xl-3 py-lg-3 py-md-2 py-md-1 py-1"
   }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 m-0 p-0 row justify-content-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "col-12 mx-0 p-0 row my-4 justify-content-around"
+    className: "col-12 mx-0 p-0 row my-xl-4 my-lg-4 my-md-3 my-sm-3 my-3 justify-content-around"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
     className: "col-12 mb-3 p-0 text-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
@@ -68439,7 +68405,7 @@ var Additional = function Additional(_ref) {
   }, "Who"), " are you ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
   }, "?")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: " input col-10 mt-3 row p-0 m-0 "
+    className: " input col-xl-10 col-lg-10 col-md-11 col-sm-11 col-12 mt-3 row p-0 m-0 "
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-2 pl-3 d-flex justify-content-center align-items-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
@@ -68448,7 +68414,7 @@ var Additional = function Additional(_ref) {
       height: "24px"
     },
     fill: "#2c393f",
-    className: "col-12 p-0",
+    className: "col-12 p-0 d-xl-flex d-lg-flex d-md-flex d-none",
     viewBox: "-20 -99 640 640"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
     d: "m179.25 211c35.691406 0 64.625-28.9375 64.625-64.625 0-35.691406-28.933594-64.625-64.625-64.625s-64.625 28.933594-64.625 64.625c.046875 35.671875 28.953125 64.578125 64.625 64.625zm0-104.125c21.882812 0 39.625 17.738281 39.625 39.625 0 21.882812-17.742188 39.625-39.625 39.625-21.886719 0-39.625-17.742188-39.625-39.625.007812-21.882812 17.742188-39.617188 39.625-39.625zm0 0"
@@ -68474,9 +68440,9 @@ var Additional = function Additional(_ref) {
       }));
     },
     value: additionalData.name ? additionalData.name : "",
-    className: " pl-2 py-2 col-10"
+    className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
   })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: " input col-10 my-3 row p-0 mx-0 "
+    className: " input col-xl-10 col-lg-10 col-md-11 col-sm-11 col-12 mt-3 row p-0 mx-0 "
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-2 pl-3 d-flex justify-content-center align-items-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
@@ -68485,7 +68451,7 @@ var Additional = function Additional(_ref) {
       height: "24px"
     },
     fill: "#2c393f",
-    className: "col-12 p-0",
+    className: "col-12 p-0 d-xl-flex d-lg-flex d-md-flex d-none",
     viewBox: "-20 -99 640 640"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
     d: "m179.25 211c35.691406 0 64.625-28.9375 64.625-64.625 0-35.691406-28.933594-64.625-64.625-64.625s-64.625 28.933594-64.625 64.625c.046875 35.671875 28.953125 64.578125 64.625 64.625zm0-104.125c21.882812 0 39.625 17.738281 39.625 39.625 0 21.882812-17.742188 39.625-39.625 39.625-21.886719 0-39.625-17.742188-39.625-39.625.007812-21.882812 17.742188-39.617188 39.625-39.625zm0 0"
@@ -68513,13 +68479,13 @@ var Additional = function Additional(_ref) {
       }));
     },
     value: additionalData.lastName ? additionalData.lastName : "",
-    className: " pl-2 py-2 col-10"
+    className: "pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
   }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 row m-0 p-0 justify-content-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("hr", {
-    className: "col-6 m-0"
+    className: "col-6 m-0 my-3"
   })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "col-12 mx-0 p-0 row my-4 justify-content-around"
+    className: "col-12 mx-0 p-0 row my-xl-4 my-lg-4 my-md-3 my-sm-3 my-3 justify-content-around"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
     className: "col-12 mb-3 p-0 text-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
@@ -68527,7 +68493,7 @@ var Additional = function Additional(_ref) {
   }, "Contact"), " me here", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
   }, ".")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: " input col-10 mt-3 row p-0 mx-0"
+    className: " input col-xl-10 col-lg-10 col-md-11 col-sm-11 col-12 mt-3 row p-0 mx-0"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-2 pl-3 d-flex justify-content-center align-items-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
@@ -68536,7 +68502,7 @@ var Additional = function Additional(_ref) {
       width: "24px",
       height: "24px"
     },
-    className: "col-12 p-0",
+    className: "col-12 p-0 d-xl-flex d-lg-flex d-md-flex d-none",
     enableBackground: "new 0 0 512.076 512.076",
     version: "1.1",
     viewBox: "0 0 512.08 512.08",
@@ -68566,9 +68532,9 @@ var Additional = function Additional(_ref) {
       }));
     },
     value: additionalData.phone ? additionalData.phone : "",
-    className: " pl-2 py-2 col-10"
+    className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
   })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: " input col-10 my-3 row p-0 mx-0"
+    className: " input col-xl-10 col-lg-10 col-md-11 col-sm-11 col-12 my-3 row p-0 mx-0"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-2 pl-3 d-flex justify-content-center align-items-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
@@ -68577,7 +68543,7 @@ var Additional = function Additional(_ref) {
       width: "24px",
       height: "24px"
     },
-    className: "col-12 p-0",
+    className: "col-12 p-0 d-xl-flex d-lg-flex d-md-flex d-none",
     enableBackground: "new 0 0 511.991 511.991",
     viewBox: "0 0 511.99 511.99",
     space: "preserve"
@@ -68603,7 +68569,7 @@ var Additional = function Additional(_ref) {
       }));
     },
     value: additionalData.email ? additionalData.email : "",
-    className: " pl-2 py-2 col-10"
+    className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
   })))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 m-0 p-0 row justify-content-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -68615,7 +68581,7 @@ var Additional = function Additional(_ref) {
   }, "language"), " skills ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
   }, ".")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "col-10 row justify-content-center"
+    className: "col-xl-10 col-lg-11 col-md-11 col-12 p-0 row justify-content-center"
   }, languagesInUse.map(function (_ref3) {
     var full = _ref3.full,
         _short = _ref3["short"];
@@ -68626,17 +68592,17 @@ var Additional = function Additional(_ref) {
       }
     }, window.innerHeight <= 768 ? _short : full);
   })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: " input col-10 mt-4 row p-0 m-0 "
+    className: " input col-xl-10 col-lg-10 col-md-11 col-sm-11 col-12 mt-4 row p-0 m-0 "
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-2 pl-3 d-flex justify-content-center align-items-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
     viewBox: "0 0 512 512",
     style: {
-      width: "24px",
+      width: "px",
       height: "24px"
     },
     fill: "#2c393f",
-    className: "col-12 p-0"
+    className: "col-12 p-0 d-xl-flex d-lg-flex d-md-flex d-none"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
     d: "m470 180h-140.644531c.445312-4.933594.6875-9.929688.6875-14.980469 0-90.992187-74.03125-165.019531-165.023438-165.019531-28.984375 0-57.496093 7.625-82.453125 22.046875-4.78125 2.761719-6.417968 8.878906-3.65625 13.660156 2.765625 4.785157 8.882813 6.417969 13.664063 3.65625 21.917969-12.667969 46.96875-19.363281 72.445312-19.363281 79.964844 0 145.023438 65.054688 145.023438 145.019531 0 79.964844-65.058594 145.023438-145.023438 145.023438-33.472656 0-64.917969-11.089844-90.9375-32.066407-2.609375-2.101562-6.066406-2.730468-9.214843-1.765624l-26.542969 6.941406 10.398437-22.851563c1.496094-3.28125 1.105469-7.109375-1.015625-10.027343-18.125-24.894532-27.707031-54.375-27.707031-85.253907 0-25.542969 6.730469-50.65625 19.464844-72.621093 2.769531-4.78125 1.140625-10.898438-3.636719-13.667969s-10.894531-1.144531-13.667969 3.636719c-14.496094 25.007812-22.160156 53.589843-22.160156 82.652343 0 33.160157 9.714844 64.914063 28.152344 92.199219l-16.742188 36.785156c-1.601562 3.511719-1.035156 7.628906 1.449219 10.582032 2.484375 2.953124 6.445313 4.210937 10.179687 3.234374l42.527344-11.117187c28.507813 21.535156 63.621094 33.339844 99.453125 33.339844 7.800781 0 15.46875-.558594 22.980469-1.609375v87.566406c0 23.15625 18.839844 42 41.996094 42h141.433594l63.238281 51.738281c1.820312 1.492188 4.066406 2.257813 6.332031 2.257813 1.457031 0 2.917969-.316406 4.28125-.960938 3.492188-1.65625 5.71875-5.171875 5.71875-9.039062v-43.996094h19c23.160156 0 42-18.84375 42-42v-194c0-23.160156-18.839844-42-42-42zm22 236c0 12.128906-9.867188 22-22 22h-29c-5.523438 0-10 4.476562-10 10v32.894531l-49.390625-40.410156c-2.722656-2.484375-5.105469-2.484375-10.460937-2.484375h-141.152344c-12.128906 0-21.996094-9.871094-21.996094-22v-91.648438c59.152344-15.972656 105.238281-64.074218 118.296875-124.351562h143.703125c12.132812 0 22 9.867188 22 22zm0 0"
   }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
@@ -68649,11 +68615,11 @@ var Additional = function Additional(_ref) {
     id: "name",
     type: "text",
     name: "another",
-    placeholder: "Do you know another language?",
+    placeholder: "another language?",
     onChange: function onChange(e) {
       return setAdditionalLanguage(e.target.value);
     },
-    className: " pl-2 py-2 col-10"
+    className: "  pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
   })))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 m-0 p-0 row justify-content-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -68675,16 +68641,16 @@ var Additional = function Additional(_ref) {
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "col-12 justify-content-around row py-3 px-2"
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: " input col-6 row p-0 m-0 "
+      className: " input col-xl-10 col-lg-10 col-md-10 col-sm-11 col-12 row p-0 m-0"
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "col-4 pl-3 d-flex justify-content-center align-items-center"
+      className: "col-xl-2 col-lg-2 col-md-2 pl-3 d-flex justify-content-center align-items-center"
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
       style: {
         width: "24px",
         height: "24px"
       },
       fill: "#2c393f",
-      className: "col-12 p-0",
+      className: "col-12 p-0 d-xl-flex d-lg-flex d-md-flex d-none",
       viewBox: "0 -24 480 480"
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
       d: "m456 72h-104v-32c-.027344-22.082031-17.917969-39.9726562-40-40h-144c-22.082031.0273438-39.972656 17.917969-40 40v32h-104c-13.253906 0-24 10.746094-24 24v178.078125c.0507812 10.148437 6.445312 19.175781 16 22.585937v111.335938c0 13.253906 10.746094 24 24 24h400c13.253906 0 24-10.746094 24-24v-111.328125c9.554688-3.414063 15.953125-12.445313 16-22.59375v-178.078125c0-13.253906-10.746094-24-24-24zm-312-32c0-13.253906 10.746094-24 24-24h144c13.253906 0 24 10.746094 24 24v32h-16v-32c0-4.417969-3.582031-8-8-8h-144c-4.417969 0-8 3.582031-8 8v32h-16zm160 32h-128v-24h128zm144 336c0 4.417969-3.582031 8-8 8h-400c-4.417969 0-8-3.582031-8-8v-108.585938l176 24.273438v20.3125c0 13.253906 10.746094 24 24 24h16c13.253906 0 24-10.746094 24-24v-20.3125l176-24.273438zm-192-64c0 4.417969-3.582031 8-8 8h-16c-4.417969 0-8-3.582031-8-8v-48c0-4.417969 3.582031-8 8-8h16c4.417969 0 8 3.582031 8 8zm208-69.921875c.003906 3.988281-2.929688 7.371094-6.878906 7.929687l-2.21875.304688-182.902344 25.222656v-11.535156c0-13.253906-10.746094-24-24-24h-16c-13.253906 0-24 10.746094-24 24v11.535156l-185.113281-25.527344c-3.949219-.554687-6.890625-3.9375-6.886719-7.929687v-178.078125c0-4.417969 3.582031-8 8-8h432c4.417969 0 8 3.582031 8 8zm0 0"
@@ -68692,23 +68658,29 @@ var Additional = function Additional(_ref) {
       id: "name",
       type: "text",
       name: "another",
-      className: " pl-2 py-2 col-8",
-      placeholder: "work option",
+      className: " pl-xl-1 pl-lg-1 pl-md-1 pl-sm-3 pl-3 py-2 col-xl-8 col-lg-8 col-md-9 col-12",
+      placeholder: "Enter your field",
       value: categories[i].value,
       onChange: function onChange(e) {
         return onChangeInput(e.target.value, "w", i);
       }
-    })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "input col-5 row p-0 m-0 "
+    })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+      className: "col-12 text-center mt-3 mb-0"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      className: "doth"
+    }, "How long"), " have you been working in this field ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      className: "doth"
+    }, "?")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: " input col-xl-10 col-lg-10 col-md-10 col-sm-11 col-12 row p-0 m-0"
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "col-5 pl-3 d-flex justify-content-center align-items-center"
+      className: "col-xl-2 col-lg-2 col-md-2 pl-3 d-flex justify-content-center align-items-center"
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
       style: {
         width: "24px",
         height: "24px"
       },
       fill: "#2c393f",
-      className: "col-12 p-0",
+      className: "col-12 p-0 d-xl-flex d-lg-flex d-md-flex d-none",
       enableBackground: "new 0 0 58 58",
       viewBox: "0 0 58 58",
       space: "preserve"
@@ -68818,8 +68790,8 @@ var Additional = function Additional(_ref) {
       id: "name",
       type: "text",
       name: "another",
-      className: " pl-2 py-2 col-7",
-      placeholder: "practise",
+      className: " pl-xl-1 pl-lg-1 pl-md-1 pl-sm-3 pl-3 py-2 col-xl-8 col-lg-8 col-md-9 col-12",
+      placeholder: "Enter your practise time",
       value: categories[i].practise,
       onChange: function onChange(e) {
         return onChangeInput(e.target.value, "p", i);
@@ -68831,14 +68803,15 @@ var Additional = function Additional(_ref) {
     }, "When"), " can you get to work ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
       className: "doth"
     }, "?")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: " input col-8 mt-1 row p-0 m-0 "
+      className: " input col-xl-10 col-lg-10 col-md-10 col-sm-11 col-12 row p-0 m-0"
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "col-4 pl-3 d-flex justify-content-center align-items-center"
+      className: "col-xl-4 col-lg-4 col-md-3 pl-3 d-flex justify-content-center align-items-center"
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
       style: {
         width: "24px",
         height: "24px"
       },
+      className: "col-12 p-0 d-xl-flex d-lg-flex d-md-flex d-none",
       fill: "#2c393f",
       enableBackground: "new 0 0 41.301 41.301",
       version: "1.1",
@@ -68850,12 +68823,12 @@ var Additional = function Additional(_ref) {
       id: "name",
       type: "date",
       name: "another",
-      className: " pl-2 py-2 col-8",
+      className: " pl-xl-1 pl-lg-1 pl-md-1 pl-sm-3 pl-3 py-2 col-xl-8 col-lg-8 col-md-9 col-12",
       value: categories[i].ready,
       onChange: function onChange(e) {
         return onChangeInput(e.target.value, "r", i);
       },
-      placeholder: "ready"
+      placeholder: "Date"
     }))), categories.length > 1 ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "remove-button shadow",
       onClick: function onClick() {
@@ -68916,10 +68889,7 @@ var Additional = function Additional(_ref) {
   })))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "avatar-preview"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    id: "imagePreview",
-    style: {
-      backgroundImage: "url('http://i.pravatar.cc/500?img=7');"
-    }
+    id: "imagePreview"
   })))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "SUBMIT"
   }, "submit"))))));
@@ -68927,18 +68897,21 @@ var Additional = function Additional(_ref) {
 
 /***/ }),
 
-/***/ "./resources/js/components/Forms/Login.js":
-/*!************************************************!*\
-  !*** ./resources/js/components/Forms/Login.js ***!
-  \************************************************/
-/*! exports provided: Login */
+/***/ "./resources/js/components/Forms/Authentication.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/Forms/Authentication.js ***!
+  \*********************************************************/
+/*! exports provided: Authentication */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Login", function() { return Login; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Authentication", function() { return Authentication; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _ForgottenPassword__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ForgottenPassword */ "./resources/js/components/Forms/ForgottenPassword.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -68954,9 +68927,9 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
-var Login = function Login(_ref) {
-  var _React$createElement, _React$createElement2;
 
+
+var Authentication = function Authentication(_ref) {
   var _ref$login = _ref.login,
       login = _ref$login === void 0 ? function (f) {
     return f;
@@ -68964,7 +68937,11 @@ var Login = function Login(_ref) {
       _ref$register = _ref.register,
       register = _ref$register === void 0 ? function (f) {
     return f;
-  } : _ref$register;
+  } : _ref$register,
+      _ref$reset = _ref.reset,
+      reset = _ref$reset === void 0 ? function (f) {
+    return f;
+  } : _ref$reset;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
     type: 2
@@ -68978,10 +68955,20 @@ var Login = function Login(_ref) {
       slide = _useState4[0],
       setSlide = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
       _useState6 = _slicedToArray(_useState5, 2),
       missing = _useState6[0],
       setMissing = _useState6[1];
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState8 = _slicedToArray(_useState7, 2),
+      passwordView = _useState8[0],
+      setPasswordView = _useState8[1];
+
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState10 = _slicedToArray(_useState9, 2),
+      passwordReset = _useState10[0],
+      setPasswordReset = _useState10[1];
 
   var submit = function submit(control) {
     if (control == "r") {
@@ -69000,6 +68987,7 @@ var Login = function Login(_ref) {
       if (data.email !== undefined && data.email.length > 0) {
         if (data.email.includes('@')) {
           if (data.passwordR !== undefined && data.passwordR.length > 0) {
+            setMissing({});
             submit("r");
           } else {
             setMissing({
@@ -69011,7 +68999,7 @@ var Login = function Login(_ref) {
         } else {
           setMissing({
             value: '@',
-            message: "Nezadali ste nevhodny email."
+            message: "Nezadali ste nevhodn\xFD email."
           });
           console.log(missing);
         }
@@ -69026,6 +69014,7 @@ var Login = function Login(_ref) {
       if (control == "l") {
         if (data.login !== undefined && data.login.length > 0) {
           if (data.passwordL !== undefined && data.passwordL.length > 0) {
+            setMissing({});
             submit("l");
           } else {
             setMissing({
@@ -69046,7 +69035,7 @@ var Login = function Login(_ref) {
   };
 
   var _forgottenPassword = function _forgottenPassword() {
-    console.log("forgotten password");
+    setPasswordReset(false);
   };
 
   var _loginFacebook = function _loginFacebook() {
@@ -69058,90 +69047,31 @@ var Login = function Login(_ref) {
   };
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "authentication-form | container-fluid | row col-12 | justify-content-end align-items-center | m-0 p-0 "
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-xl-3 col-lg-3 col-md-3 col-sm-3 d-xl-flex d-lg-flex d-md-flex d-sm-flex d-none row m-0 justify-content-end p-0"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-xl-5 col-lg-5 col-md-6 col-sm-10 col-11 row mx-0 mt-5 p-0",
-    onClick: function onClick() {
-      return setSlide(slide === 0 ? 1 : 0);
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "".concat(slide === 1 ? "shadow" : "", " col-12 text-center py-3 px-0 mb-0 ss"),
-    style: {
-      borderRadius: "25px 0 0 0 ",
-      color: slide === 1 ? "red" : ""
-    }
-  }, "sign-in"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "".concat(slide === 0 ? "shadow" : "", " col-12 text-center py-3 px-0 mb-0 ss"),
-    style: {
-      borderRadius: "0 0 0 25px"
-    }
-  }, "sign-up"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "content-frame | row col-xl-7 col-lg-9 col-md-9 col-sm-9 col-12 | justify-content-center align-items-center | px-0 m-0 | shadow ",
-    id: "container"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-12 row justify-content-center d-xl-flex d-lg-flex d-md-flex d-none"
-  }, slide === 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", (_React$createElement = {
-    className: "col-4",
-    background: "transparent",
-    version: "1.1",
-    id: "Layer_1",
-    xmlns: "http://www.w3.org/2000/svg"
-  }, _defineProperty(_React$createElement, "xmlns", "http://www.w3.org/1999/xlink"), _defineProperty(_React$createElement, "viewBox", "0 0 400 400"), _defineProperty(_React$createElement, "enableBackground", "0 0 400 400"), _defineProperty(_React$createElement, "space", "preserve"), _React$createElement), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("defs", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("linearGradient", {
-    id: "my-cool-gradient",
-    x2: "1",
-    y2: "1"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("stop", {
-    offset: "10%",
-    "stop-color": "#3a7bd5"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("stop", {
-    offset: "100%",
-    "stop-color": "#50a0ca"
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-    id: "qsayiR.tif"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("text", {
-    transform: "matrix(1 0 0 1 91.1514 300.9902)",
-    className: "st0 st1 st2"
-  }, "T"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("text", {
-    transform: "matrix(1 0 0 1 133.1514 332.9902)",
-    className: "st1 st2",
-    fill: "url(#my-cool-gradient)"
-  }, "T"))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", (_React$createElement2 = {
-    className: "col-4",
-    version: "1.1",
-    id: "Layer_1",
-    xmlns: "http://www.w3.org/2000/svg"
-  }, _defineProperty(_React$createElement2, "xmlns", "http://www.w3.org/1999/xlink"), _defineProperty(_React$createElement2, "viewBox", "0 0 400 400"), _defineProperty(_React$createElement2, "enableBackground", "0 0 400 400"), _defineProperty(_React$createElement2, "space", "preserve"), _React$createElement2), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("defs", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("linearGradient", {
-    id: "my-coo-gradient",
-    x2: "1",
-    y2: "1"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("stop", {
-    offset: "5%",
-    "stop-color": "#50a0ca"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("stop", {
-    offset: "100%",
-    "stop-color": "#00C7C7"
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-    id: "qsayiR.tif",
-    className: "shadow"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("text", {
-    transform: "matrix(1 0 0 1 91.1514 300.9902)",
-    className: "st0 st1 st2 shadow"
-  }, "T"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("text", {
-    transform: "matrix(1 0 0 1 133.1514 332.9902)",
-    className: "st1 st2 shadow",
-    fill: "url(#my-coo-gradient)"
-  }, "T")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    className: "authentication-form | container-fluid | row col-12 | align-items-center | m-0 p-0"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
+    autoPlay: true,
+    muted: true,
+    loop: true
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
+    src: "./images/background-video.mp4",
+    type: "video/mp4"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "content-frame | col-12 | px-0 m-0 "
+  }, passwordReset ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ForgottenPassword__WEBPACK_IMPORTED_MODULE_1__["ForgottenPassword"], {
+    close: _forgottenPassword,
+    reset: reset
+  }) : "", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     id: "login-form",
-    className: " row col-12 | align-items-start | justify-content-center | m-0"
-  }, slide !== 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-xl-9 col-lg-9 col-md-10 col-12 m-0 p-1 justify-content-center row"
+    className: "form row col-xl-4 col-lg-5 col-md-6 col-sm-8 col-12 | align-items-start | justify-content-center align-items-center | m-0"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " row m-0 p-0 col-12 header"
+    className: "col-11 justify-content-center row"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: " row m-0 p-0 col-12 header justify-content-center "
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-    className: "col-12 p-0 text-center sign-up"
-  }, "Register")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-11 p-0 text-center sign-in"
+  }, "sign ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "highlighted"
+  }, slide === 0 ? "in" : "up", "."))), slide === 0 ? "" : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "choose row col-xl-8 col-lg-8 col-md-9 col-sm-10 col-11 p-0 shadow-sm my-4"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "col-6 m-0 text-center px-0 py-2 ".concat(data.type === 2 ? "on" : ""),
@@ -69158,8 +69088,20 @@ var Login = function Login(_ref) {
       }));
     }
   }, "company")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " field sign-up-field | col-xl-11 col-lg-11 col-md-11 col-12 "
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: " input col-11 mt-3 row p-0 mx-0 ".concat(missing.value === "@" || missing.value === "email" || missing.value === "login" ? "warning-frame" : "")
+  }, slide === 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    id: "login",
+    type: "text",
+    name: "login",
+    onChange: function onChange(e) {
+      return setData(_objectSpread({}, data, {
+        login: e.target.value
+      }));
+    },
+    value: data.login ? data.login : "",
+    className: " pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12",
+    placeholder: "Enter your login"
+  }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     id: "email",
     type: "text",
     name: "email",
@@ -69170,307 +69112,107 @@ var Login = function Login(_ref) {
       }));
     },
     value: data.email ? data.email : "",
-    className: " px-2 "
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    htmlFor: "email",
-    className: "px-2"
-  }, "email")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " field sign-up-field | col-xl-11 col-lg-11 col-md-11 col-12 mt-3"
+    className: " pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
+  })), missing.value === "@" || missing.value === "email" || missing.value === "login" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "col-11 pl-2 pt-1 warning-message mb-0"
+  }, missing.message) : "", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: " input col-11 mt-3 row p-0 mx-0 ".concat(missing.value === "password" ? "warning-frame" : "")
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     id: "password",
-    type: "password",
+    type: passwordView ? "text" : "password",
     name: "password",
+    className: " pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-10",
     placeholder: "Enter your password",
     onChange: function onChange(e) {
-      return setData(_objectSpread({}, data, {
+      return setData(slide === 0 ? _objectSpread({}, data, {
+        passwordL: e.target.value
+      }) : _objectSpread({}, data, {
         passwordR: e.target.value
       }));
     },
-    value: data.passwordR ? data.passwordR : "",
-    className: " px-2 "
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    htmlFor: "password",
-    className: "px-2"
-  }, "password")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "submit-button sign-up-button col-xl-4 col-lg-4 col-md-5 col-sm-8 col-10 text-center shadow py-2 mb-xl-5 mb-lg-5 mb-md-4 mb-sm-3 mb-3 mt-3",
+    value: slide === 0 ? data.passwordL ? data.passwordL : "" : data.passwordR ? data.passwordR : ""
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-2 pl-3 d-flex justify-content-center align-items-center",
+    onClick: function onClick() {
+      return setPasswordView(!passwordView);
+    }
+  }, !passwordView ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    style: {
+      width: "16px",
+      height: "16px"
+    },
+    fill: "#2c393f",
+    className: "col-12 p-0 d-xl-flex d-lg-flex d-md-flex d-flex",
+    enableBackground: "new 0 0 59.049 59.049",
+    version: "1.1",
+    viewBox: "0 0 59.049 59.049",
+    space: "preserve"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "m11.285 41.39c0.184 0.146 0.404 0.218 0.623 0.218 0.294 0 0.585-0.129 0.783-0.377 0.344-0.432 0.273-1.061-0.159-1.405-0.801-0.638-1.577-1.331-2.305-2.06l-7.398-7.398 7.629-7.629c7.334-7.333 18.003-9.836 27.839-6.534 0.523 0.173 1.09-0.107 1.267-0.63 0.175-0.523-0.106-1.091-0.63-1.267-10.562-3.545-22.016-0.857-29.89 7.016l-9.044 9.044 8.812 8.812c0.781 0.782 1.614 1.525 2.473 2.21z"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "m50.237 21.325c-1.348-1.348-2.826-2.564-4.394-3.616-0.458-0.307-1.081-0.185-1.388 0.273-0.308 0.458-0.185 1.08 0.273 1.388 1.46 0.979 2.838 2.113 4.094 3.369l7.398 7.398-7.629 7.629c-7.385 7.385-18.513 9.882-28.352 6.356-0.52-0.187-1.093 0.084-1.279 0.604s0.084 1.092 0.604 1.279c3.182 1.14 6.49 1.693 9.776 1.693 7.621 0 15.124-2.977 20.665-8.518l9.043-9.043-8.811-8.812z"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "m30.539 41.774c-2.153 0-4.251-0.598-6.07-1.73-0.467-0.29-1.084-0.148-1.377 0.321-0.292 0.469-0.148 1.085 0.321 1.377 2.135 1.33 4.6 2.032 7.126 2.032 7.444 0 13.5-6.056 13.5-13.5 0-2.685-0.787-5.279-2.275-7.502-0.308-0.459-0.93-0.582-1.387-0.275-0.459 0.308-0.582 0.929-0.275 1.387 1.267 1.893 1.937 4.102 1.937 6.39 0 6.342-5.159 11.5-11.5 11.5z"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "m30.539 18.774c2.065 0 4.089 0.553 5.855 1.6 0.474 0.281 1.088 0.125 1.37-0.351 0.281-0.475 0.125-1.088-0.351-1.37-2.074-1.229-4.451-1.879-6.875-1.879-7.444 0-13.5 6.056-13.5 13.5 0 2.084 0.462 4.083 1.374 5.941 0.174 0.354 0.529 0.56 0.899 0.56 0.147 0 0.298-0.033 0.439-0.102 0.496-0.244 0.701-0.843 0.458-1.338-0.776-1.582-1.17-3.284-1.17-5.06 1e-3 -6.342 5.16-11.501 11.501-11.501z"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "m54.621 5.567c-0.391-0.391-1.023-0.391-1.414 0l-46.5 46.5c-0.391 0.391-0.391 1.023 0 1.414 0.195 0.195 0.451 0.293 0.707 0.293s0.512-0.098 0.707-0.293l46.5-46.5c0.391-0.39 0.391-1.023 0-1.414z"
+  })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    style: {
+      width: "16px",
+      height: "16px"
+    },
+    fill: "#2c393f",
+    className: "col-12 p-0 d-xl-flex d-lg-flex d-md-flex d-none",
+    enableBackground: "new 0 0 59.2 59.2",
+    version: "1.1",
+    viewBox: "0 0 59.2 59.2",
+    space: "preserve"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "m51.062 21.561c-11.889-11.889-31.232-11.889-43.121 0l-7.941 7.94 8.138 8.138c5.944 5.944 13.752 8.917 21.561 8.917s15.616-2.972 21.561-8.917l7.941-7.941-8.139-8.137zm-1.217 14.664c-11.109 11.108-29.184 11.108-40.293 0l-6.724-6.724 6.527-6.527c11.109-11.108 29.184-11.108 40.293 0l6.724 6.724-6.527 6.527z"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "m28.572 21.57c-3.86 0-7 3.14-7 7 0 0.552 0.448 1 1 1s1-0.448 1-1c0-2.757 2.243-5 5-5 0.552 0 1-0.448 1-1s-0.447-1-1-1z"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "m29.572 16.57c-7.168 0-13 5.832-13 13s5.832 13 13 13 13-5.832 13-13-5.831-13-13-13zm0 24c-6.065 0-11-4.935-11-11s4.935-11 11-11 11 4.935 11 11-4.934 11-11 11z"
+  })))), missing.value === "password" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "col-11 pl-2 pt-1 warning-message mb-0"
+  }, missing.message) : "", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "submit-button sign-in-button col-6 text-center py-2 mb-5 mt-3 ",
     onClick: function onClick(e) {
-      return _formValidator(e, "r");
+      return _formValidator(e, slide === 0 ? "l" : "r");
     }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "sign up")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-12 row mb-3 mx-0 align-items-center"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
-    className: "col-xl-4 col-lg-4 col-md-3 col-sm-3 col-2 p-0"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "col-xl-4 col-lg-4 col-md-6 col-sm-6 col-7 log-in-with m-0 text-center"
-  }, window.innerWidth > 991 ? "or continue with" : "or"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
-    className: "col-xl-4 col-lg-4 col-md-3 col-sm-3 col-2 p-0"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-xl-11 col-lg-11 col-md-11 col-12 m-0 p-0 row justify-content-around align-items-center"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "sign ", slide === 0 ? "in" : "up")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12 row problems"
+  }, slide === 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12",
     onClick: function onClick() {
-      return _loginFacebook();
-    },
-    className: "col-xl-3 col-lg-3 col-md-3 col-sm-3 col-4 row m-0 sign-in-with justify-content-center",
-    style: {
-      background: "#3B5998"
+      return setPasswordReset(true);
     }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    className: "p-2",
-    enableBackground: "new 0 0 96.124 96.123",
-    version: "1.1",
-    viewBox: "0 0 96.124 96.123",
-    space: "preserve",
-    xmlns: "http://www.w3.org/2000/svg"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    className: "active-path",
-    d: "m72.089 0.02-12.465-0.02c-14.004 0-23.054 9.285-23.054 23.656v10.907h-12.533c-1.083 0-1.96 0.878-1.96 1.961v15.803c0 1.083 0.878 1.96 1.96 1.96h12.533v39.876c0 1.083 0.877 1.96 1.96 1.96h16.352c1.083 0 1.96-0.878 1.96-1.96v-39.876h14.654c1.083 0 1.96-0.877 1.96-1.96l6e-3 -15.803c0-0.52-0.207-1.018-0.574-1.386s-0.867-0.575-1.387-0.575h-14.659v-9.246c0-4.444 1.059-6.7 6.848-6.7l8.397-3e-3c1.082 0 1.959-0.878 1.959-1.96v-14.674c0-1.081-0.876-1.958-1.957-1.96z",
-    fill: "#fff",
-    "data-old_color": "#000000",
-    "data-original": "#000000"
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "can't sign in?")) : "", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12",
     onClick: function onClick() {
-      return _loginLinkedIn();
-    },
-    className: "col-xl-3 col-lg-3 col-md-3 col-sm-3 col-4 row m-0 sign-in-with justify-content-center",
-    style: {
-      background: "#0077b5"
+      setSlide(slide === 0 ? 1 : 0);
+      setMissing({});
     }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    className: "p-2",
-    xmlns: "http://www.w3.org/2000/svg",
-    id: "Bold",
-    "enable-background": "new 0 0 24 24",
-    viewBox: "0 0 24 24"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "m23.994 24v-.001h.006v-8.802c0-4.306-.927-7.623-5.961-7.623-2.42 0-4.044 1.328-4.707 2.587h-.07v-2.185h-4.773v16.023h4.97v-7.934c0-2.089.396-4.109 2.983-4.109 2.549 0 2.587 2.384 2.587 4.243v7.801z",
-    "data-original": "#000000",
-    className: "active-path",
-    "data-old_color": "#000000",
-    fill: "#FFFFFF"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "m.396 7.977h4.976v16.023h-4.976z",
-    "data-original": "#000000",
-    className: "active-path",
-    "data-old_color": "#000000",
-    fill: "#FFFFFF"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "m2.882 0c-1.591 0-2.882 1.291-2.882 2.882s1.291 2.909 2.882 2.909 2.882-1.318 2.882-2.909c-.001-1.591-1.292-2.882-2.882-2.882z",
-    "data-original": "#000000",
-    className: "active-path",
-    "data-old_color": "#000000",
-    fill: "#FFFFFF"
-  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    onClick: function onClick() {
-      return _loginLinkedIn();
-    },
-    className: "col-xl-3 col-lg-3 col-md-3 col-sm-3 col-4 m-0 row sign-in-with justify-content-center",
-    style: {
-      background: "#DC4E41"
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    className: "p-2",
-    enableBackground: "new 0 0 512 512",
-    version: "1.1",
-    viewBox: "0 0 512 512",
-    space: "preserve",
-    xmlns: "http://www.w3.org/2000/svg"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-    fill: "#fff"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    className: "",
-    d: "m113.47 309.41-17.822 66.532-65.139 1.378c-19.467-36.107-30.509-77.418-30.509-121.32 0-42.451 10.324-82.483 28.624-117.73h0.014l57.992 10.632 25.404 57.644c-5.317 15.501-8.215 32.141-8.215 49.456 2e-3 18.792 3.406 36.797 9.651 53.408z",
-    "data-old_color": "#FBBB00",
-    "data-original": "#FBBB00"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    className: "active-path",
-    d: "m507.53 208.18c2.94 15.486 4.473 31.479 4.473 47.824 0 18.328-1.927 36.206-5.598 53.451-12.462 58.683-45.025 109.92-90.134 146.19l-0.014-0.014-73.044-3.727-10.338-64.535c29.932-17.554 53.324-45.025 65.646-77.911h-136.89v-101.28h138.89 107.01z",
-    "data-old_color": "#518EF8",
-    "data-original": "#518EF8"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    className: "",
-    d: "m416.25 455.62 0.014 0.014c-43.871 35.263-99.601 56.362-160.27 56.362-97.491 0-182.25-54.491-225.49-134.68l82.961-67.91c21.619 57.698 77.278 98.771 142.53 98.771 28.047 0 54.323-7.582 76.87-20.818l83.383 68.262z",
-    "data-old_color": "#28B446",
-    "data-original": "#28B446"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    className: "",
-    d: "m419.4 58.936-82.933 67.896c-23.335-14.586-50.919-23.012-80.471-23.012-66.729 0-123.43 42.957-143.96 102.72l-83.397-68.276h-0.014c42.606-82.145 128.44-138.27 227.38-138.27 62.115 0 119.07 22.126 163.4 58.936z",
-    "data-old_color": "#F14336",
-    "data-original": "#F14336"
-  })))))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-9 justify-content-center row"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " row m-0 p-0 col-12 header"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-    className: "col-12 p-0 text-center sign-in"
-  }, "Login")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " field sign-in-field | col-11 "
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    id: "login",
-    type: "text",
-    name: "login",
-    placeholder: "Enter your username",
-    onChange: function onChange(e) {
-      return setData(_objectSpread({}, data, {
-        login: e.target.value
-      }));
-    },
-    value: data.login ? data.login : "",
-    className: " px-2 "
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    htmlFor: "login",
-    className: "px-2"
-  }, "username")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " field sign-in-field | col-11 mt-3"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    id: "password",
-    type: "password",
-    name: "password",
-    placeholder: "Enter your password",
-    onChange: function onChange(e) {
-      return setData(_objectSpread({}, data, {
-        passwordL: e.target.value
-      }));
-    },
-    value: data.passwordL ? data.passwordL : "",
-    className: " px-2 "
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    htmlFor: "password",
-    className: " px-2"
-  }, "password")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "sign-in-field forgotten col-11",
-    onClick: function onClick() {
-      return _forgottenPassword();
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "text-right"
-  }, "forgotten password ?")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "submit-button sign-in-button col-4 text-center shadow py-2 mb-5 mt-3 ",
-    onClick: function onClick(e) {
-      return _formValidator(e, "l");
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "sign in")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-12 row mb-3 mx-0 align-items-center"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
-    className: "col-xl-4 col-lg-4 col-md-3 col-sm-3 col-2 p-0"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "col-xl-4 col-lg-4 col-md-6 col-sm-6 col-7 log-in-with m-0 text-center"
-  }, window.innerWidth > 991 ? "or continue with" : "or"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
-    className: "col-xl-4 col-lg-4 col-md-3 col-sm-3 col-2 p-0"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-xl-11 col-lg-11 col-md-11 col-12 m-0 p-0 row justify-content-around align-items-center"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    onClick: function onClick() {
-      return _loginFacebook();
-    },
-    className: "col-xl-3 col-lg-3 col-md-3 col-sm-3 col-4 row m-0 sign-in-with justify-content-center",
-    style: {
-      background: "#3B5998"
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    className: "p-2",
-    enableBackground: "new 0 0 96.124 96.123",
-    version: "1.1",
-    viewBox: "0 0 96.124 96.123",
-    space: "preserve",
-    xmlns: "http://www.w3.org/2000/svg"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    className: "active-path",
-    d: "m72.089 0.02-12.465-0.02c-14.004 0-23.054 9.285-23.054 23.656v10.907h-12.533c-1.083 0-1.96 0.878-1.96 1.961v15.803c0 1.083 0.878 1.96 1.96 1.96h12.533v39.876c0 1.083 0.877 1.96 1.96 1.96h16.352c1.083 0 1.96-0.878 1.96-1.96v-39.876h14.654c1.083 0 1.96-0.877 1.96-1.96l6e-3 -15.803c0-0.52-0.207-1.018-0.574-1.386s-0.867-0.575-1.387-0.575h-14.659v-9.246c0-4.444 1.059-6.7 6.848-6.7l8.397-3e-3c1.082 0 1.959-0.878 1.959-1.96v-14.674c0-1.081-0.876-1.958-1.957-1.96z",
-    fill: "#fff",
-    "data-old_color": "#000000",
-    "data-original": "#000000"
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    onClick: function onClick() {
-      return _loginLinkedIn();
-    },
-    className: "col-xl-3 col-lg-3 col-md-3 col-sm-3 col-4 row m-0 sign-in-with justify-content-center",
-    style: {
-      background: "#0077b5"
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    className: "p-2",
-    xmlns: "http://www.w3.org/2000/svg",
-    id: "Bold",
-    "enable-background": "new 0 0 24 24",
-    viewBox: "0 0 24 24"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "m23.994 24v-.001h.006v-8.802c0-4.306-.927-7.623-5.961-7.623-2.42 0-4.044 1.328-4.707 2.587h-.07v-2.185h-4.773v16.023h4.97v-7.934c0-2.089.396-4.109 2.983-4.109 2.549 0 2.587 2.384 2.587 4.243v7.801z",
-    "data-original": "#000000",
-    className: "active-path",
-    "data-old_color": "#000000",
-    fill: "#FFFFFF"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "m.396 7.977h4.976v16.023h-4.976z",
-    "data-original": "#000000",
-    className: "active-path",
-    "data-old_color": "#000000",
-    fill: "#FFFFFF"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "m2.882 0c-1.591 0-2.882 1.291-2.882 2.882s1.291 2.909 2.882 2.909 2.882-1.318 2.882-2.909c-.001-1.591-1.292-2.882-2.882-2.882z",
-    "data-original": "#000000",
-    className: "active-path",
-    "data-old_color": "#000000",
-    fill: "#FFFFFF"
-  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    onClick: function onClick() {
-      return _loginLinkedIn();
-    },
-    className: "col-xl-3 col-lg-3 col-md-3 col-sm-3 col-4 m-0 row sign-in-with justify-content-center align-items-start",
-    style: {
-      background: "#DC4E41"
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    className: "p-2",
-    enableBackground: "new 0 0 512 512",
-    version: "1.1",
-    viewBox: "0 0 512 512",
-    space: "preserve",
-    xmlns: "http://www.w3.org/2000/svg"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-    fill: "#fff"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    className: "",
-    d: "m113.47 309.41-17.822 66.532-65.139 1.378c-19.467-36.107-30.509-77.418-30.509-121.32 0-42.451 10.324-82.483 28.624-117.73h0.014l57.992 10.632 25.404 57.644c-5.317 15.501-8.215 32.141-8.215 49.456 2e-3 18.792 3.406 36.797 9.651 53.408z",
-    "data-old_color": "#FBBB00",
-    "data-original": "#FBBB00"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    className: "active-path",
-    d: "m507.53 208.18c2.94 15.486 4.473 31.479 4.473 47.824 0 18.328-1.927 36.206-5.598 53.451-12.462 58.683-45.025 109.92-90.134 146.19l-0.014-0.014-73.044-3.727-10.338-64.535c29.932-17.554 53.324-45.025 65.646-77.911h-136.89v-101.28h138.89 107.01z",
-    "data-old_color": "#518EF8",
-    "data-original": "#518EF8"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    className: "",
-    d: "m416.25 455.62 0.014 0.014c-43.871 35.263-99.601 56.362-160.27 56.362-97.491 0-182.25-54.491-225.49-134.68l82.961-67.91c21.619 57.698 77.278 98.771 142.53 98.771 28.047 0 54.323-7.582 76.87-20.818l83.383 68.262z",
-    "data-old_color": "#28B446",
-    "data-original": "#28B446"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    className: "",
-    d: "m419.4 58.936-82.933 67.896c-23.335-14.586-50.919-23.012-80.471-23.012-66.729 0-123.43 42.957-143.96 102.72l-83.397-68.276h-0.014c42.606-82.145 128.44-138.27 227.38-138.27 62.115 0 119.07 22.126 163.4 58.936z",
-    "data-old_color": "#F14336",
-    "data-original": "#F14336"
-  })))))))));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, slide === 0 ? "create account" : "already member")))))));
 };
 
 /***/ }),
 
-/***/ "./resources/js/components/Forms/Register.js":
-/*!***************************************************!*\
-  !*** ./resources/js/components/Forms/Register.js ***!
-  \***************************************************/
-/*! exports provided: Register */
+/***/ "./resources/js/components/Forms/ForgottenPassword.js":
+/*!************************************************************!*\
+  !*** ./resources/js/components/Forms/ForgottenPassword.js ***!
+  \************************************************************/
+/*! exports provided: ForgottenPassword */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Register", function() { return Register; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ForgottenPassword", function() { return ForgottenPassword; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -69480,401 +69222,197 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
-var Register = function Register(_ref) {
-  var _ref$register = _ref.register,
-      register = _ref$register === void 0 ? function (f) {
+
+var ForgottenPassword = function ForgottenPassword(_ref) {
+  var _ref$reset = _ref.reset,
+      reset = _ref$reset === void 0 ? function (f) {
     return f;
-  } : _ref$register;
+  } : _ref$reset,
+      _ref$close = _ref.close,
+      close = _ref$close === void 0 ? function (f) {
+    return f;
+  } : _ref$close;
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(1),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
       _useState2 = _slicedToArray(_useState, 2),
-      slide = _useState2[0],
-      setSlide = _useState2[1];
+      email = _useState2[0],
+      setEmail = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
       _useState4 = _slicedToArray(_useState3, 2),
-      data = _useState4[0],
-      setData = _useState4[1];
+      missing = _useState4[0],
+      setMissing = _useState4[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_1___default()('.forgotten-password-form').css("display", "flex").hide().fadeIn();
+  }, []);
+
+  var backToLogin = function backToLogin() {
+    jquery__WEBPACK_IMPORTED_MODULE_1___default.a.when(jquery__WEBPACK_IMPORTED_MODULE_1___default()('.forgotten-password-form').fadeOut()).done(function () {
+      return close();
+    });
+  };
+
+  var submit = function submit() {
+    if (email !== undefined && email.length > 0) {
+      if (email.includes("@")) {
+        setMissing({});
+        reset({
+          login: email
+        });
+      } else {
+        setMissing({
+          value: '@',
+          message: "Nezadali ste platny email."
+        });
+        console.log(missing);
+      }
+    } else {
+      setMissing({
+        value: 'email',
+        message: "Nezadali ste email."
+      });
+      console.log(missing);
+    }
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "forgotten-password-form row col-xl-4 col-lg-5 col-md-6 col-sm-8 col-12 | align-items-start | justify-content-center align-items-center | m-0"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-11 justify-content-center row"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: " row m-0 p-0 col-12 header justify-content-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "col-11 p-0 text-center sign-in"
+  }, " forgotten ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "highlighted"
+  }, "password."))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: " input col-11 mt-3 row p-0 mx-0 ".concat(missing.value === "@" || missing.value === "email" ? "warning-frame" : "")
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    id: "email",
+    type: "text",
+    name: "email",
+    placeholder: "Enter your email",
+    onChange: function onChange(e) {
+      return setEmail(e.target.value);
+    },
+    value: email !== "" ? email : "",
+    className: " pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
+  })), missing.value === "@" || missing.value === "email" || missing.value === "login" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "col-11 pl-2 pt-1 warning-message mb-0"
+  }, missing.message) : "", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "submit-button sign-in-button col-6 text-center py-2 mb-5 mt-3 ",
+    onClick: function onClick() {
+      return submit();
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "sent email")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12 row problems"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12",
+    onClick: backToLogin
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "back to login")))));
+};
+
+/***/ }),
+
+/***/ "./resources/js/components/Forms/PasswordReset.js":
+/*!********************************************************!*\
+  !*** ./resources/js/components/Forms/PasswordReset.js ***!
+  \********************************************************/
+/*! exports provided: PasswordReset */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PasswordReset", function() { return PasswordReset; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+var PasswordReset = function PasswordReset(_ref) {
+  var _ref$reset = _ref.reset,
+      reset = _ref$reset === void 0 ? function (f) {
+    return f;
+  } : _ref$reset;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState2 = _slicedToArray(_useState, 2),
+      password = _useState2[0],
+      setPassword = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState4 = _slicedToArray(_useState3, 2),
+      verify = _useState4[0],
+      setVerify = _useState4[1];
 
   var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
       _useState6 = _slicedToArray(_useState5, 2),
       missing = _useState6[0],
       setMissing = _useState6[1];
 
-  var choose = function choose(value) {
-    setData({
-      type: value
-    });
-    setSlide(slide + 1);
-  };
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(new URL(window.location.href).searchParams.get("token")),
+      _useState8 = _slicedToArray(_useState7, 2),
+      token = _useState8[0],
+      setToken = _useState8[1];
 
   var submit = function submit() {
-    register(data);
-  };
-
-  var _formValidator = function _formValidator() {
-    if (slide === 2) {
-      if (data.type === 1) {
-        if (data.name !== undefined && data.name.length > 0) {
-          if (data.ico !== undefined && data.ico.length > 0) {
-            if (data.phone !== undefined && data.phone.length > 0) {
-              if (data.email !== undefined && data.email.length > 0) {
-                if (data.email.includes('@')) {
-                  if (data.password !== undefined && data.password.length > 0) {
-                    submit();
-                  } else {
-                    setMissing({
-                      value: 'password',
-                      message: "Nezadali ste heslo."
-                    });
-                  }
-                } else {
-                  setMissing({
-                    value: '@',
-                    message: "Nezadali ste platn\xFD email."
-                  });
-                }
-              } else {
-                setMissing({
-                  value: 'email',
-                  message: "Nezadali ste email."
-                });
-              }
-            } else {
-              setMissing({
-                value: 'phone',
-                message: "Nezadali ste telefon."
-              });
-            }
-          } else {
-            setMissing({
-              value: 'ico',
-              message: "Nezadali ste ico."
-            });
-          }
+    if (password !== undefined && password.length > 0) {
+      if (verify !== undefined && verify.length > 0) {
+        if (verify == password) {
+          reset({
+            password: password,
+            token: token
+          });
         } else {
           setMissing({
-            value: 'company name',
-            message: "Nezadali ste meno."
+            value: 'different',
+            message: "Hesla sa nezhoduju."
           });
+          console.log(missing);
         }
       } else {
-        if (data.firstName !== undefined && data.firstName.length > 0) {
-          if (data.lastName !== undefined && data.lastName.length > 0) {
-            if (data.phone !== undefined && data.phone.length > 0) {
-              if (data.email !== undefined && data.email.length > 0) {
-                if (data.email.includes('@')) {
-                  if (data.password !== undefined && data.password.length > 0) {
-                    submit();
-                  } else {
-                    setMissing({
-                      value: 'password',
-                      message: "Nezadali ste heslo."
-                    });
-                  }
-                } else {
-                  setMissing({
-                    value: '@',
-                    message: "Nezadali ste platn\xFD email."
-                  });
-                }
-              } else {
-                setMissing({
-                  value: 'email',
-                  message: "Nezadali ste email."
-                });
-              }
-            } else {
-              setMissing({
-                value: 'phone',
-                message: "Nezadali ste telefon."
-              });
-            }
-          } else {
-            setMissing({
-              value: 'last name',
-              message: "Nezadali ste priezvisko."
-            });
-          }
-        } else {
-          setMissing({
-            value: 'first name',
-            message: "Nezadali ste meno."
-          });
-        }
+        setMissing({
+          value: 'verify password',
+          message: "Nezadali ste heslo 2."
+        });
+        console.log(missing);
       }
+    } else {
+      setMissing({
+        value: 'password',
+        message: "Nezadali ste heslo."
+      });
+      console.log(missing);
     }
   };
 
-  return console.log(missing), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " form | container-fluid | row col-12 | justify-content-center | mb-5 m-0 p-0 "
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-    className: " main-title | col-11 | my-4 p-0 | text-center "
-  }, "registr\xE1cia", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "doth"
-  }, ".")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " content-frame rounded | row col-xl-10 col-lg-10 col-11 | justify-content-center | py-xl-5 py-lg-5 py-3 px-0 | shadow "
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " side-bar | row col-xl-3 col-lg-3 col-0 | align-item-center | justify-content-center | m-0 | d-xl-flex d-lg-flex d-none shadow p-0"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " col-xl-9 | align-item-center | justify-content-center | p-0 | border-r | d-flex | text-center "
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " svg | col-12 | align-item-center | justify-content-center | d-flex "
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    className: " col-12 ",
-    xmlns: "http://www.w3.org/2000/svg",
-    viewBox: "0 0 747.62 1696"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("defs", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("title", null, "logo"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("text", {
-    className: " cls-1 ",
-    transform: "translate(0 1002.2)"
-  }, "T"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("text", {
-    className: " cls-2 ",
-    transform: "translate(118 1098.2)"
-  }, "T"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-    className: " row col-xl-9 col-lg-9 col-12 | align-items-start | justify-content-center | m-0 p-4 "
-  }, function () {
-    switch (slide) {
-      case 1:
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " title | col-12 | mb-3 pb-4 "
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "doth"
-        }, "koho"), " registrujeme ?");
-
-      case 2:
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " title | col-12 | mb-3 pb-4 "
-        }, "v\u0161eobecn\xE9 ", window.innerWidth <= 991 ? "info" : " inform\xE1cie", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "doth"
-        }, window.innerWidth <= 991 ? "..." : "."));
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "password",
+    className: "col-5 p-0 my-2 py-2 px-4",
+    placeholder: "password",
+    onChange: function onChange(e) {
+      return setPassword(e.target.value);
     }
-  }(), function () {
-    switch (slide) {
-      case 1:
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " data | row col-12 | justify-content-center "
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " slide | col-xl-6 ",
-          onClick: function onClick() {
-            return choose(1);
-          }
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " menu-item pointer svg | my-xl-0 my-5 "
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " col-12 | justify-content-center | d-flex "
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-          xmlns: "http://www.w3.org/2000/svg",
-          width: "56.253",
-          height: "56.253",
-          viewBox: "0 0 56.253 56.253"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-          transform: "translate(27.042)"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-          d: "M248.005.322a1.1,1.1,0,0,0-1.875.777,1.1,1.1,0,1,0,1.875-.777Z",
-          transform: "translate(-246.13)"
-        }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-          d: "M55.931,26.251,44.607,14.921V8.13a2.2,2.2,0,0,0-2.2-2.2h-2.2V1.1a1.1,1.1,0,0,0-1.1-1.1H32.265a1.1,1.1,0,0,0,0,2.2h5.75V5.933H18.238V2.2h5.786a1.1,1.1,0,0,0,0-2.2H17.139a1.1,1.1,0,0,0-1.1,1.1V5.933h-2.2a2.2,2.2,0,0,0-2.2,2.2V48.122H9.229a1.1,1.1,0,0,0-1.1,1.1v4.834H2.2V29.225H9.229a1.1,1.1,0,1,0,0-2.2H1.1a1.1,1.1,0,0,0-1.1,1.1V55.154a1.1,1.1,0,0,0,1.1,1.1H55.154a1.1,1.1,0,0,0,1.1-1.1V27.028A1.1,1.1,0,0,0,55.931,26.251ZM34.352,8.13h8.057v8.35H34.352Zm0,10.547h8.057v8.35H34.352Zm0,10.547h8.057v8.35H34.352Zm0,10.547h8.057v8.35H34.352ZM24.1,8.13h8.057v8.35H24.1Zm0,10.547h8.057v8.35H24.1Zm0,10.547h8.057v8.35H24.1Zm0,10.547h8.057v8.35H24.1ZM13.843,8.13H21.9v8.35H13.843Zm0,10.547H21.9v8.35H13.843Zm0,10.547H21.9v8.35H13.843Zm0,10.547H21.9v8.35H13.843ZM45.925,54.055h-35.6V50.32h35.6Zm8.13,0H48.122V49.221a1.1,1.1,0,0,0-1.1-1.1H44.607v-3.09h3.5a1.1,1.1,0,0,0,0-2.2h-3.5V39.763h3.5a1.1,1.1,0,1,0,0-2.2h-3.5V34.494h3.5a1.1,1.1,0,1,0,0-2.2h-3.5V29.225h3.5a1.1,1.1,0,1,0,0-2.2h-3.5v-9l9.449,9.453Z"
-        }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-          transform: "translate(5.823 43.691)"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-          d: "M54.875,397.992a1.1,1.1,0,1,0,.322.777A1.1,1.1,0,0,0,54.875,397.992Z",
-          transform: "translate(-53 -397.67)"
-        }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-          transform: "translate(5.823 31.722)"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-          d: "M54.1,288.724a1.1,1.1,0,0,0-1.1,1.1v7.831a1.1,1.1,0,1,0,2.2,0v-7.831A1.1,1.1,0,0,0,54.1,288.724Z",
-          transform: "translate(-53 -288.724)"
-        }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
-          className: " name | col-12 | mt-3 | text-center "
-        }, "Firma"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " slide | col-xl-6 ",
-          onClick: function onClick() {
-            return choose(2);
-          }
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " menu-item pointer svg | row | my-xl-0 my-5 "
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " col-12 | justify-content-center | d-flex "
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-          xmlns: "http://www.w3.org/2000/svg",
-          width: "63.427",
-          height: "63.427",
-          viewBox: "0 0 63.427 63.427"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-          transform: "translate(1 1)"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-          transform: "translate(-1 -1)"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-          d: "M59.255,51.644C52.946,48.3,48.107,46.422,43.8,45.7l.446-.613a.822.822,0,0,0,.211-.846l-.991-3.963a22.614,22.614,0,0,0,4.162-12.74V23.314H50.8a1.057,1.057,0,0,0,0-2.114H49.741V20.142A18.378,18.378,0,0,0,36,2.383V2.171A3.18,3.18,0,0,0,32.828-1H28.6a3.18,3.18,0,0,0-3.171,3.171v.211A18.378,18.378,0,0,0,11.685,20.142V21.2H10.628a1.057,1.057,0,0,0,0,2.114H13.8v4.228a22.615,22.615,0,0,0,4.162,12.74l-.991,3.963a1.271,1.271,0,0,0,.211.846l.446.613c-4.308.719-9.148,2.6-15.457,5.941A5.622,5.622,0,0,0-1,56.824V61.37A1,1,0,0,0,.057,62.427H61.37a1,1,0,0,0,1.057-1.057V56.824A6.061,6.061,0,0,0,59.255,51.644Zm-29.176-.978.64-1.44L32.3,52.7l1.033,2.325H28.176Zm-2.707,6.475h6.673l.6,3.171H26.739Zm14.44-14.8.423,1.9-1.08,1.483a.942.942,0,0,0-.189.209l-4.4,6.088-1.4,1.916-2.85-6.412a15.273,15.273,0,0,0,8.9-4.583l.082-.081.02-.02Q41.574,42.6,41.813,42.342ZM40.436,6.732q.176.117.349.238a18.38,18.38,0,0,1,3.566,3.447l-4.863.951Zm-18.5,4.637-4.863-.951A18.378,18.378,0,0,1,20.642,6.97q.172-.121.349-.238ZM13.8,20.142a16.033,16.033,0,0,1,1.99-7.786L23.1,13.8h.211a2.486,2.486,0,0,0,.846-.211.853.853,0,0,0,.317-.951L23.025,5.574a17.534,17.534,0,0,1,2.4-.943V7.457a1.057,1.057,0,0,0,2.114,0V2.171A1.059,1.059,0,0,1,28.6,1.114h4.228a1.059,1.059,0,0,1,1.057,1.057V7.457a1.057,1.057,0,1,0,2.114,0V4.63a17.518,17.518,0,0,1,2.479.98l-1.422,6.921a1.476,1.476,0,0,0,.317.951.96.96,0,0,0,.74.317h.211l7.265-1.53a16.032,16.032,0,0,1,2.037,7.872V21.2H13.8V20.142Zm2.114,3.171h29.6v4.228a19.476,19.476,0,0,1-3.955,11.819l-.062.021-.317.317a17.715,17.715,0,0,1-1.68,1.939A13.515,13.515,0,0,1,31.18,45.5a1.191,1.191,0,0,0-.467-.093,1.012,1.012,0,0,0-.44.094,11.952,11.952,0,0,1-5.242-1.585A17.173,17.173,0,0,1,20.248,39.7l-.317-.317-.062-.021a19.476,19.476,0,0,1-3.955-11.819V23.314ZM29.1,47.528l-2.85,6.412-1.4-1.916-4.4-6.088c-.034-.034-.071-.067-.109-.1l-1.159-1.592.423-1.9c.143.154.289.3.435.453A15.34,15.34,0,0,0,29.1,47.528Zm-27.987,9.3a3.629,3.629,0,0,1,2.009-3.277c6.738-3.58,11.589-5.376,15.91-5.913l6.308,8.674-.8,4H1.114Zm59.2,3.489H36.887l-.8-4,6.377-8.768c4.306.65,9.243,2.445,15.841,5.9a3.911,3.911,0,0,1,2.009,3.383Z",
-          transform: "translate(1 1)"
-        }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
-          className: " name | col-12 | mt-3 | text-center "
-        }, "Jednotlivec"))));
-
-      case 2:
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " row col-12 | align-items-start"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " field | col-xl-5 col-lg-6 col-12 | p-0 ml-2 "
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          id: "firstName",
-          type: "text",
-          name: "firstName",
-          placeholder: data.type === 1 ? "Zadajte n\xE1zov firmy" : "Nap\xED\u0161te va\u0161e meno",
-          onChange: function onChange(e) {
-            return setData(data.type === 1 ? _objectSpread({}, data, {
-              name: e.target.value
-            }) : _objectSpread({}, data, {
-              firstName: e.target.value
-            }));
-          },
-          value: data.type === 1 ? data.name ? data.name : "" : data.firstName ? data.firstName : "",
-          className: " px-2 ",
-          onFocus: function onFocus() {
-            return setMissing("");
-          },
-          style: {
-            borderBottomColor: missing === "first name" ? "#DE0D0D" : ""
-          }
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-          htmlFor: "firstName"
-        }, data.type === 1 ? "n\xE1zov" : "meno")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " field | col-xl-5 col-lg-5 col-12 | p-0  ml-xl-5 ml-lg-3 ml-2"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          id: "lastName",
-          type: "text",
-          name: "lastName",
-          className: " px-2 ",
-          placeholder: data.type === 1 ? "Zadajte i\u010Do firmy" : "Nap\xED\u0161te va\u0161e priezvisko",
-          onChange: function onChange(e) {
-            return setData(data.type === 1 ? _objectSpread({}, data, {
-              ico: e.target.value
-            }) : _objectSpread({}, data, {
-              lastName: e.target.value
-            }));
-          },
-          value: data.type === 1 ? data.ico ? data.ico : "" : data.lastName ? data.lastName : "",
-          onFocus: function onFocus() {
-            return setMissing("");
-          },
-          style: {
-            borderBottomColor: missing === "last name" ? "#DE0D0D" : ""
-          }
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-          htmlFor: "lastName"
-        }, data.type === 1 ? "i\u010Do" : "priezvisko")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " field | col-xl-5 col-lg-6 col-12 | p-0 ml-2"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          id: "phone",
-          type: "text",
-          name: "phone",
-          placeholder: "Zadajte v\xE1\u0161 telef\xF3n",
-          onChange: function onChange(e) {
-            return setData(_objectSpread({}, data, {
-              phone: e.target.value
-            }));
-          },
-          value: data.phone ? data.phone : "",
-          className: " px-2 ",
-          onFocus: function onFocus() {
-            return setMissing("");
-          },
-          style: {
-            borderBottomColor: missing === "phone" ? "#DE0D0D" : ""
-          }
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-          htmlFor: "phone"
-        }, "telef\xF3n")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " field | col-xl-5 col-lg-5 col-12 | p-0 ml-xl-5 ml-lg-3 ml-2"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          id: "email",
-          type: "email",
-          name: "email",
-          placeholder: "Zadajte v\xE1\u0161 email",
-          onChange: function onChange(e) {
-            return setData(_objectSpread({}, data, {
-              email: e.target.value
-            }));
-          },
-          value: data.email ? data.email : "",
-          className: " px-2 ",
-          onFocus: function onFocus() {
-            return setMissing("");
-          },
-          style: {
-            borderBottomColor: missing === "email" || missing === "@" ? "#DE0D0D" : ""
-          }
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-          htmlFor: "email"
-        }, "email")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: " field | col-xl-5 col-lg-5 col-12 | p-0 ml-2"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          id: "password",
-          type: "password",
-          name: "password",
-          placeholder: "Zadajte v\xE1\u0161 password",
-          onChange: function onChange(e) {
-            return setData(_objectSpread({}, data, {
-              password: e.target.value
-            }));
-          },
-          value: data.password ? data.password : "",
-          className: " px-2 ",
-          onFocus: function onFocus() {
-            return setMissing("");
-          },
-          style: {
-            borderBottomColor: missing === "password" ? "#DE0D0D" : ""
-          }
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-          htmlFor: "password"
-        }, "password")));
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "password",
+    className: "col-5 p-0 my-2 py-2 px-4",
+    placeholder: "Also password",
+    onChange: function onChange(e) {
+      return setVerify(e.target.value);
     }
-  }(), slide <= 1 || slide > 2 ? "" : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " navigators | col-12 row | mt-4 p-0"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " align-items-center | row arrow col-6 | justify-content-start m-0",
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "submit",
     onClick: function onClick() {
-      return setSlide(slide - 1);
+      return submit();
     }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " col-xl-1 col-lg-1 col-md-1 col-sm-2 col-4 | p-0 "
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    className: " col-12 | p-0 ",
-    enableBackground: "new 0 0 477.175 477.175",
-    version: "1.1",
-    viewBox: "0 0 477.175 477.175",
-    space: "preserve",
-    xmlns: "http://www.w3.org/2000/svg"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "m145.19 238.58l215.5-215.5c5.3-5.3 5.3-13.8 0-19.1s-13.8-5.3-19.1 0l-225.1 225.1c-5.3 5.3-5.3 13.8 0 19.1l225.1 225c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.3-5.3 5.3-13.8 0-19.1l-215.4-215.5z"
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: " col-auto | mb-0 | d-xl-flex d-lg-flex d-md-flex d-none "
-  }, "sp\xE4\u0165")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " row arrow col-6 | align-items-center | justify-content-end m-0",
-    onClick: function onClick() {
-      return _formValidator();
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: " col-auto | mb-0 | d-xl-flex d-lg-flex d-md-flex d-none "
-  }, slide + 1 > 2 ? "odosla\u0165" : "pokra\u010Dova\u0165"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " col-xl-1 col-lg-1 col-md-1 col-sm-2 col-4 | p-0 "
-  }, slide + 1 > 3 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    className: " col-12 | p-0 ",
-    viewBox: "0 -65 424.032 424",
-    xmlns: "http://www.w3.org/2000/svg"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "m146.660156 293.367188c-4.09375 0-8.191406-1.558594-11.304687-4.695313l-130.667969-130.667969c-6.25-6.25-6.25-16.382812 0-22.632812s16.382812-6.25 22.636719 0l119.359375 119.359375 250.027344-250.027344c6.25-6.25 16.382812-6.25 22.632812 0s6.25 16.386719 0 22.636719l-261.332031 261.332031c-3.160157 3.136719-7.253907 4.695313-11.351563 4.695313zm0 0"
-  })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    className: " col-12 | p-0 ",
-    "enable-background": "new 0 0 477.175 477.175",
-    version: "1.1",
-    viewBox: "0 0 477.175 477.175",
-    space: "preserve",
-    xmlns: "http://www.w3.org/2000/svg"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "m360.73 229.08l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8 0.1-19z"
-  }))))))));
+  }, "submit"));
 };
 
 /***/ }),
@@ -70005,12 +69543,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _reach_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @reach/router */ "./node_modules/@reach/router/es/index.js");
-/* harmony import */ var _Forms_Register__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Forms/Register */ "./resources/js/components/Forms/Register.js");
-/* harmony import */ var _Forms_Login__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Forms/Login */ "./resources/js/components/Forms/Login.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _Logged_Home__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Logged/Home */ "./resources/js/components/Logged/Home.js");
-/* harmony import */ var _Additional__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Additional */ "./resources/js/components/Additional.js");
+/* harmony import */ var _Forms_Authentication__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Forms/Authentication */ "./resources/js/components/Forms/Authentication.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _Logged_Home__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Logged/Home */ "./resources/js/components/Logged/Home.js");
+/* harmony import */ var _Forms_ForgottenPassword__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Forms/ForgottenPassword */ "./resources/js/components/Forms/ForgottenPassword.js");
+/* harmony import */ var _Forms_PasswordReset__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Forms/PasswordReset */ "./resources/js/components/Forms/PasswordReset.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -70045,7 +69583,7 @@ var Main = function Main() {
 
   var _loginUser = function _loginUser(data) {
     jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form .sign-in-button").attr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>');
-    axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/api/login/", data, {
+    axios__WEBPACK_IMPORTED_MODULE_5___default.a.post("/api/login/", data, {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -70056,7 +69594,7 @@ var Main = function Main() {
       return response;
     }).then(function (json) {
       if (json.data.success) {
-        alert("Login Successful!");
+        alert("Authentication Successful!");
         var userData = {};
 
         if (json.data.data.type === "user") {
@@ -70104,7 +69642,7 @@ var Main = function Main() {
           }
         });
       } else {
-        alert("Login Failed!");
+        alert("Authentication Failed!");
       }
 
       jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form .sign-in-button").removeAttr("disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign in</span>');
@@ -70128,7 +69666,7 @@ var Main = function Main() {
   var _submitRegistration = function _submitRegistration(data) {
     console.log(data);
     jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form .sign-up-button").attr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>');
-    axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/api/register", data, {
+    axios__WEBPACK_IMPORTED_MODULE_5___default.a.post("/api/register", data, {
       headers: {
         'Content-Type': "application/json",
         "X-localization": location
@@ -70197,16 +69735,17 @@ var Main = function Main() {
   var _edit = function _edit(data) {
     console.log("main");
     console.log(data);
-    axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/api/register-additional", data, {
+    console.log();
+    axios__WEBPACK_IMPORTED_MODULE_5___default.a.post("/api/register-additional", data, {
       headers: {
         'Content-Type': "application/json",
-        "X-localization": location
+        "X-localization": location,
+        "Authorization": 'bearer' + JSON.parse(localStorage.appState).user.auth_token
       }
     }).then(function (response) {
       console.log(response);
       return response;
     }).then(function (response) {
-      console.log("som tu");
       console.log(response.data.success);
 
       if (response.data.success) {
@@ -70259,6 +69798,32 @@ var Main = function Main() {
     });
   };
 
+  var _reset = function _reset(login) {
+    axios__WEBPACK_IMPORTED_MODULE_5___default.a.post("/api/password-reset-mail", login, {
+      headers: {
+        'Content-Type': "application/json",
+        "X-localization": location
+      }
+    }).then(function (response) {
+      console.log(response);
+      return response;
+    });
+    console.log(login);
+  };
+
+  var _resetPassword = function _resetPassword(data) {
+    console.log(data);
+    axios__WEBPACK_IMPORTED_MODULE_5___default.a.post("/api/password-reset", data, {
+      headers: {
+        'Content-Type': "application/json",
+        "X-localization": location
+      }
+    }).then(function (response) {
+      console.log(response);
+      return response;
+    });
+  };
+
   var _ipLocation = function _ipLocation() {
     jquery__WEBPACK_IMPORTED_MODULE_2___default.a.ajax('http://ip-api.com/json').then(function success(response) {
       setLocation(response.countryCode);
@@ -70267,13 +69832,20 @@ var Main = function Main() {
     });
   };
 
-  return _ipLocation(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reach_router__WEBPACK_IMPORTED_MODULE_3__["Router"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_Login__WEBPACK_IMPORTED_MODULE_5__["Login"], {
+  return _ipLocation(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reach_router__WEBPACK_IMPORTED_MODULE_3__["Router"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_Authentication__WEBPACK_IMPORTED_MODULE_4__["Authentication"], {
     path: "/",
     login: _loginUser,
-    register: _submitRegistration
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Logged_Home__WEBPACK_IMPORTED_MODULE_7__["Home"], {
+    register: _submitRegistration,
+    reset: _reset
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Logged_Home__WEBPACK_IMPORTED_MODULE_6__["Home"], {
     path: "/home",
     edit: _edit
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_ForgottenPassword__WEBPACK_IMPORTED_MODULE_7__["ForgottenPassword"], {
+    path: '/forgotten_password',
+    reset: _reset
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_PasswordReset__WEBPACK_IMPORTED_MODULE_8__["PasswordReset"], {
+    path: '/reset-password',
+    reset: _resetPassword
   }));
 };
 

@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import $ from "jquery";
 
 import {Router, navigate} from '@reach/router';
-import { Register } from './Forms/Register';
-import { Login } from './Forms/Login';
+import { Authentication } from './Forms/Authentication';
 import axios from "axios";
 import {Home} from "./Logged/Home";
-import {Additional} from "./Additional";
+import {ForgottenPassword } from "./Forms/ForgottenPassword";
+import {PasswordReset} from "./Forms/PasswordReset";
 
 
 
@@ -36,7 +36,7 @@ const Main = () => {
             })
             .then(json => {
                 if (json.data.success) {
-                    alert("Login Successful!");
+                    alert("Authentication Successful!");
                     let userData = {};
                     if (json.data.data.type === "user") {
                         userData = {
@@ -79,7 +79,7 @@ const Main = () => {
                     console.log(appState);
                     navigate(`/home`, {state:{data:appState}});
                 }else {
-                    alert("Login Failed!");
+                    alert("Authentication Failed!");
                 }
 
                 $("#login-form .sign-in-button")
@@ -187,11 +187,13 @@ const Main = () => {
     const _edit = (data) => {
         console.log("main");
         console.log(data);
+        console.log();
         axios
             .post(`/api/register-additional`, data ,{
                 headers : {
                     'Content-Type' : `application/json`,
                     "X-localization" : location,
+                    "Authorization" : 'bearer'+JSON.parse(localStorage.appState).user.auth_token
                 }
             })
             .then((response) => {
@@ -199,7 +201,6 @@ const Main = () => {
                 return response;
             })
             .then(response =>{
-                console.log("som tu");
                 console.log(response.data.success);
                 if(response.data.success){
                     let userData = {};
@@ -245,6 +246,38 @@ const Main = () => {
             })
     };
 
+    const _reset = (login) =>{
+        axios
+            .post(`/api/password-reset-mail`, login ,{
+                headers : {
+                    'Content-Type' : `application/json`,
+                    "X-localization" : location,
+                }
+            })
+            .then((response) => {
+                console.log(response);
+                return response;
+            });
+        console.log(login);
+    };
+
+    const _resetPassword =(data)=>{
+        console.log(data);
+
+        axios
+          .post(`/api/password-reset`, data ,{
+            headers : {
+              'Content-Type' : `application/json`,
+            "X-localization" : location,
+         }
+         })
+         .then((response) => {
+           console.log(response);
+         return response;
+        })
+
+    };
+
 
     const _ipLocation = () => {
         $.ajax('http://ip-api.com/json')
@@ -263,8 +296,10 @@ const Main = () => {
     return (
             _ipLocation(),
             <Router>
-                <Login path={`/`} login={_loginUser} register={_submitRegistration}/>
+                <Authentication path={`/`} login={_loginUser} register={_submitRegistration} reset={_reset}/>
                 <Home path={`/home`} edit={_edit}/>
+                <ForgottenPassword path={'/forgotten_password'} reset={_reset}/>
+                <PasswordReset path={'/reset-password'} reset={_resetPassword}/>
             </Router>
 
     )

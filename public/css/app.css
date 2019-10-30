@@ -10645,29 +10645,31 @@ a.text-dark:focus {
 }
 
 .authentication-form {
+  font-family: "Montserrat", sans-serif;
   width: 100vw;
   height: 100vh;
-  background-image: url(/images/background-image.jpg?dde4fbe4e668297f025195a2482ee452);
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+}
+
+.authentication-form .highlighted {
+  text-transform: uppercase;
+  background: linear-gradient(to left, #00C7C7, #3a7bd5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 500;
+}
+
+.authentication-form video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  height: 100%;
 }
 
 .authentication-form .content-frame {
-  height: 100vh;
-  background: white;
-  /**
-  * By default, the placeholder should be transparent. Also, it should
-  * inherit the transition.
-  */
-  /**
-  * Show the placeholder when the input is focused.
-  */
-  /**
-  * When the element is focused, remove the label transform.
-  * Also, do this when the placeholder is _not_ shown, i.e. when
-  * there's something in the input at all.
-  */
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.25);
 }
 
 .authentication-form .content-frame .on {
@@ -10681,35 +10683,16 @@ a.text-dark:focus {
   text-transform: uppercase;
 }
 
+.authentication-form .content-frame .form {
+  height: 100%;
+  background: white;
+}
+
 .authentication-form .content-frame .header h1 {
+  font-weight: 100;
+  font-size: 2.5em;
   text-transform: uppercase;
-}
-
-.authentication-form .content-frame .header h1.sign-in {
-  background: linear-gradient(to left, #00C7C7, #50a0ca);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 600;
-}
-
-.authentication-form .content-frame .header h1.sign-up {
-  background: linear-gradient(to left, #50a0ca, #3a7bd5);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 600;
-}
-
-.authentication-form .content-frame svg text {
-  text-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-}
-
-.authentication-form .content-frame .title {
-  font-size: 2.25em;
-  font-family: "Krub", sans-serif;
-}
-
-.authentication-form .content-frame .title:first-letter {
-  text-transform: capitalize;
+  color: #2c393f;
 }
 
 .authentication-form .content-frame .submit-button {
@@ -10735,11 +10718,7 @@ a.text-dark:focus {
 }
 
 .authentication-form .content-frame .sign-in-button {
-  background: linear-gradient(to left, #00C7C7, #50a0ca);
-}
-
-.authentication-form .content-frame .sign-up-button {
-  background: linear-gradient(to left, #50a0ca, #3a7bd5);
+  background: linear-gradient(to left, #00C7C7, #3a7bd5);
 }
 
 .authentication-form .content-frame .submit-button:after {
@@ -10756,11 +10735,7 @@ a.text-dark:focus {
 }
 
 .authentication-form .content-frame .sign-in-button:after {
-  background: linear-gradient(to left, #50a0ca, #00C7C7);
-}
-
-.authentication-form .content-frame .sign-up-button:after {
-  background: linear-gradient(to left, #3a7bd5, #50a0ca);
+  background: linear-gradient(to right, #00C7C7, #3a7bd5);
 }
 
 .authentication-form .content-frame .submit-button:hover:after {
@@ -10771,151 +10746,45 @@ a.text-dark:focus {
   cursor: pointer;
 }
 
-.authentication-form .content-frame label,
-.authentication-form .content-frame input {
-  transition: all 0.2s;
-  touch-action: manipulation;
-  font-family: Krub;
-  font-weight: 400;
+.authentication-form .content-frame .input {
+  background: #EDEDED;
+  border-radius: 27px;
 }
 
-.authentication-form .content-frame input {
-  padding-left: 0.25em;
-  font-size: 1.2em;
-  border: 0;
-  border-bottom: 1px solid #EDEDED;
-  font-family: "Krub", sans-serif;
-  font-weight: 300;
-  -webkit-appearance: none;
-  border-radius: 0;
-  cursor: text;
+.authentication-form .content-frame .input input {
+  background: transparent;
+  border: none;
+  color: #2c393f;
 }
 
-.authentication-form .content-frame input:focus {
+.authentication-form .content-frame .input input:focus {
   outline: 0;
 }
 
-.authentication-form .content-frame label {
-  font-family: "Krub", sans-serif;
+.authentication-form .content-frame .input input::-webkit-input-placeholder {
+  font-weight: 300;
+}
+
+.authentication-form .content-frame .input input::-moz-placeholder {
+  font-weight: 300;
+}
+
+.authentication-form .content-frame .input input:-ms-input-placeholder {
+  font-weight: 300;
+}
+
+.authentication-form .content-frame .input input::-ms-input-placeholder {
+  font-weight: 300;
+}
+
+.authentication-form .content-frame .input input::placeholder {
+  font-weight: 300;
+}
+
+.authentication-form .content-frame .problems {
+  font-weight: 300;
+  color: #d6d6d6;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding-left: 0.25em;
-}
-
-.authentication-form .content-frame input:placeholder-shown + label {
-  cursor: text;
-  max-width: 60%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transform-origin: left bottom;
-  transform: translate(0, 2.125rem) scale(1.5);
-}
-
-.authentication-form .content-frame ::-webkit-input-placeholder {
-  opacity: 0;
-  transition: inherit;
-}
-
-.authentication-form .content-frame input:focus::-webkit-input-placeholder {
-  opacity: 1;
-}
-
-.authentication-form .content-frame input:not(:placeholder-shown) + label,
-.authentication-form .content-frame input:focus + label {
-  transform: translate(0, 0) scale(1);
-  cursor: pointer;
-}
-
-.authentication-form .content-frame ::-webkit-input-placeholder {
-  /* Edge */
-  font-family: "Krub", sans-serif;
-}
-
-.authentication-form .content-frame :-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
-  font-family: "Krub", sans-serif;
-}
-
-.authentication-form .content-frame ::-moz-placeholder {
-  font-family: "Krub", sans-serif;
-  padding-left: 0.25em;
-  font-size: 1em;
-}
-
-.authentication-form .content-frame ::-ms-input-placeholder {
-  font-family: "Krub", sans-serif;
-  padding-left: 0.25em;
-  font-size: 1em;
-}
-
-.authentication-form .content-frame ::placeholder {
-  font-family: "Krub", sans-serif;
-  padding-left: 0.25em;
-  font-size: 1em;
-}
-
-.authentication-form .content-frame .field {
-  display: flex;
-  flex-flow: column-reverse;
-  margin-bottom: 1em;
-  position: relative;
-  z-index: 500;
-}
-
-.authentication-form .content-frame .field input:not(:placeholder-shown) + label,
-.authentication-form .content-frame .field input:focus + label {
-  transform: translate(0, 0) scale(1);
-  cursor: pointer;
-}
-
-.authentication-form .content-frame .sign-in-field input:not(:placeholder-shown) + label,
-.authentication-form .content-frame .sign-in-field input:focus + label {
-  color: #00C7C7;
-}
-
-.authentication-form .content-frame .sign-in-field input:focus {
-  border-bottom: 1px solid #00C7C7;
-}
-
-.authentication-form .content-frame .sign-in-field .forgotten {
-  color: #00C7C7;
-}
-
-.authentication-form .content-frame .sign-up-field input:not(:placeholder-shown) + label,
-.authentication-form .content-frame .sign-up-field input:focus + label {
-  color: #3a7bd5;
-}
-
-.authentication-form .content-frame .sign-up-field input:focus {
-  border-bottom: 1px solid #3a7bd5;
-}
-
-.authentication-form .content-frame .sign-in-with {
-  border-radius: 50px;
-}
-
-.authentication-form .content-frame .sign-in-with svg {
-  width: 35px;
-  height: auto;
-}
-
-@media (max-width: 991.98px) {
-  .authentication-form {
-    height: 100vh;
-  }
-
-  .authentication-form .content-frame .sign-up-container {
-    width: 100%;
-  }
-
-  .authentication-form .content-frame .sign-in-container {
-    width: 100%;
-  }
-
-  .authentication-form .content-frame .overlay-container {
-    display: none;
-  }
 }
 
 .forgotten {
@@ -10990,11 +10859,29 @@ hr {
   -webkit-text-fill-color: transparent;
 }
 
-.ss {
+.warning-message {
+  font-size: 0.8em;
+  background: linear-gradient(to left, #cb2d3e, #ef473a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.warning-frame {
+  border: 1px #ef473a solid;
+}
+
+.forgotten-password-form {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5000;
+  height: 100%;
   background: white;
 }
 
 .additional-info-form {
+  overflow: hidden;
   font-family: "Montserrat", sans-serif;
   position: fixed;
   height: 100vh;
@@ -11013,12 +10900,14 @@ hr {
 }
 
 .additional-info-form .content-frame {
+  border: red 1px solid;
   background: white;
   min-height: 70vh;
   border-radius: 27px;
 }
 
 .additional-info-form .content-frame h1 {
+  font-size: 2.5em;
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
   text-transform: uppercase;
@@ -11026,6 +10915,7 @@ hr {
 }
 
 .additional-info-form .content-frame h3 {
+  font-size: 1.5em;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
   color: #2c393f;
@@ -11061,12 +10951,6 @@ hr {
   -webkit-background-clip: text;
   -webkit-text-fill-color: rgba(0, 0, 0, 0.0001);
   border-radius: 27px;
-}
-
-.additional-info-form .content-frame .languages .language:hover {
-  -webkit-background-clip: unset;
-  -webkit-text-fill-color: white;
-  transition: 1s;
 }
 
 .additional-info-form .content-frame .languages .language.on {
@@ -11138,6 +11022,24 @@ hr {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+#imagePreview {
+  background-image: url(/images/user.svg?7a21cbe90fd31540fb0384792fbc4a86);
+}
+
+@media (max-width: 991.98px) {
+  .additional-info-form .content-frame {
+    max-height: 90vh;
+  }
+
+  .additional-info-form .content-frame h1 {
+    font-size: 1.5em;
+  }
+
+  .additional-info-form .content-frame h3 {
+    font-size: 1.25em;
+  }
 }
 
 /**

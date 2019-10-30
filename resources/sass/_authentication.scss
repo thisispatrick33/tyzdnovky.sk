@@ -1,55 +1,52 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,700&display=swap');
 .authentication-form {
+  font-family: "Montserrat", sans-serif;
   width: 100vw;
   height: 100vh;
-  background: {
-    image : url('../images/background-image.jpg');
-    size: cover;
-    position: center;
-    attachment: fixed;
-  };
+  .highlighted{
+    text-transform: uppercase;
+    background: linear-gradient(to left, $primary-color, #3a7bd5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 500;
+  }
+  video{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: 100%;
+  }
   .content-frame {
-    height : 100vh;
-    background: white;
-    .on{
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.25);
+    .on {
       font-weight: 600;
     }
-    .log-in-with{
+
+    .log-in-with {
       font-family: 'Krub', sans-serif;
       font-size: 1em;
       color: #EDEDED;
       text-transform: uppercase;
     }
-    .header{
-        h1{
-          text-transform: uppercase;
-          &.sign-in{
-            background: linear-gradient(to left, $primary-color, #50a0ca);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 600;
-          }
-          &.sign-up{
-            background: linear-gradient(to left, #50a0ca, #3a7bd5);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 600;
-          }
-        }
+
+    .form {
+      height: 100%;
+      background: white;
+    }
+
+    .header {
+      h1 {
+        font-weight: 100;
+        font-size: 2.5em;
+        text-transform: uppercase;
+        color: $secondary-color;
+      }
 
     }
-    svg{
-      text{
-        text-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-      }
-    }
-    .title {
-      font-size: 2.250em;
-      font-family: 'Krub', sans-serif;
 
-      &:first-letter {
-        text-transform: capitalize;
-      }
-    }
     .submit-button {
       font-size: 1.1em;
       font-weight: 300;
@@ -60,21 +57,22 @@
       text-decoration: none;
       -webkit-backface-visibility: hidden;
       z-index: 1;
-      border : none;
-      span{
-        position : relative;
+      border: none;
+
+      span {
+        position: relative;
         z-index: 300;
       }
-      &:focus{
+
+      &:focus {
         outline: 0;
       }
     }
-    .sign-in-button{
-      background: linear-gradient(to left, $primary-color, #50a0ca);
+
+    .sign-in-button {
+      background: linear-gradient(to left, $primary-color, #3a7bd5);
     }
-    .sign-up-button{
-      background: linear-gradient(to left, #50a0ca, #3a7bd5);
-    }
+
     .submit-button:after {
       position: absolute;
       content: '';
@@ -87,148 +85,38 @@
       z-index: 2;
       opacity: 0;
     }
-    .sign-in-button:after{
-      background: linear-gradient(to left, #50a0ca, $primary-color);
+
+    .sign-in-button:after {
+      background: linear-gradient(to right, $primary-color, #3a7bd5);
     }
-    .sign-up-button:after{
-      background: linear-gradient(to left, #3a7bd5, #50a0ca);
-    }
+
     .submit-button:hover:after {
       opacity: 1;
     }
-    .submit-button:hover{
+
+    .submit-button:hover {
       cursor: pointer;
     }
-    label, input {
-      transition: all 0.2s;
-      touch-action: manipulation;
-      font-family: Krub;
-      font-weight: 400;
+    .input{
+      background: $silver;
+      border-radius: 27px;
+      input{
+        background: transparent;
+        border : none;
+        color: $secondary-color;
+        &:focus {
+          outline: 0;
+        }
+        &::placeholder{
+          font-weight: 300;
+        }
+      }
     }
-    input {
-      padding-left: 0.25em;
-      font-size: 1.2em;
-      border: 0;
-      border-bottom: 1px solid $silver;
-      font-family: 'Krub', sans-serif;
+    .problems{
       font-weight: 300;
-      -webkit-appearance: none;
-      border-radius: 0;
-      cursor: text;
-      &:focus{
-        outline: 0;
-      }
-    }
-
-    label {
-      font-family: 'Krub', sans-serif;
+      color: #d6d6d6;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding-left: 0.25em;
-    }
-    input:placeholder-shown + label {
-      cursor: text;
-      max-width: 60%;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      transform-origin: left bottom;
-      transform: translate(0, 2.125rem) scale(1.5);
-    }
-    /**
-    * By default, the placeholder should be transparent. Also, it should
-    * inherit the transition.
-    */
-    ::-webkit-input-placeholder {
-      opacity: 0;
-      transition: inherit;
-    }
-    /**
-    * Show the placeholder when the input is focused.
-    */
-    input:focus::-webkit-input-placeholder {
-      opacity: 1;
-    }
-    /**
-    * When the element is focused, remove the label transform.
-    * Also, do this when the placeholder is _not_ shown, i.e. when
-    * there's something in the input at all.
-    */
-    input:not(:placeholder-shown) + label,
-    input:focus + label {
-      transform: translate(0, 0) scale(1);
-      cursor: pointer;
-    }
 
-    ::-webkit-input-placeholder { /* Edge */
-      font-family: 'Krub', sans-serif;
-    }
-
-    :-ms-input-placeholder { /* Internet Explorer 10-11 */
-      font-family: 'Krub', sans-serif;
-    }
-
-    ::placeholder {
-      font-family: 'Krub', sans-serif;
-      padding-left: 0.25em;
-      font-size: 1em;
-    }
-    .field {
-      display: flex;
-      flex-flow: column-reverse;
-      margin-bottom: 1em;
-      position: relative;
-      z-index: 500;
-      input:not(:placeholder-shown) + label,
-      input:focus + label {
-        transform: translate(0, 0) scale(1);
-        cursor: pointer;
-      }
-    }
-    .sign-in-field {
-      input:not(:placeholder-shown) + label,
-      input:focus + label {
-        color: $primary-color;
-      }
-      input:focus {
-        border-bottom: 1px solid $primary-color;
-      }
-      .forgotten{
-        color: $primary-color;
-      }
-    }
-    .sign-up-field{
-      input:not(:placeholder-shown) + label,
-      input:focus + label {
-        color:  #3a7bd5;
-      }
-      input:focus {
-        border-bottom: 1px solid #3a7bd5;
-      }
-    }
-    .sign-in-with{
-      svg{
-        width : 35px;
-        height : auto;
-      }
-      border-radius: 50px;
-    }
-
-  }
-}
-@include media-breakpoint-down(md) {
-  .authentication-form {
-    height: 100vh;
-    .content-frame {
-      .sign-up-container{
-        width: 100%;
-      }
-      .sign-in-container{
-        width: 100%;
-      }
-      .overlay-container{
-        display : none;
-      }
     }
   }
 }
@@ -283,6 +171,21 @@ hr{
   }
 
 }
-.ss{
+.warning-message{
+  font-size: 0.8em;
+  background:  linear-gradient(to left, #cb2d3e, #ef473a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.warning-frame{
+  border: 1px #ef473a solid;
+}
+.forgotten-password-form{
+  display: none;
+  position : fixed;
+  top : 0;
+  left : 0;
+  z-index : 5000;
+  height: 100%;
   background: white;
 }

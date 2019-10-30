@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,700&display=swap');
 
 .additional-info-form{
+  overflow: hidden;
   .doth{
     font-weight: 500;
     text-transform: uppercase;
@@ -16,16 +17,19 @@
   left: 0;
   background: rgba(255,255,255,0.85);
   .content-frame{
+    border: red 1px solid;
     background: white;
     min-height: 70vh;
     border-radius : 27px;
     h1{
+      font-size: 2.5em;
       font-family: 'Montserrat', sans-serif;
       font-weight: 500;
       text-transform: uppercase;
       color: $secondary-color;
     }
     h3{
+      font-size: 1.5em;
       font-family: 'Montserrat', sans-serif;
       font-weight: 400;
       color: $secondary-color;
@@ -60,11 +64,6 @@
           -webkit-background-clip: text;
           -webkit-text-fill-color: rgba(0,0,0,0.0001);
           border-radius: 27px;
-          &:hover{
-            -webkit-background-clip: unset;
-            -webkit-text-fill-color: white;
-            transition: 1s;
-          }
           &.on{
             -webkit-background-clip: unset;
             -webkit-text-fill-color: white;
@@ -133,6 +132,22 @@
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
+    }
+  }
+}
+#imagePreview{
+  background-image: url("../images/user.svg");
+}
+@include media-breakpoint-down(md) {
+  .additional-info-form{
+    .content-frame{
+      max-height: 90vh;
+      h1{
+        font-size: 1.5em;
+      }
+      h3{
+        font-size: 1.25em;
+      }
     }
   }
 }

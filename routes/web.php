@@ -20,3 +20,9 @@ Route::get('/login', function () {
 Route::get('/home', function () {
     return view('welcome');
 });
+Route::get('/forgotten_password', function () {
+    return view('welcome');
+});
+Route::get('/reset-password', function () {
+    return view('welcome');
+});
