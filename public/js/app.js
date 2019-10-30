@@ -68941,7 +68941,8 @@ var Authentication = function Authentication(_ref) {
       _ref$reset = _ref.reset,
       reset = _ref$reset === void 0 ? function (f) {
     return f;
-  } : _ref$reset;
+  } : _ref$reset,
+      loginMessage = _ref.loginMessage;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
     type: 2
@@ -68976,6 +68977,7 @@ var Authentication = function Authentication(_ref) {
     } else {
       if (control == "l") {
         login(data);
+        console.log(loginMessage);
       }
     }
   };
@@ -69536,19 +69538,27 @@ var Home = function Home(_ref) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _reach_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @reach/router */ "./node_modules/@reach/router/es/index.js");
-/* harmony import */ var _Forms_Authentication__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Forms/Authentication */ "./resources/js/components/Forms/Authentication.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _Logged_Home__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Logged/Home */ "./resources/js/components/Logged/Home.js");
-/* harmony import */ var _Forms_ForgottenPassword__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Forms/ForgottenPassword */ "./resources/js/components/Forms/ForgottenPassword.js");
-/* harmony import */ var _Forms_PasswordReset__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Forms/PasswordReset */ "./resources/js/components/Forms/PasswordReset.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _reach_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @reach/router */ "./node_modules/@reach/router/es/index.js");
+/* harmony import */ var _Forms_Authentication__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Forms/Authentication */ "./resources/js/components/Forms/Authentication.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _Logged_Home__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Logged/Home */ "./resources/js/components/Logged/Home.js");
+/* harmony import */ var _Forms_ForgottenPassword__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Forms/ForgottenPassword */ "./resources/js/components/Forms/ForgottenPassword.js");
+/* harmony import */ var _Forms_PasswordReset__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Forms/PasswordReset */ "./resources/js/components/Forms/PasswordReset.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -69568,7 +69578,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var Main = function Main() {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
     isLoggedIn: false,
     user: {}
   }),
@@ -69576,14 +69586,19 @@ var Main = function Main() {
       authState = _useState2[0],
       setAuthState = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
       _useState4 = _slicedToArray(_useState3, 2),
       location = _useState4[0],
       setLocation = _useState4[1];
 
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
+      _useState6 = _slicedToArray(_useState5, 2),
+      loginMessage = _useState6[0],
+      setLoginMessage = _useState6[1];
+
   var _loginUser = function _loginUser(data) {
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form .sign-in-button").attr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>');
-    axios__WEBPACK_IMPORTED_MODULE_5___default.a.post("/api/login/", data, {
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()("#login-form .sign-in-button").attr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>');
+    axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/api/login/", data, {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -69592,63 +69607,91 @@ var Main = function Main() {
     }).then(function (response) {
       console.log(response);
       return response;
-    }).then(function (json) {
-      if (json.data.success) {
-        alert("Authentication Successful!");
-        var userData = {};
+    }).then(
+    /*#__PURE__*/
+    function () {
+      var _ref = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(json) {
+        var userData, appState;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+                  setLoginMessage(json.data.messages);
+                }, []);
 
-        if (json.data.data.type === "user") {
-          userData = {
-            active: json.data.data.active,
-            auth_token: json.data.data.auth_token,
-            drivingLicense: json.data.data.drivingLicense,
-            email: json.data.data.email,
-            id: json.data.data.id,
-            lastName: json.data.data.lastName,
-            name: json.data.data.name,
-            phone: json.data.data.phone,
-            ready: json.data.data.ready,
-            type: json.data.data.type,
-            timestamp: new Date().toString()
-          };
-        } else if (json.data.data.type === "company") {
-          userData = {
-            active: json.data.data.active,
-            auth_token: json.data.data.auth_token,
-            bussinesId: json.data.data.bussinesId,
-            email: json.data.data.email,
-            id: json.data.data.id,
-            name: json.data.data.name,
-            phone: json.data.data.phone,
-            ready: json.data.data.ready,
-            type: json.data.data.type,
-            timestamp: new Date().toString()
-          };
-        }
+                if (json.data.success) {
+                  alert("Authentication Successful!");
+                  userData = {};
 
-        var appState = {
-          isLoggedIn: true,
-          user: userData
-        };
-        localStorage["appState"] = JSON.stringify(appState);
-        setAuthState({
-          isLoggedIn: appState.isLoggedIn,
-          user: appState.user
-        });
-        console.log(appState);
-        Object(_reach_router__WEBPACK_IMPORTED_MODULE_3__["navigate"])("/home", {
-          state: {
-            data: appState
+                  if (json.data.data.type === "user") {
+                    userData = {
+                      active: json.data.data.active,
+                      auth_token: json.data.data.auth_token,
+                      drivingLicense: json.data.data.drivingLicense,
+                      email: json.data.data.email,
+                      id: json.data.data.id,
+                      lastName: json.data.data.lastName,
+                      name: json.data.data.name,
+                      phone: json.data.data.phone,
+                      ready: json.data.data.ready,
+                      type: json.data.data.type,
+                      timestamp: new Date().toString()
+                    };
+                  } else if (json.data.data.type === "company") {
+                    userData = {
+                      active: json.data.data.active,
+                      auth_token: json.data.data.auth_token,
+                      bussinesId: json.data.data.bussinesId,
+                      email: json.data.data.email,
+                      id: json.data.data.id,
+                      name: json.data.data.name,
+                      phone: json.data.data.phone,
+                      ready: json.data.data.ready,
+                      type: json.data.data.type,
+                      timestamp: new Date().toString()
+                    };
+                  }
+
+                  appState = {
+                    isLoggedIn: true,
+                    user: userData
+                  };
+                  localStorage["appState"] = JSON.stringify(appState);
+                  setAuthState({
+                    isLoggedIn: appState.isLoggedIn,
+                    user: appState.user
+                  });
+                  console.log(appState);
+                  Object(_reach_router__WEBPACK_IMPORTED_MODULE_4__["navigate"])("/home", {
+                    state: {
+                      data: appState
+                    }
+                  });
+                } else {
+                  alert("Authentication Failed!");
+                }
+
+                jquery__WEBPACK_IMPORTED_MODULE_3___default()("#login-form .sign-in-button").removeAttr("disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign in</span>');
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
           }
-        });
-      } else {
-        alert("Authentication Failed!");
-      }
+        }, _callee);
+      }));
 
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form .sign-in-button").removeAttr("disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign in</span>');
-    })["catch"](function (error) {
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form .sign-in-button").removeAttr("disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign in</span>');
+      return function (_x) {
+        return _ref.apply(this, arguments);
+      };
+    }())["catch"](function (error) {
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#login-form .sign-in-button").removeAttr("disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign in</span>');
     });
+    console.log("main");
+    console.log(loginMessage);
   };
 
   var _logoutUser = function _logoutUser() {
@@ -69665,8 +69708,8 @@ var Main = function Main() {
 
   var _submitRegistration = function _submitRegistration(data) {
     console.log(data);
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form .sign-up-button").attr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>');
-    axios__WEBPACK_IMPORTED_MODULE_5___default.a.post("/api/register", data, {
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()("#login-form .sign-up-button").attr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>');
+    axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/api/register", data, {
       headers: {
         'Content-Type': "application/json",
         "X-localization": location
@@ -69717,7 +69760,7 @@ var Main = function Main() {
           isLoggedIn: appState.isLoggedIn,
           user: appState.user
         });
-        Object(_reach_router__WEBPACK_IMPORTED_MODULE_3__["navigate"])("/home", {
+        Object(_reach_router__WEBPACK_IMPORTED_MODULE_4__["navigate"])("/home", {
           state: {
             data: appState
           }
@@ -69726,9 +69769,9 @@ var Main = function Main() {
         alert("Registration Failed!");
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form .sign-up-button").removeAttr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign up</span>');
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#login-form .sign-up-button").removeAttr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign up</span>');
     })["catch"](function (error) {
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form .sign-up-button").removeAttr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign up</span>');
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#login-form .sign-up-button").removeAttr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign up</span>');
     });
   };
 
@@ -69736,7 +69779,7 @@ var Main = function Main() {
     console.log("main");
     console.log(data);
     console.log();
-    axios__WEBPACK_IMPORTED_MODULE_5___default.a.post("/api/register-additional", data, {
+    axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/api/register-additional", data, {
       headers: {
         'Content-Type': "application/json",
         "X-localization": location,
@@ -69789,7 +69832,7 @@ var Main = function Main() {
           isLoggedIn: appState.isLoggedIn,
           user: appState.user
         });
-        Object(_reach_router__WEBPACK_IMPORTED_MODULE_3__["navigate"])("/home", {
+        Object(_reach_router__WEBPACK_IMPORTED_MODULE_4__["navigate"])("/home", {
           state: {
             data: appState
           }
@@ -69799,7 +69842,7 @@ var Main = function Main() {
   };
 
   var _reset = function _reset(login) {
-    axios__WEBPACK_IMPORTED_MODULE_5___default.a.post("/api/password-reset-mail", login, {
+    axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/api/password-reset-mail", login, {
       headers: {
         'Content-Type': "application/json",
         "X-localization": location
@@ -69813,7 +69856,7 @@ var Main = function Main() {
 
   var _resetPassword = function _resetPassword(data) {
     console.log(data);
-    axios__WEBPACK_IMPORTED_MODULE_5___default.a.post("/api/password-reset", data, {
+    axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/api/password-reset", data, {
       headers: {
         'Content-Type': "application/json",
         "X-localization": location
@@ -69825,32 +69868,33 @@ var Main = function Main() {
   };
 
   var _ipLocation = function _ipLocation() {
-    jquery__WEBPACK_IMPORTED_MODULE_2___default.a.ajax('http://ip-api.com/json').then(function success(response) {
+    jquery__WEBPACK_IMPORTED_MODULE_3___default.a.ajax('http://ip-api.com/json').then(function success(response) {
       setLocation(response.countryCode);
     }, function fail(data, status) {
       console.log('Request failed.  Returned status of', status);
     });
   };
 
-  return _ipLocation(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reach_router__WEBPACK_IMPORTED_MODULE_3__["Router"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_Authentication__WEBPACK_IMPORTED_MODULE_4__["Authentication"], {
+  return _ipLocation(), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_reach_router__WEBPACK_IMPORTED_MODULE_4__["Router"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Forms_Authentication__WEBPACK_IMPORTED_MODULE_5__["Authentication"], {
     path: "/",
     login: _loginUser,
     register: _submitRegistration,
-    reset: _reset
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Logged_Home__WEBPACK_IMPORTED_MODULE_6__["Home"], {
+    reset: _reset,
+    loginMessage: loginMessage
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Logged_Home__WEBPACK_IMPORTED_MODULE_7__["Home"], {
     path: "/home",
     edit: _edit
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_ForgottenPassword__WEBPACK_IMPORTED_MODULE_7__["ForgottenPassword"], {
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Forms_ForgottenPassword__WEBPACK_IMPORTED_MODULE_8__["ForgottenPassword"], {
     path: '/forgotten_password',
     reset: _reset
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_PasswordReset__WEBPACK_IMPORTED_MODULE_8__["PasswordReset"], {
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Forms_PasswordReset__WEBPACK_IMPORTED_MODULE_9__["PasswordReset"], {
     path: '/reset-password',
     reset: _resetPassword
   }));
 };
 
 if (document.getElementById('root')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Main, null), document.getElementById('root'));
+  react_dom__WEBPACK_IMPORTED_MODULE_2___default.a.render(react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Main, null), document.getElementById('root'));
 }
 
 /***/ }),
@@ -69873,8 +69917,8 @@ if (document.getElementById('root')) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/patrik/Projects/tyzdnovky.sk/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/patrik/Projects/tyzdnovky.sk/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Mamuss\PhpstormProjects\tyzdnovky.sk\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Mamuss\PhpstormProjects\tyzdnovky.sk\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

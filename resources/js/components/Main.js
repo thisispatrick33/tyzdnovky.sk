@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import $ from "jquery";
 
@@ -14,6 +14,9 @@ import {PasswordReset} from "./Forms/PasswordReset";
 const Main = () => {
     const [authState, setAuthState] = useState({isLoggedIn : false, user : {}});
     const [location, setLocation] = useState(``);
+    const [loginMessage, setLoginMessage] = useState(``);
+
+
 
 
     const _loginUser = (data) => {
@@ -34,7 +37,10 @@ const Main = () => {
                 console.log(response);
                 return response;
             })
-            .then(json => {
+            .then(async json => {
+                useEffect(()=>{
+                    setLoginMessage(json.data.messages);
+                },[]);
                 if (json.data.success) {
                     alert("Authentication Successful!");
                     let userData = {};
@@ -92,6 +98,9 @@ const Main = () => {
                     .removeAttr("disabled")
                     .html( '<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign in</span>')
             });
+
+        console.log("main");
+        console.log(loginMessage);
     };
 
     const _logoutUser = () => {
@@ -296,7 +305,7 @@ const Main = () => {
     return (
             _ipLocation(),
             <Router>
-                <Authentication path={`/`} login={_loginUser} register={_submitRegistration} reset={_reset}/>
+                <Authentication path={`/`} login={_loginUser} register={_submitRegistration} reset={_reset} loginMessage={loginMessage}/>
                 <Home path={`/home`} edit={_edit}/>
                 <ForgottenPassword path={'/forgotten_password'} reset={_reset}/>
                 <PasswordReset path={'/reset-password'} reset={_resetPassword}/>
