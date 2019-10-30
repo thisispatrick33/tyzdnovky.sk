@@ -298,7 +298,6 @@ const Main = () => {
             <Router>
                 <Authentication path={`/`} login={_loginUser} register={_submitRegistration} reset={_reset}/>
                 <Home path={`/home`} edit={_edit}/>
-                <ForgottenPassword path={'/forgotten_password'} reset={_reset}/>
                 <PasswordReset path={'/reset-password'} reset={_resetPassword}/>
             </Router>
 

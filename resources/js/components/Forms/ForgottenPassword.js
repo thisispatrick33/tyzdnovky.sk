@@ -13,7 +13,7 @@ export const ForgottenPassword = ({reset=f=>f, close = f =>f}) => {
         $.when($('.forgotten-password-form').fadeOut()).done(() => close());
     }
     const submit = ()=>{
-        if(email!==undefined && email.length>0){
+        if(email !== undefined && email.length>0){
             if(email.includes("@")){
                 setMissing({});
                 reset({login: email});

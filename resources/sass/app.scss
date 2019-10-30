@@ -6,6 +6,7 @@ $silver : #EDEDED;
 $error : #D50B0B;
 @import './_authentication';
 @import './_additional';
+@import './_password-reset';
 /**
 * Add a transition to the label and input.
 * I'm not even sure that touch-action: manipulation works on
