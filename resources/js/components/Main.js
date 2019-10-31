@@ -6,7 +6,6 @@ import {Router, navigate} from '@reach/router';
 import { Authentication } from './Forms/Authentication';
 import axios from "axios";
 import {Home} from "./Logged/Home";
-import {ForgottenPassword } from "./Forms/ForgottenPassword";
 import {PasswordReset} from "./Forms/PasswordReset";
 
 
@@ -36,7 +35,6 @@ const Main = () => {
             })
             .then(json => {
                 if (json.data.success) {
-                    alert("Authentication Successful!");
                     let userData = {};
                     if (json.data.data.type === "user") {
                         userData = {
@@ -187,13 +185,14 @@ const Main = () => {
     const _edit = (data) => {
         console.log("main");
         console.log(data);
-        console.log();
+        console.log(localStorage);
+        console.log(JSON.parse(localStorage.appState).user.auth_token);
         axios
             .post(`/api/register-additional`, data ,{
                 headers : {
                     'Content-Type' : `application/json`,
                     "X-localization" : location,
-                    "Authorization" : 'bearer'+JSON.parse(localStorage.appState).user.auth_token
+                    "Authorization" : 'Bearer '+JSON.parse(localStorage.appState).user.auth_token
                 }
             })
             .then((response) => {
