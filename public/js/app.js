@@ -68029,12 +68029,19 @@ var Additional = function Additional(_ref) {
       categories = _useState4[0],
       setCategories = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([{
+    value: null
+  }]),
       _useState6 = _slicedToArray(_useState5, 2),
-      languages = _useState6[0],
-      setLanguages = _useState6[1];
+      branches = _useState6[0],
+      setBranches = _useState6[1];
 
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([{
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+      _useState8 = _slicedToArray(_useState7, 2),
+      languages = _useState8[0],
+      setLanguages = _useState8[1];
+
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([{
     full: "czech",
     "short": "cze"
   }, {
@@ -68074,19 +68081,19 @@ var Additional = function Additional(_ref) {
     full: "vietnamese",
     "short": "vie"
   }]),
-      _useState8 = _slicedToArray(_useState7, 2),
-      languagesInUse = _useState8[0],
-      setLanguagesInUse = _useState8[1];
-
-  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
       _useState10 = _slicedToArray(_useState9, 2),
-      additionalLanguage = _useState10[0],
-      setAdditionalLanguage = _useState10[1];
+      languagesInUse = _useState10[0],
+      setLanguagesInUse = _useState10[1];
 
   var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
       _useState12 = _slicedToArray(_useState11, 2),
-      missing = _useState12[0],
-      setMissing = _useState12[1];
+      additionalLanguage = _useState12[0],
+      setAdditionalLanguage = _useState12[1];
+
+  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
+      _useState14 = _slicedToArray(_useState13, 2),
+      missing = _useState14[0],
+      setMissing = _useState14[1];
 
   var settings = {
     dots: true,
@@ -68096,7 +68103,7 @@ var Additional = function Additional(_ref) {
     slidesToShow: 1,
     slidesToScroll: 1,
     responsive: [{
-      breakpoint: 330,
+      breakpoint: 400,
       settings: {
         adaptiveHeight: true
       }
@@ -68127,160 +68134,164 @@ var Additional = function Additional(_ref) {
     setLanguages(array);
   };
 
-  var formValidator = function formValidator() {
-    if (additionalData.username !== undefined && additionalData.username.length > 0) {
-      if (additionalData.name !== undefined && additionalData.name.length > 0) {
-        if (user.type === "user" && additionalData.lastName !== undefined && additionalData.lastName.length > 0 || user.type === "company" && additionalData.ico !== undefined && additionalData.ico.length > 0) {
-          if (additionalData.phone !== undefined && additionalData.phone.length > 0) {
-            if (additionalData.email !== undefined && additionalData.email.length > 0) {
-              if (additionalData.email.includes('@')) {
-                if (languages !== undefined && languages.length > 0 || additionalLanguage != "" && additionalLanguage.length > 0) {
-                  if (categories[0].value !== null && categories[0].value.length > 0) {
-                    if (categories[0].practise !== null && categories[0].value.length > 0) {
-                      if (categories[0].practise > 0) {
-                        if (categories[0].ready !== null && categories[0].ready.length > 0) {
-                          if (categories[0].ready > today) {
-                            if (categories.length == 1) {
-                              console.log(additionalData);
-                              submit();
-                            } else {
-                              if (categories.length == 2) {
-                                if (categories[1].value !== null && categories[1].value.length > 0) {
-                                  if (categories[1].practise !== null && categories[1].value.length > 0) {
-                                    if (categories[1].practise > 0) {
-                                      if (categories[1].ready !== null && categories[1].ready.length > 0) {
-                                        if (categories[1].ready > today) {
-                                          submit();
+  var formValidator = function formValidator(type) {
+    if (type === "user") {
+      if (additionalData.username !== undefined && additionalData.username.length > 0) {
+        if (additionalData.name !== undefined && additionalData.name.length > 0) {
+          if (user.type === "user" && additionalData.lastName !== undefined && additionalData.lastName.length > 0 || user.type === "company" && additionalData.ico !== undefined && additionalData.ico.length > 0) {
+            if (additionalData.phone !== undefined && additionalData.phone.length > 0) {
+              if (additionalData.email !== undefined && additionalData.email.length > 0) {
+                if (additionalData.email.includes('@')) {
+                  if (languages !== undefined && languages.length > 0 || additionalLanguage != "" && additionalLanguage.length > 0) {
+                    if (categories[0].value !== null && categories[0].value.length > 0) {
+                      if (categories[0].practise !== null && categories[0].value.length > 0) {
+                        if (categories[0].practise > 0) {
+                          if (categories[0].ready !== null && categories[0].ready.length > 0) {
+                            if (categories[0].ready > today) {
+                              if (categories.length == 1) {
+                                console.log(additionalData);
+                                submit();
+                              } else {
+                                if (categories.length == 2) {
+                                  if (categories[1].value !== null && categories[1].value.length > 0) {
+                                    if (categories[1].practise !== null && categories[1].value.length > 0) {
+                                      if (categories[1].practise > 0) {
+                                        if (categories[1].ready !== null && categories[1].ready.length > 0) {
+                                          if (categories[1].ready > today) {
+                                            submit();
+                                          } else {
+                                            setMissing({
+                                              value: 'ready',
+                                              message: "Nezadali ste platny datum nastupu."
+                                            });
+                                            console.log(missing);
+                                          }
                                         } else {
                                           setMissing({
                                             value: 'ready',
-                                            message: "Nezadali ste platny datum nastupu."
+                                            message: "Nezadali ste datum nastupu."
                                           });
                                           console.log(missing);
                                         }
                                       } else {
                                         setMissing({
-                                          value: 'ready',
-                                          message: "Nezadali ste datum nastupu."
+                                          value: 'practise',
+                                          message: "Nezadali ste platnu prax v odbore."
                                         });
                                         console.log(missing);
                                       }
                                     } else {
                                       setMissing({
                                         value: 'practise',
-                                        message: "Nezadali ste platnu prax v odbore."
+                                        message: "Nezadali ste prax v odbore."
                                       });
                                       console.log(missing);
                                     }
                                   } else {
                                     setMissing({
-                                      value: 'practise',
-                                      message: "Nezadali ste prax v odbore."
+                                      value: 'category',
+                                      message: "Nezadali ste odbor."
                                     });
                                     console.log(missing);
                                   }
-                                } else {
-                                  setMissing({
-                                    value: 'category',
-                                    message: "Nezadali ste odbor."
-                                  });
-                                  console.log(missing);
                                 }
                               }
+                            } else {
+                              setMissing({
+                                value: 'ready',
+                                message: "Nezadali ste platny datum nastupu."
+                              });
+                              console.log(missing);
                             }
                           } else {
                             setMissing({
                               value: 'ready',
-                              message: "Nezadali ste platny datum nastupu."
+                              message: "Nezadali ste datum nastupu."
                             });
                             console.log(missing);
                           }
                         } else {
                           setMissing({
-                            value: 'ready',
-                            message: "Nezadali ste datum nastupu."
+                            value: 'practise',
+                            message: "Nezadali ste platnu prax v odbore."
                           });
                           console.log(missing);
                         }
                       } else {
                         setMissing({
                           value: 'practise',
-                          message: "Nezadali ste platnu prax v odbore."
+                          message: "Nezadali ste prax v odbore."
                         });
                         console.log(missing);
                       }
                     } else {
                       setMissing({
-                        value: 'practise',
-                        message: "Nezadali ste prax v odbore."
+                        value: 'category',
+                        message: "Nezadali ste ziaden odbor."
                       });
                       console.log(missing);
                     }
                   } else {
                     setMissing({
-                      value: 'category',
-                      message: "Nezadali ste ziaden odbor."
+                      value: 'language',
+                      message: "Nezadali ste ziaden jazyk."
                     });
                     console.log(missing);
                   }
                 } else {
                   setMissing({
-                    value: 'language',
-                    message: "Nezadali ste ziaden jazyk."
+                    value: '@',
+                    message: "Nezadali ste platny email."
                   });
                   console.log(missing);
                 }
               } else {
                 setMissing({
-                  value: '@',
-                  message: "Nezadali ste platny email."
+                  value: 'email',
+                  message: "Nezadali ste email."
                 });
                 console.log(missing);
               }
             } else {
               setMissing({
-                value: 'email',
-                message: "Nezadali ste email."
+                value: 'phone',
+                message: "Nezadali ste telefon."
               });
               console.log(missing);
             }
           } else {
-            setMissing({
-              value: 'phone',
-              message: "Nezadali ste telefon."
-            });
-            console.log(missing);
+            if (user.type === "user") {
+              setMissing({
+                value: 'lastName',
+                message: "Nezadali ste priezvisko."
+              });
+              console.log(missing);
+            }
+
+            if (user.type === "company") {
+              setMissing({
+                value: 'ico',
+                message: "Nezadali ste ICO."
+              });
+              console.log(missing);
+            }
           }
         } else {
-          if (user.type === "user") {
-            setMissing({
-              value: 'lastName',
-              message: "Nezadali ste priezvisko."
-            });
-            console.log(missing);
-          }
-
-          if (user.type === "company") {
-            setMissing({
-              value: 'ico',
-              message: "Nezadali ste ICO."
-            });
-            console.log(missing);
-          }
+          setMissing({
+            value: 'name',
+            message: "Nezadali ste meno."
+          });
+          console.log(missing);
         }
       } else {
         setMissing({
-          value: 'name',
-          message: "Nezadali ste meno."
+          value: 'username',
+          message: "Nezadali ste username."
         });
         console.log(missing);
       }
     } else {
-      setMissing({
-        value: 'username',
-        message: "Nezadali ste username."
-      });
-      console.log(missing);
+      submit();
     }
   };
 
@@ -68294,29 +68305,47 @@ var Additional = function Additional(_ref) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              if (!(additionalLanguage != "")) {
-                _context.next = 5;
+              if (!(user.type === "user")) {
+                _context.next = 10;
                 break;
               }
 
-              _context.next = 3;
+              if (!(additionalLanguage != "")) {
+                _context.next = 6;
+                break;
+              }
+
+              _context.next = 4;
               return func(_objectSpread({}, additionalData, {
                 categories: categories,
                 languages: [].concat(_toConsumableArray(languages), [additionalLanguage])
               }));
 
-            case 3:
-              _context.next = 7;
+            case 4:
+              _context.next = 8;
               break;
 
-            case 5:
-              _context.next = 7;
+            case 6:
+              _context.next = 8;
               return func(_objectSpread({}, additionalData, {
                 categories: categories,
                 languages: languages
               }));
 
-            case 7:
+            case 8:
+              _context.next = 13;
+              break;
+
+            case 10:
+              console.log(_objectSpread({}, additionalData, {
+                categories: branches
+              }));
+              _context.next = 13;
+              return func(_objectSpread({}, additionalData, {
+                categories: branches
+              }));
+
+            case 13:
             case "end":
               return _context.stop();
           }
@@ -68342,6 +68371,17 @@ var Additional = function Additional(_ref) {
     }
   };
 
+  var addBranch = function addBranch() {
+    var values = _toConsumableArray(branches);
+
+    if (branches.length < 2) {
+      values.push({
+        value: null
+      });
+      setBranches(values);
+    }
+  };
+
   var removeWork = function removeWork(i) {
     var values = _toConsumableArray(categories);
 
@@ -68349,6 +68389,15 @@ var Additional = function Additional(_ref) {
       return index !== i;
     });
     setCategories(values);
+  };
+
+  var removeBranch = function removeBranch(i) {
+    var values = _toConsumableArray(branches);
+
+    values = values.filter(function (value, index) {
+      return index !== i;
+    });
+    setBranches(values);
   };
 
   var onChangeInput = function onChangeInput(value, type, i) {
@@ -68375,6 +68424,13 @@ var Additional = function Additional(_ref) {
     }
 
     setCategories(values);
+  };
+
+  var onChangeBranch = function onChangeBranch(value, i) {
+    var values = _toConsumableArray(branches);
+
+    values[i].value = value;
+    setBranches(values);
   };
 
   return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -68433,7 +68489,7 @@ var Additional = function Additional(_ref) {
     id: "name",
     type: "text",
     name: "name",
-    placeholder: "Enter your name",
+    placeholder: user.type === "user" ? "Enter your first name" : "Enter your company name",
     onChange: function onChange(e) {
       return setAdditionalData(_objectSpread({}, additionalData, {
         name: e.target.value
@@ -68470,7 +68526,7 @@ var Additional = function Additional(_ref) {
     id: "surname",
     type: "text",
     name: "surname",
-    placeholder: "Enter your surname",
+    placeholder: user.type === "user" ? "Enter your surname" : "Enter your business id",
     onChange: function onChange(e) {
       return setAdditionalData(user.type === "user" ? _objectSpread({}, additionalData, {
         lastName: e.target.value
@@ -68478,7 +68534,7 @@ var Additional = function Additional(_ref) {
         ico: e.target.value
       }));
     },
-    value: additionalData.lastName ? additionalData.lastName : "",
+    value: user.type === "user" ? additionalData.lastName ? additionalData.lastName : "" : additionalData.ico ? additionalData.ico : "",
     className: "pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
   }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 row m-0 p-0 justify-content-center"
@@ -68490,7 +68546,7 @@ var Additional = function Additional(_ref) {
     className: "col-12 mb-3 p-0 text-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
-  }, "Contact"), " me here", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+  }, "Contact"), " ", user.type === "user" ? "me" : "us", " here", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
   }, ".")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: " input col-xl-10 col-lg-10 col-md-11 col-sm-11 col-12 mt-3 row p-0 mx-0"
@@ -68570,7 +68626,7 @@ var Additional = function Additional(_ref) {
     },
     value: additionalData.email ? additionalData.email : "",
     className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
-  })))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  })))), user.type === "user" ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 m-0 p-0 row justify-content-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 mx-0 p-0 row my-4 languages justify-content-around"
@@ -68620,9 +68676,9 @@ var Additional = function Additional(_ref) {
       return setAdditionalLanguage(e.target.value);
     },
     className: "  pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
-  })))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  })))) : "", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 m-0 p-0 row justify-content-center"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, user.type === "user" ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 mx-0 p-0 row my-4 languages justify-content-around"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
     className: "col-12 mb-3 p-0 text-center"
@@ -68805,7 +68861,7 @@ var Additional = function Additional(_ref) {
     }, "?")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: " input col-xl-10 col-lg-10 col-md-10 col-sm-11 col-12 row p-0 m-0"
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "col-xl-4 col-lg-4 col-md-3 pl-3 d-flex justify-content-center align-items-center"
+      className: "col-xl-2 col-lg-2 col-md-2 pl-3 d-flex justify-content-center align-items-center"
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
       style: {
         width: "24px",
@@ -68828,7 +68884,7 @@ var Additional = function Additional(_ref) {
       onChange: function onChange(e) {
         return onChangeInput(e.target.value, "r", i);
       },
-      placeholder: "Date"
+      placeholder: "Enter a date"
     }))), categories.length > 1 ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "remove-button shadow",
       onClick: function onClick() {
@@ -68850,15 +68906,81 @@ var Additional = function Additional(_ref) {
       fill: "#d10003",
       d: "m0.324 1.909c-0.429-0.429-0.429-1.143 0-1.587 0.444-0.429 1.143-0.429 1.587 0l9.523 9.539 9.539-9.539c0.429-0.429 1.143-0.429 1.571 0 0.444 0.444 0.444 1.159 0 1.587l-9.523 9.524 9.523 9.539c0.444 0.429 0.444 1.143 0 1.587-0.429 0.429-1.143 0.429-1.571 0l-9.539-9.539-9.523 9.539c-0.444 0.429-1.143 0.429-1.587 0-0.429-0.444-0.429-1.159 0-1.587l9.523-9.539-9.523-9.524z"
     }, "fill", "#1E201D")), " ")) : "");
-  })), categories.length <= 1 ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  })), window.innerWidth > 991 && categories.length <= 1 ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-11 p-0 m-0 text-right",
     onClick: addWork
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
-  }, "+ another profession")) : "")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, "+ another profession")) : "") : react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "col-12 mx-0 p-0 row my-4 languages justify-content-around"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
+    className: "col-12 mb-3 p-0 text-center"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "doth"
+  }, "We"), " finding ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "doth"
+  }, "...")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 m-0 p-0 row justify-content-center"
+  }, branches.map(function (_ref5, i) {
+    var value = _ref5.value;
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "shadow-sm  work-option-frame col-12 justify-content-center p-0 row mx-0 my-3 position-relative"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "col-12 justify-content-around row py-3 px-2"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: " input col-xl-10 col-lg-10 col-md-10 col-sm-11 col-12 row p-0 m-0"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "col-xl-2 col-lg-2 col-md-2 pl-3 d-flex justify-content-center align-items-center"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
+      style: {
+        width: "24px",
+        height: "24px"
+      },
+      fill: "#2c393f",
+      className: "col-12 p-0 d-xl-flex d-lg-flex d-md-flex d-none",
+      viewBox: "0 -24 480 480"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+      d: "m456 72h-104v-32c-.027344-22.082031-17.917969-39.9726562-40-40h-144c-22.082031.0273438-39.972656 17.917969-40 40v32h-104c-13.253906 0-24 10.746094-24 24v178.078125c.0507812 10.148437 6.445312 19.175781 16 22.585937v111.335938c0 13.253906 10.746094 24 24 24h400c13.253906 0 24-10.746094 24-24v-111.328125c9.554688-3.414063 15.953125-12.445313 16-22.59375v-178.078125c0-13.253906-10.746094-24-24-24zm-312-32c0-13.253906 10.746094-24 24-24h144c13.253906 0 24 10.746094 24 24v32h-16v-32c0-4.417969-3.582031-8-8-8h-144c-4.417969 0-8 3.582031-8 8v32h-16zm160 32h-128v-24h128zm144 336c0 4.417969-3.582031 8-8 8h-400c-4.417969 0-8-3.582031-8-8v-108.585938l176 24.273438v20.3125c0 13.253906 10.746094 24 24 24h16c13.253906 0 24-10.746094 24-24v-20.3125l176-24.273438zm-192-64c0 4.417969-3.582031 8-8 8h-16c-4.417969 0-8-3.582031-8-8v-48c0-4.417969 3.582031-8 8-8h16c4.417969 0 8 3.582031 8 8zm208-69.921875c.003906 3.988281-2.929688 7.371094-6.878906 7.929687l-2.21875.304688-182.902344 25.222656v-11.535156c0-13.253906-10.746094-24-24-24h-16c-13.253906 0-24 10.746094-24 24v11.535156l-185.113281-25.527344c-3.949219-.554687-6.890625-3.9375-6.886719-7.929687v-178.078125c0-4.417969 3.582031-8 8-8h432c4.417969 0 8 3.582031 8 8zm0 0"
+    }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      id: "name",
+      type: "text",
+      name: "another",
+      className: " pl-xl-1 pl-lg-1 pl-md-1 pl-sm-3 pl-3 py-2 col-xl-8 col-lg-8 col-md-9 col-12",
+      placeholder: "Enter your field",
+      value: branches[i].value === "" ? "" : branches[i].value,
+      onChange: function onChange(e) {
+        return onChangeBranch(e.target.value, i);
+      }
+    }))), branches.length > 1 ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "remove-button shadow",
+      onClick: function onClick() {
+        return removeBranch(i);
+      }
+    }, " ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
+      className: "m-2",
+      style: {
+        width: "16px",
+        height: "16px"
+      },
+      fill: "#d10003",
+      enableBackground: "new 0 0 22.88 22.88",
+      version: "1.1",
+      viewBox: "0 0 22.88 22.88",
+      space: "preserve",
+      xmlns: "http://www.w3.org/2000/svg"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", _defineProperty({
+      fill: "#d10003",
+      d: "m0.324 1.909c-0.429-0.429-0.429-1.143 0-1.587 0.444-0.429 1.143-0.429 1.587 0l9.523 9.539 9.539-9.539c0.429-0.429 1.143-0.429 1.571 0 0.444 0.444 0.444 1.159 0 1.587l-9.523 9.524 9.523 9.539c0.444 0.429 0.444 1.143 0 1.587-0.429 0.429-1.143 0.429-1.571 0l-9.539-9.539-9.523 9.539c-0.444 0.429-1.143 0.429-1.587 0-0.429-0.444-0.429-1.159 0-1.587l9.523-9.539-9.523-9.524z"
+    }, "fill", "#1E201D")), " ")) : "");
+  })), window.innerWidth > 991 && branches.length <= 1 ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "col-11 p-0 m-0 text-right",
+    onClick: addBranch
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "doth"
+  }, "+ another profession")) : "")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "col-12 m-0 p-0 row justify-content-center align-items-center d-flex"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "container"
+    className: "container d-flex justify-content-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "avatar-upload"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -68874,9 +68996,12 @@ var Additional = function Additional(_ref) {
     htmlFor: "imageUpload",
     className: "d-flex justify-content-center align-items-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
-    style: {
+    style: window.innerWidth > 991 ? {
       width: "20px",
       height: "20px"
+    } : {
+      width: "16px",
+      height: "16px"
     },
     fill: "#2c393f",
     enableBackground: "new 0 0 469.331 469.331",
@@ -68891,8 +69016,64 @@ var Additional = function Additional(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     id: "imagePreview"
   })))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "SUBMIT"
-  }, "submit"))))));
+    className: " input col-xl-10 col-lg-10 col-md-11 col-sm-11 col-12 mt-3 row p-0 m-0 justify-content-center "
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "col-2 pl-3 d-flex justify-content-center align-items-center"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
+    style: {
+      width: "24px",
+      height: "24px"
+    },
+    fill: "#2c393f",
+    className: "col-12 p-0 d-xl-flex d-lg-flex d-md-flex d-none",
+    viewBox: "-20 -99 640 640"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+    d: "m179.25 211c35.691406 0 64.625-28.9375 64.625-64.625 0-35.691406-28.933594-64.625-64.625-64.625s-64.625 28.933594-64.625 64.625c.046875 35.671875 28.953125 64.578125 64.625 64.625zm0-104.125c21.882812 0 39.625 17.738281 39.625 39.625 0 21.882812-17.742188 39.625-39.625 39.625-21.886719 0-39.625-17.742188-39.625-39.625.007812-21.882812 17.742188-39.617188 39.625-39.625zm0 0"
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+    d: "m179.25 234.875c-26.441406-.195312-51.820312 10.417969-70.25 29.375-18.75 19.125-29 45.125-29 73.375.019531 6.894531 5.605469 12.480469 12.5 12.5h173.5c6.894531-.019531 12.480469-5.605469 12.5-12.5 0-28.25-10.25-54.25-29-73.375-18.429688-18.957031-43.804688-29.570312-70.25-29.375zm-73.375 90.25c2.140625-16.34375 9.507812-31.554688 21-43.375 13.832031-13.996094 32.695312-21.875 52.375-21.875s38.542969 7.878906 52.375 21.875c11.46875 11.832031 18.835938 27.039062 21 43.375zm0 0"
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+    d: "m537.5-5.25h-475c-34.511719.015625-62.484375 27.988281-62.5 62.5v317.5c.015625 34.511719 27.988281 62.484375 62.5 62.5h475c34.511719-.015625 62.484375-27.988281 62.5-62.5v-317.5c-.015625-34.511719-27.988281-62.484375-62.5-62.5zm37.5 380c-.058594 20.683594-16.816406 37.441406-37.5 37.5h-475c-20.683594-.058594-37.441406-16.816406-37.5-37.5v-317.5c.058594-20.683594 16.816406-37.441406 37.5-37.5h475c20.683594.058594 37.441406 16.816406 37.5 37.5zm0 0"
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+    fill: "#00C7C7",
+    d: "m506.75 203.5h-145.625c-6.902344 0-12.5 5.59375-12.5 12.5s5.597656 12.5 12.5 12.5h145.625c6.902344 0 12.5-5.59375 12.5-12.5s-5.597656-12.5-12.5-12.5zm0 0"
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+    d: "m506.75 283.5h-145.625c-6.902344 0-12.5 5.59375-12.5 12.5s5.597656 12.5 12.5 12.5h145.625c6.902344 0 12.5-5.59375 12.5-12.5s-5.597656-12.5-12.5-12.5zm0 0"
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+    d: "m506.75 123.5h-145.625c-6.902344 0-12.5 5.59375-12.5 12.5s5.597656 12.5 12.5 12.5h145.625c6.902344 0 12.5-5.59375 12.5-12.5s-5.597656-12.5-12.5-12.5zm0 0"
+  }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    id: "name",
+    type: "text",
+    name: "name",
+    placeholder: "Enter your username",
+    onChange: function onChange(e) {
+      return setAdditionalData(_objectSpread({}, additionalData, {
+        username: e.target.value
+      }));
+    },
+    value: additionalData.username ? additionalData.username : "",
+    className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
+  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "col-xl-10 col-lg-10 col-12 row driving-licence align-items-center my-4",
+    onClick: function onClick() {
+      return setAdditionalData(_objectSpread({}, additionalData, {
+        drivingLicense: !additionalData.drivingLicense
+      }));
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "col-1 d-flex justify-content-center p-0"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "square",
+    style: additionalData.drivingLicense ? {
+      background: "#00C7C7"
+    } : {
+      background: "white"
+    }
+  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "col-10 pl-3 py-0 pr-0"
+  }, "I have a driving license for group B")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    className: "submit-button sign-in-button col-xl-5 col-lg-6 col-md-9 col-11 text-center py-2 mb-5 mt-3 ",
+    onClick: submit
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "update profile")))))));
 };
 
 /***/ }),
@@ -69051,13 +69232,20 @@ var Authentication = function Authentication(_ref) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "authentication-form | container-fluid | row col-12 | align-items-center | m-0 p-0"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
-    autoPlay: true,
-    muted: true,
+    autoPlay: "autoplay",
     loop: true,
-    disablePictureInPicture: true
+    muted: "muted",
+    preload: "auto",
+    poster: "./images/poster.jpg"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
     src: "./images/background-video.mp4",
     type: "video/mp4"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
+    src: "./images/background-video.webm",
+    type: "video/webm"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
+    src: "./images/background-video.ogg",
+    type: "video/ogg"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "content-frame | col-12 | px-0 m-0 "
   }, passwordReset ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ForgottenPassword__WEBPACK_IMPORTED_MODULE_1__["ForgottenPassword"], {
@@ -69684,8 +69872,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _Logged_Home__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Logged/Home */ "./resources/js/components/Logged/Home.js");
-/* harmony import */ var _Forms_ForgottenPassword__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Forms/ForgottenPassword */ "./resources/js/components/Forms/ForgottenPassword.js");
-/* harmony import */ var _Forms_PasswordReset__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Forms/PasswordReset */ "./resources/js/components/Forms/PasswordReset.js");
+/* harmony import */ var _Forms_PasswordReset__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Forms/PasswordReset */ "./resources/js/components/Forms/PasswordReset.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -69693,7 +69880,6 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 
@@ -69738,7 +69924,6 @@ var Main = function Main() {
       setLoginMessage(json.data.messages);
 
       if (json.data.success) {
-        alert("Authentication Successful!");
         var userData = {};
 
         if (json.data.data.type === "user") {
@@ -69881,12 +70066,13 @@ var Main = function Main() {
   var _edit = function _edit(data) {
     console.log("main");
     console.log(data);
-    console.log();
+    console.log(localStorage);
+    console.log(JSON.parse(localStorage.appState).user.auth_token);
     axios__WEBPACK_IMPORTED_MODULE_5___default.a.post("/api/register-additional", data, {
       headers: {
         'Content-Type': "application/json",
         "X-localization": location,
-        "Authorization": 'bearer' + JSON.parse(localStorage.appState).user.auth_token
+        "Authorization": 'Bearer ' + JSON.parse(localStorage.appState).user.auth_token
       }
     }).then(function (response) {
       console.log(response);
@@ -69987,7 +70173,7 @@ var Main = function Main() {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Logged_Home__WEBPACK_IMPORTED_MODULE_6__["Home"], {
     path: "/home",
     edit: _edit
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_PasswordReset__WEBPACK_IMPORTED_MODULE_8__["PasswordReset"], {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_PasswordReset__WEBPACK_IMPORTED_MODULE_7__["PasswordReset"], {
     path: '/reset-password',
     reset: _resetPassword
   }));

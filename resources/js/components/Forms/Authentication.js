@@ -75,8 +75,10 @@ export const Authentication = ({login = f => f, register = f => f, reset = f => 
     };
     return (
         <div className={`authentication-form | container-fluid | row col-12 | align-items-center | m-0 p-0`}>
-            <video autoPlay muted loop disablePictureInPicture>
+            <video  autoPlay="autoplay" loop muted={`muted`} preload="auto" poster={"./images/poster.jpg"}>
                 <source src="./images/background-video.mp4" type="video/mp4" />
+                <source src="./images/background-video.webm" type="video/webm" />
+                <source src="./images/background-video.ogg" type="video/ogg" />
             </video>
             <div className={`content-frame | col-12 | px-0 m-0 `}>
                 {
