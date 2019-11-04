@@ -17,8 +17,6 @@ const Main = () => {
     const [loginMessage, setLoginMessage] = useState(``);
 
 
-
-
     const _loginUser = (data) => {
         $("#login-form .sign-in-button")
             .attr("disabled", "disabled")
@@ -37,10 +35,8 @@ const Main = () => {
                 console.log(response);
                 return response;
             })
-            .then(async json => {
-                useEffect(()=>{
-                    setLoginMessage(json.data.messages);
-                },[]);
+            .then(  json => {
+                setLoginMessage(json.data.messages);
                 if (json.data.success) {
                     alert("Authentication Successful!");
                     let userData = {};
@@ -88,6 +84,7 @@ const Main = () => {
                     alert("Authentication Failed!");
                 }
 
+
                 $("#login-form .sign-in-button")
                     .removeAttr("disabled")
                     .html( '<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign in</span>')
@@ -98,7 +95,6 @@ const Main = () => {
                     .removeAttr("disabled")
                     .html( '<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign in</span>')
             });
-
         console.log("main");
         console.log(loginMessage);
     };
@@ -307,7 +303,6 @@ const Main = () => {
             <Router>
                 <Authentication path={`/`} login={_loginUser} register={_submitRegistration} reset={_reset} loginMessage={loginMessage}/>
                 <Home path={`/home`} edit={_edit}/>
-                <ForgottenPassword path={'/forgotten_password'} reset={_reset}/>
                 <PasswordReset path={'/reset-password'} reset={_resetPassword}/>
             </Router>
 

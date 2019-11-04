@@ -11042,6 +11042,230 @@ hr {
   }
 }
 
+.password-reset-form {
+  font-family: "Montserrat", sans-serif;
+  width: 100vw;
+  height: 100vh;
+}
+
+.password-reset-form .highlighted {
+  text-transform: uppercase;
+  background: linear-gradient(to left, #00C7C7, #3a7bd5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 500;
+}
+
+.password-reset-form video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  height: 100%;
+}
+
+.password-reset-form .content-frame {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.password-reset-form .content-frame .on {
+  font-weight: 600;
+}
+
+.password-reset-form .content-frame .log-in-with {
+  font-family: "Krub", sans-serif;
+  font-size: 1em;
+  color: #EDEDED;
+  text-transform: uppercase;
+}
+
+.password-reset-form .content-frame .form {
+  height: 100%;
+  background: white;
+}
+
+.password-reset-form .content-frame .header h1 {
+  font-weight: 100;
+  font-size: 2.5em;
+  text-transform: uppercase;
+  color: #2c393f;
+}
+
+.password-reset-form .content-frame .submit-button {
+  font-size: 1.1em;
+  font-weight: 300;
+  border-radius: 50px;
+  text-transform: uppercase;
+  color: white;
+  position: relative;
+  text-decoration: none;
+  -webkit-backface-visibility: hidden;
+  z-index: 1;
+  border: none;
+}
+
+.password-reset-form .content-frame .submit-button span {
+  position: relative;
+  z-index: 300;
+}
+
+.password-reset-form .content-frame .submit-button:focus {
+  outline: 0;
+}
+
+.password-reset-form .content-frame .sign-in-button {
+  background: linear-gradient(to left, #00C7C7, #3a7bd5);
+}
+
+.password-reset-form .content-frame .submit-button:after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+  transition: opacity 0.5s ease-out;
+  z-index: 2;
+  opacity: 0;
+}
+
+.password-reset-form .content-frame .sign-in-button:after {
+  background: linear-gradient(to right, #00C7C7, #3a7bd5);
+}
+
+.password-reset-form .content-frame .submit-button:hover:after {
+  opacity: 1;
+}
+
+.password-reset-form .content-frame .submit-button:hover {
+  cursor: pointer;
+}
+
+.password-reset-form .content-frame .input {
+  background: #EDEDED;
+  border-radius: 27px;
+}
+
+.password-reset-form .content-frame .input input {
+  background: transparent;
+  border: none;
+  color: #2c393f;
+}
+
+.password-reset-form .content-frame .input input:focus {
+  outline: 0;
+}
+
+.password-reset-form .content-frame .input input::-webkit-input-placeholder {
+  font-weight: 300;
+}
+
+.password-reset-form .content-frame .input input::-moz-placeholder {
+  font-weight: 300;
+}
+
+.password-reset-form .content-frame .input input:-ms-input-placeholder {
+  font-weight: 300;
+}
+
+.password-reset-form .content-frame .input input::-ms-input-placeholder {
+  font-weight: 300;
+}
+
+.password-reset-form .content-frame .input input::placeholder {
+  font-weight: 300;
+}
+
+.password-reset-form .content-frame .problems {
+  font-weight: 300;
+  color: #d6d6d6;
+  text-transform: uppercase;
+}
+
+.forgotten {
+  font-weight: 300;
+  color: #00C7C7;
+}
+
+.forgotten:hover {
+  cursor: pointer;
+}
+
+.sign-in-with:hover {
+  cursor: pointer;
+}
+
+@keyframes show {
+  0%, 49.99% {
+    opacity: 0;
+    z-index: 1;
+  }
+
+  50%, 100% {
+    opacity: 1;
+    z-index: 5;
+  }
+}
+
+.st0 {
+  fill: #2C393F;
+}
+
+.st1 {
+  font-family: "Krub-Bold";
+}
+
+.st2 {
+  font-size: 329.4049px;
+}
+
+.st3 {
+  fill: #00C7C7;
+}
+
+hr {
+  border-top: 1px solid #EDEDED !important;
+}
+
+.choose {
+  border-radius: 25px;
+}
+
+.choose p {
+  text-transform: uppercase;
+}
+
+.choose p.on {
+  text-transform: uppercase;
+  background: linear-gradient(to left, #50a0ca, #3a7bd5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.warning-message {
+  font-size: 0.8em;
+  background: linear-gradient(to left, #cb2d3e, #ef473a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.warning-frame {
+  border: 1px #ef473a solid;
+}
+
+.forgotten-password-form {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5000;
+  height: 100%;
+  background: white;
+}
+
 /**
 * Add a transition to the label and input.
 * I'm not even sure that touch-action: manipulation works on
