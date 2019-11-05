@@ -189,3 +189,11 @@ hr{
   height: 100%;
   background: white;
 }
+.driving-licence{
+  .square{
+    width: 20px;
+    height: 20px;
+    border: 1px $primary-color solid;
+    border-radius: 5px;
+  }
+}
