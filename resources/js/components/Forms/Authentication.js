@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {ForgottenPassword} from "./ForgottenPassword";
 import $ from 'jquery';
-export const Authentication = ({login = f => f, register = f => f, reset = f => f}) => {
+export const Authentication = ({message,login = f => f, register = f => f, reset = f => f}) => {
 
     const [data,setData] = useState({type : 2});
     const [slide, setSlide] = useState(0);
@@ -13,10 +13,9 @@ export const Authentication = ({login = f => f, register = f => f, reset = f => 
         if(control=="r"){
             register(data);
         }
-        else {
-            if (control=="l"){
-                login(data);
-            }
+
+        else if (control=="l"){
+           login(data)
         }
     };
 
@@ -84,7 +83,8 @@ export const Authentication = ({login = f => f, register = f => f, reset = f => 
                     passwordReset ?  <ForgottenPassword close={_forgottenPassword} reset={reset}/> : ``
                 }
                     <form id={`login-form`} className={`form row col-xl-4 col-lg-5 col-md-6 col-sm-8 col-12 | align-items-start | justify-content-center align-items-center | m-0`}>
-                                <div className="col-11 justify-content-center row">
+                        <p>{message}</p>
+                        <div className="col-11 justify-content-center row">
                                     <div className=" row m-0 p-0 col-12 header justify-content-center ">
                                         <h1 className={`col-11 p-0 text-center sign-in`}>sign <span className="highlighted">{slide === 0 ? `in` : `up`}.</span></h1>
                                     </div>
