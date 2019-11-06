@@ -8,16 +8,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Database\Eloquent\Model;
 
-class Company extends Authenticatable implements JWTSubject
+class Business extends Authenticatable implements JWTSubject
 {
-    public function branches(){
-        return $this->belongsToMany('App\Branch', 'branch_company');
-    }
-
     use Notifiable;
+    protected $guard = 'businesses';
 
-    protected $guard = 'companies';
-
+    protected $table = 'business';
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *

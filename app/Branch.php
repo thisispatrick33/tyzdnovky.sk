@@ -10,7 +10,4 @@ class Branch extends Model
         return $this->belongsToMany('App\User', 'branch_user');
     }
 
-    public function company(){
-        return $this->belongsToMany('App\Company', 'branch_company');
-    }
 }

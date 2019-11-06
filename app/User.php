@@ -11,11 +11,11 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Authenticatable implements JWTSubject
 {
 
-    public function branches(){
-        return $this->belongsToMany('App\Branch', 'branch_user');
-    }
     public function languages(){
         return $this->belongsToMany('App\Language', 'language_user');
+    }
+    public function branches(){
+        return $this->belongsToMany('App\Branch', 'branch_user');
     }
 
     use Notifiable;

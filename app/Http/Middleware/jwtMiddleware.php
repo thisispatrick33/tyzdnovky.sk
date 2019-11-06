@@ -19,7 +19,7 @@ class jwtMiddleware
             if(\App\User::where("auth_token",$token)->first()){
                 $response = $next($request);
             }
-            elseif(\App\Company::where("auth_token",$token)->first()){
+            elseif(\App\Business::where("auth_token",$token)->first()){
                 $response = $next($request);
             }
             //ADMIN TODO
