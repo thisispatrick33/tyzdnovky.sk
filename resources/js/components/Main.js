@@ -13,16 +13,17 @@ import {PasswordReset} from "./Forms/PasswordReset";
 const Main = () => {
     const [authState, setAuthState] = useState({isLoggedIn : false, user : {}});
     const [location, setLocation] = useState(``);
-
+    const [message, setMessage] = useState(``);
 
     const _loginUser = (data) => {
+        let message = ``;
         $("#login-form .sign-in-button")
             .attr("disabled", "disabled")
             .html(
                 '<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>'
             );
         axios
-            .post("/api/login/", data, {
+            .post("/api/login", data, {
                 headers : {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
@@ -34,6 +35,7 @@ const Main = () => {
                 return response;
             })
             .then(json => {
+                setMessage(json.data.messages);
                 if (json.data.success) {
                     let userData = {};
                     if (json.data.data.type === "user") {
@@ -84,12 +86,15 @@ const Main = () => {
                     .removeAttr("disabled")
                     .html( '<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign in</span>')
 
+
             })
             .catch(error => {
                 $("#login-form .sign-in-button")
                     .removeAttr("disabled")
                     .html( '<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign in</span>')
             });
+
+
     };
 
     const _logoutUser = () => {
@@ -117,7 +122,6 @@ const Main = () => {
                 }
             })
             .then((response) => {
-                console.log(response);
                 return response;
             })
             .then(json => {
@@ -164,7 +168,6 @@ const Main = () => {
                     navigate(`/home`, {state:{data:appState}});
                 }else {
                     alert(`Registration Failed!`);
-
                 }
                 $("#login-form .sign-up-button")
                     .removeAttr("disabled", "disabled")
@@ -295,7 +298,7 @@ const Main = () => {
     return (
             _ipLocation(),
             <Router>
-                <Authentication path={`/`} login={_loginUser} register={_submitRegistration} reset={_reset}/>
+                <Authentication path={`/`} login={_loginUser} register={_submitRegistration} reset={_reset} message={message}/>
                 <Home path={`/home`} edit={_edit}/>
                 <PasswordReset path={'/reset-password'} reset={_resetPassword}/>
             </Router>

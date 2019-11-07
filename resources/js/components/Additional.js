@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+ import React, {useState} from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -20,42 +20,10 @@ export const Additional = ({user, func = f => f}) => {
     }
 
     const [additionalData,setAdditionalData] = useState({drivingLicense: false, email: user.email});
-    const [categories, setCategories] = useState([{value: null, practise: null, ready: null}]);
-    const [branches, setBranches] = useState([{value: null}]);
     const [languages, setLanguages] = useState([]);
     const [languagesInUse, setLanguagesInUse] = useState([{full : "czech", short : "cze"}, {full : "spanish", short : "spa"}, {full : "english", short : "eng"}, {full : "hungarian", short : "hun"}, {full : "arabic", short : "arb"}, {full : "portugese", short : "ptg"}, {full : "russian", short : "rus"}, {full : "japanese", short : "jap"}, {full : "german", short : "ger"}, {full : "korean", short : "kor"}, {full : "french", short : "fre"}, {full : "turkish", short : "tur"}, {full : "vietnamese", short : "vie"}]);
     const [additionalLanguage, setAdditionalLanguage] = useState("");
     const [missing, setMissing] = useState(``);
-    var settings = {
-        dots: true,
-        arrows : false,
-        infinite: false,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        responsive : [
-            {
-                breakpoint: 400,
-                settings: {
-                    adaptiveHeight : true
-                }
-            },
-        ]
-    };
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth()+1; //January is 0!
-    var yyyy = today.getFullYear();
-    if(dd<10){
-        dd='0'+dd
-    }
-    if(mm<10){
-        mm='0'+mm
-    }
-
-    today = yyyy+'-'+mm+'-'+dd;
-
-
 
     const handleLang = (value) => {
         let array = [...languages];
@@ -63,7 +31,7 @@ export const Additional = ({user, func = f => f}) => {
         setLanguages(array);
     };
 
-    const formValidator=(type)=>{
+    const formValidator = type =>{
         if(type === "user"){
             if(additionalData.username !== undefined && additionalData.username.length > 0){
                 if(additionalData.name !== undefined && additionalData.name.length > 0){
@@ -105,7 +73,7 @@ export const Additional = ({user, func = f => f}) => {
                                                                             console.log(missing);
                                                                         }
                                                                     }else {
-                                                                        setMissing({value: 'category', message: `Nezadali ste odbor.`});
+                                                                        setMissing({value: 'category col-auto mx-2 my-2 py-2 shadow-sm', message: `Nezadali ste odbor.`});
                                                                         console.log(missing);
                                                                     }
                                                                 }
@@ -133,7 +101,7 @@ export const Additional = ({user, func = f => f}) => {
                                             }
                                         }
                                         else {
-                                            setMissing({value: 'category', message: `Nezadali ste ziaden odbor.`});
+                                            setMissing({value: 'category col-auto mx-2 my-2 py-2 shadow-sm', message: `Nezadali ste ziaden odbor.`});
                                             console.log(missing);
                                         }
                                     }
@@ -196,67 +164,23 @@ export const Additional = ({user, func = f => f}) => {
 
     };
 
-    const addWork=()=>{
-        let values = [...categories];
-        if(categories.length<2){
-            values.push({value: null, practise: null, ready: null});
-            setCategories(values);
-        }
+    const settings = {
+        dots: true,
+        arrows : true,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        adaptiveHeight : false,
+        nextArrow: <NextArrow />,
+        prevArrow: <PreviousArrow />
     };
-    const addBranch=()=>{
-        let values = [...branches];
-        if(branches.length<2){
-            values.push({value: null});
-            setBranches(values);
-        }
-    };
-
-    const removeWork=(i)=>{
-        let values = [...categories];
-        values = values.filter((value, index)=>index!==i);
-        setCategories(values);
-    };
-    const removeBranch=(i)=>{
-        let values = [...branches];
-        values = values.filter((value, index)=>index!==i);
-        setBranches(values);
-    };
-
-    const onChangeInput=(value, type, i)=>{
-        let values = [...categories];
-
-        if(type=="w"){
-            values[i].value = value;
-        }
-        if(type=="p"){
-            let validatedValue = "";
-            for (let i=0; i<value.length; i++){
-                if(value.charCodeAt(i)>47&&value.charCodeAt(i)<58){
-                    validatedValue+=value.charAt(i);
-                }
-            }
-            values[i].practise = validatedValue;
-        }
-        if(type=="r"){
-            values[i].ready = value;
-        }
-        setCategories(values)
-
-    };
-    const onChangeBranch=(value, i)=>{
-        let values = [...branches];
-        values[i].value = value;
-        setBranches(values)
-
-    };
-
-
 
     return (
         <div className={`additional-info-form | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0`} style={{overflowY : `scroll`}}>
-            <div className="content-frame | row  col-xl-6 col-lg-6 col-md-7 col-sm-9 col-11 | justify-content-center align-items-center | px-0 | shadow-sm py-5 my-5">
-                <h1 className={'pt-xl-3 pt-lg-3 pt-md-2 pt-sm-1 pt-1 text-center'}><span className="doth">Set up</span> your profile <span className="doth">...</span></h1>
+            <div className="content-frame | row  col-xl-6 col-lg-6 col-md-7 col-12 | justify-content-center align-items-center | px-0 | shadow-sm py-xl-5 py-lg-5 py-md-5 py-0 my-xl-5 my-lg-5 my-md-5 my-0">
                 <div className="col-10 row main-info p-0 m-0 align-items-center">
+                    <h1 className={'col-12 p-0 text-center'}><span className="doth">Set up</span> your profile <span className="doth">...</span></h1>
                     <Slider {...settings} className={`col-12 p-0 py-xl-3 py-lg-3 py-md-2 py-md-1 py-1`}>
                         <div className={`col-12 m-0 p-0 row justify-content-center`}>
                             <div className="col-12 mx-0 p-0 row my-xl-4 my-lg-4 my-md-3 my-sm-3 my-3 justify-content-around">
@@ -343,6 +267,7 @@ export const Additional = ({user, func = f => f}) => {
                                         id={`email`}
                                         type={`email`}
                                         name={`email`}
+                                        disabled={true}
                                         placeholder={`Enter your email`}
                                         onChange={(e) => setAdditionalData({...additionalData, email : e.target.value})}
                                         value={additionalData.email ? additionalData.email  : ``}
@@ -379,158 +304,60 @@ export const Additional = ({user, func = f => f}) => {
                                 </div>
                             </div> : ``
                         }
-                        <div className={`col-12 m-0 p-0 row justify-content-center`}>
-                            {user.type === `user` ?
+                        <div className={`col-12 m-0 p-0 row justify-content-center align-items-center d-flex`}>
                             <div className="col-12 mx-0 p-0 row my-4 languages justify-content-around">
-                                <h3 className="col-12 mb-3 p-0 text-center"><span className="doth">work</span> skills <span className="doth">.</span></h3>
-                                <div className="col-12 m-0 p-0 row justify-content-center">
-                                    {
-                                        categories.map(({value, practise, ready},i)=>{
-                                            return (
-                                                <div className={`shadow-sm  work-option-frame col-12 justify-content-center p-0 row mx-0 my-3 position-relative`}>
+                                <h3 className="col-12 mb-3 p-0 text-center"><span className="doth">fulltime</span> job <span className="doth">?</span></h3>
+                                <h6 className="col-12 mb-3 p-0 text-center">z akého odvetvia chcete dostávať pracovné ponuky ?</h6>
+                                <div className="categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center">
+                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
+                                        automobile industry
+                                    </div>
+                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
+                                        automobile industry
+                                    </div>
+                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
+                                        automobile industry
+                                    </div>
+                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
+                                        automobile industry
+                                    </div>
+                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
+                                        automobile industry
+                                    </div>
+                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
+                                        automobile industry
+                                    </div>
+                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
+                                        automobile industry
+                                    </div>
+                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
+                                        automobile industry
+                                    </div>
+                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
+                                        automobile industry
+                                    </div>
 
-                                                        <div className="col-12 justify-content-around row py-3 px-2">
-                                                            <div className={` input col-xl-10 col-lg-10 col-md-10 col-sm-11 col-12 row p-0 m-0`}>
-                                                                <div className="col-xl-2 col-lg-2 col-md-2 pl-3 d-flex justify-content-center align-items-center">
-                                                                    <svg style={{width : `24px`, height : `24px`}} fill="#2c393f" className={`col-12 p-0 d-xl-flex d-lg-flex d-md-flex d-none`}  viewBox="0 -24 480 480"><path d="m456 72h-104v-32c-.027344-22.082031-17.917969-39.9726562-40-40h-144c-22.082031.0273438-39.972656 17.917969-40 40v32h-104c-13.253906 0-24 10.746094-24 24v178.078125c.0507812 10.148437 6.445312 19.175781 16 22.585937v111.335938c0 13.253906 10.746094 24 24 24h400c13.253906 0 24-10.746094 24-24v-111.328125c9.554688-3.414063 15.953125-12.445313 16-22.59375v-178.078125c0-13.253906-10.746094-24-24-24zm-312-32c0-13.253906 10.746094-24 24-24h144c13.253906 0 24 10.746094 24 24v32h-16v-32c0-4.417969-3.582031-8-8-8h-144c-4.417969 0-8 3.582031-8 8v32h-16zm160 32h-128v-24h128zm144 336c0 4.417969-3.582031 8-8 8h-400c-4.417969 0-8-3.582031-8-8v-108.585938l176 24.273438v20.3125c0 13.253906 10.746094 24 24 24h16c13.253906 0 24-10.746094 24-24v-20.3125l176-24.273438zm-192-64c0 4.417969-3.582031 8-8 8h-16c-4.417969 0-8-3.582031-8-8v-48c0-4.417969 3.582031-8 8-8h16c4.417969 0 8 3.582031 8 8zm208-69.921875c.003906 3.988281-2.929688 7.371094-6.878906 7.929687l-2.21875.304688-182.902344 25.222656v-11.535156c0-13.253906-10.746094-24-24-24h-16c-13.253906 0-24 10.746094-24 24v11.535156l-185.113281-25.527344c-3.949219-.554687-6.890625-3.9375-6.886719-7.929687v-178.078125c0-4.417969 3.582031-8 8-8h432c4.417969 0 8 3.582031 8 8zm0 0"/></svg>
-                                                                </div>
-                                                                <input
-                                                                    id={`name`}
-                                                                    type={`text`}
-                                                                    name={`another`}
-                                                                    className={` pl-xl-1 pl-lg-1 pl-md-1 pl-sm-3 pl-3 py-2 col-xl-8 col-lg-8 col-md-9 col-12`}
-                                                                    placeholder={`Enter your field`}
-                                                                    value={categories[i].value}
-                                                                    onChange={(e)=>onChangeInput(e.target.value, "w", i)}
-                                                                />
-                                                            </div>
-                                                            <p className={`col-12 text-center mt-3 mb-0`}><span className="doth">How long</span> have you been working in this field <span className="doth">?</span></p>
-                                                            <div className={` input col-xl-10 col-lg-10 col-md-10 col-sm-11 col-12 row p-0 m-0`}>
-                                                                <div className="col-xl-2 col-lg-2 col-md-2 pl-3 d-flex justify-content-center align-items-center">
-                                                                    <svg style={{width : `24px`, height : `24px`}} fill="#2c393f" className={`col-12 p-0 d-xl-flex d-lg-flex d-md-flex d-none`} enableBackground="new 0 0 58 58" viewBox="0 0 58 58" space="preserve">
-                                                                        <path d="m42.899 4.5c-0.465-2.279-2.484-4-4.899-4-0.553 0-1 0.447-1 1s0.447 1 1 1c1.654 0 3 1.346 3 3s-1.346 3-3 3c-0.553 0-1 0.447-1 1s0.447 1 1 1c2.414 0 4.434-1.721 4.899-4h13.101v9h-54v-9h17c0.553 0 1-0.447 1-1s-0.447-1-1-1h-1.816c0.414-1.162 1.514-2 2.816-2 1.654 0 3 1.346 3 3s-1.346 3-3 3c-0.553 0-1 0.447-1 1s0.447 1 1 1c2.757 0 5-2.243 5-5s-2.243-5-5-5c-2.414 0-4.434 1.721-4.899 4h-15.101v53h58v-53h-15.101zm13.101 51h-54v-38h54v38z"/>
-                                                                        <path d="m26 2.5c1.654 0 3 1.346 3 3s-1.346 3-3 3c-0.553 0-1 0.447-1 1s0.447 1 1 1c2.757 0 5-2.243 5-5s-2.243-5-5-5c-0.553 0-1 0.447-1 1s0.447 1 1 1z"/>
-                                                                        <path d="m32 2.5c1.654 0 3 1.346 3 3s-1.346 3-3 3c-0.553 0-1 0.447-1 1s0.447 1 1 1c2.757 0 5-2.243 5-5s-2.243-5-5-5c-0.553 0-1 0.447-1 1s0.447 1 1 1z"/>
-                                                                        <circle cx="22" cy="24.5" r="1"/>
-                                                                        <circle cx="29" cy="24.5" r="1"/>
-                                                                        <circle cx="36" cy="24.5" r="1"/>
-                                                                        <circle cx="43" cy="24.5" r="1"/>
-                                                                        <circle cx="50" cy="24.5" r="1"/>
-                                                                        <circle cx="8" cy="32.5" r="1"/>
-                                                                        <circle cx="15" cy="32.5" r="1"/>
-                                                                        <circle cx="22" cy="32.5" r="1"/>
-                                                                        <circle cx="29" cy="32.5" r="1"/>
-                                                                        <circle cx="36" cy="32.5" r="1"/>
-                                                                        <circle cx="43" cy="32.5" r="1"/>
-                                                                        <circle cx="50" cy="32.5" r="1"/>
-                                                                        <circle cx="8" cy="39.5" r="1"/>
-                                                                        <circle cx="15" cy="39.5" r="1"/>
-                                                                        <circle cx="22" cy="39.5" r="1"/>
-                                                                        <circle cx="29" cy="39.5" r="1"/>
-                                                                        <circle cx="36" cy="39.5" r="1"/>
-                                                                        <circle cx="43" cy="39.5" r="1"/>
-                                                                        <circle cx="50" cy="39.5" r="1"/>
-                                                                        <circle cx="8" cy="47.5" r="1"/>
-                                                                        <circle cx="15" cy="47.5" r="1"/>
-                                                                        <circle cx="22" cy="47.5" r="1"/>
-                                                                        <circle cx="29" cy="47.5" r="1"/>
-                                                                        <circle cx="36" cy="47.5" r="1"/>
-                                                                    </svg>
-                                                                </div>
-                                                                <input
-                                                                    id={`name`}
-                                                                    type={`text`}
-                                                                    name={`another`}
-                                                                    className={` pl-xl-1 pl-lg-1 pl-md-1 pl-sm-3 pl-3 py-2 col-xl-8 col-lg-8 col-md-9 col-12`}
-                                                                    placeholder={`Enter your practise time`}
-                                                                    value={categories[i].practise}
-                                                                    onChange={(e)=>onChangeInput(e.target.value, "p", i)}
-                                                                />
-                                                            </div>
-                                                            <p className={`col-12 text-center mt-3 mb-0`}><span className="doth">When</span> can you get to work <span className="doth">?</span></p>
-                                                            <div className={` input col-xl-10 col-lg-10 col-md-10 col-sm-11 col-12 row p-0 m-0`}>
-                                                                <div className="col-xl-2 col-lg-2 col-md-2 pl-3 d-flex justify-content-center align-items-center">
-                                                                    <svg style={{width : `24px`, height : `24px`}}  className={`col-12 p-0 d-xl-flex d-lg-flex d-md-flex d-none`} fill="#2c393f" enableBackground="new 0 0 41.301 41.301" version="1.1" viewBox="0 0 41.301 41.301" space="preserve">
-                                                                        <path d="m20.642 0c5.698 0 10.857 2.317 14.602 6.047 3.73 3.746 6.047 8.905 6.047 14.603s-2.317 10.857-6.047 14.603c-3.746 3.73-8.904 6.047-14.602 6.047s-10.856-2.317-14.586-6.047c-3.746-3.746-6.048-8.904-6.048-14.603 0-5.698 2.301-10.857 6.047-14.603 3.731-3.73 8.889-6.047 14.587-6.047zm10.524 19.523c0.619 0 1.111 0.508 1.111 1.127s-0.492 1.127-1.111 1.127h-10.524c-0.413 0-0.778-0.238-0.968-0.571l-0.016-0.016-0.016-0.032v-0.016l-0.032-0.064v-0.016l-0.016-0.032-0.016-0.016v-0.032l-0.016-0.032v-0.016l-0.016-0.032v-0.064l-0.016-0.016v-13.616c0-0.619 0.492-1.111 1.111-1.111s1.127 0.492 1.127 1.111v12.317h9.398zm2.491-11.888c-3.333-3.333-7.936-5.381-13.015-5.381s-9.682 2.047-13.015 5.381c-3.317 3.333-5.381 7.936-5.381 13.015s2.063 9.682 5.381 13.016c3.333 3.333 7.936 5.381 13.015 5.381s9.682-2.048 13.015-5.381 5.397-7.936 5.397-13.016c0-5.079-2.063-9.682-5.397-13.015z" /></svg>
-                                                                </div>
-                                                                <input
-                                                                    id={`name`}
-                                                                    type={`date`}
-                                                                    name={`another`}
-                                                                    className={` pl-xl-1 pl-lg-1 pl-md-1 pl-sm-3 pl-3 py-2 col-xl-8 col-lg-8 col-md-9 col-12`}
-                                                                    value={categories[i].ready}
-                                                                    onChange={(e)=>onChangeInput(e.target.value, "r", i)}
-                                                                    placeholder={`Enter a date`}
-                                                                />
-                                                            </div>
-
-                                                        </div>
-                                                    {
-                                                        categories.length > 1 ? <div className="remove-button shadow" onClick={() => removeWork(i)}> <svg className={`m-2`} style={{width : `16px`, height : `16px`}} fill="#d10003" enableBackground="new 0 0 22.88 22.88" version="1.1" viewBox="0 0 22.88 22.88" space="preserve" xmlns="http://www.w3.org/2000/svg"><path fill="#d10003"  d="m0.324 1.909c-0.429-0.429-0.429-1.143 0-1.587 0.444-0.429 1.143-0.429 1.587 0l9.523 9.539 9.539-9.539c0.429-0.429 1.143-0.429 1.571 0 0.444 0.444 0.444 1.159 0 1.587l-9.523 9.524 9.523 9.539c0.444 0.429 0.444 1.143 0 1.587-0.429 0.429-1.143 0.429-1.571 0l-9.539-9.539-9.523 9.539c-0.444 0.429-1.143 0.429-1.587 0-0.429-0.444-0.429-1.159 0-1.587l9.523-9.539-9.523-9.524z" fill="#1E201D"/> </svg></div> : ``
-                                                    }
-
-                                                </div>
-                                            )
-                                        })
-                                    }
                                 </div>
-
-                                {
-                                    window.innerWidth > 991 && categories.length <= 1 ? <div className={`col-11 p-0 m-0 text-right`} onClick={addWork }>
-                                        <span className="doth">+ another profession</span>
-                                    </div> : ``
-                                }
-
                             </div>
-                                :
+                        </div>
+                        <div className={`col-12 m-0 p-0 row justify-content-center align-items-center d-flex`}>
                             <div className="col-12 mx-0 p-0 row my-4 languages justify-content-around">
-                                <h3 className="col-12 mb-3 p-0 text-center"><span className="doth">We</span> finding <span className="doth">...</span></h3>
-                                <div className="col-12 m-0 p-0 row justify-content-center">
-                                    {
-                                        branches.map(({value},i)=>{
-                                            return (
-                                                <div className={`shadow-sm  work-option-frame col-12 justify-content-center p-0 row mx-0 my-3 position-relative`}>
-                                                        <div className="col-12 justify-content-around row py-3 px-2">
-                                                            <div className={` input col-xl-10 col-lg-10 col-md-10 col-sm-11 col-12 row p-0 m-0`}>
-                                                                <div className="col-xl-2 col-lg-2 col-md-2 pl-3 d-flex justify-content-center align-items-center">
-                                                                    <svg style={{width : `24px`, height : `24px`}} fill="#2c393f" className={`col-12 p-0 d-xl-flex d-lg-flex d-md-flex d-none`}  viewBox="0 -24 480 480"><path d="m456 72h-104v-32c-.027344-22.082031-17.917969-39.9726562-40-40h-144c-22.082031.0273438-39.972656 17.917969-40 40v32h-104c-13.253906 0-24 10.746094-24 24v178.078125c.0507812 10.148437 6.445312 19.175781 16 22.585937v111.335938c0 13.253906 10.746094 24 24 24h400c13.253906 0 24-10.746094 24-24v-111.328125c9.554688-3.414063 15.953125-12.445313 16-22.59375v-178.078125c0-13.253906-10.746094-24-24-24zm-312-32c0-13.253906 10.746094-24 24-24h144c13.253906 0 24 10.746094 24 24v32h-16v-32c0-4.417969-3.582031-8-8-8h-144c-4.417969 0-8 3.582031-8 8v32h-16zm160 32h-128v-24h128zm144 336c0 4.417969-3.582031 8-8 8h-400c-4.417969 0-8-3.582031-8-8v-108.585938l176 24.273438v20.3125c0 13.253906 10.746094 24 24 24h16c13.253906 0 24-10.746094 24-24v-20.3125l176-24.273438zm-192-64c0 4.417969-3.582031 8-8 8h-16c-4.417969 0-8-3.582031-8-8v-48c0-4.417969 3.582031-8 8-8h16c4.417969 0 8 3.582031 8 8zm208-69.921875c.003906 3.988281-2.929688 7.371094-6.878906 7.929687l-2.21875.304688-182.902344 25.222656v-11.535156c0-13.253906-10.746094-24-24-24h-16c-13.253906 0-24 10.746094-24 24v11.535156l-185.113281-25.527344c-3.949219-.554687-6.890625-3.9375-6.886719-7.929687v-178.078125c0-4.417969 3.582031-8 8-8h432c4.417969 0 8 3.582031 8 8zm0 0"/></svg>
-                                                                </div>
-                                                                <input
-                                                                    id={`name`}
-                                                                    type={`text`}
-                                                                    name={`another`}
-                                                                    className={` pl-xl-1 pl-lg-1 pl-md-1 pl-sm-3 pl-3 py-2 col-xl-8 col-lg-8 col-md-9 col-12`}
-                                                                    placeholder={`Enter your field`}
-                                                                    value={branches[i].value === `` ? `` : branches[i].value}
-                                                                    onChange={(e)=>onChangeBranch(e.target.value, i)}
-                                                                />
-                                                            </div>
-                                                        </div>
-
-                                                    {
-                                                        branches.length > 1 ? <div className="remove-button shadow" onClick={() => removeBranch(i)}> <svg className={`m-2`} style={{width : `16px`, height : `16px`}} fill="#d10003" enableBackground="new 0 0 22.88 22.88" version="1.1" viewBox="0 0 22.88 22.88" space="preserve" xmlns="http://www.w3.org/2000/svg"><path fill="#d10003"  d="m0.324 1.909c-0.429-0.429-0.429-1.143 0-1.587 0.444-0.429 1.143-0.429 1.587 0l9.523 9.539 9.539-9.539c0.429-0.429 1.143-0.429 1.571 0 0.444 0.444 0.444 1.159 0 1.587l-9.523 9.524 9.523 9.539c0.444 0.429 0.444 1.143 0 1.587-0.429 0.429-1.143 0.429-1.571 0l-9.539-9.539-9.523 9.539c-0.444 0.429-1.143 0.429-1.587 0-0.429-0.444-0.429-1.159 0-1.587l9.523-9.539-9.523-9.524z" fill="#1E201D"/> </svg></div> : ``
-                                                    }
-
-                                                </div>
-                                            )
-                                        })
-                                    }
+                                <h3 className="col-12 mb-3 p-0 text-center"><span className="doth">freetime</span> job <span className="doth">?</span></h3>
+                                <h6 className="col-12 mb-3 p-0 text-center">čo by ste chceli robiť ?</h6>
+                                <div className="categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center">
+                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
+                                        lawn moving
+                                    </div>
                                 </div>
-
-                                {
-                                    window.innerWidth > 991 && branches.length <= 1 ? <div className={`col-11 p-0 m-0 text-right`} onClick={addBranch}>
-                                        <span className="doth">+ another profession</span>
-                                    </div> : ``
-                                }
-
-                            </div>}
+                            </div>
                         </div>
                         <div className={`col-12 m-0 p-0 row justify-content-center align-items-center d-flex`}>
                            <div className="container d-flex justify-content-center">
                                 <div className="avatar-upload">
                                     <div className="avatar-edit">
-                                        <input onChange={(e) => readURL(e.target.files)} type='file' id="imageUpload" accept=".png, .jpg, .jpeg"/>
-                                        <label htmlFor="imageUpload" className={`d-flex justify-content-center align-items-center`}><svg style={window.innerWidth > 991 ? {width : `20px`, height : `20px`} : {width : `16px`, height : `16px`}} fill="#2c393f" enableBackground="new 0 0 469.331 469.331" version="1.1" viewBox="0 0 469.33 469.33" space="preserve" xmlns="http://www.w3.org/2000/svg">
+                                        <input onChange={e => readURL(e.target.files)} type='file' id="imageUpload" accept=".png, .jpg, .jpeg"/>
+                                        <label htmlFor="imageUpload" className={`d-flex justify-content-center align-items-center`}>
+                                            <svg style={window.innerWidth > 991 ? {width : `20px`, height : `20px`} : {width : `16px`, height : `16px`}} fill="#2c393f" enableBackground="new 0 0 469.331 469.331" version="1.1" viewBox="0 0 469.33 469.33" space="preserve" xmlns="http://www.w3.org/2000/svg">
                                             <path d="m438.93 30.403c-40.4-40.5-106.1-40.5-146.5 0l-268.6 268.5c-2.1 2.1-3.4 4.8-3.8 7.7l-19.9 147.4c-0.6 4.2 0.9 8.4 3.8 11.3 2.5 2.5 6 4 9.5 4 0.6 0 1.2 0 1.8-0.1l88.8-12c7.4-1 12.6-7.8 11.6-15.2s-7.8-12.6-15.2-11.6l-71.2 9.6 13.9-102.8 108.2 108.2c2.5 2.5 6 4 9.5 4s7-1.4 9.5-4l268.6-268.5c19.6-19.6 30.4-45.6 30.4-73.3s-10.8-53.7-30.4-73.2zm-141.3 33 45.1 45.1-245.1 245.1-45.1-45.1 245.1-245.1zm-136.7 353.4-44.1-44.1 245.1-245.1 44.1 44.1-245.1 245.1zm263.9-264.4-107.9-107.9c13.7-11.3 30.8-17.5 48.8-17.5 20.5 0 39.7 8 54.2 22.4s22.4 33.7 22.4 54.2c0 18.1-6.2 35.1-17.5 48.8z"/></svg></label>
                                     </div>
                                     <div className="avatar-preview">
@@ -558,7 +385,7 @@ export const Additional = ({user, func = f => f}) => {
                                     placeholder={`Enter your username`}
                                     onChange={(e) => setAdditionalData({...additionalData, username: e.target.value})}
                                     value={additionalData.username ? additionalData.username  : ``}
-                                    className={` pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12`}
+                                    className={` pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12 text-lowercase`}
                                 />
                             </div>
                             <div className="col-xl-10 col-lg-10 col-12 row driving-licence align-items-center my-4" onClick={() => setAdditionalData({...additionalData, drivingLicense: !additionalData.drivingLicense})}>
@@ -568,15 +395,24 @@ export const Additional = ({user, func = f => f}) => {
                             <button
                                 className={`submit-button sign-in-button col-xl-5 col-lg-6 col-md-9 col-11 text-center py-2 mb-5 mt-3 `}
                                 onClick={submit}><span>update profile</span></button>
-
                         </div>
                     </Slider>
                 </div>
-
-
             </div>
         </div>
+    );
+};
 
-    )
+const NextArrow = props => {
+    const { className, style, onClick } = props;
+    return <svg className={className}  style={{ ...style, display: "block"}} onClick={onClick} enableBackground="new 0 0 477.175 477.175" viewBox="0 0 477.18 477.18" space="preserve">
+        <path d="m360.73 229.08-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8 0.1-19z"/>
+    </svg>
+};
 
+const PreviousArrow = props => {
+    const { className, style, onClick } = props;
+    return <svg className={className}  style={{ ...style, display: "block"}} onClick={onClick} enableBackground="new 0 0 477.175 477.175" viewBox="0 0 477.18 477.18" space="preserve" >
+            <path d="m145.19 238.58 215.5-215.5c5.3-5.3 5.3-13.8 0-19.1s-13.8-5.3-19.1 0l-225.1 225.1c-5.3 5.3-5.3 13.8 0 19.1l225.1 225c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.3-5.3 5.3-13.8 0-19.1l-215.4-215.5z"/>
+           </svg>
 };

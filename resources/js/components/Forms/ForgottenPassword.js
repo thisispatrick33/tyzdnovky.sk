@@ -51,7 +51,7 @@ export const ForgottenPassword = ({reset=f=>f, close = f =>f}) => {
                     {(missing.value === "@" || missing.value === "email" || missing.value === "login") ? <p className={`col-11 pl-2 pt-1 warning-message mb-0`}>{missing.message}</p> : ``}
                     <button
                         className={`submit-button sign-in-button col-6 text-center py-2 mb-5 mt-3 `}
-                        onClick={()=>submit()}><span>sent email</span></button>
+                        onClick={()=>submit()}><span>send email</span></button>
 
                     <div className="col-12 row problems">
                                 <div className="col-12" onClick={backToLogin}>
