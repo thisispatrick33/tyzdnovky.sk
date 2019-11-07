@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+ import React, {useState} from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -20,37 +20,10 @@ export const Additional = ({user, func = f => f}) => {
     }
 
     const [additionalData,setAdditionalData] = useState({drivingLicense: false, email: user.email});
-    const [categories, setCategories] = useState([{value: null, practise: null, ready: null}]);
-    const [branches, setBranches] = useState([{value: null}]);
     const [languages, setLanguages] = useState([]);
     const [languagesInUse, setLanguagesInUse] = useState([{full : "czech", short : "cze"}, {full : "spanish", short : "spa"}, {full : "english", short : "eng"}, {full : "hungarian", short : "hun"}, {full : "arabic", short : "arb"}, {full : "portugese", short : "ptg"}, {full : "russian", short : "rus"}, {full : "japanese", short : "jap"}, {full : "german", short : "ger"}, {full : "korean", short : "kor"}, {full : "french", short : "fre"}, {full : "turkish", short : "tur"}, {full : "vietnamese", short : "vie"}]);
     const [additionalLanguage, setAdditionalLanguage] = useState("");
     const [missing, setMissing] = useState(``);
-    var settings = {
-        dots: true,
-        arrows : true,
-        infinite: false,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        adaptiveHeight : false,
-        nextArrow: <SampleNextArrow />,
-        prevArrow: <SamplePrevArrow />
-    };
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth()+1; //January is 0!
-    var yyyy = today.getFullYear();
-    if(dd<10){
-        dd='0'+dd
-    }
-    if(mm<10){
-        mm='0'+mm
-    }
-
-    today = yyyy+'-'+mm+'-'+dd;
-
-
 
     const handleLang = (value) => {
         let array = [...languages];
@@ -58,7 +31,7 @@ export const Additional = ({user, func = f => f}) => {
         setLanguages(array);
     };
 
-    const formValidator=(type)=>{
+    const formValidator = type =>{
         if(type === "user"){
             if(additionalData.username !== undefined && additionalData.username.length > 0){
                 if(additionalData.name !== undefined && additionalData.name.length > 0){
@@ -100,7 +73,7 @@ export const Additional = ({user, func = f => f}) => {
                                                                             console.log(missing);
                                                                         }
                                                                     }else {
-                                                                        setMissing({value: 'category', message: `Nezadali ste odbor.`});
+                                                                        setMissing({value: 'category col-auto mx-2 my-2 py-2 shadow-sm', message: `Nezadali ste odbor.`});
                                                                         console.log(missing);
                                                                     }
                                                                 }
@@ -128,7 +101,7 @@ export const Additional = ({user, func = f => f}) => {
                                             }
                                         }
                                         else {
-                                            setMissing({value: 'category', message: `Nezadali ste ziaden odbor.`});
+                                            setMissing({value: 'category col-auto mx-2 my-2 py-2 shadow-sm', message: `Nezadali ste ziaden odbor.`});
                                             console.log(missing);
                                         }
                                     }
@@ -191,61 +164,17 @@ export const Additional = ({user, func = f => f}) => {
 
     };
 
-    const addWork=()=>{
-        let values = [...categories];
-        if(categories.length<2){
-            values.push({value: null, practise: null, ready: null});
-            setCategories(values);
-        }
+    const settings = {
+        dots: true,
+        arrows : true,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        adaptiveHeight : false,
+        nextArrow: <NextArrow />,
+        prevArrow: <PreviousArrow />
     };
-    const addBranch=()=>{
-        let values = [...branches];
-        if(branches.length<2){
-            values.push({value: null});
-            setBranches(values);
-        }
-    };
-
-    const removeWork=(i)=>{
-        let values = [...categories];
-        values = values.filter((value, index)=>index!==i);
-        setCategories(values);
-    };
-    const removeBranch=(i)=>{
-        let values = [...branches];
-        values = values.filter((value, index)=>index!==i);
-        setBranches(values);
-    };
-
-    const onChangeInput=(value, type, i)=>{
-        let values = [...categories];
-
-        if(type=="w"){
-            values[i].value = value;
-        }
-        if(type=="p"){
-            let validatedValue = "";
-            for (let i=0; i<value.length; i++){
-                if(value.charCodeAt(i)>47&&value.charCodeAt(i)<58){
-                    validatedValue+=value.charAt(i);
-                }
-            }
-            values[i].practise = validatedValue;
-        }
-        if(type=="r"){
-            values[i].ready = value;
-        }
-        setCategories(values)
-
-    };
-    const onChangeBranch=(value, i)=>{
-        let values = [...branches];
-        values[i].value = value;
-        setBranches(values)
-
-    };
-
-
 
     return (
         <div className={`additional-info-form | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0`} style={{overflowY : `scroll`}}>
@@ -376,11 +305,59 @@ export const Additional = ({user, func = f => f}) => {
                             </div> : ``
                         }
                         <div className={`col-12 m-0 p-0 row justify-content-center align-items-center d-flex`}>
+                            <div className="col-12 mx-0 p-0 row my-4 languages justify-content-around">
+                                <h3 className="col-12 mb-3 p-0 text-center"><span className="doth">fulltime</span> job <span className="doth">?</span></h3>
+                                <h6 className="col-12 mb-3 p-0 text-center">z akého odvetvia chcete dostávať pracovné ponuky ?</h6>
+                                <div className="categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center">
+                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
+                                        automobile industry
+                                    </div>
+                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
+                                        automobile industry
+                                    </div>
+                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
+                                        automobile industry
+                                    </div>
+                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
+                                        automobile industry
+                                    </div>
+                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
+                                        automobile industry
+                                    </div>
+                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
+                                        automobile industry
+                                    </div>
+                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
+                                        automobile industry
+                                    </div>
+                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
+                                        automobile industry
+                                    </div>
+                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
+                                        automobile industry
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div className={`col-12 m-0 p-0 row justify-content-center align-items-center d-flex`}>
+                            <div className="col-12 mx-0 p-0 row my-4 languages justify-content-around">
+                                <h3 className="col-12 mb-3 p-0 text-center"><span className="doth">freetime</span> job <span className="doth">?</span></h3>
+                                <h6 className="col-12 mb-3 p-0 text-center">čo by ste chceli robiť ?</h6>
+                                <div className="categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center">
+                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
+                                        lawn moving
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className={`col-12 m-0 p-0 row justify-content-center align-items-center d-flex`}>
                            <div className="container d-flex justify-content-center">
                                 <div className="avatar-upload">
                                     <div className="avatar-edit">
-                                        <input onChange={(e) => readURL(e.target.files)} type='file' id="imageUpload" accept=".png, .jpg, .jpeg"/>
-                                        <label htmlFor="imageUpload" className={`d-flex justify-content-center align-items-center`}><svg style={window.innerWidth > 991 ? {width : `20px`, height : `20px`} : {width : `16px`, height : `16px`}} fill="#2c393f" enableBackground="new 0 0 469.331 469.331" version="1.1" viewBox="0 0 469.33 469.33" space="preserve" xmlns="http://www.w3.org/2000/svg">
+                                        <input onChange={e => readURL(e.target.files)} type='file' id="imageUpload" accept=".png, .jpg, .jpeg"/>
+                                        <label htmlFor="imageUpload" className={`d-flex justify-content-center align-items-center`}>
+                                            <svg style={window.innerWidth > 991 ? {width : `20px`, height : `20px`} : {width : `16px`, height : `16px`}} fill="#2c393f" enableBackground="new 0 0 469.331 469.331" version="1.1" viewBox="0 0 469.33 469.33" space="preserve" xmlns="http://www.w3.org/2000/svg">
                                             <path d="m438.93 30.403c-40.4-40.5-106.1-40.5-146.5 0l-268.6 268.5c-2.1 2.1-3.4 4.8-3.8 7.7l-19.9 147.4c-0.6 4.2 0.9 8.4 3.8 11.3 2.5 2.5 6 4 9.5 4 0.6 0 1.2 0 1.8-0.1l88.8-12c7.4-1 12.6-7.8 11.6-15.2s-7.8-12.6-15.2-11.6l-71.2 9.6 13.9-102.8 108.2 108.2c2.5 2.5 6 4 9.5 4s7-1.4 9.5-4l268.6-268.5c19.6-19.6 30.4-45.6 30.4-73.3s-10.8-53.7-30.4-73.2zm-141.3 33 45.1 45.1-245.1 245.1-45.1-45.1 245.1-245.1zm-136.7 353.4-44.1-44.1 245.1-245.1 44.1 44.1-245.1 245.1zm263.9-264.4-107.9-107.9c13.7-11.3 30.8-17.5 48.8-17.5 20.5 0 39.7 8 54.2 22.4s22.4 33.7 22.4 54.2c0 18.1-6.2 35.1-17.5 48.8z"/></svg></label>
                                     </div>
                                     <div className="avatar-preview">
@@ -418,36 +395,24 @@ export const Additional = ({user, func = f => f}) => {
                             <button
                                 className={`submit-button sign-in-button col-xl-5 col-lg-6 col-md-9 col-11 text-center py-2 mb-5 mt-3 `}
                                 onClick={submit}><span>update profile</span></button>
-
                         </div>
                     </Slider>
                 </div>
-
-
             </div>
         </div>
-
-    )
-
+    );
 };
-function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-        <div
-            className={className}
-            style={{ ...style, display: "block", background: "red" }}
-            onClick={onClick}
-        />
-    );
-}
 
-function SamplePrevArrow(props) {
+const NextArrow = props => {
     const { className, style, onClick } = props;
-    return (
-        <div
-            className={className}
-            style={{ ...style, display: "block", background: "green" }}
-            onClick={onClick}
-        />
-    );
-}
+    return <svg className={className}  style={{ ...style, display: "block"}} onClick={onClick} enableBackground="new 0 0 477.175 477.175" viewBox="0 0 477.18 477.18" space="preserve">
+        <path d="m360.73 229.08-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8 0.1-19z"/>
+    </svg>
+};
+
+const PreviousArrow = props => {
+    const { className, style, onClick } = props;
+    return <svg className={className}  style={{ ...style, display: "block"}} onClick={onClick} enableBackground="new 0 0 477.175 477.175" viewBox="0 0 477.18 477.18" space="preserve" >
+            <path d="m145.19 238.58 215.5-215.5c5.3-5.3 5.3-13.8 0-19.1s-13.8-5.3-19.1 0l-225.1 225.1c-5.3 5.3-5.3 13.8 0 19.1l225.1 225c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.3-5.3 5.3-13.8 0-19.1l-215.4-215.5z"/>
+           </svg>
+};

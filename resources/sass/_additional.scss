@@ -109,8 +109,8 @@
       }
 
     }
-    .languages{
-        .language{
+    .languages, .categories{
+        .language, .category{
           font-weight: 500;
           text-transform: uppercase;
           background: linear-gradient(to left, $primary-color 0%, #3a7bd5);

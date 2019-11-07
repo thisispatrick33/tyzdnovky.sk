@@ -68020,28 +68020,12 @@ var Additional = function Additional(_ref) {
       additionalData = _useState2[0],
       setAdditionalData = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([{
-    value: null,
-    practise: null,
-    ready: null
-  }]),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState4 = _slicedToArray(_useState3, 2),
-      categories = _useState4[0],
-      setCategories = _useState4[1];
+      languages = _useState4[0],
+      setLanguages = _useState4[1];
 
   var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([{
-    value: null
-  }]),
-      _useState6 = _slicedToArray(_useState5, 2),
-      branches = _useState6[0],
-      setBranches = _useState6[1];
-
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
-      _useState8 = _slicedToArray(_useState7, 2),
-      languages = _useState8[0],
-      setLanguages = _useState8[1];
-
-  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([{
     full: "czech",
     "short": "cze"
   }, {
@@ -68081,46 +68065,19 @@ var Additional = function Additional(_ref) {
     full: "vietnamese",
     "short": "vie"
   }]),
+      _useState6 = _slicedToArray(_useState5, 2),
+      languagesInUse = _useState6[0],
+      setLanguagesInUse = _useState6[1];
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
+      _useState8 = _slicedToArray(_useState7, 2),
+      additionalLanguage = _useState8[0],
+      setAdditionalLanguage = _useState8[1];
+
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
       _useState10 = _slicedToArray(_useState9, 2),
-      languagesInUse = _useState10[0],
-      setLanguagesInUse = _useState10[1];
-
-  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
-      _useState12 = _slicedToArray(_useState11, 2),
-      additionalLanguage = _useState12[0],
-      setAdditionalLanguage = _useState12[1];
-
-  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
-      _useState14 = _slicedToArray(_useState13, 2),
-      missing = _useState14[0],
-      setMissing = _useState14[1];
-
-  var settings = {
-    dots: true,
-    arrows: true,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    adaptiveHeight: false,
-    nextArrow: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(SampleNextArrow, null),
-    prevArrow: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(SamplePrevArrow, null)
-  };
-  var today = new Date();
-  var dd = today.getDate();
-  var mm = today.getMonth() + 1; //January is 0!
-
-  var yyyy = today.getFullYear();
-
-  if (dd < 10) {
-    dd = '0' + dd;
-  }
-
-  if (mm < 10) {
-    mm = '0' + mm;
-  }
-
-  today = yyyy + '-' + mm + '-' + dd;
+      missing = _useState10[0],
+      setMissing = _useState10[1];
 
   var handleLang = function handleLang(value) {
     var array = _toConsumableArray(languages);
@@ -68186,7 +68143,7 @@ var Additional = function Additional(_ref) {
                                     }
                                   } else {
                                     setMissing({
-                                      value: 'category',
+                                      value: 'category col-auto mx-2 my-2 py-2 shadow-sm',
                                       message: "Nezadali ste odbor."
                                     });
                                     console.log(missing);
@@ -68223,7 +68180,7 @@ var Additional = function Additional(_ref) {
                       }
                     } else {
                       setMissing({
-                        value: 'category',
+                        value: 'category col-auto mx-2 my-2 py-2 shadow-sm',
                         message: "Nezadali ste ziaden odbor."
                       });
                       console.log(missing);
@@ -68355,81 +68312,17 @@ var Additional = function Additional(_ref) {
     };
   }();
 
-  var addWork = function addWork() {
-    var values = _toConsumableArray(categories);
-
-    if (categories.length < 2) {
-      values.push({
-        value: null,
-        practise: null,
-        ready: null
-      });
-      setCategories(values);
-    }
+  var settings = {
+    dots: true,
+    arrows: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    adaptiveHeight: false,
+    nextArrow: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(NextArrow, null),
+    prevArrow: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(PreviousArrow, null)
   };
-
-  var addBranch = function addBranch() {
-    var values = _toConsumableArray(branches);
-
-    if (branches.length < 2) {
-      values.push({
-        value: null
-      });
-      setBranches(values);
-    }
-  };
-
-  var removeWork = function removeWork(i) {
-    var values = _toConsumableArray(categories);
-
-    values = values.filter(function (value, index) {
-      return index !== i;
-    });
-    setCategories(values);
-  };
-
-  var removeBranch = function removeBranch(i) {
-    var values = _toConsumableArray(branches);
-
-    values = values.filter(function (value, index) {
-      return index !== i;
-    });
-    setBranches(values);
-  };
-
-  var onChangeInput = function onChangeInput(value, type, i) {
-    var values = _toConsumableArray(categories);
-
-    if (type == "w") {
-      values[i].value = value;
-    }
-
-    if (type == "p") {
-      var validatedValue = "";
-
-      for (var _i2 = 0; _i2 < value.length; _i2++) {
-        if (value.charCodeAt(_i2) > 47 && value.charCodeAt(_i2) < 58) {
-          validatedValue += value.charAt(_i2);
-        }
-      }
-
-      values[i].practise = validatedValue;
-    }
-
-    if (type == "r") {
-      values[i].ready = value;
-    }
-
-    setCategories(values);
-  };
-
-  var onChangeBranch = function onChangeBranch(value, i) {
-    var values = _toConsumableArray(branches);
-
-    values[i].value = value;
-    setBranches(values);
-  };
-
   return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "additional-info-form | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0",
     style: {
@@ -68677,6 +68570,54 @@ var Additional = function Additional(_ref) {
   })))) : "", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 m-0 p-0 row justify-content-center align-items-center d-flex"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "col-12 mx-0 p-0 row my-4 languages justify-content-around"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
+    className: "col-12 mb-3 p-0 text-center"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "doth"
+  }, "fulltime"), " job ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "doth"
+  }, "?")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h6", {
+    className: "col-12 mb-3 p-0 text-center"
+  }, "z ak\xE9ho odvetvia chcete dost\xE1va\u0165 pracovn\xE9 ponuky ?"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
+  }, "automobile industry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
+  }, "automobile industry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
+  }, "automobile industry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
+  }, "automobile industry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
+  }, "automobile industry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
+  }, "automobile industry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
+  }, "automobile industry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
+  }, "automobile industry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
+  }, "automobile industry")))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "col-12 m-0 p-0 row justify-content-center align-items-center d-flex"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "col-12 mx-0 p-0 row my-4 languages justify-content-around"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
+    className: "col-12 mb-3 p-0 text-center"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "doth"
+  }, "freetime"), " job ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "doth"
+  }, "?")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h6", {
+    className: "col-12 mb-3 p-0 text-center"
+  }, "\u010Do by ste chceli robi\u0165 ?"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
+  }, "lawn moving")))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "col-12 m-0 p-0 row justify-content-center align-items-center d-flex"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "container d-flex justify-content-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "avatar-upload"
@@ -68773,33 +68714,41 @@ var Additional = function Additional(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "update profile")))))));
 };
 
-function SampleNextArrow(props) {
+var NextArrow = function NextArrow(props) {
   var className = props.className,
       style = props.style,
       onClick = props.onClick;
-  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
     className: className,
     style: _objectSpread({}, style, {
-      display: "block",
-      background: "red"
+      display: "block"
     }),
-    onClick: onClick
-  });
-}
+    onClick: onClick,
+    enableBackground: "new 0 0 477.175 477.175",
+    viewBox: "0 0 477.18 477.18",
+    space: "preserve"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+    d: "m360.73 229.08-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8 0.1-19z"
+  }));
+};
 
-function SamplePrevArrow(props) {
+var PreviousArrow = function PreviousArrow(props) {
   var className = props.className,
       style = props.style,
       onClick = props.onClick;
-  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
     className: className,
     style: _objectSpread({}, style, {
-      display: "block",
-      background: "green"
+      display: "block"
     }),
-    onClick: onClick
-  });
-}
+    onClick: onClick,
+    enableBackground: "new 0 0 477.175 477.175",
+    viewBox: "0 0 477.18 477.18",
+    space: "preserve"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+    d: "m145.19 238.58 215.5-215.5c5.3-5.3 5.3-13.8 0-19.1s-13.8-5.3-19.1 0l-225.1 225.1c-5.3 5.3-5.3 13.8 0 19.1l225.1 225c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.3-5.3 5.3-13.8 0-19.1l-215.4-215.5z"
+  }));
+};
 
 /***/ }),
 
@@ -68977,7 +68926,7 @@ var Authentication = function Authentication(_ref) {
     id: "login-form",
     className: "form row col-xl-4 col-lg-5 col-md-6 col-sm-8 col-12 | align-items-start | justify-content-center align-items-center | m-0"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, message), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-11 justify-content-center row"
+    className: "col-11 justify-content-center row p-xl-1 pl-lg-1 p-md-1 p-sm-0 p-0"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: " row m-0 p-0 col-12 header justify-content-center "
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
@@ -69000,7 +68949,7 @@ var Authentication = function Authentication(_ref) {
         type: 1
       }));
     }
-  }, "company")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "business")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: " input col-11 mt-3 row p-0 mx-0 ".concat(missing.value === "@" || missing.value === "email" || missing.value === "login" ? "warning-frame" : "")
   }, slide === 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     id: "login",
@@ -69045,7 +68994,7 @@ var Authentication = function Authentication(_ref) {
     },
     value: slide === 0 ? data.passwordL ? data.passwordL : "" : data.passwordR ? data.passwordR : ""
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-2 pl-3 d-flex justify-content-center align-items-center",
+    className: "col-2 pl-3 d-flex justify-content-center align-items-center eye",
     onClick: function onClick() {
       return setPasswordView(!passwordView);
     }
