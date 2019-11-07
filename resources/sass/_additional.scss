@@ -99,14 +99,18 @@
       }
       input[type="text"]{
         text-transform : capitalize;
+        &:hover{
+          cursor: text;
+        }
       }
       border-radius : 27px;
       input:focus{
         outline: 0;
       }
+
     }
-    .languages{
-        .language{
+    .languages, .categories{
+        .language, .category{
           font-weight: 500;
           text-transform: uppercase;
           background: linear-gradient(to left, $primary-color 0%, #3a7bd5);
@@ -188,8 +192,11 @@
 }
 @include media-breakpoint-down(md) {
   .additional-info-form{
+    max-height: 100vh;
+
     .content-frame{
-      max-height: 90vh;
+      height: 100%;
+      overflow-y: scroll;
       h1{
         font-size: 1.5em;
       }

@@ -10783,8 +10783,18 @@ a.text-dark:focus {
 
 .authentication-form .content-frame .problems {
   font-weight: 300;
-  color: #d6d6d6;
   text-transform: uppercase;
+}
+
+.authentication-form .content-frame .problems div p:hover {
+  color: #2c393f;
+  cursor: pointer;
+  transition: 200ms;
+}
+
+.authentication-form .content-frame .problems div p:not(:hover) {
+  color: #d6d6d6;
+  transition: 200ms;
 }
 
 .forgotten {
@@ -10859,6 +10869,10 @@ hr {
   -webkit-text-fill-color: transparent;
 }
 
+.choose p:hover {
+  cursor: pointer;
+}
+
 .warning-message {
   font-size: 0.8em;
   background: linear-gradient(to left, #cb2d3e, #ef473a);
@@ -10885,6 +10899,10 @@ hr {
   height: 20px;
   border: 1px #00C7C7 solid;
   border-radius: 5px;
+}
+
+.eye:hover {
+  cursor: pointer;
 }
 
 .additional-info-form {
@@ -10997,11 +11015,18 @@ hr {
   text-transform: capitalize;
 }
 
+.additional-info-form .content-frame .input input[type=text]:hover {
+  cursor: text;
+}
+
 .additional-info-form .content-frame .input input:focus {
   outline: 0;
 }
 
-.additional-info-form .content-frame .languages .language {
+.additional-info-form .content-frame .languages .language,
+.additional-info-form .content-frame .languages .category,
+.additional-info-form .content-frame .categories .language,
+.additional-info-form .content-frame .categories .category {
   font-weight: 500;
   text-transform: uppercase;
   background: linear-gradient(to left, #00C7C7 0%, #3a7bd5);
@@ -11010,7 +11035,10 @@ hr {
   border-radius: 27px;
 }
 
-.additional-info-form .content-frame .languages .language.on {
+.additional-info-form .content-frame .languages .language.on,
+.additional-info-form .content-frame .languages .category.on,
+.additional-info-form .content-frame .categories .language.on,
+.additional-info-form .content-frame .categories .category.on {
   -webkit-background-clip: unset;
   -webkit-text-fill-color: white;
 }
@@ -11085,8 +11113,13 @@ hr {
 }
 
 @media (max-width: 991.98px) {
+  .additional-info-form {
+    max-height: 100vh;
+  }
+
   .additional-info-form .content-frame {
-    max-height: 90vh;
+    height: 100%;
+    overflow-y: scroll;
   }
 
   .additional-info-form .content-frame h1 {

@@ -114,9 +114,18 @@
     }
     .problems{
       font-weight: 300;
-      color: #d6d6d6;
       text-transform: uppercase;
-
+      div p{
+        &:hover{
+          color: $secondary_color;
+          cursor: pointer;
+          transition: 200ms;
+        }
+        &:not(:hover){
+          color: #d6d6d6;
+          transition: 200ms;
+        }
+      }
     }
   }
 }
@@ -168,6 +177,9 @@ hr{
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+    &:hover{
+      cursor: pointer;
+    }
   }
 
 }
@@ -195,5 +207,10 @@ hr{
     height: 20px;
     border: 1px $primary-color solid;
     border-radius: 5px;
+  }
+}
+.eye{
+  &:hover{
+    cursor: pointer;
   }
 }

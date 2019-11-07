@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+ import React, {useState} from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -6,7 +6,8 @@ import $ from 'jquery';
 
 export const Additional = ({user, func = f => f}) => {
     function readURL(input) {
-        console.log(input[0])
+        console.log(input[0]);
+        setAdditionalData({...additionalData, profile_pic: input[0]});
         if (input && input[0]) {
             let reader = new FileReader();
             reader.onload = function(e) {
@@ -19,43 +20,11 @@ export const Additional = ({user, func = f => f}) => {
         }
     }
 
-    const [additionalData,setAdditionalData] = useState({drivingLicense: false, email: user.email});
+    const [additionalData,setAdditionalData] = useState({drivingLicense: false, email: user.email, profile_pic: null});
     const [languages, setLanguages] = useState([]);
     const languagesInUse = [{full : "czech", short : "cze"}, {full : "spanish", short : "spa"}, {full : "english", short : "eng"}, {full : "hungarian", short : "hun"}, {full : "arabic", short : "arb"}, {full : "portugese", short : "ptg"}, {full : "russian", short : "rus"}, {full : "japanese", short : "jap"}, {full : "german", short : "ger"}, {full : "korean", short : "kor"}, {full : "french", short : "fre"}, {full : "turkish", short : "tur"}, {full : "vietnamese", short : "vie"}];
     const [additionalLanguage, setAdditionalLanguage] = useState("");
     const [missing, setMissing] = useState(``);
-   // const [personalWork, setPersonalWork] = useState({fulltime: false, freetime: false});
-
-    var settings = {
-        dots: true,
-        arrows : false,
-        infinite: false,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        responsive : [
-            {
-                breakpoint: 400,
-                settings: {
-                    adaptiveHeight : true
-                }
-            },
-        ]
-    };
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth()+1; //January is 0!
-    var yyyy = today.getFullYear();
-    if(dd<10){
-        dd='0'+dd
-    }
-    if(mm<10){
-        mm='0'+mm
-    }
-
-    today = yyyy+'-'+mm+'-'+dd;
-
-
 
     const handleLang = (value) => {
         let array = [...languages];
@@ -64,7 +33,8 @@ export const Additional = ({user, func = f => f}) => {
     };
 
     const formValidator=()=>{
-       // console.log(personalWork);
+
+
             if(additionalData.username !== undefined && additionalData.username.length > 0){
                 if(additionalData.name !== undefined && additionalData.name.length > 0){
                     if((user.type==="user"&&additionalData.lastName !== undefined && additionalData.lastName.length > 0)||(user.type==="company"&&additionalData.ico !== undefined && additionalData.ico.length > 0)){
@@ -72,7 +42,6 @@ export const Additional = ({user, func = f => f}) => {
                             if(additionalData.email !== undefined && additionalData.email.length > 0){
                                 if(additionalData.email.includes('@')){
                                     if((languages !== undefined && languages.length>0)||(additionalLanguage!=""&&additionalLanguage.length>0)){
-                                        console.log(additionalData);
                                         submit();
                                     }
                                     else {
@@ -116,23 +85,36 @@ export const Additional = ({user, func = f => f}) => {
     };
 
     const submit = async () =>{
-        //if(additionalLanguage!=""){
-          //  await func({...additionalData,languages: [...languages, additionalLanguage]});
-        //}
-        //else {
-          //  await func({...additionalData,languages: languages});
-        //}
-        console.log(additionalData);
-        console.log(languages);
-        console.log(additionalLanguage);
+        if(user.type === "user"){
+            if(additionalLanguage!=""){
+                await func({...additionalData,languages: [...languages, additionalLanguage]});
+            }
+            else {
+                await func({...additionalData,languages: languages});
+            }
+        }else{
+            await func({...additionalData});
+        }
+
     };
 
+    const settings = {
+        dots: true,
+        arrows : true,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        adaptiveHeight : false,
+        nextArrow: <NextArrow />,
+        prevArrow: <PreviousArrow />
+    };
 
     return (
         <div className={`additional-info-form | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0`} style={{overflowY : `scroll`}}>
-            <div className="content-frame | row  col-xl-6 col-lg-6 col-md-7 col-sm-9 col-11 | justify-content-center align-items-center | px-0 | shadow-sm py-5 my-5">
-                <h1 className={'pt-xl-3 pt-lg-3 pt-md-2 pt-sm-1 pt-1 text-center'}><span className="doth">Set up</span> your profile <span className="doth">...</span></h1>
+            <div className="content-frame | row  col-xl-6 col-lg-6 col-md-7 col-12 | justify-content-center align-items-center | px-0 | shadow-sm py-xl-5 py-lg-5 py-md-5 py-0 my-xl-5 my-lg-5 my-md-5 my-0">
                 <div className="col-10 row main-info p-0 m-0 align-items-center">
+                    <h1 className={'col-12 p-0 text-center'}><span className="doth">Set up</span> your profile <span className="doth">...</span></h1>
                     <Slider {...settings} className={`col-12 p-0 py-xl-3 py-lg-3 py-md-2 py-md-1 py-1`}>
                         <div className={`col-12 m-0 p-0 row justify-content-center`}>
                             <div className="col-12 mx-0 p-0 row my-xl-4 my-lg-4 my-md-3 my-sm-3 my-3 justify-content-around">
@@ -198,9 +180,31 @@ export const Additional = ({user, func = f => f}) => {
                                         id={`email`}
                                         type={`email`}
                                         name={`email`}
+                                        disabled={true}
                                         placeholder={`Enter your email`}
                                         onChange={(e) => setAdditionalData({...additionalData, email : e.target.value})}
                                         value={additionalData.email ? additionalData.email  : ``}
+                                        className={` pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12`}
+                                    />
+                                </div>
+                                <div className={` input col-xl-10 col-lg-10 col-md-11 col-sm-11 col-12 mt-3 row p-0 mx-0`}>
+                                    <div className="col-2 pl-3 d-flex justify-content-center align-items-center">
+                                        <svg fill="#2c393f" style={{width : `24px`, height : `24px`}} className={`col-12 p-0 d-xl-flex d-lg-flex d-md-flex d-none`} enableBackground="new 0 0 512.076 512.076" version="1.1" viewBox="0 0 512.08 512.08" space="preserve" xmlns="http://www.w3.org/2000/svg">
+                                            <g transform="translate(-1 -1)">
+                                            <path d="m499.64 396.04-103.65-69.12c-13.153-8.701-30.784-5.838-40.508 6.579l-30.191 38.818c-3.88 5.116-10.933 6.6-16.546 3.482l-5.743-3.166c-19.038-10.377-42.726-23.296-90.453-71.04s-60.672-71.45-71.049-90.453l-3.149-5.743c-3.161-5.612-1.705-12.695 3.413-16.606l38.792-30.182c12.412-9.725 15.279-27.351 6.588-40.508l-69.12-103.65c-8.907-13.398-26.777-17.42-40.566-9.131l-43.341 26.035c-13.618 8.006-23.609 20.972-27.878 36.181-15.607 56.866-3.866 155.01 140.71 299.6 115 115 200.62 145.92 259.46 145.92 13.543 0.058 27.033-1.704 40.107-5.239 15.212-4.264 28.18-14.256 36.181-27.878l26.061-43.315c8.301-13.792 4.281-31.673-9.123-40.585zm-5.581 31.829-26.001 43.341c-5.745 9.832-15.072 17.061-26.027 20.173-52.497 14.413-144.21 2.475-283.01-136.32s-150.73-230.5-136.32-283.01c3.116-10.968 10.354-20.307 20.198-26.061l43.341-26.001c5.983-3.6 13.739-1.855 17.604 3.959l37.547 56.371 31.514 47.266c3.774 5.707 2.534 13.356-2.85 17.579l-38.801 30.182c-11.808 9.029-15.18 25.366-7.91 38.332l3.081 5.598c10.906 20.002 24.465 44.885 73.967 94.379 49.502 49.493 74.377 63.053 94.37 73.958l5.606 3.089c12.965 7.269 29.303 3.898 38.332-7.91l30.182-38.801c4.224-5.381 11.87-6.62 17.579-2.85l103.64 69.12c5.818 3.862 7.563 11.622 3.958 17.604z"/>
+                                            <path fill={`#00C7C7`} d="m291.16 86.39c80.081 0.089 144.98 64.986 145.07 145.07 0 4.713 3.82 8.533 8.533 8.533s8.533-3.82 8.533-8.533c-0.099-89.503-72.63-162.04-162.13-162.13-4.713 0-8.533 3.82-8.533 8.533s3.82 8.533 8.533 8.533z"/>
+                                            <path fill={`#00C7C7`} d="m291.16 137.59c51.816 0.061 93.806 42.051 93.867 93.867 0 4.713 3.821 8.533 8.533 8.533 4.713 0 8.533-3.82 8.533-8.533-0.071-61.238-49.696-110.86-110.93-110.93-4.713 0-8.533 3.82-8.533 8.533s3.82 8.533 8.533 8.533z"/>
+                                            <path fill={`#00C7C7`} d="m291.16 188.79c23.552 0.028 42.638 19.114 42.667 42.667 0 4.713 3.821 8.533 8.533 8.533s8.533-3.82 8.533-8.533c-0.038-32.974-26.759-59.696-59.733-59.733-4.713 0-8.533 3.82-8.533 8.533s3.82 8.533 8.533 8.533z"/>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <input
+                                        id={`phone`}
+                                        type={`text`}
+                                        name={`phone`}
+                                        placeholder={`Enter your phone number`}
+                                        onChange={(e) => setAdditionalData({...additionalData, phone : e.target.value})}
+                                        value={additionalData.phone ? additionalData.phone  : ``}
                                         className={` pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12`}
                                     />
                                 </div>
@@ -235,19 +239,61 @@ export const Additional = ({user, func = f => f}) => {
 
                             </div> : ``
                         }
-                        /*{user.type === "user" ?
-                            <div className={`col-12 m-0 p-0 row justify-content-center`}>
-                                <div className={`language d-block col-auto row mx-2 my-2 px-3 align-items-center py-2 justify-content-center shadow-sm`} onClick={setPersonalWork({...personalWork, fulltime: !personalWork.fulltime})}>Fulltime</div>
-                                <div className={`language d-block col-auto row mx-2 my-2 px-3 align-items-center py-2 justify-content-center shadow-sm`} onClick={setPersonalWork({...personalWork, freetime: !personalWork.freetime})}>Freetime</div>
-                            </div> : ``
+                        <div className={`col-12 m-0 p-0 row justify-content-center align-items-center d-flex`}>
+                            <div className="col-12 mx-0 p-0 row my-4 languages justify-content-around">
+                                <h3 className="col-12 mb-3 p-0 text-center"><span className="doth">fulltime</span> job <span className="doth">?</span></h3>
+                                <h6 className="col-12 mb-3 p-0 text-center">z akého odvetvia chcete dostávať pracovné ponuky ?</h6>
+                                <div className="categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center">
+                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
+                                        automobile industry
+                                    </div>
+                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
+                                        automobile industry
+                                    </div>
+                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
+                                        automobile industry
+                                    </div>
+                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
+                                        automobile industry
+                                    </div>
+                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
+                                        automobile industry
+                                    </div>
+                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
+                                        automobile industry
+                                    </div>
+                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
+                                        automobile industry
+                                    </div>
+                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
+                                        automobile industry
+                                    </div>
+                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
+                                        automobile industry
+                                    </div>
 
-                        }*/
+                                </div>
+                            </div>
+                        </div>
+                        <div className={`col-12 m-0 p-0 row justify-content-center align-items-center d-flex`}>
+                            <div className="col-12 mx-0 p-0 row my-4 languages justify-content-around">
+                                <h3 className="col-12 mb-3 p-0 text-center"><span className="doth">freetime</span> job <span className="doth">?</span></h3>
+                                <h6 className="col-12 mb-3 p-0 text-center">čo by ste chceli robiť ?</h6>
+                                <div className="categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center">
+                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
+                                        lawn moving
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div className={`col-12 m-0 p-0 row justify-content-center align-items-center d-flex`}>
                            <div className="container d-flex justify-content-center">
                                 <div className="avatar-upload">
                                     <div className="avatar-edit">
-                                        <input onChange={(e) => readURL(e.target.files)} type='file' id="imageUpload" accept=".png, .jpg, .jpeg"/>
-                                        <label htmlFor="imageUpload" className={`d-flex justify-content-center align-items-center`}><svg style={window.innerWidth > 991 ? {width : `20px`, height : `20px`} : {width : `16px`, height : `16px`}} fill="#2c393f" enableBackground="new 0 0 469.331 469.331" version="1.1" viewBox="0 0 469.33 469.33" space="preserve" xmlns="http://www.w3.org/2000/svg">
+                                        <input onChange={e => readURL(e.target.files)} type='file' id="imageUpload" accept=".png, .jpg, .jpeg"/>
+                                        <label htmlFor="imageUpload" className={`d-flex justify-content-center align-items-center`}>
+                                            <svg style={window.innerWidth > 991 ? {width : `20px`, height : `20px`} : {width : `16px`, height : `16px`}} fill="#2c393f" enableBackground="new 0 0 469.331 469.331" version="1.1" viewBox="0 0 469.33 469.33" space="preserve" xmlns="http://www.w3.org/2000/svg">
                                             <path d="m438.93 30.403c-40.4-40.5-106.1-40.5-146.5 0l-268.6 268.5c-2.1 2.1-3.4 4.8-3.8 7.7l-19.9 147.4c-0.6 4.2 0.9 8.4 3.8 11.3 2.5 2.5 6 4 9.5 4 0.6 0 1.2 0 1.8-0.1l88.8-12c7.4-1 12.6-7.8 11.6-15.2s-7.8-12.6-15.2-11.6l-71.2 9.6 13.9-102.8 108.2 108.2c2.5 2.5 6 4 9.5 4s7-1.4 9.5-4l268.6-268.5c19.6-19.6 30.4-45.6 30.4-73.3s-10.8-53.7-30.4-73.2zm-141.3 33 45.1 45.1-245.1 245.1-45.1-45.1 245.1-245.1zm-136.7 353.4-44.1-44.1 245.1-245.1 44.1 44.1-245.1 245.1zm263.9-264.4-107.9-107.9c13.7-11.3 30.8-17.5 48.8-17.5 20.5 0 39.7 8 54.2 22.4s22.4 33.7 22.4 54.2c0 18.1-6.2 35.1-17.5 48.8z"/></svg></label>
                                     </div>
                                     <div className="avatar-preview">
@@ -275,7 +321,7 @@ export const Additional = ({user, func = f => f}) => {
                                     placeholder={`Enter your username`}
                                     onChange={(e) => setAdditionalData({...additionalData, username: e.target.value})}
                                     value={additionalData.username ? additionalData.username  : ``}
-                                    className={` pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12`}
+                                    className={` pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12 text-lowercase`}
                                 />
                             </div>
                             <div className="col-xl-10 col-lg-10 col-12 row driving-licence align-items-center my-4" onClick={() => setAdditionalData({...additionalData, drivingLicense: !additionalData.drivingLicense})}>
@@ -285,15 +331,24 @@ export const Additional = ({user, func = f => f}) => {
                             <button
                                 className={`submit-button sign-in-button col-xl-5 col-lg-6 col-md-9 col-11 text-center py-2 mb-5 mt-3 `}
                                 onClick={formValidator}><span>update profile</span></button>
-
                         </div>
                     </Slider>
                 </div>
-
-
             </div>
         </div>
+    );
+};
 
-    )
+const NextArrow = props => {
+    const { className, style, onClick } = props;
+    return <svg className={className}  style={{ ...style, display: "block"}} onClick={onClick} enableBackground="new 0 0 477.175 477.175" viewBox="0 0 477.18 477.18" space="preserve">
+        <path d="m360.73 229.08-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8 0.1-19z"/>
+    </svg>
+};
 
+const PreviousArrow = props => {
+    const { className, style, onClick } = props;
+    return <svg className={className}  style={{ ...style, display: "block"}} onClick={onClick} enableBackground="new 0 0 477.175 477.175" viewBox="0 0 477.18 477.18" space="preserve" >
+            <path d="m145.19 238.58 215.5-215.5c5.3-5.3 5.3-13.8 0-19.1s-13.8-5.3-19.1 0l-225.1 225.1c-5.3 5.3-5.3 13.8 0 19.1l225.1 225c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.3-5.3 5.3-13.8 0-19.1l-215.4-215.5z"/>
+           </svg>
 };

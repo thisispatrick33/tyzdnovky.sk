@@ -50,9 +50,9 @@ return [
             'driver' => 'jwt',
             'provider' => 'users',
         ],
-        'companies' => [
+        'businesses' => [
             'driver' => 'jwt',
-            'provider' => 'companies',
+            'provider' => 'businesses',
         ],
     ],
 
@@ -79,9 +79,9 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
-        'companies' => [
+        'businesses' => [
             'driver' => 'eloquent',
-            'model' => App\Company::class,
+            'model' => App\Business::class,
         ],
         /*'admin' => [
             'driver' => 'eloquent',

@@ -13,17 +13,18 @@ import {PasswordReset} from "./Forms/PasswordReset";
 const Main = () => {
     const [authState, setAuthState] = useState({isLoggedIn : false, user : {}});
     const [location, setLocation] = useState(``);
-    const [loginMessage, setLoginMessage] = useState(``);
+    const [message, setMessage] = useState(``);
 
 
     const _loginUser = (data) => {
+        let message = ``;
         $("#login-form .sign-in-button")
             .attr("disabled", "disabled")
             .html(
                 '<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>'
             );
         axios
-            .post("/api/login/", data, {
+            .post("/api/login", data, {
                 headers : {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
@@ -34,8 +35,8 @@ const Main = () => {
                 console.log(response);
                 return response;
             })
-            .then(  json => {
-                setLoginMessage(json.data.messages);
+            .then(json => {
+                setMessage(json.data.messages);
                 if (json.data.success) {
                     let userData = {};
                     if (json.data.data.type === "user") {
@@ -50,6 +51,8 @@ const Main = () => {
                             phone: json.data.data.phone,
                             ready: json.data.data.ready,
                             type: json.data.data.type,
+                            username: json.data.data.username,
+                            profile_pic: json.data.data.profile_pic,
                             timestamp: new Date().toString()
                         };
                     }
@@ -64,6 +67,8 @@ const Main = () => {
                             phone: json.data.data.phone,
                             ready: json.data.data.ready,
                             type: json.data.data.type,
+                            username: json.data.data.username,
+                            profile_pic: json.data.data.profile_pic,
                             timestamp: new Date().toString()
                         };
                     }
@@ -87,14 +92,13 @@ const Main = () => {
                     .removeAttr("disabled")
                     .html( '<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign in</span>')
 
+
             })
             .catch(error => {
                 $("#login-form .sign-in-button")
                     .removeAttr("disabled")
                     .html( '<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign in</span>')
             });
-        console.log("main");
-        console.log(loginMessage);
     };
 
     const _logoutUser = () => {
@@ -122,7 +126,6 @@ const Main = () => {
                 }
             })
             .then((response) => {
-                console.log(response);
                 return response;
             })
             .then(json => {
@@ -141,6 +144,8 @@ const Main = () => {
                             phone: json.data.data.phone,
                             ready: json.data.data.ready,
                             type: json.data.data.type,
+                            username: json.data.data.username,
+                            profile_pic: json.data.data.profile_pic,
                             timestamp: new Date().toString()
                         };
                     }
@@ -155,6 +160,8 @@ const Main = () => {
                             phone: json.data.data.phone,
                             ready: json.data.data.ready,
                             type: json.data.data.type,
+                            username: json.data.data.username,
+                            profile_pic: json.data.data.profile_pic,
                             timestamp: new Date().toString()
                         };
                     }
@@ -169,7 +176,6 @@ const Main = () => {
                     navigate(`/home`, {state:{data:appState}});
                 }else {
                     alert(`Registration Failed!`);
-
                 }
                 $("#login-form .sign-up-button")
                     .removeAttr("disabled", "disabled")
@@ -188,14 +194,27 @@ const Main = () => {
     };
 
     const _edit = (data) => {
-        console.log("main");
         console.log(data);
-        console.log(localStorage);
-        console.log(JSON.parse(localStorage.appState).user.auth_token);
+        let formData = new FormData();
+        formData.append(`drivingLicense`, data.drivingLicense);
+        formData.append(`email`, data.email);
+        if(data.lastName!==undefined){
+            formData.append(`languages`, data.languages);
+            formData.append(`lastName`, data.lastName);
+        }
+        else {
+            formData.append(`ico`, data.ico);
+        }
+        formData.append(`name`, data.name);
+        formData.append(`phone`, data.phone);
+        formData.append(`profile_pic`, data.profile_pic);
+        formData.append(`username`, data.username);
+
         axios
-            .post(`/api/register-additional`, data ,{
+            .post(`/api/register-additional`, formData,{
                 headers : {
-                    'Content-Type' : `application/json`,
+                    'Content-Type' : `multipart/form-data`,
+                    'Accept' : `multipart/form-data`,
                     "X-localization" : location,
                     "Authorization" : 'Bearer '+JSON.parse(localStorage.appState).user.auth_token
                 }
@@ -220,6 +239,8 @@ const Main = () => {
                             phone: response.data.data.phone,
                             ready: response.data.data.ready,
                             type: response.data.data.type,
+                            username: response.data.data.username,
+                            profile_pic: response.data.data.profile_pic,
                             timestamp: new Date().toString()
                         };
                     }
@@ -234,6 +255,8 @@ const Main = () => {
                             phone: response.data.data.phone,
                             ready: response.data.data.ready,
                             type: response.data.data.type,
+                            username: response.data.data.username,
+                            profile_pic: response.data.data.profile_pic,
                             timestamp: new Date().toString()
                         };
                     }
@@ -244,7 +267,6 @@ const Main = () => {
                     localStorage["appState"] = JSON.stringify(appState);
 
                     setAuthState({isLoggedIn: appState.isLoggedIn, user: appState.user});
-
                     navigate(`/home`, {state:{data:appState}});
                 }
             })
@@ -300,7 +322,8 @@ const Main = () => {
     return (
             _ipLocation(),
             <Router>
-                <Authentication path={`/`} login={_loginUser} register={_submitRegistration} reset={_reset} loginMessage={loginMessage}/>
+
+                <Authentication path={`/`} login={_loginUser} register={_submitRegistration} reset={_reset} message={message}/>
                 <Home path={`/home`} edit={_edit}/>
                 <PasswordReset path={'/reset-password'} reset={_resetPassword}/>
             </Router>

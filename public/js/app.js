@@ -67957,12 +67957,6 @@ __webpack_require__.r(__webpack_exports__);
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -67983,6 +67977,12 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -67997,6 +67997,9 @@ var Additional = function Additional(_ref) {
 
   function readURL(input) {
     console.log(input[0]);
+    setAdditionalData(_objectSpread({}, additionalData, {
+      profile_pic: input[0]
+    }));
 
     if (input && input[0]) {
       var reader = new FileReader();
@@ -68014,7 +68017,8 @@ var Additional = function Additional(_ref) {
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
     drivingLicense: false,
-    email: user.email
+    email: user.email,
+    profile_pic: null
   }),
       _useState2 = _slicedToArray(_useState, 2),
       additionalData = _useState2[0],
@@ -68074,38 +68078,7 @@ var Additional = function Additional(_ref) {
   var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
       _useState8 = _slicedToArray(_useState7, 2),
       missing = _useState8[0],
-      setMissing = _useState8[1]; // const [personalWork, setPersonalWork] = useState({fulltime: false, freetime: false});
-
-
-  var settings = {
-    dots: true,
-    arrows: false,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    responsive: [{
-      breakpoint: 400,
-      settings: {
-        adaptiveHeight: true
-      }
-    }]
-  };
-  var today = new Date();
-  var dd = today.getDate();
-  var mm = today.getMonth() + 1; //January is 0!
-
-  var yyyy = today.getFullYear();
-
-  if (dd < 10) {
-    dd = '0' + dd;
-  }
-
-  if (mm < 10) {
-    mm = '0' + mm;
-  }
-
-  today = yyyy + '-' + mm + '-' + dd;
+      setMissing = _useState8[1];
 
   var handleLang = function handleLang(value) {
     var array = _toConsumableArray(languages);
@@ -68117,7 +68090,6 @@ var Additional = function Additional(_ref) {
   };
 
   var formValidator = function formValidator() {
-    // console.log(personalWork);
     if (additionalData.username !== undefined && additionalData.username.length > 0) {
       if (additionalData.name !== undefined && additionalData.name.length > 0) {
         if (user.type === "user" && additionalData.lastName !== undefined && additionalData.lastName.length > 0 || user.type === "company" && additionalData.ico !== undefined && additionalData.ico.length > 0) {
@@ -68125,7 +68097,6 @@ var Additional = function Additional(_ref) {
             if (additionalData.email !== undefined && additionalData.email.length > 0) {
               if (additionalData.email.includes('@')) {
                 if (languages !== undefined && languages.length > 0 || additionalLanguage != "" && additionalLanguage.length > 0) {
-                  console.log(additionalData);
                   submit();
                 } else {
                   setMissing({
@@ -68198,17 +68169,40 @@ var Additional = function Additional(_ref) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              //if(additionalLanguage!=""){
-              //  await func({...additionalData,languages: [...languages, additionalLanguage]});
-              //}
-              //else {
-              //  await func({...additionalData,languages: languages});
-              //}
-              console.log(additionalData);
-              console.log(languages);
-              console.log(additionalLanguage);
+              if (!(user.type === "user")) {
+                _context.next = 10;
+                break;
+              }
 
-            case 3:
+              if (!(additionalLanguage != "")) {
+                _context.next = 6;
+                break;
+              }
+
+              _context.next = 4;
+              return func(_objectSpread({}, additionalData, {
+                languages: [].concat(_toConsumableArray(languages), [additionalLanguage])
+              }));
+
+            case 4:
+              _context.next = 8;
+              break;
+
+            case 6:
+              _context.next = 8;
+              return func(_objectSpread({}, additionalData, {
+                languages: languages
+              }));
+
+            case 8:
+              _context.next = 12;
+              break;
+
+            case 10:
+              _context.next = 12;
+              return func(_objectSpread({}, additionalData));
+
+            case 12:
             case "end":
               return _context.stop();
           }
@@ -68221,22 +68215,33 @@ var Additional = function Additional(_ref) {
     };
   }();
 
+  var settings = {
+    dots: true,
+    arrows: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    adaptiveHeight: false,
+    nextArrow: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(NextArrow, null),
+    prevArrow: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(PreviousArrow, null)
+  };
   return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "additional-info-form | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0",
     style: {
       overflowY: "scroll"
     }
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "content-frame | row  col-xl-6 col-lg-6 col-md-7 col-sm-9 col-11 | justify-content-center align-items-center | px-0 | shadow-sm py-5 my-5"
+    className: "content-frame | row  col-xl-6 col-lg-6 col-md-7 col-12 | justify-content-center align-items-center | px-0 | shadow-sm py-xl-5 py-lg-5 py-md-5 py-0 my-xl-5 my-lg-5 my-md-5 my-0"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "col-10 row main-info p-0 m-0 align-items-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", {
-    className: 'pt-xl-3 pt-lg-3 pt-md-2 pt-sm-1 pt-1 text-center'
+    className: 'col-12 p-0 text-center'
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
   }, "Set up"), " your profile ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
-  }, "...")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "col-10 row main-info p-0 m-0 align-items-center"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_2___default.a, _extends({}, settings, {
+  }, "...")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_2___default.a, _extends({}, settings, {
     className: "col-12 p-0 py-xl-3 py-lg-3 py-md-2 py-md-1 py-1"
   }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 m-0 p-0 row justify-content-center"
@@ -68365,6 +68370,7 @@ var Additional = function Additional(_ref) {
     id: "email",
     type: "email",
     name: "email",
+    disabled: true,
     placeholder: "Enter your email",
     onChange: function onChange(e) {
       return setAdditionalData(_objectSpread({}, additionalData, {
@@ -68372,6 +68378,47 @@ var Additional = function Additional(_ref) {
       }));
     },
     value: additionalData.email ? additionalData.email : "",
+    className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
+  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: " input col-xl-10 col-lg-10 col-md-11 col-sm-11 col-12 mt-3 row p-0 mx-0"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "col-2 pl-3 d-flex justify-content-center align-items-center"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
+    fill: "#2c393f",
+    style: {
+      width: "24px",
+      height: "24px"
+    },
+    className: "col-12 p-0 d-xl-flex d-lg-flex d-md-flex d-none",
+    enableBackground: "new 0 0 512.076 512.076",
+    version: "1.1",
+    viewBox: "0 0 512.08 512.08",
+    space: "preserve",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("g", {
+    transform: "translate(-1 -1)"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+    d: "m499.64 396.04-103.65-69.12c-13.153-8.701-30.784-5.838-40.508 6.579l-30.191 38.818c-3.88 5.116-10.933 6.6-16.546 3.482l-5.743-3.166c-19.038-10.377-42.726-23.296-90.453-71.04s-60.672-71.45-71.049-90.453l-3.149-5.743c-3.161-5.612-1.705-12.695 3.413-16.606l38.792-30.182c12.412-9.725 15.279-27.351 6.588-40.508l-69.12-103.65c-8.907-13.398-26.777-17.42-40.566-9.131l-43.341 26.035c-13.618 8.006-23.609 20.972-27.878 36.181-15.607 56.866-3.866 155.01 140.71 299.6 115 115 200.62 145.92 259.46 145.92 13.543 0.058 27.033-1.704 40.107-5.239 15.212-4.264 28.18-14.256 36.181-27.878l26.061-43.315c8.301-13.792 4.281-31.673-9.123-40.585zm-5.581 31.829-26.001 43.341c-5.745 9.832-15.072 17.061-26.027 20.173-52.497 14.413-144.21 2.475-283.01-136.32s-150.73-230.5-136.32-283.01c3.116-10.968 10.354-20.307 20.198-26.061l43.341-26.001c5.983-3.6 13.739-1.855 17.604 3.959l37.547 56.371 31.514 47.266c3.774 5.707 2.534 13.356-2.85 17.579l-38.801 30.182c-11.808 9.029-15.18 25.366-7.91 38.332l3.081 5.598c10.906 20.002 24.465 44.885 73.967 94.379 49.502 49.493 74.377 63.053 94.37 73.958l5.606 3.089c12.965 7.269 29.303 3.898 38.332-7.91l30.182-38.801c4.224-5.381 11.87-6.62 17.579-2.85l103.64 69.12c5.818 3.862 7.563 11.622 3.958 17.604z"
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+    fill: "#00C7C7",
+    d: "m291.16 86.39c80.081 0.089 144.98 64.986 145.07 145.07 0 4.713 3.82 8.533 8.533 8.533s8.533-3.82 8.533-8.533c-0.099-89.503-72.63-162.04-162.13-162.13-4.713 0-8.533 3.82-8.533 8.533s3.82 8.533 8.533 8.533z"
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+    fill: "#00C7C7",
+    d: "m291.16 137.59c51.816 0.061 93.806 42.051 93.867 93.867 0 4.713 3.821 8.533 8.533 8.533 4.713 0 8.533-3.82 8.533-8.533-0.071-61.238-49.696-110.86-110.93-110.93-4.713 0-8.533 3.82-8.533 8.533s3.82 8.533 8.533 8.533z"
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+    fill: "#00C7C7",
+    d: "m291.16 188.79c23.552 0.028 42.638 19.114 42.667 42.667 0 4.713 3.821 8.533 8.533 8.533s8.533-3.82 8.533-8.533c-0.038-32.974-26.759-59.696-59.733-59.733-4.713 0-8.533 3.82-8.533 8.533s3.82 8.533 8.533 8.533z"
+  })))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    id: "phone",
+    type: "text",
+    name: "phone",
+    placeholder: "Enter your phone number",
+    onChange: function onChange(e) {
+      return setAdditionalData(_objectSpread({}, additionalData, {
+        phone: e.target.value
+      }));
+    },
+    value: additionalData.phone ? additionalData.phone : "",
     className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
   })))), user.type === "user" ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 m-0 p-0 row justify-content-center"
@@ -68423,19 +68470,55 @@ var Additional = function Additional(_ref) {
       return setAdditionalLanguage(e.target.value);
     },
     className: "  pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
-  })))) : "", "/*", user.type === "user" ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "col-12 m-0 p-0 row justify-content-center"
+  })))) : "", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "col-12 m-0 p-0 row justify-content-center align-items-center d-flex"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "language d-block col-auto row mx-2 my-2 px-3 align-items-center py-2 justify-content-center shadow-sm",
-    onClick: setPersonalWork(_objectSpread({}, personalWork, {
-      fulltime: !personalWork.fulltime
-    }))
-  }, "Fulltime"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "language d-block col-auto row mx-2 my-2 px-3 align-items-center py-2 justify-content-center shadow-sm",
-    onClick: setPersonalWork(_objectSpread({}, personalWork, {
-      freetime: !personalWork.freetime
-    }))
-  }, "Freetime")) : "", "*/", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "col-12 mx-0 p-0 row my-4 languages justify-content-around"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
+    className: "col-12 mb-3 p-0 text-center"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "doth"
+  }, "fulltime"), " job ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "doth"
+  }, "?")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h6", {
+    className: "col-12 mb-3 p-0 text-center"
+  }, "z ak\xE9ho odvetvia chcete dost\xE1va\u0165 pracovn\xE9 ponuky ?"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
+  }, "automobile industry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
+  }, "automobile industry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
+  }, "automobile industry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
+  }, "automobile industry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
+  }, "automobile industry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
+  }, "automobile industry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
+  }, "automobile industry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
+  }, "automobile industry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
+  }, "automobile industry")))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "col-12 m-0 p-0 row justify-content-center align-items-center d-flex"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "col-12 mx-0 p-0 row my-4 languages justify-content-around"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
+    className: "col-12 mb-3 p-0 text-center"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "doth"
+  }, "freetime"), " job ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "doth"
+  }, "?")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h6", {
+    className: "col-12 mb-3 p-0 text-center"
+  }, "\u010Do by ste chceli robi\u0165 ?"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
+  }, "lawn moving")))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 m-0 p-0 row justify-content-center align-items-center d-flex"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "container d-flex justify-content-center"
@@ -68509,7 +68592,7 @@ var Additional = function Additional(_ref) {
       }));
     },
     value: additionalData.username ? additionalData.username : "",
-    className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
+    className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12 text-lowercase"
   })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-xl-10 col-lg-10 col-12 row driving-licence align-items-center my-4",
     onClick: function onClick() {
@@ -68532,6 +68615,42 @@ var Additional = function Additional(_ref) {
     className: "submit-button sign-in-button col-xl-5 col-lg-6 col-md-9 col-11 text-center py-2 mb-5 mt-3 ",
     onClick: formValidator
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "update profile")))))));
+};
+
+var NextArrow = function NextArrow(props) {
+  var className = props.className,
+      style = props.style,
+      onClick = props.onClick;
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
+    className: className,
+    style: _objectSpread({}, style, {
+      display: "block"
+    }),
+    onClick: onClick,
+    enableBackground: "new 0 0 477.175 477.175",
+    viewBox: "0 0 477.18 477.18",
+    space: "preserve"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+    d: "m360.73 229.08-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8 0.1-19z"
+  }));
+};
+
+var PreviousArrow = function PreviousArrow(props) {
+  var className = props.className,
+      style = props.style,
+      onClick = props.onClick;
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
+    className: className,
+    style: _objectSpread({}, style, {
+      display: "block"
+    }),
+    onClick: onClick,
+    enableBackground: "new 0 0 477.175 477.175",
+    viewBox: "0 0 477.18 477.18",
+    space: "preserve"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+    d: "m145.19 238.58 215.5-215.5c5.3-5.3 5.3-13.8 0-19.1s-13.8-5.3-19.1 0l-225.1 225.1c-5.3 5.3-5.3 13.8 0 19.1l225.1 225c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.3-5.3 5.3-13.8 0-19.1l-215.4-215.5z"
+  }));
 };
 
 /***/ }),
@@ -68569,7 +68688,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var Authentication = function Authentication(_ref) {
-  var _ref$login = _ref.login,
+  var message = _ref.message,
+      _ref$login = _ref.login,
       login = _ref$login === void 0 ? function (f) {
     return f;
   } : _ref$login,
@@ -68580,8 +68700,7 @@ var Authentication = function Authentication(_ref) {
       _ref$reset = _ref.reset,
       reset = _ref$reset === void 0 ? function (f) {
     return f;
-  } : _ref$reset,
-      loginMessage = _ref.loginMessage;
+  } : _ref$reset;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
     type: 2
@@ -68613,11 +68732,8 @@ var Authentication = function Authentication(_ref) {
   var submit = function submit(control) {
     if (control == "r") {
       register(data);
-    } else {
-      if (control == "l") {
-        login(data);
-        console.log(loginMessage);
-      }
+    } else if (control == "l") {
+      login(data);
     }
   };
 
@@ -68712,8 +68828,8 @@ var Authentication = function Authentication(_ref) {
   }) : "", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     id: "login-form",
     className: "form row col-xl-4 col-lg-5 col-md-6 col-sm-8 col-12 | align-items-start | justify-content-center align-items-center | m-0"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-11 justify-content-center row"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, message), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-11 justify-content-center row p-xl-1 pl-lg-1 p-md-1 p-sm-0 p-0"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: " row m-0 p-0 col-12 header justify-content-center "
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
@@ -68736,7 +68852,7 @@ var Authentication = function Authentication(_ref) {
         type: 1
       }));
     }
-  }, "company")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "business")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: " input col-11 mt-3 row p-0 mx-0 ".concat(missing.value === "@" || missing.value === "email" || missing.value === "login" ? "warning-frame" : "")
   }, slide === 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     id: "login",
@@ -68781,7 +68897,7 @@ var Authentication = function Authentication(_ref) {
     },
     value: slide === 0 ? data.passwordL ? data.passwordL : "" : data.passwordR ? data.passwordR : ""
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-2 pl-3 d-flex justify-content-center align-items-center",
+    className: "col-2 pl-3 d-flex justify-content-center align-items-center eye",
     onClick: function onClick() {
       return setPasswordView(!passwordView);
     }
@@ -68954,7 +69070,7 @@ var ForgottenPassword = function ForgottenPassword(_ref) {
     onClick: function onClick() {
       return submit();
     }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "sent email")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "send email")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-12 row problems"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-12",
@@ -69223,7 +69339,6 @@ var Home = function Home(_ref) {
   } : _ref$edit;
 
   var handleChange = function handleChange(data) {
-    console.log("home");
     edit(data);
   };
 
@@ -69282,7 +69397,7 @@ var Home = function Home(_ref) {
       className: "action-point text-center"
     }, "7"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "message col-11 mt-5"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Thomas"), " !")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, location.state.data.user.username), " !")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "work-options justify-content-between col-11 row my-5"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "work-option row justify-content-center col-3 p-0"
@@ -69364,12 +69479,13 @@ var Main = function Main() {
 
   var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
       _useState6 = _slicedToArray(_useState5, 2),
-      loginMessage = _useState6[0],
-      setLoginMessage = _useState6[1];
+      message = _useState6[0],
+      setMessage = _useState6[1];
 
   var _loginUser = function _loginUser(data) {
+    var message = "";
     jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form .sign-in-button").attr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>');
-    axios__WEBPACK_IMPORTED_MODULE_5___default.a.post("/api/login/", data, {
+    axios__WEBPACK_IMPORTED_MODULE_5___default.a.post("/api/login", data, {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -69379,7 +69495,7 @@ var Main = function Main() {
       console.log(response);
       return response;
     }).then(function (json) {
-      setLoginMessage(json.data.messages);
+      setMessage(json.data.messages);
 
       if (json.data.success) {
         var userData = {};
@@ -69396,6 +69512,8 @@ var Main = function Main() {
             phone: json.data.data.phone,
             ready: json.data.data.ready,
             type: json.data.data.type,
+            username: json.data.data.username,
+            profile_pic: json.data.data.profile_pic,
             timestamp: new Date().toString()
           };
         } else if (json.data.data.type === "company") {
@@ -69409,6 +69527,8 @@ var Main = function Main() {
             phone: json.data.data.phone,
             ready: json.data.data.ready,
             type: json.data.data.type,
+            username: json.data.data.username,
+            profile_pic: json.data.data.profile_pic,
             timestamp: new Date().toString()
           };
         }
@@ -69436,8 +69556,6 @@ var Main = function Main() {
     })["catch"](function (error) {
       jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form .sign-in-button").removeAttr("disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign in</span>');
     });
-    console.log("main");
-    console.log(loginMessage);
   };
 
   var _logoutUser = function _logoutUser() {
@@ -69461,7 +69579,6 @@ var Main = function Main() {
         "X-localization": location
       }
     }).then(function (response) {
-      console.log(response);
       return response;
     }).then(function (json) {
       if (json.data.success) {
@@ -69480,6 +69597,8 @@ var Main = function Main() {
             phone: json.data.data.phone,
             ready: json.data.data.ready,
             type: json.data.data.type,
+            username: json.data.data.username,
+            profile_pic: json.data.data.profile_pic,
             timestamp: new Date().toString()
           };
         } else if (json.data.data.type === "company") {
@@ -69493,6 +69612,8 @@ var Main = function Main() {
             phone: json.data.data.phone,
             ready: json.data.data.ready,
             type: json.data.data.type,
+            username: json.data.data.username,
+            profile_pic: json.data.data.profile_pic,
             timestamp: new Date().toString()
           };
         }
@@ -69522,13 +69643,26 @@ var Main = function Main() {
   };
 
   var _edit = function _edit(data) {
-    console.log("main");
     console.log(data);
-    console.log(localStorage);
-    console.log(JSON.parse(localStorage.appState).user.auth_token);
-    axios__WEBPACK_IMPORTED_MODULE_5___default.a.post("/api/register-additional", data, {
+    var formData = new FormData();
+    formData.append("drivingLicense", data.drivingLicense);
+    formData.append("email", data.email);
+
+    if (data.lastName !== undefined) {
+      formData.append("languages", data.languages);
+      formData.append("lastName", data.lastName);
+    } else {
+      formData.append("ico", data.ico);
+    }
+
+    formData.append("name", data.name);
+    formData.append("phone", data.phone);
+    formData.append("profile_pic", data.profile_pic);
+    formData.append("username", data.username);
+    axios__WEBPACK_IMPORTED_MODULE_5___default.a.post("/api/register-additional", formData, {
       headers: {
-        'Content-Type': "application/json",
+        'Content-Type': "multipart/form-data",
+        'Accept': "multipart/form-data",
         "X-localization": location,
         "Authorization": 'Bearer ' + JSON.parse(localStorage.appState).user.auth_token
       }
@@ -69553,6 +69687,8 @@ var Main = function Main() {
             phone: response.data.data.phone,
             ready: response.data.data.ready,
             type: response.data.data.type,
+            username: response.data.data.username,
+            profile_pic: response.data.data.profile_pic,
             timestamp: new Date().toString()
           };
         } else if (response.data.data.type === "company") {
@@ -69566,6 +69702,8 @@ var Main = function Main() {
             phone: response.data.data.phone,
             ready: response.data.data.ready,
             type: response.data.data.type,
+            username: response.data.data.username,
+            profile_pic: response.data.data.profile_pic,
             timestamp: new Date().toString()
           };
         }
@@ -69627,7 +69765,7 @@ var Main = function Main() {
     login: _loginUser,
     register: _submitRegistration,
     reset: _reset,
-    loginMessage: loginMessage
+    message: message
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Logged_Home__WEBPACK_IMPORTED_MODULE_6__["Home"], {
     path: "/home",
     edit: _edit

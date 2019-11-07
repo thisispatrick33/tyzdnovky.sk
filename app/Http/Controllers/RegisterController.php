@@ -9,13 +9,14 @@ use DB;
 use JWTAuth;
 use JWTAuthException;
 use App\Branch;
-use App\Company;
+use App\Business;
 use App\User;
 use App\Language;
 
 class RegisterController extends Controller
 {
     public function register(Request $request){
+
         
         $validator = Validator::make($request->all(), [
             'type' => 'required|numeric|max:2|min:1',
@@ -34,8 +35,7 @@ class RegisterController extends Controller
         if($request->type == 1){
                 
             $validator = Validator::make($request->all(), [
-                'email' => 'sometimes|email|unique:users|unique:companies',
-                'phone' => 'sometimes|string|unique:users|unique:companies',
+                'email' => 'required|email|unique:users|unique:business',
                 'passwordR' => 'required'
             ]);
              
@@ -52,22 +52,16 @@ class RegisterController extends Controller
             DB::beginTransaction();
 
             try {
-        
-                $company= new Company;
-                if($request->email){
-                    $company->email = $request->email;
-                }
-                else{
-                    $company->phone = $request->phone;
-                }
-                $company->password = \Hash::make($request->passwordR);
+                $business= new Business;
                 
+                $business->email = $request->email;
+                $business->password = \Hash::make($request->passwordR);
+                
+                if($business->save()){
 
-                if($company->save()){
-
-                    $token = \Auth::guard('companies')->attempt(['email' => $request->email, 'password' => $request->passwordR]);
+                    $token = \Auth::guard('businesses')->attempt(['email' => $request->email, 'password' => $request->passwordR]);
                     if (!is_string($token))  return response()->json(['success'=>false,'data'=>[],'messages'=>trans('messages.tokenFailed')]);
-                    $company = Company::where('email', $request->email)->get()->first();
+                    $company = Business::where('email', $request->email)->get()->first();
                     $company->auth_token = $token;
                     $company->save();
                     $success = true;
@@ -78,22 +72,23 @@ class RegisterController extends Controller
                 }
                 } catch (\Exception $e) {
                 // maybe log this exception, but basically it's just here so we can rollback if we get a surprise
+                    return $e;
                 }
 
                 if ($success) {
                     DB::commit();
                     return response()->json([
                         'success' => true,
-                        'data'=>['type' => 'company',
-                                    'id' => $company->id,
-                                    'auth_token' => $company->auth_token,
-                                    'name' => $company->name, 
-                                    'bussinesId' => $company->ico,
-                                    'phone' => $company->phone,
-                                    'ready' => $company->nastup,
-                                    'email'=> $company->email,
-                                    'active' => $company->active,
-                                    'username' => $company->username
+                        'data'=>['type' => 'business',
+                                    'id' => $business->id,
+                                    'auth_token' => $business->auth_token,
+                                    'name' => $business->name, 
+                                    'bussinesId' => $business->ico,
+                                    'phone' => $business->phone,
+                                    'email'=> $business->email,
+                                    'active' => $business->active,
+                                    'username' => $business->username,
+                                    'profile_pic' => $business->profile_pic
                                 ],
                         'messages' => trans('messages.accountCreated')
                     ]);
@@ -111,8 +106,7 @@ class RegisterController extends Controller
         else{
 
             $validator = Validator::make($request->all(), [
-                'email' => 'sometimes|email|unique:users|unique:companies',
-                'phone' => 'sometimes|string|unique:users|unique:companies',
+                'email' => 'required|email|unique:users|unique:business',
                 'passwordR' => 'required'
             ]);
              
@@ -132,12 +126,10 @@ class RegisterController extends Controller
             try {
         
                 $user= new User;
-                if($request->email){
-                    $user->email = $request->email;
-                }
-                else{
-                    $user->phone = $request->phone;
-                }
+
+                $user->email = $request->email;
+                $user->phone = $request->phone;
+                
                 $user->password = \Hash::make($request->passwordR);
 
                 if($user->save()){
@@ -166,11 +158,11 @@ class RegisterController extends Controller
                                       'name' => $user->name, 
                                       'lastName' => $user->lastname,
                                       'phone' => $user->phone,
-                                      'ready' => $user->nastup,
                                       'email'=> $user->email,
                                       'active' => $user->active,
                                       'drivingLicense' => $user->driving_license,
-                                      'username' => $user->username
+                                      'username' => $user->username,
+                                      'profile_pic' => $user->profile_pic
                                     ],
                     'messages' => trans('messages.accountCreated')
                 ]);
@@ -190,43 +182,47 @@ class RegisterController extends Controller
 
 
     public function additionalInfo(Request $request){
+
+
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
         ]);
+
          
         if ($validator->fails()) {
             return response()->json([
                 'success' => false,
                 'data' => [],
-                'messages' => $validator->messages()
+                'messages' => $validator->messages()->all()
             ]);
         };
-
         if($user = User::where('email',$request->email)->where('active',false)->first()){
+
             $validator = Validator::make($request->all(), [
                 'categories' => 'required|array',
                 'drivingLicense' => 'required|boolean',
                 'languages' => 'required|array',
-                'username' => 'required|unique:users|unique:companies',
+                'username' => 'required|unique:users|unique:business',
                 'name' => 'required|string',
                 'lastName' => 'required|string',
                 'phone' => 'required|string',
-                'email' => 'required|email'
-            ]);
-             
-            if ($validator->fails()) {
+                'email' => 'required|email',
+                'profile_pic' => 'required|image|mimes:jpeg,png,jpg,gif,svg'
+                ]);
+                
+                if ($validator->fails()) {
                 return response()->json([
                     'success' => false,
                     'data' => [],
                     'messages' => $validator->messages()->all()
-                ]);
-            };
-            
-            
-            $success = false;
-
-            DB::beginTransaction();
-
+                    ]);
+                };
+                
+                
+                $success = false;
+                
+                DB::beginTransaction();
+                
             try {  
                 $user->driving_license = $request->drivingLicense;
                 $user->username = '@'.$request->username;
@@ -234,9 +230,13 @@ class RegisterController extends Controller
                 $user->lastname = $request->lastName;
                 $user->phone = $request->phone;
                 $user->email = $request->email;
-
+                
+                $image_name = $user->username;
+                $image_file->move(public_path('images/profile_pics/'),$image_name);
+                $user->profile_pic = public_path('images/profile_pics/'.$image_name);
+                
                 if($user->save()){
-
+                    
                     $language_arr = [];
                     foreach( $request->languages as $language){
                     
@@ -257,35 +257,19 @@ class RegisterController extends Controller
                     $branch_arr = [];
                     foreach( $request->categories as $branch){
                         $branch_id = Branch::where('name','=',$branch['value'])->first();
-                        if ($branch_id) {
-                            array_push($branch_arr,$branch_id->id);
-                        }
-                        else {
-                            $NewBranch = new Branch;
-                            $NewBranch->name = $branch['value'];
-                            $NewBranch->lang = ($request->hasHeader('X-localization')) ? $request->header('X-localization') : 'en';
-                            if ($NewBranch->save()) {
-                                array_push($branch_arr,$NewBranch->id);
-                            }
-                        }
+                        array_push($branch_arr,$branch_id->id);
+                        
                     }   
-            
-                    $user->languages()->syncWithoutDetaching($language_arr);
-            
-                    for($i = 0 ; $i< sizeof($branch_arr);$i++){
-                        if($request->categories[$i]['practise'] > 0 && $request->categories[$i]['ready']){
-                            $user->branches()->syncWithoutDetaching($branch_arr[$i]);
-                            $user->branches()->updateExistingPivot($branch_arr[$i], ['years' => $request->categories[$i]['practise'],
-                                                                                     'ready' => $request->categories[$i]['ready']]);
-                        }
-                    }
+                    
+                    $user->languages()->attach($language_arr);
+                    $user->branches()->attach($branch_arr);
                     
                     $user->active = true;
-
+                    
                     if($user->save()){
                         $success = true;
                     }
-            
+                    
                 }
                 else{
                     $success = false;
@@ -293,7 +277,7 @@ class RegisterController extends Controller
             } catch (\Exception $e) {
                 // maybe log this exception, but basically it's just here so we can rollback if we get a surprise
             }
-
+            
             if ($success) {
                 DB::commit();
                 return response()->json([
@@ -308,10 +292,11 @@ class RegisterController extends Controller
                                       'email'=> $user->email,
                                       'active' => $user->active,
                                       'drivingLicense' => $user->driving_license,
-                                      'username' => $user->username
+                                      'username' => $user->username,
+                                      'profile_pic' => $user->profile_pic
                                     ],
-                    'messages' => trans('messages.dataAdded')
-                ]);
+                                    'messages' => trans('messages.dataAdded')
+                                    ]);
             } else {
                 DB::rollback();
                 return response()->json([
@@ -321,57 +306,47 @@ class RegisterController extends Controller
                 ]);
             }
         }
-        else if($company = Company::where('email',$request->email)->where('active',false)->first()){
+        else if($business = Business::where('email',$request->email)->where('active',false)->first()){
             $validator = Validator::make($request->all(), [
-                'categories' => 'required|array',
                 'email' => 'required|email',
-                'username' => 'required|unique:users|unique:companies',
+                'username' => 'required|unique:users|unique:business',
                 'name' => 'required|string',
                 'ico' => 'required|string',
-                'phone' => 'required|string'
+                'phone' => 'required|string',
+                'profile_pic' => 'required|image|mimes:jpeg,png,jpg,gif,svg'
             ]);
-             
+                
             if ($validator->fails()) {
                 return response()->json([
                     'success' => false,
                     'data' => [],
                     'messages' => $validator->messages()->all()
-                ]);           
+                    ]);           
             };
-
+                
+            
             $success = false;
-
+                
             DB::beginTransaction();
 
             try {        
-
-                $company->username = '@'.$request->username;
-                $company->name = $request->name;
-                $company->ico = $request->ico;
-                $company->phone = $request->phone;
-                $company->email = $request->email;
-
-                if($company->save()){
-                    $branch_arr = [];
-                    foreach( $request->categories as $branch){
-                        $branch_id = Branch::where('name','=',$branch['value'])->first();
-                        if ($branch_id) {
-                            array_push($branch_arr,$branch_id->id);
-                        }
-                        else {
-                            $NewBranch = new Branch;
-                            $NewBranch->name = $branch['value'];
-                            $NewBranch->lang = ($request->hasHeader('X-localization')) ? $request->header('X-localization') : 'en';
-                            if ($NewBranch->save()) {
-                                array_push($branch_arr,$NewBranch->id);
-                            }
-                        }
-                    }   
-                    $company->branches()->attach($branch_arr);
                     
-                    $company->active = true;
+                $business->username = '@'.$request->username;
+                $business->name = $request->name;
+                $business->ico = $request->ico;
+                $business->phone = $request->phone;
+                $business->email = $request->email;
 
-                    if($company->save()){
+                $image_file = $request->profile_pic;
+
+                $image_name = $request->username.".".$image_file->getClientOriginalExtension();
+                $image_file->move(public_path('images/profile_pics/'),$image_name);
+                $business->profile_pic = public_path('images/profile_pics/'.$image_name);
+
+                if($business->save()){
+                    $business->active = true;
+
+                    if($business->save()){
                         $success = true;
                     }
 
@@ -388,16 +363,17 @@ class RegisterController extends Controller
                 DB::commit();
                 return response()->json([
                     'success' => true,
-                    'data'=>['type' => 'company',
-                                    'id' => $company->id,
-                                    'auth_token' => $company->auth_token,
-                                    'name' => $company->name, 
-                                    'bussinesId' => $company->ico,
-                                    'phone' => $company->phone,
-                                    'ready' => $company->nastup,
-                                    'email'=> $company->email,
-                                    'active' => $company->active,
-                                    'username' => $company->username
+                    'data'=>['type' => 'business',
+                                    'id' => $business->id,
+                                    'auth_token' => $business->auth_token,
+                                    'name' => $business->name, 
+                                    'bussinesId' => $business->ico,
+                                    'phone' => $business->phone,
+                                    'ready' => $business->nastup,
+                                    'email'=> $business->email,
+                                    'active' => $business->active,
+                                    'username' => $business->username,
+                                    'profile_pic' => $business->profile_pic
                                 ],
                     'messages' => trans('messages.dataAdded')
                 ]);

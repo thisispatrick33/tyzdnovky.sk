@@ -9,7 +9,7 @@ use DB;
 use JWTAuth;
 use JWTAuthException;
 use App\Branch;
-use App\Company;
+use App\Business;
 use App\User;
 use App\Language;
 use Mail;
@@ -30,7 +30,7 @@ class LoginController extends Controller
         };
 
         $user = false;
-        $company = false;
+        $business = false;
 
         if($findUser = User::where('email',$request->login)->first()){
             $user = $findUser;
@@ -38,11 +38,11 @@ class LoginController extends Controller
         else if($findUser = User::where('username',$request->login)->first()){
             $user = $findUser;
         }
-        else if($findCompany = Company::where('username',$request->login)->first()){
-            $company = $findCompany;
+        else if($findBusiness = Business::where('username',$request->login)->first()){
+            $business = $findBusiness;
         }
-        else if($findCompany = Company::where('email',$request->login)->first()) {
-            $company = $findCompany;
+        else if($findBusiness = Business::where('email',$request->login)->first()) {
+            $business = $findBusiness;
         }
 
         if($user){
@@ -62,7 +62,8 @@ class LoginController extends Controller
                                       'email'=> $user->email,
                                       'active' => $user->active,
                                       'drivingLicense' => $user->driving_license,
-                                      'username' => $user->username
+                                      'username' => $user->username,
+                                      'profile_pic' => $user->profile_pic
                                     ],
                              'messages' => trans('messages.loginSuccessful')
                             ];           
@@ -75,22 +76,24 @@ class LoginController extends Controller
             }    
             return response()->json($response);
         }
-        else if($company){
-            if (\Hash::check($request->passwordL, $company->password)){
-                $token = \Auth::guard('companies')->attempt(['email' => $company->email,
+        else if($business){
+            if (\Hash::check($request->passwordL, $business->password)){
+                $token = \Auth::guard('businesses')->attempt(['email' => $business->email,
                                                              'password' => $request->passwordL]);
-                $company->auth_token = $token;
-                $company->save();
+                $business->auth_token = $token;
+                $business->save();
                 $response = ['success'=>true, 
-                            'data'=>['type' => 'company',
-                                    'id' => $company->id,
-                                    'auth_token' => $company->auth_token,
-                                    'name' => $company->name, 
-                                    'bussinesId' => $company->ico,
-                                    'phone' => $company->phone,
-                                    'email'=> $company->email,
-                                    'active' => $company->active,
-                                    'username' => $company->username
+                            'data'=>['type' => 'business',
+                                    'id' => $business->id,
+                                    'auth_token' => $business->auth_token,
+                                    'name' => $business->name, 
+                                    'bussinesId' => $business->ico,
+                                    'phone' => $business->phone,
+                                    'ready' => $business->nastup,
+                                    'email'=> $business->email,
+                                    'active' => $business->active,
+                                    'username' => $business->username,
+                                    'profile_pic' => $business->profile_pic
                                 ],
                             'messages' => trans('messages.loginSuccessful')
                ];           
@@ -128,7 +131,7 @@ class LoginController extends Controller
         };
 
         $user = false;
-        $company = false;
+        $business = false;
 
         if($findUser = User::where('email',$request->login)->first()){
             $user = $findUser;
@@ -136,18 +139,18 @@ class LoginController extends Controller
         else if($findUser = User::where('username',$request->login)->first()){
             $user = $findUser;
         }
-        else if($findCompany = Company::where('username',$request->login)->first()){
-            $company = $findCompany;
+        else if($findBusiness = Business::where('username',$request->login)->first()){
+            $business = $findBusiness;
         }
-        else if($findCompany = Company::where('email',$request->login)->first()) {
-            $company = $findCompany;
+        else if($findBusiness = Business::where('email',$request->login)->first()) {
+            $business = $findBusiness;
         }
 
         if($user){
             $data=$user;
         }
-        else if($company){
-            $data=$company;
+        else if($business){
+            $data=$business;
         }
         /*else if(){
             TODO admin verification

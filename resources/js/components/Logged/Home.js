@@ -5,7 +5,6 @@ import {Additional} from "../Additional";
 
 export const Home = ({location, edit = f => f}) => {
     const handleChange = (data) =>{
-        console.log("home");
         edit(data);
     };
 
@@ -41,7 +40,7 @@ export const Home = ({location, edit = f => f}) => {
                         </div>
                     </div>
                     <div className="message col-11 mt-5">
-                        <p>Hello <span>Thomas</span> !</p>
+                        <p>Hello <span>{location.state.data.user.username}</span> !</p>
                     </div>
 
                     <div className="work-options justify-content-between col-11 row my-5">

@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import {ForgottenPassword} from "./ForgottenPassword";
 import $ from 'jquery';
-export const Authentication = ({login = f => f, register = f => f, reset = f => f, loginMessage}) => {
+
+export const Authentication = ({message,login = f => f, register = f => f, reset = f => f}) => {
+
 
     const [data,setData] = useState({type : 2});
     const [slide, setSlide] = useState(0);
@@ -13,11 +15,8 @@ export const Authentication = ({login = f => f, register = f => f, reset = f => 
         if(control=="r"){
             register(data);
         }
-        else {
-            if (control=="l"){
-                login(data);
-                console.log(loginMessage);
-            }
+        else if (control=="l"){
+           login(data)
         }
     };
 
@@ -85,14 +84,15 @@ export const Authentication = ({login = f => f, register = f => f, reset = f => 
                     passwordReset ?  <ForgottenPassword close={_forgottenPassword} reset={reset}/> : ``
                 }
                     <form id={`login-form`} className={`form row col-xl-4 col-lg-5 col-md-6 col-sm-8 col-12 | align-items-start | justify-content-center align-items-center | m-0`}>
-                                <div className="col-11 justify-content-center row">
+                        <p>{message}</p>
+                        <div className="col-11 justify-content-center row p-xl-1 pl-lg-1 p-md-1 p-sm-0 p-0">
                                     <div className=" row m-0 p-0 col-12 header justify-content-center ">
                                         <h1 className={`col-11 p-0 text-center sign-in`}>sign <span className="highlighted">{slide === 0 ? `in` : `up`}.</span></h1>
                                     </div>
                                     { slide === 0 ? `` :
                                         <div className="choose row col-xl-8 col-lg-8 col-md-9 col-sm-10 col-11 p-0 shadow-sm my-4">
                                             <p className={`col-6 m-0 text-center px-0 py-2 ${data.type === 2 ? `on` : ``}`}  onClick={() => setData({...data, type : 2})}>personal</p>
-                                            <p className={`col-6 m-0 text-center px-0 py-2 ${data.type === 1 ? `on` : ``}`}  onClick={() => setData({...data, type : 1})}>company</p>
+                                            <p className={`col-6 m-0 text-center px-0 py-2 ${data.type === 1 ? `on` : ``}`}  onClick={() => setData({...data, type : 1})}>business</p>
                                         </div>
                                     }
                                     <div className={` input col-11 mt-3 row p-0 mx-0 ${(missing.value === "@" || missing.value === "email" || missing.value === "login") ? `warning-frame` : ``}`}>
@@ -130,7 +130,7 @@ export const Authentication = ({login = f => f, register = f => f, reset = f => 
                                             onChange={(e) => setData(slide === 0 ? {...data, passwordL: e.target.value} : {...data, passwordR: e.target.value})}
                                             value={slide === 0 ? (data.passwordL ? data.passwordL : ``) : (data.passwordR ? data.passwordR : ``)}
                                         />
-                                        <div className="col-2 pl-3 d-flex justify-content-center align-items-center" onClick={() => setPasswordView(!passwordView)}>
+                                        <div className="col-2 pl-3 d-flex justify-content-center align-items-center eye" onClick={() => setPasswordView(!passwordView)}>
                                             { !passwordView ?
                                                 <svg style={{width : `16px`, height : `16px`}} fill="#2c393f" className={`col-12 p-0 d-xl-flex d-lg-flex d-md-flex d-flex`} enableBackground="new 0 0 59.049 59.049" version="1.1" viewBox="0 0 59.049 59.049" space="preserve">
                                                     <path d="m11.285 41.39c0.184 0.146 0.404 0.218 0.623 0.218 0.294 0 0.585-0.129 0.783-0.377 0.344-0.432 0.273-1.061-0.159-1.405-0.801-0.638-1.577-1.331-2.305-2.06l-7.398-7.398 7.629-7.629c7.334-7.333 18.003-9.836 27.839-6.534 0.523 0.173 1.09-0.107 1.267-0.63 0.175-0.523-0.106-1.091-0.63-1.267-10.562-3.545-22.016-0.857-29.89 7.016l-9.044 9.044 8.812 8.812c0.781 0.782 1.614 1.525 2.473 2.21z"/>
