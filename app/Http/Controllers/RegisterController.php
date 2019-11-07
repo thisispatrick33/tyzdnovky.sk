@@ -189,7 +189,7 @@ class RegisterController extends Controller
             return response()->json([
                 'success' => false,
                 'data' => [],
-                'messages' => $validator->messages()
+                'messages' => $validator->messages()->all()
             ]);
         };
         if($user = User::where('email',$request->email)->where('active',false)->first()){
@@ -225,8 +225,10 @@ class RegisterController extends Controller
                 $user->lastname = $request->lastName;
                 $user->phone = $request->phone;
                 $user->email = $request->email;
+
+                $image_file = $request->profile_pic;
                 
-                $image_name = $user->username;
+                $image_name = $user->username.".".$image_file->getClientOriginalExtension();
                 $image_file->move(public_path('images/profile_pics/'),$image_name);
                 $user->profile_pic = public_path('images/profile_pics/'.$image_name);
                 
@@ -248,10 +250,10 @@ class RegisterController extends Controller
                             }
                         } 
                     }
-        
-                    $branch_arr = [];
+                   
+                    $branch_arr = [];     
                     foreach( $request->categories as $branch){
-                        $branch_id = Branch::where('name','=',$branch['value'])->first();
+                        $branch_id = Branch::where('name','=',$branch)->first();
                         array_push($branch_arr,$branch_id->id);
                         
                     }   
