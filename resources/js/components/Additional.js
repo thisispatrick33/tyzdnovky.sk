@@ -1,13 +1,16 @@
- import React, {useState} from 'react';
+import React, { useState} from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import $ from 'jquery';
 
-export const Additional = ({user, func = f => f}) => {
+export const Additional = ({user, func = f => f, getDataAdditional}) => {
+
+
     function readURL(input) {
-        console.log(input[0]);
-        setAdditionalData({...additionalData, profile_pic: input[0]});
+        console.log("input");
+        console.log(input);
+        setAdditionalData({...additionalData, profile_pic: input});
         if (input && input[0]) {
             let reader = new FileReader();
             reader.onload = function(e) {
@@ -25,6 +28,7 @@ export const Additional = ({user, func = f => f}) => {
     const languagesInUse = [{full : "czech", short : "cze"}, {full : "spanish", short : "spa"}, {full : "english", short : "eng"}, {full : "hungarian", short : "hun"}, {full : "arabic", short : "arb"}, {full : "portugese", short : "ptg"}, {full : "russian", short : "rus"}, {full : "japanese", short : "jap"}, {full : "german", short : "ger"}, {full : "korean", short : "kor"}, {full : "french", short : "fre"}, {full : "turkish", short : "tur"}, {full : "vietnamese", short : "vie"}];
     const [additionalLanguage, setAdditionalLanguage] = useState("");
     const [missing, setMissing] = useState(``);
+    const [dataAdditional, setDataAdditional] = useState(getDataAdditional);
 
     const handleLang = (value) => {
         let array = [...languages];
@@ -33,8 +37,6 @@ export const Additional = ({user, func = f => f}) => {
     };
 
     const formValidator=()=>{
-
-
             if(additionalData.username !== undefined && additionalData.username.length > 0){
                 if(additionalData.name !== undefined && additionalData.name.length > 0){
                     if((user.type==="user"&&additionalData.lastName !== undefined && additionalData.lastName.length > 0)||(user.type==="company"&&additionalData.ico !== undefined && additionalData.ico.length > 0)){
@@ -115,6 +117,7 @@ export const Additional = ({user, func = f => f}) => {
             <div className="content-frame | row  col-xl-6 col-lg-6 col-md-7 col-12 | justify-content-center align-items-center | px-0 | shadow-sm py-xl-5 py-lg-5 py-md-5 py-0 my-xl-5 my-lg-5 my-md-5 my-0">
                 <div className="col-10 row main-info p-0 m-0 align-items-center">
                     <h1 className={'col-12 p-0 text-center'}><span className="doth">Set up</span> your profile <span className="doth">...</span></h1>
+                    <p>{dataAdditional}</p>
                     <Slider {...settings} className={`col-12 p-0 py-xl-3 py-lg-3 py-md-2 py-md-1 py-1`}>
                         <div className={`col-12 m-0 p-0 row justify-content-center`}>
                             <div className="col-12 mx-0 p-0 row my-xl-4 my-lg-4 my-md-3 my-sm-3 my-3 justify-content-around">

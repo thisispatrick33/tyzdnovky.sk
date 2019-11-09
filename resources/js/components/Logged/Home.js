@@ -1,17 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Additional} from "../Additional";
+import axios from "axios";
 
 
 
-export const Home = ({location, edit = f => f}) => {
+export const Home =({location, edit = f => f, dataAdditional = f => f}) => {
     const handleChange = (data) =>{
         edit(data);
     };
 
+
     if(location.state!=null){
         let additional = "";
         if(location.state.data.user.active==0){
-            additional = <Additional user={location.state.data.user} func={handleChange}/>
+            additional = <Additional user={location.state.data.user} func={handleChange} getDataAdditional={dataAdditional}/>
         }
 
         return (
@@ -35,12 +37,12 @@ export const Home = ({location, edit = f => f}) => {
                             <input type="text" className="col-11 finder" placeholder="…find work, company or group"/>
                         </div>
                         <div className="user-header-nofication col-1">
-                            <img src={`./images/profile-photo.png`} className={`profile-photo`} alt=""/>
+                            <img className={`profile-photo`} alt=""/>
                             <div className="action-point text-center">7</div>
                         </div>
                     </div>
                     <div className="message col-11 mt-5">
-                        <p>Hello <span>{location.state.data.user.username}</span> !</p>
+                        <p>Hello <span>hi</span> !</p>
                     </div>
 
                     <div className="work-options justify-content-between col-11 row my-5">

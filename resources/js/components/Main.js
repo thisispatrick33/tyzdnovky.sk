@@ -196,10 +196,12 @@ const Main = () => {
     const _edit = (data) => {
         console.log(data);
         let formData = new FormData();
-        formData.append(`drivingLicense`, data.drivingLicense);
+        formData.set(`drivingLicense`, data.drivingLicense);
         formData.append(`email`, data.email);
         if(data.lastName!==undefined){
-            formData.append(`languages`, data.languages);
+            for (let i = 0; i < data.languages.length; i++) {
+                formData.append('languages[]', data.languages[i]);
+            }
             formData.append(`lastName`, data.lastName);
         }
         else {
@@ -224,7 +226,7 @@ const Main = () => {
                 return response;
             })
             .then(response =>{
-                console.log(response.data.success);
+                console.log(response);
                 if(response.data.success){
                     let userData = {};
                     if (response.data.data.type === "user") {
@@ -269,8 +271,30 @@ const Main = () => {
                     setAuthState({isLoggedIn: appState.isLoggedIn, user: appState.user});
                     navigate(`/home`, {state:{data:appState}});
                 }
+
+            })
+            .catch((e)=>{
+                console.log(e);
             })
     };
+
+    const _dataAdditional = () =>{
+        let tmp = {};
+        axios
+            .get(`/api/register-additional`,{
+                headers : {
+                    'Content-Type' : `application/json`,
+                    "X-localization" : location,
+                }
+            })
+            .then((response) => {
+                console.log("main / get");
+                console.log(response);
+                tmp = response;
+            });
+        return tmp;
+    };
+
 
     const _reset = (login) =>{
         axios
@@ -324,7 +348,7 @@ const Main = () => {
             <Router>
 
                 <Authentication path={`/`} login={_loginUser} register={_submitRegistration} reset={_reset} message={message}/>
-                <Home path={`/home`} edit={_edit}/>
+                <Home path={`/home`} edit={_edit} dataAdditional={_dataAdditional}/>
                 <PasswordReset path={'/reset-password'} reset={_resetPassword}/>
             </Router>
 

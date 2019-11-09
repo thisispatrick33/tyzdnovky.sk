@@ -67993,12 +67993,14 @@ var Additional = function Additional(_ref) {
       _ref$func = _ref.func,
       func = _ref$func === void 0 ? function (f) {
     return f;
-  } : _ref$func;
+  } : _ref$func,
+      getDataAdditional = _ref.getDataAdditional;
 
   function readURL(input) {
-    console.log(input[0]);
+    console.log("input");
+    console.log(input);
     setAdditionalData(_objectSpread({}, additionalData, {
-      profile_pic: input[0]
+      profile_pic: input
     }));
 
     if (input && input[0]) {
@@ -68079,6 +68081,11 @@ var Additional = function Additional(_ref) {
       _useState8 = _slicedToArray(_useState7, 2),
       missing = _useState8[0],
       setMissing = _useState8[1];
+
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(getDataAdditional),
+      _useState10 = _slicedToArray(_useState9, 2),
+      dataAdditional = _useState10[0],
+      setDataAdditional = _useState10[1];
 
   var handleLang = function handleLang(value) {
     var array = _toConsumableArray(languages);
@@ -68241,7 +68248,7 @@ var Additional = function Additional(_ref) {
     className: "doth"
   }, "Set up"), " your profile ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
-  }, "...")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_2___default.a, _extends({}, settings, {
+  }, "...")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, dataAdditional), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_2___default.a, _extends({}, settings, {
     className: "col-12 p-0 py-xl-3 py-lg-3 py-md-2 py-md-1 py-1"
   }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 m-0 p-0 row justify-content-center"
@@ -69329,6 +69336,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Additional__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Additional */ "./resources/js/components/Additional.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 var Home = function Home(_ref) {
@@ -69336,7 +69346,11 @@ var Home = function Home(_ref) {
       _ref$edit = _ref.edit,
       edit = _ref$edit === void 0 ? function (f) {
     return f;
-  } : _ref$edit;
+  } : _ref$edit,
+      _ref$dataAdditional = _ref.dataAdditional,
+      dataAdditional = _ref$dataAdditional === void 0 ? function (f) {
+    return f;
+  } : _ref$dataAdditional;
 
   var handleChange = function handleChange(data) {
     edit(data);
@@ -69348,7 +69362,8 @@ var Home = function Home(_ref) {
     if (location.state.data.user.active == 0) {
       additional = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Additional__WEBPACK_IMPORTED_MODULE_1__["Additional"], {
         user: location.state.data.user,
-        func: handleChange
+        func: handleChange,
+        getDataAdditional: dataAdditional
       });
     }
 
@@ -69390,14 +69405,13 @@ var Home = function Home(_ref) {
     })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "user-header-nofication col-1"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-      src: "./images/profile-photo.png",
       className: "profile-photo",
       alt: ""
     }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "action-point text-center"
     }, "7"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "message col-11 mt-5"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, location.state.data.user.username), " !")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "hi"), " !")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "work-options justify-content-between col-11 row my-5"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "work-option row justify-content-center col-3 p-0"
@@ -69645,11 +69659,14 @@ var Main = function Main() {
   var _edit = function _edit(data) {
     console.log(data);
     var formData = new FormData();
-    formData.append("drivingLicense", data.drivingLicense);
+    formData.set("drivingLicense", data.drivingLicense);
     formData.append("email", data.email);
 
     if (data.lastName !== undefined) {
-      formData.append("languages", data.languages);
+      for (var i = 0; i < data.languages.length; i++) {
+        formData.append('languages[]', data.languages[i]);
+      }
+
       formData.append("lastName", data.lastName);
     } else {
       formData.append("ico", data.ico);
@@ -69670,7 +69687,7 @@ var Main = function Main() {
       console.log(response);
       return response;
     }).then(function (response) {
-      console.log(response.data.success);
+      console.log(response);
 
       if (response.data.success) {
         var userData = {};
@@ -69723,7 +69740,24 @@ var Main = function Main() {
           }
         });
       }
+    })["catch"](function (e) {
+      console.log(e);
     });
+  };
+
+  var _dataAdditional = function _dataAdditional() {
+    var tmp = {};
+    axios__WEBPACK_IMPORTED_MODULE_5___default.a.get("/api/register-additional", {
+      headers: {
+        'Content-Type': "application/json",
+        "X-localization": location
+      }
+    }).then(function (response) {
+      console.log("main / get");
+      console.log(response);
+      tmp = response;
+    });
+    return tmp;
   };
 
   var _reset = function _reset(login) {
@@ -69768,7 +69802,8 @@ var Main = function Main() {
     message: message
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Logged_Home__WEBPACK_IMPORTED_MODULE_6__["Home"], {
     path: "/home",
-    edit: _edit
+    edit: _edit,
+    dataAdditional: _dataAdditional
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_PasswordReset__WEBPACK_IMPORTED_MODULE_7__["PasswordReset"], {
     path: '/reset-password',
     reset: _resetPassword
