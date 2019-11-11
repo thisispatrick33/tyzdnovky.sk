@@ -23,15 +23,21 @@ Route::group(['middleware' => ['api-header','localization']], function () {
     //TEXT
     Route::get("/register-additional","TextController@additionalInfoText");
 
-    //AUTH
+    //LOGIN-REGISTER
     Route::post("/register","RegisterController@register");
     Route::post("/login","LoginController@login");
-    
+    //PASSWORD RESET
     Route::post("/password-reset-mail","LoginController@passResetEmail");
     Route::post("/password-reset","LoginController@passResetDo");
     
     Route::group(['middleware' => ['jwt-auth']], function () {
+        //REG.ADDITIONAL
         Route::post("/register-additional","RegisterController@additionalInfo");
+        //USER EDIT
+
+        //USER GET
+
+        //USER DELETE
     });
     
 });
