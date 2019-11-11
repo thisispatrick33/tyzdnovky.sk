@@ -1,10 +1,28 @@
-import React, { useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import $ from 'jquery';
+import axios from "axios";
 
-export const Additional = ({user, func = f => f, getDataAdditional}) => {
+export const Additional = ({user, func = f => f}) => {
+    const [additionalData,setAdditionalData] = useState({drivingLicense: false, email: user.email, profile_pic: null});
+    const [languages, setLanguages] = useState([]);
+    const languagesInUse = [{full : "czech", short : "cze"}, {full : "spanish", short : "spa"}, {full : "english", short : "eng"}, {full : "hungarian", short : "hun"}, {full : "arabic", short : "arb"}, {full : "portugese", short : "ptg"}, {full : "russian", short : "rus"}, {full : "japanese", short : "jap"}, {full : "german", short : "ger"}, {full : "korean", short : "kor"}, {full : "french", short : "fre"}, {full : "turkish", short : "tur"}, {full : "vietnamese", short : "vie"}];
+    const [additionalLanguage, setAdditionalLanguage] = useState("");
+    const [missing, setMissing] = useState(``);
+    const [dataAdditional, setDataAdditional] = useState({});
+    const [categories, setCategories] = useState({fullTimeCategories: [], freeTimeCategories:[]});
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const result = await axios(
+                'api/register-additional',
+            );
+            setDataAdditional(result.data);
+        };
+        fetchData();
+    }, []);
 
 
     function readURL(input) {
@@ -23,17 +41,22 @@ export const Additional = ({user, func = f => f, getDataAdditional}) => {
         }
     }
 
-    const [additionalData,setAdditionalData] = useState({drivingLicense: false, email: user.email, profile_pic: null});
-    const [languages, setLanguages] = useState([]);
-    const languagesInUse = [{full : "czech", short : "cze"}, {full : "spanish", short : "spa"}, {full : "english", short : "eng"}, {full : "hungarian", short : "hun"}, {full : "arabic", short : "arb"}, {full : "portugese", short : "ptg"}, {full : "russian", short : "rus"}, {full : "japanese", short : "jap"}, {full : "german", short : "ger"}, {full : "korean", short : "kor"}, {full : "french", short : "fre"}, {full : "turkish", short : "tur"}, {full : "vietnamese", short : "vie"}];
-    const [additionalLanguage, setAdditionalLanguage] = useState("");
-    const [missing, setMissing] = useState(``);
-    const [dataAdditional, setDataAdditional] = useState(getDataAdditional);
-
     const handleLang = (value) => {
         let array = [...languages];
         array.includes(value) ? array=array.filter(lan => value !== lan) : array.push(value);
         setLanguages(array);
+    };
+
+    const handleFullWork = (value) => {
+        let array = [...categories.fullTimeCategories];
+        array.includes(value) ? array=array.filter(work => value !== work) : array.push(value);
+        setCategories({...categories, fullTimeCategories: array});
+    };
+
+    const handleFreeWork = (value) => {
+        let array = [...categories.freeTimeCategories];
+        array.includes(value) ? array=array.filter(work => value !== work) : array.push(value);
+        setCategories({...categories, freeTimeCategories: array});
     };
 
     const formValidator=()=>{
@@ -89,10 +112,10 @@ export const Additional = ({user, func = f => f, getDataAdditional}) => {
     const submit = async () =>{
         if(user.type === "user"){
             if(additionalLanguage!=""){
-                await func({...additionalData,languages: [...languages, additionalLanguage]});
+                await func({...additionalData, categories: categories, languages: [...languages, additionalLanguage]});
             }
             else {
-                await func({...additionalData,languages: languages});
+                await func({...additionalData, categories: categories, languages: languages});
             }
         }else{
             await func({...additionalData});
@@ -112,12 +135,16 @@ export const Additional = ({user, func = f => f, getDataAdditional}) => {
         prevArrow: <PreviousArrow />
     };
 
+    if(dataAdditional==undefined){
+        console.log(dataAdditional==undefined);
+        return <div>Loading</div>
+    }
     return (
+        console.log(dataAdditional),
         <div className={`additional-info-form | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0`} style={{overflowY : `scroll`}}>
             <div className="content-frame | row  col-xl-6 col-lg-6 col-md-7 col-12 | justify-content-center align-items-center | px-0 | shadow-sm py-xl-5 py-lg-5 py-md-5 py-0 my-xl-5 my-lg-5 my-md-5 my-0">
                 <div className="col-10 row main-info p-0 m-0 align-items-center">
                     <h1 className={'col-12 p-0 text-center'}><span className="doth">Set up</span> your profile <span className="doth">...</span></h1>
-                    <p>{dataAdditional}</p>
                     <Slider {...settings} className={`col-12 p-0 py-xl-3 py-lg-3 py-md-2 py-md-1 py-1`}>
                         <div className={`col-12 m-0 p-0 row justify-content-center`}>
                             <div className="col-12 mx-0 p-0 row my-xl-4 my-lg-4 my-md-3 my-sm-3 my-3 justify-content-around">
@@ -247,32 +274,32 @@ export const Additional = ({user, func = f => f, getDataAdditional}) => {
                                 <h3 className="col-12 mb-3 p-0 text-center"><span className="doth">fulltime</span> job <span className="doth">?</span></h3>
                                 <h6 className="col-12 mb-3 p-0 text-center">z akého odvetvia chcete dostávať pracovné ponuky ?</h6>
                                 <div className="categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center">
-                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
-                                        automobile industry
+                                    <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.fullTimeCategories.includes('a') ? `on` : ``}`} onClick={() => handleFullWork('a')}>
+                                        a
                                     </div>
-                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
-                                        automobile industry
+                                    <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.fullTimeCategories.includes('b') ? `on` : ``}`} onClick={() => handleFullWork('b')}>
+                                        b
                                     </div>
-                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
-                                        automobile industry
+                                    <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.fullTimeCategories.includes('c') ? `on` : ``}`} onClick={() => handleFullWork('c')}>
+                                        c
                                     </div>
-                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
-                                        automobile industry
+                                    <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.fullTimeCategories.includes('d') ? `on` : ``}`} onClick={() => handleFullWork('d')}>
+                                        d
                                     </div>
-                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
-                                        automobile industry
+                                    <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.fullTimeCategories.includes('e') ? `on` : ``}`} onClick={() => handleFullWork('e')}>
+                                        e
                                     </div>
-                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
-                                        automobile industry
+                                    <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.fullTimeCategories.includes('f') ? `on` : ``}`} onClick={() => handleFullWork('f')}>
+                                        f
                                     </div>
-                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
-                                        automobile industry
+                                    <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.fullTimeCategories.includes('g') ? `on` : ``}`} onClick={() => handleFullWork('g')}>
+                                        g
                                     </div>
-                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
-                                        automobile industry
+                                    <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.fullTimeCategories.includes('h') ? `on` : ``}`} onClick={() => handleFullWork('h')}>
+                                        h
                                     </div>
-                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
-                                        automobile industry
+                                    <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.fullTimeCategories.includes('i') ? `on` : ``}`} onClick={() => handleFullWork('i')}>
+                                        i
                                     </div>
 
                                 </div>
@@ -283,7 +310,7 @@ export const Additional = ({user, func = f => f, getDataAdditional}) => {
                                 <h3 className="col-12 mb-3 p-0 text-center"><span className="doth">freetime</span> job <span className="doth">?</span></h3>
                                 <h6 className="col-12 mb-3 p-0 text-center">čo by ste chceli robiť ?</h6>
                                 <div className="categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center">
-                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
+                                    <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.freeTimeCategories.includes('lawn') ? `on` : ``}`} onClick={() => handleFreeWork('lawn')}>
                                         lawn moving
                                     </div>
                                 </div>
@@ -322,7 +349,7 @@ export const Additional = ({user, func = f => f, getDataAdditional}) => {
                                     type={`text`}
                                     name={`name`}
                                     placeholder={`Enter your username`}
-                                    onChange={(e) => setAdditionalData({...additionalData, username: e.target.value})}
+                                    onChange={(e) => setAdditionalData({...additionalData, username: "@"+e.target.value})}
                                     value={additionalData.username ? additionalData.username  : ``}
                                     className={` pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12 text-lowercase`}
                                 />

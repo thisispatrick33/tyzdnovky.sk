@@ -67953,13 +67953,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var slick_carousel_slick_slick_theme_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(slick_carousel_slick_slick_theme_css__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
 
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
@@ -67969,6 +67967,16 @@ function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -67977,11 +67985,6 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
@@ -67993,29 +67996,7 @@ var Additional = function Additional(_ref) {
       _ref$func = _ref.func,
       func = _ref$func === void 0 ? function (f) {
     return f;
-  } : _ref$func,
-      getDataAdditional = _ref.getDataAdditional;
-
-  function readURL(input) {
-    console.log("input");
-    console.log(input);
-    setAdditionalData(_objectSpread({}, additionalData, {
-      profile_pic: input
-    }));
-
-    if (input && input[0]) {
-      var reader = new FileReader();
-
-      reader.onload = function (e) {
-        console.log(e.target.result);
-        jquery__WEBPACK_IMPORTED_MODULE_5___default()('#imagePreview').css('background-image', 'url(' + e.target.result + ')');
-        jquery__WEBPACK_IMPORTED_MODULE_5___default()('#imagePreview').hide();
-        jquery__WEBPACK_IMPORTED_MODULE_5___default()('#imagePreview').fadeIn(650);
-      };
-
-      reader.readAsDataURL(input[0]);
-    }
-  }
+  } : _ref$func;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
     drivingLicense: false,
@@ -68082,10 +68063,74 @@ var Additional = function Additional(_ref) {
       missing = _useState8[0],
       setMissing = _useState8[1];
 
-  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(getDataAdditional),
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({}),
       _useState10 = _slicedToArray(_useState9, 2),
       dataAdditional = _useState10[0],
       setDataAdditional = _useState10[1];
+
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
+    fullTimeCategories: [],
+    freeTimeCategories: []
+  }),
+      _useState12 = _slicedToArray(_useState11, 2),
+      categories = _useState12[0],
+      setCategories = _useState12[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    var fetchData =
+    /*#__PURE__*/
+    function () {
+      var _ref2 = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var result;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_6___default()('api/register-additional');
+
+              case 2:
+                result = _context.sent;
+                setDataAdditional(result.data);
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      return function fetchData() {
+        return _ref2.apply(this, arguments);
+      };
+    }();
+
+    fetchData();
+  }, []);
+
+  function readURL(input) {
+    console.log("input");
+    console.log(input);
+    setAdditionalData(_objectSpread({}, additionalData, {
+      profile_pic: input
+    }));
+
+    if (input && input[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        console.log(e.target.result);
+        jquery__WEBPACK_IMPORTED_MODULE_5___default()('#imagePreview').css('background-image', 'url(' + e.target.result + ')');
+        jquery__WEBPACK_IMPORTED_MODULE_5___default()('#imagePreview').hide();
+        jquery__WEBPACK_IMPORTED_MODULE_5___default()('#imagePreview').fadeIn(650);
+      };
+
+      reader.readAsDataURL(input[0]);
+    }
+  }
 
   var handleLang = function handleLang(value) {
     var array = _toConsumableArray(languages);
@@ -68094,6 +68139,28 @@ var Additional = function Additional(_ref) {
       return value !== lan;
     }) : array.push(value);
     setLanguages(array);
+  };
+
+  var handleFullWork = function handleFullWork(value) {
+    var array = _toConsumableArray(categories.fullTimeCategories);
+
+    array.includes(value) ? array = array.filter(function (work) {
+      return value !== work;
+    }) : array.push(value);
+    setCategories(_objectSpread({}, categories, {
+      fullTimeCategories: array
+    }));
+  };
+
+  var handleFreeWork = function handleFreeWork(value) {
+    var array = _toConsumableArray(categories.freeTimeCategories);
+
+    array.includes(value) ? array = array.filter(function (work) {
+      return value !== work;
+    }) : array.push(value);
+    setCategories(_objectSpread({}, categories, {
+      freeTimeCategories: array
+    }));
   };
 
   var formValidator = function formValidator() {
@@ -68169,56 +68236,58 @@ var Additional = function Additional(_ref) {
   var submit =
   /*#__PURE__*/
   function () {
-    var _ref2 = _asyncToGenerator(
+    var _ref3 = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
-          switch (_context.prev = _context.next) {
+          switch (_context2.prev = _context2.next) {
             case 0:
               if (!(user.type === "user")) {
-                _context.next = 10;
+                _context2.next = 10;
                 break;
               }
 
               if (!(additionalLanguage != "")) {
-                _context.next = 6;
+                _context2.next = 6;
                 break;
               }
 
-              _context.next = 4;
+              _context2.next = 4;
               return func(_objectSpread({}, additionalData, {
+                categories: categories,
                 languages: [].concat(_toConsumableArray(languages), [additionalLanguage])
               }));
 
             case 4:
-              _context.next = 8;
+              _context2.next = 8;
               break;
 
             case 6:
-              _context.next = 8;
+              _context2.next = 8;
               return func(_objectSpread({}, additionalData, {
+                categories: categories,
                 languages: languages
               }));
 
             case 8:
-              _context.next = 12;
+              _context2.next = 12;
               break;
 
             case 10:
-              _context.next = 12;
+              _context2.next = 12;
               return func(_objectSpread({}, additionalData));
 
             case 12:
             case "end":
-              return _context.stop();
+              return _context2.stop();
           }
         }
-      }, _callee);
+      }, _callee2);
     }));
 
     return function submit() {
-      return _ref2.apply(this, arguments);
+      return _ref3.apply(this, arguments);
     };
   }();
 
@@ -68233,7 +68302,13 @@ var Additional = function Additional(_ref) {
     nextArrow: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(NextArrow, null),
     prevArrow: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(PreviousArrow, null)
   };
-  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+
+  if (dataAdditional == undefined) {
+    console.log(dataAdditional == undefined);
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, "Loading");
+  }
+
+  return console.log(dataAdditional), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "additional-info-form | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0",
     style: {
       overflowY: "scroll"
@@ -68248,7 +68323,7 @@ var Additional = function Additional(_ref) {
     className: "doth"
   }, "Set up"), " your profile ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
-  }, "...")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, dataAdditional), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_2___default.a, _extends({}, settings, {
+  }, "...")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_2___default.a, _extends({}, settings, {
     className: "col-12 p-0 py-xl-3 py-lg-3 py-md-2 py-md-1 py-1"
   }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 m-0 p-0 row justify-content-center"
@@ -68439,9 +68514,9 @@ var Additional = function Additional(_ref) {
     className: "doth"
   }, ".")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-xl-10 col-lg-11 col-md-11 col-12 p-0 row justify-content-center"
-  }, languagesInUse.map(function (_ref3) {
-    var full = _ref3.full,
-        _short = _ref3["short"];
+  }, languagesInUse.map(function (_ref4) {
+    var full = _ref4.full,
+        _short = _ref4["short"];
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "language d-block col-auto row mx-2 my-2 px-3 align-items-center py-2 justify-content-center shadow-sm ".concat(languages.includes(full) ? "on" : ""),
       onClick: function onClick() {
@@ -68492,24 +68567,51 @@ var Additional = function Additional(_ref) {
   }, "z ak\xE9ho odvetvia chcete dost\xE1va\u0165 pracovn\xE9 ponuky ?"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
-  }, "automobile industry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
-  }, "automobile industry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
-  }, "automobile industry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
-  }, "automobile industry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
-  }, "automobile industry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
-  }, "automobile industry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
-  }, "automobile industry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
-  }, "automobile industry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
-  }, "automobile industry")))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(categories.fullTimeCategories.includes('a') ? "on" : ""),
+    onClick: function onClick() {
+      return handleFullWork('a');
+    }
+  }, "a"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(categories.fullTimeCategories.includes('b') ? "on" : ""),
+    onClick: function onClick() {
+      return handleFullWork('b');
+    }
+  }, "b"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(categories.fullTimeCategories.includes('c') ? "on" : ""),
+    onClick: function onClick() {
+      return handleFullWork('c');
+    }
+  }, "c"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(categories.fullTimeCategories.includes('d') ? "on" : ""),
+    onClick: function onClick() {
+      return handleFullWork('d');
+    }
+  }, "d"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(categories.fullTimeCategories.includes('e') ? "on" : ""),
+    onClick: function onClick() {
+      return handleFullWork('e');
+    }
+  }, "e"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(categories.fullTimeCategories.includes('f') ? "on" : ""),
+    onClick: function onClick() {
+      return handleFullWork('f');
+    }
+  }, "f"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(categories.fullTimeCategories.includes('g') ? "on" : ""),
+    onClick: function onClick() {
+      return handleFullWork('g');
+    }
+  }, "g"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(categories.fullTimeCategories.includes('h') ? "on" : ""),
+    onClick: function onClick() {
+      return handleFullWork('h');
+    }
+  }, "h"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(categories.fullTimeCategories.includes('i') ? "on" : ""),
+    onClick: function onClick() {
+      return handleFullWork('i');
+    }
+  }, "i")))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 m-0 p-0 row justify-content-center align-items-center d-flex"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 mx-0 p-0 row my-4 languages justify-content-around"
@@ -68524,7 +68626,10 @@ var Additional = function Additional(_ref) {
   }, "\u010Do by ste chceli robi\u0165 ?"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
+    className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(categories.freeTimeCategories.includes('lawn') ? "on" : ""),
+    onClick: function onClick() {
+      return handleFreeWork('lawn');
+    }
   }, "lawn moving")))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 m-0 p-0 row justify-content-center align-items-center d-flex"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -68595,7 +68700,7 @@ var Additional = function Additional(_ref) {
     placeholder: "Enter your username",
     onChange: function onChange(e) {
       return setAdditionalData(_objectSpread({}, additionalData, {
-        username: e.target.value
+        username: "@" + e.target.value
       }));
     },
     value: additionalData.username ? additionalData.username : "",
@@ -69346,11 +69451,7 @@ var Home = function Home(_ref) {
       _ref$edit = _ref.edit,
       edit = _ref$edit === void 0 ? function (f) {
     return f;
-  } : _ref$edit,
-      _ref$dataAdditional = _ref.dataAdditional,
-      dataAdditional = _ref$dataAdditional === void 0 ? function (f) {
-    return f;
-  } : _ref$dataAdditional;
+  } : _ref$edit;
 
   var handleChange = function handleChange(data) {
     edit(data);
@@ -69362,8 +69463,7 @@ var Home = function Home(_ref) {
     if (location.state.data.user.active == 0) {
       additional = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Additional__WEBPACK_IMPORTED_MODULE_1__["Additional"], {
         user: location.state.data.user,
-        func: handleChange,
-        getDataAdditional: dataAdditional
+        func: handleChange
       });
     }
 
@@ -69405,13 +69505,14 @@ var Home = function Home(_ref) {
     })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "user-header-nofication col-1"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      src: location.state.data.user.profile_pic,
       className: "profile-photo",
       alt: ""
     }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "action-point text-center"
     }, "7"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "message col-11 mt-5"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "hi"), " !")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, location.state.data.user.username == null ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Thomas"), " !") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, location.state.data.user.username), " !")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "work-options justify-content-between col-11 row my-5"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "work-option row justify-content-center col-3 p-0"
@@ -69745,21 +69846,6 @@ var Main = function Main() {
     });
   };
 
-  var _dataAdditional = function _dataAdditional() {
-    var tmp = {};
-    axios__WEBPACK_IMPORTED_MODULE_5___default.a.get("/api/register-additional", {
-      headers: {
-        'Content-Type': "application/json",
-        "X-localization": location
-      }
-    }).then(function (response) {
-      console.log("main / get");
-      console.log(response);
-      tmp = response;
-    });
-    return tmp;
-  };
-
   var _reset = function _reset(login) {
     axios__WEBPACK_IMPORTED_MODULE_5___default.a.post("/api/password-reset-mail", login, {
       headers: {
@@ -69802,8 +69888,7 @@ var Main = function Main() {
     message: message
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Logged_Home__WEBPACK_IMPORTED_MODULE_6__["Home"], {
     path: "/home",
-    edit: _edit,
-    dataAdditional: _dataAdditional
+    edit: _edit
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_PasswordReset__WEBPACK_IMPORTED_MODULE_7__["PasswordReset"], {
     path: '/reset-password',
     reset: _resetPassword

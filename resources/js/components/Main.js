@@ -278,22 +278,7 @@ const Main = () => {
             })
     };
 
-    const _dataAdditional = () =>{
-        let tmp = {};
-        axios
-            .get(`/api/register-additional`,{
-                headers : {
-                    'Content-Type' : `application/json`,
-                    "X-localization" : location,
-                }
-            })
-            .then((response) => {
-                console.log("main / get");
-                console.log(response);
-                tmp = response;
-            });
-        return tmp;
-    };
+
 
 
     const _reset = (login) =>{
@@ -323,7 +308,7 @@ const Main = () => {
          })
          .then((response) => {
            console.log(response);
-         return response;
+            return response;
         })
 
     };
@@ -348,7 +333,7 @@ const Main = () => {
             <Router>
 
                 <Authentication path={`/`} login={_loginUser} register={_submitRegistration} reset={_reset} message={message}/>
-                <Home path={`/home`} edit={_edit} dataAdditional={_dataAdditional}/>
+                <Home path={`/home`} edit={_edit}/>
                 <PasswordReset path={'/reset-password'} reset={_resetPassword}/>
             </Router>
 
