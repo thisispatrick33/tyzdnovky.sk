@@ -3,24 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\Business;
 
-class UserController extends Controller
+class BusinessController extends Controller
 {
     public function get(){
-        $users = User::all();
+        $business = Business::all();
         return response()->json([
             'success' => true,
-            'data'=> $users,
+            'data'=> $business,
             'messages' => ""
         ]);
     }
 
     public function getOne($id){
-        if($user = User::find($id)){
+        if($business = Business::find($id)){
             return response()->json([
                 'success' => true,
-                'data'=> $user,
+                'data'=> $business,
                 'messages' => ""
             ]);
         }
@@ -188,8 +188,8 @@ class UserController extends Controller
     }
 
     public function delete($id){
-        if($user = User::find($id)){
-            $user->delete();
+        if($business = Business::find($id)){
+            $business->delete();
             return response()->json([
                 'success' => true,
                 'data'=> "",

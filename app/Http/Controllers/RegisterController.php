@@ -240,7 +240,7 @@ class RegisterController extends Controller
                     $language_arr = [];
                     foreach( $request->languages as $language){
                     
-                        $language_id = Language::where('name','=',$language)->first();
+                        $language_id = Language::where('name','=',$language)->find($language);
                         if ($language_id) {
                             array_push($language_arr,$language_id->id);
                         }
@@ -254,15 +254,9 @@ class RegisterController extends Controller
                         } 
                     }
                    
-                    $branch_arr = [];     
-                    foreach( $request->categories as $branch){
-                        $branch_id = Branch::where('name','=',$branch)->first();
-                        array_push($branch_arr,$branch_id->id);
-                        
-                    }   
                     
                     $user->languages()->attach($language_arr);
-                    $user->branches()->attach($branch_arr);
+                    $user->branches()->attach($request->categories);
                     
                     $user->active = true;
                     
