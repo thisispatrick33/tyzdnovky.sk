@@ -36,9 +36,9 @@ class UserController extends Controller
     public function update(){
         $validator = Validator::make($request->all(), [
             'categories' => 'required|array',
-            'drivingLicense' => 'required|boolean',
+            'drivingLicense' => 'required|string',
             'languages' => 'required|array',
-            'username' => 'required|unique:users|unique:business',
+            'username' => 'required|string',
             'name' => 'required|string',
             'lastName' => 'required|string',
             'phone' => 'required|string',
@@ -99,18 +99,6 @@ class UserController extends Controller
                 $user->username = $request->username;
             }
             if($request->hasFile('profile_pic')){
-                $validator = Validator::make($request->all(), [
-                    'profile_pic' => 'required|image|mimes:jpeg,png,jpg,gif,svg'
-                ]);
-                    
-                if ($validator->fails()) {
-                return response()->json([
-                    'success' => false,
-                    'data' => [],
-                    'messages' => $validator->messages()->all()
-                    ]);
-                };
-
                 if(unlink($user->profile_pic)){
                     $image_file = $request->profile_pic;
             
@@ -125,6 +113,13 @@ class UserController extends Controller
                         'messages' => "Obrazok sa nepodarilo vymazat"
                         ]);
                     };
+            }
+            else{
+                return response()->json([
+                    'success' => false,
+                    'data' => [],
+                    'messages' => "obrazok neni"
+                    ]);
             }
             
             if($user->save()){
@@ -145,7 +140,9 @@ class UserController extends Controller
                         }
                     } 
                 }
-                
+                $user->languages()->detach();
+                $user->branches()->detach();
+
                 $user->languages()->attach($language_arr);
                 $user->branches()->attach($request->categories);
                 

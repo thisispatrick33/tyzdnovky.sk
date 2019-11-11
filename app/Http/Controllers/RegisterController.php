@@ -195,7 +195,7 @@ class RegisterController extends Controller
         if($user = User::where('email',$request->email)->where('active',false)->first()){
             $validator = Validator::make($request->all(), [
                 'categories' => 'required|array',
-                'drivingLicense' => 'required|boolean',
+                'drivingLicense' => 'required|string',
                 'languages' => 'required|array',
                 'username' => 'required|unique:users|unique:business',
                 'name' => 'required|string',
@@ -248,6 +248,8 @@ class RegisterController extends Controller
                         } 
                     }
                    
+                    $user->languages()->detach();
+                    $user->branches()->detach();
                     
                     $user->languages()->attach($language_arr);
                     $user->branches()->attach($request->categories);
