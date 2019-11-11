@@ -135,7 +135,7 @@ export const Additional = ({user, func = f => f}) => {
         prevArrow: <PreviousArrow />
     };
 
-    if(dataAdditional==undefined){
+    if(dataAdditional.branches==undefined){
         console.log(dataAdditional==undefined);
         return <div>Loading</div>
     }
@@ -274,12 +274,13 @@ export const Additional = ({user, func = f => f}) => {
                                 <h3 className="col-12 mb-3 p-0 text-center"><span className="doth">fulltime</span> job <span className="doth">?</span></h3>
                                 <h6 className="col-12 mb-3 p-0 text-center">z akého odvetvia chcete dostávať pracovné ponuky ?</h6>
                                 <div className="categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center">
-                                    <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.fullTimeCategories.includes('a') ? `on` : ``}`} onClick={() => handleFullWork('a')}>
-                                        a
-                                    </div>
                                     {
-                                        dataAdditional.branches.map( ({full,short}) => {
-                                            return <div className={`language d-block col-auto row mx-2 my-2 px-3 align-items-center py-2 justify-content-center shadow-sm ${languages.includes(full) ? `on` : ``}`} onClick={() => handleLang(full)}>{window.innerHeight <= 768 ? short : full}</div>;
+                                        dataAdditional.branches.map( ({free_time,name}) => {
+                                            if(free_time===0){
+                                                return  <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.fullTimeCategories.includes(name) ? `on` : ``}`} onClick={() => handleFullWork(name)}>
+                                                    {name}
+                                                </div>;
+                                            }
                                         })
                                     }
 
@@ -291,9 +292,15 @@ export const Additional = ({user, func = f => f}) => {
                                 <h3 className="col-12 mb-3 p-0 text-center"><span className="doth">freetime</span> job <span className="doth">?</span></h3>
                                 <h6 className="col-12 mb-3 p-0 text-center">čo by ste chceli robiť ?</h6>
                                 <div className="categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center">
-                                    <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.freeTimeCategories.includes('lawn') ? `on` : ``}`} onClick={() => handleFreeWork('lawn')}>
-                                        lawn moving
-                                    </div>
+                                    {
+                                        dataAdditional.branches.map( ({free_time,name}) => {
+                                            if(free_time===1){
+                                                return  <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.freeTimeCategories.includes(name) ? `on` : ``}`} onClick={() => handleFreeWork(name)}>
+                                                    {name}
+                                                </div>;
+                                            }
+                                        })
+                                    }
                                 </div>
                             </div>
                         </div>

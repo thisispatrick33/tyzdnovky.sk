@@ -68303,7 +68303,7 @@ var Additional = function Additional(_ref) {
     prevArrow: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(PreviousArrow, null)
   };
 
-  if (dataAdditional == undefined) {
+  if (dataAdditional.branches == undefined) {
     console.log(dataAdditional == undefined);
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, "Loading");
   }
@@ -68566,20 +68566,18 @@ var Additional = function Additional(_ref) {
     className: "col-12 mb-3 p-0 text-center"
   }, "z ak\xE9ho odvetvia chcete dost\xE1va\u0165 pracovn\xE9 ponuky ?"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(categories.fullTimeCategories.includes('a') ? "on" : ""),
-    onClick: function onClick() {
-      return handleFullWork('a');
+  }, dataAdditional.branches.map(function (_ref5) {
+    var free_time = _ref5.free_time,
+        name = _ref5.name;
+
+    if (free_time === 0) {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(categories.fullTimeCategories.includes(name) ? "on" : ""),
+        onClick: function onClick() {
+          return handleFullWork(name);
+        }
+      }, name);
     }
-  }, "a"), dataAdditional.branches.map(function (_ref5) {
-    var full = _ref5.full,
-        _short2 = _ref5["short"];
-    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "language d-block col-auto row mx-2 my-2 px-3 align-items-center py-2 justify-content-center shadow-sm ".concat(languages.includes(full) ? "on" : ""),
-      onClick: function onClick() {
-        return handleLang(full);
-      }
-    }, window.innerHeight <= 768 ? _short2 : full);
   })))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 m-0 p-0 row justify-content-center align-items-center d-flex"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -68594,12 +68592,19 @@ var Additional = function Additional(_ref) {
     className: "col-12 mb-3 p-0 text-center"
   }, "\u010Do by ste chceli robi\u0165 ?"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(categories.freeTimeCategories.includes('lawn') ? "on" : ""),
-    onClick: function onClick() {
-      return handleFreeWork('lawn');
+  }, dataAdditional.branches.map(function (_ref6) {
+    var free_time = _ref6.free_time,
+        name = _ref6.name;
+
+    if (free_time === 1) {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(categories.freeTimeCategories.includes(name) ? "on" : ""),
+        onClick: function onClick() {
+          return handleFreeWork(name);
+        }
+      }, name);
     }
-  }, "lawn moving")))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  })))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 m-0 p-0 row justify-content-center align-items-center d-flex"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "container d-flex justify-content-center"
