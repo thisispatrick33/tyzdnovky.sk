@@ -11086,8 +11086,14 @@ hr {
   transition: all 0.2s ease-in-out;
 }
 
-.avatar-upload .avatar-edit input + label:hover {
-  border-color: #00C7C7;
+.avatar-upload .avatar-edit input + label:hover svg {
+  fill: #00C7C7 !important;
+  transition: 200ms;
+}
+
+.avatar-upload .avatar-edit input + label:not(:hover) svg {
+  fill: #2c393f !important;
+  transition: 200ms;
 }
 
 .avatar-upload .avatar-preview {
@@ -11095,7 +11101,7 @@ hr {
   height: 192px;
   position: relative;
   border-radius: 100%;
-  border: 6px solid #F8F8F8;
+  border: 5px solid #EDEDED;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
 }
 
@@ -11110,6 +11116,26 @@ hr {
 
 #imagePreview {
   background-image: url(/images/user.svg?7a21cbe90fd31540fb0384792fbc4a86);
+}
+
+input[name=username]::-webkit-input-placeholder {
+  text-transform: capitalize !important;
+}
+
+input[name=username]::-moz-placeholder {
+  text-transform: capitalize !important;
+}
+
+input[name=username]:-ms-input-placeholder {
+  text-transform: capitalize !important;
+}
+
+input[name=username]::-ms-input-placeholder {
+  text-transform: capitalize !important;
+}
+
+input[name=username]::placeholder {
+  text-transform: capitalize !important;
 }
 
 @media (max-width: 991.98px) {
@@ -11154,6 +11180,16 @@ hr {
   .additional-info-form .content-frame .avatar-upload .avatar-preview {
     width: 120px;
     height: 120px;
+  }
+
+  .additional-info-form .content-frame .categories {
+    max-height: 60vh;
+    overflow-y: scroll;
+  }
+
+  .additional-info-form .content-frame .slick-track {
+    display: flex;
+    align-items: center;
   }
 }
 

@@ -68073,6 +68073,11 @@ var Additional = function Additional(_ref) {
       categories = _useState12[0],
       setCategories = _useState12[1];
 
+  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+      _useState14 = _slicedToArray(_useState13, 2),
+      consent = _useState14[0],
+      setConsent = _useState14[1];
+
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     var fetchData =
     /*#__PURE__*/
@@ -68108,9 +68113,7 @@ var Additional = function Additional(_ref) {
     fetchData();
   }, []);
 
-  function readURL(input) {
-    console.log("input");
-    console.log(input);
+  var readURL = function readURL(input) {
     setAdditionalData(_objectSpread({}, additionalData, {
       profile_pic: input
     }));
@@ -68119,15 +68122,15 @@ var Additional = function Additional(_ref) {
       var reader = new FileReader();
 
       reader.onload = function (e) {
-        console.log(e.target.result);
-        jquery__WEBPACK_IMPORTED_MODULE_5___default()('#imagePreview').css('background-image', 'url(' + e.target.result + ')');
-        jquery__WEBPACK_IMPORTED_MODULE_5___default()('#imagePreview').hide();
-        jquery__WEBPACK_IMPORTED_MODULE_5___default()('#imagePreview').fadeIn(650);
+        var image = jquery__WEBPACK_IMPORTED_MODULE_5___default()('#imagePreview');
+        image.css('background-image', 'url(' + e.target.result + ')');
+        image.hide();
+        image.fadeIn(650);
       };
 
       reader.readAsDataURL(input[0]);
     }
-  }
+  };
 
   var handleLang = function handleLang(value) {
     var array = _toConsumableArray(languages);
@@ -68297,11 +68300,11 @@ var Additional = function Additional(_ref) {
       overflowY: "scroll"
     }
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "content-frame | row  col-xl-6 col-lg-6 col-md-7 col-12 | justify-content-center align-items-center | px-0 | shadow-sm py-xl-5 py-lg-5 py-md-5 py-0 my-xl-5 my-lg-5 my-md-5 my-0"
+    className: "content-frame | row  col-xl-6 col-lg-6 col-md-7 col-12 | justify-content-center align-items-center | px-0 | shadow-sm py-xl-5 py-lg-5 py-md-5 py-0 my-xl-4 my-lg-4 my-md-5 my-0"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-10 row main-info p-0 m-0 align-items-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", {
-    className: 'col-12 p-0 text-center'
+    className: 'col-12 p-0 text-center mt-5'
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
   }, "Set up"), " your profile ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
@@ -68563,7 +68566,7 @@ var Additional = function Additional(_ref) {
       }, name);
     }
   })))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "col-12 m-0 p-0 row justify-content-center align-items-center d-flex"
+    className: "col-11 m-0 p-0 row justify-content-center align-items-center d-flex"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 mx-0 p-0 row my-4 languages justify-content-around"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
@@ -68606,7 +68609,7 @@ var Additional = function Additional(_ref) {
     accept: ".png, .jpg, .jpeg"
   }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     htmlFor: "imageUpload",
-    className: "d-flex justify-content-center align-items-center"
+    className: "pencil d-flex justify-content-center align-items-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
     style: window.innerWidth > 991 ? {
       width: "20px",
@@ -68655,7 +68658,7 @@ var Additional = function Additional(_ref) {
   }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     id: "name",
     type: "text",
-    name: "name",
+    name: "username",
     placeholder: "Enter your username",
     onChange: function onChange(e) {
       return setAdditionalData(_objectSpread({}, additionalData, {
@@ -68664,6 +68667,10 @@ var Additional = function Additional(_ref) {
     },
     value: additionalData.username ? additionalData.username : "@",
     className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12 text-lowercase"
+  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "col-12 row m-0 p-0 justify-content-center"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("hr", {
+    className: "col-6 m-0 my-3"
   })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-xl-10 col-lg-10 col-12 row driving-licence align-items-center my-4",
     onClick: function onClick() {
@@ -68682,7 +68689,23 @@ var Additional = function Additional(_ref) {
     }
   })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-10 pl-3 py-0 pr-0"
-  }, "I have a driving license for group B")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+  }, "I have a driving license for group B")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "col-xl-10 col-lg-10 col-12 row driving-licence align-items-center mb-3",
+    onClick: function onClick() {
+      return setConsent(!consent);
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "col-1 d-flex justify-content-center p-0"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "square",
+    style: consent ? {
+      background: "#00C7C7"
+    } : {
+      background: "white"
+    }
+  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "col-10 pl-3 py-0 pr-0"
+  }, "I agree with the Terms & Services")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
     className: "submit-button sign-in-button col-xl-5 col-lg-6 col-md-9 col-11 text-center py-2 mb-5 mt-3 ",
     onClick: formValidator
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "update profile")))))));
@@ -69464,14 +69487,14 @@ var Home = function Home(_ref) {
     })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "user-header-nofication col-1"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-      src: location.state.data.user.profile_pic,
+      src: location.state.data.user.profile_pic !== null ? location.state.data.user.profile_pic.substring(location.state.data.user.profile_pic.indexOf("images")) : "./images/user.svg",
       className: "profile-photo",
       alt: ""
     }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "action-point text-center"
     }, "7"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "message col-11 mt-5"
-    }, location.state.data.user.username == null ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Thomas"), " !") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, location.state.data.user.username), " !")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, location.state.data.user.username == null ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello !") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, location.state.data.user.username), " !")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "work-options justify-content-between col-11 row my-5"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "work-option row justify-content-center col-3 p-0"

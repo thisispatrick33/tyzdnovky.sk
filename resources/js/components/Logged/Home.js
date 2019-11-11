@@ -37,13 +37,13 @@ export const Home =({location, edit = f => f}) => {
                             <input type="text" className="col-11 finder" placeholder="…find work, company or group"/>
                         </div>
                         <div className="user-header-nofication col-1">
-                            <img src={location.state.data.user.profile_pic} className={`profile-photo`} alt=""/>
+                            <img src={location.state.data.user.profile_pic!==null?location.state.data.user.profile_pic.substring(location.state.data.user.profile_pic.indexOf("images")):"./images/user.svg"} className={`profile-photo`} alt=""/>
                             <div className="action-point text-center">7</div>
                         </div>
                     </div>
                     <div className="message col-11 mt-5">
                         {
-                            location.state.data.user.username == null ? <p>Hello <span>Thomas</span> !</p> : <p>Hello <span>{location.state.data.user.username}</span> !</p>
+                            location.state.data.user.username == null ? <p>Hello !</p> : <p>Hello <span>{location.state.data.user.username}</span> !</p>
                         }
                     </div>
 

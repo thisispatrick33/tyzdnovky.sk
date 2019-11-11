@@ -223,7 +223,7 @@ class RegisterController extends Controller
                 
             try {
 
-                $user->driving_license = $request->drivingLicense;
+                $user->driving_license = ($request->drivingLicense=="true")?1:0;
                 $user->username = $request->username;
                 $user->name = $request->name;
                 $user->lastname = $request->lastName;
@@ -236,7 +236,6 @@ class RegisterController extends Controller
                 $user->profile_pic = public_path('images/profile_pics/'.$image_name);
 
                 if($user->save()){
-
                     $language_arr = [];
                     foreach( $request->languages as $language){
                     
@@ -269,6 +268,7 @@ class RegisterController extends Controller
                     $success = false;
                 }
             } catch (\Exception $e) {
+                return $e;
                 // maybe log this exception, but basically it's just here so we can rollback if we get a surprise
             }
             
