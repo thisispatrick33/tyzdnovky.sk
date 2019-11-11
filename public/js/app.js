@@ -69494,7 +69494,7 @@ var Home = function Home(_ref) {
       className: "action-point text-center"
     }, "7"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "message col-11 mt-5"
-    }, location.state.data.user.username == null ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello !") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, location.state.data.user.username), " !")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, location.state.data.user.name == null ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello !") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, location.state.data.user.name), " !")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "work-options justify-content-between col-11 row my-5"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "work-option row justify-content-center col-3 p-0"

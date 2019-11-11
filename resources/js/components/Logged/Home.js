@@ -43,7 +43,7 @@ export const Home =({location, edit = f => f}) => {
                     </div>
                     <div className="message col-11 mt-5">
                         {
-                            location.state.data.user.username == null ? <p>Hello !</p> : <p>Hello <span>{location.state.data.user.username}</span> !</p>
+                            location.state.data.user.name == null ? <p>Hello !</p> : <p>Hello <span>{location.state.data.user.name}</span> !</p>
                         }
                     </div>
 
