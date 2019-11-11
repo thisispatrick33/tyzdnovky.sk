@@ -16,14 +16,15 @@ use App\Language;
 class TextController extends Controller
 {
     public function additionalInfoText(Request $request){
-        $branches = Branch::select(['name','free_time'])->where('lang',($request->hasHeader('X-localization')) ? $request->header('X-localization') : 'sk')->get();
+        $branches = Branch::select(['id','name','free_time'])->where('lang',($request->hasHeader('X-localization')) ? $request->header('X-localization') : 'sk')->get();
         $languages = Language::select('name')->where('lang',($request->hasHeader('X-localization')) ? $request->header('X-localization') : 'en')->get();
 
         $branches_arr = [];
         $languages_arr = [];
 
         foreach($branches as $branch){
-            array_push($branches_arr,['name'=>$branch->name,
+            array_push($branches_arr,['id'=>$branch->id,
+                                      'name'=>$branch->name,
                                       'free_time'=>$branch->free_time]);
         }
         foreach($languages as $language){

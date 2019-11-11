@@ -117,9 +117,14 @@ class UserController extends Controller
                     $user->profile_pic = public_path('images/profile_pics/'.$image_name);
                 }
                 else{
-                    return response('Obrázok sa nedal vymazať');
-                }
+                    return response()->json([
+                        'success' => false,
+                        'data' => [],
+                        'messages' => "Obrazok sa nepodarilo vymazat"
+                        ]);
+                    };
             }
+            
             if($user->save()){
                 
                 $language_arr = [];
@@ -149,17 +154,12 @@ class UserController extends Controller
                 $user->languages()->attach($language_arr);
                 $user->branches()->attach($branch_arr);
                 
-                $user->active = true;
-                
-                if($user->save()){
-                    $success = true;
-                }
-                
+                $success = true;
             }
             else{
                 $success = false;
             }
-        } catch (\Exception $e) {
+        }catch (\Exception $e) {
             // maybe log this exception, but basically it's just here so we can rollback if we get a surprise
         }
         
