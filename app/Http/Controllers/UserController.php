@@ -43,7 +43,7 @@ class UserController extends Controller
             'lastName' => 'required|string',
             'phone' => 'required|string',
             'email' => 'required|email',
-            'profile_pic' => 'required|image|mimes:jpeg,png,jpg,gif,svg'
+            'profile_pic' => 'required'
         ]);
             
         if ($validator->fails()) {

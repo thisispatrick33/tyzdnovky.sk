@@ -202,7 +202,7 @@ class RegisterController extends Controller
                 'lastName' => 'required|string',
                 'phone' => 'required|string',
                 'email' => 'required|email',
-                'profile_pic' => 'required|image|mimes:jpeg,png,jpg,gif,svg'
+                'profile_pic' => 'required'
                 ]);
                 
                 if ($validator->fails()) {
@@ -219,18 +219,15 @@ class RegisterController extends Controller
                 DB::beginTransaction();
                 
             try {  
-                $user->driving_license = $request->drivingLicense;
+                $user->driving_license = ($request->drivingLicense == "true")?1:0;
                 $user->username = $request->username;
                 $user->name = $request->name;
                 $user->lastname = $request->lastName;
                 $user->phone = $request->phone;
                 $user->email = $request->email;
 
-                $image_file = $request->profile_pic;
                 
-                $image_name = $user->username.".".$image_file->getClientOriginalExtension();
-                $image_file->move(public_path('images/profile_pics/'),$image_name);
-                $user->profile_pic = public_path('images/profile_pics/'.$image_name);
+                
                 
                 if($user->save()){
                     
@@ -304,7 +301,7 @@ class RegisterController extends Controller
                 'name' => 'required|string',
                 'ico' => 'required|string',
                 'phone' => 'required|string',
-                'profile_pic' => 'required|image|mimes:jpeg,png,jpg,gif,svg'
+                'profile_pic' => 'required'
             ]);
                 
             if ($validator->fails()) {
@@ -328,11 +325,13 @@ class RegisterController extends Controller
                 $business->phone = $request->phone;
                 $business->email = $request->email;
 
-                $image_file = $request->profile_pic;
-
-                $image_name = $request->username.".".$image_file->getClientOriginalExtension();
-                $image_file->move(public_path('images/profile_pics/'),$image_name);
-                $business->profile_pic = public_path('images/profile_pics/'.$image_name);
+                if($request->hasFile('profile_pic')){
+                    $image_file = $request->profile_pic;
+                
+                    $image_name = $user->username.".".$image_file->getClientOriginalExtension();
+                    $image_file->move(public_path('images/profile_pics/'),$image_name);
+                    $user->profile_pic = public_path('images/profile_pics/'.$image_name);
+                }
 
                 if($business->save()){
                     $business->active = true;
