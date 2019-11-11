@@ -21,7 +21,7 @@ use Illuminate\Http\Request;
 
 Route::group(['middleware' => ['api-header','localization']], function () {
     //TEXT
-    //Route::get("/register","TextController@formData");
+    Route::get("/register-additional","TextController@additionalInfoText");
 
     //AUTH
     Route::post("/register","RegisterController@register");
@@ -29,6 +29,7 @@ Route::group(['middleware' => ['api-header','localization']], function () {
     
     Route::post("/password-reset-mail","LoginController@passResetEmail");
     Route::post("/password-reset","LoginController@passResetDo");
+    
     Route::group(['middleware' => ['jwt-auth']], function () {
         Route::post("/register-additional","RegisterController@additionalInfo");
     });
