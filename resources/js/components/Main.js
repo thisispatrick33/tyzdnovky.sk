@@ -209,8 +209,11 @@ const Main = () => {
         }
         formData.append(`name`, data.name);
         formData.append(`phone`, data.phone);
-        formData.append(`profile_pic`, data.profile_pic);
+        formData.append(`profile_pic`, data.profile_pic[0]);
         formData.append(`username`, data.username);
+        for (let i = 0; i < data.categories.length; i++) {
+            formData.append(`categories[]`, data.categories[i]);
+        }
 
         axios
             .post(`/api/register-additional`, formData,{

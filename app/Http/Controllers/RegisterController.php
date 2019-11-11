@@ -198,14 +198,14 @@ class RegisterController extends Controller
 
             $validator = Validator::make($request->all(), [
                 'categories' => 'required|array',
-                'drivingLicense' => 'required|boolean',
+                'drivingLicense' => 'required|string',
                 'languages' => 'required|array',
                 'username' => 'required|unique:users|unique:business',
                 'name' => 'required|string',
                 'lastName' => 'required|string',
                 'phone' => 'required|string',
                 'email' => 'required|email',
-                'profile_pic' => 'required|image|mimes:jpeg,png,jpg,gif,svg'
+                'profile_pic' => 'required'
                 ]);
                 
                 if ($validator->fails()) {
@@ -221,22 +221,22 @@ class RegisterController extends Controller
                 
                 DB::beginTransaction();
                 
-            try {  
+            try {
+
                 $user->driving_license = $request->drivingLicense;
                 $user->username = $request->username;
                 $user->name = $request->name;
                 $user->lastname = $request->lastName;
                 $user->phone = $request->phone;
                 $user->email = $request->email;
-
                 $image_file = $request->profile_pic;
-                
+
                 $image_name = $user->username.".".$image_file->getClientOriginalExtension();
                 $image_file->move(public_path('images/profile_pics/'),$image_name);
                 $user->profile_pic = public_path('images/profile_pics/'.$image_name);
-                
+
                 if($user->save()){
-                    
+
                     $language_arr = [];
                     foreach( $request->languages as $language){
                     
@@ -253,7 +253,7 @@ class RegisterController extends Controller
                             }
                         } 
                     }
-                   
+
                     
                     $user->languages()->attach($language_arr);
                     $user->branches()->attach($request->categories);

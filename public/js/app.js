@@ -69734,8 +69734,13 @@ var Main = function Main() {
 
     formData.append("name", data.name);
     formData.append("phone", data.phone);
-    formData.append("profile_pic", data.profile_pic);
+    formData.append("profile_pic", data.profile_pic[0]);
     formData.append("username", data.username);
+
+    for (var _i2 = 0; _i2 < data.categories.length; _i2++) {
+      formData.append("categories[]", data.categories[_i2]);
+    }
+
     axios__WEBPACK_IMPORTED_MODULE_5___default.a.post("/api/register-additional", formData, {
       headers: {
         'Content-Type': "multipart/form-data",
