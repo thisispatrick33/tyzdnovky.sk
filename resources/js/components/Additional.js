@@ -12,7 +12,7 @@ export const Additional = ({user, func = f => f}) => {
     const [additionalLanguage, setAdditionalLanguage] = useState("");
     const [missing, setMissing] = useState(``);
     const [dataAdditional, setDataAdditional] = useState({});
-    const [categories, setCategories] = useState({fullTimeCategories: [], freeTimeCategories:[]});
+    const [categories, setCategories] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -47,17 +47,12 @@ export const Additional = ({user, func = f => f}) => {
         setLanguages(array);
     };
 
-    const handleFullWork = (value) => {
-        let array = [...categories.fullTimeCategories];
+    const handleWork = (value) => {
+        let array = [...categories];
         array.includes(value) ? array=array.filter(work => value !== work) : array.push(value);
-        setCategories({...categories, fullTimeCategories: array});
+        setCategories(array);
     };
 
-    const handleFreeWork = (value) => {
-        let array = [...categories.freeTimeCategories];
-        array.includes(value) ? array=array.filter(work => value !== work) : array.push(value);
-        setCategories({...categories, freeTimeCategories: array});
-    };
 
     const formValidator=()=>{
             if(additionalData.username !== undefined && additionalData.username.length > 0){
@@ -136,11 +131,9 @@ export const Additional = ({user, func = f => f}) => {
     };
 
     if(dataAdditional.branches==undefined){
-        console.log(dataAdditional==undefined);
         return <div>Loading</div>
     }
     return (
-        console.log(dataAdditional),
         <div className={`additional-info-form | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0`} style={{overflowY : `scroll`}}>
             <div className="content-frame | row  col-xl-6 col-lg-6 col-md-7 col-12 | justify-content-center align-items-center | px-0 | shadow-sm py-xl-5 py-lg-5 py-md-5 py-0 my-xl-5 my-lg-5 my-md-5 my-0">
                 <div className="col-10 row main-info p-0 m-0 align-items-center">
@@ -275,9 +268,9 @@ export const Additional = ({user, func = f => f}) => {
                                 <h6 className="col-12 mb-3 p-0 text-center">z akého odvetvia chcete dostávať pracovné ponuky ?</h6>
                                 <div className="categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center">
                                     {
-                                        dataAdditional.branches.map( ({free_time,name}) => {
+                                        dataAdditional.branches.map( ({id,free_time,name}) => {
                                             if(free_time===0){
-                                                return  <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.fullTimeCategories.includes(name) ? `on` : ``}`} onClick={() => handleFullWork(name)}>
+                                                return  <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.includes(id) ? `on` : ``}`} onClick={() => handleWork(id)}>
                                                     {name}
                                                 </div>;
                                             }
@@ -293,9 +286,9 @@ export const Additional = ({user, func = f => f}) => {
                                 <h6 className="col-12 mb-3 p-0 text-center">čo by ste chceli robiť ?</h6>
                                 <div className="categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center">
                                     {
-                                        dataAdditional.branches.map( ({free_time,name}) => {
+                                        dataAdditional.branches.map( ({id,free_time,name}) => {
                                             if(free_time===1){
-                                                return  <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.freeTimeCategories.includes(name) ? `on` : ``}`} onClick={() => handleFreeWork(name)}>
+                                                return  <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.includes(id) ? `on` : ``}`} onClick={() => handleWork(id)}>
                                                     {name}
                                                 </div>;
                                             }
@@ -337,8 +330,8 @@ export const Additional = ({user, func = f => f}) => {
                                     type={`text`}
                                     name={`name`}
                                     placeholder={`Enter your username`}
-                                    onChange={(e) => setAdditionalData({...additionalData, username: "@"+e.target.value})}
-                                    value={additionalData.username ? additionalData.username  : ``}
+                                    onChange={(e) => setAdditionalData({...additionalData, username: e.target.value})}
+                                    value={additionalData.username ? additionalData.username  : `@`}
                                     className={` pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12 text-lowercase`}
                                 />
                             </div>

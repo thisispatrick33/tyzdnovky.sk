@@ -68068,10 +68068,7 @@ var Additional = function Additional(_ref) {
       dataAdditional = _useState10[0],
       setDataAdditional = _useState10[1];
 
-  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
-    fullTimeCategories: [],
-    freeTimeCategories: []
-  }),
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState12 = _slicedToArray(_useState11, 2),
       categories = _useState12[0],
       setCategories = _useState12[1];
@@ -68141,26 +68138,13 @@ var Additional = function Additional(_ref) {
     setLanguages(array);
   };
 
-  var handleFullWork = function handleFullWork(value) {
-    var array = _toConsumableArray(categories.fullTimeCategories);
+  var handleWork = function handleWork(value) {
+    var array = _toConsumableArray(categories);
 
     array.includes(value) ? array = array.filter(function (work) {
       return value !== work;
     }) : array.push(value);
-    setCategories(_objectSpread({}, categories, {
-      fullTimeCategories: array
-    }));
-  };
-
-  var handleFreeWork = function handleFreeWork(value) {
-    var array = _toConsumableArray(categories.freeTimeCategories);
-
-    array.includes(value) ? array = array.filter(function (work) {
-      return value !== work;
-    }) : array.push(value);
-    setCategories(_objectSpread({}, categories, {
-      freeTimeCategories: array
-    }));
+    setCategories(array);
   };
 
   var formValidator = function formValidator() {
@@ -68304,11 +68288,10 @@ var Additional = function Additional(_ref) {
   };
 
   if (dataAdditional.branches == undefined) {
-    console.log(dataAdditional == undefined);
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, "Loading");
   }
 
-  return console.log(dataAdditional), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "additional-info-form | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0",
     style: {
       overflowY: "scroll"
@@ -68567,14 +68550,15 @@ var Additional = function Additional(_ref) {
   }, "z ak\xE9ho odvetvia chcete dost\xE1va\u0165 pracovn\xE9 ponuky ?"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center"
   }, dataAdditional.branches.map(function (_ref5) {
-    var free_time = _ref5.free_time,
+    var id = _ref5.id,
+        free_time = _ref5.free_time,
         name = _ref5.name;
 
     if (free_time === 0) {
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(categories.fullTimeCategories.includes(name) ? "on" : ""),
+        className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(categories.includes(id) ? "on" : ""),
         onClick: function onClick() {
-          return handleFullWork(name);
+          return handleWork(id);
         }
       }, name);
     }
@@ -68593,14 +68577,15 @@ var Additional = function Additional(_ref) {
   }, "\u010Do by ste chceli robi\u0165 ?"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center"
   }, dataAdditional.branches.map(function (_ref6) {
-    var free_time = _ref6.free_time,
+    var id = _ref6.id,
+        free_time = _ref6.free_time,
         name = _ref6.name;
 
     if (free_time === 1) {
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(categories.freeTimeCategories.includes(name) ? "on" : ""),
+        className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(categories.includes(id) ? "on" : ""),
         onClick: function onClick() {
-          return handleFreeWork(name);
+          return handleWork(id);
         }
       }, name);
     }
@@ -68674,10 +68659,10 @@ var Additional = function Additional(_ref) {
     placeholder: "Enter your username",
     onChange: function onChange(e) {
       return setAdditionalData(_objectSpread({}, additionalData, {
-        username: "@" + e.target.value
+        username: e.target.value
       }));
     },
-    value: additionalData.username ? additionalData.username : "",
+    value: additionalData.username ? additionalData.username : "@",
     className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12 text-lowercase"
   })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-xl-10 col-lg-10 col-12 row driving-licence align-items-center my-4",
