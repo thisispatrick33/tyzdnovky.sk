@@ -277,30 +277,11 @@ export const Additional = ({user, func = f => f}) => {
                                     <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.fullTimeCategories.includes('a') ? `on` : ``}`} onClick={() => handleFullWork('a')}>
                                         a
                                     </div>
-                                    <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.fullTimeCategories.includes('b') ? `on` : ``}`} onClick={() => handleFullWork('b')}>
-                                        b
-                                    </div>
-                                    <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.fullTimeCategories.includes('c') ? `on` : ``}`} onClick={() => handleFullWork('c')}>
-                                        c
-                                    </div>
-                                    <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.fullTimeCategories.includes('d') ? `on` : ``}`} onClick={() => handleFullWork('d')}>
-                                        d
-                                    </div>
-                                    <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.fullTimeCategories.includes('e') ? `on` : ``}`} onClick={() => handleFullWork('e')}>
-                                        e
-                                    </div>
-                                    <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.fullTimeCategories.includes('f') ? `on` : ``}`} onClick={() => handleFullWork('f')}>
-                                        f
-                                    </div>
-                                    <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.fullTimeCategories.includes('g') ? `on` : ``}`} onClick={() => handleFullWork('g')}>
-                                        g
-                                    </div>
-                                    <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.fullTimeCategories.includes('h') ? `on` : ``}`} onClick={() => handleFullWork('h')}>
-                                        h
-                                    </div>
-                                    <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.fullTimeCategories.includes('i') ? `on` : ``}`} onClick={() => handleFullWork('i')}>
-                                        i
-                                    </div>
+                                    {
+                                        dataAdditional.branches.map( ({full,short}) => {
+                                            return <div className={`language d-block col-auto row mx-2 my-2 px-3 align-items-center py-2 justify-content-center shadow-sm ${languages.includes(full) ? `on` : ``}`} onClick={() => handleLang(full)}>{window.innerHeight <= 768 ? short : full}</div>;
+                                        })
+                                    }
 
                                 </div>
                             </div>

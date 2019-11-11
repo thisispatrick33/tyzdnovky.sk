@@ -68571,47 +68571,16 @@ var Additional = function Additional(_ref) {
     onClick: function onClick() {
       return handleFullWork('a');
     }
-  }, "a"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(categories.fullTimeCategories.includes('b') ? "on" : ""),
-    onClick: function onClick() {
-      return handleFullWork('b');
-    }
-  }, "b"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(categories.fullTimeCategories.includes('c') ? "on" : ""),
-    onClick: function onClick() {
-      return handleFullWork('c');
-    }
-  }, "c"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(categories.fullTimeCategories.includes('d') ? "on" : ""),
-    onClick: function onClick() {
-      return handleFullWork('d');
-    }
-  }, "d"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(categories.fullTimeCategories.includes('e') ? "on" : ""),
-    onClick: function onClick() {
-      return handleFullWork('e');
-    }
-  }, "e"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(categories.fullTimeCategories.includes('f') ? "on" : ""),
-    onClick: function onClick() {
-      return handleFullWork('f');
-    }
-  }, "f"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(categories.fullTimeCategories.includes('g') ? "on" : ""),
-    onClick: function onClick() {
-      return handleFullWork('g');
-    }
-  }, "g"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(categories.fullTimeCategories.includes('h') ? "on" : ""),
-    onClick: function onClick() {
-      return handleFullWork('h');
-    }
-  }, "h"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(categories.fullTimeCategories.includes('i') ? "on" : ""),
-    onClick: function onClick() {
-      return handleFullWork('i');
-    }
-  }, "i")))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, "a"), dataAdditional.branches.map(function (_ref5) {
+    var full = _ref5.full,
+        _short2 = _ref5["short"];
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "language d-block col-auto row mx-2 my-2 px-3 align-items-center py-2 justify-content-center shadow-sm ".concat(languages.includes(full) ? "on" : ""),
+      onClick: function onClick() {
+        return handleLang(full);
+      }
+    }, window.innerHeight <= 768 ? _short2 : full);
+  })))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 m-0 p-0 row justify-content-center align-items-center d-flex"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 mx-0 p-0 row my-4 languages justify-content-around"
