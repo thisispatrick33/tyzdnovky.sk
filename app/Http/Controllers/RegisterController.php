@@ -220,7 +220,7 @@ class RegisterController extends Controller
                 
             try {  
                 $user->driving_license = $request->drivingLicense;
-                $user->username = '@'.$request->username;
+                $user->username = $request->username;
                 $user->name = $request->name;
                 $user->lastname = $request->lastName;
                 $user->phone = $request->phone;
@@ -328,7 +328,7 @@ class RegisterController extends Controller
 
             try {        
                     
-                $business->username = '@'.$request->username;
+                $business->username = $request->username;
                 $business->name = $request->name;
                 $business->ico = $request->ico;
                 $business->phone = $request->phone;
