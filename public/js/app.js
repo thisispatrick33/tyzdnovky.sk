@@ -67995,22 +67995,20 @@ var Additional = function Additional(_ref) {
     return f;
   } : _ref$func;
 
-  function readURL(input) {
-    console.log(input[0]);
-
+  var readURL = function readURL(input) {
     if (input && input[0]) {
       var reader = new FileReader();
 
       reader.onload = function (e) {
-        console.log(e.target.result);
-        jquery__WEBPACK_IMPORTED_MODULE_5___default()('#imagePreview').css('background-image', 'url(' + e.target.result + ')');
-        jquery__WEBPACK_IMPORTED_MODULE_5___default()('#imagePreview').hide();
-        jquery__WEBPACK_IMPORTED_MODULE_5___default()('#imagePreview').fadeIn(650);
+        var image = jquery__WEBPACK_IMPORTED_MODULE_5___default()('#imagePreview');
+        image.css('background-image', 'url(' + e.target.result + ')');
+        image.hide();
+        image.fadeIn(650);
       };
 
       reader.readAsDataURL(input[0]);
     }
-  }
+  };
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
     drivingLicense: false,
@@ -68078,6 +68076,11 @@ var Additional = function Additional(_ref) {
       _useState10 = _slicedToArray(_useState9, 2),
       missing = _useState10[0],
       setMissing = _useState10[1];
+
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+      _useState12 = _slicedToArray(_useState11, 2),
+      consent = _useState12[0],
+      setConsent = _useState12[1];
 
   var handleLang = function handleLang(value) {
     var array = _toConsumableArray(languages);
@@ -68329,11 +68332,11 @@ var Additional = function Additional(_ref) {
       overflowY: "scroll"
     }
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "content-frame | row  col-xl-6 col-lg-6 col-md-7 col-12 | justify-content-center align-items-center | px-0 | shadow-sm py-xl-5 py-lg-5 py-md-5 py-0 my-xl-5 my-lg-5 my-md-5 my-0"
+    className: "content-frame | row  col-xl-6 col-lg-6 col-md-7 col-12 | justify-content-center align-items-center | px-0 | shadow-sm py-xl-5 py-lg-5 py-md-5 py-0 my-xl-4 my-lg-4 my-md-5 my-0"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-10 row main-info p-0 m-0 align-items-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", {
-    className: 'col-12 p-0 text-center'
+    className: 'col-12 p-0 text-center mt-5'
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
   }, "Set up"), " your profile ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
@@ -68600,7 +68603,7 @@ var Additional = function Additional(_ref) {
   }, "automobile industry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "category col-auto mx-2 my-2 py-2 shadow-sm"
   }, "automobile industry")))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "col-12 m-0 p-0 row justify-content-center align-items-center d-flex"
+    className: "col-11 m-0 p-0 row justify-content-center align-items-center d-flex"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 mx-0 p-0 row my-4 languages justify-content-around"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
@@ -68632,7 +68635,7 @@ var Additional = function Additional(_ref) {
     accept: ".png, .jpg, .jpeg"
   }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     htmlFor: "imageUpload",
-    className: "d-flex justify-content-center align-items-center"
+    className: "pencil d-flex justify-content-center align-items-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
     style: window.innerWidth > 991 ? {
       width: "20px",
@@ -68681,7 +68684,7 @@ var Additional = function Additional(_ref) {
   }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     id: "name",
     type: "text",
-    name: "name",
+    name: "username",
     placeholder: "Enter your username",
     onChange: function onChange(e) {
       return setAdditionalData(_objectSpread({}, additionalData, {
@@ -68690,6 +68693,10 @@ var Additional = function Additional(_ref) {
     },
     value: additionalData.username ? additionalData.username : "",
     className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12 text-lowercase"
+  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "col-12 row m-0 p-0 justify-content-center"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("hr", {
+    className: "col-6 m-0 my-3"
   })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-xl-10 col-lg-10 col-12 row driving-licence align-items-center my-4",
     onClick: function onClick() {
@@ -68708,8 +68715,24 @@ var Additional = function Additional(_ref) {
     }
   })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-10 pl-3 py-0 pr-0"
-  }, "I have a driving license for group B")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-    className: "submit-button sign-in-button col-xl-5 col-lg-6 col-md-9 col-11 text-center py-2 mb-5 mt-3 ",
+  }, "I have a driving license for group B")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "col-xl-10 col-lg-10 col-12 row driving-licence align-items-center mb-3",
+    onClick: function onClick() {
+      return setConsent(!consent);
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "col-1 d-flex justify-content-center p-0"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "square",
+    style: consent ? {
+      background: "#00C7C7"
+    } : {
+      background: "white"
+    }
+  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "col-10 pl-3 py-0 pr-0"
+  }, "I agree with the Terms & Services")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    className: "submit-button sign-in-button col-xl-5 col-lg-6 col-md-9 col-11 text-center py-2 mb-4 mt-3 ",
     onClick: submit
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "update profile")))))));
 };
@@ -68765,8 +68788,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _ForgottenPassword__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ForgottenPassword */ "./resources/js/components/Forms/ForgottenPassword.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -68780,7 +68801,6 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 
@@ -69872,8 +69892,8 @@ if (document.getElementById('root')) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/patrik/Projects/tyzdnovky.sk/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/patrik/Projects/tyzdnovky.sk/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/patrik/Projects/PhpstormProjects/tyzdnovky.sk/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/patrik/Projects/PhpstormProjects/tyzdnovky.sk/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
