@@ -23,7 +23,7 @@ class CreateBusinessesTable extends Migration
             $table->string('phone')->nullable();
             $table->text('auth_token')->nullable();
             $table->boolean('active')->default(false);
-            $table->string('profile_pic')->nullable()->unique();
+            $table->string('profile_pic')->nullable()->unique()->default(null);
             $table->rememberToken();
             $table->timestamps();
         });
