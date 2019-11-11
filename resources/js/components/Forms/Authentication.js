@@ -1,6 +1,5 @@
-import React, {useState} from 'react';
-import {ForgottenPassword} from "./ForgottenPassword";
-import $ from 'jquery';
+import React, { useState } from 'react';
+import { ForgottenPassword } from "./ForgottenPassword";
 export const Authentication = ({message,login = f => f, register = f => f, reset = f => f}) => {
 
     const [data,setData] = useState({type : 2});
