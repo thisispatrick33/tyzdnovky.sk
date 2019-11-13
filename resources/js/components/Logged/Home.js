@@ -61,8 +61,6 @@ export const Home = ({location, edit = f => f}) => {
                 </div>
             </div>
         );
-
-
     }
     return (
         <div className={` home | container-fluid | row col-12 | justify-content-center | mb-5 m-0 p-0 `}>
