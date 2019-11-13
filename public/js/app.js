@@ -67953,9 +67953,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var slick_carousel_slick_slick_theme_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(slick_carousel_slick_slick_theme_css__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
 
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -67966,14 +67976,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
-
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
@@ -67988,6 +67990,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var Additional = function Additional(_ref) {
   var user = _ref.user,
       _ref$func = _ref.func,
@@ -67995,24 +67998,10 @@ var Additional = function Additional(_ref) {
     return f;
   } : _ref$func;
 
-  var readURL = function readURL(input) {
-    if (input && input[0]) {
-      var reader = new FileReader();
-
-      reader.onload = function (e) {
-        var image = jquery__WEBPACK_IMPORTED_MODULE_5___default()('#imagePreview');
-        image.css('background-image', 'url(' + e.target.result + ')');
-        image.hide();
-        image.fadeIn(650);
-      };
-
-      reader.readAsDataURL(input[0]);
-    }
-  };
-
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
     drivingLicense: false,
-    email: user.email
+    email: user.email,
+    profile_pic: null
   }),
       _useState2 = _slicedToArray(_useState, 2),
       additionalData = _useState2[0],
@@ -68023,7 +68012,7 @@ var Additional = function Additional(_ref) {
       languages = _useState4[0],
       setLanguages = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([{
+  var languagesInUse = [{
     full: "czech",
     "short": "cze"
   }, {
@@ -68062,25 +68051,86 @@ var Additional = function Additional(_ref) {
   }, {
     full: "vietnamese",
     "short": "vie"
-  }]),
+  }];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
       _useState6 = _slicedToArray(_useState5, 2),
-      languagesInUse = _useState6[0],
-      setLanguagesInUse = _useState6[1];
+      additionalLanguage = _useState6[0],
+      setAdditionalLanguage = _useState6[1];
 
   var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
       _useState8 = _slicedToArray(_useState7, 2),
-      additionalLanguage = _useState8[0],
-      setAdditionalLanguage = _useState8[1];
+      missing = _useState8[0],
+      setMissing = _useState8[1];
 
-  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({}),
       _useState10 = _slicedToArray(_useState9, 2),
-      missing = _useState10[0],
-      setMissing = _useState10[1];
+      dataAdditional = _useState10[0],
+      setDataAdditional = _useState10[1];
 
-  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState12 = _slicedToArray(_useState11, 2),
-      consent = _useState12[0],
-      setConsent = _useState12[1];
+      categories = _useState12[0],
+      setCategories = _useState12[1];
+
+  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+      _useState14 = _slicedToArray(_useState13, 2),
+      consent = _useState14[0],
+      setConsent = _useState14[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    var fetchData =
+    /*#__PURE__*/
+    function () {
+      var _ref2 = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var result;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_6___default()('api/register-additional');
+
+              case 2:
+                result = _context.sent;
+                setDataAdditional(result.data);
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      return function fetchData() {
+        return _ref2.apply(this, arguments);
+      };
+    }();
+
+    fetchData();
+  }, []);
+
+  var readURL = function readURL(input) {
+    setAdditionalData(_objectSpread({}, additionalData, {
+      profile_pic: input
+    }));
+
+    if (input && input[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        var image = jquery__WEBPACK_IMPORTED_MODULE_5___default()('#imagePreview');
+        image.css('background-image', 'url(' + e.target.result + ')');
+        image.hide();
+        image.fadeIn(650);
+      };
+
+      reader.readAsDataURL(input[0]);
+    }
+  };
 
   var handleLang = function handleLang(value) {
     var array = _toConsumableArray(languages);
@@ -68091,227 +68141,140 @@ var Additional = function Additional(_ref) {
     setLanguages(array);
   };
 
-  var formValidator = function formValidator(type) {
-    if (type === "user") {
-      if (additionalData.username !== undefined && additionalData.username.length > 0) {
-        if (additionalData.name !== undefined && additionalData.name.length > 0) {
-          if (user.type === "user" && additionalData.lastName !== undefined && additionalData.lastName.length > 0 || user.type === "company" && additionalData.ico !== undefined && additionalData.ico.length > 0) {
-            if (additionalData.phone !== undefined && additionalData.phone.length > 0) {
-              if (additionalData.email !== undefined && additionalData.email.length > 0) {
-                if (additionalData.email.includes('@')) {
-                  if (languages !== undefined && languages.length > 0 || additionalLanguage != "" && additionalLanguage.length > 0) {
-                    if (categories[0].value !== null && categories[0].value.length > 0) {
-                      if (categories[0].practise !== null && categories[0].value.length > 0) {
-                        if (categories[0].practise > 0) {
-                          if (categories[0].ready !== null && categories[0].ready.length > 0) {
-                            if (categories[0].ready > today) {
-                              if (categories.length == 1) {
-                                console.log(additionalData);
-                                submit();
-                              } else {
-                                if (categories.length == 2) {
-                                  if (categories[1].value !== null && categories[1].value.length > 0) {
-                                    if (categories[1].practise !== null && categories[1].value.length > 0) {
-                                      if (categories[1].practise > 0) {
-                                        if (categories[1].ready !== null && categories[1].ready.length > 0) {
-                                          if (categories[1].ready > today) {
-                                            submit();
-                                          } else {
-                                            setMissing({
-                                              value: 'ready',
-                                              message: "Nezadali ste platny datum nastupu."
-                                            });
-                                            console.log(missing);
-                                          }
-                                        } else {
-                                          setMissing({
-                                            value: 'ready',
-                                            message: "Nezadali ste datum nastupu."
-                                          });
-                                          console.log(missing);
-                                        }
-                                      } else {
-                                        setMissing({
-                                          value: 'practise',
-                                          message: "Nezadali ste platnu prax v odbore."
-                                        });
-                                        console.log(missing);
-                                      }
-                                    } else {
-                                      setMissing({
-                                        value: 'practise',
-                                        message: "Nezadali ste prax v odbore."
-                                      });
-                                      console.log(missing);
-                                    }
-                                  } else {
-                                    setMissing({
-                                      value: 'category col-auto mx-2 my-2 py-2 shadow-sm',
-                                      message: "Nezadali ste odbor."
-                                    });
-                                    console.log(missing);
-                                  }
-                                }
-                              }
-                            } else {
-                              setMissing({
-                                value: 'ready',
-                                message: "Nezadali ste platny datum nastupu."
-                              });
-                              console.log(missing);
-                            }
-                          } else {
-                            setMissing({
-                              value: 'ready',
-                              message: "Nezadali ste datum nastupu."
-                            });
-                            console.log(missing);
-                          }
-                        } else {
-                          setMissing({
-                            value: 'practise',
-                            message: "Nezadali ste platnu prax v odbore."
-                          });
-                          console.log(missing);
-                        }
-                      } else {
-                        setMissing({
-                          value: 'practise',
-                          message: "Nezadali ste prax v odbore."
-                        });
-                        console.log(missing);
-                      }
-                    } else {
-                      setMissing({
-                        value: 'category col-auto mx-2 my-2 py-2 shadow-sm',
-                        message: "Nezadali ste ziaden odbor."
-                      });
-                      console.log(missing);
-                    }
-                  } else {
-                    setMissing({
-                      value: 'language',
-                      message: "Nezadali ste ziaden jazyk."
-                    });
-                    console.log(missing);
-                  }
+  var handleWork = function handleWork(value) {
+    var array = _toConsumableArray(categories);
+
+    array.includes(value) ? array = array.filter(function (work) {
+      return value !== work;
+    }) : array.push(value);
+    setCategories(array);
+  };
+
+  var formValidator = function formValidator() {
+    if (additionalData.username !== undefined && additionalData.username.length > 0) {
+      if (additionalData.name !== undefined && additionalData.name.length > 0) {
+        if (user.type === "user" && additionalData.lastName !== undefined && additionalData.lastName.length > 0 || user.type === "company" && additionalData.ico !== undefined && additionalData.ico.length > 0) {
+          if (additionalData.phone !== undefined && additionalData.phone.length > 0) {
+            if (additionalData.email !== undefined && additionalData.email.length > 0) {
+              if (additionalData.email.includes('@')) {
+                if (languages !== undefined && languages.length > 0 || additionalLanguage != "" && additionalLanguage.length > 0) {
+                  submit();
                 } else {
                   setMissing({
-                    value: '@',
-                    message: "Nezadali ste platny email."
+                    value: 'language',
+                    message: "Nezadali ste ziaden jazyk."
                   });
                   console.log(missing);
                 }
               } else {
                 setMissing({
-                  value: 'email',
-                  message: "Nezadali ste email."
+                  value: '@',
+                  message: "Nezadali ste platny email."
                 });
                 console.log(missing);
               }
             } else {
               setMissing({
-                value: 'phone',
-                message: "Nezadali ste telefon."
+                value: 'email',
+                message: "Nezadali ste email."
               });
               console.log(missing);
             }
           } else {
-            if (user.type === "user") {
-              setMissing({
-                value: 'lastName',
-                message: "Nezadali ste priezvisko."
-              });
-              console.log(missing);
-            }
-
-            if (user.type === "company") {
-              setMissing({
-                value: 'ico',
-                message: "Nezadali ste ICO."
-              });
-              console.log(missing);
-            }
+            setMissing({
+              value: 'phone',
+              message: "Nezadali ste telefon."
+            });
+            console.log(missing);
           }
         } else {
-          setMissing({
-            value: 'name',
-            message: "Nezadali ste meno."
-          });
-          console.log(missing);
+          if (user.type === "user") {
+            setMissing({
+              value: 'lastName',
+              message: "Nezadali ste priezvisko."
+            });
+            console.log(missing);
+          }
+
+          if (user.type === "company") {
+            setMissing({
+              value: 'ico',
+              message: "Nezadali ste ICO."
+            });
+            console.log(missing);
+          }
         }
       } else {
         setMissing({
-          value: 'username',
-          message: "Nezadali ste username."
+          value: 'name',
+          message: "Nezadali ste meno."
         });
         console.log(missing);
       }
     } else {
-      submit();
+      setMissing({
+        value: 'username',
+        message: "Nezadali ste username."
+      });
+      console.log(missing);
     }
   };
 
   var submit =
   /*#__PURE__*/
   function () {
-    var _ref2 = _asyncToGenerator(
+    var _ref3 = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
-          switch (_context.prev = _context.next) {
+          switch (_context2.prev = _context2.next) {
             case 0:
               if (!(user.type === "user")) {
-                _context.next = 10;
+                _context2.next = 10;
                 break;
               }
 
               if (!(additionalLanguage != "")) {
-                _context.next = 6;
+                _context2.next = 6;
                 break;
               }
 
-              _context.next = 4;
+              _context2.next = 4;
               return func(_objectSpread({}, additionalData, {
                 categories: categories,
                 languages: [].concat(_toConsumableArray(languages), [additionalLanguage])
               }));
 
             case 4:
-              _context.next = 8;
+              _context2.next = 8;
               break;
 
             case 6:
-              _context.next = 8;
+              _context2.next = 8;
               return func(_objectSpread({}, additionalData, {
                 categories: categories,
                 languages: languages
               }));
 
             case 8:
-              _context.next = 13;
+              _context2.next = 12;
               break;
 
             case 10:
-              console.log(_objectSpread({}, additionalData, {
-                categories: branches
-              }));
-              _context.next = 13;
-              return func(_objectSpread({}, additionalData, {
-                categories: branches
-              }));
+              _context2.next = 12;
+              return func(_objectSpread({}, additionalData));
 
-            case 13:
+            case 12:
             case "end":
-              return _context.stop();
+              return _context2.stop();
           }
         }
-      }, _callee);
+      }, _callee2);
     }));
 
     return function submit() {
-      return _ref2.apply(this, arguments);
+      return _ref3.apply(this, arguments);
     };
   }();
 
@@ -68326,6 +68289,11 @@ var Additional = function Additional(_ref) {
     nextArrow: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(NextArrow, null),
     prevArrow: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(PreviousArrow, null)
   };
+
+  if (dataAdditional.branches == undefined) {
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, "Loading");
+  }
+
   return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "additional-info-form | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0",
     style: {
@@ -68442,6 +68410,44 @@ var Additional = function Additional(_ref) {
   }, "Contact"), " ", user.type === "user" ? "me" : "us", " here", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
   }, ".")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: " input col-xl-10 col-lg-10 col-md-11 col-sm-11 col-12 my-3 row p-0 mx-0"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "col-2 pl-3 d-flex justify-content-center align-items-center"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
+    fill: "#2c393f",
+    style: {
+      width: "24px",
+      height: "24px"
+    },
+    className: "col-12 p-0 d-xl-flex d-lg-flex d-md-flex d-none",
+    enableBackground: "new 0 0 511.991 511.991",
+    viewBox: "0 0 511.99 511.99",
+    space: "preserve"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+    d: "m511.99 196.24c0-0.179-0.094-0.333-0.102-0.503-0.053-0.591-0.17-1.175-0.35-1.741-0.118-0.505-0.281-0.999-0.486-1.476-0.244-0.452-0.529-0.881-0.853-1.28-0.338-0.489-0.727-0.941-1.161-1.348-0.137-0.12-0.196-0.282-0.341-0.393l-82.039-63.735v-66.057c0-14.138-11.462-25.6-25.6-25.6h-92.476l-37.027-28.749c-9.149-7.128-21.972-7.128-31.121 0l-37.034 28.749h-92.476c-14.138 0-25.6 11.461-25.6 25.6v66.057l-82.031 63.735c-0.145 0.111-0.205 0.273-0.341 0.393-0.434 0.407-0.823 0.859-1.161 1.348-0.324 0.399-0.61 0.828-0.853 1.28-0.207 0.476-0.37 0.97-0.486 1.476-0.178 0.555-0.295 1.127-0.35 1.707 0 0.171-0.102 0.324-0.102 0.503v290.17c0.034 2.748 0.515 5.471 1.425 8.064-1.959 2.954-1.867 6.816 0.229 9.674s5.752 4.106 9.158 3.126c4.312 3.081 9.48 4.737 14.78 4.736h460.8c5.322-0.011 10.506-1.691 14.822-4.804 0.728 0.224 1.483 0.347 2.244 0.367 3.117 0.018 5.991-1.68 7.479-4.419s1.349-6.074-0.362-8.679c0.907-2.593 1.385-5.317 1.417-8.064v-290.13zm-261.12-177.42c2.98-2.368 7.2-2.368 10.18 0l19.686 15.283h-49.493l19.627-15.283zm-223.16 476.08 223.16-173.35c2.982-2.354 7.19-2.354 10.172 0l223.23 173.35h-456.57zm467.22-13.329-223.39-173.49c-9.143-7.118-21.952-7.118-31.095 0l-223.39 173.49v-272.34l139.84 108.59c3.726 2.889 9.088 2.211 11.977-1.515s2.211-9.088-1.515-11.977l-142.06-110.32 60.032-46.643v65.937c0 4.713 3.821 8.533 8.533 8.533 4.713 0 8.533-3.821 8.533-8.533v-153.6c0-4.713 3.82-8.533 8.533-8.533h290.13c4.713 0 8.533 3.82 8.533 8.533v153.6c0 4.713 3.82 8.533 8.533 8.533s8.533-3.821 8.533-8.533v-65.937l60.032 46.643-142.32 110.52c-3.723 2.891-4.397 8.253-1.506 11.977 2.891 3.723 8.253 4.397 11.977 1.506l140.08-108.77v272.34z"
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+    fill: "#00C7C7",
+    d: "m170.66 110.91h170.67c4.713 0 8.533-3.82 8.533-8.533s-3.82-8.533-8.533-8.533h-170.67c-4.713 0-8.533 3.82-8.533 8.533s3.82 8.533 8.533 8.533z"
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+    fill: "#00C7C7",
+    d: "m349.86 153.58c0-4.713-3.82-8.533-8.533-8.533h-170.67c-4.713 0-8.533 3.821-8.533 8.533 0 4.713 3.82 8.533 8.533 8.533h170.67c4.713 0 8.533-3.821 8.533-8.533z"
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+    fill: "#00C7C7",
+    d: "m349.86 204.78c0-4.713-3.82-8.533-8.533-8.533h-76.8c-4.713 0-8.533 3.82-8.533 8.533s3.82 8.533 8.533 8.533h76.8c4.713 0 8.533-3.821 8.533-8.533z"
+  }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    id: "email",
+    type: "email",
+    name: "email",
+    disabled: true,
+    placeholder: "Enter your email",
+    onChange: function onChange(e) {
+      return setAdditionalData(_objectSpread({}, additionalData, {
+        email: e.target.value
+      }));
+    },
+    value: additionalData.email ? additionalData.email : "",
+    className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
+  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: " input col-xl-10 col-lg-10 col-md-11 col-sm-11 col-12 mt-3 row p-0 mx-0"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-2 pl-3 d-flex justify-content-center align-items-center"
@@ -68482,44 +68488,6 @@ var Additional = function Additional(_ref) {
     },
     value: additionalData.phone ? additionalData.phone : "",
     className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
-  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: " input col-xl-10 col-lg-10 col-md-11 col-sm-11 col-12 my-3 row p-0 mx-0"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "col-2 pl-3 d-flex justify-content-center align-items-center"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
-    fill: "#2c393f",
-    style: {
-      width: "24px",
-      height: "24px"
-    },
-    className: "col-12 p-0 d-xl-flex d-lg-flex d-md-flex d-none",
-    enableBackground: "new 0 0 511.991 511.991",
-    viewBox: "0 0 511.99 511.99",
-    space: "preserve"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
-    d: "m511.99 196.24c0-0.179-0.094-0.333-0.102-0.503-0.053-0.591-0.17-1.175-0.35-1.741-0.118-0.505-0.281-0.999-0.486-1.476-0.244-0.452-0.529-0.881-0.853-1.28-0.338-0.489-0.727-0.941-1.161-1.348-0.137-0.12-0.196-0.282-0.341-0.393l-82.039-63.735v-66.057c0-14.138-11.462-25.6-25.6-25.6h-92.476l-37.027-28.749c-9.149-7.128-21.972-7.128-31.121 0l-37.034 28.749h-92.476c-14.138 0-25.6 11.461-25.6 25.6v66.057l-82.031 63.735c-0.145 0.111-0.205 0.273-0.341 0.393-0.434 0.407-0.823 0.859-1.161 1.348-0.324 0.399-0.61 0.828-0.853 1.28-0.207 0.476-0.37 0.97-0.486 1.476-0.178 0.555-0.295 1.127-0.35 1.707 0 0.171-0.102 0.324-0.102 0.503v290.17c0.034 2.748 0.515 5.471 1.425 8.064-1.959 2.954-1.867 6.816 0.229 9.674s5.752 4.106 9.158 3.126c4.312 3.081 9.48 4.737 14.78 4.736h460.8c5.322-0.011 10.506-1.691 14.822-4.804 0.728 0.224 1.483 0.347 2.244 0.367 3.117 0.018 5.991-1.68 7.479-4.419s1.349-6.074-0.362-8.679c0.907-2.593 1.385-5.317 1.417-8.064v-290.13zm-261.12-177.42c2.98-2.368 7.2-2.368 10.18 0l19.686 15.283h-49.493l19.627-15.283zm-223.16 476.08 223.16-173.35c2.982-2.354 7.19-2.354 10.172 0l223.23 173.35h-456.57zm467.22-13.329-223.39-173.49c-9.143-7.118-21.952-7.118-31.095 0l-223.39 173.49v-272.34l139.84 108.59c3.726 2.889 9.088 2.211 11.977-1.515s2.211-9.088-1.515-11.977l-142.06-110.32 60.032-46.643v65.937c0 4.713 3.821 8.533 8.533 8.533 4.713 0 8.533-3.821 8.533-8.533v-153.6c0-4.713 3.82-8.533 8.533-8.533h290.13c4.713 0 8.533 3.82 8.533 8.533v153.6c0 4.713 3.82 8.533 8.533 8.533s8.533-3.821 8.533-8.533v-65.937l60.032 46.643-142.32 110.52c-3.723 2.891-4.397 8.253-1.506 11.977 2.891 3.723 8.253 4.397 11.977 1.506l140.08-108.77v272.34z"
-  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
-    fill: "#00C7C7",
-    d: "m170.66 110.91h170.67c4.713 0 8.533-3.82 8.533-8.533s-3.82-8.533-8.533-8.533h-170.67c-4.713 0-8.533 3.82-8.533 8.533s3.82 8.533 8.533 8.533z"
-  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
-    fill: "#00C7C7",
-    d: "m349.86 153.58c0-4.713-3.82-8.533-8.533-8.533h-170.67c-4.713 0-8.533 3.821-8.533 8.533 0 4.713 3.82 8.533 8.533 8.533h170.67c4.713 0 8.533-3.821 8.533-8.533z"
-  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
-    fill: "#00C7C7",
-    d: "m349.86 204.78c0-4.713-3.82-8.533-8.533-8.533h-76.8c-4.713 0-8.533 3.82-8.533 8.533s3.82 8.533 8.533 8.533h76.8c4.713 0 8.533-3.821 8.533-8.533z"
-  }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-    id: "email",
-    type: "email",
-    name: "email",
-    disabled: true,
-    placeholder: "Enter your email",
-    onChange: function onChange(e) {
-      return setAdditionalData(_objectSpread({}, additionalData, {
-        email: e.target.value
-      }));
-    },
-    value: additionalData.email ? additionalData.email : "",
-    className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
   })))), user.type === "user" ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 m-0 p-0 row justify-content-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -68532,9 +68500,9 @@ var Additional = function Additional(_ref) {
     className: "doth"
   }, ".")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-xl-10 col-lg-11 col-md-11 col-12 p-0 row justify-content-center"
-  }, languagesInUse.map(function (_ref3) {
-    var full = _ref3.full,
-        _short = _ref3["short"];
+  }, languagesInUse.map(function (_ref4) {
+    var full = _ref4.full,
+        _short = _ref4["short"];
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "language d-block col-auto row mx-2 my-2 px-3 align-items-center py-2 justify-content-center shadow-sm ".concat(languages.includes(full) ? "on" : ""),
       onClick: function onClick() {
@@ -68570,7 +68538,7 @@ var Additional = function Additional(_ref) {
       return setAdditionalLanguage(e.target.value);
     },
     className: "  pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
-  })))) : "", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  })))) : "", user.type === "user" ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 m-0 p-0 row justify-content-center align-items-center d-flex"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 mx-0 p-0 row my-4 languages justify-content-around"
@@ -68584,25 +68552,20 @@ var Additional = function Additional(_ref) {
     className: "col-12 mb-3 p-0 text-center"
   }, "z ak\xE9ho odvetvia chcete dost\xE1va\u0165 pracovn\xE9 ponuky ?"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
-  }, "automobile industry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
-  }, "automobile industry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
-  }, "automobile industry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
-  }, "automobile industry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
-  }, "automobile industry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
-  }, "automobile industry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
-  }, "automobile industry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
-  }, "automobile industry"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
-  }, "automobile industry")))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, dataAdditional.branches.map(function (_ref5) {
+    var id = _ref5.id,
+        free_time = _ref5.free_time,
+        name = _ref5.name;
+
+    if (free_time === 0) {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(categories.includes(id) ? "on" : ""),
+        onClick: function onClick() {
+          return handleWork(id);
+        }
+      }, name);
+    }
+  })))) : "", user.type === "user" ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-11 m-0 p-0 row justify-content-center align-items-center d-flex"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 mx-0 p-0 row my-4 languages justify-content-around"
@@ -68616,9 +68579,20 @@ var Additional = function Additional(_ref) {
     className: "col-12 mb-3 p-0 text-center"
   }, "\u010Do by ste chceli robi\u0165 ?"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "category col-auto mx-2 my-2 py-2 shadow-sm"
-  }, "lawn moving")))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, dataAdditional.branches.map(function (_ref6) {
+    var id = _ref6.id,
+        free_time = _ref6.free_time,
+        name = _ref6.name;
+
+    if (free_time === 1) {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(categories.includes(id) ? "on" : ""),
+        onClick: function onClick() {
+          return handleWork(id);
+        }
+      }, name);
+    }
+  })))) : "", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 m-0 p-0 row justify-content-center align-items-center d-flex"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "container d-flex justify-content-center"
@@ -68691,13 +68665,13 @@ var Additional = function Additional(_ref) {
         username: e.target.value
       }));
     },
-    value: additionalData.username ? additionalData.username : "",
+    value: additionalData.username ? additionalData.username : "@",
     className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12 text-lowercase"
   })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 row m-0 p-0 justify-content-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("hr", {
     className: "col-6 m-0 my-3"
-  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  })), user.type === "user" ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-xl-10 col-lg-10 col-12 row driving-licence align-items-center my-4",
     onClick: function onClick() {
       return setAdditionalData(_objectSpread({}, additionalData, {
@@ -68715,7 +68689,7 @@ var Additional = function Additional(_ref) {
     }
   })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-10 pl-3 py-0 pr-0"
-  }, "I have a driving license for group B")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, "I have a driving license for group B")) : "", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-xl-10 col-lg-10 col-12 row driving-licence align-items-center mb-3",
     onClick: function onClick() {
       return setConsent(!consent);
@@ -68732,8 +68706,8 @@ var Additional = function Additional(_ref) {
   })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-10 pl-3 py-0 pr-0"
   }, "I agree with the Terms & Services")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-    className: "submit-button sign-in-button col-xl-5 col-lg-6 col-md-9 col-11 text-center py-2 mb-4 mt-3 ",
-    onClick: submit
+    className: "submit-button sign-in-button col-xl-5 col-lg-6 col-md-9 col-11 text-center py-2 mb-5 mt-3 ",
+    onClick: formValidator
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "update profile")))))));
 };
 
@@ -68788,6 +68762,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _ForgottenPassword__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ForgottenPassword */ "./resources/js/components/Forms/ForgottenPassword.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -68801,6 +68777,7 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -69456,23 +69433,17 @@ var Home = function Home(_ref) {
   } : _ref$edit;
 
   var handleChange = function handleChange(data) {
-    console.log("home");
     edit(data);
   };
 
-  if (location.state != null) {
-    var additional = "";
-
-    if (location.state.data.user.active == 0) {
-      additional = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Additional__WEBPACK_IMPORTED_MODULE_1__["Additional"], {
-        user: location.state.data.user,
-        func: handleChange
-      });
-    }
-
+  if (location.state !== null) {
+    console.log(location.state.data.user.active);
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: " home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 "
-    }, additional, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, location.state.data.user.active == 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Additional__WEBPACK_IMPORTED_MODULE_1__["Additional"], {
+      user: location.state.data.user,
+      func: handleChange
+    }) : "", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "content col-11 row justify-content-center py-5"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "header col-11 row justify-content-between"
@@ -69508,14 +69479,14 @@ var Home = function Home(_ref) {
     })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "user-header-nofication col-1"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-      src: "./images/profile-photo.png",
+      src: location.state.data.user.profile_pic !== null ? location.state.data.user.profile_pic.substring(location.state.data.user.profile_pic.indexOf("images")) : "./images/user.svg",
       className: "profile-photo",
       alt: ""
     }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "action-point text-center"
     }, "7"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "message col-11 mt-5"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Thomas"), " !")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, location.state.data.user.name == null ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello !") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, location.state.data.user.name), " !")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "work-options justify-content-between col-11 row my-5"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "work-option row justify-content-center col-3 p-0"
@@ -69630,9 +69601,11 @@ var Main = function Main() {
             phone: json.data.data.phone,
             ready: json.data.data.ready,
             type: json.data.data.type,
+            username: json.data.data.username,
+            profile_pic: json.data.data.profile_pic,
             timestamp: new Date().toString()
           };
-        } else if (json.data.data.type === "company") {
+        } else if (json.data.data.type === "business") {
           userData = {
             active: json.data.data.active,
             auth_token: json.data.data.auth_token,
@@ -69643,6 +69616,8 @@ var Main = function Main() {
             phone: json.data.data.phone,
             ready: json.data.data.ready,
             type: json.data.data.type,
+            username: json.data.data.username,
+            profile_pic: json.data.data.profile_pic,
             timestamp: new Date().toString()
           };
         }
@@ -69685,7 +69660,6 @@ var Main = function Main() {
   };
 
   var _submitRegistration = function _submitRegistration(data) {
-    console.log(data);
     jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form .sign-up-button").attr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>');
     axios__WEBPACK_IMPORTED_MODULE_5___default.a.post("/api/register", data, {
       headers: {
@@ -69711,9 +69685,11 @@ var Main = function Main() {
             phone: json.data.data.phone,
             ready: json.data.data.ready,
             type: json.data.data.type,
+            username: json.data.data.username,
+            profile_pic: json.data.data.profile_pic,
             timestamp: new Date().toString()
           };
-        } else if (json.data.data.type === "company") {
+        } else if (json.data.data.type === "business") {
           userData = {
             active: json.data.data.active,
             auth_token: json.data.data.auth_token,
@@ -69724,6 +69700,8 @@ var Main = function Main() {
             phone: json.data.data.phone,
             ready: json.data.data.ready,
             type: json.data.data.type,
+            username: json.data.data.username,
+            profile_pic: json.data.data.profile_pic,
             timestamp: new Date().toString()
           };
         }
@@ -69753,13 +69731,34 @@ var Main = function Main() {
   };
 
   var _edit = function _edit(data) {
-    console.log("main");
     console.log(data);
-    console.log(localStorage);
-    console.log(JSON.parse(localStorage.appState).user.auth_token);
-    axios__WEBPACK_IMPORTED_MODULE_5___default.a.post("/api/register-additional", data, {
+    var formData = new FormData();
+    formData.set("drivingLicense", data.drivingLicense);
+    formData.append("email", data.email);
+
+    if (data.lastName !== undefined) {
+      for (var i = 0; i < data.languages.length; i++) {
+        formData.append('languages[]', data.languages[i]);
+      }
+
+      formData.append("lastName", data.lastName);
+    } else {
+      formData.append("ico", data.ico);
+    }
+
+    formData.append("name", data.name);
+    formData.append("phone", data.phone);
+    formData.append("profile_pic", data.profile_pic[0]);
+    formData.append("username", data.username);
+
+    for (var _i2 = 0; _i2 < data.categories.length; _i2++) {
+      formData.append("categories[]", data.categories[_i2]);
+    }
+
+    axios__WEBPACK_IMPORTED_MODULE_5___default.a.post("/api/register-additional", formData, {
       headers: {
-        'Content-Type': "application/json",
+        'Content-Type': "multipart/form-data",
+        'Accept': "multipart/form-data",
         "X-localization": location,
         "Authorization": 'Bearer ' + JSON.parse(localStorage.appState).user.auth_token
       }
@@ -69767,7 +69766,7 @@ var Main = function Main() {
       console.log(response);
       return response;
     }).then(function (response) {
-      console.log(response.data.success);
+      console.log(response);
 
       if (response.data.success) {
         var userData = {};
@@ -69784,9 +69783,11 @@ var Main = function Main() {
             phone: response.data.data.phone,
             ready: response.data.data.ready,
             type: response.data.data.type,
+            username: response.data.data.username,
+            profile_pic: response.data.data.profile_pic,
             timestamp: new Date().toString()
           };
-        } else if (response.data.data.type === "company") {
+        } else if (response.data.data.type === "business") {
           userData = {
             active: response.data.data.active,
             auth_token: response.data.data.auth_token,
@@ -69797,6 +69798,8 @@ var Main = function Main() {
             phone: response.data.data.phone,
             ready: response.data.data.ready,
             type: response.data.data.type,
+            username: response.data.data.username,
+            profile_pic: response.data.data.profile_pic,
             timestamp: new Date().toString()
           };
         }
@@ -69816,6 +69819,8 @@ var Main = function Main() {
           }
         });
       }
+    })["catch"](function (e) {
+      console.log(e);
     });
   };
 

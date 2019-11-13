@@ -1,23 +1,16 @@
 import React from 'react';
 import {Additional} from "../Additional";
 
-
-
-export const Home = ({location, edit = f => f}) => {
+export const Home =({location, edit = f => f}) => {
     const handleChange = (data) =>{
-        console.log("home");
         edit(data);
     };
 
-    if(location.state!=null){
-        let additional = "";
-        if(location.state.data.user.active==0){
-            additional = <Additional user={location.state.data.user} func={handleChange}/>
-        }
-
+    if(location.state !== null){
+        console.log(location.state.data.user.active)
         return (
             <div className={` home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 `}>
-                {additional}
+                {location.state.data.user.active==0 ? <Additional user={location.state.data.user} func={handleChange}/> : ``}
                 <div className="content col-11 row justify-content-center py-5">
                     <div className="header col-11 row justify-content-between">
                         <div className="menu col-1 row">
@@ -36,12 +29,14 @@ export const Home = ({location, edit = f => f}) => {
                             <input type="text" className="col-11 finder" placeholder="…find work, company or group"/>
                         </div>
                         <div className="user-header-nofication col-1">
-                            <img src={`./images/profile-photo.png`} className={`profile-photo`} alt=""/>
+                            <img src={location.state.data.user.profile_pic !==null ? location.state.data.user.profile_pic.substring(location.state.data.user.profile_pic.indexOf("images")) : "./images/user.svg"} className={`profile-photo`} alt=""/>
                             <div className="action-point text-center">7</div>
                         </div>
                     </div>
                     <div className="message col-11 mt-5">
-                        <p>Hello <span>Thomas</span> !</p>
+                        {
+                            location.state.data.user.name == null ? <p>Hello !</p> : <p>Hello <span>{location.state.data.user.name}</span> !</p>
+                        }
                     </div>
 
                     <div className="work-options justify-content-between col-11 row my-5">
