@@ -248,6 +248,10 @@ class RegisterController extends Controller
                         }
                     }
 
+                   
+                    $user->languages()->detach();
+                    $user->branches()->detach();
+
 
                     $user->languages()->attach($language_arr);
                     $user->branches()->attach($request->categories);
