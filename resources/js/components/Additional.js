@@ -58,46 +58,64 @@ export const Additional = ({user, func = f => f}) => {
 
 
     const formValidator=()=>{
-            if(additionalData.username !== undefined && additionalData.username.length > 0){
-                if(additionalData.name !== undefined && additionalData.name.length > 0){
-                    if((user.type==="user"&&additionalData.lastName !== undefined && additionalData.lastName.length > 0)||(user.type==="company"&&additionalData.ico !== undefined && additionalData.ico.length > 0)){
-                        if(additionalData.phone !== undefined && additionalData.phone.length > 0){
-                            if(additionalData.email !== undefined && additionalData.email.length > 0){
-                                if(additionalData.email.includes('@')){
-                                    if((languages !== undefined && languages.length>0)||(additionalLanguage!=""&&additionalLanguage.length>0)){
-                                        submit();
-                                    }
-                                    else {
-                                        setMissing({value: 'language', message: `Nezadali ste ziaden jazyk.`});
+            if(additionalData.username !== undefined){
+                if(additionalData.username.length >= 3) {
+                    if (additionalData.name !== undefined && additionalData.name.length > 0) {
+                        if ((user.type === "user" && additionalData.lastName !== undefined && additionalData.lastName.length > 0) || (user.type === "company" && additionalData.ico !== undefined && additionalData.ico.length > 0)) {
+                            if (additionalData.phone !== undefined && additionalData.phone.length > 0) {
+                                if (additionalData.email !== undefined && additionalData.email.length > 0) {
+                                    if (additionalData.email.includes('@')) {
+                                        if ((languages !== undefined && languages.length > 0) || (additionalLanguage != "" && additionalLanguage.length > 0)) {
+                                            if (categories !== undefined && categories.length > 0) {
+                                                if (consent) {
+                                                    submit();
+                                                } else {
+                                                    setMissing({
+                                                        value: 'consent',
+                                                        message: `Neodsuhlasili ste podmienky pouzivania.`
+                                                    });
+                                                    console.log(missing);
+                                                }
+                                            } else {
+                                                setMissing({
+                                                    value: 'categories',
+                                                    message: `Nezadali ste ziadnu pracovnu kategoriu.`
+                                                });
+                                                console.log(missing);
+                                            }
+                                        } else {
+                                            setMissing({value: 'language', message: `Nezadali ste ziaden jazyk.`});
+                                            console.log(missing);
+                                        }
+                                    } else {
+                                        setMissing({value: '@', message: `Nezadali ste platny email.`});
                                         console.log(missing);
                                     }
-                                }
-                                else {
-                                    setMissing({value: '@', message: `Nezadali ste platny email.`});
+                                } else {
+                                    setMissing({value: 'email', message: `Nezadali ste email.`});
                                     console.log(missing);
                                 }
-                            }else {
-                                setMissing({value: 'email', message: `Nezadali ste email.`});
+                            } else {
+                                setMissing({value: 'phone', message: `Nezadali ste telefon.`});
                                 console.log(missing);
                             }
-                        }else {
-                            setMissing({value: 'phone', message: `Nezadali ste telefon.`});
-                            console.log(missing);
-                        }
-                    }
-                    else {
-                        if(user.type==="user"){
-                            setMissing({value: 'lastName', message: `Nezadali ste priezvisko.`});
-                            console.log(missing);
-                        }
-                        if(user.type==="company"){
-                            setMissing({value: 'ico', message: `Nezadali ste ICO.`});
-                            console.log(missing);
-                        }
+                        } else {
+                            if (user.type === "user") {
+                                setMissing({value: 'lastName', message: `Nezadali ste priezvisko.`});
+                                console.log(missing);
+                            }
+                            if (user.type === "company") {
+                                setMissing({value: 'ico', message: `Nezadali ste ICO.`});
+                                console.log(missing);
+                            }
 
+                        }
+                    } else {
+                        setMissing({value: 'name', message: `Nezadali ste meno.`});
+                        console.log(missing);
                     }
                 }else {
-                    setMissing({value: 'name', message: `Nezadali ste meno.`});
+                    setMissing({value: 'username', message: `Username musi mat minimalne 3 znaky.`});
                     console.log(missing);
                 }
             }

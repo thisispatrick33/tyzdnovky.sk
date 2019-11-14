@@ -68151,63 +68151,87 @@ var Additional = function Additional(_ref) {
   };
 
   var formValidator = function formValidator() {
-    if (additionalData.username !== undefined && additionalData.username.length > 0) {
-      if (additionalData.name !== undefined && additionalData.name.length > 0) {
-        if (user.type === "user" && additionalData.lastName !== undefined && additionalData.lastName.length > 0 || user.type === "company" && additionalData.ico !== undefined && additionalData.ico.length > 0) {
-          if (additionalData.phone !== undefined && additionalData.phone.length > 0) {
-            if (additionalData.email !== undefined && additionalData.email.length > 0) {
-              if (additionalData.email.includes('@')) {
-                if (languages !== undefined && languages.length > 0 || additionalLanguage != "" && additionalLanguage.length > 0) {
-                  submit();
+    if (additionalData.username !== undefined) {
+      if (additionalData.username.length >= 3) {
+        if (additionalData.name !== undefined && additionalData.name.length > 0) {
+          if (user.type === "user" && additionalData.lastName !== undefined && additionalData.lastName.length > 0 || user.type === "company" && additionalData.ico !== undefined && additionalData.ico.length > 0) {
+            if (additionalData.phone !== undefined && additionalData.phone.length > 0) {
+              if (additionalData.email !== undefined && additionalData.email.length > 0) {
+                if (additionalData.email.includes('@')) {
+                  if (languages !== undefined && languages.length > 0 || additionalLanguage != "" && additionalLanguage.length > 0) {
+                    if (categories !== undefined && categories.length > 0) {
+                      if (consent) {
+                        submit();
+                      } else {
+                        setMissing({
+                          value: 'consent',
+                          message: "Neodsuhlasili ste podmienky pouzivania."
+                        });
+                        console.log(missing);
+                      }
+                    } else {
+                      setMissing({
+                        value: 'categories',
+                        message: "Nezadali ste ziadnu pracovnu kategoriu."
+                      });
+                      console.log(missing);
+                    }
+                  } else {
+                    setMissing({
+                      value: 'language',
+                      message: "Nezadali ste ziaden jazyk."
+                    });
+                    console.log(missing);
+                  }
                 } else {
                   setMissing({
-                    value: 'language',
-                    message: "Nezadali ste ziaden jazyk."
+                    value: '@',
+                    message: "Nezadali ste platny email."
                   });
                   console.log(missing);
                 }
               } else {
                 setMissing({
-                  value: '@',
-                  message: "Nezadali ste platny email."
+                  value: 'email',
+                  message: "Nezadali ste email."
                 });
                 console.log(missing);
               }
             } else {
               setMissing({
-                value: 'email',
-                message: "Nezadali ste email."
+                value: 'phone',
+                message: "Nezadali ste telefon."
               });
               console.log(missing);
             }
           } else {
-            setMissing({
-              value: 'phone',
-              message: "Nezadali ste telefon."
-            });
-            console.log(missing);
+            if (user.type === "user") {
+              setMissing({
+                value: 'lastName',
+                message: "Nezadali ste priezvisko."
+              });
+              console.log(missing);
+            }
+
+            if (user.type === "company") {
+              setMissing({
+                value: 'ico',
+                message: "Nezadali ste ICO."
+              });
+              console.log(missing);
+            }
           }
         } else {
-          if (user.type === "user") {
-            setMissing({
-              value: 'lastName',
-              message: "Nezadali ste priezvisko."
-            });
-            console.log(missing);
-          }
-
-          if (user.type === "company") {
-            setMissing({
-              value: 'ico',
-              message: "Nezadali ste ICO."
-            });
-            console.log(missing);
-          }
+          setMissing({
+            value: 'name',
+            message: "Nezadali ste meno."
+          });
+          console.log(missing);
         }
       } else {
         setMissing({
-          value: 'name',
-          message: "Nezadali ste meno."
+          value: 'username',
+          message: "Username musi mat minimalne 3 znaky."
         });
         console.log(missing);
       }
@@ -69437,7 +69461,6 @@ var Home = function Home(_ref) {
   };
 
   if (location.state !== null) {
-    console.log(location.state.data.user.active);
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: " home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 "
     }, location.state.data.user.active == 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Additional__WEBPACK_IMPORTED_MODULE_1__["Additional"], {
