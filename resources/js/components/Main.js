@@ -80,7 +80,6 @@ const Main = () => {
                     localStorage["appState"] = JSON.stringify(appState);
 
                     setAuthState({isLoggedIn: appState.isLoggedIn, user: appState.user});
-
                     console.log(appState);
                     navigate(`/home`, {state:{data:appState}});
                 }else {
@@ -141,7 +140,6 @@ const Main = () => {
                             lastName: json.data.data.lastName,
                             name: json.data.data.name,
                             phone: json.data.data.phone,
-                            ready: json.data.data.ready,
                             type: json.data.data.type,
                             username: json.data.data.username,
                             profile_pic: json.data.data.profile_pic,
@@ -157,7 +155,6 @@ const Main = () => {
                             id: json.data.data.id,
                             name: json.data.data.name,
                             phone: json.data.data.phone,
-                            ready: json.data.data.ready,
                             type: json.data.data.type,
                             username: json.data.data.username,
                             profile_pic: json.data.data.profile_pic,

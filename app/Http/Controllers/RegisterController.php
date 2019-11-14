@@ -60,9 +60,9 @@ class RegisterController extends Controller
 
                     $token = \Auth::guard('businesses')->attempt(['email' => $request->email, 'password' => $request->passwordR]);
                     if (!is_string($token))  return response()->json(['success'=>false,'data'=>[],'messages'=>trans('messages.tokenFailed')]);
-                    $company = Business::where('email', $request->email)->get()->first();
-                    $company->auth_token = $token;
-                    $company->save();
+                    $business = Business::where('email', $request->email)->get()->first();
+                    $business->auth_token = $token;
+                    $business->save();
                     $success = true;
 
                 }

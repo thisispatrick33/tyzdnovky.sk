@@ -68154,7 +68154,7 @@ var Additional = function Additional(_ref) {
     if (additionalData.username !== undefined) {
       if (additionalData.username.length >= 3) {
         if (additionalData.name !== undefined && additionalData.name.length > 0) {
-          if (user.type === "user" && additionalData.lastName !== undefined && additionalData.lastName.length > 0 || user.type === "company" && additionalData.ico !== undefined && additionalData.ico.length > 0) {
+          if (user.type === "user" && additionalData.lastName !== undefined && additionalData.lastName.length > 0 || user.type === "business" && additionalData.ico !== undefined && additionalData.ico.length > 0) {
             if (additionalData.phone !== undefined && additionalData.phone.length > 0) {
               if (additionalData.email !== undefined && additionalData.email.length > 0) {
                 if (additionalData.email.includes('@')) {
@@ -68213,7 +68213,7 @@ var Additional = function Additional(_ref) {
               console.log(missing);
             }
 
-            if (user.type === "company") {
+            if (user.type === "business") {
               setMissing({
                 value: 'ico',
                 message: "Nezadali ste ICO."
@@ -69461,6 +69461,8 @@ var Home = function Home(_ref) {
   };
 
   if (location.state !== null) {
+    console.log("locatin");
+    console.log(location.state);
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: " home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 "
     }, location.state.data.user.active == 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Additional__WEBPACK_IMPORTED_MODULE_1__["Additional"], {
@@ -69706,7 +69708,6 @@ var Main = function Main() {
             lastName: json.data.data.lastName,
             name: json.data.data.name,
             phone: json.data.data.phone,
-            ready: json.data.data.ready,
             type: json.data.data.type,
             username: json.data.data.username,
             profile_pic: json.data.data.profile_pic,
@@ -69721,7 +69722,6 @@ var Main = function Main() {
             id: json.data.data.id,
             name: json.data.data.name,
             phone: json.data.data.phone,
-            ready: json.data.data.ready,
             type: json.data.data.type,
             username: json.data.data.username,
             profile_pic: json.data.data.profile_pic,

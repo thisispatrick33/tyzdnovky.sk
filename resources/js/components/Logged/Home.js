@@ -7,6 +7,8 @@ export const Home =({location, edit = f => f}) => {
     };
 
     if(location.state !== null){
+        console.log("locatin");
+        console.log(location.state);
         return (
             <div className={` home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 `}>
                 {location.state.data.user.active==0 ? <Additional user={location.state.data.user} func={handleChange}/> : ``}

@@ -61,7 +61,7 @@ export const Additional = ({user, func = f => f}) => {
             if(additionalData.username !== undefined){
                 if(additionalData.username.length >= 3) {
                     if (additionalData.name !== undefined && additionalData.name.length > 0) {
-                        if ((user.type === "user" && additionalData.lastName !== undefined && additionalData.lastName.length > 0) || (user.type === "company" && additionalData.ico !== undefined && additionalData.ico.length > 0)) {
+                        if ((user.type === "user" && additionalData.lastName !== undefined && additionalData.lastName.length > 0) || (user.type === "business" && additionalData.ico !== undefined && additionalData.ico.length > 0)) {
                             if (additionalData.phone !== undefined && additionalData.phone.length > 0) {
                                 if (additionalData.email !== undefined && additionalData.email.length > 0) {
                                     if (additionalData.email.includes('@')) {
@@ -104,7 +104,7 @@ export const Additional = ({user, func = f => f}) => {
                                 setMissing({value: 'lastName', message: `Nezadali ste priezvisko.`});
                                 console.log(missing);
                             }
-                            if (user.type === "company") {
+                            if (user.type === "business") {
                                 setMissing({value: 'ico', message: `Nezadali ste ICO.`});
                                 console.log(missing);
                             }
