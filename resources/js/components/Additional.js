@@ -339,7 +339,7 @@ export const Additional = ({user, func = f => f}) => {
                                     name={`username`}
                                     placeholder={`Enter your username`}
                                     onChange={(e) => setAdditionalData({...additionalData, username: e.target.value})}
-                                    value={additionalData.username ? additionalData.username  : `@`}
+                                    value={additionalData.username ? additionalData.username  : ``}
                                     className={` pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12 text-lowercase`}
                                 />
                             </div>

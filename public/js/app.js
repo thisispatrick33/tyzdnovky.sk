@@ -68665,7 +68665,7 @@ var Additional = function Additional(_ref) {
         username: e.target.value
       }));
     },
-    value: additionalData.username ? additionalData.username : "@",
+    value: additionalData.username ? additionalData.username : "",
     className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12 text-lowercase"
   })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 row m-0 p-0 justify-content-center"
@@ -69897,8 +69897,8 @@ if (document.getElementById('root')) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/patrik/Projects/PhpstormProjects/tyzdnovky.sk/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/patrik/Projects/PhpstormProjects/tyzdnovky.sk/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Mamuss\PhpstormProjects\tyzdnovky.sk\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Mamuss\PhpstormProjects\tyzdnovky.sk\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
