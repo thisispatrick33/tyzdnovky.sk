@@ -191,19 +191,27 @@ const Main = () => {
 
     const _edit = (data) => {
         let formData = new FormData();
-        formData.set(`drivingLicense`, data.drivingLicense);
+
         formData.append(`email`, data.email);
+        formData.append(`name`, data.name);
+        formData.append(`phone`, data.phone);
+        formData.append(`username`, '@'+data.username);
+
         if(data.lastName!==undefined){
             for (let i = 0; i < data.languages.length; i++) {
                 formData.append('languages[]', data.languages[i]);
             }
+            for (let i = 0; i < data.categories.length; i++) {
+                formData.append(`categories[]`, data.categories[i]);
+            }
             formData.append(`lastName`, data.lastName);
+            formData.set(`drivingLicense`, data.drivingLicense);
         }
         else {
             formData.append(`ico`, data.ico);
         }
-        formData.append(`name`, data.name);
-        formData.append(`phone`, data.phone);
+
+
         if(data.profile_pic===null){
             formData.append(`profile_pic`, data.profile_pic);
         }
@@ -211,10 +219,7 @@ const Main = () => {
             formData.append(`profile_pic`, data.profile_pic[0]);
         }
 
-        formData.append(`username`, '@'+data.username);
-        for (let i = 0; i < data.categories.length; i++) {
-            formData.append(`categories[]`, data.categories[i]);
-        }
+
 
         axios
             .post(`/api/register-additional`, formData,{

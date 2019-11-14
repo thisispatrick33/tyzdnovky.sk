@@ -65,8 +65,31 @@ export const Additional = ({user, func = f => f}) => {
                             if (additionalData.phone !== undefined && additionalData.phone.length > 0) {
                                 if (additionalData.email !== undefined && additionalData.email.length > 0) {
                                     if (additionalData.email.includes('@')) {
-                                        if ((languages !== undefined && languages.length > 0) || (additionalLanguage != "" && additionalLanguage.length > 0)) {
-                                            if (categories !== undefined && categories.length > 0) {
+                                        if(user.type === "user"){
+                                            if ((languages !== undefined && languages.length > 0) || (additionalLanguage != "" && additionalLanguage.length > 0)) {
+                                                if (categories !== undefined && categories.length > 0) {
+                                                    if (consent) {
+                                                        submit();
+                                                    } else {
+                                                        setMissing({
+                                                            value: 'consent',
+                                                            message: `Neodsuhlasili ste podmienky pouzivania.`
+                                                        });
+                                                        console.log(missing);
+                                                    }
+                                                } else {
+                                                    setMissing({
+                                                        value: 'categories',
+                                                        message: `Nezadali ste ziadnu pracovnu kategoriu.`
+                                                    });
+                                                    console.log(missing);
+                                                }
+                                            } else {
+                                                setMissing({value: 'language', message: `Nezadali ste ziaden jazyk.`});
+                                                console.log(missing);
+                                            }
+                                        }else{
+                                            if(user.type === "business"){
                                                 if (consent) {
                                                     submit();
                                                 } else {
@@ -76,17 +99,9 @@ export const Additional = ({user, func = f => f}) => {
                                                     });
                                                     console.log(missing);
                                                 }
-                                            } else {
-                                                setMissing({
-                                                    value: 'categories',
-                                                    message: `Nezadali ste ziadnu pracovnu kategoriu.`
-                                                });
-                                                console.log(missing);
                                             }
-                                        } else {
-                                            setMissing({value: 'language', message: `Nezadali ste ziaden jazyk.`});
-                                            console.log(missing);
                                         }
+
                                     } else {
                                         setMissing({value: '@', message: `Nezadali ste platny email.`});
                                         console.log(missing);

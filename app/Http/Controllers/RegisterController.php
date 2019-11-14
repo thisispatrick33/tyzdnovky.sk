@@ -339,9 +339,9 @@ class RegisterController extends Controller
                 if($request->hasFile('profile_pic')){
                     $image_file = $request->profile_pic;
 
-                    $image_name = $user->username.".".$image_file->getClientOriginalExtension();
+                    $image_name = $business->username.".".$image_file->getClientOriginalExtension();
                     $image_file->move(public_path('images/profile_pics/'),$image_name);
-                    $user->profile_pic = public_path('images/profile_pics/'.$image_name);
+                    $business->profile_pic = public_path('images/profile_pics/'.$image_name);
                 }
 
                 if($business->save()){
@@ -357,6 +357,7 @@ class RegisterController extends Controller
                     $success = false;
                 }
             } catch (\Exception $e) {
+                return $e;
                 // maybe log this exception, but basically it's just here so we can rollback if we get a surprise
             }
 

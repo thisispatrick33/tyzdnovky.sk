@@ -68158,8 +68158,34 @@ var Additional = function Additional(_ref) {
             if (additionalData.phone !== undefined && additionalData.phone.length > 0) {
               if (additionalData.email !== undefined && additionalData.email.length > 0) {
                 if (additionalData.email.includes('@')) {
-                  if (languages !== undefined && languages.length > 0 || additionalLanguage != "" && additionalLanguage.length > 0) {
-                    if (categories !== undefined && categories.length > 0) {
+                  if (user.type === "user") {
+                    if (languages !== undefined && languages.length > 0 || additionalLanguage != "" && additionalLanguage.length > 0) {
+                      if (categories !== undefined && categories.length > 0) {
+                        if (consent) {
+                          submit();
+                        } else {
+                          setMissing({
+                            value: 'consent',
+                            message: "Neodsuhlasili ste podmienky pouzivania."
+                          });
+                          console.log(missing);
+                        }
+                      } else {
+                        setMissing({
+                          value: 'categories',
+                          message: "Nezadali ste ziadnu pracovnu kategoriu."
+                        });
+                        console.log(missing);
+                      }
+                    } else {
+                      setMissing({
+                        value: 'language',
+                        message: "Nezadali ste ziaden jazyk."
+                      });
+                      console.log(missing);
+                    }
+                  } else {
+                    if (user.type === "business") {
                       if (consent) {
                         submit();
                       } else {
@@ -68169,19 +68195,7 @@ var Additional = function Additional(_ref) {
                         });
                         console.log(missing);
                       }
-                    } else {
-                      setMissing({
-                        value: 'categories',
-                        message: "Nezadali ste ziadnu pracovnu kategoriu."
-                      });
-                      console.log(missing);
                     }
-                  } else {
-                    setMissing({
-                      value: 'language',
-                      message: "Nezadali ste ziaden jazyk."
-                    });
-                    console.log(missing);
                   }
                 } else {
                   setMissing({
@@ -69755,32 +69769,30 @@ var Main = function Main() {
 
   var _edit = function _edit(data) {
     var formData = new FormData();
-    formData.set("drivingLicense", data.drivingLicense);
     formData.append("email", data.email);
+    formData.append("name", data.name);
+    formData.append("phone", data.phone);
+    formData.append("username", '@' + data.username);
 
     if (data.lastName !== undefined) {
       for (var i = 0; i < data.languages.length; i++) {
         formData.append('languages[]', data.languages[i]);
       }
 
+      for (var _i2 = 0; _i2 < data.categories.length; _i2++) {
+        formData.append("categories[]", data.categories[_i2]);
+      }
+
       formData.append("lastName", data.lastName);
+      formData.set("drivingLicense", data.drivingLicense);
     } else {
       formData.append("ico", data.ico);
     }
-
-    formData.append("name", data.name);
-    formData.append("phone", data.phone);
 
     if (data.profile_pic === null) {
       formData.append("profile_pic", data.profile_pic);
     } else {
       formData.append("profile_pic", data.profile_pic[0]);
-    }
-
-    formData.append("username", '@' + data.username);
-
-    for (var _i2 = 0; _i2 < data.categories.length; _i2++) {
-      formData.append("categories[]", data.categories[_i2]);
     }
 
     axios__WEBPACK_IMPORTED_MODULE_5___default.a.post("/api/register-additional", formData, {
