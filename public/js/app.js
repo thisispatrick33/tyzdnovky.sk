@@ -69731,7 +69731,6 @@ var Main = function Main() {
   };
 
   var _edit = function _edit(data) {
-    console.log(data);
     var formData = new FormData();
     formData.set("drivingLicense", data.drivingLicense);
     formData.append("email", data.email);
@@ -69748,8 +69747,14 @@ var Main = function Main() {
 
     formData.append("name", data.name);
     formData.append("phone", data.phone);
-    formData.append("profile_pic", data.profile_pic[0]);
-    formData.append("username", data.username);
+
+    if (data.profile_pic === null) {
+      formData.append("profile_pic", data.profile_pic);
+    } else {
+      formData.append("profile_pic", data.profile_pic[0]);
+    }
+
+    formData.append("username", '@' + data.username);
 
     for (var _i2 = 0; _i2 < data.categories.length; _i2++) {
       formData.append("categories[]", data.categories[_i2]);
