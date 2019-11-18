@@ -1,14 +1,15 @@
 import React from 'react';
 import {Additional} from "../Additional";
+import {Router, navigate} from '@reach/router';
 
 export const Home =({location, edit = f => f}) => {
     const handleChange = (data) =>{
         edit(data);
     };
 
-    if(location.state !== null){
+    if(location.state != undefined){
         console.log("locatin");
-        console.log(location.state);
+        console.log(location);
         return (
             <div className={` home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 `}>
                 {location.state.data.user.active==0 ? <Additional user={location.state.data.user} func={handleChange}/> : ``}
@@ -58,10 +59,8 @@ export const Home =({location, edit = f => f}) => {
             </div>
         );
     }
-    return (
-        <div className={` home | container-fluid | row col-12 | justify-content-center | mb-5 m-0 p-0 `}>
-            unlogged
-        </div>
-    )
+    navigate('/');
+    return null;
+
 
 };
