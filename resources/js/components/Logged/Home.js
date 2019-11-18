@@ -1,17 +1,16 @@
 import React from 'react';
 import {Additional} from "../Additional";
+import {Router, navigate} from '@reach/router';
 
-export const Home =({location, edit = f => f}) => {
+export const Home =({location, edit = f => f, region}) => {
     const handleChange = (data) =>{
         edit(data);
     };
 
-    if(location.state !== null){
-        console.log("locatin");
-        console.log(location.state);
+    if(location.state != undefined){
         return (
             <div className={` home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 `}>
-                {location.state.data.user.active==0 ? <Additional user={location.state.data.user} func={handleChange}/> : ``}
+                {location.state.data.user.active==0 ? <Additional user={location.state.data.user} func={handleChange} region={region}/> : ``}
                 <div className="content col-11 row justify-content-center py-5">
                     <div className="header col-11 row justify-content-between">
                         <div className="menu col-1 row">
@@ -58,10 +57,8 @@ export const Home =({location, edit = f => f}) => {
             </div>
         );
     }
-    return (
-        <div className={` home | container-fluid | row col-12 | justify-content-center | mb-5 m-0 p-0 `}>
-            unlogged
-        </div>
-    )
+    navigate('/');
+    return null;
+
 
 };

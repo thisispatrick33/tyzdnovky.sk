@@ -67996,7 +67996,8 @@ var Additional = function Additional(_ref) {
       _ref$func = _ref.func,
       func = _ref$func === void 0 ? function (f) {
     return f;
-  } : _ref$func;
+  } : _ref$func,
+      region = _ref.region;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
     drivingLicense: false,
@@ -68012,71 +68013,74 @@ var Additional = function Additional(_ref) {
       languages = _useState4[0],
       setLanguages = _useState4[1];
 
-  var languagesInUse = [{
-    full: "czech",
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([{
+    full: "",
     "short": "cze"
   }, {
-    full: "spanish",
+    full: "",
     "short": "spa"
   }, {
-    full: "english",
+    full: "",
     "short": "eng"
   }, {
-    full: "hungarian",
+    full: "",
     "short": "hun"
   }, {
-    full: "arabic",
+    full: "",
     "short": "arb"
   }, {
-    full: "portugese",
+    full: "",
     "short": "ptg"
   }, {
-    full: "russian",
+    full: "",
     "short": "rus"
   }, {
-    full: "japanese",
+    full: "",
     "short": "jap"
   }, {
-    full: "german",
+    full: "",
     "short": "ger"
   }, {
-    full: "korean",
+    full: "",
     "short": "kor"
   }, {
-    full: "french",
+    full: "",
     "short": "fre"
   }, {
-    full: "turkish",
+    full: "",
     "short": "tur"
   }, {
-    full: "vietnamese",
+    full: "",
     "short": "vie"
-  }];
-
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
+  }]),
       _useState6 = _slicedToArray(_useState5, 2),
-      additionalLanguage = _useState6[0],
-      setAdditionalLanguage = _useState6[1];
+      languagesInUse = _useState6[0],
+      setLanguagesInUse = _useState6[1];
 
   var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
       _useState8 = _slicedToArray(_useState7, 2),
-      missing = _useState8[0],
-      setMissing = _useState8[1];
+      additionalLanguage = _useState8[0],
+      setAdditionalLanguage = _useState8[1];
 
-  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({}),
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
       _useState10 = _slicedToArray(_useState9, 2),
-      dataAdditional = _useState10[0],
-      setDataAdditional = _useState10[1];
+      missing = _useState10[0],
+      setMissing = _useState10[1];
 
-  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({}),
       _useState12 = _slicedToArray(_useState11, 2),
-      categories = _useState12[0],
-      setCategories = _useState12[1];
+      dataAdditional = _useState12[0],
+      setDataAdditional = _useState12[1];
 
-  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState14 = _slicedToArray(_useState13, 2),
-      consent = _useState14[0],
-      setConsent = _useState14[1];
+      categories = _useState14[0],
+      setCategories = _useState14[1];
+
+  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+      _useState16 = _slicedToArray(_useState15, 2),
+      consent = _useState16[0],
+      setConsent = _useState16[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     var fetchData =
@@ -68085,19 +68089,31 @@ var Additional = function Additional(_ref) {
       var _ref2 = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var result;
+        var result, help, i;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_6___default()('api/register-additional');
+                return axios__WEBPACK_IMPORTED_MODULE_6___default()('api/register-additional', {
+                  headers: {
+                    "X-localization": region
+                  }
+                });
 
               case 2:
                 result = _context.sent;
-                setDataAdditional(result.data);
+                help = languagesInUse;
 
-              case 4:
+                for (i = 0; i < help.length; i++) {
+                  help[i].full = result.data.languages[i];
+                }
+
+                setLanguagesInUse(help);
+                setDataAdditional(result.data);
+                console.log(result.data);
+
+              case 8:
               case "end":
                 return _context.stop();
             }
@@ -68111,7 +68127,7 @@ var Additional = function Additional(_ref) {
     }();
 
     fetchData();
-  }, []);
+  }, [region]);
 
   var readURL = function readURL(input) {
     setAdditionalData(_objectSpread({}, additionalData, {
@@ -68345,7 +68361,7 @@ var Additional = function Additional(_ref) {
     className: 'col-12 p-0 text-center mt-5'
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
-  }, "Set up"), " your profile ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+  }, dataAdditional.text.slide1_title1.substring(0, dataAdditional.text.slide1_title1.indexOf(" "))), dataAdditional.text.slide1_title1.substring(dataAdditional.text.slide1_title1.indexOf(" ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
   }, "...")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_2___default.a, _extends({}, settings, {
     className: "col-12 p-0 py-xl-3 py-lg-3 py-md-2 py-md-1 py-1"
@@ -68357,7 +68373,7 @@ var Additional = function Additional(_ref) {
     className: "col-12 mb-3 p-0 text-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
-  }, "Who"), " are you ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+  }, dataAdditional.text.slide1_subtitle1.substring(0, dataAdditional.text.slide1_subtitle1.indexOf(" "))), dataAdditional.text.slide1_subtitle1.substring(dataAdditional.text.slide1_subtitle1.indexOf(" ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
   }, "?")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: " input col-xl-10 col-lg-10 col-md-11 col-sm-11 col-12 mt-3 row p-0 m-0 "
@@ -68388,7 +68404,7 @@ var Additional = function Additional(_ref) {
     id: "name",
     type: "text",
     name: "name",
-    placeholder: user.type === "user" ? "Enter your first name" : "Enter your company name",
+    placeholder: user.type === "user" ? dataAdditional.text.slide1_placeholder1 : dataAdditional.text.slide1_placeholder1_business,
     onChange: function onChange(e) {
       return setAdditionalData(_objectSpread({}, additionalData, {
         name: e.target.value
@@ -68425,7 +68441,7 @@ var Additional = function Additional(_ref) {
     id: "surname",
     type: "text",
     name: "surname",
-    placeholder: user.type === "user" ? "Enter your surname" : "Enter your business id",
+    placeholder: user.type === "user" ? dataAdditional.text.slide1_placeholder2 : dataAdditional.text.slide1_placeholder2_business,
     onChange: function onChange(e) {
       return setAdditionalData(user.type === "user" ? _objectSpread({}, additionalData, {
         lastName: e.target.value
@@ -68445,7 +68461,7 @@ var Additional = function Additional(_ref) {
     className: "col-12 mb-3 p-0 text-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
-  }, "Contact"), " ", user.type === "user" ? "me" : "us", " here", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+  }, dataAdditional.text.slide1_subtitle2.substring(0, dataAdditional.text.slide1_subtitle2.indexOf(" "))), dataAdditional.text.slide1_subtitle2.substring(dataAdditional.text.slide1_subtitle2.indexOf(" ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
   }, ".")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: " input col-xl-10 col-lg-10 col-md-11 col-sm-11 col-12 my-3 row p-0 mx-0"
@@ -68518,7 +68534,7 @@ var Additional = function Additional(_ref) {
     id: "phone",
     type: "text",
     name: "phone",
-    placeholder: "Enter your phone number",
+    placeholder: dataAdditional.text.slide1_placeholder3,
     onChange: function onChange(e) {
       return setAdditionalData(_objectSpread({}, additionalData, {
         phone: e.target.value
@@ -68534,7 +68550,7 @@ var Additional = function Additional(_ref) {
     className: "col-12 mb-3 p-0 text-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
-  }, "language"), " skills ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+  }, dataAdditional.text.slide2_title1.substring(0, dataAdditional.text.slide2_title1.indexOf(" "))), dataAdditional.text.slide2_title1.substring(dataAdditional.text.slide2_title1.indexOf(" ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
   }, ".")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-xl-10 col-lg-11 col-md-11 col-12 p-0 row justify-content-center"
@@ -68571,7 +68587,7 @@ var Additional = function Additional(_ref) {
     id: "name",
     type: "text",
     name: "another",
-    placeholder: "another language?",
+    placeholder: dataAdditional.text.slide2_placeholder1 + "?",
     onChange: function onChange(e) {
       return setAdditionalLanguage(e.target.value);
     },
@@ -68584,11 +68600,11 @@ var Additional = function Additional(_ref) {
     className: "col-12 mb-3 p-0 text-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
-  }, "fulltime"), " job ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+  }, dataAdditional.text.slide3_title1.substring(0, dataAdditional.text.slide3_title1.indexOf(" "))), dataAdditional.text.slide3_title1.substring(dataAdditional.text.slide3_title1.indexOf(" ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
   }, "?")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h6", {
     className: "col-12 mb-3 p-0 text-center"
-  }, "z ak\xE9ho odvetvia chcete dost\xE1va\u0165 pracovn\xE9 ponuky ?"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, dataAdditional.text.slide3_subtitle1, " ?"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center"
   }, dataAdditional.branches.map(function (_ref5) {
     var id = _ref5.id,
@@ -68611,11 +68627,11 @@ var Additional = function Additional(_ref) {
     className: "col-12 mb-3 p-0 text-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
-  }, "freetime"), " job ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+  }, dataAdditional.text.slide4_title1.substring(0, dataAdditional.text.slide4_title1.indexOf(" "))), dataAdditional.text.slide4_title1.substring(dataAdditional.text.slide4_title1.indexOf(" ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
   }, "?")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h6", {
     className: "col-12 mb-3 p-0 text-center"
-  }, "\u010Do by ste chceli robi\u0165 ?"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, dataAdditional.text.slide4_subtitle1, " ?"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center"
   }, dataAdditional.branches.map(function (_ref6) {
     var id = _ref6.id,
@@ -68697,7 +68713,7 @@ var Additional = function Additional(_ref) {
     id: "name",
     type: "text",
     name: "username",
-    placeholder: "Enter your username",
+    placeholder: dataAdditional.text.slide5_placeholder1,
     onChange: function onChange(e) {
       return setAdditionalData(_objectSpread({}, additionalData, {
         username: e.target.value
@@ -68727,7 +68743,7 @@ var Additional = function Additional(_ref) {
     }
   })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-10 pl-3 py-0 pr-0"
-  }, "I have a driving license for group B")) : "", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, dataAdditional.text.slide5_checkbox1)) : "", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-xl-10 col-lg-10 col-12 row driving-licence align-items-center mb-3",
     onClick: function onClick() {
       return setConsent(!consent);
@@ -68743,10 +68759,10 @@ var Additional = function Additional(_ref) {
     }
   })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-10 pl-3 py-0 pr-0"
-  }, "I agree with the Terms & Services")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+  }, dataAdditional.text.slide5_checkbox2)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
     className: "submit-button sign-in-button col-xl-5 col-lg-6 col-md-9 col-11 text-center py-2 mb-5 mt-3 ",
     onClick: formValidator
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "update profile")))))));
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, dataAdditional.text.slide5_submit)))))));
 };
 
 var NextArrow = function NextArrow(props) {
@@ -68802,6 +68818,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ForgottenPassword__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ForgottenPassword */ "./resources/js/components/Forms/ForgottenPassword.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _reach_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @reach/router */ "./node_modules/@reach/router/es/index.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -68815,6 +68832,7 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -69461,6 +69479,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Additional__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Additional */ "./resources/js/components/Additional.js");
+/* harmony import */ var _reach_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @reach/router */ "./node_modules/@reach/router/es/index.js");
+
 
 
 var Home = function Home(_ref) {
@@ -69468,20 +69488,20 @@ var Home = function Home(_ref) {
       _ref$edit = _ref.edit,
       edit = _ref$edit === void 0 ? function (f) {
     return f;
-  } : _ref$edit;
+  } : _ref$edit,
+      region = _ref.region;
 
   var handleChange = function handleChange(data) {
     edit(data);
   };
 
-  if (location.state !== null) {
-    console.log("locatin");
-    console.log(location.state);
+  if (location.state != undefined) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: " home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 "
     }, location.state.data.user.active == 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Additional__WEBPACK_IMPORTED_MODULE_1__["Additional"], {
       user: location.state.data.user,
-      func: handleChange
+      func: handleChange,
+      region: region
     }) : "", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "content col-11 row justify-content-center py-5"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -69546,9 +69566,8 @@ var Home = function Home(_ref) {
     })))));
   }
 
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " home | container-fluid | row col-12 | justify-content-center | mb-5 m-0 p-0 "
-  }, "unlogged");
+  Object(_reach_router__WEBPACK_IMPORTED_MODULE_2__["navigate"])('/');
+  return null;
 };
 
 /***/ }),
@@ -69906,7 +69925,8 @@ var Main = function Main() {
     message: message
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Logged_Home__WEBPACK_IMPORTED_MODULE_6__["Home"], {
     path: "/home",
-    edit: _edit
+    edit: _edit,
+    region: location
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_PasswordReset__WEBPACK_IMPORTED_MODULE_7__["PasswordReset"], {
     path: '/reset-password',
     reset: _resetPassword

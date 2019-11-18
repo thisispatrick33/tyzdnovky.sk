@@ -77,6 +77,22 @@ class DatabaseSeeder extends Seeder
                 true
             ]
         ];
+
+        $languages_sk = [
+            'česky',
+            'španielsky',
+            'anglicky',
+            'maďarsky',
+            'arabsky',
+            'portugalsky',
+            'rusky',
+            'japonsky',
+            'nemecky',
+            'kórejsky',
+            'francúzsky',
+            'turecky',
+            'vietnamsky' 
+        ];
         
         for($i=0;$i<sizeof($branches_sk['name']);$i++){
             $branch = new Branch;
@@ -85,6 +101,14 @@ class DatabaseSeeder extends Seeder
             $branch->lang = "sk";
             $branch->free_time = $branches_sk['free_time'][$i];
             $branch->save();
+        }
+
+        for($i=0;$i<sizeof($languages_sk);$i++){
+            $language = new Language;
+            $language->name = $languages_sk[$i];
+            $language->lang = "SK";
+            $language->basic = true;
+            $language->save();
         }
     }
 }

@@ -34,10 +34,20 @@ Route::group(['middleware' => ['api-header','localization']], function () {
         //REG.ADDITIONAL
         Route::post("/register-additional","RegisterController@additionalInfo");
         //USER EDIT
-
+        Route::post("/user","UserController@update");
+        //BUSINESS EDIT
+        Route::post("/business","BusinessController@update");
         //USER GET
-
+        Route::get("/user/{id}","UserController@getOne");
+        Route::get("/user","UserController@get");
+        //BUSINESS GET
+        Route::get("/business/{id}","BusinessController@getOne");
+        Route::get("/business","BusinessController@get");
         //USER DELETE
+        Route::delete("/user/{id}","UserController@delete");
+        //BUSINESS DELETE
+        Route::delete("/business/{id}","BusinessController@delete");
+        
     });
     
 });
