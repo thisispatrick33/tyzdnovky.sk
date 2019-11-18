@@ -234,14 +234,14 @@ class RegisterController extends Controller
                     $language_arr = [];
                     foreach( $request->languages as $language){
                     
-                        $language_id = Language::where('name','=',$language)->find($language);
+                        $language_id = Language::where('name','=',$language)->first();
                         if ($language_id) {
                             array_push($language_arr,$language_id->id);
                         }
                         else {
                             $NewLanguage = new Language;
                             $NewLanguage->name = $language;
-                            $NewLanguage->lang = ($request->hasHeader('X-localization')) ? $request->header('X-localization') : 'en';
+                            $NewLanguage->lang = ($request->hasHeader('X-localization')) ? $request->header('X-localization') : 'EN';
                             if ($NewLanguage->save()) {
                                 array_push($language_arr,$NewLanguage->id);
                             }
