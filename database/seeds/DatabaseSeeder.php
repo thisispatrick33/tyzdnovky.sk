@@ -91,7 +91,7 @@ class DatabaseSeeder extends Seeder
             'kórejsky',
             'francúzsky',
             'turecky',
-            'vietnamsky'
+            'vietnamsky' 
         ];
         
         for($i=0;$i<sizeof($branches_sk['name']);$i++){
