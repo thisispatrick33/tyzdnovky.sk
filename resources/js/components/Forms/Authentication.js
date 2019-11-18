@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
-import { ForgottenPassword } from "./ForgottenPassword";
+import React, {useState} from 'react';
+import {ForgottenPassword} from "./ForgottenPassword";
+import $ from 'jquery';
+
 export const Authentication = ({message,login = f => f, register = f => f, reset = f => f}) => {
+
 
     const [data,setData] = useState({type : 2});
     const [slide, setSlide] = useState(0);
@@ -12,7 +15,6 @@ export const Authentication = ({message,login = f => f, register = f => f, reset
         if(control=="r"){
             register(data);
         }
-
         else if (control=="l"){
            login(data)
         }

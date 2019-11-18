@@ -1,12 +1,36 @@
- import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import $ from 'jquery';
+import axios from "axios";
 
 export const Additional = ({user, func = f => f}) => {
 
+    const [additionalData,setAdditionalData] = useState({drivingLicense: false, email: user.email, profile_pic: null});
+    const [languages, setLanguages] = useState([]);
+    const languagesInUse = [{full : "czech", short : "cze"}, {full : "spanish", short : "spa"}, {full : "english", short : "eng"}, {full : "hungarian", short : "hun"}, {full : "arabic", short : "arb"}, {full : "portugese", short : "ptg"}, {full : "russian", short : "rus"}, {full : "japanese", short : "jap"}, {full : "german", short : "ger"}, {full : "korean", short : "kor"}, {full : "french", short : "fre"}, {full : "turkish", short : "tur"}, {full : "vietnamese", short : "vie"}];
+    const [additionalLanguage, setAdditionalLanguage] = useState("");
+    const [missing, setMissing] = useState(``);
+    const [dataAdditional, setDataAdditional] = useState({});
+    const [categories, setCategories] = useState([]);
+    const [consent, setConsent] = useState(false);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const result = await axios(
+                'api/register-additional',
+            );
+            setDataAdditional(result.data);
+        };
+        fetchData();
+    }, []);
+
+
+
+
     const readURL = input => {
+        setAdditionalData({...additionalData, profile_pic: input});
         if (input && input[0]) {
             let reader = new FileReader();
             reader.onload = e =>  {
@@ -19,12 +43,6 @@ export const Additional = ({user, func = f => f}) => {
         }
     };
 
-    const [additionalData,setAdditionalData] = useState({drivingLicense: false, email: user.email});
-    const [languages, setLanguages] = useState([]);
-    const [languagesInUse, setLanguagesInUse] = useState([{full : "czech", short : "cze"}, {full : "spanish", short : "spa"}, {full : "english", short : "eng"}, {full : "hungarian", short : "hun"}, {full : "arabic", short : "arb"}, {full : "portugese", short : "ptg"}, {full : "russian", short : "rus"}, {full : "japanese", short : "jap"}, {full : "german", short : "ger"}, {full : "korean", short : "kor"}, {full : "french", short : "fre"}, {full : "turkish", short : "tur"}, {full : "vietnamese", short : "vie"}]);
-    const [additionalLanguage, setAdditionalLanguage] = useState("");
-    const [missing, setMissing] = useState(``);
-    const [consent, setConsent] = useState(false);
 
     const handleLang = (value) => {
         let array = [...languages];
@@ -32,111 +50,87 @@ export const Additional = ({user, func = f => f}) => {
         setLanguages(array);
     };
 
-    const formValidator = type =>{
-        if(type === "user"){
-            if(additionalData.username !== undefined && additionalData.username.length > 0){
-                if(additionalData.name !== undefined && additionalData.name.length > 0){
-                    if((user.type==="user"&&additionalData.lastName !== undefined && additionalData.lastName.length > 0)||(user.type==="company"&&additionalData.ico !== undefined && additionalData.ico.length > 0)){
-                        if(additionalData.phone !== undefined && additionalData.phone.length > 0){
-                            if(additionalData.email !== undefined && additionalData.email.length > 0){
-                                if(additionalData.email.includes('@')){
-                                    if((languages !== undefined && languages.length>0)||(additionalLanguage!=""&&additionalLanguage.length>0)){
-                                        if(categories[0].value!==null && categories[0].value.length>0){
-                                            if(categories[0].practise!==null && categories[0].value.length>0){
-                                                if(categories[0].practise>0){
-                                                    if(categories[0].ready!==null && categories[0].ready.length>0){
-                                                        if(categories[0].ready>today){
-                                                            if(categories.length==1){
-                                                                console.log(additionalData);
-                                                                submit();
-                                                            }else {
-                                                                if(categories.length==2){
-                                                                    if(categories[1].value!==null && categories[1].value.length>0) {
-                                                                        if (categories[1].practise !== null && categories[1].value.length > 0) {
-                                                                            if (categories[1].practise > 0) {
-                                                                                if (categories[1].ready !== null && categories[1].ready.length > 0) {
-                                                                                    if (categories[1].ready > today) {
-                                                                                        submit();
-                                                                                    }else {
-                                                                                        setMissing({value: 'ready', message: `Nezadali ste platny datum nastupu.`});
-                                                                                        console.log(missing);
-                                                                                    }
-                                                                                }else {
-                                                                                    setMissing({value: 'ready', message: `Nezadali ste datum nastupu.`});
-                                                                                    console.log(missing);
-                                                                                }
-                                                                            }else {
-                                                                                setMissing({value: 'practise', message: `Nezadali ste platnu prax v odbore.`});
-                                                                                console.log(missing);
-                                                                            }
-                                                                        }else {
-                                                                            setMissing({value: 'practise', message: `Nezadali ste prax v odbore.`});
-                                                                            console.log(missing);
-                                                                        }
-                                                                    }else {
-                                                                        setMissing({value: 'category col-auto mx-2 my-2 py-2 shadow-sm', message: `Nezadali ste odbor.`});
-                                                                        console.log(missing);
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                        else {
-                                                            setMissing({value: 'ready', message: `Nezadali ste platny datum nastupu.`});
-                                                            console.log(missing);
-                                                        }
-                                                    }
-                                                    else {
-                                                        setMissing({value: 'ready', message: `Nezadali ste datum nastupu.`});
+    const handleWork = (value) => {
+        let array = [...categories];
+        array.includes(value) ? array=array.filter(work => value !== work) : array.push(value);
+        setCategories(array);
+    };
+
+
+    const formValidator=()=>{
+            if(additionalData.username !== undefined){
+                if(additionalData.username.length >= 3) {
+                    if (additionalData.name !== undefined && additionalData.name.length > 0) {
+                        if ((user.type === "user" && additionalData.lastName !== undefined && additionalData.lastName.length > 0) || (user.type === "business" && additionalData.ico !== undefined && additionalData.ico.length > 0)) {
+                            if (additionalData.phone !== undefined && additionalData.phone.length > 0) {
+                                if (additionalData.email !== undefined && additionalData.email.length > 0) {
+                                    if (additionalData.email.includes('@')) {
+                                        if(user.type === "user"){
+                                            if ((languages !== undefined && languages.length > 0) || (additionalLanguage != "" && additionalLanguage.length > 0)) {
+                                                if (categories !== undefined && categories.length > 0) {
+                                                    if (consent) {
+                                                        submit();
+                                                    } else {
+                                                        setMissing({
+                                                            value: 'consent',
+                                                            message: `Neodsuhlasili ste podmienky pouzivania.`
+                                                        });
                                                         console.log(missing);
                                                     }
-
+                                                } else {
+                                                    setMissing({
+                                                        value: 'categories',
+                                                        message: `Nezadali ste ziadnu pracovnu kategoriu.`
+                                                    });
+                                                    console.log(missing);
                                                 }
-                                                else {
-                                                    setMissing({value: 'practise', message: `Nezadali ste platnu prax v odbore.`});
+                                            } else {
+                                                setMissing({value: 'language', message: `Nezadali ste ziaden jazyk.`});
+                                                console.log(missing);
+                                            }
+                                        }else{
+                                            if(user.type === "business"){
+                                                if (consent) {
+                                                    submit();
+                                                } else {
+                                                    setMissing({
+                                                        value: 'consent',
+                                                        message: `Neodsuhlasili ste podmienky pouzivania.`
+                                                    });
                                                     console.log(missing);
                                                 }
                                             }
-                                            else {
-                                                setMissing({value: 'practise', message: `Nezadali ste prax v odbore.`});
-                                                console.log(missing);
-                                            }
                                         }
-                                        else {
-                                            setMissing({value: 'category col-auto mx-2 my-2 py-2 shadow-sm', message: `Nezadali ste ziaden odbor.`});
-                                            console.log(missing);
-                                        }
-                                    }
-                                    else {
-                                        setMissing({value: 'language', message: `Nezadali ste ziaden jazyk.`});
+
+                                    } else {
+                                        setMissing({value: '@', message: `Nezadali ste platny email.`});
                                         console.log(missing);
                                     }
-                                }
-                                else {
-                                    setMissing({value: '@', message: `Nezadali ste platny email.`});
+                                } else {
+                                    setMissing({value: 'email', message: `Nezadali ste email.`});
                                     console.log(missing);
                                 }
-                            }else {
-                                setMissing({value: 'email', message: `Nezadali ste email.`});
+                            } else {
+                                setMissing({value: 'phone', message: `Nezadali ste telefon.`});
                                 console.log(missing);
                             }
-                        }else {
-                            setMissing({value: 'phone', message: `Nezadali ste telefon.`});
-                            console.log(missing);
-                        }
-                    }
-                    else {
-                        if(user.type==="user"){
-                            setMissing({value: 'lastName', message: `Nezadali ste priezvisko.`});
-                            console.log(missing);
-                        }
-                        if(user.type==="company"){
-                            setMissing({value: 'ico', message: `Nezadali ste ICO.`});
-                            console.log(missing);
-                        }
+                        } else {
+                            if (user.type === "user") {
+                                setMissing({value: 'lastName', message: `Nezadali ste priezvisko.`});
+                                console.log(missing);
+                            }
+                            if (user.type === "business") {
+                                setMissing({value: 'ico', message: `Nezadali ste ICO.`});
+                                console.log(missing);
+                            }
 
+                        }
+                    } else {
+                        setMissing({value: 'name', message: `Nezadali ste meno.`});
+                        console.log(missing);
                     }
                 }else {
-                    setMissing({value: 'name', message: `Nezadali ste meno.`});
+                    setMissing({value: 'username', message: `Username musi mat minimalne 3 znaky.`});
                     console.log(missing);
                 }
             }
@@ -144,23 +138,18 @@ export const Additional = ({user, func = f => f}) => {
                 setMissing({value: 'username', message: `Nezadali ste username.`});
                 console.log(missing);
             }
-        }else{
-            submit();
-        }
-
     };
 
     const submit = async () =>{
         if(user.type === "user"){
             if(additionalLanguage!=""){
-                await func({...additionalData, categories: categories,languages: [...languages, additionalLanguage]});
+                await func({...additionalData, categories: categories, languages: [...languages, additionalLanguage]});
             }
             else {
-                await func({...additionalData, categories: categories,languages: languages});
+                await func({...additionalData, categories: categories, languages: languages});
             }
         }else{
-            console.log({...additionalData, categories: branches})
-            await func({...additionalData, categories: branches});
+            await func({...additionalData});
         }
 
     };
@@ -177,6 +166,9 @@ export const Additional = ({user, func = f => f}) => {
         prevArrow: <PreviousArrow />
     };
 
+    if(dataAdditional.branches==undefined){
+        return <div>Loading</div>
+    }
     return (
         <div className={`additional-info-form | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0`} style={{overflowY : `scroll`}}>
             <div className="content-frame | row  col-xl-6 col-lg-6 col-md-7 col-12 | justify-content-center align-items-center | px-0 | shadow-sm py-xl-5 py-lg-5 py-md-5 py-0 my-xl-4 my-lg-4 my-md-5 my-0">
@@ -234,27 +226,6 @@ export const Additional = ({user, func = f => f}) => {
                             </div>
                             <div className="col-12 mx-0 p-0 row my-xl-4 my-lg-4 my-md-3 my-sm-3 my-3 justify-content-around">
                                 <h3 className="col-12 mb-3 p-0 text-center"><span className="doth">Contact</span> {user.type === `user` ? `me` : `us`} here<span className="doth">.</span></h3>
-                                <div className={` input col-xl-10 col-lg-10 col-md-11 col-sm-11 col-12 mt-3 row p-0 mx-0`}>
-                                    <div className="col-2 pl-3 d-flex justify-content-center align-items-center">
-                                        <svg fill="#2c393f" style={{width : `24px`, height : `24px`}} className={`col-12 p-0 d-xl-flex d-lg-flex d-md-flex d-none`} enableBackground="new 0 0 512.076 512.076" version="1.1" viewBox="0 0 512.08 512.08" space="preserve" xmlns="http://www.w3.org/2000/svg">
-                                            <g transform="translate(-1 -1)">
-                                                <path d="m499.64 396.04-103.65-69.12c-13.153-8.701-30.784-5.838-40.508 6.579l-30.191 38.818c-3.88 5.116-10.933 6.6-16.546 3.482l-5.743-3.166c-19.038-10.377-42.726-23.296-90.453-71.04s-60.672-71.45-71.049-90.453l-3.149-5.743c-3.161-5.612-1.705-12.695 3.413-16.606l38.792-30.182c12.412-9.725 15.279-27.351 6.588-40.508l-69.12-103.65c-8.907-13.398-26.777-17.42-40.566-9.131l-43.341 26.035c-13.618 8.006-23.609 20.972-27.878 36.181-15.607 56.866-3.866 155.01 140.71 299.6 115 115 200.62 145.92 259.46 145.92 13.543 0.058 27.033-1.704 40.107-5.239 15.212-4.264 28.18-14.256 36.181-27.878l26.061-43.315c8.301-13.792 4.281-31.673-9.123-40.585zm-5.581 31.829-26.001 43.341c-5.745 9.832-15.072 17.061-26.027 20.173-52.497 14.413-144.21 2.475-283.01-136.32s-150.73-230.5-136.32-283.01c3.116-10.968 10.354-20.307 20.198-26.061l43.341-26.001c5.983-3.6 13.739-1.855 17.604 3.959l37.547 56.371 31.514 47.266c3.774 5.707 2.534 13.356-2.85 17.579l-38.801 30.182c-11.808 9.029-15.18 25.366-7.91 38.332l3.081 5.598c10.906 20.002 24.465 44.885 73.967 94.379 49.502 49.493 74.377 63.053 94.37 73.958l5.606 3.089c12.965 7.269 29.303 3.898 38.332-7.91l30.182-38.801c4.224-5.381 11.87-6.62 17.579-2.85l103.64 69.12c5.818 3.862 7.563 11.622 3.958 17.604z"/>
-                                                <path fill={`#00C7C7`} d="m291.16 86.39c80.081 0.089 144.98 64.986 145.07 145.07 0 4.713 3.82 8.533 8.533 8.533s8.533-3.82 8.533-8.533c-0.099-89.503-72.63-162.04-162.13-162.13-4.713 0-8.533 3.82-8.533 8.533s3.82 8.533 8.533 8.533z"/>
-                                                <path fill={`#00C7C7`} d="m291.16 137.59c51.816 0.061 93.806 42.051 93.867 93.867 0 4.713 3.821 8.533 8.533 8.533 4.713 0 8.533-3.82 8.533-8.533-0.071-61.238-49.696-110.86-110.93-110.93-4.713 0-8.533 3.82-8.533 8.533s3.82 8.533 8.533 8.533z"/>
-                                                <path fill={`#00C7C7`} d="m291.16 188.79c23.552 0.028 42.638 19.114 42.667 42.667 0 4.713 3.821 8.533 8.533 8.533s8.533-3.82 8.533-8.533c-0.038-32.974-26.759-59.696-59.733-59.733-4.713 0-8.533 3.82-8.533 8.533s3.82 8.533 8.533 8.533z"/>
-                                            </g>
-                                        </svg>
-                                    </div>
-                                    <input
-                                        id={`phone`}
-                                        type={`text`}
-                                        name={`phone`}
-                                        placeholder={`Enter your phone number`}
-                                        onChange={(e) => setAdditionalData({...additionalData, phone : e.target.value})}
-                                        value={additionalData.phone ? additionalData.phone  : ``}
-                                        className={` pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12`}
-                                    />
-                                </div>
                                 <div className={` input col-xl-10 col-lg-10 col-md-11 col-sm-11 col-12 my-3 row p-0 mx-0`}>
                                     <div className="col-2 pl-3 d-flex justify-content-center align-items-center">
                                         <svg fill="#2c393f" style={{width : `24px`, height : `24px`}} className={`col-12 p-0 d-xl-flex d-lg-flex d-md-flex d-none`} enableBackground="new 0 0 511.991 511.991"  viewBox="0 0 511.99 511.99" space="preserve" >
@@ -275,13 +246,34 @@ export const Additional = ({user, func = f => f}) => {
                                         className={` pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12`}
                                     />
                                 </div>
+                                <div className={` input col-xl-10 col-lg-10 col-md-11 col-sm-11 col-12 mt-3 row p-0 mx-0`}>
+                                    <div className="col-2 pl-3 d-flex justify-content-center align-items-center">
+                                        <svg fill="#2c393f" style={{width : `24px`, height : `24px`}} className={`col-12 p-0 d-xl-flex d-lg-flex d-md-flex d-none`} enableBackground="new 0 0 512.076 512.076" version="1.1" viewBox="0 0 512.08 512.08" space="preserve" xmlns="http://www.w3.org/2000/svg">
+                                            <g transform="translate(-1 -1)">
+                                            <path d="m499.64 396.04-103.65-69.12c-13.153-8.701-30.784-5.838-40.508 6.579l-30.191 38.818c-3.88 5.116-10.933 6.6-16.546 3.482l-5.743-3.166c-19.038-10.377-42.726-23.296-90.453-71.04s-60.672-71.45-71.049-90.453l-3.149-5.743c-3.161-5.612-1.705-12.695 3.413-16.606l38.792-30.182c12.412-9.725 15.279-27.351 6.588-40.508l-69.12-103.65c-8.907-13.398-26.777-17.42-40.566-9.131l-43.341 26.035c-13.618 8.006-23.609 20.972-27.878 36.181-15.607 56.866-3.866 155.01 140.71 299.6 115 115 200.62 145.92 259.46 145.92 13.543 0.058 27.033-1.704 40.107-5.239 15.212-4.264 28.18-14.256 36.181-27.878l26.061-43.315c8.301-13.792 4.281-31.673-9.123-40.585zm-5.581 31.829-26.001 43.341c-5.745 9.832-15.072 17.061-26.027 20.173-52.497 14.413-144.21 2.475-283.01-136.32s-150.73-230.5-136.32-283.01c3.116-10.968 10.354-20.307 20.198-26.061l43.341-26.001c5.983-3.6 13.739-1.855 17.604 3.959l37.547 56.371 31.514 47.266c3.774 5.707 2.534 13.356-2.85 17.579l-38.801 30.182c-11.808 9.029-15.18 25.366-7.91 38.332l3.081 5.598c10.906 20.002 24.465 44.885 73.967 94.379 49.502 49.493 74.377 63.053 94.37 73.958l5.606 3.089c12.965 7.269 29.303 3.898 38.332-7.91l30.182-38.801c4.224-5.381 11.87-6.62 17.579-2.85l103.64 69.12c5.818 3.862 7.563 11.622 3.958 17.604z"/>
+                                            <path fill={`#00C7C7`} d="m291.16 86.39c80.081 0.089 144.98 64.986 145.07 145.07 0 4.713 3.82 8.533 8.533 8.533s8.533-3.82 8.533-8.533c-0.099-89.503-72.63-162.04-162.13-162.13-4.713 0-8.533 3.82-8.533 8.533s3.82 8.533 8.533 8.533z"/>
+                                            <path fill={`#00C7C7`} d="m291.16 137.59c51.816 0.061 93.806 42.051 93.867 93.867 0 4.713 3.821 8.533 8.533 8.533 4.713 0 8.533-3.82 8.533-8.533-0.071-61.238-49.696-110.86-110.93-110.93-4.713 0-8.533 3.82-8.533 8.533s3.82 8.533 8.533 8.533z"/>
+                                            <path fill={`#00C7C7`} d="m291.16 188.79c23.552 0.028 42.638 19.114 42.667 42.667 0 4.713 3.821 8.533 8.533 8.533s8.533-3.82 8.533-8.533c-0.038-32.974-26.759-59.696-59.733-59.733-4.713 0-8.533 3.82-8.533 8.533s3.82 8.533 8.533 8.533z"/>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <input
+                                        id={`phone`}
+                                        type={`text`}
+                                        name={`phone`}
+                                        placeholder={`Enter your phone number`}
+                                        onChange={(e) => setAdditionalData({...additionalData, phone : e.target.value})}
+                                        value={additionalData.phone ? additionalData.phone  : ``}
+                                        className={` pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12`}
+                                    />
+                                </div>
                             </div>
                         </div>
                         {user.type === "user" ?
                             <div className={`col-12 m-0 p-0 row justify-content-center`}>
                                 <div className="col-12 mx-0 p-0 row my-4 languages justify-content-around">
                                     <h3 className="col-12 mb-3 p-0 text-center"><span className="doth">language</span> skills <span className="doth">.</span></h3>
-                                    <div className="col-xl-10 col-lg-11 col-md-11 col-12 p-0 row justify-content-center">
+                                    < div className="col-xl-10 col-lg-11 col-md-11 col-12 p-0 row justify-content-center">
                                         {
                                             languagesInUse.map( ({full,short}) => {
                                                 return <div className={`language d-block col-auto row mx-2 my-2 px-3 align-items-center py-2 justify-content-center shadow-sm ${languages.includes(full) ? `on` : ``}`} onClick={() => handleLang(full)}>{window.innerHeight <= 768 ? short : full}</div>;
@@ -303,55 +295,50 @@ export const Additional = ({user, func = f => f}) => {
                                         />
                                     </div>
                                 </div>
+
                             </div> : ``
                         }
-                        <div className={`col-12 m-0 p-0 row justify-content-center align-items-center d-flex`}>
-                            <div className="col-12 mx-0 p-0 row my-4 languages justify-content-around">
-                                <h3 className="col-12 mb-3 p-0 text-center"><span className="doth">fulltime</span> job <span className="doth">?</span></h3>
-                                <h6 className="col-12 mb-3 p-0 text-center">z akého odvetvia chcete dostávať pracovné ponuky ?</h6>
-                                <div className="categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center">
-                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
-                                        automobile industry
-                                    </div>
-                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
-                                        automobile industry
-                                    </div>
-                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
-                                        automobile industry
-                                    </div>
-                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
-                                        automobile industry
-                                    </div>
-                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
-                                        automobile industry
-                                    </div>
-                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
-                                        automobile industry
-                                    </div>
-                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
-                                        automobile industry
-                                    </div>
-                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
-                                        automobile industry
-                                    </div>
-                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
-                                        automobile industry
-                                    </div>
+                        {user.type === "user" ?
+                            <div className={`col-12 m-0 p-0 row justify-content-center align-items-center d-flex`}>
+                                <div className="col-12 mx-0 p-0 row my-4 languages justify-content-around">
+                                    <h3 className="col-12 mb-3 p-0 text-center"><span className="doth">fulltime</span> job <span className="doth">?</span></h3>
+                                    <h6 className="col-12 mb-3 p-0 text-center">z akého odvetvia chcete dostávať pracovné ponuky ?</h6>
+                                    <div className="categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center">
+                                        {
+                                            dataAdditional.branches.map( ({id,free_time,name}) => {
+                                                if(free_time===0){
+                                                    return  <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.includes(id) ? `on` : ``}`} onClick={() => handleWork(id)}>
+                                                        {name}
+                                                    </div>;
+                                                }
+                                            })
+                                        }
 
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div className={`col-11 m-0 p-0 row justify-content-center align-items-center d-flex`}>
-                            <div className="col-12 mx-0 p-0 row my-4 languages justify-content-around">
-                                <h3 className="col-12 mb-3 p-0 text-center"><span className="doth">freetime</span> job <span className="doth">?</span></h3>
-                                <h6 className="col-12 mb-3 p-0 text-center">čo by ste chceli robiť ?</h6>
-                                <div className="categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center">
-                                    <div className="category col-auto mx-2 my-2 py-2 shadow-sm">
-                                        lawn moving
+                            </div> : ``
+                        }
+                        {user.type === "user" ?
+                            <div className={`col-11 m-0 p-0 row justify-content-center align-items-center d-flex`}>
+                                <div className="col-12 mx-0 p-0 row my-4 languages justify-content-around">
+                                    <h3 className="col-12 mb-3 p-0 text-center"><span className="doth">freetime</span> job <span className="doth">?</span></h3>
+                                    <h6 className="col-12 mb-3 p-0 text-center">čo by ste chceli robiť ?</h6>
+                                    <div className="categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center">
+                                        {
+                                            dataAdditional.branches.map( ({id,free_time,name}) => {
+                                                if(free_time===1){
+                                                    return  <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.includes(id) ? `on` : ``}`} onClick={() => handleWork(id)}>
+                                                        {name}
+                                                    </div>;
+                                                }
+                                            })
+                                        }
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                            : ``
+                        }
+
                         <div className={`col-12 m-0 p-0 row justify-content-center align-items-center d-flex`}>
                            <div className="container d-flex justify-content-center">
                                 <div className="avatar-upload">
@@ -392,13 +379,15 @@ export const Additional = ({user, func = f => f}) => {
                             <div className="col-12 row m-0 p-0 justify-content-center">
                                 <hr className={`col-6 m-0 my-3`}/>
                             </div>
-
-                            <div className="col-xl-10 col-lg-10 col-12 row driving-licence align-items-center my-4" onClick={() => setAdditionalData({...additionalData, drivingLicense: !additionalData.drivingLicense})}>
-                                <div className="col-1 d-flex justify-content-center p-0">
-                                    <div className="square" style={additionalData.drivingLicense ? {background : `#00C7C7`} :  {background : `white`}}></div>
+                            {user.type === "user" ?
+                                <div className="col-xl-10 col-lg-10 col-12 row driving-licence align-items-center my-4" onClick={() => setAdditionalData({...additionalData, drivingLicense: !additionalData.drivingLicense})}>
+                                    <div className="col-1 d-flex justify-content-center p-0">
+                                        <div className="square" style={additionalData.drivingLicense ? {background : `#00C7C7`} :  {background : `white`}}></div>
+                                    </div>
+                                    <div className="col-10 pl-3 py-0 pr-0">I have a driving license for group B</div>
                                 </div>
-                                <div className="col-10 pl-3 py-0 pr-0">I have a driving license for group B</div>
-                            </div>
+                                : ``
+                            }
                             <div className="col-xl-10 col-lg-10 col-12 row driving-licence align-items-center mb-3" onClick={() => setConsent(!consent)}>
                                 <div className="col-1 d-flex justify-content-center p-0">
                                     <div className="square" style={consent ? {background : `#00C7C7`} :  {background : `white`}}></div>
@@ -406,8 +395,8 @@ export const Additional = ({user, func = f => f}) => {
                                 <div className="col-10 pl-3 py-0 pr-0">I agree with the Terms & Services</div>
                             </div>
                             <button
-                                className={`submit-button sign-in-button col-xl-5 col-lg-6 col-md-9 col-11 text-center py-2 mb-4 mt-3 `}
-                                onClick={submit}><span>update profile</span></button>
+                                className={`submit-button sign-in-button col-xl-5 col-lg-6 col-md-9 col-11 text-center py-2 mb-5 mt-3 `}
+                                onClick={formValidator}><span>update profile</span></button>
                         </div>
                     </Slider>
                 </div>
