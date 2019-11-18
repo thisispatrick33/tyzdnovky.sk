@@ -16,9 +16,8 @@ use App\Language;
 class TextController extends Controller
 {
     public function additionalInfoText(Request $request){
-        $branches = Branch::select(['id','name','free_time'])->where('lang',($request->hasHeader('X-localization')) ? $request->header('X-localization') : 'sk')->get();
-        $languages = Language::select('name')->where('lang',($request->hasHeader('X-localization')) ? $request->header('X-localization') : 'en')->get();
-
+        $branches = Branch::select(['id','name','free_time'])->where('lang',($request->hasHeader('X-localization')) ? $request->header('X-localization') : 'en')->get();
+        $languages = Language::select('name')->where('lang',($request->hasHeader('X-localization')) ? $request->header('X-localization') : 'en')->where('basic',1)->get();
         $branches_arr = [];
         $languages_arr = [];
 

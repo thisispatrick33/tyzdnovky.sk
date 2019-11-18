@@ -8,10 +8,17 @@ return [
     |
     */
 
-    'title' => 'REGISTRÁCIA',
-    'subtitle0' => 'Koho registrujeme ?',
-    'subtitle1' => 'Všeobecné informácie',
-    'subtitle2' => 'Doplňujúce info...',
+    'title' => 'Nastavte svoj profil ...',
+    'subtitle0' => 'Kto si ?',
+    'subtitle1' => 'Kontaktujte ma tu',
+    'subtitle2' => 'Jazykové schopnosti .',
+    'placeholder1' => 'Zadajte vaše meno',
+    'placeholder2' => 'Zadajte vaše priezvisko',
+    'placeholder3' => 'Zadajte vaše tel. číslo',
+    'placeholder4' => 'Ovládate iný jazyk ?',
+    'placeholder5' => '',
+    'placeholder6' => '',
+    'placeholder1' => '',
     'next' => 'ĎALEJ',
     'prev' => 'SPÄŤ',
     'submit' => 'ODOSLAŤ',
