@@ -43,9 +43,9 @@ class TextController extends Controller
             'slide3_subtitle1' => trans('additional-info.slide3_subtitle1'),
             'slide4_title1' => trans('additional-info.slide4_title1'),
             'slide4_subtitle1' => trans('additional-info.slide4_subtitle1'),
-            'slide5_title1' => trans('additional-info.slide5_title1'),
             'slide5_placeholder1' => trans('additional-info.slide5_placeholder1'),
             'slide5_checkbox1' => trans('additional-info.slide5_checkbox1'),
+            'slide5_checkbox2' => trans('additional-info.slide5_checkbox2'),
             'slide5_submit' => trans('additional-info.slide5_submit')
         ];
 

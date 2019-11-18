@@ -68111,8 +68111,9 @@ var Additional = function Additional(_ref) {
 
                 setLanguagesInUse(help);
                 setDataAdditional(result.data);
+                console.log(result.data);
 
-              case 7:
+              case 8:
               case "end":
                 return _context.stop();
             }
@@ -68360,7 +68361,7 @@ var Additional = function Additional(_ref) {
     className: 'col-12 p-0 text-center mt-5'
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
-  }, "Set up"), " your profile ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+  }, dataAdditional.text.slide1_title1.substring(0, dataAdditional.text.slide1_title1.indexOf(" "))), dataAdditional.text.slide1_title1.substring(dataAdditional.text.slide1_title1.indexOf(" ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
   }, "...")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_2___default.a, _extends({}, settings, {
     className: "col-12 p-0 py-xl-3 py-lg-3 py-md-2 py-md-1 py-1"
@@ -68372,7 +68373,7 @@ var Additional = function Additional(_ref) {
     className: "col-12 mb-3 p-0 text-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
-  }, "Who"), " are you ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+  }, dataAdditional.text.slide1_subtitle1.substring(0, dataAdditional.text.slide1_subtitle1.indexOf(" "))), dataAdditional.text.slide1_subtitle1.substring(dataAdditional.text.slide1_subtitle1.indexOf(" ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
   }, "?")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: " input col-xl-10 col-lg-10 col-md-11 col-sm-11 col-12 mt-3 row p-0 m-0 "
@@ -68403,7 +68404,7 @@ var Additional = function Additional(_ref) {
     id: "name",
     type: "text",
     name: "name",
-    placeholder: user.type === "user" ? "Enter your first name" : "Enter your company name",
+    placeholder: user.type === "user" ? dataAdditional.text.slide1_placeholder1 : dataAdditional.text.slide1_placeholder1_business,
     onChange: function onChange(e) {
       return setAdditionalData(_objectSpread({}, additionalData, {
         name: e.target.value
@@ -68440,7 +68441,7 @@ var Additional = function Additional(_ref) {
     id: "surname",
     type: "text",
     name: "surname",
-    placeholder: user.type === "user" ? "Enter your surname" : "Enter your business id",
+    placeholder: user.type === "user" ? dataAdditional.text.slide1_placeholder2 : dataAdditional.text.slide1_placeholder2_business,
     onChange: function onChange(e) {
       return setAdditionalData(user.type === "user" ? _objectSpread({}, additionalData, {
         lastName: e.target.value
@@ -68460,7 +68461,7 @@ var Additional = function Additional(_ref) {
     className: "col-12 mb-3 p-0 text-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
-  }, "Contact"), " ", user.type === "user" ? "me" : "us", " here", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+  }, dataAdditional.text.slide1_subtitle2.substring(0, dataAdditional.text.slide1_subtitle2.indexOf(" "))), dataAdditional.text.slide1_subtitle2.substring(dataAdditional.text.slide1_subtitle2.indexOf(" ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
   }, ".")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: " input col-xl-10 col-lg-10 col-md-11 col-sm-11 col-12 my-3 row p-0 mx-0"
@@ -68533,7 +68534,7 @@ var Additional = function Additional(_ref) {
     id: "phone",
     type: "text",
     name: "phone",
-    placeholder: "Enter your phone number",
+    placeholder: dataAdditional.text.slide1_placeholder3,
     onChange: function onChange(e) {
       return setAdditionalData(_objectSpread({}, additionalData, {
         phone: e.target.value
@@ -68549,7 +68550,7 @@ var Additional = function Additional(_ref) {
     className: "col-12 mb-3 p-0 text-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
-  }, "language"), " skills ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+  }, dataAdditional.text.slide2_title1.substring(0, dataAdditional.text.slide2_title1.indexOf(" "))), dataAdditional.text.slide2_title1.substring(dataAdditional.text.slide2_title1.indexOf(" ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
   }, ".")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-xl-10 col-lg-11 col-md-11 col-12 p-0 row justify-content-center"
@@ -68586,7 +68587,7 @@ var Additional = function Additional(_ref) {
     id: "name",
     type: "text",
     name: "another",
-    placeholder: "another language?",
+    placeholder: dataAdditional.text.slide2_placeholder1 + "?",
     onChange: function onChange(e) {
       return setAdditionalLanguage(e.target.value);
     },
@@ -68599,11 +68600,11 @@ var Additional = function Additional(_ref) {
     className: "col-12 mb-3 p-0 text-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
-  }, "fulltime"), " job ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+  }, dataAdditional.text.slide3_title1.substring(0, dataAdditional.text.slide3_title1.indexOf(" "))), dataAdditional.text.slide3_title1.substring(dataAdditional.text.slide3_title1.indexOf(" ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
   }, "?")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h6", {
     className: "col-12 mb-3 p-0 text-center"
-  }, "z ak\xE9ho odvetvia chcete dost\xE1va\u0165 pracovn\xE9 ponuky ?"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, dataAdditional.text.slide3_subtitle1, " ?"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center"
   }, dataAdditional.branches.map(function (_ref5) {
     var id = _ref5.id,
@@ -68626,11 +68627,11 @@ var Additional = function Additional(_ref) {
     className: "col-12 mb-3 p-0 text-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
-  }, "freetime"), " job ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+  }, dataAdditional.text.slide4_title1.substring(0, dataAdditional.text.slide4_title1.indexOf(" "))), dataAdditional.text.slide4_title1.substring(dataAdditional.text.slide4_title1.indexOf(" ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
   }, "?")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h6", {
     className: "col-12 mb-3 p-0 text-center"
-  }, "\u010Do by ste chceli robi\u0165 ?"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, dataAdditional.text.slide4_subtitle1, " ?"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center"
   }, dataAdditional.branches.map(function (_ref6) {
     var id = _ref6.id,
@@ -68712,7 +68713,7 @@ var Additional = function Additional(_ref) {
     id: "name",
     type: "text",
     name: "username",
-    placeholder: "Enter your username",
+    placeholder: dataAdditional.text.slide5_placeholder1,
     onChange: function onChange(e) {
       return setAdditionalData(_objectSpread({}, additionalData, {
         username: e.target.value
@@ -68742,7 +68743,7 @@ var Additional = function Additional(_ref) {
     }
   })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-10 pl-3 py-0 pr-0"
-  }, "I have a driving license for group B")) : "", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, dataAdditional.text.slide5_checkbox1)) : "", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-xl-10 col-lg-10 col-12 row driving-licence align-items-center mb-3",
     onClick: function onClick() {
       return setConsent(!consent);
@@ -68758,10 +68759,10 @@ var Additional = function Additional(_ref) {
     }
   })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-10 pl-3 py-0 pr-0"
-  }, "I agree with the Terms & Services")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+  }, dataAdditional.text.slide5_checkbox2)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
     className: "submit-button sign-in-button col-xl-5 col-lg-6 col-md-9 col-11 text-center py-2 mb-5 mt-3 ",
     onClick: formValidator
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "update profile")))))));
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, dataAdditional.text.slide5_submit)))))));
 };
 
 var NextArrow = function NextArrow(props) {
