@@ -5,26 +5,37 @@ import "slick-carousel/slick/slick-theme.css";
 import $ from 'jquery';
 import axios from "axios";
 
-export const Additional = ({user, func = f => f}) => {
+export const Additional = ({user, func = f => f, region}) => {
 
     const [additionalData,setAdditionalData] = useState({drivingLicense: false, email: user.email, profile_pic: null});
     const [languages, setLanguages] = useState([]);
-    const languagesInUse = [{full : "czech", short : "cze"}, {full : "spanish", short : "spa"}, {full : "english", short : "eng"}, {full : "hungarian", short : "hun"}, {full : "arabic", short : "arb"}, {full : "portugese", short : "ptg"}, {full : "russian", short : "rus"}, {full : "japanese", short : "jap"}, {full : "german", short : "ger"}, {full : "korean", short : "kor"}, {full : "french", short : "fre"}, {full : "turkish", short : "tur"}, {full : "vietnamese", short : "vie"}];
+    const [languagesInUse, setLanguagesInUse] = useState([{full : "", short : "cze"}, {full : "", short : "spa"}, {full : "", short : "eng"}, {full : "", short : "hun"}, {full : "", short : "arb"}, {full : "", short : "ptg"}, {full : "", short : "rus"}, {full : "", short : "jap"}, {full : "", short : "ger"}, {full : "", short : "kor"}, {full : "", short : "fre"}, {full : "", short : "tur"}, {full : "", short : "vie"}]);
     const [additionalLanguage, setAdditionalLanguage] = useState("");
     const [missing, setMissing] = useState(``);
     const [dataAdditional, setDataAdditional] = useState({});
     const [categories, setCategories] = useState([]);
     const [consent, setConsent] = useState(false);
 
+
     useEffect(() => {
         const fetchData = async () => {
             const result = await axios(
-                'api/register-additional',
+                'api/register-additional',{
+                    headers:{
+                        "X-localization" : region,
+                    }
+                }
             );
+            let help = languagesInUse;
+            for(let i=0; i<help.length; i++){
+                help[i].full = result.data.languages[i];
+            }
+            setLanguagesInUse(help);
             setDataAdditional(result.data);
+
         };
         fetchData();
-    }, []);
+    }, [region]);
 
 
 
@@ -166,7 +177,7 @@ export const Additional = ({user, func = f => f}) => {
         prevArrow: <PreviousArrow />
     };
 
-    if(dataAdditional.branches==undefined){
+    if(dataAdditional.branches==undefined ){
         return <div>Loading</div>
     }
     return (

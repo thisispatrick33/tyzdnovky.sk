@@ -342,7 +342,7 @@ const Main = () => {
             <Router>
 
                 <Authentication path={`/`} login={_loginUser} register={_submitRegistration} reset={_reset} message={message}/>
-                <Home path={`/home`} edit={_edit}/>
+                <Home path={`/home`} edit={_edit} region={location}/>
                 <PasswordReset path={'/reset-password'} reset={_resetPassword}/>
             </Router>
 

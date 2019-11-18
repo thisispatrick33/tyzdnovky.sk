@@ -73,9 +73,8 @@ export const Authentication = ({message,login = f => f, register = f => f, reset
     const _loginLinkedIn = () => {
         console.log("login by linkedin");
     };
-    if(!JSON.parse(localStorage.appState).isLoggedIn){
-        console.log(localStorage.appState);
-        return (
+
+    return (
 
             <div className={`authentication-form | container-fluid | row col-12 | align-items-center | m-0 p-0`}>
                 <video  autoPlay="autoplay" loop muted={`muted`} preload="auto" poster={"./images/poster.jpg"}>
@@ -178,11 +177,8 @@ export const Authentication = ({message,login = f => f, register = f => f, reset
                 </div>
             </div>
 
-        )
-    }
-    //console.log(localStorage.appState);
-    //navigate("/home", {state:{data:JSON.parse(localStorage.appState)}});
-    //return null;
+    )
+
 
 
 };
