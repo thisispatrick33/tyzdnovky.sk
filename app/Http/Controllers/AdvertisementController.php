@@ -209,13 +209,70 @@ class AdvertisementController extends Controller
 
     public function getAll(){
         $ads = Advertisement::with(['tags','branches'])->get();
-        return response()->json($ads);
+
+        $res=[];
+
+        foreach($ads as $ad){
+            $tags=[];
+            $branches=[];
+
+            foreach($ad->tags as $tag){
+                array_push($tags,$tag->name);
+            }
+    
+            foreach($ad->branches as $branch){
+                array_push($branches,$branch->id);
+            }
+
+            $adNew = [
+                'id' => $ad->id,
+                'title' => $ad->title,
+                'description' => $ad->description,
+                'user_id' => $ad->user_id,
+                'business_id' => $ad->business_id,
+                'date' => $ad->date,
+                'salary' => $ad->salary,
+                'address' => $ad->address,
+                'created_at' => $ad->created_at,
+                'branches' => $branches,
+                'tags' => $tags
+            ];
+
+            array_push($res, $adNew);
+        };
+
+        return response()->json($res);
     }
 
     public function getOne($id){
         $ad = Advertisement::with(['tags','branches'])->find($id);
-        return response()->json($ad);
-        
+
+        $tags=[];
+        $branches=[];
+
+        foreach($ad->tags as $tag){
+            array_push($tags,$tag->name);
+        }
+
+        foreach($ad->branches as $branch){
+            array_push($branches,$branch->id);
+        }
+
+        $res = [
+            'id' => $ad->id,
+            'title' => $ad->title,
+            'description' => $ad->description,
+            'user_id' => $ad->user_id,
+            'business_id' => $ad->business_id,
+            'date' => $ad->date,
+            'salary' => $ad->salary,
+            'address' => $ad->address,
+            'created_at' => $ad->created_at,
+            'branches' => $branches,
+            'tags' => $tags,
+        ];
+
+        return response()->json($res);
     }
 
 }
