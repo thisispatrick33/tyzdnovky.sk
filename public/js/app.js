@@ -68813,11 +68813,252 @@ var PreviousArrow = function PreviousArrow(props) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Advertisement", function() { return Advertisement; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 
-var Advertisement = function Advertisement() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "hehe");
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+var Advertisement = function Advertisement(_ref) {
+  var _ref$createAd = _ref.createAd,
+      createAd = _ref$createAd === void 0 ? function (f) {
+    return f;
+  } : _ref$createAd,
+      region = _ref.region;
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+
+  var yyyy = today.getFullYear();
+  today = yyyy + '-' + mm + '-' + dd;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({}),
+      _useState2 = _slicedToArray(_useState, 2),
+      data = _useState2[0],
+      setData = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      categories = _useState4[0],
+      setCategories = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+      _useState6 = _slicedToArray(_useState5, 2),
+      branches = _useState6[0],
+      setBranches = _useState6[1];
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
+      _useState8 = _slicedToArray(_useState7, 2),
+      type = _useState8[0],
+      setType = _useState8[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    var fetchData =
+    /*#__PURE__*/
+    function () {
+      var _ref2 = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var result;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_2___default()('api/register-additional', {
+                  headers: {
+                    "X-localization": region
+                  }
+                });
+
+              case 2:
+                result = _context.sent;
+                setCategories(result.data.branches);
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      return function fetchData() {
+        return _ref2.apply(this, arguments);
+      };
+    }();
+
+    fetchData();
+  }, [region]);
+
+  var submit = function submit() {
+    createAd(_objectSpread({}, data, {
+      branches: branches
+    }));
+  };
+
+  var handleWork = function handleWork(value) {
+    var array = _toConsumableArray(branches);
+
+    array.includes(value) ? array = array.filter(function (work) {
+      return value !== work;
+    }) : branches.length > 1 ? "" : array.push(value);
+
+    if (array.length == 0) {
+      setType("");
+    }
+
+    if (array.length == 1) {
+      if (categories[array[0]].free_time == 0) {
+        setType("full");
+      } else {
+        setType("free");
+      }
+    }
+
+    setBranches(array);
+  };
+
+  var handleSalary = function handleSalary(salary) {
+    var tmp = salary.split("");
+    var salary_filtered = '';
+    var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", '.', ','];
+    console.log(tmp);
+
+    for (var i = 0; i < tmp.length; i++) {
+      if (tmp[i] == "." || tmp[i] == ",") {
+        salary_filtered += tmp[i];
+      }
+
+      if (tmp[i] in numbers) {
+        salary_filtered += tmp[i];
+      }
+    }
+
+    setData(_objectSpread({}, data, {
+      salary: salary_filtered
+    }));
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    id: "title",
+    type: "text",
+    name: "title",
+    placeholder: "title",
+    onChange: function onChange(e) {
+      return setData(_objectSpread({}, data, {
+        title: e.target.value
+      }));
+    },
+    value: data.title ? data.title : "",
+    className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    id: "description",
+    type: "text",
+    name: "description",
+    placeholder: "description",
+    onChange: function onChange(e) {
+      return setData(_objectSpread({}, data, {
+        description: e.target.value
+      }));
+    },
+    value: data.description ? data.description : "",
+    className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    id: "when",
+    type: "date",
+    name: "when",
+    placeholder: "when",
+    min: today,
+    onChange: function onChange(e) {
+      return setData(_objectSpread({}, data, {
+        when: e.target.value
+      }));
+    },
+    value: data.when ? data.when : "",
+    className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    id: "where",
+    type: "text",
+    name: "where",
+    placeholder: "where",
+    onChange: function onChange(e) {
+      return setData(_objectSpread({}, data, {
+        where: e.target.value
+      }));
+    },
+    value: data.where ? data.where : "",
+    className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    id: "salary",
+    type: "text",
+    name: "salary",
+    placeholder: "salary",
+    onChange: function onChange(e) {
+      return handleSalary(e.target.value);
+    },
+    value: data.salary ? data.salary : "",
+    className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "Fulltime"), categories.map(function (_ref3) {
+    var id = _ref3.id,
+        free_time = _ref3.free_time,
+        name = _ref3.name;
+
+    if (free_time === 0 && (type == "full" || type == "")) {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(branches.includes(id) ? "on" : ""),
+        onClick: function onClick() {
+          return handleWork(id);
+        }
+      }, name);
+    }
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "Freetime"), categories.map(function (_ref4) {
+    var id = _ref4.id,
+        free_time = _ref4.free_time,
+        name = _ref4.name;
+
+    if (free_time === 1 && (type == "free" || type == "")) {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "category col-auto mx-2 my-2 py-2 shadow-sm ",
+        onClick: function onClick() {
+          return handleWork(id);
+        }
+      }, name);
+    }
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    className: "submit-button sign-in-button col-xl-5 col-lg-6 col-md-9 col-11 text-center py-2 mb-5 mt-3 ",
+    onClick: submit
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "posli")));
 };
 
 /***/ }),
@@ -69938,6 +70179,10 @@ var Main = function Main() {
     });
   };
 
+  var _createAd = function _createAd(data) {
+    console.log(data);
+  };
+
   return _ipLocation(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reach_router__WEBPACK_IMPORTED_MODULE_3__["Router"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_Authentication__WEBPACK_IMPORTED_MODULE_4__["Authentication"], {
     path: "/",
     login: _loginUser,
@@ -69952,7 +70197,9 @@ var Main = function Main() {
     path: '/reset-password',
     reset: _resetPassword
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_Advertisement__WEBPACK_IMPORTED_MODULE_8__["Advertisement"], {
-    path: '/a'
+    path: '/advertisement',
+    createAd: _createAd,
+    region: location
   }));
 };
 

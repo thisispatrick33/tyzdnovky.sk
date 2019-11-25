@@ -339,6 +339,12 @@ const Main = () => {
             );
     };
 
+    const _createAd = (data) => {
+        console.log(data);
+    };
+
+
+
     return (
             _ipLocation(),
             <Router>
@@ -346,7 +352,7 @@ const Main = () => {
                 <Authentication path={`/`} login={_loginUser} register={_submitRegistration} reset={_reset} message={message}/>
                 <Home path={`/home`} edit={_edit} region={location}/>
                 <PasswordReset path={'/reset-password'} reset={_resetPassword}/>
-                <Advertisement path={'/a'}/>
+                <Advertisement path={'/advertisement'} createAd={_createAd} region={location}/>
             </Router>
 
     )
