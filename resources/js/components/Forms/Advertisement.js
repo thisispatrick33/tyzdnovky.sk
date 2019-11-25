@@ -10,24 +10,12 @@ export const Advertisement = ({createAd = f => f, region, id, updateAd = f =>f})
     today = yyyy + '-' + mm + '-' + dd;
 
     const [data, setData] = useState({tags: [""]});
-    const [categories, setCategories] = useState([]);
+    let categories = JSON.parse(localStorage.branches);
     const [branches, setBranches] = useState([]);
-    const [type, setType] = useState("");
+    const [type, setType] = useState(true);
 
 
     useEffect(() => {
-        const fetchData = async () => {
-            const result = await axios(
-                'api/register-additional',{
-                    headers:{
-                        "X-localization" : region,
-                    }
-                }
-            );
-            setCategories(result.data.branches);
-
-        };
-        fetchData();
         if(id!==null){
             const getAd = async () => {
                 const result = await axios(
@@ -42,6 +30,7 @@ export const Advertisement = ({createAd = f => f, region, id, updateAd = f =>f})
                 console.log(result);
                 setData({...data, title: result.data.title, description: result.data.description, date: result.data.date, salary: result.data.salary, id: result.data.id, user_id:result.data.user_id, business_id: result.data.business_id, address: result.data.address});
                 setBranches(result.data.branches);
+                if(categories[branches[0]].free_time == 0 ? setType(true) : setType(false));
             };
             getAd();
         }
@@ -66,17 +55,6 @@ export const Advertisement = ({createAd = f => f, region, id, updateAd = f =>f})
     const handleWork = (value) => {
         let array = [...branches];
         array.includes(value) ? array=array.filter(work => value !== work) : (branches.length >2 ? "" : array.push(value));
-        if(array.length==0){
-            setType("");
-        }
-        if(array.length==1){
-            if(categories[array[0]].free_time==0){
-                setType("full");
-            }
-            else {
-                setType("free");
-            }
-        }
         setBranches(array);
 
     };
@@ -98,7 +76,7 @@ export const Advertisement = ({createAd = f => f, region, id, updateAd = f =>f})
         setData({...data, salary: salary_filtered});
     };
 
-    if(id!==null&&data.user_id==undefined){
+    if((id!==null&&data.user_id==undefined)){
         return <div >loading</div>
     }
     else {
@@ -150,27 +128,29 @@ export const Advertisement = ({createAd = f => f, region, id, updateAd = f =>f})
                     value={data.salary ? data.salary  : ``}
                     className={` pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12`}
                 />
-                <h1>Fulltime</h1>
+                <div
+                    onClick={() => setType(!type)}
+                >
+                    click to change categories
+                </div>
                 {
-
+                    type ? <div><h1>Fulltime</h1>{
                     categories.map( ({id,free_time,name}) => {
-                        if(free_time===0&&(type=="full"||type=="")){
+                        if(free_time===0){
                             return  <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${branches.includes(id) ? `on` : ``}`} onClick={() =>handleWork(id)}>
                                 {name}
                             </div>;
                         }
-                    })
+                        })}</div> : <div><h1>Freetime</h1>{
+                        categories.map( ({id,free_time,name}) => {
+                            if(free_time===1){
+                                return  <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${branches.includes(id) ? `on` : ``}`} onClick={() =>handleWork(id)}>
+                                    {name}
+                                </div>;
+                            }
+                        })}</div>
                 }
-                <h1>Freetime</h1>
-                {
-                    categories.map( ({id,free_time,name}) => {
-                        if(free_time===1&&(type=="free"||type=="")){
-                            return  <div className={`category col-auto mx-2 my-2 py-2 shadow-sm `} onClick={() =>handleWork(id)}>
-                                {name}
-                            </div>;
-                        }
-                    })
-                }
+
 
 
 

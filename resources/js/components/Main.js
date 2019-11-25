@@ -372,10 +372,24 @@ const Main = () => {
             })
     };
 
+    const fetchData = async () => {
+        const result = await axios(
+            'api/register-additional',{
+                headers:{
+                    "X-localization" : location,
+                }
+            }
+        );
+        localStorage["branches"]=JSON.stringify(result.data.branches);
+
+    };
+
+
 
 
     return (
-            _ipLocation(),
+        _ipLocation(),
+            fetchData(),
             <Router>
 
                 <Authentication path={`/`} login={_loginUser} register={_submitRegistration} reset={_reset} message={message}/>

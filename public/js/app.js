@@ -68874,72 +68874,32 @@ var Advertisement = function Advertisement(_ref) {
       data = _useState2[0],
       setData = _useState2[1];
 
+  var categories = JSON.parse(localStorage.branches);
+
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState4 = _slicedToArray(_useState3, 2),
-      categories = _useState4[0],
-      setCategories = _useState4[1];
+      branches = _useState4[0],
+      setBranches = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(true),
       _useState6 = _slicedToArray(_useState5, 2),
-      branches = _useState6[0],
-      setBranches = _useState6[1];
-
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
-      _useState8 = _slicedToArray(_useState7, 2),
-      type = _useState8[0],
-      setType = _useState8[1];
+      type = _useState6[0],
+      setType = _useState6[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    var fetchData =
-    /*#__PURE__*/
-    function () {
-      var _ref2 = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var result;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default()('api/register-additional', {
-                  headers: {
-                    "X-localization": region
-                  }
-                });
-
-              case 2:
-                result = _context.sent;
-                setCategories(result.data.branches);
-
-              case 4:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }));
-
-      return function fetchData() {
-        return _ref2.apply(this, arguments);
-      };
-    }();
-
-    fetchData();
-
     if (id !== null) {
       var getAd =
       /*#__PURE__*/
       function () {
-        var _ref3 = _asyncToGenerator(
+        var _ref2 = _asyncToGenerator(
         /*#__PURE__*/
-        _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
           var result;
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
             while (1) {
-              switch (_context2.prev = _context2.next) {
+              switch (_context.prev = _context.next) {
                 case 0:
-                  _context2.next = 2;
+                  _context.next = 2;
                   return axios__WEBPACK_IMPORTED_MODULE_2___default()('api/advertisement/' + id, {
                     headers: {
                       "X-localization": region,
@@ -68948,7 +68908,7 @@ var Advertisement = function Advertisement(_ref) {
                   });
 
                 case 2:
-                  result = _context2.sent;
+                  result = _context.sent;
                   console.log("get");
                   console.log(result);
                   setData(_objectSpread({}, data, {
@@ -68962,17 +68922,18 @@ var Advertisement = function Advertisement(_ref) {
                     address: result.data.address
                   }));
                   setBranches(result.data.branches);
+                  if (categories[branches[0]].free_time == 0 ? setType(true) : setType(false)) ;
 
-                case 7:
+                case 8:
                 case "end":
-                  return _context2.stop();
+                  return _context.stop();
               }
             }
-          }, _callee2);
+          }, _callee);
         }));
 
         return function getAd() {
-          return _ref3.apply(this, arguments);
+          return _ref2.apply(this, arguments);
         };
       }();
 
@@ -69008,19 +68969,6 @@ var Advertisement = function Advertisement(_ref) {
     array.includes(value) ? array = array.filter(function (work) {
       return value !== work;
     }) : branches.length > 2 ? "" : array.push(value);
-
-    if (array.length == 0) {
-      setType("");
-    }
-
-    if (array.length == 1) {
-      if (categories[array[0]].free_time == 0) {
-        setType("full");
-      } else {
-        setType("free");
-      }
-    }
-
     setBranches(array);
   };
 
@@ -69107,12 +69055,16 @@ var Advertisement = function Advertisement(_ref) {
       },
       value: data.salary ? data.salary : "",
       className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
-    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "Fulltime"), categories.map(function (_ref4) {
-      var id = _ref4.id,
-          free_time = _ref4.free_time,
-          name = _ref4.name;
+    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      onClick: function onClick() {
+        return setType(!type);
+      }
+    }, "click to change categories"), type ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "Fulltime"), categories.map(function (_ref3) {
+      var id = _ref3.id,
+          free_time = _ref3.free_time,
+          name = _ref3.name;
 
-      if (free_time === 0 && (type == "full" || type == "")) {
+      if (free_time === 0) {
         return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
           className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(branches.includes(id) ? "on" : ""),
           onClick: function onClick() {
@@ -69120,20 +69072,20 @@ var Advertisement = function Advertisement(_ref) {
           }
         }, name);
       }
-    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "Freetime"), categories.map(function (_ref5) {
-      var id = _ref5.id,
-          free_time = _ref5.free_time,
-          name = _ref5.name;
+    })) : react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "Freetime"), categories.map(function (_ref4) {
+      var id = _ref4.id,
+          free_time = _ref4.free_time,
+          name = _ref4.name;
 
-      if (free_time === 1 && (type == "free" || type == "")) {
+      if (free_time === 1) {
         return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-          className: "category col-auto mx-2 my-2 py-2 shadow-sm ",
+          className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(branches.includes(id) ? "on" : ""),
           onClick: function onClick() {
             return handleWork(id);
           }
         }, name);
       }
-    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
       className: "submit-button sign-in-button col-xl-5 col-lg-6 col-md-9 col-11 text-center py-2 mb-5 mt-3 ",
       onClick: submit
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "posli")));
@@ -69920,19 +69872,27 @@ var Home = function Home(_ref) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _reach_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @reach/router */ "./node_modules/@reach/router/es/index.js");
-/* harmony import */ var _Forms_Authentication__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Forms/Authentication */ "./resources/js/components/Forms/Authentication.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _Logged_Home__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Logged/Home */ "./resources/js/components/Logged/Home.js");
-/* harmony import */ var _Forms_PasswordReset__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Forms/PasswordReset */ "./resources/js/components/Forms/PasswordReset.js");
-/* harmony import */ var _Forms_Advertisement__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Forms/Advertisement */ "./resources/js/components/Forms/Advertisement.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _reach_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @reach/router */ "./node_modules/@reach/router/es/index.js");
+/* harmony import */ var _Forms_Authentication__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Forms/Authentication */ "./resources/js/components/Forms/Authentication.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _Logged_Home__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Logged/Home */ "./resources/js/components/Logged/Home.js");
+/* harmony import */ var _Forms_PasswordReset__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Forms/PasswordReset */ "./resources/js/components/Forms/PasswordReset.js");
+/* harmony import */ var _Forms_Advertisement__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Forms/Advertisement */ "./resources/js/components/Forms/Advertisement.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -69952,7 +69912,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var Main = function Main() {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
     isLoggedIn: false,
     user: {}
   }),
@@ -69960,20 +69920,20 @@ var Main = function Main() {
       authState = _useState2[0],
       setAuthState = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
       _useState4 = _slicedToArray(_useState3, 2),
       location = _useState4[0],
       setLocation = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
       _useState6 = _slicedToArray(_useState5, 2),
       message = _useState6[0],
       setMessage = _useState6[1];
 
   var _loginUser = function _loginUser(data) {
     var message = "";
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form .sign-in-button").attr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>');
-    axios__WEBPACK_IMPORTED_MODULE_5___default.a.post("/api/login", data, {
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()("#login-form .sign-in-button").attr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>');
+    axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/api/login", data, {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -70031,7 +69991,7 @@ var Main = function Main() {
           user: appState.user
         });
         console.log(appState);
-        Object(_reach_router__WEBPACK_IMPORTED_MODULE_3__["navigate"])("/home", {
+        Object(_reach_router__WEBPACK_IMPORTED_MODULE_4__["navigate"])("/home", {
           state: {
             data: appState
           }
@@ -70040,9 +70000,9 @@ var Main = function Main() {
         alert("Authentication Failed!");
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form .sign-in-button").removeAttr("disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign in</span>');
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#login-form .sign-in-button").removeAttr("disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign in</span>');
     })["catch"](function (error) {
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form .sign-in-button").removeAttr("disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign in</span>');
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#login-form .sign-in-button").removeAttr("disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign in</span>');
     });
   };
 
@@ -70059,8 +70019,8 @@ var Main = function Main() {
   };
 
   var _submitRegistration = function _submitRegistration(data) {
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form .sign-up-button").attr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>');
-    axios__WEBPACK_IMPORTED_MODULE_5___default.a.post("/api/register", data, {
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()("#login-form .sign-up-button").attr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>');
+    axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/api/register", data, {
       headers: {
         'Content-Type': "application/json",
         "X-localization": location
@@ -70112,7 +70072,7 @@ var Main = function Main() {
           isLoggedIn: appState.isLoggedIn,
           user: appState.user
         });
-        Object(_reach_router__WEBPACK_IMPORTED_MODULE_3__["navigate"])("/home", {
+        Object(_reach_router__WEBPACK_IMPORTED_MODULE_4__["navigate"])("/home", {
           state: {
             data: appState
           }
@@ -70121,9 +70081,9 @@ var Main = function Main() {
         alert("Registration Failed!");
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form .sign-up-button").removeAttr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign up</span>');
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#login-form .sign-up-button").removeAttr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign up</span>');
     })["catch"](function (error) {
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form .sign-up-button").removeAttr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign up</span>');
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#login-form .sign-up-button").removeAttr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign up</span>');
     });
   };
 
@@ -70155,7 +70115,7 @@ var Main = function Main() {
       formData.append("profile_pic", data.profile_pic[0]);
     }
 
-    axios__WEBPACK_IMPORTED_MODULE_5___default.a.post("/api/register-additional", formData, {
+    axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/api/register-additional", formData, {
       headers: {
         'Content-Type': "multipart/form-data",
         'Accept': "multipart/form-data",
@@ -70213,7 +70173,7 @@ var Main = function Main() {
           isLoggedIn: appState.isLoggedIn,
           user: appState.user
         });
-        Object(_reach_router__WEBPACK_IMPORTED_MODULE_3__["navigate"])("/home", {
+        Object(_reach_router__WEBPACK_IMPORTED_MODULE_4__["navigate"])("/home", {
           state: {
             data: appState
           }
@@ -70225,7 +70185,7 @@ var Main = function Main() {
   };
 
   var _reset = function _reset(login) {
-    axios__WEBPACK_IMPORTED_MODULE_5___default.a.post("/api/password-reset-mail", login, {
+    axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/api/password-reset-mail", login, {
       headers: {
         'Content-Type': "application/json",
         "X-localization": location
@@ -70239,7 +70199,7 @@ var Main = function Main() {
 
   var _resetPassword = function _resetPassword(data) {
     console.log(data);
-    axios__WEBPACK_IMPORTED_MODULE_5___default.a.post("/api/password-reset", data, {
+    axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/api/password-reset", data, {
       headers: {
         'Content-Type': "application/json",
         "X-localization": location
@@ -70251,7 +70211,7 @@ var Main = function Main() {
   };
 
   var _ipLocation = function _ipLocation() {
-    jquery__WEBPACK_IMPORTED_MODULE_2___default.a.ajax('http://ip-api.com/json').then(function success(response) {
+    jquery__WEBPACK_IMPORTED_MODULE_3___default.a.ajax('http://ip-api.com/json').then(function success(response) {
       setLocation(response.countryCode);
     }, function fail(data, status) {
       console.log('Request failed.  Returned status of', status);
@@ -70261,7 +70221,7 @@ var Main = function Main() {
   var _createAd = function _createAd(data) {
     console.log(data);
     console.log(JSON.parse(localStorage.appState).user.id);
-    axios__WEBPACK_IMPORTED_MODULE_5___default.a.post("/api/advertisement", data, {
+    axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/api/advertisement", data, {
       headers: {
         'Content-Type': "application/json",
         "X-localization": location,
@@ -70275,7 +70235,7 @@ var Main = function Main() {
 
   var _updateAd = function _updateAd(data) {
     console.log(data);
-    axios__WEBPACK_IMPORTED_MODULE_5___default.a.put("/api/advertisement", data, {
+    axios__WEBPACK_IMPORTED_MODULE_6___default.a.put("/api/advertisement", data, {
       headers: {
         'Content-Type': "application/json",
         "X-localization": location,
@@ -70287,20 +70247,55 @@ var Main = function Main() {
     });
   };
 
-  return _ipLocation(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reach_router__WEBPACK_IMPORTED_MODULE_3__["Router"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_Authentication__WEBPACK_IMPORTED_MODULE_4__["Authentication"], {
+  var fetchData =
+  /*#__PURE__*/
+  function () {
+    var _ref = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var result;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_6___default()('api/register-additional', {
+                headers: {
+                  "X-localization": location
+                }
+              });
+
+            case 2:
+              result = _context.sent;
+              localStorage["branches"] = JSON.stringify(result.data.branches);
+
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function fetchData() {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  return _ipLocation(), fetchData(), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_reach_router__WEBPACK_IMPORTED_MODULE_4__["Router"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Forms_Authentication__WEBPACK_IMPORTED_MODULE_5__["Authentication"], {
     path: "/",
     login: _loginUser,
     register: _submitRegistration,
     reset: _reset,
     message: message
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Logged_Home__WEBPACK_IMPORTED_MODULE_6__["Home"], {
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Logged_Home__WEBPACK_IMPORTED_MODULE_7__["Home"], {
     path: "/home",
     edit: _edit,
     region: location
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_PasswordReset__WEBPACK_IMPORTED_MODULE_7__["PasswordReset"], {
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Forms_PasswordReset__WEBPACK_IMPORTED_MODULE_8__["PasswordReset"], {
     path: '/reset-password',
     reset: _resetPassword
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_Advertisement__WEBPACK_IMPORTED_MODULE_8__["Advertisement"], {
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Forms_Advertisement__WEBPACK_IMPORTED_MODULE_9__["Advertisement"], {
     path: '/advertisement',
     createAd: _createAd,
     region: location,
@@ -70310,7 +70305,7 @@ var Main = function Main() {
 };
 
 if (document.getElementById('root')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Main, null), document.getElementById('root'));
+  react_dom__WEBPACK_IMPORTED_MODULE_2___default.a.render(react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Main, null), document.getElementById('root'));
 }
 
 /***/ }),

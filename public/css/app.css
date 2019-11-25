@@ -11424,6 +11424,10 @@ hr {
 * pesky delay.
 */
 
+.on {
+  background-color: red;
+}
+
 body {
   font-family: "Krub", sans-serif;
 }
