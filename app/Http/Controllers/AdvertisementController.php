@@ -221,7 +221,10 @@ class AdvertisementController extends Controller
             }
     
             foreach($ad->branches as $branch){
-                array_push($branches,$branch->id);
+                $branchNew['id']=$branch->id;
+                $branchNew['free_time']=$branch->free_time;
+                $branchNew['name']=$branch->name;
+                array_push($branches,$branchNew);
             }
 
             $adNew = [
@@ -255,7 +258,10 @@ class AdvertisementController extends Controller
         }
 
         foreach($ad->branches as $branch){
-            array_push($branches,$branch->id);
+            $branchNew['id']=$branch->id;
+            $branchNew['free_time']=$branch->free_time;
+            $branchNew['name']=$branch->name;
+            array_push($branches,$branchNew);
         }
 
         $res = [
