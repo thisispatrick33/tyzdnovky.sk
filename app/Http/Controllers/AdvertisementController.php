@@ -141,15 +141,17 @@ class AdvertisementController extends Controller
                 $tag_arr = [];
 
                 foreach($request->tags as $tag){   
-                    $tag_id = Tag::where('name','=',$tag)->first();
-                    if ($tag_id) {
-                        array_push($tag_arr,$tag_id->id);
-                    }
-                    else {
-                        $NewTag = new Tag;
-                        $NewTag->name = $tag;
-                        if ($NewTag->save()) {
-                            array_push($tag_arr,$NewTag->id);
+                    if(strlen($tag) > 0 && $tag != " "){
+                        $tag_id = Tag::where('name','=',$tag)->first();
+                        if ($tag_id) {
+                            array_push($tag_arr,$tag_id->id);
+                        }
+                        else {
+                            $NewTag = new Tag;
+                            $NewTag->name = $tag;
+                            if ($NewTag->save()) {
+                                array_push($tag_arr,$NewTag->id);
+                            }
                         }
                     }
                 }
@@ -206,21 +208,13 @@ class AdvertisementController extends Controller
     }
 
     public function getAll(){
-        $ads = Advertisement::all();
-        return response()->json([
-            'success' => true,
-            'data'=> $ads,
-            'messages' => ""
-        ]);
+        $ads = Advertisement::with(['tags','branches'])->get();
+        return response()->json($ads);
     }
 
     public function getOne($id){
-        $ad = Advertisement::find($id);
-        return response()->json([
-            'success' => true,
-            'data'=> $ad,
-            'messages' => ""
-        ]);
+        $ad = Advertisement::with(['tags','branches'])->find($id);
+        return response()->json($ad);
         
     }
 
