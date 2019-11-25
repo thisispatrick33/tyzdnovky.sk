@@ -313,7 +313,7 @@ const Main = () => {
           .post(`/api/password-reset`, data ,{
             headers : {
               'Content-Type' : `application/json`,
-            "X-localization" : location,
+                "X-localization" : location,
          }
          })
          .then((response) => {
@@ -341,6 +341,19 @@ const Main = () => {
 
     const _createAd = (data) => {
         console.log(data);
+        console.log(JSON.parse(localStorage.appState).user.id);
+        axios
+            .post(`/api/advertisement`, data ,{
+                headers : {
+                    'Content-Type' : `application/json`,
+                    "X-localization" : location,
+                    "Authorization" : 'Bearer '+JSON.parse(localStorage.appState).user.auth_token
+                }
+            })
+            .then((response) => {
+                console.log(response);
+                return response;
+            })
     };
 
 

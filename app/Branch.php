@@ -10,4 +10,7 @@ class Branch extends Model
         return $this->belongsToMany('App\User', 'branch_user');
     }
 
+    public function advertisements(){
+        return $this->belongsToMany('App\Advertisement', 'advertisement_branch');
+    }
 }

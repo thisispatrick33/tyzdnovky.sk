@@ -18,6 +18,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsToMany('App\Branch', 'branch_user');
     }
 
+    public function advertisements()
+    {
+        return $this->hasMany('App\Advertisement');
+    }
+
     use Notifiable;
 
     protected $guard = 'users';

@@ -9,7 +9,7 @@ export const Advertisement = ({createAd = f =>f, region}) =>{
     var yyyy = today.getFullYear();
     today = yyyy + '-' + mm + '-' + dd;
 
-    const [data, setData] = useState({});
+    const [data, setData] = useState({tags: [""]});
     const [categories, setCategories] = useState([]);
     const [branches, setBranches] = useState([]);
     const [type, setType] = useState("");
@@ -31,7 +31,13 @@ export const Advertisement = ({createAd = f =>f, region}) =>{
     }, [region]);
 
     const submit = () => {
-        createAd({...data, branches: branches});
+        if(JSON.parse(localStorage.appState).user.type == "user"){
+            createAd({...data, branches: branches, user_id: JSON.parse(localStorage.appState).user.id});
+        }
+        else {
+            createAd({...data, branches: branches, business_id: JSON.parse(localStorage.appState).user.id});
+        }
+
     };
 
     const handleWork = (value) => {
@@ -95,8 +101,8 @@ export const Advertisement = ({createAd = f =>f, region}) =>{
                 name={`when`}
                 placeholder="when"
                 min={today}
-                onChange={(e) => setData({...data, when: e.target.value})}
-                value={data.when ? data.when : ``}
+                onChange={(e) => setData({...data, date: e.target.value})}
+                value={data.date ? data.date : ``}
                 className={` pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12`}
             />
             <input
@@ -104,8 +110,8 @@ export const Advertisement = ({createAd = f =>f, region}) =>{
                 type={`text`}
                 name={`where`}
                 placeholder="where"
-                onChange={(e) => setData({...data, where: e.target.value})}
-                value={data.where ? data.where  : ``}
+                onChange={(e) => setData({...data, address: e.target.value})}
+                value={data.address ? data.address  : ``}
                 className={` pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12`}
             />
             <input

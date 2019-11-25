@@ -68608,10 +68608,10 @@ var Additional = function Additional(_ref) {
     className: "categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center"
   }, dataAdditional.branches.map(function (_ref5) {
     var id = _ref5.id,
-        free_time = _ref5.free_time,
-        name = _ref5.name;
+        name = _ref5.name,
+        free_time = _ref5.free_time;
 
-    if (free_time === 0) {
+    if (free_time == 0) {
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(categories.includes(id) ? "on" : ""),
         onClick: function onClick() {
@@ -68635,10 +68635,10 @@ var Additional = function Additional(_ref) {
     className: "categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center"
   }, dataAdditional.branches.map(function (_ref6) {
     var id = _ref6.id,
-        free_time = _ref6.free_time,
-        name = _ref6.name;
+        name = _ref6.name,
+        free_time = _ref6.free_time;
 
-    if (free_time === 1) {
+    if (free_time == 1) {
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(categories.includes(id) ? "on" : ""),
         onClick: function onClick() {
@@ -68862,7 +68862,9 @@ var Advertisement = function Advertisement(_ref) {
   var yyyy = today.getFullYear();
   today = yyyy + '-' + mm + '-' + dd;
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({}),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
+    tags: [""]
+  }),
       _useState2 = _slicedToArray(_useState, 2),
       data = _useState2[0],
       setData = _useState2[1];
@@ -68922,9 +68924,17 @@ var Advertisement = function Advertisement(_ref) {
   }, [region]);
 
   var submit = function submit() {
-    createAd(_objectSpread({}, data, {
-      branches: branches
-    }));
+    if (JSON.parse(localStorage.appState).user.type == "user") {
+      createAd(_objectSpread({}, data, {
+        branches: branches,
+        user_id: JSON.parse(localStorage.appState).user.id
+      }));
+    } else {
+      createAd(_objectSpread({}, data, {
+        branches: branches,
+        business_id: JSON.parse(localStorage.appState).user.id
+      }));
+    }
   };
 
   var handleWork = function handleWork(value) {
@@ -69002,10 +69012,10 @@ var Advertisement = function Advertisement(_ref) {
     min: today,
     onChange: function onChange(e) {
       return setData(_objectSpread({}, data, {
-        when: e.target.value
+        date: e.target.value
       }));
     },
-    value: data.when ? data.when : "",
+    value: data.date ? data.date : "",
     className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
   }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     id: "where",
@@ -69014,10 +69024,10 @@ var Advertisement = function Advertisement(_ref) {
     placeholder: "where",
     onChange: function onChange(e) {
       return setData(_objectSpread({}, data, {
-        where: e.target.value
+        address: e.target.value
       }));
     },
-    value: data.where ? data.where : "",
+    value: data.address ? data.address : "",
     className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
   }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     id: "salary",
@@ -70181,6 +70191,17 @@ var Main = function Main() {
 
   var _createAd = function _createAd(data) {
     console.log(data);
+    console.log(JSON.parse(localStorage.appState).user.id);
+    axios__WEBPACK_IMPORTED_MODULE_5___default.a.post("/api/advertisement", data, {
+      headers: {
+        'Content-Type': "application/json",
+        "X-localization": location,
+        "Authorization": 'Bearer ' + JSON.parse(localStorage.appState).user.auth_token
+      }
+    }).then(function (response) {
+      console.log(response);
+      return response;
+    });
   };
 
   return _ipLocation(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reach_router__WEBPACK_IMPORTED_MODULE_3__["Router"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_Authentication__WEBPACK_IMPORTED_MODULE_4__["Authentication"], {
