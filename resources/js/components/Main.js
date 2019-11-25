@@ -356,6 +356,22 @@ const Main = () => {
             })
     };
 
+    const _updateAd = (data) =>{
+        console.log(data);
+        axios
+            .put(`/api/advertisement`, data ,{
+                headers : {
+                    'Content-Type' : `application/json`,
+                    "X-localization" : location,
+                    "Authorization" : 'Bearer '+JSON.parse(localStorage.appState).user.auth_token
+                }
+            })
+            .then((response) => {
+                console.log(response);
+                return response;
+            })
+    };
+
 
 
     return (
@@ -365,7 +381,7 @@ const Main = () => {
                 <Authentication path={`/`} login={_loginUser} register={_submitRegistration} reset={_reset} message={message}/>
                 <Home path={`/home`} edit={_edit} region={location}/>
                 <PasswordReset path={'/reset-password'} reset={_resetPassword}/>
-                <Advertisement path={'/advertisement'} createAd={_createAd} region={location}/>
+                <Advertisement path={'/advertisement'} createAd={_createAd} region={location} updateAd={_updateAd} id={6}/>
             </Router>
 
     )

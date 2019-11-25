@@ -115,7 +115,7 @@ class AdvertisementController extends Controller
             'branches' => 'required|array',
             'tags' => 'required|array',
         ]);
-            
+
         if ($validator->fails()) {
         return response()->json([
             'success' => false,
@@ -123,7 +123,6 @@ class AdvertisementController extends Controller
             'messages' => $validator->messages()->all()
             ]);
         };
-            
             
         $success = false;
             

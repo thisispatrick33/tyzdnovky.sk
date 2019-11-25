@@ -68854,7 +68854,12 @@ var Advertisement = function Advertisement(_ref) {
       createAd = _ref$createAd === void 0 ? function (f) {
     return f;
   } : _ref$createAd,
-      region = _ref.region;
+      region = _ref.region,
+      id = _ref.id,
+      _ref$updateAd = _ref.updateAd,
+      updateAd = _ref$updateAd === void 0 ? function (f) {
+    return f;
+  } : _ref$updateAd;
   var today = new Date();
   var dd = String(today.getDate()).padStart(2, '0');
   var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -68921,18 +68926,68 @@ var Advertisement = function Advertisement(_ref) {
     }();
 
     fetchData();
+
+    if (id !== null) {
+      var getAd =
+      /*#__PURE__*/
+      function () {
+        var _ref3 = _asyncToGenerator(
+        /*#__PURE__*/
+        _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+          var result;
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+            while (1) {
+              switch (_context2.prev = _context2.next) {
+                case 0:
+                  _context2.next = 2;
+                  return axios__WEBPACK_IMPORTED_MODULE_2___default()('api/advertisement/' + id, {
+                    headers: {
+                      "X-localization": region,
+                      "Authorization": 'Bearer ' + JSON.parse(localStorage.appState).user.auth_token
+                    }
+                  });
+
+                case 2:
+                  result = _context2.sent;
+                  console.log("get");
+                  console.log(result);
+                  setData(result.data.data);
+
+                case 6:
+                case "end":
+                  return _context2.stop();
+              }
+            }
+          }, _callee2);
+        }));
+
+        return function getAd() {
+          return _ref3.apply(this, arguments);
+        };
+      }();
+
+      getAd();
+    }
   }, [region]);
 
   var submit = function submit() {
-    if (JSON.parse(localStorage.appState).user.type == "user") {
-      createAd(_objectSpread({}, data, {
-        branches: branches,
-        user_id: JSON.parse(localStorage.appState).user.id
-      }));
+    if (id == null) {
+      if (JSON.parse(localStorage.appState).user.type == "user") {
+        createAd(_objectSpread({}, data, {
+          branches: branches,
+          user_id: JSON.parse(localStorage.appState).user.id
+        }));
+      } else {
+        createAd(_objectSpread({}, data, {
+          branches: branches,
+          business_id: JSON.parse(localStorage.appState).user.id
+        }));
+      }
     } else {
-      createAd(_objectSpread({}, data, {
+      updateAd(_objectSpread({}, data, {
         branches: branches,
-        business_id: JSON.parse(localStorage.appState).user.id
+        id: id,
+        tags: [""]
       }));
     }
   };
@@ -68942,7 +68997,7 @@ var Advertisement = function Advertisement(_ref) {
 
     array.includes(value) ? array = array.filter(function (work) {
       return value !== work;
-    }) : branches.length > 1 ? "" : array.push(value);
+    }) : branches.length > 2 ? "" : array.push(value);
 
     if (array.length == 0) {
       setType("");
@@ -68962,11 +69017,11 @@ var Advertisement = function Advertisement(_ref) {
   var handleSalary = function handleSalary(salary) {
     var tmp = salary.split("");
     var salary_filtered = '';
-    var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", '.', ','];
+    var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", '.', ',', '$', '€', '£'];
     console.log(tmp);
 
     for (var i = 0; i < tmp.length; i++) {
-      if (tmp[i] == "." || tmp[i] == ",") {
+      if (tmp[i] == "." || tmp[i] == "," || tmp[i] == "$" || tmp[i] == "€" || tmp[i] == "£") {
         salary_filtered += tmp[i];
       }
 
@@ -68980,95 +69035,99 @@ var Advertisement = function Advertisement(_ref) {
     }));
   };
 
-  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-    id: "title",
-    type: "text",
-    name: "title",
-    placeholder: "title",
-    onChange: function onChange(e) {
-      return setData(_objectSpread({}, data, {
-        title: e.target.value
-      }));
-    },
-    value: data.title ? data.title : "",
-    className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
-  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-    id: "description",
-    type: "text",
-    name: "description",
-    placeholder: "description",
-    onChange: function onChange(e) {
-      return setData(_objectSpread({}, data, {
-        description: e.target.value
-      }));
-    },
-    value: data.description ? data.description : "",
-    className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
-  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-    id: "when",
-    type: "date",
-    name: "when",
-    placeholder: "when",
-    min: today,
-    onChange: function onChange(e) {
-      return setData(_objectSpread({}, data, {
-        date: e.target.value
-      }));
-    },
-    value: data.date ? data.date : "",
-    className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
-  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-    id: "where",
-    type: "text",
-    name: "where",
-    placeholder: "where",
-    onChange: function onChange(e) {
-      return setData(_objectSpread({}, data, {
-        address: e.target.value
-      }));
-    },
-    value: data.address ? data.address : "",
-    className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
-  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-    id: "salary",
-    type: "text",
-    name: "salary",
-    placeholder: "salary",
-    onChange: function onChange(e) {
-      return handleSalary(e.target.value);
-    },
-    value: data.salary ? data.salary : "",
-    className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
-  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "Fulltime"), categories.map(function (_ref3) {
-    var id = _ref3.id,
-        free_time = _ref3.free_time,
-        name = _ref3.name;
+  if (id !== null && data.user_id == undefined) {
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, "loading");
+  } else {
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      id: "title",
+      type: "text",
+      name: "title",
+      placeholder: "title",
+      onChange: function onChange(e) {
+        return setData(_objectSpread({}, data, {
+          title: e.target.value
+        }));
+      },
+      value: data.title ? data.title : "",
+      className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
+    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      id: "description",
+      type: "text",
+      name: "description",
+      placeholder: "description",
+      onChange: function onChange(e) {
+        return setData(_objectSpread({}, data, {
+          description: e.target.value
+        }));
+      },
+      value: data.description ? data.description : "",
+      className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
+    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      id: "when",
+      type: "date",
+      name: "when",
+      placeholder: "when",
+      min: today,
+      onChange: function onChange(e) {
+        return setData(_objectSpread({}, data, {
+          date: e.target.value
+        }));
+      },
+      value: data.date ? data.date : "",
+      className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
+    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      id: "where",
+      type: "text",
+      name: "where",
+      placeholder: "where",
+      onChange: function onChange(e) {
+        return setData(_objectSpread({}, data, {
+          address: e.target.value
+        }));
+      },
+      value: data.address ? data.address : "",
+      className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
+    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      id: "salary",
+      type: "text",
+      name: "salary",
+      placeholder: "salary",
+      onChange: function onChange(e) {
+        return handleSalary(e.target.value);
+      },
+      value: data.salary ? data.salary : "",
+      className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
+    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "Fulltime"), categories.map(function (_ref4) {
+      var id = _ref4.id,
+          free_time = _ref4.free_time,
+          name = _ref4.name;
 
-    if (free_time === 0 && (type == "full" || type == "")) {
-      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(branches.includes(id) ? "on" : ""),
-        onClick: function onClick() {
-          return handleWork(id);
-        }
-      }, name);
-    }
-  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "Freetime"), categories.map(function (_ref4) {
-    var id = _ref4.id,
-        free_time = _ref4.free_time,
-        name = _ref4.name;
+      if (free_time === 0 && (type == "full" || type == "")) {
+        return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+          className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(branches.includes(id) ? "on" : ""),
+          onClick: function onClick() {
+            return handleWork(id);
+          }
+        }, name);
+      }
+    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "Freetime"), categories.map(function (_ref5) {
+      var id = _ref5.id,
+          free_time = _ref5.free_time,
+          name = _ref5.name;
 
-    if (free_time === 1 && (type == "free" || type == "")) {
-      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "category col-auto mx-2 my-2 py-2 shadow-sm ",
-        onClick: function onClick() {
-          return handleWork(id);
-        }
-      }, name);
-    }
-  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-    className: "submit-button sign-in-button col-xl-5 col-lg-6 col-md-9 col-11 text-center py-2 mb-5 mt-3 ",
-    onClick: submit
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "posli")));
+      if (free_time === 1 && (type == "free" || type == "")) {
+        return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+          className: "category col-auto mx-2 my-2 py-2 shadow-sm ",
+          onClick: function onClick() {
+            return handleWork(id);
+          }
+        }, name);
+      }
+    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+      className: "submit-button sign-in-button col-xl-5 col-lg-6 col-md-9 col-11 text-center py-2 mb-5 mt-3 ",
+      onClick: submit
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "posli")));
+  }
 };
 
 /***/ }),
@@ -70204,6 +70263,20 @@ var Main = function Main() {
     });
   };
 
+  var _updateAd = function _updateAd(data) {
+    console.log(data);
+    axios__WEBPACK_IMPORTED_MODULE_5___default.a.put("/api/advertisement", data, {
+      headers: {
+        'Content-Type': "application/json",
+        "X-localization": location,
+        "Authorization": 'Bearer ' + JSON.parse(localStorage.appState).user.auth_token
+      }
+    }).then(function (response) {
+      console.log(response);
+      return response;
+    });
+  };
+
   return _ipLocation(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reach_router__WEBPACK_IMPORTED_MODULE_3__["Router"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_Authentication__WEBPACK_IMPORTED_MODULE_4__["Authentication"], {
     path: "/",
     login: _loginUser,
@@ -70220,7 +70293,9 @@ var Main = function Main() {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_Advertisement__WEBPACK_IMPORTED_MODULE_8__["Advertisement"], {
     path: '/advertisement',
     createAd: _createAd,
-    region: location
+    region: location,
+    updateAd: _updateAd,
+    id: 6
   }));
 };
 
