@@ -40,7 +40,8 @@ export const Advertisement = ({createAd = f => f, region, id, updateAd = f =>f})
                 );
                 console.log("get");
                 console.log(result);
-                setData(result.data.data);
+                setData({...data, title: result.data.title, description: result.data.description, date: result.data.date, salary: result.data.salary, id: result.data.id, user_id:result.data.user_id, business_id: result.data.business_id, address: result.data.address});
+                setBranches(result.data.branches);
             };
             getAd();
         }

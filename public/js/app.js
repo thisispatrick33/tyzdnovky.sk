@@ -68951,9 +68951,19 @@ var Advertisement = function Advertisement(_ref) {
                   result = _context2.sent;
                   console.log("get");
                   console.log(result);
-                  setData(result.data.data);
+                  setData(_objectSpread({}, data, {
+                    title: result.data.title,
+                    description: result.data.description,
+                    date: result.data.date,
+                    salary: result.data.salary,
+                    id: result.data.id,
+                    user_id: result.data.user_id,
+                    business_id: result.data.business_id,
+                    address: result.data.address
+                  }));
+                  setBranches(result.data.branches);
 
-                case 6:
+                case 7:
                 case "end":
                   return _context2.stop();
               }
