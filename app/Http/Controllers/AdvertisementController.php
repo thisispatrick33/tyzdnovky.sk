@@ -58,18 +58,20 @@ class AdvertisementController extends Controller
             if($ad->save()){
                 $tag_arr = [];
 
-                foreach($request->tags as $tag){   
-                    $tag_id = Tag::where('name','=',$tag)->first();
-                    if ($tag_id) {
-                        array_push($tag_arr,$tag_id->id);
-                    }
-                    else {
-                        $NewTag = new Tag;
-                        $NewTag->name = $tag;
-                        if ($NewTag->save()) {
-                            array_push($tag_arr,$NewTag->id);
+                foreach($request->tags as $tag){  
+                    if(strlen($tag) > 0 && $tag != " "){
+                        $tag_id = Tag::where('name','=',$tag)->first();
+                        if ($tag_id) {
+                            array_push($tag_arr,$tag_id->id);
                         }
-                    }
+                        else {
+                            $NewTag = new Tag;
+                            $NewTag->name = $tag;
+                            if ($NewTag->save()) {
+                                array_push($tag_arr,$NewTag->id);
+                            }
+                        }
+                    }  
                 }
 
                 $ad->tags()->attach($tag_arr);
