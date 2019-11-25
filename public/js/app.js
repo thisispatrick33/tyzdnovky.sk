@@ -68803,6 +68803,25 @@ var PreviousArrow = function PreviousArrow(props) {
 
 /***/ }),
 
+/***/ "./resources/js/components/Forms/Advertisement.js":
+/*!********************************************************!*\
+  !*** ./resources/js/components/Forms/Advertisement.js ***!
+  \********************************************************/
+/*! exports provided: Advertisement */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Advertisement", function() { return Advertisement; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+var Advertisement = function Advertisement() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "hehe");
+};
+
+/***/ }),
+
 /***/ "./resources/js/components/Forms/Authentication.js":
 /*!*********************************************************!*\
   !*** ./resources/js/components/Forms/Authentication.js ***!
@@ -69593,6 +69612,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _Logged_Home__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Logged/Home */ "./resources/js/components/Logged/Home.js");
 /* harmony import */ var _Forms_PasswordReset__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Forms/PasswordReset */ "./resources/js/components/Forms/PasswordReset.js");
+/* harmony import */ var _Forms_Advertisement__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Forms/Advertisement */ "./resources/js/components/Forms/Advertisement.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -69600,6 +69620,7 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -69930,6 +69951,8 @@ var Main = function Main() {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_PasswordReset__WEBPACK_IMPORTED_MODULE_7__["PasswordReset"], {
     path: '/reset-password',
     reset: _resetPassword
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_Advertisement__WEBPACK_IMPORTED_MODULE_8__["Advertisement"], {
+    path: '/a'
   }));
 };
 
