@@ -68894,7 +68894,7 @@ var Advertisement = function Advertisement(_ref) {
         var _ref2 = _asyncToGenerator(
         /*#__PURE__*/
         _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-          var result;
+          var result, array, i;
           return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
             while (1) {
               switch (_context.prev = _context.next) {
@@ -68921,10 +68921,21 @@ var Advertisement = function Advertisement(_ref) {
                     business_id: result.data.business_id,
                     address: result.data.address
                   }));
-                  setBranches(result.data.branches);
-                  if (categories[branches[0]].free_time == 0 ? setType(true) : setType(false)) ;
+                  array = [];
 
-                case 8:
+                  for (i = 0; i < result.data.branches.length; i++) {
+                    array.push(result.data.branches[i].id);
+                  }
+
+                  setBranches(array);
+
+                  if (result.data.branches[0].free_time == 0) {
+                    setType(true);
+                  } else {
+                    setType(false);
+                  }
+
+                case 10:
                 case "end":
                   return _context.stop();
               }

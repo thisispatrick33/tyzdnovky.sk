@@ -29,8 +29,17 @@ export const Advertisement = ({createAd = f => f, region, id, updateAd = f =>f})
                 console.log("get");
                 console.log(result);
                 setData({...data, title: result.data.title, description: result.data.description, date: result.data.date, salary: result.data.salary, id: result.data.id, user_id:result.data.user_id, business_id: result.data.business_id, address: result.data.address});
-                setBranches(result.data.branches);
-                if(categories[branches[0]].free_time == 0 ? setType(true) : setType(false));
+                let array = [];
+                for(let i=0; i<result.data.branches.length; i++){
+                    array.push(result.data.branches[i].id);
+                }
+                setBranches(array);
+                if(result.data.branches[0].free_time==0){
+                    setType(true);
+                }
+                else {
+                    setType(false);
+                }
             };
             getAd();
         }
