@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {Tags} from '../Tags';
 import axios from "axios";
 
 export const Advertisement = ({createAd = f => f, region, id, updateAd = f =>f}) =>{
@@ -13,6 +14,7 @@ export const Advertisement = ({createAd = f => f, region, id, updateAd = f =>f})
     let categories = JSON.parse(localStorage.branches);
     const [branches, setBranches] = useState([]);
     const [type, setType] = useState(true);
+    const [tags, setTags] = useState([]);
 
 
     useEffect(() => {
@@ -34,6 +36,7 @@ export const Advertisement = ({createAd = f => f, region, id, updateAd = f =>f})
                     array.push(result.data.branches[i].id);
                 }
                 setBranches(array);
+                setTags(result.data.tags);
                 if(result.data.branches[0].free_time==0){
                     setType(true);
                 }
@@ -48,14 +51,14 @@ export const Advertisement = ({createAd = f => f, region, id, updateAd = f =>f})
     const submit = () => {
         if(id==null){
             if(JSON.parse(localStorage.appState).user.type == "user"){
-                createAd({...data, branches: branches, user_id: JSON.parse(localStorage.appState).user.id});
+                createAd({...data, branches: branches, user_id: JSON.parse(localStorage.appState).user.id, tags: tags});
             }
             else {
-                createAd({...data, branches: branches, business_id: JSON.parse(localStorage.appState).user.id});
+                createAd({...data, branches: branches, business_id: JSON.parse(localStorage.appState).user.id, tags: tags});
             }
         }
         else {
-            updateAd({...data, branches: branches, id: id, tags: [""]});
+            updateAd({...data, branches: branches, id: id, tags: tags});
         }
 
 
@@ -83,6 +86,10 @@ export const Advertisement = ({createAd = f => f, region, id, updateAd = f =>f})
             }
         }
         setData({...data, salary: salary_filtered});
+    };
+
+    const _tags = (list) =>{
+        setTags(list);
     };
 
     if((id!==null&&data.user_id==undefined)){
@@ -159,6 +166,8 @@ export const Advertisement = ({createAd = f => f, region, id, updateAd = f =>f})
                             }
                         })}</div>
                 }
+
+                <Tags addTags={_tags} list={tags}/>
 
 
 

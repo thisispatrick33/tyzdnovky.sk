@@ -15,6 +15,7 @@ const Main = () => {
     const [authState, setAuthState] = useState({isLoggedIn : false, user : {}});
     const [location, setLocation] = useState(``);
     const [message, setMessage] = useState(``);
+    const [advertId, setAdvertId] = useState(null);
 
 
     const _loginUser = (data) => {
@@ -395,7 +396,7 @@ const Main = () => {
                 <Authentication path={`/`} login={_loginUser} register={_submitRegistration} reset={_reset} message={message}/>
                 <Home path={`/home`} edit={_edit} region={location}/>
                 <PasswordReset path={'/reset-password'} reset={_resetPassword}/>
-                <Advertisement path={'/advertisement'} createAd={_createAd} region={location} updateAd={_updateAd} id={6}/>
+                <Advertisement path={'/advertisement'} createAd={_createAd} region={location} updateAd={_updateAd} id={advertId}/>
             </Router>
 
     )
