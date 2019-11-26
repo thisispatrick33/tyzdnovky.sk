@@ -1,0 +1,57 @@
+.work-options{
+    font-family: 'Montserrat';
+    height: 100%;
+    color: #2C393F;
+    
+    .work-option{
+
+        .content{
+            height: auto;
+        }
+    }
+    .work-option-image-wrapper{
+        position: relative;
+    }
+    .work-option-image{
+        max-width: 100%;
+        border-radius: 29px 29px 0 0;
+    }
+    .work-option-save{
+        position: absolute;
+        top: 85%;
+        right: .9rem;
+    }
+    .work-option-content{
+        position: relative;
+        width: 70%;
+        margin: 0 auto;
+
+        .work-option-new{
+            width: 4em;
+            padding: 1em 0;
+            font-size: 13px;
+            font-weight: 500;
+            background: #00C7C7;
+            color: #FFFFFF;
+            border-radius: 50%;
+            position: absolute;
+            top: -5%;
+            right: calc(-30% - 1em);
+        }
+        .work-option-title{
+            font-size: 19px;
+        }
+        .work-option-description{
+            font-size: 15px;
+            line-height: 18px;
+        }
+        .work-option-info{
+            font-size: 11px;
+    
+            svg{
+                margin-right: 15px;
+            }
+        }
+    }
+    
+}
