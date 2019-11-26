@@ -7,13 +7,15 @@ import { Authentication } from './Forms/Authentication';
 import axios from "axios";
 import {Home} from "./Logged/Home";
 import {PasswordReset} from "./Forms/PasswordReset";
-
+import {Advertisement} from "./Forms/Advertisement";
+import {AdvertisementView} from "./AdvertisementView";
 
 
 const Main = () => {
     const [authState, setAuthState] = useState({isLoggedIn : false, user : {}});
     const [location, setLocation] = useState(``);
     const [message, setMessage] = useState(``);
+    const [advertId, setAdvertId] = useState(null);
 
 
     const _loginUser = (data) => {
@@ -312,7 +314,7 @@ const Main = () => {
           .post(`/api/password-reset`, data ,{
             headers : {
               'Content-Type' : `application/json`,
-            "X-localization" : location,
+                "X-localization" : location,
          }
          })
          .then((response) => {
@@ -334,16 +336,69 @@ const Main = () => {
                     console.log('Request failed.  Returned status of',
                         status);
                 }
+
             );
     };
 
+    const _createAd = (data) => {
+        console.log(data);
+        console.log(JSON.parse(localStorage.appState).user.id);
+        axios
+            .post(`/api/advertisement`, data ,{
+                headers : {
+                    'Content-Type' : `application/json`,
+                    "X-localization" : location,
+                    "Authorization" : 'Bearer '+JSON.parse(localStorage.appState).user.auth_token
+                }
+            })
+            .then((response) => {
+                console.log(response);
+                return response;
+            })
+    };
+
+    const _updateAd = (data) =>{
+        console.log(data);
+        axios
+            .put(`/api/advertisement`, data ,{
+                headers : {
+                    'Content-Type' : `application/json`,
+                    "X-localization" : location,
+                    "Authorization" : 'Bearer '+JSON.parse(localStorage.appState).user.auth_token
+                }
+            })
+            .then((response) => {
+                console.log(response);
+                return response;
+            })
+    };
+
+    const fetchData = async () => {
+        const result = await axios(
+            'api/register-additional',{
+                headers:{
+                    "X-localization" : location,
+                }
+            }
+        );
+        localStorage["branches"]=JSON.stringify(result.data.branches);
+
+    };
+
+
+
+
     return (
-            _ipLocation(),
+        _ipLocation(),
+            fetchData(),
             <Router>
 
                 <Authentication path={`/`} login={_loginUser} register={_submitRegistration} reset={_reset} message={message}/>
                 <Home path={`/home`} edit={_edit} region={location}/>
                 <PasswordReset path={'/reset-password'} reset={_resetPassword}/>
+                <Advertisement path={'/advertisement'} createAd={_createAd} region={location} updateAd={_updateAd} id={advertId}/>
+                <AdvertisementView path={'/advertisement_view'} region={location} id={advertId}/>
+
             </Router>
 
     )
