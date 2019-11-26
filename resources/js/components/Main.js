@@ -8,14 +8,14 @@ import axios from "axios";
 import {Home} from "./Logged/Home";
 import {PasswordReset} from "./Forms/PasswordReset";
 import {Advertisement} from "./Forms/Advertisement";
-
+import {AdvertisementView} from "./AdvertisementView";
 
 
 const Main = () => {
     const [authState, setAuthState] = useState({isLoggedIn : false, user : {}});
     const [location, setLocation] = useState(``);
     const [message, setMessage] = useState(``);
-    const [advertId, setAdvertId] = useState(null);
+    const [advertId, setAdvertId] = useState(15);
 
 
     const _loginUser = (data) => {
@@ -397,6 +397,8 @@ const Main = () => {
                 <Home path={`/home`} edit={_edit} region={location}/>
                 <PasswordReset path={'/reset-password'} reset={_resetPassword}/>
                 <Advertisement path={'/advertisement'} createAd={_createAd} region={location} updateAd={_updateAd} id={advertId}/>
+                <AdvertisementView path={'/advertisement_view'} region={location} id={advertId}/>
+
             </Router>
 
     )

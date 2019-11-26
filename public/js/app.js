@@ -68803,6 +68803,115 @@ var PreviousArrow = function PreviousArrow(props) {
 
 /***/ }),
 
+/***/ "./resources/js/components/AdvertisementView.js":
+/*!******************************************************!*\
+  !*** ./resources/js/components/AdvertisementView.js ***!
+  \******************************************************/
+/*! exports provided: AdvertisementView */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdvertisementView", function() { return AdvertisementView; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+var AdvertisementView = function AdvertisementView(_ref) {
+  var id = _ref.id,
+      region = _ref.region;
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+
+  var yyyy = today.getFullYear();
+  today = yyyy + '-' + mm + '-' + dd;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({}),
+      _useState2 = _slicedToArray(_useState, 2),
+      data = _useState2[0],
+      setData = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(null),
+      _useState4 = _slicedToArray(_useState3, 2),
+      date = _useState4[0],
+      setDate = _useState4[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    var fetchData =
+    /*#__PURE__*/
+    function () {
+      var _ref2 = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var result;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_2___default()('api/advertisement/' + id, {
+                  headers: {
+                    "X-localization": region,
+                    "Authorization": 'Bearer ' + JSON.parse(localStorage.appState).user.auth_token
+                  }
+                });
+
+              case 2:
+                result = _context.sent;
+                console.log("get");
+                console.log(result);
+                setData(result.data);
+                setDate(result.data.created_at.substring(0, result.data.created_at.indexOf('T')));
+
+              case 7:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      return function fetchData() {
+        return _ref2.apply(this, arguments);
+      };
+    }();
+
+    fetchData();
+  }, [region]);
+
+  if (data.title == undefined) {
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, "loading");
+  }
+
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, data.title), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, data.description), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, data.salary), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, data.address), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, data.date), date >= today ? "new" : 'top', data.branches.map(function (_ref3) {
+    var name = _ref3.name;
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, name);
+  }), data.tags.map(function (value) {
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, value);
+  }));
+};
+
+/***/ }),
+
 /***/ "./resources/js/components/Forms/Advertisement.js":
 /*!********************************************************!*\
   !*** ./resources/js/components/Forms/Advertisement.js ***!
@@ -69915,6 +70024,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Logged_Home__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Logged/Home */ "./resources/js/components/Logged/Home.js");
 /* harmony import */ var _Forms_PasswordReset__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Forms/PasswordReset */ "./resources/js/components/Forms/PasswordReset.js");
 /* harmony import */ var _Forms_Advertisement__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Forms/Advertisement */ "./resources/js/components/Forms/Advertisement.js");
+/* harmony import */ var _AdvertisementView__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./AdvertisementView */ "./resources/js/components/AdvertisementView.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -69928,6 +70038,7 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -69958,7 +70069,7 @@ var Main = function Main() {
       message = _useState6[0],
       setMessage = _useState6[1];
 
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(null),
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(15),
       _useState8 = _slicedToArray(_useState7, 2),
       advertId = _useState8[0],
       setAdvertId = _useState8[1];
@@ -70333,6 +70444,10 @@ var Main = function Main() {
     createAd: _createAd,
     region: location,
     updateAd: _updateAd,
+    id: advertId
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_AdvertisementView__WEBPACK_IMPORTED_MODULE_10__["AdvertisementView"], {
+    path: '/advertisement_view',
+    region: location,
     id: advertId
   }));
 };
