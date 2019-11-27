@@ -69999,7 +69999,7 @@ var Home = function Home(_ref) {
     }
 
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: " home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 "
+      className: " home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 pt-5"
     }, JSON.parse(localStorage.appState).user.active == 0 ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Additional__WEBPACK_IMPORTED_MODULE_2__["Additional"], {
       user: JSON.parse(localStorage.appState).user,
       func: handleChange,
@@ -70170,14 +70170,7 @@ var Home = function Home(_ref) {
       className: "row justify-content-center"
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
       className: "col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-      onClick: function onClick() {
-        return setCreate({
-          id: null,
-          active: true
-        });
-      }
-    }, "vytvor")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "sign")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "col-auto"
     }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
       className: "col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button"
@@ -70185,7 +70178,77 @@ var Home = function Home(_ref) {
       className: "col-auto"
     }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
       className: "col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "sign"))));
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "sign"))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "advertisement-info-wrapper"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "container-fluid row justify-content-center m-0 p-0"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "advertisement-info-box col-11 m-0 p-0 mt-5 shadow row"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "col-3 p-0"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+      className: "advertisement-info-image",
+      src: "./images/poster.jpg"
+    })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "col-9 row justify-content-center"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "col-12 row justify-content-center pt-5"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "col-8"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", {
+      className: "advertisement-info-title text-center"
+    }, "TITEL")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "col-4"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "cross"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
+      xmlns: "http://www.w3.org/2000/svg",
+      width: "42",
+      height: "42",
+      viewBox: "0 0 42 42"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+      d: "M42,2.467,23.467,21,42,39.534,39.533,42,21,23.468,2.467,42,0,39.534,18.533,21,0,2.467,2.467,0,21,18.534,39.533,0Z",
+      transform: "translate(0 -0.001)",
+      fill: "#2c393f"
+    }))))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "col-8"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "border-r"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "advertisement-info-tags row justify-content-center pt-5 pb-5"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "advertisement-info-tag py-2 mx-3 my-1 px-4 shadow col-auto"
+    }, "ATTAChinterupt"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "advertisement-info-tag py-2 mx-3 my-1 px-4 shadow col-auto"
+    }, "ATTAChinterupt"), " ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "advertisement-info-tag py-2 mx-3 my-1 px-4 shadow col-auto"
+    }, "ATTAChinterupt"), " ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "advertisement-info-tag py-2 mx-3 my-1 px-4 shadow col-auto"
+    }, "ATTAChinteruptfdsf fsdfds"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "advertisement-info-tag py-2 mx-3 my-1 px-4 shadow col-auto"
+    }, "ATTAChinterupt")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+      className: "advertisement-info-description mb-5"
+    }, "dasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasd dasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasd"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+      className: "my-2 submit-button sign-in-button px-5 py-2 d-block"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, " m\xE1m  ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      className: "strong"
+    }, "zaujem !"))))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "col-4"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "advertisement-info-branches border-b"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "branch"
+    }, "automobilov\xFD priemysel"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "branch"
+    }, "automobilov\xFD priemysel")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "advertisement-info-additional"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: ""
+    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: ""
+    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: ""
+    }))))))));
   }
 
   Object(_reach_router__WEBPACK_IMPORTED_MODULE_3__["navigate"])('/');

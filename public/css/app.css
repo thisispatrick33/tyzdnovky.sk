@@ -11488,6 +11488,116 @@ hr {
   background: #ffffff;
 }
 
+.home .advertisement-info-wrapper {
+  position: absolute;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.8);
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.home .advertisement-info-wrapper .advertisement-info-box {
+  background: #fff;
+  min-height: 90vh;
+  width: 100%;
+  border-radius: 29px;
+}
+
+.home .advertisement-info-wrapper .advertisement-info-image {
+  height: 90vh;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 29px 0px 0px 29px;
+}
+
+.home .advertisement-info-wrapper .advertisement-info-tags .advertisement-info-tag {
+  font-size: 1.1em;
+  font-weight: 300;
+  border-radius: 50px;
+  text-transform: uppercase;
+  text-decoration: none;
+  z-index: 1;
+  border: none;
+  background: #ffffff;
+}
+
+.home .advertisement-info-wrapper .advertisement-info-description {
+  width: 80%;
+  margin: 0 auto;
+  word-break: break-all;
+}
+
+.home .advertisement-info-wrapper .submit-button {
+  font-size: 1.1em;
+  font-weight: 300;
+  border-radius: 50px;
+  text-transform: uppercase;
+  color: white;
+  position: relative;
+  text-decoration: none;
+  -webkit-backface-visibility: hidden;
+  z-index: 1;
+  border: none;
+}
+
+.home .advertisement-info-wrapper .submit-button span {
+  position: relative;
+  z-index: 300;
+}
+
+.home .advertisement-info-wrapper .submit-button:focus {
+  outline: 0;
+}
+
+.home .advertisement-info-wrapper .submit-button:after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+  transition: opacity 0.5s ease-out;
+  z-index: 2;
+  opacity: 0;
+}
+
+.home .advertisement-info-wrapper .submit-button:hover:after {
+  opacity: 1;
+}
+
+.home .advertisement-info-wrapper .submit-button:hover {
+  cursor: pointer;
+}
+
+.home .advertisement-info-wrapper .sign-in-button {
+  background: linear-gradient(to left, #00C7C7, #3a7bd5);
+  margin: 0 auto;
+}
+
+.home .advertisement-info-wrapper .sign-in-button:after {
+  background: linear-gradient(to right, #00C7C7, #3a7bd5);
+}
+
+.home .advertisement-info-wrapper .border-r {
+  border-right: 1px solid #EDEDED;
+}
+
+.home .advertisement-info-wrapper .border-b {
+  border-bottom: 1px solid #EDEDED;
+}
+
+.home .advertisement-info-wrapper .strong {
+  font-weight: bold;
+}
+
+.home .advertisement-info-wrapper .cross {
+  text-align: center;
+}
+
 /**
 * Add a transition to the label and input.
 * I'm not even sure that touch-action: manipulation works on

@@ -99,7 +99,7 @@ export const Home =({edit = f => f, region, createAd = f => f, updateAd = f =>f}
         }
         return (
 
-            <div className={` home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 `}>
+            <div className={` home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 pt-5`}>
 
                 {JSON.parse(localStorage.appState).user.active==0 ? <Additional user={JSON.parse(localStorage.appState).user} func={handleChange} region={region}/> : ``}
                 <div className="content col-11 row justify-content-center py-5">
@@ -197,22 +197,93 @@ export const Home =({edit = f => f, region, createAd = f => f, updateAd = f =>f}
                                     })
                                 }
                     </Slider>
-                    </div>
 
-                        <div className="row justify-content-center">
-                            <button className={`col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button`}>
-                            <span onClick={()=>setCreate({id: null, active: true})}>vytvor</span>
-                            </button>
-                            <div className="col-auto"></div>
-                            <button className={`col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button`}>
-                                <span>sign</span>
-                            </button>
-                            <div className="col-auto"></div>
-                            <button className={`col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button`}>
-                                <span>sign</span>
-                            </button>
+                </div>
+                <div className="row justify-content-center">
+                    <button className={`col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button`}>
+                        <span>sign</span>
+                    </button>
+                    <div className="col-auto"></div>
+                    <button className={`col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button`}>
+                        <span>sign</span>
+                    </button>
+                    <div className="col-auto"></div>
+                    <button className={`col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button`}>
+                        <span>sign</span>
+                    </button>
+                </div>
+
+                <div className="advertisement-info-wrapper">
+                    <div className="container-fluid row justify-content-center m-0 p-0">
+                        <div className="advertisement-info-box col-11 m-0 p-0 mt-5 shadow row">
+                            <div className="col-3 p-0">
+                                <img className="advertisement-info-image" src="./images/poster.jpg"/>
+                            </div>
+                            <div className="col-9 row justify-content-center">
+                                <div className={"col-12 row justify-content-center pt-5"}>
+                                    <div className={"col-8"}>
+                                        <h1 className="advertisement-info-title text-center">TITEL</h1>
+                                    </div>
+                                    <div className={"col-4"}>
+                                        <div className={"cross"}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42"><path d="M42,2.467,23.467,21,42,39.534,39.533,42,21,23.468,2.467,42,0,39.534,18.533,21,0,2.467,2.467,0,21,18.534,39.533,0Z" transform="translate(0 -0.001)" fill="#2c393f"/></svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-8">
+
+                                    <div className={"border-r"}>
+                                        <div className="advertisement-info-tags row justify-content-center pt-5 pb-5">
+                                            <div className="advertisement-info-tag py-2 mx-3 my-1 px-4 shadow col-auto">
+                                                ATTAChinterupt
+                                            </div>
+                                            <div className="advertisement-info-tag py-2 mx-3 my-1 px-4 shadow col-auto">
+                                                ATTAChinterupt
+                                            </div> <div className="advertisement-info-tag py-2 mx-3 my-1 px-4 shadow col-auto">
+                                            ATTAChinterupt
+                                        </div> <div className="advertisement-info-tag py-2 mx-3 my-1 px-4 shadow col-auto">
+                                            ATTAChinteruptfdsf fsdfds
+                                        </div>
+                                            <div className="advertisement-info-tag py-2 mx-3 my-1 px-4 shadow col-auto">
+                                                ATTAChinterupt
+                                            </div>
+
+                                        </div>
+                                        <p className="advertisement-info-description mb-5">
+                                            dasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasd
+                                            dasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasd
+                                        </p>
+                                        <button className="my-2 submit-button sign-in-button px-5 py-2 d-block">
+                                           <span> mám  <span className={"strong"}>zaujem !</span></span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className="col-4">
+
+                                    <div className="advertisement-info-branches border-b">
+                                        <div className={"branch"}>
+                                            automobilový priemysel
+                                        </div>
+                                        <div className={"branch"}>
+                                            automobilový priemysel
+                                        </div>
+                                    </div>
+                                    <div className="advertisement-info-additional">
+                                        <div className={""}>
+
+                                        </div>
+                                        <div className={""}>
+
+                                        </div>
+                                        <div className={""}>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
+                    </div>
+                </div>
             </div>
 
         );
