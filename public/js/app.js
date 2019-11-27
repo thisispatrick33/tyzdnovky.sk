@@ -69940,15 +69940,31 @@ var Home = function Home(_ref) {
   };
 
   var settings = {
-    dots: true,
+    dots: false,
     arrows: true,
     infinite: false,
     speed: 500,
-    slidesToShow: 1,
+    slidesToShow: 4,
     slidesToScroll: 1,
-    adaptiveHeight: false,
+    adaptiveHeight: true,
     nextArrow: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextArrow, null),
-    prevArrow: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(PreviousArrow, null)
+    prevArrow: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(PreviousArrow, null),
+    responsive: [{
+      breakpoint: 1200,
+      settings: {
+        slidesToShow: 3
+      }
+    }, {
+      breakpoint: 992,
+      settings: {
+        slidesToShow: 2
+      }
+    }, {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 1
+      }
+    }]
   };
 
   if (location.state != undefined) {
@@ -69959,7 +69975,7 @@ var Home = function Home(_ref) {
       func: handleChange,
       region: region
     }) : "", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "content col-11 row justify-content-center py-5"
+      className: "content col-11 row justify-content-center pt-5"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "header col-11 row justify-content-between"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -70002,13 +70018,89 @@ var Home = function Home(_ref) {
     }, "7"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "message col-11 mt-5"
     }, location.state.data.user.name == null ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello !") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, location.state.data.user.name), " !")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_3___default.a, _extends({}, settings, {
-      className: "container-fluid row col-11"
+      className: "work-options justify-content-between col-12 my-5 px-5 row"
     }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "work-options-slide col-12"
+      className: "work-option row justify-content-center col-12 p-0 mx-3 mb-5"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "work-options justify-content-between col-12 my-5 row"
+      className: "content shadow p-0 col-10"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "work-option row justify-content-center col-3 p-0"
+      className: "work-option-image-wrapper"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      className: "work-option-image",
+      src: "./images/poster.jpg"
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+      className: "work-option-save",
+      width: "13.135",
+      height: "15.526",
+      viewBox: "0 0 13.135 15.526"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
+      transform: "translate(-33.261)"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+      d: "M46.2.513a1.157,1.157,0,0,0-.539-.421A1.136,1.136,0,0,0,45.206,0H34.451A1.136,1.136,0,0,0,34,.092a1.156,1.156,0,0,0-.539.421,1.089,1.089,0,0,0-.2.636V14.377a1.09,1.09,0,0,0,.2.636,1.156,1.156,0,0,0,.539.421,1.135,1.135,0,0,0,.451.092,1.224,1.224,0,0,0,.852-.339l4.526-4.351,4.526,4.351a1.221,1.221,0,0,0,.852.328,1.194,1.194,0,0,0,.99-.5,1.088,1.088,0,0,0,.2-.636V1.149A1.089,1.089,0,0,0,46.2.513ZM45.083,14.059,40.742,9.892l-.913-.872-.913.872-4.341,4.166V1.314H45.083V14.059Z",
+      fill: "#fff"
+    }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+      className: "work-option-edit",
+      width: "16",
+      height: "16",
+      viewBox: "0 0 16 16"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
+      transform: "translate(-0.063 0.001)"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+      d: "M.572,16a.509.509,0,0,1-.493-.632l.955-3.834a.51.51,0,0,1,.134-.237L11.92.545a1.868,1.868,0,0,1,2.638,0l.959.959a1.868,1.868,0,0,1,0,2.638L4.765,14.895a.505.505,0,0,1-.237.134l-3.834.955A.47.47,0,0,1,.572,16Zm1.415-4.083L1.27,14.791l2.875-.716L14.8,3.422a.85.85,0,0,0,0-1.2l-.959-.959a.849.849,0,0,0-1.2,0Zm2.419,2.619h0Zm0,0",
+      transform: "translate(0)",
+      fill: "#fff"
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+      d: "M319.56,68.392a.505.505,0,0,1-.36-.149l-2.879-2.878a.509.509,0,0,1,.72-.72l2.879,2.879a.508.508,0,0,1-.36.868Zm0,0",
+      transform: "translate(-306.057 -62.446)",
+      fill: "#fff"
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+      d: "M33.481,354.451a.5.5,0,0,1-.36-.149l-2.879-2.879a.509.509,0,0,1,.72-.72l2.879,2.879a.509.509,0,0,1-.36.869Zm0,0",
+      transform: "translate(-29.076 -339.408)",
+      fill: "#fff"
+    })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "work-option-content"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "text-center work-option-new"
+    }, "NEW!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+      className: "work-option-title text-center mt-4 mb-2"
+    }, "AUTOMECHANIK"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      className: "work-option-description"
+    }, "Jujubes chupa chups gummies. Biscuit sugar plum lemon drops dessert cupcake sweet...", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "#"
+    }, "Zisti viac.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "row text-center h6 work-option-info pt-4 pb-5"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "col-6 p-0"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+      xmlns: "http://www.w3.org/2000/svg",
+      width: "13.512",
+      height: "19.292",
+      viewBox: "0 0 13.512 19.292"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+      d: "M23.023,12a2.466,2.466,0,1,0,2.466,2.466A2.469,2.469,0,0,0,23.023,12Zm0,4.228a1.762,1.762,0,1,1,1.762-1.762A1.764,1.764,0,0,1,23.023,16.228Z",
+      transform: "translate(-16.204 -7.772)",
+      fill: "#00c7c7"
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+      d: "M19.737,1.979a6.756,6.756,0,0,0-9.555,0,7.7,7.7,0,0,0-.636,9.5l5.413,7.817,5.405-7.806A7.7,7.7,0,0,0,19.737,1.979Zm.056,9.095-4.834,6.98-4.841-6.991a6.953,6.953,0,0,1,.562-8.586,6.052,6.052,0,0,1,8.558,0A6.956,6.956,0,0,1,19.793,11.074Z",
+      transform: "translate(-8.203 0)",
+      fill: "#00c7c7"
+    })), "NEMECKO")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "col-6 p-0"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+      xmlns: "http://www.w3.org/2000/svg",
+      width: "15.888",
+      height: "17.023",
+      viewBox: "0 0 15.888 17.023"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+      d: "M17.6,1.135H15.618V.284A.283.283,0,0,0,15.335,0H13.349a.283.283,0,0,0-.284.284v.851H6.823V.284A.283.283,0,0,0,6.539,0H4.553A.283.283,0,0,0,4.27.284v.851H2.284A.283.283,0,0,0,2,1.419V16.739a.283.283,0,0,0,.284.284H17.6a.283.283,0,0,0,.284-.284V1.419A.283.283,0,0,0,17.6,1.135ZM13.632.567h1.419v1.7H13.632V.567Zm-8.8,0H6.256v1.7H4.837V.567ZM2.567,1.7h1.7v.851a.283.283,0,0,0,.284.284H6.539a.283.283,0,0,0,.284-.284V1.7h6.242v.851a.283.283,0,0,0,.284.284h1.986a.283.283,0,0,0,.284-.284V1.7h1.7V4.256H2.567Zm0,14.753V4.823H17.321V16.455Z",
+      transform: "translate(-2)",
+      fill: "#00c7c7"
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+      d: "M18.66,23H11v8.228H21.781V23H18.66Zm-1.986.567H18.66v1.986H16.674Zm1.986,4.539H16.674V26.121H18.66Zm-4.539-1.986h1.986v1.986H14.121Zm0-2.553h1.986v1.986H14.121Zm-2.553,0h1.986v1.986H11.567Zm0,2.553h1.986v1.986H11.567Zm1.986,4.539H11.567V28.674h1.986Zm2.553,0H14.121V28.674h1.986Zm2.553,0H16.674V28.674H18.66Zm2.553,0H19.228V28.674h1.986Zm0-2.553H19.228V26.121h1.986Zm0-4.539v1.986H19.228V23.567Z",
+      transform: "translate(-8.447 -16.475)",
+      fill: "#00c7c7"
+    })), "27.03.2020")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "work-option row justify-content-center col-12 p-0 mx-3 mb-5"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "content shadow p-0 col-10"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -70037,7 +70129,7 @@ var Home = function Home(_ref) {
     }, "Jujubes chupa chups gummies. Biscuit sugar plum lemon drops dessert cupcake sweet...", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "#"
     }, "Zisti viac.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "row text-center h6 work-option-info mt-4 mb-5"
+      className: "row text-center h6 work-option-info pt-4 pb-5"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "col-6 p-0"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
@@ -70069,7 +70161,7 @@ var Home = function Home(_ref) {
       transform: "translate(-8.447 -16.475)",
       fill: "#00c7c7"
     })), "27.03.2020")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "work-option row justify-content-center col-3 p-0"
+      className: "work-option row justify-content-center col-12 p-0 mx-3 mb-5"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "content shadow p-0 col-10"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -70098,7 +70190,7 @@ var Home = function Home(_ref) {
     }, "Jujubes chupa chups gummies. Biscuit sugar plum lemon drops dessert cupcake sweet...", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "#"
     }, "Zisti viac.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "row text-center h6 work-option-info my-4"
+      className: "row text-center h6 work-option-info pt-4 pb-5"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "col-6 p-0"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
@@ -70130,7 +70222,7 @@ var Home = function Home(_ref) {
       transform: "translate(-8.447 -16.475)",
       fill: "#00c7c7"
     })), "27.03.2020")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "work-option row justify-content-center col-3 p-0"
+      className: "work-option row justify-content-center col-12 p-0 mx-3 mb-5"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "content shadow p-0 col-10"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -70150,14 +70242,16 @@ var Home = function Home(_ref) {
       fill: "#fff"
     })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "work-option-content"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "text-center work-option-new"
+    }, "NEW!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
       className: "work-option-title text-center mt-4 mb-2"
     }, "AUTOMECHANIK"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "work-option-description"
     }, "Jujubes chupa chups gummies. Biscuit sugar plum lemon drops dessert cupcake sweet...", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "#"
     }, "Zisti viac.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "row text-center h6 work-option-info my-4"
+      className: "row text-center h6 work-option-info pt-4 pb-5"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "col-6 p-0"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
@@ -70189,7 +70283,7 @@ var Home = function Home(_ref) {
       transform: "translate(-8.447 -16.475)",
       fill: "#00c7c7"
     })), "27.03.2020")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "work-option row justify-content-center col-3 p-0"
+      className: "work-option row justify-content-center col-12 p-0 mx-3 mb-5"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "content shadow p-0 col-10"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -70209,14 +70303,77 @@ var Home = function Home(_ref) {
       fill: "#fff"
     })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "work-option-content"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "text-center work-option-new"
+    }, "NEW!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
       className: "work-option-title text-center mt-4 mb-2"
     }, "AUTOMECHANIK"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "work-option-description"
     }, "Jujubes chupa chups gummies. Biscuit sugar plum lemon drops dessert cupcake sweet...", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "#"
     }, "Zisti viac.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "row text-center h6 work-option-info my-4"
+      className: "row text-center h6 work-option-info pt-4 pb-5"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "col-6 p-0"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+      xmlns: "http://www.w3.org/2000/svg",
+      width: "13.512",
+      height: "19.292",
+      viewBox: "0 0 13.512 19.292"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+      d: "M23.023,12a2.466,2.466,0,1,0,2.466,2.466A2.469,2.469,0,0,0,23.023,12Zm0,4.228a1.762,1.762,0,1,1,1.762-1.762A1.764,1.764,0,0,1,23.023,16.228Z",
+      transform: "translate(-16.204 -7.772)",
+      fill: "#00c7c7"
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+      d: "M19.737,1.979a6.756,6.756,0,0,0-9.555,0,7.7,7.7,0,0,0-.636,9.5l5.413,7.817,5.405-7.806A7.7,7.7,0,0,0,19.737,1.979Zm.056,9.095-4.834,6.98-4.841-6.991a6.953,6.953,0,0,1,.562-8.586,6.052,6.052,0,0,1,8.558,0A6.956,6.956,0,0,1,19.793,11.074Z",
+      transform: "translate(-8.203 0)",
+      fill: "#00c7c7"
+    })), "NEMECKO")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "col-6 p-0"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+      xmlns: "http://www.w3.org/2000/svg",
+      width: "15.888",
+      height: "17.023",
+      viewBox: "0 0 15.888 17.023"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+      d: "M17.6,1.135H15.618V.284A.283.283,0,0,0,15.335,0H13.349a.283.283,0,0,0-.284.284v.851H6.823V.284A.283.283,0,0,0,6.539,0H4.553A.283.283,0,0,0,4.27.284v.851H2.284A.283.283,0,0,0,2,1.419V16.739a.283.283,0,0,0,.284.284H17.6a.283.283,0,0,0,.284-.284V1.419A.283.283,0,0,0,17.6,1.135ZM13.632.567h1.419v1.7H13.632V.567Zm-8.8,0H6.256v1.7H4.837V.567ZM2.567,1.7h1.7v.851a.283.283,0,0,0,.284.284H6.539a.283.283,0,0,0,.284-.284V1.7h6.242v.851a.283.283,0,0,0,.284.284h1.986a.283.283,0,0,0,.284-.284V1.7h1.7V4.256H2.567Zm0,14.753V4.823H17.321V16.455Z",
+      transform: "translate(-2)",
+      fill: "#00c7c7"
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+      d: "M18.66,23H11v8.228H21.781V23H18.66Zm-1.986.567H18.66v1.986H16.674Zm1.986,4.539H16.674V26.121H18.66Zm-4.539-1.986h1.986v1.986H14.121Zm0-2.553h1.986v1.986H14.121Zm-2.553,0h1.986v1.986H11.567Zm0,2.553h1.986v1.986H11.567Zm1.986,4.539H11.567V28.674h1.986Zm2.553,0H14.121V28.674h1.986Zm2.553,0H16.674V28.674H18.66Zm2.553,0H19.228V28.674h1.986Zm0-2.553H19.228V26.121h1.986Zm0-4.539v1.986H19.228V23.567Z",
+      transform: "translate(-8.447 -16.475)",
+      fill: "#00c7c7"
+    })), "27.03.2020")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "work-option row justify-content-center col-12 p-0 mx-3 mb-5"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "content shadow p-0 col-10"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "work-option-image-wrapper"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      className: "work-option-image",
+      src: "./images/poster.jpg"
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+      className: "work-option-save",
+      width: "13.135",
+      height: "15.526",
+      viewBox: "0 0 13.135 15.526"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
+      transform: "translate(-33.261)"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+      d: "M46.2.513a1.157,1.157,0,0,0-.539-.421A1.136,1.136,0,0,0,45.206,0H34.451A1.136,1.136,0,0,0,34,.092a1.156,1.156,0,0,0-.539.421,1.089,1.089,0,0,0-.2.636V14.377a1.09,1.09,0,0,0,.2.636,1.156,1.156,0,0,0,.539.421,1.135,1.135,0,0,0,.451.092,1.224,1.224,0,0,0,.852-.339l4.526-4.351,4.526,4.351a1.221,1.221,0,0,0,.852.328,1.194,1.194,0,0,0,.99-.5,1.088,1.088,0,0,0,.2-.636V1.149A1.089,1.089,0,0,0,46.2.513ZM45.083,14.059,40.742,9.892l-.913-.872-.913.872-4.341,4.166V1.314H45.083V14.059Z",
+      fill: "#fff"
+    })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "work-option-content"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "text-center work-option-new"
+    }, "NEW!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+      className: "work-option-title text-center mt-4 mb-2"
+    }, "AUTOMECHANIK"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      className: "work-option-description"
+    }, "Jujubes chupa chups gummies. Biscuit sugar plum lemon drops dessert cupcake sweet...", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "#"
+    }, "Zisti viac.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "row text-center h6 work-option-info pt-4 pb-5"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "col-6 p-0"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
@@ -70248,246 +70405,18 @@ var Home = function Home(_ref) {
       transform: "translate(-8.447 -16.475)",
       fill: "#00c7c7"
     })), "27.03.2020")))))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "work-options-slide col-12"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "work-options justify-content-between col-12 my-5 row"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "work-option row justify-content-center col-3 p-0"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "content shadow p-0 col-10"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "work-option-image-wrapper"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-      className: "work-option-image",
-      src: "./images/poster.jpg"
-    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-      className: "work-option-save",
-      width: "13.135",
-      height: "15.526",
-      viewBox: "0 0 13.135 15.526"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-      transform: "translate(-33.261)"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-      d: "M46.2.513a1.157,1.157,0,0,0-.539-.421A1.136,1.136,0,0,0,45.206,0H34.451A1.136,1.136,0,0,0,34,.092a1.156,1.156,0,0,0-.539.421,1.089,1.089,0,0,0-.2.636V14.377a1.09,1.09,0,0,0,.2.636,1.156,1.156,0,0,0,.539.421,1.135,1.135,0,0,0,.451.092,1.224,1.224,0,0,0,.852-.339l4.526-4.351,4.526,4.351a1.221,1.221,0,0,0,.852.328,1.194,1.194,0,0,0,.99-.5,1.088,1.088,0,0,0,.2-.636V1.149A1.089,1.089,0,0,0,46.2.513ZM45.083,14.059,40.742,9.892l-.913-.872-.913.872-4.341,4.166V1.314H45.083V14.059Z",
-      fill: "#fff"
-    })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "work-option-content"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-      className: "work-option-title text-center mt-4 mb-2"
-    }, "AUTOMECHANIK"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-      className: "work-option-description"
-    }, "Jujubes chupa chups gummies. Biscuit sugar plum lemon drops dessert cupcake sweet...", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "#"
-    }, "Zisti viac.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "row text-center h6 work-option-info my-4"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "col-6 p-0"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-      xmlns: "http://www.w3.org/2000/svg",
-      width: "13.512",
-      height: "19.292",
-      viewBox: "0 0 13.512 19.292"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-      d: "M23.023,12a2.466,2.466,0,1,0,2.466,2.466A2.469,2.469,0,0,0,23.023,12Zm0,4.228a1.762,1.762,0,1,1,1.762-1.762A1.764,1.764,0,0,1,23.023,16.228Z",
-      transform: "translate(-16.204 -7.772)",
-      fill: "#00c7c7"
-    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-      d: "M19.737,1.979a6.756,6.756,0,0,0-9.555,0,7.7,7.7,0,0,0-.636,9.5l5.413,7.817,5.405-7.806A7.7,7.7,0,0,0,19.737,1.979Zm.056,9.095-4.834,6.98-4.841-6.991a6.953,6.953,0,0,1,.562-8.586,6.052,6.052,0,0,1,8.558,0A6.956,6.956,0,0,1,19.793,11.074Z",
-      transform: "translate(-8.203 0)",
-      fill: "#00c7c7"
-    })), "NEMECKO")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "col-6 p-0"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-      xmlns: "http://www.w3.org/2000/svg",
-      width: "15.888",
-      height: "17.023",
-      viewBox: "0 0 15.888 17.023"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-      d: "M17.6,1.135H15.618V.284A.283.283,0,0,0,15.335,0H13.349a.283.283,0,0,0-.284.284v.851H6.823V.284A.283.283,0,0,0,6.539,0H4.553A.283.283,0,0,0,4.27.284v.851H2.284A.283.283,0,0,0,2,1.419V16.739a.283.283,0,0,0,.284.284H17.6a.283.283,0,0,0,.284-.284V1.419A.283.283,0,0,0,17.6,1.135ZM13.632.567h1.419v1.7H13.632V.567Zm-8.8,0H6.256v1.7H4.837V.567ZM2.567,1.7h1.7v.851a.283.283,0,0,0,.284.284H6.539a.283.283,0,0,0,.284-.284V1.7h6.242v.851a.283.283,0,0,0,.284.284h1.986a.283.283,0,0,0,.284-.284V1.7h1.7V4.256H2.567Zm0,14.753V4.823H17.321V16.455Z",
-      transform: "translate(-2)",
-      fill: "#00c7c7"
-    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-      d: "M18.66,23H11v8.228H21.781V23H18.66Zm-1.986.567H18.66v1.986H16.674Zm1.986,4.539H16.674V26.121H18.66Zm-4.539-1.986h1.986v1.986H14.121Zm0-2.553h1.986v1.986H14.121Zm-2.553,0h1.986v1.986H11.567Zm0,2.553h1.986v1.986H11.567Zm1.986,4.539H11.567V28.674h1.986Zm2.553,0H14.121V28.674h1.986Zm2.553,0H16.674V28.674H18.66Zm2.553,0H19.228V28.674h1.986Zm0-2.553H19.228V26.121h1.986Zm0-4.539v1.986H19.228V23.567Z",
-      transform: "translate(-8.447 -16.475)",
-      fill: "#00c7c7"
-    })), "27.03.2020")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "work-option row justify-content-center col-3 p-0"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "content shadow p-0 col-10"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "work-option-image-wrapper"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-      className: "work-option-image",
-      src: "./images/poster.jpg"
-    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-      className: "work-option-save",
-      width: "13.135",
-      height: "15.526",
-      viewBox: "0 0 13.135 15.526"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-      transform: "translate(-33.261)"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-      d: "M46.2.513a1.157,1.157,0,0,0-.539-.421A1.136,1.136,0,0,0,45.206,0H34.451A1.136,1.136,0,0,0,34,.092a1.156,1.156,0,0,0-.539.421,1.089,1.089,0,0,0-.2.636V14.377a1.09,1.09,0,0,0,.2.636,1.156,1.156,0,0,0,.539.421,1.135,1.135,0,0,0,.451.092,1.224,1.224,0,0,0,.852-.339l4.526-4.351,4.526,4.351a1.221,1.221,0,0,0,.852.328,1.194,1.194,0,0,0,.99-.5,1.088,1.088,0,0,0,.2-.636V1.149A1.089,1.089,0,0,0,46.2.513ZM45.083,14.059,40.742,9.892l-.913-.872-.913.872-4.341,4.166V1.314H45.083V14.059Z",
-      fill: "#fff"
-    })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "work-option-content"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-      className: "work-option-title text-center mt-4 mb-2"
-    }, "AUTOMECHANIK"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-      className: "work-option-description"
-    }, "Jujubes chupa chups gummies. Biscuit sugar plum lemon drops dessert cupcake sweet...", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "#"
-    }, "Zisti viac.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "row text-center h6 work-option-info my-4"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "col-6 p-0"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-      xmlns: "http://www.w3.org/2000/svg",
-      width: "13.512",
-      height: "19.292",
-      viewBox: "0 0 13.512 19.292"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-      d: "M23.023,12a2.466,2.466,0,1,0,2.466,2.466A2.469,2.469,0,0,0,23.023,12Zm0,4.228a1.762,1.762,0,1,1,1.762-1.762A1.764,1.764,0,0,1,23.023,16.228Z",
-      transform: "translate(-16.204 -7.772)",
-      fill: "#00c7c7"
-    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-      d: "M19.737,1.979a6.756,6.756,0,0,0-9.555,0,7.7,7.7,0,0,0-.636,9.5l5.413,7.817,5.405-7.806A7.7,7.7,0,0,0,19.737,1.979Zm.056,9.095-4.834,6.98-4.841-6.991a6.953,6.953,0,0,1,.562-8.586,6.052,6.052,0,0,1,8.558,0A6.956,6.956,0,0,1,19.793,11.074Z",
-      transform: "translate(-8.203 0)",
-      fill: "#00c7c7"
-    })), "NEMECKO")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "col-6 p-0"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-      xmlns: "http://www.w3.org/2000/svg",
-      width: "15.888",
-      height: "17.023",
-      viewBox: "0 0 15.888 17.023"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-      d: "M17.6,1.135H15.618V.284A.283.283,0,0,0,15.335,0H13.349a.283.283,0,0,0-.284.284v.851H6.823V.284A.283.283,0,0,0,6.539,0H4.553A.283.283,0,0,0,4.27.284v.851H2.284A.283.283,0,0,0,2,1.419V16.739a.283.283,0,0,0,.284.284H17.6a.283.283,0,0,0,.284-.284V1.419A.283.283,0,0,0,17.6,1.135ZM13.632.567h1.419v1.7H13.632V.567Zm-8.8,0H6.256v1.7H4.837V.567ZM2.567,1.7h1.7v.851a.283.283,0,0,0,.284.284H6.539a.283.283,0,0,0,.284-.284V1.7h6.242v.851a.283.283,0,0,0,.284.284h1.986a.283.283,0,0,0,.284-.284V1.7h1.7V4.256H2.567Zm0,14.753V4.823H17.321V16.455Z",
-      transform: "translate(-2)",
-      fill: "#00c7c7"
-    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-      d: "M18.66,23H11v8.228H21.781V23H18.66Zm-1.986.567H18.66v1.986H16.674Zm1.986,4.539H16.674V26.121H18.66Zm-4.539-1.986h1.986v1.986H14.121Zm0-2.553h1.986v1.986H14.121Zm-2.553,0h1.986v1.986H11.567Zm0,2.553h1.986v1.986H11.567Zm1.986,4.539H11.567V28.674h1.986Zm2.553,0H14.121V28.674h1.986Zm2.553,0H16.674V28.674H18.66Zm2.553,0H19.228V28.674h1.986Zm0-2.553H19.228V26.121h1.986Zm0-4.539v1.986H19.228V23.567Z",
-      transform: "translate(-8.447 -16.475)",
-      fill: "#00c7c7"
-    })), "27.03.2020")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "work-option row justify-content-center col-3 p-0"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "content shadow p-0 col-10"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "work-option-image-wrapper"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-      className: "work-option-image",
-      src: "./images/poster.jpg"
-    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-      className: "work-option-save",
-      width: "13.135",
-      height: "15.526",
-      viewBox: "0 0 13.135 15.526"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-      transform: "translate(-33.261)"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-      d: "M46.2.513a1.157,1.157,0,0,0-.539-.421A1.136,1.136,0,0,0,45.206,0H34.451A1.136,1.136,0,0,0,34,.092a1.156,1.156,0,0,0-.539.421,1.089,1.089,0,0,0-.2.636V14.377a1.09,1.09,0,0,0,.2.636,1.156,1.156,0,0,0,.539.421,1.135,1.135,0,0,0,.451.092,1.224,1.224,0,0,0,.852-.339l4.526-4.351,4.526,4.351a1.221,1.221,0,0,0,.852.328,1.194,1.194,0,0,0,.99-.5,1.088,1.088,0,0,0,.2-.636V1.149A1.089,1.089,0,0,0,46.2.513ZM45.083,14.059,40.742,9.892l-.913-.872-.913.872-4.341,4.166V1.314H45.083V14.059Z",
-      fill: "#fff"
-    })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "work-option-content"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-      className: "work-option-title text-center mt-4 mb-2"
-    }, "AUTOMECHANIK"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-      className: "work-option-description"
-    }, "Jujubes chupa chups gummies. Biscuit sugar plum lemon drops dessert cupcake sweet...", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "#"
-    }, "Zisti viac.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "row text-center h6 work-option-info my-4"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "col-6 p-0"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-      xmlns: "http://www.w3.org/2000/svg",
-      width: "13.512",
-      height: "19.292",
-      viewBox: "0 0 13.512 19.292"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-      d: "M23.023,12a2.466,2.466,0,1,0,2.466,2.466A2.469,2.469,0,0,0,23.023,12Zm0,4.228a1.762,1.762,0,1,1,1.762-1.762A1.764,1.764,0,0,1,23.023,16.228Z",
-      transform: "translate(-16.204 -7.772)",
-      fill: "#00c7c7"
-    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-      d: "M19.737,1.979a6.756,6.756,0,0,0-9.555,0,7.7,7.7,0,0,0-.636,9.5l5.413,7.817,5.405-7.806A7.7,7.7,0,0,0,19.737,1.979Zm.056,9.095-4.834,6.98-4.841-6.991a6.953,6.953,0,0,1,.562-8.586,6.052,6.052,0,0,1,8.558,0A6.956,6.956,0,0,1,19.793,11.074Z",
-      transform: "translate(-8.203 0)",
-      fill: "#00c7c7"
-    })), "NEMECKO")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "col-6 p-0"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-      xmlns: "http://www.w3.org/2000/svg",
-      width: "15.888",
-      height: "17.023",
-      viewBox: "0 0 15.888 17.023"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-      d: "M17.6,1.135H15.618V.284A.283.283,0,0,0,15.335,0H13.349a.283.283,0,0,0-.284.284v.851H6.823V.284A.283.283,0,0,0,6.539,0H4.553A.283.283,0,0,0,4.27.284v.851H2.284A.283.283,0,0,0,2,1.419V16.739a.283.283,0,0,0,.284.284H17.6a.283.283,0,0,0,.284-.284V1.419A.283.283,0,0,0,17.6,1.135ZM13.632.567h1.419v1.7H13.632V.567Zm-8.8,0H6.256v1.7H4.837V.567ZM2.567,1.7h1.7v.851a.283.283,0,0,0,.284.284H6.539a.283.283,0,0,0,.284-.284V1.7h6.242v.851a.283.283,0,0,0,.284.284h1.986a.283.283,0,0,0,.284-.284V1.7h1.7V4.256H2.567Zm0,14.753V4.823H17.321V16.455Z",
-      transform: "translate(-2)",
-      fill: "#00c7c7"
-    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-      d: "M18.66,23H11v8.228H21.781V23H18.66Zm-1.986.567H18.66v1.986H16.674Zm1.986,4.539H16.674V26.121H18.66Zm-4.539-1.986h1.986v1.986H14.121Zm0-2.553h1.986v1.986H14.121Zm-2.553,0h1.986v1.986H11.567Zm0,2.553h1.986v1.986H11.567Zm1.986,4.539H11.567V28.674h1.986Zm2.553,0H14.121V28.674h1.986Zm2.553,0H16.674V28.674H18.66Zm2.553,0H19.228V28.674h1.986Zm0-2.553H19.228V26.121h1.986Zm0-4.539v1.986H19.228V23.567Z",
-      transform: "translate(-8.447 -16.475)",
-      fill: "#00c7c7"
-    })), "27.03.2020")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "work-option row justify-content-center col-3 p-0"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "content shadow p-0 col-10"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "work-option-image-wrapper"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-      className: "work-option-image",
-      src: "./images/poster.jpg"
-    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-      className: "work-option-save",
-      width: "13.135",
-      height: "15.526",
-      viewBox: "0 0 13.135 15.526"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-      transform: "translate(-33.261)"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-      d: "M46.2.513a1.157,1.157,0,0,0-.539-.421A1.136,1.136,0,0,0,45.206,0H34.451A1.136,1.136,0,0,0,34,.092a1.156,1.156,0,0,0-.539.421,1.089,1.089,0,0,0-.2.636V14.377a1.09,1.09,0,0,0,.2.636,1.156,1.156,0,0,0,.539.421,1.135,1.135,0,0,0,.451.092,1.224,1.224,0,0,0,.852-.339l4.526-4.351,4.526,4.351a1.221,1.221,0,0,0,.852.328,1.194,1.194,0,0,0,.99-.5,1.088,1.088,0,0,0,.2-.636V1.149A1.089,1.089,0,0,0,46.2.513ZM45.083,14.059,40.742,9.892l-.913-.872-.913.872-4.341,4.166V1.314H45.083V14.059Z",
-      fill: "#fff"
-    })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "work-option-content"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-      className: "work-option-title text-center mt-4 mb-2"
-    }, "AUTOMECHANIK"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-      className: "work-option-description"
-    }, "Jujubes chupa chups gummies. Biscuit sugar plum lemon drops dessert cupcake sweet...", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "#"
-    }, "Zisti viac.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "row text-center h6 work-option-info my-4"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "col-6 p-0"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-      xmlns: "http://www.w3.org/2000/svg",
-      width: "13.512",
-      height: "19.292",
-      viewBox: "0 0 13.512 19.292"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-      d: "M23.023,12a2.466,2.466,0,1,0,2.466,2.466A2.469,2.469,0,0,0,23.023,12Zm0,4.228a1.762,1.762,0,1,1,1.762-1.762A1.764,1.764,0,0,1,23.023,16.228Z",
-      transform: "translate(-16.204 -7.772)",
-      fill: "#00c7c7"
-    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-      d: "M19.737,1.979a6.756,6.756,0,0,0-9.555,0,7.7,7.7,0,0,0-.636,9.5l5.413,7.817,5.405-7.806A7.7,7.7,0,0,0,19.737,1.979Zm.056,9.095-4.834,6.98-4.841-6.991a6.953,6.953,0,0,1,.562-8.586,6.052,6.052,0,0,1,8.558,0A6.956,6.956,0,0,1,19.793,11.074Z",
-      transform: "translate(-8.203 0)",
-      fill: "#00c7c7"
-    })), "NEMECKO")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "col-6 p-0"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-      xmlns: "http://www.w3.org/2000/svg",
-      width: "15.888",
-      height: "17.023",
-      viewBox: "0 0 15.888 17.023"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-      d: "M17.6,1.135H15.618V.284A.283.283,0,0,0,15.335,0H13.349a.283.283,0,0,0-.284.284v.851H6.823V.284A.283.283,0,0,0,6.539,0H4.553A.283.283,0,0,0,4.27.284v.851H2.284A.283.283,0,0,0,2,1.419V16.739a.283.283,0,0,0,.284.284H17.6a.283.283,0,0,0,.284-.284V1.419A.283.283,0,0,0,17.6,1.135ZM13.632.567h1.419v1.7H13.632V.567Zm-8.8,0H6.256v1.7H4.837V.567ZM2.567,1.7h1.7v.851a.283.283,0,0,0,.284.284H6.539a.283.283,0,0,0,.284-.284V1.7h6.242v.851a.283.283,0,0,0,.284.284h1.986a.283.283,0,0,0,.284-.284V1.7h1.7V4.256H2.567Zm0,14.753V4.823H17.321V16.455Z",
-      transform: "translate(-2)",
-      fill: "#00c7c7"
-    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-      d: "M18.66,23H11v8.228H21.781V23H18.66Zm-1.986.567H18.66v1.986H16.674Zm1.986,4.539H16.674V26.121H18.66Zm-4.539-1.986h1.986v1.986H14.121Zm0-2.553h1.986v1.986H14.121Zm-2.553,0h1.986v1.986H11.567Zm0,2.553h1.986v1.986H11.567Zm1.986,4.539H11.567V28.674h1.986Zm2.553,0H14.121V28.674h1.986Zm2.553,0H16.674V28.674H18.66Zm2.553,0H19.228V28.674h1.986Zm0-2.553H19.228V26.121h1.986Zm0-4.539v1.986H19.228V23.567Z",
-      transform: "translate(-8.447 -16.475)",
-      fill: "#00c7c7"
-    })), "27.03.2020")))))))))));
+      className: "row justify-content-center"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      className: "col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "sign")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "col-auto"
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      className: "col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "sign")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "col-auto"
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      className: "col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "sign"))));
   }
 
   Object(_reach_router__WEBPACK_IMPORTED_MODULE_2__["navigate"])('/');
@@ -70501,15 +70430,43 @@ var NextArrow = function NextArrow(props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
     className: className,
     style: _objectSpread({}, style, {
-      display: "block"
+      display: "block",
+      transform: "scale(5)"
     }),
     onClick: onClick,
-    enableBackground: "new 0 0 477.175 477.175",
-    viewBox: "0 0 477.18 477.18",
-    space: "preserve"
+    width: "112.756",
+    height: "76.79",
+    viewBox: "0 0 112.756 76.79"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("defs", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("filter", {
+    id: "a",
+    x: "0",
+    y: "0",
+    width: "112.756",
+    height: "76.79",
+    filterUnits: "userSpaceOnUse"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("feOffset", {
+    dy: "3",
+    input: "SourceAlpha"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("feGaussianBlur", {
+    stdDeviation: "3",
+    result: "b"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("feFlood", {
+    "flood-opacity": "0.161"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("feComposite", {
+    operator: "in",
+    in2: "b"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("feComposite", {
+    "in": "SourceGraphic"
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
+    transform: "translate(103.756 140.704) rotate(180)"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
+    transform: "matrix(-1, 0, 0, -1, 103.76, 140.7)",
+    filter: "url(#a)"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "m360.73 229.08-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8 0.1-19z"
-  }));
+    d: "M90.654,101.207H14l18.29-18.291a4.1,4.1,0,0,0-5.8-5.8L1.2,102.408a4.1,4.1,0,0,0,0,5.8L26.494,133.5a4.1,4.1,0,1,0,5.8-5.8L14,109.41h76.65a4.1,4.1,0,1,0,0-8.2Z",
+    transform: "translate(103.76 140.7) rotate(180)",
+    fill: "#2c393f"
+  }))));
 };
 
 var PreviousArrow = function PreviousArrow(props) {
@@ -70519,15 +70476,43 @@ var PreviousArrow = function PreviousArrow(props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
     className: className,
     style: _objectSpread({}, style, {
-      display: "block"
+      display: "block",
+      transform: "scale(5)"
     }),
     onClick: onClick,
-    enableBackground: "new 0 0 477.175 477.175",
-    viewBox: "0 0 477.18 477.18",
-    space: "preserve"
+    width: "112.756",
+    height: "76.79",
+    viewBox: "0 0 112.756 76.79"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("defs", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("filter", {
+    id: "a",
+    x: "0",
+    y: "0",
+    width: "112.756",
+    height: "76.79",
+    filterUnits: "userSpaceOnUse"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("feOffset", {
+    dy: "3",
+    input: "SourceAlpha"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("feGaussianBlur", {
+    stdDeviation: "3",
+    result: "b"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("feFlood", {
+    "flood-opacity": "0.161"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("feComposite", {
+    operator: "in",
+    in2: "b"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("feComposite", {
+    "in": "SourceGraphic"
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
+    transform: "translate(9 -69.914)"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
+    transform: "matrix(1, 0, 0, 1, -9, 69.91)",
+    filter: "url(#a)"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "m145.19 238.58 215.5-215.5c5.3-5.3 5.3-13.8 0-19.1s-13.8-5.3-19.1 0l-225.1 225.1c-5.3 5.3-5.3 13.8 0 19.1l225.1 225c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.3-5.3 5.3-13.8 0-19.1l-215.4-215.5z"
-  }));
+    d: "M90.654,101.207H14l18.29-18.291a4.1,4.1,0,0,0-5.8-5.8L1.2,102.408a4.1,4.1,0,0,0,0,5.8L26.494,133.5a4.1,4.1,0,1,0,5.8-5.8L14,109.41h76.65a4.1,4.1,0,1,0,0-8.2Z",
+    transform: "translate(9 -69.91)",
+    fill: "#2c393f"
+  }))));
 };
 
 /***/ }),
