@@ -69969,7 +69969,7 @@ var Home = function Home(_ref) {
 
   if (location.state != undefined) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: " home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 "
+      className: " home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 pt-5"
     }, location.state.data.user.active == 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Additional__WEBPACK_IMPORTED_MODULE_1__["Additional"], {
       user: location.state.data.user,
       func: handleChange,
@@ -70416,7 +70416,46 @@ var Home = function Home(_ref) {
       className: "col-auto"
     }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       className: "col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "sign"))));
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "sign"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "advertisement-info-wrapper"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "container-fluid row justify-content-center m-0 p-0"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "advertisement-info-box col-11 m-0 p-0 mt-5 shadow row"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "col-3 p-0"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      className: "advertisement-info-image",
+      src: "./images/poster.jpg"
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "col-9 row justify-content-center"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "col-8 pt-5"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+      className: "advertisement-info-title text-center"
+    }, "TITEL"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "advertisement-info-tags row justify-content-center my-5"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "advertisement-info-tag py-2 mx-3 my-2 px-4 shadow col-auto"
+    }, "ATTAChinterupt"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "advertisement-info-tag py-2 mx-3 my-2 px-4 shadow col-auto"
+    }, "ATTAChinterupt"), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "advertisement-info-tag py-2 mx-3 my-2 px-4 shadow col-auto"
+    }, "ATTAChinterupt"), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "advertisement-info-tag py-2 mx-3 my-2 px-4 shadow col-auto"
+    }, "ATTAChinteruptfdsf fsdfds"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "advertisement-info-tag py-2 mx-3 my-2 px-4 shadow col-auto"
+    }, "ATTAChinterupt")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      className: "advertisement-info-description mb-5"
+    }, "dasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasd dasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasd"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      className: "my-2 submit-button sign-in-button px-5"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "m\xE1m zaujem"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "col-4"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "advertisement-info-branches"
+    }, "sadasd"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "advertisement-info-additional"
+    }, "asdasdas")))))));
   }
 
   Object(_reach_router__WEBPACK_IMPORTED_MODULE_2__["navigate"])('/');

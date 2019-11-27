@@ -44,7 +44,7 @@ export const Home =({location, edit = f => f, region}) => {
 
     if(location.state != undefined){
         return (
-            <div className={` home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 `}>
+            <div className={` home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 pt-5`}>
                 {location.state.data.user.active==0 ? <Additional user={location.state.data.user} func={handleChange} region={region}/> : ``}
                 <div className="content col-11 row justify-content-center pt-5">
                     <div className="header col-11 row justify-content-between">
@@ -278,21 +278,65 @@ export const Home =({location, edit = f => f, region}) => {
                     </Slider>
                     
                 </div>
-                
-                        <div className="row justify-content-center">
-                            <button className={`col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button`}>
-                            <span>sign</span>
-                            </button>
-                            <div className="col-auto"></div>
-                            <button className={`col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button`}>
-                                <span>sign</span>
-                            </button>
-                            <div className="col-auto"></div>
-                            <button className={`col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button`}>
-                                <span>sign</span>
-                            </button>
+                <div className="row justify-content-center">
+                    <button className={`col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button`}>
+                        <span>sign</span>
+                    </button>
+                    <div className="col-auto"></div>
+                    <button className={`col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button`}>
+                        <span>sign</span>
+                    </button>
+                    <div className="col-auto"></div>
+                    <button className={`col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button`}>
+                        <span>sign</span>
+                    </button>
+                </div>
+
+                <div className="advertisement-info-wrapper">
+                    <div className="container-fluid row justify-content-center m-0 p-0">
+                        <div className="advertisement-info-box col-11 m-0 p-0 mt-5 shadow row">
+                            <div className="col-3 p-0">
+                                <img className="advertisement-info-image" src="./images/poster.jpg"/>
+                            </div>
+                            <div className="col-9 row justify-content-center">
+                                <div className="col-8 pt-5">
+                                    <h1 className="advertisement-info-title text-center">TITEL</h1>
+                                    <div className="advertisement-info-tags row justify-content-center my-5">
+                                        <div className="advertisement-info-tag py-2 mx-3 my-2 px-4 shadow col-auto">
+                                            ATTAChinterupt
+                                        </div>
+                                        <div className="advertisement-info-tag py-2 mx-3 my-2 px-4 shadow col-auto">
+                                            ATTAChinterupt
+                                        </div> <div className="advertisement-info-tag py-2 mx-3 my-2 px-4 shadow col-auto">
+                                            ATTAChinterupt
+                                        </div> <div className="advertisement-info-tag py-2 mx-3 my-2 px-4 shadow col-auto">
+                                            ATTAChinteruptfdsf fsdfds
+                                        </div>
+                                        <div className="advertisement-info-tag py-2 mx-3 my-2 px-4 shadow col-auto">
+                                            ATTAChinterupt
+                                        </div>
+                                        
+                                    </div>
+                                    <p className="advertisement-info-description mb-5">
+dasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasd
+dasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasd
+                                    </p>
+                                    <button className="my-2 submit-button sign-in-button px-5">
+                                        <span>mám zaujem</span>
+                                    </button>
+                                </div>
+                                <div className="col-4">
+                                    <div className="advertisement-info-branches">
+sadasd
+                                    </div>
+                                    <div className="advertisement-info-additional">
+asdasdas
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                
+                    </div>                        
+                </div>
             </div>
             
         );
