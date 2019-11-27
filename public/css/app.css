@@ -11417,38 +11417,44 @@ hr {
   background: white;
 }
 
-.work-options {
+.home .work-options {
   font-family: "Montserrat";
   height: 100%;
   color: #2C393F;
 }
 
-.work-options .work-option .content {
+.home .work-options .work-option .content {
   height: auto;
 }
 
-.work-options .work-option-image-wrapper {
+.home .work-options .work-option-image-wrapper {
   position: relative;
 }
 
-.work-options .work-option-image {
+.home .work-options .work-option-image {
   max-width: 100%;
   border-radius: 29px 29px 0 0;
 }
 
-.work-options .work-option-save {
+.home .work-options .work-option-save {
   position: absolute;
   top: 85%;
   right: 0.9rem;
 }
 
-.work-options .work-option-content {
+.home .work-options .work-option-edit {
+  position: absolute;
+  top: 85%;
+  right: 2.3rem;
+}
+
+.home .work-options .work-option-content {
   position: relative;
   width: 70%;
   margin: 0 auto;
 }
 
-.work-options .work-option-content .work-option-new {
+.home .work-options .work-option-content .work-option-new {
   width: 4em;
   padding: 1em 0;
   font-size: 13px;
@@ -11461,21 +11467,32 @@ hr {
   right: calc(-30% - 1em);
 }
 
-.work-options .work-option-content .work-option-title {
+.home .work-options .work-option-content .work-option-title {
   font-size: 19px;
 }
 
-.work-options .work-option-content .work-option-description {
+.home .work-options .work-option-content .work-option-description {
   font-size: 15px;
   line-height: 18px;
 }
 
-.work-options .work-option-content .work-option-info {
+.home .work-options .work-option-content .work-option-info {
   font-size: 11px;
 }
 
-.work-options .work-option-content .work-option-info svg {
+.home .work-options .work-option-content .work-option-info svg {
   margin-right: 15px;
+}
+
+.home .home-button {
+  font-size: 1.1em;
+  font-weight: 300;
+  border-radius: 50px;
+  text-transform: uppercase;
+  text-decoration: none;
+  z-index: 1;
+  border: none;
+  background: #ffffff;
 }
 
 /**
@@ -11487,6 +11504,7 @@ hr {
 
 body {
   font-family: "Krub", sans-serif;
+  overflow-x: hidden;
 }
 
 body div#root .home {
