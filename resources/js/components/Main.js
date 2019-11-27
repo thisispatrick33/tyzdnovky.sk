@@ -8,7 +8,6 @@ import axios from "axios";
 import {Home} from "./Logged/Home";
 import {PasswordReset} from "./Forms/PasswordReset";
 import {Advertisement} from "./Forms/Advertisement";
-import {AdvertisementView} from "./AdvertisementView";
 
 
 const Main = () => {
@@ -83,7 +82,7 @@ const Main = () => {
 
                     setAuthState({isLoggedIn: appState.isLoggedIn, user: appState.user});
                     console.log(appState);
-                    navigate(`/home`, {state:{data:appState}});
+                    navigate(`/home`);
                 }else {
                     alert("Authentication Failed!");
                 }
@@ -171,7 +170,7 @@ const Main = () => {
 
                     setAuthState({isLoggedIn: appState.isLoggedIn, user: appState.user});
 
-                    navigate(`/home`, {state:{data:appState}});
+                    navigate(`/home`);
                 }else {
                     alert(`Registration Failed!`);
                 }
@@ -280,7 +279,7 @@ const Main = () => {
                     localStorage["appState"] = JSON.stringify(appState);
 
                     setAuthState({isLoggedIn: appState.isLoggedIn, user: appState.user});
-                    navigate(`/home`, {state:{data:appState}});
+                    navigate(`/home`);
                 }
 
             })
@@ -373,6 +372,8 @@ const Main = () => {
             })
     };
 
+
+
     const fetchData = async () => {
         const result = await axios(
             'api/register-additional',{
@@ -394,10 +395,8 @@ const Main = () => {
             <Router>
 
                 <Authentication path={`/`} login={_loginUser} register={_submitRegistration} reset={_reset} message={message}/>
-                <Home path={`/home`} edit={_edit} region={location}/>
+                <Home path={`/home`} edit={_edit} region={location} createAd={_createAd} updateAd={_updateAd} />
                 <PasswordReset path={'/reset-password'} reset={_resetPassword}/>
-                <Advertisement path={'/advertisement'} createAd={_createAd} region={location} updateAd={_updateAd} id={advertId}/>
-                <AdvertisementView path={'/advertisement_view'} region={location} id={advertId}/>
 
             </Router>
 

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Tags} from '../Tags';
 import axios from "axios";
 
-export const Advertisement = ({createAd = f => f, region, id, updateAd = f =>f}) =>{
+export const Advertisement = ({id, createAd = f => f, region, updateAd = f =>f}) =>{
 
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
@@ -18,7 +18,7 @@ export const Advertisement = ({createAd = f => f, region, id, updateAd = f =>f})
 
 
     useEffect(() => {
-        if(id!==null){
+        if(id !=null){
             const getAd = async () => {
                 const result = await axios(
                     'api/advertisement/'+id,{
@@ -91,7 +91,7 @@ export const Advertisement = ({createAd = f => f, region, id, updateAd = f =>f})
         setTags(list);
     };
 
-    if((id!==null&&data.user_id==undefined)){
+    if((id!=null&&data.user_id==undefined&&data.business_id==undefined)){
         return <div >loading</div>
     }
     else {
