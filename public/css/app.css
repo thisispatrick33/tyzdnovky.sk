@@ -10647,7 +10647,6 @@ a.text-dark:focus {
 .authentication-form {
   font-family: "Montserrat", sans-serif;
   width: 100vw;
-  height: 100vh;
 }
 
 .authentication-form .highlighted {

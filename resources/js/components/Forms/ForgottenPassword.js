@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import $ from "jquery";
-export const ForgottenPassword = ({reset=f=>f, close = f =>f}) => {
+export const ForgottenPassword = ({reset = f => f, close = f =>f}) => {
 
     const [email, setEmail] = useState("");
     const [missing, setMissing] = useState(``);
@@ -50,7 +50,7 @@ export const ForgottenPassword = ({reset=f=>f, close = f =>f}) => {
                     </div>
                     {(missing.value === "@" || missing.value === "email" || missing.value === "login") ? <p className={`col-11 pl-2 pt-1 warning-message mb-0`}>{missing.message}</p> : ``}
                     <button
-                        className={`submit-button sign-in-button col-6 text-center py-2 mb-5 mt-3 `}
+                        className={`submit-button sign-in-button col-xl-6 col-lg-6 col-md-8 col-sm-10 col-10 text-center py-2 mb-5 mt-3 `}
                         onClick={()=>submit()}><span>send email</span></button>
 
                     <div className="col-12 row problems">

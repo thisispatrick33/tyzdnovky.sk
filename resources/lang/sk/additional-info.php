@@ -15,7 +15,7 @@ return [
     'slide1_placeholder2' => 'Zadajte svoje priezvisko',
     'slide1_placeholder2_business' => 'Zadajte IČO svojej spoločnosti',
     'slide1_subtitle2' => 'Kontaktujte ma tu',
-    'slide1_placeholder3' => 'Zadajte svoje tel. číslo',
+    'slide1_placeholder3' => 'Zadajte svoje telefónne číslo',
     'slide2_title1' => 'Jazykové zručnosti ',
     'slide2_placeholder1' => 'Ovládate ďalši jazyk ',
     'slide3_title1' => 'Práce na plný úväzok',
@@ -25,5 +25,5 @@ return [
     'slide5_placeholder1' => 'Zadajte svoj nickname',
     'slide5_checkbox1' => 'Mám vodičský preukaz skupiny B',
     'slide5_checkbox2' => 'Súhlasím s podmienkami používania',
-    'slide5_submit' => 'Uložiť zmeny',    
+    'slide5_submit' => 'Uložiť zmeny',
 ];

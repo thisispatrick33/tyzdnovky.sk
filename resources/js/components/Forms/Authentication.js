@@ -12,14 +12,7 @@ export const Authentication = ({message,login = f => f, register = f => f, reset
     const [passwordView, setPasswordView] = useState(false);
     const [passwordReset, setPasswordReset] = useState(false);
 
-    const submit = (control) => {
-        if(control=="r"){
-            register(data);
-        }
-        else if (control=="l"){
-           login(data)
-        }
-    };
+    const submit = control => control === `r` ?  register(data) : login(data);
 
 
     const _formValidator = (e, control) => {
@@ -76,17 +69,20 @@ export const Authentication = ({message,login = f => f, register = f => f, reset
 
     return (
 
-            <div className={`authentication-form | container-fluid | row col-12 | align-items-center | m-0 p-0`}>
-                <video  autoPlay="autoplay" loop muted={`muted`} preload="auto" poster={"./images/poster.jpg"}>
-                    <source src="./images/background-video.mp4" type="video/mp4" />
-                    <source src="./images/background-video.webm" type="video/webm" />
-                    <source src="./images/background-video.ogg" type="video/ogg" />
-                </video>
+            <div className={`authentication-form | container-fluid | row col-12 | align-items-center | m-0 p-0`} style={{height : $(window).height()}}>
+                {
+                    window.innerHeight <= 768 ? `` :
+                        <video  autoPlay="autoplay" loop muted={`muted`} preload="auto" poster={"./images/poster.jpg"}>
+                            <source src="./images/background-video.mp4" type="video/mp4" />
+                            <source src="./images/background-video.webm" type="video/webm" />
+                            <source src="./images/background-video.ogg" type="video/ogg" />
+                        </video>
+                }
                 <div className={`content-frame | col-12 | px-0 m-0 `}>
                     {
                         passwordReset ?  <ForgottenPassword close={_forgottenPassword} reset={reset}/> : ``
                     }
-                    <form id={`login-form`} className={`form row col-xl-4 col-lg-5 col-md-6 col-sm-8 col-12 | align-items-start | justify-content-center align-items-center | m-0`}>
+                    <form id={`login-form`} className={`form row col-xl-4 col-lg-5 col-md-6 col-sm-12 col-12 | align-items-start | justify-content-center align-items-center | m-0`}>
                         <p>{message}</p>
                         <div className="col-11 justify-content-center row p-xl-1 pl-lg-1 p-md-1 p-sm-0 p-0">
                             <div className=" row m-0 p-0 col-12 header justify-content-center ">
@@ -152,7 +148,7 @@ export const Authentication = ({message,login = f => f, register = f => f, reset
                             </div>
                             {(missing.value === `password`) ? <p className={`col-11 pl-2 pt-1 warning-message mb-0`}>{missing.message}</p> : ``}
                             <button
-                                className={`submit-button sign-in-button col-6 text-center py-2 mb-5 mt-3 `}
+                                className={'submit-button sign-in-button col-6 text-center py-2 mb-5 mt-3 '}
                                 onClick={(e) => _formValidator(e, slide === 0 ? `l` : `r`)}><span>sign {slide === 0 ? `in` : `up`}</span></button>
 
                             <div className="col-12 row problems">

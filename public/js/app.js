@@ -68351,7 +68351,8 @@ var Additional = function Additional(_ref) {
   return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "additional-info-form | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0",
     style: {
-      overflowY: "scroll"
+      overflowY: "scroll",
+      height: window.innerHeight <= 768 ? jquery__WEBPACK_IMPORTED_MODULE_5___default()(window).height() : "100vh"
     }
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "content-frame | row  col-xl-6 col-lg-6 col-md-7 col-12 | justify-content-center align-items-center | px-0 | shadow-sm py-xl-5 py-lg-5 py-md-5 py-0 my-xl-4 my-lg-4 my-md-5 my-0"
@@ -68880,11 +68881,7 @@ var Authentication = function Authentication(_ref) {
       setPasswordReset = _useState10[1];
 
   var submit = function submit(control) {
-    if (control == "r") {
-      register(data);
-    } else if (control == "l") {
-      login(data);
-    }
+    return control === "r" ? register(data) : login(data);
   };
 
   var _formValidator = function _formValidator(e, control) {
@@ -68954,8 +68951,11 @@ var Authentication = function Authentication(_ref) {
   };
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "authentication-form | container-fluid | row col-12 | align-items-center | m-0 p-0"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
+    className: "authentication-form | container-fluid | row col-12 | align-items-center | m-0 p-0",
+    style: {
+      height: jquery__WEBPACK_IMPORTED_MODULE_2___default()(window).height()
+    }
+  }, window.innerHeight <= 768 ? "" : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
     autoPlay: "autoplay",
     loop: true,
     muted: "muted",
@@ -68977,7 +68977,7 @@ var Authentication = function Authentication(_ref) {
     reset: reset
   }) : "", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     id: "login-form",
-    className: "form row col-xl-4 col-lg-5 col-md-6 col-sm-8 col-12 | align-items-start | justify-content-center align-items-center | m-0"
+    className: "form row col-xl-4 col-lg-5 col-md-6 col-sm-12 col-12 | align-items-start | justify-content-center align-items-center | m-0"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, message), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-11 justify-content-center row p-xl-1 pl-lg-1 p-md-1 p-sm-0 p-0"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -69092,7 +69092,7 @@ var Authentication = function Authentication(_ref) {
   })))), missing.value === "password" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "col-11 pl-2 pt-1 warning-message mb-0"
   }, missing.message) : "", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "submit-button sign-in-button col-6 text-center py-2 mb-5 mt-3 ",
+    className: 'submit-button sign-in-button col-6 text-center py-2 mb-5 mt-3 ',
     onClick: function onClick(e) {
       return _formValidator(e, slide === 0 ? "l" : "r");
     }
@@ -69216,7 +69216,7 @@ var ForgottenPassword = function ForgottenPassword(_ref) {
   })), missing.value === "@" || missing.value === "email" || missing.value === "login" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "col-11 pl-2 pt-1 warning-message mb-0"
   }, missing.message) : "", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "submit-button sign-in-button col-6 text-center py-2 mb-5 mt-3 ",
+    className: "submit-button sign-in-button col-xl-6 col-lg-6 col-md-8 col-sm-10 col-10 text-center py-2 mb-5 mt-3 ",
     onClick: function onClick() {
       return submit();
     }
@@ -69619,7 +69619,7 @@ var Main = function Main() {
       authState = _useState2[0],
       setAuthState = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
       _useState4 = _slicedToArray(_useState3, 2),
       location = _useState4[0],
       setLocation = _useState4[1];
@@ -69663,7 +69663,7 @@ var Main = function Main() {
             profile_pic: json.data.data.profile_pic,
             timestamp: new Date().toString()
           };
-        } else if (json.data.data.type === "business") {
+        } else if (json.data.data.type === 'business') {
           userData = {
             active: json.data.data.active,
             auth_token: json.data.data.auth_token,
@@ -69690,7 +69690,7 @@ var Main = function Main() {
           user: appState.user
         });
         console.log(appState);
-        Object(_reach_router__WEBPACK_IMPORTED_MODULE_3__["navigate"])("/home", {
+        Object(_reach_router__WEBPACK_IMPORTED_MODULE_3__["navigate"])('/home', {
           state: {
             data: appState
           }
@@ -69719,16 +69719,16 @@ var Main = function Main() {
 
   var _submitRegistration = function _submitRegistration(data) {
     jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form .sign-up-button").attr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>');
-    axios__WEBPACK_IMPORTED_MODULE_5___default.a.post("/api/register", data, {
+    axios__WEBPACK_IMPORTED_MODULE_5___default.a.post('/api/register', data, {
       headers: {
-        'Content-Type': "application/json",
+        'Content-Type': 'application/json',
         "X-localization": location
       }
     }).then(function (response) {
       return response;
     }).then(function (json) {
       if (json.data.success) {
-        alert("Registration Successful!");
+        alert('Registration Successful!');
         var userData = {};
 
         if (json.data.data.type === "user") {
@@ -69746,7 +69746,7 @@ var Main = function Main() {
             profile_pic: json.data.data.profile_pic,
             timestamp: new Date().toString()
           };
-        } else if (json.data.data.type === "business") {
+        } else if (json.data.data.type === 'business') {
           userData = {
             active: json.data.data.active,
             auth_token: json.data.data.auth_token,
@@ -69771,13 +69771,13 @@ var Main = function Main() {
           isLoggedIn: appState.isLoggedIn,
           user: appState.user
         });
-        Object(_reach_router__WEBPACK_IMPORTED_MODULE_3__["navigate"])("/home", {
+        Object(_reach_router__WEBPACK_IMPORTED_MODULE_3__["navigate"])('/home', {
           state: {
             data: appState
           }
         });
       } else {
-        alert("Registration Failed!");
+        alert('Registration Failed!');
       }
 
       jquery__WEBPACK_IMPORTED_MODULE_2___default()("#login-form .sign-up-button").removeAttr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign up</span>');
@@ -69788,10 +69788,10 @@ var Main = function Main() {
 
   var _edit = function _edit(data) {
     var formData = new FormData();
-    formData.append("email", data.email);
-    formData.append("name", data.name);
-    formData.append("phone", data.phone);
-    formData.append("username", '@' + data.username);
+    formData.append('email', data.email);
+    formData.append('name', data.name);
+    formData.append('phone', data.phone);
+    formData.append('username', '@' + data.username);
 
     if (data.lastName !== undefined) {
       for (var i = 0; i < data.languages.length; i++) {
@@ -69799,25 +69799,25 @@ var Main = function Main() {
       }
 
       for (var _i2 = 0; _i2 < data.categories.length; _i2++) {
-        formData.append("categories[]", data.categories[_i2]);
+        formData.append('categories[]', data.categories[_i2]);
       }
 
-      formData.append("lastName", data.lastName);
-      formData.set("drivingLicense", data.drivingLicense);
+      formData.append('lastName', data.lastName);
+      formData.set('drivingLicense', data.drivingLicense);
     } else {
-      formData.append("ico", data.ico);
+      formData.append('ico', data.ico);
     }
 
     if (data.profile_pic === null) {
-      formData.append("profile_pic", data.profile_pic);
+      formData.append('profile_pic', data.profile_pic);
     } else {
-      formData.append("profile_pic", data.profile_pic[0]);
+      formData.append('profile_pic', data.profile_pic[0]);
     }
 
-    axios__WEBPACK_IMPORTED_MODULE_5___default.a.post("/api/register-additional", formData, {
+    axios__WEBPACK_IMPORTED_MODULE_5___default.a.post('/api/register-additional', formData, {
       headers: {
-        'Content-Type': "multipart/form-data",
-        'Accept': "multipart/form-data",
+        'Content-Type': 'multipart/form-data',
+        'Accept': 'multipart/form-data',
         "X-localization": location,
         "Authorization": 'Bearer ' + JSON.parse(localStorage.appState).user.auth_token
       }
@@ -69846,7 +69846,7 @@ var Main = function Main() {
             profile_pic: response.data.data.profile_pic,
             timestamp: new Date().toString()
           };
-        } else if (response.data.data.type === "business") {
+        } else if (response.data.data.type === 'business') {
           userData = {
             active: response.data.data.active,
             auth_token: response.data.data.auth_token,
@@ -69872,7 +69872,7 @@ var Main = function Main() {
           isLoggedIn: appState.isLoggedIn,
           user: appState.user
         });
-        Object(_reach_router__WEBPACK_IMPORTED_MODULE_3__["navigate"])("/home", {
+        Object(_reach_router__WEBPACK_IMPORTED_MODULE_3__["navigate"])('/home', {
           state: {
             data: appState
           }
@@ -69884,9 +69884,9 @@ var Main = function Main() {
   };
 
   var _reset = function _reset(login) {
-    axios__WEBPACK_IMPORTED_MODULE_5___default.a.post("/api/password-reset-mail", login, {
+    axios__WEBPACK_IMPORTED_MODULE_5___default.a.post('/api/password-reset-mail', login, {
       headers: {
-        'Content-Type': "application/json",
+        'Content-Type': 'application/json',
         "X-localization": location
       }
     }).then(function (response) {
@@ -69898,9 +69898,9 @@ var Main = function Main() {
 
   var _resetPassword = function _resetPassword(data) {
     console.log(data);
-    axios__WEBPACK_IMPORTED_MODULE_5___default.a.post("/api/password-reset", data, {
+    axios__WEBPACK_IMPORTED_MODULE_5___default.a.post('/api/password-reset', data, {
       headers: {
-        'Content-Type': "application/json",
+        'Content-Type': 'application/json',
         "X-localization": location
       }
     }).then(function (response) {
@@ -69918,13 +69918,13 @@ var Main = function Main() {
   };
 
   return _ipLocation(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reach_router__WEBPACK_IMPORTED_MODULE_3__["Router"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_Authentication__WEBPACK_IMPORTED_MODULE_4__["Authentication"], {
-    path: "/",
+    path: '/',
     login: _loginUser,
     register: _submitRegistration,
     reset: _reset,
     message: message
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Logged_Home__WEBPACK_IMPORTED_MODULE_6__["Home"], {
-    path: "/home",
+    path: '/home',
     edit: _edit,
     region: location
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_PasswordReset__WEBPACK_IMPORTED_MODULE_7__["PasswordReset"], {

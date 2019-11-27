@@ -12,7 +12,7 @@ import {PasswordReset} from "./Forms/PasswordReset";
 
 const Main = () => {
     const [authState, setAuthState] = useState({isLoggedIn : false, user : {}});
-    const [location, setLocation] = useState(``);
+    const [location, setLocation] = useState('');
     const [message, setMessage] = useState(``);
 
 
@@ -56,7 +56,7 @@ const Main = () => {
                             timestamp: new Date().toString()
                         };
                     }
-                    else if(json.data.data.type === `business`){
+                    else if(json.data.data.type === 'business'){
                         userData = {
                             active: json.data.data.active,
                             auth_token: json.data.data.auth_token,
@@ -81,7 +81,7 @@ const Main = () => {
 
                     setAuthState({isLoggedIn: appState.isLoggedIn, user: appState.user});
                     console.log(appState);
-                    navigate(`/home`, {state:{data:appState}});
+                    navigate('/home', {state:{data:appState}});
                 }else {
                     alert("Authentication Failed!");
                 }
@@ -117,9 +117,9 @@ const Main = () => {
                 '<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>'
             );
         axios
-            .post(`/api/register`, data ,{
+            .post('/api/register', data ,{
                 headers : {
-                    'Content-Type' : `application/json`,
+                    'Content-Type' : 'application/json',
                     "X-localization" : location,
                 }
             })
@@ -128,7 +128,7 @@ const Main = () => {
             })
             .then(json => {
                 if (json.data.success) {
-                    alert(`Registration Successful!`);
+                    alert('Registration Successful!');
                     let userData = {};
                     if (json.data.data.type === "user") {
                         userData = {
@@ -146,7 +146,7 @@ const Main = () => {
                             timestamp: new Date().toString()
                         };
                     }
-                    else if(json.data.data.type === `business`){
+                    else if(json.data.data.type === 'business'){
                         userData = {
                             active: json.data.data.active,
                             auth_token: json.data.data.auth_token,
@@ -169,9 +169,9 @@ const Main = () => {
 
                     setAuthState({isLoggedIn: appState.isLoggedIn, user: appState.user});
 
-                    navigate(`/home`, {state:{data:appState}});
+                    navigate('/home', {state:{data:appState}});
                 }else {
-                    alert(`Registration Failed!`);
+                    alert('Registration Failed!');
                 }
                 $("#login-form .sign-up-button")
                     .removeAttr("disabled", "disabled")
@@ -192,40 +192,40 @@ const Main = () => {
     const _edit = (data) => {
         let formData = new FormData();
 
-        formData.append(`email`, data.email);
-        formData.append(`name`, data.name);
-        formData.append(`phone`, data.phone);
-        formData.append(`username`, '@'+data.username);
+        formData.append('email', data.email);
+        formData.append('name', data.name);
+        formData.append('phone', data.phone);
+        formData.append('username', '@'+data.username);
 
         if(data.lastName!==undefined){
             for (let i = 0; i < data.languages.length; i++) {
                 formData.append('languages[]', data.languages[i]);
             }
             for (let i = 0; i < data.categories.length; i++) {
-                formData.append(`categories[]`, data.categories[i]);
+                formData.append('categories[]', data.categories[i]);
             }
-            formData.append(`lastName`, data.lastName);
-            formData.set(`drivingLicense`, data.drivingLicense);
+            formData.append('lastName', data.lastName);
+            formData.set('drivingLicense', data.drivingLicense);
         }
         else {
-            formData.append(`ico`, data.ico);
+            formData.append('ico', data.ico);
         }
 
 
         if(data.profile_pic===null){
-            formData.append(`profile_pic`, data.profile_pic);
+            formData.append('profile_pic', data.profile_pic);
         }
         else{
-            formData.append(`profile_pic`, data.profile_pic[0]);
+            formData.append('profile_pic', data.profile_pic[0]);
         }
 
 
 
         axios
-            .post(`/api/register-additional`, formData,{
+            .post('/api/register-additional', formData,{
                 headers : {
-                    'Content-Type' : `multipart/form-data`,
-                    'Accept' : `multipart/form-data`,
+                    'Content-Type' : 'multipart/form-data',
+                    'Accept' : 'multipart/form-data',
                     "X-localization" : location,
                     "Authorization" : 'Bearer '+JSON.parse(localStorage.appState).user.auth_token
                 }
@@ -255,7 +255,7 @@ const Main = () => {
                             timestamp: new Date().toString()
                         };
                     }
-                    else if(response.data.data.type === `business`){
+                    else if(response.data.data.type === 'business'){
                         userData = {
                             active: response.data.data.active,
                             auth_token: response.data.data.auth_token,
@@ -278,7 +278,7 @@ const Main = () => {
                     localStorage["appState"] = JSON.stringify(appState);
 
                     setAuthState({isLoggedIn: appState.isLoggedIn, user: appState.user});
-                    navigate(`/home`, {state:{data:appState}});
+                    navigate('/home', {state:{data:appState}});
                 }
 
             })
@@ -292,9 +292,9 @@ const Main = () => {
 
     const _reset = (login) =>{
         axios
-            .post(`/api/password-reset-mail`, login ,{
+            .post('/api/password-reset-mail', login ,{
                 headers : {
-                    'Content-Type' : `application/json`,
+                    'Content-Type' : 'application/json',
                     "X-localization" : location,
                 }
             })
@@ -309,9 +309,9 @@ const Main = () => {
         console.log(data);
 
         axios
-          .post(`/api/password-reset`, data ,{
+          .post('/api/password-reset', data ,{
             headers : {
-              'Content-Type' : `application/json`,
+              'Content-Type' : 'application/json',
             "X-localization" : location,
          }
          })
@@ -341,8 +341,8 @@ const Main = () => {
             _ipLocation(),
             <Router>
 
-                <Authentication path={`/`} login={_loginUser} register={_submitRegistration} reset={_reset} message={message}/>
-                <Home path={`/home`} edit={_edit} region={location}/>
+                <Authentication path={'/'} login={_loginUser} register={_submitRegistration} reset={_reset} message={message}/>
+                <Home path={'/home'} edit={_edit} region={location}/>
                 <PasswordReset path={'/reset-password'} reset={_resetPassword}/>
             </Router>
 

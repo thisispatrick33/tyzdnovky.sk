@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Krub:300,400,500,600,800&display=swap');
 @import '~bootstrap/scss/bootstrap';
+
 $primary-color : #00C7C7;
+$primary-color-two : #3a7bd5;
 $secondary-color : #2c393f;
 $silver : #EDEDED;
 $error : #D50B0B;
+
 @import './_authentication';
 @import './_additional';
 @import './_password-reset';

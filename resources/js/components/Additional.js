@@ -182,7 +182,7 @@ export const Additional = ({user, func = f => f, region}) => {
         return <div>Loading</div>
     }
     return (
-        <div className={`additional-info-form | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0`} style={{overflowY : `scroll`}}>
+        <div className={`additional-info-form | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0`} style={{overflowY : `scroll`, height : window.innerHeight <= 768 ? $(window).height() : `100vh`}}>
             <div className="content-frame | row  col-xl-6 col-lg-6 col-md-7 col-12 | justify-content-center align-items-center | px-0 | shadow-sm py-xl-5 py-lg-5 py-md-5 py-0 my-xl-4 my-lg-4 my-md-5 my-0">
                 <div className="col-10 row main-info p-0 m-0 align-items-center">
                     <h1 className={'col-12 p-0 text-center mt-5'}><span className="doth">{dataAdditional.text.slide1_title1.substring(0, dataAdditional.text.slide1_title1.indexOf(" "))}</span>{dataAdditional.text.slide1_title1.substring(dataAdditional.text.slide1_title1.indexOf(" "))}<span className="doth">...</span></h1>
