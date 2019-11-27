@@ -57,6 +57,7 @@
       -webkit-backface-visibility: hidden;
       z-index: 1;
       border: none;
+      background: linear-gradient(to left, $primary-color, #3a7bd5);
 
       span {
         position: relative;
@@ -66,10 +67,6 @@
       &:focus {
         outline: 0;
       }
-    }
-
-    .sign-in-button {
-      background: linear-gradient(to left, $primary-color, #3a7bd5);
     }
 
     .submit-button:after {
@@ -83,9 +80,6 @@
       transition: opacity 0.5s ease-out;
       z-index: 2;
       opacity: 0;
-    }
-
-    .sign-in-button:after {
       background: linear-gradient(to right, $primary-color, #3a7bd5);
     }
 

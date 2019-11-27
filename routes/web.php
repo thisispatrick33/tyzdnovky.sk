@@ -26,3 +26,4 @@ Route::get('/forgotten_password', function () {
 Route::get('/reset-password', function () {
     return view('welcome');
 });
+

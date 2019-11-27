@@ -317,9 +317,9 @@ export const Additional = ({user, func = f => f, region}) => {
                                     <h6 className="col-12 mb-3 p-0 text-center">{dataAdditional.text.slide3_subtitle1} ?</h6>
                                     <div className="categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center">
                                         {
-                                            dataAdditional.branches.map( ({id,free_time,name}) => {
-                                                if(free_time===0){
-                                                    return  <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.includes(id) ? `on` : ``}`} onClick={() => handleWork(id)}>
+                                            dataAdditional.branches.map( ({id, name, free_time}) => {
+                                                if(free_time==0){
+                                                    return <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.includes(id) ? `on` : ``}`} onClick={() => handleWork(id)}>
                                                         {name}
                                                     </div>;
                                                 }
@@ -337,9 +337,9 @@ export const Additional = ({user, func = f => f, region}) => {
                                     <h6 className="col-12 mb-3 p-0 text-center">{dataAdditional.text.slide4_subtitle1} ?</h6>
                                     <div className="categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center">
                                         {
-                                            dataAdditional.branches.map( ({id,free_time,name}) => {
-                                                if(free_time===1){
-                                                    return  <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.includes(id) ? `on` : ``}`} onClick={() => handleWork(id)}>
+                                            dataAdditional.branches.map( ({id, name, free_time}) => {
+                                                if(free_time==1){
+                                                    return <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.includes(id) ? `on` : ``}`} onClick={() => handleWork(id)}>
                                                         {name}
                                                     </div>;
                                                 }

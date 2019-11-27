@@ -82,7 +82,7 @@ export const Authentication = ({message,login = f => f, register = f => f, reset
                     {
                         passwordReset ?  <ForgottenPassword close={_forgottenPassword} reset={reset}/> : ``
                     }
-                    <form id={`login-form`} className={`form row col-xl-4 col-lg-5 col-md-6 col-sm-12 col-12 | align-items-start | justify-content-center align-items-center | m-0`}>
+                    <form id={`authentication-form`} className={`form row col-xl-4 col-lg-5 col-md-6 col-sm-12 col-12 | align-items-start | justify-content-center align-items-center | m-0`}>
                         <p>{message}</p>
                         <div className="col-11 justify-content-center row p-xl-1 pl-lg-1 p-md-1 p-sm-0 p-0">
                             <div className=" row m-0 p-0 col-12 header justify-content-center ">
@@ -148,9 +148,9 @@ export const Authentication = ({message,login = f => f, register = f => f, reset
                             </div>
                             {(missing.value === `password`) ? <p className={`col-11 pl-2 pt-1 warning-message mb-0`}>{missing.message}</p> : ``}
                             <button
-                                className={'submit-button sign-in-button col-6 text-center py-2 mb-5 mt-3 '}
-                                onClick={(e) => _formValidator(e, slide === 0 ? `l` : `r`)}><span>sign {slide === 0 ? `in` : `up`}</span></button>
-
+                                className={'submit-button col-6 text-center py-2 mb-5 mt-3 '}
+                                onClick={(e) => _formValidator(e, slide === 0 ? `l` : `r`)}><span>sign {slide === 0 ? `in` : `up`}</span>
+                            </button>
                             <div className="col-12 row problems">
                                 {
                                     slide === 0 ?

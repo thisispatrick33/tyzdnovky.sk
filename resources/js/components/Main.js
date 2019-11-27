@@ -1,28 +1,35 @@
 import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import $ from "jquery";
-
-import {Router, navigate} from '@reach/router';
-import { Authentication } from './Forms/Authentication';
 import axios from "axios";
+
+import { Router, navigate} from '@reach/router';
+import { Authentication } from './Forms/Authentication';
 import {Home} from "./Logged/Home";
 import {PasswordReset} from "./Forms/PasswordReset";
 
 
-
 const Main = () => {
+
     const [authState, setAuthState] = useState({isLoggedIn : false, user : {}});
     const [location, setLocation] = useState('');
-    const [message, setMessage] = useState(``);
+    const [message, setMessage] = useState('');
 
-
-    const _loginUser = (data) => {
-        let message = ``;
-        $("#login-form .sign-in-button")
-            .attr("disabled", "disabled")
+    useEffect(() => {
+        _ipLocation();
+        _fetchData();
+    },[]);
+    const _disableForm = (control) => {
+        console.log("dis");
+        $("#authentication-form .submit-button")
+            .prop("disabled", control)
             .html(
-                '<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>'
-            );
+                `<span className="sr-only">${control ? `Loading...` : `Submit`}</span>`
+            )
+    };
+
+    const _loginUser = data => {
+        _disableForm(true);
         axios
             .post("/api/login", data, {
                 headers : {
@@ -81,22 +88,15 @@ const Main = () => {
 
                     setAuthState({isLoggedIn: appState.isLoggedIn, user: appState.user});
                     console.log(appState);
-                    navigate('/home', {state:{data:appState}});
+                    navigate(`/home`);
                 }else {
                     alert("Authentication Failed!");
                 }
 
-
-                $("#login-form .sign-in-button")
-                    .removeAttr("disabled")
-                    .html( '<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign in</span>')
-
-
+                _disableForm(false);
             })
             .catch(error => {
-                $("#login-form .sign-in-button")
-                    .removeAttr("disabled")
-                    .html( '<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign in</span>')
+                _disableForm(false);
             });
     };
 
@@ -169,7 +169,7 @@ const Main = () => {
 
                     setAuthState({isLoggedIn: appState.isLoggedIn, user: appState.user});
 
-                    navigate('/home', {state:{data:appState}});
+                    navigate(`/home`);
                 }else {
                     alert('Registration Failed!');
                 }
@@ -278,7 +278,7 @@ const Main = () => {
                     localStorage["appState"] = JSON.stringify(appState);
 
                     setAuthState({isLoggedIn: appState.isLoggedIn, user: appState.user});
-                    navigate('/home', {state:{data:appState}});
+                    navigate(`/home`);
                 }
 
             })
@@ -311,8 +311,8 @@ const Main = () => {
         axios
           .post('/api/password-reset', data ,{
             headers : {
-              'Content-Type' : 'application/json',
-            "X-localization" : location,
+              'Content-Type' : `application/json`,
+                "X-localization" : location,
          }
          })
          .then((response) => {
@@ -334,19 +334,66 @@ const Main = () => {
                     console.log('Request failed.  Returned status of',
                         status);
                 }
+
             );
     };
 
-    return (
-            _ipLocation(),
-            <Router>
+    const _createAd = (data) => {
+        console.log(data);
+        console.log(JSON.parse(localStorage.appState).user.id);
+        axios
+            .post(`/api/advertisement`, data ,{
+                headers : {
+                    'Content-Type' : `application/json`,
+                    "X-localization" : location,
+                    "Authorization" : 'Bearer '+JSON.parse(localStorage.appState).user.auth_token
+                }
+            })
+            .then((response) => {
+                console.log(response);
+                return response;
+            })
+    };
 
-                <Authentication path={'/'} login={_loginUser} register={_submitRegistration} reset={_reset} message={message}/>
-                <Home path={'/home'} edit={_edit} region={location}/>
+    const _updateAd = (data) =>{
+        console.log(data);
+        axios
+            .put(`/api/advertisement`, data ,{
+                headers : {
+                    'Content-Type' : `application/json`,
+                    "X-localization" : location,
+                    "Authorization" : 'Bearer '+JSON.parse(localStorage.appState).user.auth_token
+                }
+            })
+            .then((response) => {
+                console.log(response);
+                return response;
+            })
+    };
+
+
+
+    const _fetchData = async () => {
+        const result = await axios(
+            'api/register-additional',{
+                headers:{
+                    'X-localization' : location,
+                }
+            }
+        );
+        localStorage['branches'] = JSON.stringify(result.data.branches);
+    };
+
+
+
+
+    return (
+            <Router>
+                <Authentication path={`/`} login={_loginUser} register={_submitRegistration} reset={_reset} message={message}/>
+                <Home path={`/home`} edit={_edit} region={location} createAd={_createAd} updateAd={_updateAd} />
                 <PasswordReset path={'/reset-password'} reset={_resetPassword}/>
             </Router>
-
-    )
+    );
 
 };
 

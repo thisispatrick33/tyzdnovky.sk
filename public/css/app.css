@@ -10705,6 +10705,7 @@ a.text-dark:focus {
   -webkit-backface-visibility: hidden;
   z-index: 1;
   border: none;
+  background: linear-gradient(to left, #00C7C7, #3a7bd5);
 }
 
 .authentication-form .content-frame .submit-button span {
@@ -10714,10 +10715,6 @@ a.text-dark:focus {
 
 .authentication-form .content-frame .submit-button:focus {
   outline: 0;
-}
-
-.authentication-form .content-frame .sign-in-button {
-  background: linear-gradient(to left, #00C7C7, #3a7bd5);
 }
 
 .authentication-form .content-frame .submit-button:after {
@@ -10731,9 +10728,6 @@ a.text-dark:focus {
   transition: opacity 0.5s ease-out;
   z-index: 2;
   opacity: 0;
-}
-
-.authentication-form .content-frame .sign-in-button:after {
   background: linear-gradient(to right, #00C7C7, #3a7bd5);
 }
 
@@ -11416,6 +11410,84 @@ hr {
   background: white;
 }
 
+.home .work-options {
+  font-family: "Montserrat";
+  height: 100%;
+  color: #2C393F;
+}
+
+.home .work-options .work-option .content {
+  height: auto;
+}
+
+.home .work-options .work-option-image-wrapper {
+  position: relative;
+}
+
+.home .work-options .work-option-image {
+  max-width: 100%;
+  border-radius: 29px 29px 0 0;
+}
+
+.home .work-options .work-option-save {
+  position: absolute;
+  top: 85%;
+  right: 0.9rem;
+}
+
+.home .work-options .work-option-edit {
+  position: absolute;
+  top: 85%;
+  right: 2.3rem;
+}
+
+.home .work-options .work-option-content {
+  position: relative;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.home .work-options .work-option-content .work-option-new {
+  width: 4em;
+  padding: 1em 0;
+  font-size: 13px;
+  font-weight: 500;
+  background: #00C7C7;
+  color: #FFFFFF;
+  border-radius: 50%;
+  position: absolute;
+  top: -5%;
+  right: calc(-30% - 1em);
+}
+
+.home .work-options .work-option-content .work-option-title {
+  font-size: 19px;
+}
+
+.home .work-options .work-option-content .work-option-description {
+  font-size: 15px;
+  line-height: 18px;
+}
+
+.home .work-options .work-option-content .work-option-info {
+  font-size: 11px;
+}
+
+.home .work-options .work-option-content .work-option-info svg {
+  margin-right: 15px;
+}
+
+.home .home-button {
+  font-size: 1.1em;
+  font-weight: 300;
+  border-radius: 50px;
+  text-transform: uppercase;
+  text-decoration: none;
+  z-index: 1;
+  border: none;
+  background: #ffffff;
+}
+
 /**
 * Add a transition to the label and input.
 * I'm not even sure that touch-action: manipulation works on
@@ -11425,6 +11497,7 @@ hr {
 
 body {
   font-family: "Krub", sans-serif;
+  overflow-x: hidden;
 }
 
 body div#root .home {
@@ -11525,7 +11598,6 @@ body div#root .home .content .message p span {
 }
 
 body div#root .home .content .work-options .work-option .content {
-  height: 300px;
   border-radius: 27px;
 }
 

@@ -11,6 +11,13 @@ use Illuminate\Database\Eloquent\Model;
 class Business extends Authenticatable implements JWTSubject
 {
     use Notifiable;
+
+    public function advertisements()
+    {
+        return $this->hasMany('App\Advertisement');
+    }
+
+
     protected $guard = 'businesses';
 
     protected $table = 'business';
