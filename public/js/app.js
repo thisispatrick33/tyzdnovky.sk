@@ -69021,102 +69021,123 @@ var Advertisement = function Advertisement(_ref) {
   if (id != null && data.user_id == undefined && data.business_id == undefined) {
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, "loading");
   } else {
-    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-      id: "title",
-      type: "text",
-      name: "title",
-      placeholder: "title",
-      onChange: function onChange(e) {
-        return setData(_objectSpread({}, data, {
-          title: e.target.value
-        }));
-      },
-      value: data.title ? data.title : "",
-      className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
-    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-      id: "description",
-      type: "text",
-      name: "description",
-      placeholder: "description",
-      onChange: function onChange(e) {
-        return setData(_objectSpread({}, data, {
-          description: e.target.value
-        }));
-      },
-      value: data.description ? data.description : "",
-      className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
-    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-      id: "when",
-      type: "date",
-      name: "when",
-      placeholder: "when",
-      min: today,
-      onChange: function onChange(e) {
-        return setData(_objectSpread({}, data, {
-          date: e.target.value
-        }));
-      },
-      value: data.date ? data.date : "",
-      className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
-    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-      id: "where",
-      type: "text",
-      name: "where",
-      placeholder: "where",
-      onChange: function onChange(e) {
-        return setData(_objectSpread({}, data, {
-          address: e.target.value
-        }));
-      },
-      value: data.address ? data.address : "",
-      className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
-    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-      id: "salary",
-      type: "text",
-      name: "salary",
-      placeholder: "salary",
-      onChange: function onChange(e) {
-        return handleSalary(e.target.value);
-      },
-      value: data.salary ? data.salary : "",
-      className: " pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12"
-    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "advertisement-create-wrapper",
+      id: "advertisement-info"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "container-fluid row justify-content-center m-0 p-0"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "advertisement-create-box col-11 m-0 p-0 mt-5 shadow row pb-5 pb-xl-0"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "col-12 row justify-content-center pb-0"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "col-12 row justify-content-center py-5"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "col-12 col-lg-10 h10 order-2 order-lg-1"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", {
+      className: "text-center text-uppercase "
+    }, "vytvorenie inzeratu")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "col-12 col-lg-2  h10 order-1 order-lg-2"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "cross float-right"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
       onClick: function onClick() {
-        return setType(!type);
-      }
-    }, "click to change categories"), type ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "Fulltime"), categories.map(function (_ref3) {
-      var id = _ref3.id,
-          free_time = _ref3.free_time,
-          name = _ref3.name;
-
-      if (free_time === 0) {
-        return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-          className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(branches.includes(id) ? "on" : ""),
-          onClick: function onClick() {
-            return handleWork(id);
-          }
-        }, name);
-      }
-    })) : react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "Freetime"), categories.map(function (_ref4) {
-      var id = _ref4.id,
-          free_time = _ref4.free_time,
-          name = _ref4.name;
-
-      if (free_time === 1) {
-        return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-          className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(branches.includes(id) ? "on" : ""),
-          onClick: function onClick() {
-            return handleWork(id);
-          }
-        }, name);
-      }
-    })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Tags__WEBPACK_IMPORTED_MODULE_2__["Tags"], {
+        return hideAdvertisementInfo();
+      },
+      className: "ml-3",
+      style: {
+        transform: "scale(.8)"
+      },
+      width: "42",
+      height: "42",
+      viewBox: "0 0 42 42"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+      d: "M42,2.467,23.467,21,42,39.534,39.533,42,21,23.468,2.467,42,0,39.534,18.533,21,0,2.467,2.467,0,21,18.534,39.533,0Z",
+      transform: "translate(0 -0.001)",
+      fill: "#2c393f"
+    })))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "row justify-content-center col-12 h90 pt-5 order-3"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "col-xl-3 col-lg-6 pr-3"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "border-r pt-2 justify-content-start row branches"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "branch py-2  mt-1 mb-5 px-4 shadow col-11 text-uppercase"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      className: "float-left  bold colorful-text"
+    }, "fulltime"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      className: "float-right  bold"
+    }, "freetime")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "list row justify-content-start col-12 text-uppercase text-center d-lg-flex d-inline scroll"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "py-2 mx-3 mt-1 mb-3 px-4 shadow col-lg-11 col-auto submit-button sign-in-button "
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      className: ""
+    }, "ATTAChinterupt")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "branch py-2 mx-3 mt-1 mb-3 px-4 shadow col-lg-11 col-auto"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      className: "colorful-text"
+    }, "ATTAChinterupt")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "branch py-2 mx-3 mt-1 mb-3 px-4 shadow col-lg-11 col-auto"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      className: "colorful-text"
+    }, "ATTAChinterupt")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "branch py-2 mx-3 mt-1 mb-3 px-4 shadow col-lg-11 col-auto"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      className: "colorful-text"
+    }, "ATTAChinterupt")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "branch py-2 mx-3 mt-1 mb-3 px-4 shadow col-lg-11 col-auto"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      className: "colorful-text"
+    }, "ATTAChinterupt")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "branch py-2 mx-3 mt-1 mb-3 px-4 shadow col-lg-11 col-auto"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      className: "colorful-text"
+    }, "ATTAChinterupt")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "branch py-2 mx-3 mt-1 mb-3 px-4 shadow col-lg-11 col-auto"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      className: "colorful-text"
+    }, "ATTAChinterupt")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "branch py-2 mx-3 mt-1 mb-3 px-4 shadow col-lg-11 col-auto"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      className: "colorful-text"
+    }, "ATTAChinterupt")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "branch py-2 mx-3 mt-1 mb-3 px-4 shadow col-lg-11 col-auto"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      className: "colorful-text"
+    }, "ATTAChinterupt"))))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "col-xl-9 col-lg-6 text-uppercase pt-5 row justify-content-center"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      className: "col-11 px-3 my-2 my-xl-0",
+      type: "text",
+      placeholder: "Ak\xE9 povolanie vyh\u013Ead\xE1vate ? "
+    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Tags__WEBPACK_IMPORTED_MODULE_2__["Tags"], {
       addTags: _tags,
       list: tags
-    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-      className: "submit-button sign-in-button col-xl-5 col-lg-6 col-md-9 col-11 text-center py-2 mb-5 mt-3 ",
-      onClick: submit
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "posli")));
+    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("textarea", {
+      className: "col-11 px-3 py-3 my-2 my-xl-0",
+      cols: "30",
+      rows: "5",
+      placeholder: "Pridajte popis a podmienky pr\xE1ce"
+    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "col-11 row justify-content-between p-0 pt-4"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      className: "col-xl-3 col-lg-12 px-3 my-2 my-xl-0",
+      type: "text",
+      placeholder: "Zadajte miesto pr\xE1ce"
+    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      className: "col-xl-3 col-lg-12 px-3 my-2 my-xl-0",
+      type: "text",
+      placeholder: "Zadajte d\xE1tum n\xE1stupu"
+    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      className: "col-xl-3 col-lg-12 px-3 my-2 my-xl-0",
+      type: "text",
+      placeholder: "Zadajte plat"
+    })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+      className: "my-2 mb-3 submit-button sign-in-button px-5 d-block text-uppercase py-3 py-xl-1"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, " vytvori\u0165  ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      className: "strong"
+    }, "inzer\xE1t !"))))))))));
   }
 };
 
@@ -70076,12 +70097,7 @@ var Home = function Home(_ref) {
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, name);
     }), ad.tags.map(function (value) {
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, value);
-    }))), create.active ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Forms_Advertisement__WEBPACK_IMPORTED_MODULE_9__["Advertisement"], {
-      createAd: handleCreate,
-      region: region,
-      updateAd: handleUpdate,
-      id: create.id
-    }) : "", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_4___default.a, _extends({}, settings, {
+    }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_4___default.a, _extends({}, settings, {
       className: "work-options justify-content-between col-12 my-5 px-5 row"
     }), data.map(function (_ref5) {
       var id = _ref5.id,
@@ -70140,6 +70156,7 @@ var Home = function Home(_ref) {
       }, title), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
         className: "work-option-description"
       }, description.substring(0, 74), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+        className: "colorful-text",
         onClick: function onClick() {
           return viewAd(id);
         }
@@ -70179,7 +70196,13 @@ var Home = function Home(_ref) {
     }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "row justify-content-center"
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-      className: "col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button"
+      className: "col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button",
+      onClick: function onClick() {
+        return setCreate({
+          id: null,
+          active: true
+        });
+      }
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "sign")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "col-auto"
     }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
@@ -70207,7 +70230,7 @@ var Home = function Home(_ref) {
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "col-12 col-sm-8 order-2 order-sm-1"
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", {
-      className: "advertisement-info-title text-center"
+      className: "advertisement-info-title text-center text-uppercase"
     }, "AUTOMECHANIK")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "col-12 col-sm-4 order-1 order-sm-2 "
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -70234,10 +70257,12 @@ var Home = function Home(_ref) {
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "border-r pt-4 justify-content-center row "
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "advertisement-info-tags row justify-content-center pb-5 col-11"
+      className: "advertisement-info-tags row justify-content-center pb-5 col-11 text-uppercase"
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "advertisement-info-tag py-2 mx-3 mt-1 mb-2 px-4 shadow col-auto"
-    }, "ATTAChinterupt")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      className: "colorful-text"
+    }, "ATTAChinterupt"))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
       className: "advertisement-info-description mb-5 text-center"
     }, "Donec convallis iaculis tellus vel interdum. Maecenas dictum dui sed urna condimentum lacinia. In suscipit metus vel tempor rhoncus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac vestibulum felis. Mauris commodo porttitor scelerisque. Duis et metus at quam convallis dapibus a ut metus."), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
       className: "my-2 mb-3 submit-button sign-in-button px-5 py-2 d-block"
@@ -70488,7 +70513,12 @@ var Home = function Home(_ref) {
       fill: "#00c7c7"
     }))))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "col-6 text-left pl-0"
-    }, "4845\u20AC")))))))))));
+    }, "4845\u20AC")))))))))), create.active ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Forms_Advertisement__WEBPACK_IMPORTED_MODULE_9__["Advertisement"], {
+      createAd: handleCreate,
+      region: region,
+      updateAd: handleUpdate,
+      id: create.id
+    }) : "");
   }
 
   Object(_reach_router__WEBPACK_IMPORTED_MODULE_3__["navigate"])('/');
@@ -71041,6 +71071,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Tags", function() { return Tags; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -71059,6 +71091,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var Tags = function Tags(_ref) {
+  var _React$createElement;
+
   var _ref$addTags = _ref.addTags,
       addTags = _ref$addTags === void 0 ? function (f) {
     return f;
@@ -71129,26 +71163,32 @@ var Tags = function Tags(_ref) {
   }
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "form"
+    className: "ml-4 tags col-11  my-2 my-xl-0 mx-0 px-0"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "tags"
+    className: "input px-3 row align-items-start col-12",
+    style: {
+      height: "auto"
+    }
   }, tags.map(function (tag, i) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, tag);
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "col-auto input-tag text-capitalize mt-1 px-2 shadow mx-2"
+    }, tag);
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", (_React$createElement = {
+    className: "",
     type: "text",
-    placeholder: "Add tag...",
+    placeholder: "Pridajte tagy\u2026 napr\xEDklad : z\xE1hrada, Nemecko, les",
+    style: {
+      width: "100%"
+    },
     value: value,
     onChange: function onChange(e) {
       return handleChange(e);
-    },
-    className: "tag-input",
-    onKeyUp: function onKeyUp(e) {
-      return handleKeyUp(e);
-    },
-    onKeyDown: function onKeyDown(e) {
-      return handleKeyDown(e);
     }
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Press ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("code", null, "enter"), " or ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("code", null, ","), " to add a tag. Press", " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("code", null, "backspace"), " to edit previous tag."));
+  }, _defineProperty(_React$createElement, "className", "tag-input"), _defineProperty(_React$createElement, "onKeyUp", function onKeyUp(e) {
+    return handleKeyUp(e);
+  }), _defineProperty(_React$createElement, "onKeyDown", function onKeyDown(e) {
+    return handleKeyDown(e);
+  }), _React$createElement))));
 };
 
 /***/ }),

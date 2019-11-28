@@ -114,63 +114,7 @@
             word-break: break-all;
             font-size: 1em;
         }
-        .submit-button {
-            font-size: 1.1em;
-            font-weight: 300;
-            border-radius: 50px;
-            text-transform: uppercase;
-            color: white;
-            position: relative;
-            text-decoration: none;
-            -webkit-backface-visibility: hidden;
-            z-index: 1;
-            border: none;
-
-            span {
-              position: relative;
-              z-index: 300;
-            }
-
-            &:focus {
-              outline: 0;
-            }
-
-            &:after{
-                position: absolute;
-                content: '';
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                border-radius: 50px;
-                transition: opacity 0.5s ease-out;
-                z-index: 2;
-                opacity: 0;
-            }
-
-            &:hover:after{
-                opacity: 1;
-            }
-
-            &:hover{
-                cursor: pointer;
-            }
-        }
-
-        .sign-in-button {
-            background: linear-gradient(to left, $primary-color, #3a7bd5);
-            margin:0 auto;
-
-            &:after{
-                background: linear-gradient(to right, $primary-color, #3a7bd5);
-            }
-        }
-        .border-r{
-              border-right: 1px solid $silver;
-              @media (max-width: $break-m){
-                border: none;
-              }
-        }
+       
         .border-b{
             border-bottom: 1px solid $silver;
         }
@@ -179,9 +123,7 @@
                 border-bottom: 1px solid $silver;
               }
         }
-        .strong{
-            font-weight: bold;
-        }
+        
         .cross{
             text-align: center;
         }
@@ -200,6 +142,181 @@
         }
         
         
+    }
+    .advertisement-create-wrapper{
+        position: absolute;
+        z-index: 10;
+        background: rgba(255,255,255, .8 );
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        font-family: 'Montserrat';
+        color: #2C393F;
+
+        .advertisement-create-box{
+            background: #fff;
+            min-height: 90vh;
+            width: 100%;
+            border-radius: 29px;
+        }
+        .branches{
+
+            .branch{
+                font-size: 1em;
+                font-weight: 300;
+                border-radius: 50px;
+                text-transform: uppercase;
+                text-decoration: none;
+                z-index: 1;
+                border: none;
+                background: #ffffff;
+            }
+            .list{
+                overflow-y: auto;
+                max-height: 60vh;
+
+                @media screen and (max-width: $break-l){
+                    overflow-y: hidden;
+                    overflow-x: scroll;
+                    max-height: 5em;
+                    white-space: nowrap;
+                    width:133.33333333%;
+                    .branch{
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+        .h10{
+            height: 10%;
+        }
+        .h90{
+            height: 90%;
+        }
+        input,.input{
+            background: $silver;
+            border : none;
+            color: $secondary-color;
+            border-radius : 27px;
+            height: 3em;
+            &:focus{
+              outline: 0;
+            }
+            &[type="text"]{
+              text-transform : capitalize;
+              &:hover{
+                cursor: text;
+              }
+            }
+        }
+          textarea{
+            background: $silver;
+            border : none;
+            color: $secondary-color;
+            border-radius : 27px;
+            &:focus{
+              outline: 0;
+            }
+          }
+    }
+    .submit-button {
+        font-size: 1.1em;
+        font-weight: 300;
+        border-radius: 50px;
+        text-transform: uppercase;
+        color: white;
+        position: relative;
+        text-decoration: none;
+        -webkit-backface-visibility: hidden;
+        z-index: 1;
+        border: none;
+
+        span {
+          position: relative;
+          z-index: 300;
+        }
+
+        &:focus {
+          outline: 0;
+        }
+
+        &:after{
+            position: absolute;
+            content: '';
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50px;
+            transition: opacity 0.5s ease-out;
+            z-index: 2;
+            opacity: 0;
+        }
+
+        &:hover:after{
+            opacity: 1;
+        }
+
+        &:hover{
+            cursor: pointer;
+        }
+        
+    }
+
+    .sign-in-button {
+        background: linear-gradient(to left, $primary-color, #3a7bd5);
+        margin:0 auto;
+
+        &:after{
+            background: linear-gradient(to right, $primary-color, #3a7bd5);
+        }
+    }
+    .border-r{
+          border-right: 1px solid $silver;
+          @media (max-width: $break-m){
+            border: none;
+          }
+    }
+    .strong{
+        font-weight: bold;
+    }
+    .scroll::-webkit-scrollbar-track
+    {
+        -webkit-box-shadow: inset 0 0 6px $silver;
+        border-radius: 10px;
+        background-color: transparent;
+    }
+
+    .scroll::-webkit-scrollbar{
+        width: 6px;
+        height: 6px;
+        background-color: transparent;
+    }
+
+    .scroll::-webkit-scrollbar-thumb
+    {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px $silver;
+        background-color: $silver;
+    }
+    .bold{
+        font-weight: 500;
+    }
+    .colorful-text{
+        background: linear-gradient(to left, $primary-color 0%, #3a7bd5);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: rgba(0,0,0,0.0001);
+        border-radius: 27px;
+        &.on{
+            -webkit-background-clip: unset;
+            -webkit-text-fill-color: white;
+        }
+    }
+    .input-tag{
+        height: 1.5em;
+        background: #FFFFFF;
+        border-radius: 29px;
     }
 }
 

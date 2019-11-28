@@ -53,16 +53,26 @@ export const Tags = ({addTags = f => f, list}) => {
     }
 
     return (
-        <div className="form">
-            <div className="tags">
+        <div className="ml-4 tags col-11  my-2 my-xl-0 mx-0 px-0"
+            
+        >
+            <div className="input px-3 row align-items-start col-12"
+            style={{
+                height:"auto"
+            }}>
                     {tags.map((tag, i) => (
-                       <div>
+                       <span className="col-auto input-tag text-capitalize mt-1 px-2 shadow mx-2">
                             {tag}
-                       </div>
+                       </span>
                     ))}
+                    
                 <input
+                    className=""
                     type="text"
-                    placeholder="Add tag..."
+                    placeholder="Pridajte tagy… napríklad : záhrada, Nemecko, les"
+                    style={{
+                        width:"100%"
+                    }}
                     value={value}
                     onChange={(e) => handleChange(e)}
                     className="tag-input"
@@ -70,10 +80,6 @@ export const Tags = ({addTags = f => f, list}) => {
                     onKeyDown={(e) => handleKeyDown(e)}
                 />
             </div>
-            <small>
-                Press <code>enter</code> or <code>,</code> to add a tag. Press{" "}
-                <code>backspace</code> to edit previous tag.
-            </small>
         </div>
     );
 };

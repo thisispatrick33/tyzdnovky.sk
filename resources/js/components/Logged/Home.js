@@ -158,9 +158,7 @@ export const Home =({edit = f => f, region, createAd = f => f, updateAd = f =>f}
                             }
                         </div>}
                     </div>
-                    {
-                    create.active ? <Advertisement createAd={handleCreate} region={region} updateAd={handleUpdate} id={create.id}/> : ""
-                    }
+                    
                     <Slider {...settings} className={`work-options justify-content-between col-12 my-5 px-5 row`}>
                                 {
                                     data.map( ({id, title, description, address, date, created_at}) => {
@@ -183,7 +181,7 @@ export const Home =({edit = f => f, region, createAd = f => f, updateAd = f =>f}
                                                         </h5>
                                                         <p className="work-option-description">
                                                             {description.substring(0, 74)}
-                                                            <a onClick={()=>viewAd(id)}>... Zisti viac.</a>
+                                                            <a className="colorful-text" onClick={()=>viewAd(id)}>... Zisti viac.</a>
                                                         </p>
                                                         <div className="row text-center h6 work-option-info pt-4 pb-5">
                                                             <div className="col-6 p-0">
@@ -209,7 +207,7 @@ export const Home =({edit = f => f, region, createAd = f => f, updateAd = f =>f}
 
                 </div>
                 <div className="row justify-content-center">
-                    <button className={`col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button`}>
+                    <button className={`col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button`} onClick={()=>setCreate({id: null, active: true})}>
                         <span>sign</span>
                     </button>
                     <div className="col-auto"></div>
@@ -231,7 +229,7 @@ export const Home =({edit = f => f, region, createAd = f => f, updateAd = f =>f}
                             <div className="col-12 col-lg-9 row justify-content-center pb-0">
                                 <div className={"col-12 row justify-content-center py-5"}>
                                     <div className={"col-12 col-sm-8 order-2 order-sm-1"}>
-                                        <h1 className="advertisement-info-title text-center">AUTOMECHANIK</h1>
+                                        <h1 className="advertisement-info-title text-center text-uppercase">AUTOMECHANIK</h1>
                                     </div>
                                     <div className={"col-12 col-sm-4 order-1 order-sm-2 "}>
                                         <div className={"cross float-right float-sm-none"}>
@@ -242,9 +240,12 @@ export const Home =({edit = f => f, region, createAd = f => f, updateAd = f =>f}
                                     <div className="row justify-content-center order-3 order-md-4">
                                         <div className="col-md-8 order-4 order-m-3">
                                             <div className={"border-r pt-4 justify-content-center row "}>
-                                                <div className="advertisement-info-tags row justify-content-center pb-5 col-11">
+                                                <div className="advertisement-info-tags row justify-content-center pb-5 col-11 text-uppercase">
                                                     <div className="advertisement-info-tag py-2 mx-3 mt-1 mb-2 px-4 shadow col-auto">
-                                                        ATTAChinterupt
+                                                        <span className="colorful-text">
+                                                            ATTAChinterupt
+                                                        </span>
+                                                       
                                                     </div>
                                                     
 
@@ -299,6 +300,13 @@ export const Home =({edit = f => f, region, createAd = f => f, updateAd = f =>f}
                         </div>
                     </div>
                 </div>
+                
+
+                {
+                    create.active ? <Advertisement createAd={handleCreate} region={region} updateAd={handleUpdate} id={create.id}/> : ""
+                }
+
+                
             </div>
 
         );
