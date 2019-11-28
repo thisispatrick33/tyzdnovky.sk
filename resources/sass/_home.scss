@@ -79,6 +79,9 @@
         width: 100%;
         top: 0;
         left: 0;
+        font-family: 'Montserrat';
+        color: #2C393F;
+        display:none;
 
         .advertisement-info-box{
             background: #fff;
@@ -87,7 +90,7 @@
             border-radius: 29px;
         }
         .advertisement-info-image{
-            height: 90vh;
+            height: 100%;
             width: 100%;
             object-fit: cover;
             border-radius: 29px 0px 0px 29px;
@@ -95,7 +98,7 @@
         .advertisement-info-tags{
 
             .advertisement-info-tag{
-                font-size: 1.1em;
+                font-size: 1em;
                 font-weight: 300;
                 border-radius: 50px;
                 text-transform: uppercase;
@@ -109,6 +112,7 @@
             width: 80%;
             margin:0 auto;
             word-break: break-all;
+            font-size: 1em;
         }
         .submit-button {
             font-size: 1.1em;
@@ -163,9 +167,17 @@
         }
         .border-r{
               border-right: 1px solid $silver;
+              @media (max-width: $break-m){
+                border: none;
+              }
         }
         .border-b{
             border-bottom: 1px solid $silver;
+        }
+        .border-b-res{
+            @media (max-width: $break-m){
+                border-bottom: 1px solid $silver;
+              }
         }
         .strong{
             font-weight: bold;
@@ -173,6 +185,21 @@
         .cross{
             text-align: center;
         }
+        .advertisement-info-branches,.advertisement-info-additional,.advertisement-info-description{
+            font-weight: 500;
+        }
+        .advertisement-info-additional,.advertisement-info-branches{
+            font-size: 1em;
+        }
+        .advertisement-info-branches{
+            font-size: 1.2em;
+            word-break: normal;
+            @media (min-width: $break-xl){
+                font-size: 1.3em;
+            }
+        }
+        
+        
     }
 }
 
