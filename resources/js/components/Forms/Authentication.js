@@ -3,45 +3,42 @@ import {ForgottenPassword} from "./ForgottenPassword";
 import $ from 'jquery';
 import {Router, navigate} from '@reach/router';
 
-export const Authentication = ({message,login = f => f, register = f => f, reset = f => f}) => {
+export const Authentication = ({message, authenticate = f => f, forgotten = f => f}) => {
 
 
     const [data,setData] = useState({type : 2});
-    const [slide, setSlide] = useState(0);
+    const [isLogin, setIsLogin] = useState(true);
     const [missing, setMissing] = useState({});
     const [passwordView, setPasswordView] = useState(false);
     const [passwordReset, setPasswordReset] = useState(false);
 
-    const submit = control => control === `r` ?  register(data) : login(data);
+    const submit = control => authenticate(data, control);
 
 
     const _formValidator = (e, control) => {
         e.preventDefault();
-        if(control == "r"){
+        if(!control){
             if (data.email !== undefined && data.email.length > 0) {
                 if(data.email.includes('@')){
                     if (data.passwordR !== undefined && data.passwordR.length > 0) {
                         setMissing({});
-                        submit("r");
+                        submit(false);
                     } else {
                         setMissing({value: 'password', message: `Nezadali ste heslo.`});
-                        console.log(missing);
                     }
                 }else {
                     setMissing({value: '@', message: `Nezadali ste nevhodný email.`});
-                    console.log(missing);
                 }
             } else {
                 setMissing({value: 'email', message: `Nezadali ste email.`});
-                console.log(missing);
             }
         }
         else {
-            if (control == "l"){
+            if (control){
                 if (data.login !== undefined && data.login.length > 0) {
                     if (data.passwordL !== undefined && data.passwordL.length > 0) {
                         setMissing({});
-                        submit("l");
+                        submit(true);
                     } else {
                         setMissing({value: 'password', message: `Nezadali ste heslo.`});
                         console.log(missing);
@@ -55,9 +52,6 @@ export const Authentication = ({message,login = f => f, register = f => f, reset
 
     };
 
-    const _forgottenPassword = () => {
-       setPasswordReset(false);
-    };
 
     const _loginFacebook = () => {
         console.log("login by facebook");
@@ -80,22 +74,22 @@ export const Authentication = ({message,login = f => f, register = f => f, reset
                 }
                 <div className={`content-frame | col-12 | px-0 m-0 `}>
                     {
-                        passwordReset ?  <ForgottenPassword close={_forgottenPassword} reset={reset}/> : ``
+                        passwordReset ?  <ForgottenPassword close={() => setPasswordReset(false)} reset={forgotten}/> : ``
                     }
                     <form id={`authentication-form`} className={`form row col-xl-4 col-lg-5 col-md-6 col-sm-12 col-12 | align-items-start | justify-content-center align-items-center | m-0`}>
                         <p>{message}</p>
                         <div className="col-11 justify-content-center row p-xl-1 pl-lg-1 p-md-1 p-sm-0 p-0">
                             <div className=" row m-0 p-0 col-12 header justify-content-center ">
-                                <h1 className={`col-11 p-0 text-center sign-in`}>sign <span className="highlighted">{slide === 0 ? `in` : `up`}.</span></h1>
+                                <h1 className={`col-11 p-0 text-center sign-in`}>sign <span className="highlighted">{isLogin ? `in` : `up`}.</span></h1>
                             </div>
-                            { slide === 0 ? `` :
+                            { isLogin ? `` :
                                 <div className="choose row col-xl-8 col-lg-8 col-md-9 col-sm-10 col-11 p-0 shadow-sm my-4">
                                     <p className={`col-6 m-0 text-center px-0 py-2 ${data.type === 2 ? `on` : ``}`}  onClick={() => setData({...data, type : 2})}>personal</p>
                                     <p className={`col-6 m-0 text-center px-0 py-2 ${data.type === 1 ? `on` : ``}`}  onClick={() => setData({...data, type : 1})}>business</p>
                                 </div>
                             }
                             <div className={` input col-11 mt-3 row p-0 mx-0 ${(missing.value === "@" || missing.value === "email" || missing.value === "login") ? `warning-frame` : ``}`}>
-                                { slide === 0 ?
+                                { isLogin ?
                                     <input
                                         id={`login`}
                                         type={`text`}
@@ -126,8 +120,8 @@ export const Authentication = ({message,login = f => f, register = f => f, reset
                                     name={`password`}
                                     className={` pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-10`}
                                     placeholder={`Enter your password`}
-                                    onChange={(e) => setData(slide === 0 ? {...data, passwordL: e.target.value} : {...data, passwordR: e.target.value})}
-                                    value={slide === 0 ? (data.passwordL ? data.passwordL : ``) : (data.passwordR ? data.passwordR : ``)}
+                                    onChange={(e) => setData(isLogin ? {...data, passwordL: e.target.value} : {...data, passwordR: e.target.value})}
+                                    value={isLogin ? (data.passwordL ? data.passwordL : ``) : (data.passwordR ? data.passwordR : ``)}
                                 />
                                 <div className="col-2 pl-3 d-flex justify-content-center align-items-center eye" onClick={() => setPasswordView(!passwordView)}>
                                     { !passwordView ?
@@ -149,22 +143,22 @@ export const Authentication = ({message,login = f => f, register = f => f, reset
                             {(missing.value === `password`) ? <p className={`col-11 pl-2 pt-1 warning-message mb-0`}>{missing.message}</p> : ``}
                             <button
                                 className={'submit-button col-6 text-center py-2 mb-5 mt-3 '}
-                                onClick={(e) => _formValidator(e, slide === 0 ? `l` : `r`)}><span>sign {slide === 0 ? `in` : `up`}</span>
+                                onClick={(e) => _formValidator(e, isLogin)}><span>sign {isLogin ? `in` : `up`}</span>
                             </button>
                             <div className="col-12 row problems">
                                 {
-                                    slide === 0 ?
+                                    isLogin ?
                                         <div className="col-12" onClick={() => setPasswordReset(true)}>
                                             <p>can't sign in?</p>
                                         </div>
                                         : ``
                                 }
                                 <div className="col-12" onClick={() => {
-                                    setSlide(slide === 0 ? 1 : 0);
+                                    setIsLogin(!isLogin);
                                     setMissing({});
                                 }
                                 }>
-                                    <p>{slide === 0 ? `create account` : `already member`}</p>
+                                    <p>{isLogin ? `create account` : `already member`}</p>
                                 </div>
                             </div>
                         </div>

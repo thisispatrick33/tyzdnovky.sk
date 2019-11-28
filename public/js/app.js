@@ -69122,6 +69122,118 @@ var Advertisement = function Advertisement(_ref) {
 
 /***/ }),
 
+/***/ "./resources/js/components/Forms/AdvertisementLookup.js":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/Forms/AdvertisementLookup.js ***!
+  \**************************************************************/
+/*! exports provided: AdvertisementLookup */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdvertisementLookup", function() { return AdvertisementLookup; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+var AdvertisementLookup = function AdvertisementLookup(_ref) {
+  var id = _ref.id,
+      title = _ref.title,
+      description = _ref.description,
+      address = _ref.address,
+      date = _ref.date,
+      created_at = _ref.created_at,
+      _ref$view = _ref.view,
+      view = _ref$view === void 0 ? function (f) {
+    return f;
+  } : _ref$view;
+  var today = new Date();
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "work-option row justify-content-center col-12 p-0 mx-3 mb-5"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "content shadow p-0 col-10"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "work-option-image-wrapper"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "work-option-image",
+    src: "./images/poster.jpg"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    className: "work-option-save",
+    width: "13.135",
+    height: "15.526",
+    viewBox: "0 0 13.135 15.526"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
+    transform: "translate(-33.261)"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M46.2.513a1.157,1.157,0,0,0-.539-.421A1.136,1.136,0,0,0,45.206,0H34.451A1.136,1.136,0,0,0,34,.092a1.156,1.156,0,0,0-.539.421,1.089,1.089,0,0,0-.2.636V14.377a1.09,1.09,0,0,0,.2.636,1.156,1.156,0,0,0,.539.421,1.135,1.135,0,0,0,.451.092,1.224,1.224,0,0,0,.852-.339l4.526-4.351,4.526,4.351a1.221,1.221,0,0,0,.852.328,1.194,1.194,0,0,0,.99-.5,1.088,1.088,0,0,0,.2-.636V1.149A1.089,1.089,0,0,0,46.2.513ZM45.083,14.059,40.742,9.892l-.913-.872-.913.872-4.341,4.166V1.314H45.083V14.059Z",
+    fill: "#fff"
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    className: "work-option-edit",
+    width: "16",
+    height: "16",
+    viewBox: "0 0 16 16"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
+    transform: "translate(-0.063 0.001)"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M.572,16a.509.509,0,0,1-.493-.632l.955-3.834a.51.51,0,0,1,.134-.237L11.92.545a1.868,1.868,0,0,1,2.638,0l.959.959a1.868,1.868,0,0,1,0,2.638L4.765,14.895a.505.505,0,0,1-.237.134l-3.834.955A.47.47,0,0,1,.572,16Zm1.415-4.083L1.27,14.791l2.875-.716L14.8,3.422a.85.85,0,0,0,0-1.2l-.959-.959a.849.849,0,0,0-1.2,0Zm2.419,2.619h0Zm0,0",
+    transform: "translate(0)",
+    fill: "#fff"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M319.56,68.392a.505.505,0,0,1-.36-.149l-2.879-2.878a.509.509,0,0,1,.72-.72l2.879,2.879a.508.508,0,0,1-.36.868Zm0,0",
+    transform: "translate(-306.057 -62.446)",
+    fill: "#fff"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M33.481,354.451a.5.5,0,0,1-.36-.149l-2.879-2.879a.509.509,0,0,1,.72-.72l2.879,2.879a.509.509,0,0,1-.36.869Zm0,0",
+    transform: "translate(-29.076 -339.408)",
+    fill: "#fff"
+  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "work-option-content"
+  }, (today.getTime() - new Date(created_at.substring(0, created_at.indexOf('T'))).getTime()) / (1000 * 3600 * 24) <= 3 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-center work-option-new"
+  }, " NEW!") : "", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+    className: "work-option-title text-center mt-4 mb-2"
+  }, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "work-option-description"
+  }, description.substring(0, 74), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    onClick: function onClick() {
+      return view(id);
+    }
+  }, "... Zisti viac.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row text-center h6 work-option-info pt-4 pb-5"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-6 p-0"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    width: "13.512",
+    height: "19.292",
+    viewBox: "0 0 13.512 19.292"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M23.023,12a2.466,2.466,0,1,0,2.466,2.466A2.469,2.469,0,0,0,23.023,12Zm0,4.228a1.762,1.762,0,1,1,1.762-1.762A1.764,1.764,0,0,1,23.023,16.228Z",
+    transform: "translate(-16.204 -7.772)",
+    fill: "#00c7c7"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M19.737,1.979a6.756,6.756,0,0,0-9.555,0,7.7,7.7,0,0,0-.636,9.5l5.413,7.817,5.405-7.806A7.7,7.7,0,0,0,19.737,1.979Zm.056,9.095-4.834,6.98-4.841-6.991a6.953,6.953,0,0,1,.562-8.586,6.052,6.052,0,0,1,8.558,0A6.956,6.956,0,0,1,19.793,11.074Z",
+    transform: "translate(-8.203 0)",
+    fill: "#00c7c7"
+  })), address)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-6 p-0"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    width: "15.888",
+    height: "17.023",
+    viewBox: "0 0 15.888 17.023"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M17.6,1.135H15.618V.284A.283.283,0,0,0,15.335,0H13.349a.283.283,0,0,0-.284.284v.851H6.823V.284A.283.283,0,0,0,6.539,0H4.553A.283.283,0,0,0,4.27.284v.851H2.284A.283.283,0,0,0,2,1.419V16.739a.283.283,0,0,0,.284.284H17.6a.283.283,0,0,0,.284-.284V1.419A.283.283,0,0,0,17.6,1.135ZM13.632.567h1.419v1.7H13.632V.567Zm-8.8,0H6.256v1.7H4.837V.567ZM2.567,1.7h1.7v.851a.283.283,0,0,0,.284.284H6.539a.283.283,0,0,0,.284-.284V1.7h6.242v.851a.283.283,0,0,0,.284.284h1.986a.283.283,0,0,0,.284-.284V1.7h1.7V4.256H2.567Zm0,14.753V4.823H17.321V16.455Z",
+    transform: "translate(-2)",
+    fill: "#00c7c7"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M18.66,23H11v8.228H21.781V23H18.66Zm-1.986.567H18.66v1.986H16.674Zm1.986,4.539H16.674V26.121H18.66Zm-4.539-1.986h1.986v1.986H14.121Zm0-2.553h1.986v1.986H14.121Zm-2.553,0h1.986v1.986H11.567Zm0,2.553h1.986v1.986H11.567Zm1.986,4.539H11.567V28.674h1.986Zm2.553,0H14.121V28.674h1.986Zm2.553,0H16.674V28.674H18.66Zm2.553,0H19.228V28.674h1.986Zm0-2.553H19.228V26.121h1.986Zm0-4.539v1.986H19.228V23.567Z",
+    transform: "translate(-8.447 -16.475)",
+    fill: "#00c7c7"
+  })), date))))));
+};
+
+/***/ }),
+
 /***/ "./resources/js/components/Forms/Authentication.js":
 /*!*********************************************************!*\
   !*** ./resources/js/components/Forms/Authentication.js ***!
@@ -69158,18 +69270,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var Authentication = function Authentication(_ref) {
   var message = _ref.message,
-      _ref$login = _ref.login,
-      login = _ref$login === void 0 ? function (f) {
+      _ref$authenticate = _ref.authenticate,
+      authenticate = _ref$authenticate === void 0 ? function (f) {
     return f;
-  } : _ref$login,
-      _ref$register = _ref.register,
-      register = _ref$register === void 0 ? function (f) {
+  } : _ref$authenticate,
+      _ref$forgotten = _ref.forgotten,
+      forgotten = _ref$forgotten === void 0 ? function (f) {
     return f;
-  } : _ref$register,
-      _ref$reset = _ref.reset,
-      reset = _ref$reset === void 0 ? function (f) {
-    return f;
-  } : _ref$reset;
+  } : _ref$forgotten;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
     type: 2
@@ -69178,10 +69286,10 @@ var Authentication = function Authentication(_ref) {
       data = _useState2[0],
       setData = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
       _useState4 = _slicedToArray(_useState3, 2),
-      slide = _useState4[0],
-      setSlide = _useState4[1];
+      isLogin = _useState4[0],
+      setIsLogin = _useState4[1];
 
   var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
       _useState6 = _slicedToArray(_useState5, 2),
@@ -69199,45 +69307,42 @@ var Authentication = function Authentication(_ref) {
       setPasswordReset = _useState10[1];
 
   var submit = function submit(control) {
-    return control === "r" ? register(data) : login(data);
+    return authenticate(data, control);
   };
 
   var _formValidator = function _formValidator(e, control) {
     e.preventDefault();
 
-    if (control == "r") {
+    if (!control) {
       if (data.email !== undefined && data.email.length > 0) {
         if (data.email.includes('@')) {
           if (data.passwordR !== undefined && data.passwordR.length > 0) {
             setMissing({});
-            submit("r");
+            submit(false);
           } else {
             setMissing({
               value: 'password',
               message: "Nezadali ste heslo."
             });
-            console.log(missing);
           }
         } else {
           setMissing({
             value: '@',
             message: "Nezadali ste nevhodn\xFD email."
           });
-          console.log(missing);
         }
       } else {
         setMissing({
           value: 'email',
           message: "Nezadali ste email."
         });
-        console.log(missing);
       }
     } else {
-      if (control == "l") {
+      if (control) {
         if (data.login !== undefined && data.login.length > 0) {
           if (data.passwordL !== undefined && data.passwordL.length > 0) {
             setMissing({});
-            submit("l");
+            submit(true);
           } else {
             setMissing({
               value: 'password',
@@ -69254,10 +69359,6 @@ var Authentication = function Authentication(_ref) {
         }
       }
     }
-  };
-
-  var _forgottenPassword = function _forgottenPassword() {
-    setPasswordReset(false);
   };
 
   var _loginFacebook = function _loginFacebook() {
@@ -69291,8 +69392,10 @@ var Authentication = function Authentication(_ref) {
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "content-frame | col-12 | px-0 m-0 "
   }, passwordReset ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ForgottenPassword__WEBPACK_IMPORTED_MODULE_1__["ForgottenPassword"], {
-    close: _forgottenPassword,
-    reset: reset
+    close: function close() {
+      return setPasswordReset(false);
+    },
+    reset: forgotten
   }) : "", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     id: "authentication-form",
     className: "form row col-xl-4 col-lg-5 col-md-6 col-sm-12 col-12 | align-items-start | justify-content-center align-items-center | m-0"
@@ -69304,7 +69407,7 @@ var Authentication = function Authentication(_ref) {
     className: "col-11 p-0 text-center sign-in"
   }, "sign ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "highlighted"
-  }, slide === 0 ? "in" : "up", "."))), slide === 0 ? "" : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, isLogin ? "in" : "up", "."))), isLogin ? "" : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "choose row col-xl-8 col-lg-8 col-md-9 col-sm-10 col-11 p-0 shadow-sm my-4"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "col-6 m-0 text-center px-0 py-2 ".concat(data.type === 2 ? "on" : ""),
@@ -69322,7 +69425,7 @@ var Authentication = function Authentication(_ref) {
     }
   }, "business")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: " input col-11 mt-3 row p-0 mx-0 ".concat(missing.value === "@" || missing.value === "email" || missing.value === "login" ? "warning-frame" : "")
-  }, slide === 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+  }, isLogin ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     id: "login",
     type: "text",
     name: "login",
@@ -69357,13 +69460,13 @@ var Authentication = function Authentication(_ref) {
     className: " pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-10",
     placeholder: "Enter your password",
     onChange: function onChange(e) {
-      return setData(slide === 0 ? _objectSpread({}, data, {
+      return setData(isLogin ? _objectSpread({}, data, {
         passwordL: e.target.value
       }) : _objectSpread({}, data, {
         passwordR: e.target.value
       }));
     },
-    value: slide === 0 ? data.passwordL ? data.passwordL : "" : data.passwordR ? data.passwordR : ""
+    value: isLogin ? data.passwordL ? data.passwordL : "" : data.passwordR ? data.passwordR : ""
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-2 pl-3 d-flex justify-content-center align-items-center eye",
     onClick: function onClick() {
@@ -69412,11 +69515,11 @@ var Authentication = function Authentication(_ref) {
   }, missing.message) : "", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: 'submit-button col-6 text-center py-2 mb-5 mt-3 ',
     onClick: function onClick(e) {
-      return _formValidator(e, slide === 0 ? "l" : "r");
+      return _formValidator(e, isLogin);
     }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "sign ", slide === 0 ? "in" : "up")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "sign ", isLogin ? "in" : "up")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-12 row problems"
-  }, slide === 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, isLogin ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-12",
     onClick: function onClick() {
       return setPasswordReset(true);
@@ -69424,10 +69527,10 @@ var Authentication = function Authentication(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "can't sign in?")) : "", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-12",
     onClick: function onClick() {
-      setSlide(slide === 0 ? 1 : 0);
+      setIsLogin(!isLogin);
       setMissing({});
     }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, slide === 0 ? "create account" : "already member")))))));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, isLogin ? "create account" : "already member")))))));
 };
 
 /***/ }),
@@ -69794,23 +69897,18 @@ var PasswordReset = function PasswordReset(_ref) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Home", function() { return Home; });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _Additional__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Additional */ "./resources/js/components/Additional.js");
-/* harmony import */ var _reach_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @reach/router */ "./node_modules/@reach/router/es/index.js");
-/* harmony import */ var react_slick__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-slick */ "./node_modules/react-slick/lib/index.js");
-/* harmony import */ var react_slick__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_slick__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var slick_carousel_slick_slick_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! slick-carousel/slick/slick.css */ "./node_modules/slick-carousel/slick/slick.css");
-/* harmony import */ var slick_carousel_slick_slick_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(slick_carousel_slick_slick_css__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var slick_carousel_slick_slick_theme_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! slick-carousel/slick/slick-theme.css */ "./node_modules/slick-carousel/slick/slick-theme.css");
-/* harmony import */ var slick_carousel_slick_slick_theme_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(slick_carousel_slick_slick_theme_css__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _Forms_Advertisement__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../Forms/Advertisement */ "./resources/js/components/Forms/Advertisement.js");
-
-
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Additional__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Additional */ "./resources/js/components/Additional.js");
+/* harmony import */ var _reach_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @reach/router */ "./node_modules/@reach/router/es/index.js");
+/* harmony import */ var react_slick__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-slick */ "./node_modules/react-slick/lib/index.js");
+/* harmony import */ var react_slick__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_slick__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var slick_carousel_slick_slick_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! slick-carousel/slick/slick.css */ "./node_modules/slick-carousel/slick/slick.css");
+/* harmony import */ var slick_carousel_slick_slick_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(slick_carousel_slick_slick_css__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var slick_carousel_slick_slick_theme_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! slick-carousel/slick/slick-theme.css */ "./node_modules/slick-carousel/slick/slick-theme.css");
+/* harmony import */ var slick_carousel_slick_slick_theme_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(slick_carousel_slick_slick_theme_css__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _Forms_Advertisement__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Forms/Advertisement */ "./resources/js/components/Forms/Advertisement.js");
+/* harmony import */ var _Forms_AdvertisementLookup__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Forms/AdvertisementLookup */ "./resources/js/components/Forms/AdvertisementLookup.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -69818,10 +69916,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
@@ -69840,11 +69934,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var Home = function Home(_ref) {
-  var _ref$edit = _ref.edit,
-      edit = _ref$edit === void 0 ? function (f) {
+  var ads = _ref.ads,
+      ad = _ref.ad,
+      user = _ref.user,
+      _ref$updateProfile = _ref.updateProfile,
+      updateProfile = _ref$updateProfile === void 0 ? function (f) {
     return f;
-  } : _ref$edit,
-      region = _ref.region,
+  } : _ref$updateProfile,
       _ref$createAd = _ref.createAd,
       createAd = _ref$createAd === void 0 ? function (f) {
     return f;
@@ -69852,39 +69948,11 @@ var Home = function Home(_ref) {
       _ref$updateAd = _ref.updateAd,
       updateAd = _ref$updateAd === void 0 ? function (f) {
     return f;
-  } : _ref$updateAd;
-  var today = new Date();
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
-      _useState2 = _slicedToArray(_useState, 2),
-      data = _useState2[0],
-      setData = _useState2[1];
-
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
-      _useState4 = _slicedToArray(_useState3, 2),
-      ad = _useState4[0],
-      setAd = _useState4[1];
-
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
-    id: null,
-    active: false
-  }),
-      _useState6 = _slicedToArray(_useState5, 2),
-      create = _useState6[0],
-      setCreate = _useState6[1];
-
-  var handleChange = function handleChange(data) {
-    edit(data);
-  };
-
-  var handleCreate = function handleCreate(data) {
-    createAd(data);
-  };
-
-  var handleUpdate = function handleUpdate(data) {
-    updateAd(data);
-  };
-
+  } : _ref$updateAd,
+      _ref$viewAd = _ref.viewAd,
+      viewAd = _ref$viewAd === void 0 ? function (f) {
+    return f;
+  } : _ref$viewAd;
   var settings = {
     dots: false,
     arrows: true,
@@ -69893,8 +69961,8 @@ var Home = function Home(_ref) {
     slidesToShow: 4,
     slidesToScroll: 1,
     adaptiveHeight: true,
-    nextArrow: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(NextArrow, null),
-    prevArrow: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(PreviousArrow, null),
+    nextArrow: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextArrow, null),
+    prevArrow: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(PreviousArrow, null),
     responsive: [{
       breakpoint: 1200,
       settings: {
@@ -69912,346 +69980,122 @@ var Home = function Home(_ref) {
       }
     }]
   };
-  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    var fetchData =
-    /*#__PURE__*/
-    function () {
-      var _ref2 = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var result;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_7___default()('api/advertisement', {
-                  headers: {
-                    "X-localization": region,
-                    "Authorization": 'Bearer ' + JSON.parse(localStorage.appState).user.auth_token
-                  }
-                });
 
-              case 2:
-                result = _context.sent;
-                console.log("get");
-                console.log(result);
-                setData(result.data);
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    id: null,
+    active: false
+  }),
+      _useState2 = _slicedToArray(_useState, 2),
+      create = _useState2[0],
+      setCreate = _useState2[1];
 
-              case 6:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }));
+  var handleChange = function handleChange(data) {
+    return updateProfile(data);
+  };
 
-      return function fetchData() {
-        return _ref2.apply(this, arguments);
-      };
-    }();
+  var handleCreate = function handleCreate(data) {
+    return createAd(data);
+  };
 
-    fetchData();
-  }, [region]);
+  var handleUpdate = function handleUpdate(data) {
+    return updateAd(data);
+  };
 
-  var viewAd =
-  /*#__PURE__*/
-  function () {
-    var _ref3 = _asyncToGenerator(
-    /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(id) {
-      var result;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              console.log("sem som");
-              _context2.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_7___default()('api/advertisement/' + id, {
-                headers: {
-                  "X-localization": region,
-                  "Authorization": 'Bearer ' + JSON.parse(localStorage.appState).user.auth_token
-                }
-              });
+  var handleView = function handleView(id) {
+    return viewAd(id);
+  };
 
-            case 3:
-              result = _context2.sent;
-              console.log("get");
-              console.log(result);
-              setAd(result.data);
-
-            case 7:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2);
-    }));
-
-    return function viewAd(_x) {
-      return _ref3.apply(this, arguments);
-    };
-  }();
-
-  if (JSON.parse(localStorage.appState).user.name != undefined) {
-    if (data[0] == undefined) {
-      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, "loading");
+  if (user !== undefined) {
+    if (ads[0] === undefined) {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "loading");
     }
 
-    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: " home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 pt-5"
-    }, JSON.parse(localStorage.appState).user.active == 0 ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Additional__WEBPACK_IMPORTED_MODULE_2__["Additional"], {
-      user: JSON.parse(localStorage.appState).user,
-      func: handleChange,
-      region: region
-    }) : "", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    }, user.active === 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Additional__WEBPACK_IMPORTED_MODULE_1__["Additional"], {
+      user: user,
+      func: handleChange
+    }) : "", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "content col-11 row justify-content-center py-5"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "header col-11 row justify-content-between"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "menu col-1 row"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
       className: "col-10 p-0",
       viewBox: "0 0 86.628 43.314",
       xmlns: "http://www.w3.org/2000/svg"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("g", {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
       transform: "translate(0 -96.243)"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("g", {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
       transform: "translate(0 96.243)",
       fill: "#2c393f"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
       transform: "translate(0 -96.243)",
       d: "M2.707,101.657H83.921a2.707,2.707,0,0,0,0-5.414H2.707a2.707,2.707,0,0,0,0,5.414Z",
       "data-name": "Path 41"
-    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
       transform: "translate(0 -161.5)",
       d: "M83.921,180.455H2.707a2.707,2.707,0,1,0,0,5.414H83.921a2.707,2.707,0,1,0,0-5.414Z",
       "data-name": "Path 42"
-    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
       transform: "translate(-93.232 -226.77)",
       d: "m177.15 264.67h-54.143a2.707 2.707 0 1 0 0 5.414h54.143a2.707 2.707 0 1 0 0-5.414z",
       "data-name": "Path 43"
-    }))))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "finder col-9 d-flex justify-content-center"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
       type: "text",
       className: "col-11 finder",
       placeholder: "\u2026find work, company or group"
-    })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "user-header-nofication col-1"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
-      src: JSON.parse(localStorage.appState).user.profile_pic !== null ? JSON.parse(localStorage.appState).user.profile_pic.substring(JSON.parse(localStorage.appState).user.profile_pic.indexOf("images")) : "./images/user.svg",
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      src: user.profile_pic !== null ? user.profile_pic.substring(user.profile_pic.indexOf("images")) : "./images/user.svg",
       className: "profile-photo",
       alt: ""
-    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "action-point text-center"
-    }, "7"))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    }, "7"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "message col-11 mt-5"
-    }, JSON.parse(localStorage.appState).user.name == null ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Hello !") : react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Hello ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, JSON.parse(localStorage.appState).user.name), " !"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
-      onClick: function onClick() {
-        return setAd("");
-      }
-    }, "Schovaj"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
-      onClick: function onClick() {
-        return setCreate({
-          id: null,
-          active: false
-        });
-      }
-    }, "Schovaj"), ad.title == undefined ? "" : react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, ad.title), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, ad.description), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, ad.salary), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, ad.address), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, ad.date), ad.branches.map(function (_ref4) {
-      var name = _ref4.name;
-      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, name);
-    }), ad.tags.map(function (value) {
-      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, value);
-    }))), create.active ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Forms_Advertisement__WEBPACK_IMPORTED_MODULE_8__["Advertisement"], {
+    }, user.name == null ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello !") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, user.name), " !")), create.active ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_Advertisement__WEBPACK_IMPORTED_MODULE_6__["Advertisement"], {
       createAd: handleCreate,
-      region: region,
       updateAd: handleUpdate,
       id: create.id
-    }) : "", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_4___default.a, _extends({}, settings, {
+    }) : "", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_3___default.a, _extends({}, settings, {
       className: "work-options justify-content-between col-12 my-5 px-5 row"
-    }), data.map(function (_ref5) {
-      var id = _ref5.id,
-          title = _ref5.title,
-          description = _ref5.description,
-          address = _ref5.address,
-          date = _ref5.date,
-          created_at = _ref5.created_at;
-      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "work-option row justify-content-center col-12 p-0 mx-3 mb-5"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "content shadow p-0 col-10"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "work-option-image-wrapper"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
-        className: "work-option-image",
-        src: "./images/poster.jpg"
-      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
-        className: "work-option-save",
-        width: "13.135",
-        height: "15.526",
-        viewBox: "0 0 13.135 15.526"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("g", {
-        transform: "translate(-33.261)"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
-        d: "M46.2.513a1.157,1.157,0,0,0-.539-.421A1.136,1.136,0,0,0,45.206,0H34.451A1.136,1.136,0,0,0,34,.092a1.156,1.156,0,0,0-.539.421,1.089,1.089,0,0,0-.2.636V14.377a1.09,1.09,0,0,0,.2.636,1.156,1.156,0,0,0,.539.421,1.135,1.135,0,0,0,.451.092,1.224,1.224,0,0,0,.852-.339l4.526-4.351,4.526,4.351a1.221,1.221,0,0,0,.852.328,1.194,1.194,0,0,0,.99-.5,1.088,1.088,0,0,0,.2-.636V1.149A1.089,1.089,0,0,0,46.2.513ZM45.083,14.059,40.742,9.892l-.913-.872-.913.872-4.341,4.166V1.314H45.083V14.059Z",
-        fill: "#fff"
-      }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
-        className: "work-option-edit",
-        onClick: function onClick() {
-          return setCreate({
-            id: id,
-            active: true
-          });
-        },
-        width: "16",
-        height: "16",
-        viewBox: "0 0 16 16"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("g", {
-        transform: "translate(-0.063 0.001)"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
-        d: "M.572,16a.509.509,0,0,1-.493-.632l.955-3.834a.51.51,0,0,1,.134-.237L11.92.545a1.868,1.868,0,0,1,2.638,0l.959.959a1.868,1.868,0,0,1,0,2.638L4.765,14.895a.505.505,0,0,1-.237.134l-3.834.955A.47.47,0,0,1,.572,16Zm1.415-4.083L1.27,14.791l2.875-.716L14.8,3.422a.85.85,0,0,0,0-1.2l-.959-.959a.849.849,0,0,0-1.2,0Zm2.419,2.619h0Zm0,0",
-        transform: "translate(0)",
-        fill: "#fff"
-      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
-        d: "M319.56,68.392a.505.505,0,0,1-.36-.149l-2.879-2.878a.509.509,0,0,1,.72-.72l2.879,2.879a.508.508,0,0,1-.36.868Zm0,0",
-        transform: "translate(-306.057 -62.446)",
-        fill: "#fff"
-      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
-        d: "M33.481,354.451a.5.5,0,0,1-.36-.149l-2.879-2.879a.509.509,0,0,1,.72-.72l2.879,2.879a.509.509,0,0,1-.36.869Zm0,0",
-        transform: "translate(-29.076 -339.408)",
-        fill: "#fff"
-      })))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "work-option-content"
-      }, (today.getTime() - new Date(created_at.substring(0, created_at.indexOf('T'))).getTime()) / (1000 * 3600 * 24) <= 3 ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "text-center work-option-new"
-      }, " NEW!") : "", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h5", {
-        className: "work-option-title text-center mt-4 mb-2"
-      }, title), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
-        className: "work-option-description"
-      }, description.substring(0, 74), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
-        onClick: function onClick() {
-          return viewAd(id);
-        }
-      }, "... Zisti viac.")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "row text-center h6 work-option-info pt-4 pb-5"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "col-6 p-0"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
-        xmlns: "http://www.w3.org/2000/svg",
-        width: "13.512",
-        height: "19.292",
-        viewBox: "0 0 13.512 19.292"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
-        d: "M23.023,12a2.466,2.466,0,1,0,2.466,2.466A2.469,2.469,0,0,0,23.023,12Zm0,4.228a1.762,1.762,0,1,1,1.762-1.762A1.764,1.764,0,0,1,23.023,16.228Z",
-        transform: "translate(-16.204 -7.772)",
-        fill: "#00c7c7"
-      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
-        d: "M19.737,1.979a6.756,6.756,0,0,0-9.555,0,7.7,7.7,0,0,0-.636,9.5l5.413,7.817,5.405-7.806A7.7,7.7,0,0,0,19.737,1.979Zm.056,9.095-4.834,6.98-4.841-6.991a6.953,6.953,0,0,1,.562-8.586,6.052,6.052,0,0,1,8.558,0A6.956,6.956,0,0,1,19.793,11.074Z",
-        transform: "translate(-8.203 0)",
-        fill: "#00c7c7"
-      })), address)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "col-6 p-0"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
-        xmlns: "http://www.w3.org/2000/svg",
-        width: "15.888",
-        height: "17.023",
-        viewBox: "0 0 15.888 17.023"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
-        d: "M17.6,1.135H15.618V.284A.283.283,0,0,0,15.335,0H13.349a.283.283,0,0,0-.284.284v.851H6.823V.284A.283.283,0,0,0,6.539,0H4.553A.283.283,0,0,0,4.27.284v.851H2.284A.283.283,0,0,0,2,1.419V16.739a.283.283,0,0,0,.284.284H17.6a.283.283,0,0,0,.284-.284V1.419A.283.283,0,0,0,17.6,1.135ZM13.632.567h1.419v1.7H13.632V.567Zm-8.8,0H6.256v1.7H4.837V.567ZM2.567,1.7h1.7v.851a.283.283,0,0,0,.284.284H6.539a.283.283,0,0,0,.284-.284V1.7h6.242v.851a.283.283,0,0,0,.284.284h1.986a.283.283,0,0,0,.284-.284V1.7h1.7V4.256H2.567Zm0,14.753V4.823H17.321V16.455Z",
-        transform: "translate(-2)",
-        fill: "#00c7c7"
-      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
-        d: "M18.66,23H11v8.228H21.781V23H18.66Zm-1.986.567H18.66v1.986H16.674Zm1.986,4.539H16.674V26.121H18.66Zm-4.539-1.986h1.986v1.986H14.121Zm0-2.553h1.986v1.986H14.121Zm-2.553,0h1.986v1.986H11.567Zm0,2.553h1.986v1.986H11.567Zm1.986,4.539H11.567V28.674h1.986Zm2.553,0H14.121V28.674h1.986Zm2.553,0H16.674V28.674H18.66Zm2.553,0H19.228V28.674h1.986Zm0-2.553H19.228V26.121h1.986Zm0-4.539v1.986H19.228V23.567Z",
-        transform: "translate(-8.447 -16.475)",
-        fill: "#00c7c7"
-      })), date))))));
-    }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    }), ads.map(function (_ref2) {
+      var id = _ref2.id,
+          title = _ref2.title,
+          description = _ref2.description,
+          address = _ref2.address,
+          date = _ref2.date,
+          created_at = _ref2.created_at;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Forms_AdvertisementLookup__WEBPACK_IMPORTED_MODULE_7__["AdvertisementLookup"], {
+        id: id,
+        title: title,
+        description: description,
+        address: address,
+        date: date,
+        created_at: created_at,
+        view: handleView
+      });
+    }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "row justify-content-center"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       className: "col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "sign")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "sign")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "col-auto"
-    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       className: "col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "sign")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "sign")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "col-auto"
-    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       className: "col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "sign"))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "advertisement-info-wrapper"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "container-fluid row justify-content-center m-0 p-0"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "advertisement-info-box col-11 m-0 p-0 mt-5 shadow row"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "col-3 p-0"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
-      className: "advertisement-info-image",
-      src: "./images/poster.jpg"
-    })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "col-9 row justify-content-center"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "col-12 row justify-content-center pt-5"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "col-8"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", {
-      className: "advertisement-info-title text-center"
-    }, "TITEL")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "col-4"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "cross"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
-      xmlns: "http://www.w3.org/2000/svg",
-      width: "42",
-      height: "42",
-      viewBox: "0 0 42 42"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
-      d: "M42,2.467,23.467,21,42,39.534,39.533,42,21,23.468,2.467,42,0,39.534,18.533,21,0,2.467,2.467,0,21,18.534,39.533,0Z",
-      transform: "translate(0 -0.001)",
-      fill: "#2c393f"
-    }))))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "col-8"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "border-r"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "advertisement-info-tags row justify-content-center pt-5 pb-5"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "advertisement-info-tag py-2 mx-3 my-1 px-4 shadow col-auto"
-    }, "ATTAChinterupt"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "advertisement-info-tag py-2 mx-3 my-1 px-4 shadow col-auto"
-    }, "ATTAChinterupt"), " ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "advertisement-info-tag py-2 mx-3 my-1 px-4 shadow col-auto"
-    }, "ATTAChinterupt"), " ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "advertisement-info-tag py-2 mx-3 my-1 px-4 shadow col-auto"
-    }, "ATTAChinteruptfdsf fsdfds"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "advertisement-info-tag py-2 mx-3 my-1 px-4 shadow col-auto"
-    }, "ATTAChinterupt")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
-      className: "advertisement-info-description mb-5"
-    }, "dasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasd dasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasddasdasd"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-      className: "my-2 submit-button sign-in-button px-5 py-2 d-block"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, " m\xE1m  ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-      className: "strong"
-    }, "zaujem !"))))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "col-4"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "advertisement-info-branches border-b"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "branch"
-    }, "automobilov\xFD priemysel"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "branch"
-    }, "automobilov\xFD priemysel")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "advertisement-info-additional"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: ""
-    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: ""
-    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: ""
-    }))))))));
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "sign"))));
   }
 
-  Object(_reach_router__WEBPACK_IMPORTED_MODULE_3__["navigate"])('/');
+  Object(_reach_router__WEBPACK_IMPORTED_MODULE_2__["navigate"])('/');
   return null;
 };
 
@@ -70259,7 +70103,7 @@ var NextArrow = function NextArrow(props) {
   var className = props.className,
       style = props.style,
       onClick = props.onClick;
-  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
     className: className,
     style: _objectSpread({}, style, {
       display: "block",
@@ -70269,32 +70113,32 @@ var NextArrow = function NextArrow(props) {
     width: "112.756",
     height: "76.79",
     viewBox: "0 0 112.756 76.79"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("defs", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("filter", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("defs", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("filter", {
     id: "a",
     x: "0",
     y: "0",
     width: "112.756",
     height: "76.79",
     filterUnits: "userSpaceOnUse"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("feOffset", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("feOffset", {
     dy: "3",
     input: "SourceAlpha"
-  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("feGaussianBlur", {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("feGaussianBlur", {
     stdDeviation: "3",
     result: "b"
-  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("feFlood", {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("feFlood", {
     "flood-opacity": "0.161"
-  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("feComposite", {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("feComposite", {
     operator: "in",
     in2: "b"
-  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("feComposite", {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("feComposite", {
     "in": "SourceGraphic"
-  }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("g", {
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
     transform: "translate(103.756 140.704) rotate(180)"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("g", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
     transform: "matrix(-1, 0, 0, -1, 103.76, 140.7)",
     filter: "url(#a)"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
     d: "M90.654,101.207H14l18.29-18.291a4.1,4.1,0,0,0-5.8-5.8L1.2,102.408a4.1,4.1,0,0,0,0,5.8L26.494,133.5a4.1,4.1,0,1,0,5.8-5.8L14,109.41h76.65a4.1,4.1,0,1,0,0-8.2Z",
     transform: "translate(103.76 140.7) rotate(180)",
     fill: "#2c393f"
@@ -70305,7 +70149,7 @@ var PreviousArrow = function PreviousArrow(props) {
   var className = props.className,
       style = props.style,
       onClick = props.onClick;
-  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
     className: className,
     style: _objectSpread({}, style, {
       display: "block",
@@ -70315,32 +70159,32 @@ var PreviousArrow = function PreviousArrow(props) {
     width: "112.756",
     height: "76.79",
     viewBox: "0 0 112.756 76.79"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("defs", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("filter", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("defs", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("filter", {
     id: "a",
     x: "0",
     y: "0",
     width: "112.756",
     height: "76.79",
     filterUnits: "userSpaceOnUse"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("feOffset", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("feOffset", {
     dy: "3",
     input: "SourceAlpha"
-  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("feGaussianBlur", {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("feGaussianBlur", {
     stdDeviation: "3",
     result: "b"
-  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("feFlood", {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("feFlood", {
     "flood-opacity": "0.161"
-  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("feComposite", {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("feComposite", {
     operator: "in",
     in2: "b"
-  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("feComposite", {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("feComposite", {
     "in": "SourceGraphic"
-  }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("g", {
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
     transform: "translate(9 -69.914)"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("g", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
     transform: "matrix(1, 0, 0, 1, -9, 69.91)",
     filter: "url(#a)"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
     d: "M90.654,101.207H14l18.29-18.291a4.1,4.1,0,0,0-5.8-5.8L1.2,102.408a4.1,4.1,0,0,0,0,5.8L26.494,133.5a4.1,4.1,0,1,0,5.8-5.8L14,109.41h76.65a4.1,4.1,0,1,0,0-8.2Z",
     transform: "translate(9 -69.91)",
     fill: "#2c393f"
@@ -70394,6 +70238,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+var config = {
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  }
+};
 
 var Main = function Main() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
@@ -70404,91 +70254,115 @@ var Main = function Main() {
       authState = _useState2[0],
       setAuthState = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState4 = _slicedToArray(_useState3, 2),
-      location = _useState4[0],
-      setLocation = _useState4[1];
+      ad = _useState4[0],
+      setAd = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState6 = _slicedToArray(_useState5, 2),
-      message = _useState6[0],
-      setMessage = _useState6[1];
+      ads = _useState6[0],
+      setAds = _useState6[1];
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+      _useState8 = _slicedToArray(_useState7, 2),
+      messages = _useState8[0],
+      setMessages = _useState8[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    _ipLocation();
+    config.headers['X-localization'] = _getData('http://ip-api.com/json');
+    var _localStorage = localStorage,
+        appState = _localStorage.appState,
+        ads = _localStorage.ads;
 
-    _fetchData();
+    if (JSON.parse(appState).isLoggedIn) {
+      setAuthState(JSON.parse(appState));
+      Object(_reach_router__WEBPACK_IMPORTED_MODULE_5__["navigate"])("/home");
+      config.headers['Authorization'] = 'Bearer ' + JSON.parse(appState).user.auth_token;
+      ads === undefined || JSON.parse(ads).length !== _getData('/api/size-ads') ? _getAds().then(function (_ref) {
+        var data = _ref.data;
+        setAds(data);
+        localStorage["ads"] = JSON.stringify(data);
+      }) : setAds(JSON.parse(ads));
+    }
   }, []);
 
   var _disableForm = function _disableForm(control) {
-    console.log("dis");
-    jquery__WEBPACK_IMPORTED_MODULE_3___default()("#authentication-form .submit-button").prop("disabled", control).html("<span className=\"sr-only\">".concat(control ? "Loading..." : "Submit", "</span>"));
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()("#authentication-form .submit-button").prop("disabled", control).html("<span className={\"sr-only\"}>".concat(control ? "Loading..." : "Submit", "</span>"));
   };
 
-  var _loginUser = function _loginUser(data) {
+  var _postData =
+  /*#__PURE__*/
+  function () {
+    var _ref2 = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(url, data) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_4___default.a.post(url, data, config);
+
+            case 2:
+              return _context.abrupt("return", _context.sent);
+
+            case 3:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function _postData(_x, _x2) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  var _getData =
+  /*#__PURE__*/
+  function () {
+    var _ref3 = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(url) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_4___default.a.get(url, config);
+
+            case 2:
+              return _context2.abrupt("return", _context2.sent);
+
+            case 3:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    return function _getData(_x3) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+
+  var _authentication = function _authentication(data, control) {
     _disableForm(true);
 
-    axios__WEBPACK_IMPORTED_MODULE_4___default.a.post("/api/login", data, {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        "X-localization": location
-      }
-    }).then(function (response) {
-      console.log(response);
-      return response;
-    }).then(function (json) {
-      setMessage(json.data.messages);
+    _postData(control ? '/api/login' : '/api/register', data).then(function (response) {
+      var data = response.data.data;
+      setMessages(data.messages);
 
-      if (json.data.success) {
-        var userData = {};
-
-        if (json.data.data.type === "user") {
-          userData = {
-            active: json.data.data.active,
-            auth_token: json.data.data.auth_token,
-            drivingLicense: json.data.data.drivingLicense,
-            email: json.data.data.email,
-            id: json.data.data.id,
-            lastName: json.data.data.lastName,
-            name: json.data.data.name,
-            phone: json.data.data.phone,
-            ready: json.data.data.ready,
-            type: json.data.data.type,
-            username: json.data.data.username,
-            profile_pic: json.data.data.profile_pic,
-            timestamp: new Date().toString()
-          };
-        } else if (json.data.data.type === 'business') {
-          userData = {
-            active: json.data.data.active,
-            auth_token: json.data.data.auth_token,
-            bussinesId: json.data.data.bussinesId,
-            email: json.data.data.email,
-            id: json.data.data.id,
-            name: json.data.data.name,
-            phone: json.data.data.phone,
-            ready: json.data.data.ready,
-            type: json.data.data.type,
-            username: json.data.data.username,
-            profile_pic: json.data.data.profile_pic,
-            timestamp: new Date().toString()
-          };
-        }
-
-        var appState = {
+      if (response.data.success) {
+        var userData = {
           isLoggedIn: true,
-          user: userData
+          user: data
         };
-        localStorage["appState"] = JSON.stringify(appState);
-        setAuthState({
-          isLoggedIn: appState.isLoggedIn,
-          user: appState.user
-        });
-        console.log(appState);
-        Object(_reach_router__WEBPACK_IMPORTED_MODULE_5__["navigate"])("/home");
-      } else {
-        alert("Authentication Failed!");
+        setAuthState(userData);
+        localStorage["appState"] = JSON.stringify(userData);
       }
 
       _disableForm(false);
@@ -70502,106 +70376,39 @@ var Main = function Main() {
       isLoggedIn: false,
       user: {}
     };
+    setAuthState(appState);
     localStorage["appState"] = JSON.stringify(appState);
-    setAuthState({
-      isLoggedIn: appState.isLoggedIn,
-      user: appState.user
-    });
   };
 
-  var _submitRegistration = function _submitRegistration(data) {
-    jquery__WEBPACK_IMPORTED_MODULE_3___default()("#login-form .sign-up-button").attr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>');
-    axios__WEBPACK_IMPORTED_MODULE_4___default.a.post('/api/register', data, {
-      headers: {
-        'Content-Type': 'application/json',
-        "X-localization": location
-      }
-    }).then(function (response) {
-      return response;
-    }).then(function (json) {
-      if (json.data.success) {
-        alert('Registration Successful!');
-        var userData = {};
-
-        if (json.data.data.type === "user") {
-          userData = {
-            active: json.data.data.active,
-            auth_token: json.data.data.auth_token,
-            drivingLicense: json.data.data.drivingLicense,
-            email: json.data.data.email,
-            id: json.data.data.id,
-            lastName: json.data.data.lastName,
-            name: json.data.data.name,
-            phone: json.data.data.phone,
-            type: json.data.data.type,
-            username: json.data.data.username,
-            profile_pic: json.data.data.profile_pic,
-            timestamp: new Date().toString()
-          };
-        } else if (json.data.data.type === 'business') {
-          userData = {
-            active: json.data.data.active,
-            auth_token: json.data.data.auth_token,
-            bussinesId: json.data.data.bussinesId,
-            email: json.data.data.email,
-            id: json.data.data.id,
-            name: json.data.data.name,
-            phone: json.data.data.phone,
-            type: json.data.data.type,
-            username: json.data.data.username,
-            profile_pic: json.data.data.profile_pic,
-            timestamp: new Date().toString()
-          };
-        }
-
-        var appState = {
-          isLoggedIn: true,
-          user: userData
-        };
-        localStorage["appState"] = JSON.stringify(appState);
-        setAuthState({
-          isLoggedIn: appState.isLoggedIn,
-          user: appState.user
-        });
-        Object(_reach_router__WEBPACK_IMPORTED_MODULE_5__["navigate"])("/home");
-      } else {
-        alert('Registration Failed!');
-      }
-
-      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#login-form .sign-up-button").removeAttr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign up</span>');
-    })["catch"](function (error) {
-      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#login-form .sign-up-button").removeAttr("disabled", "disabled").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">sign up</span>');
-    });
+  var _forgottenPassword = function _forgottenPassword(email) {
+    return _postData('/api/password-reset-mail', email);
   };
 
-  var _edit = function _edit(data) {
+  var _resetPassword = function _resetPassword(password) {
+    return _postData('/api/password-reset', password);
+  };
+
+  var _updateProfile = function _updateProfile(data) {
     var formData = new FormData();
     formData.append('email', data.email);
     formData.append('name', data.name);
     formData.append('phone', data.phone);
     formData.append('username', '@' + data.username);
 
-    if (data.lastName !== undefined) {
-      for (var i = 0; i < data.languages.length; i++) {
-        formData.append('languages[]', data.languages[i]);
-      }
-
-      for (var _i2 = 0; _i2 < data.categories.length; _i2++) {
-        formData.append('categories[]', data.categories[_i2]);
-      }
-
+    if (data.type === 2) {
+      data.languages.map(function (language) {
+        return formData.append('languages[]', language);
+      });
+      data.categories.map(function (category) {
+        return formData.append('categories[]', category);
+      });
       formData.append('lastName', data.lastName);
       formData.set('drivingLicense', data.drivingLicense);
     } else {
       formData.append('ico', data.ico);
     }
 
-    if (data.profile_pic === null) {
-      formData.append('profile_pic', data.profile_pic);
-    } else {
-      formData.append('profile_pic', data.profile_pic[0]);
-    }
-
+    formData.append('profile_pic', data.profile_pic === null ? null : data.profile_pic[0]);
     axios__WEBPACK_IMPORTED_MODULE_4___default.a.post('/api/register-additional', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
@@ -70611,55 +70418,14 @@ var Main = function Main() {
       }
     }).then(function (response) {
       console.log(response);
-      return response;
-    }).then(function (response) {
-      console.log(response);
 
       if (response.data.success) {
-        var userData = {};
-
-        if (response.data.data.type === "user") {
-          userData = {
-            active: response.data.data.active,
-            auth_token: response.data.data.auth_token,
-            drivingLicense: response.data.data.drivingLicense,
-            email: response.data.data.email,
-            id: response.data.data.id,
-            lastName: response.data.data.lastName,
-            name: response.data.data.name,
-            phone: response.data.data.phone,
-            ready: response.data.data.ready,
-            type: response.data.data.type,
-            username: response.data.data.username,
-            profile_pic: response.data.data.profile_pic,
-            timestamp: new Date().toString()
-          };
-        } else if (response.data.data.type === 'business') {
-          userData = {
-            active: response.data.data.active,
-            auth_token: response.data.data.auth_token,
-            bussinesId: response.data.data.bussinesId,
-            email: response.data.data.email,
-            id: response.data.data.id,
-            name: response.data.data.name,
-            phone: response.data.data.phone,
-            ready: response.data.data.ready,
-            type: response.data.data.type,
-            username: response.data.data.username,
-            profile_pic: response.data.data.profile_pic,
-            timestamp: new Date().toString()
-          };
-        }
-
         var appState = {
           isLoggedIn: true,
-          user: userData
+          user: data
         };
         localStorage["appState"] = JSON.stringify(appState);
-        setAuthState({
-          isLoggedIn: appState.isLoggedIn,
-          user: appState.user
-        });
+        setAuthState(appState);
         Object(_reach_router__WEBPACK_IMPORTED_MODULE_5__["navigate"])("/home");
       }
     })["catch"](function (e) {
@@ -70667,43 +70433,7 @@ var Main = function Main() {
     });
   };
 
-  var _reset = function _reset(login) {
-    axios__WEBPACK_IMPORTED_MODULE_4___default.a.post('/api/password-reset-mail', login, {
-      headers: {
-        'Content-Type': 'application/json',
-        "X-localization": location
-      }
-    }).then(function (response) {
-      console.log(response);
-      return response;
-    });
-    console.log(login);
-  };
-
-  var _resetPassword = function _resetPassword(data) {
-    console.log(data);
-    axios__WEBPACK_IMPORTED_MODULE_4___default.a.post('/api/password-reset', data, {
-      headers: {
-        'Content-Type': "application/json",
-        "X-localization": location
-      }
-    }).then(function (response) {
-      console.log(response);
-      return response;
-    });
-  };
-
-  var _ipLocation = function _ipLocation() {
-    jquery__WEBPACK_IMPORTED_MODULE_3___default.a.ajax('http://ip-api.com/json').then(function success(response) {
-      setLocation(response.countryCode);
-    }, function fail(data, status) {
-      console.log('Request failed.  Returned status of', status);
-    });
-  };
-
   var _createAd = function _createAd(data) {
-    console.log(data);
-    console.log(JSON.parse(localStorage.appState).user.id);
     axios__WEBPACK_IMPORTED_MODULE_4___default.a.post("/api/advertisement", data, {
       headers: {
         'Content-Type': "application/json",
@@ -70717,7 +70447,6 @@ var Main = function Main() {
   };
 
   var _updateAd = function _updateAd(data) {
-    console.log(data);
     axios__WEBPACK_IMPORTED_MODULE_4___default.a.put("/api/advertisement", data, {
       headers: {
         'Content-Type': "application/json",
@@ -70730,56 +70459,76 @@ var Main = function Main() {
     });
   };
 
-  var _fetchData =
+  var _viewAd =
   /*#__PURE__*/
   function () {
-    var _ref = _asyncToGenerator(
+    var _ref4 = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var result;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(id) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
         while (1) {
-          switch (_context.prev = _context.next) {
+          switch (_context3.prev = _context3.next) {
             case 0:
-              _context.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_4___default()('api/register-additional', {
-                headers: {
-                  'X-localization': location
-                }
-              });
+              return _context3.abrupt("return", _getData('api/advertisement/' + id).then(function (_ref5) {
+                var data = _ref5.data;
+                return setAd(data);
+              }));
 
-            case 2:
-              result = _context.sent;
-              localStorage['branches'] = JSON.stringify(result.data.branches);
-
-            case 4:
+            case 1:
             case "end":
-              return _context.stop();
+              return _context3.stop();
           }
         }
-      }, _callee);
+      }, _callee3);
     }));
 
-    return function _fetchData() {
-      return _ref.apply(this, arguments);
+    return function _viewAd(_x4) {
+      return _ref4.apply(this, arguments);
+    };
+  }();
+
+  var _getAds =
+  /*#__PURE__*/
+  function () {
+    var _ref6 = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              return _context4.abrupt("return", _getData('api/advertisement'));
+
+            case 1:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
+    }));
+
+    return function _getAds() {
+      return _ref6.apply(this, arguments);
     };
   }();
 
   return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_reach_router__WEBPACK_IMPORTED_MODULE_5__["Router"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Forms_Authentication__WEBPACK_IMPORTED_MODULE_6__["Authentication"], {
     path: "/",
-    login: _loginUser,
-    register: _submitRegistration,
-    reset: _reset,
-    message: message
-  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Logged_Home__WEBPACK_IMPORTED_MODULE_7__["Home"], {
-    path: "/home",
-    edit: _edit,
-    region: location,
-    createAd: _createAd,
-    updateAd: _updateAd
+    authenticate: _authentication,
+    forgotten: _forgottenPassword,
+    message: messages
   }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Forms_PasswordReset__WEBPACK_IMPORTED_MODULE_8__["PasswordReset"], {
     path: '/reset-password',
     reset: _resetPassword
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Logged_Home__WEBPACK_IMPORTED_MODULE_7__["Home"], {
+    path: "/home",
+    updateProfile: _updateProfile,
+    viewAd: _viewAd,
+    createAd: _createAd,
+    updateAd: _updateAd,
+    user: authState.user,
+    ads: ads,
+    ad: ad
   }));
 };
 

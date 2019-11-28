@@ -11,6 +11,11 @@ use DB;
 
 class AdvertisementController extends Controller
 {
+    public function size()
+    {
+        return sizeOf(Advertisement::all());
+    }
+
     public function store(Request $request){
         $validator = Validator::make($request->all(), [
             'title' => 'required|string',
@@ -27,7 +32,7 @@ class AdvertisementController extends Controller
             'branches' => 'required|array',
             'tags' => 'required|array',
         ]);
-            
+
         if ($validator->fails()) {
         return response()->json([
             'success' => false,
@@ -35,13 +40,13 @@ class AdvertisementController extends Controller
             'messages' => $validator->messages()->all()
             ]);
         };
-            
-            
+
+
         $success = false;
-            
+
         DB::beginTransaction();
-            
-        try {  
+
+        try {
             $ad = new Advertisement;
 
             $ad->title = $request->title;
@@ -52,13 +57,13 @@ class AdvertisementController extends Controller
             if($request->user_id){
                 $ad->user_id = $request->user_id;
             }
-            else{       
+            else{
                 $ad->business_id = $request->business_id;
             }
             if($ad->save()){
                 $tag_arr = [];
 
-                foreach($request->tags as $tag){  
+                foreach($request->tags as $tag){
                     if(strlen($tag) > 0 && $tag != " "){
                         $tag_id = Tag::where('name','=',$tag)->first();
                         if ($tag_id) {
@@ -71,22 +76,22 @@ class AdvertisementController extends Controller
                                 array_push($tag_arr,$NewTag->id);
                             }
                         }
-                    }  
+                    }
                 }
 
                 $ad->tags()->attach($tag_arr);
                 $ad->branches()->attach($request->branches);
                 $success = true;
-            }   
+            }
             else{
                 $success = false;
             }
-        
+
         }catch (\Exception $e) {
             // maybe log this exception, but basically it's just here so we can rollback if we get a surprise
             return $e;
         }
-        
+
         if ($success) {
             DB::commit();
             return response()->json([
@@ -123,12 +128,12 @@ class AdvertisementController extends Controller
             'messages' => $validator->messages()->all()
             ]);
         };
-            
+
         $success = false;
-            
+
         DB::beginTransaction();
-            
-        try {  
+
+        try {
             $ad = Advertisement::where('id',$request->id)->first();
 
             $ad->title = $request->title;
@@ -139,7 +144,7 @@ class AdvertisementController extends Controller
             if($ad->save()){
                 $tag_arr = [];
 
-                foreach($request->tags as $tag){   
+                foreach($request->tags as $tag){
                     if(strlen($tag) > 0 && $tag != " "){
                         $tag_id = Tag::where('name','=',$tag)->first();
                         if ($tag_id) {
@@ -166,11 +171,11 @@ class AdvertisementController extends Controller
             else{
                 $success = false;
             }
-        
+
         }catch (\Exception $e) {
             // maybe log this exception, but basically it's just here so we can rollback if we get a surprise
         }
-        
+
         if ($success) {
             DB::commit();
             return response()->json([
@@ -218,7 +223,7 @@ class AdvertisementController extends Controller
             foreach($ad->tags as $tag){
                 array_push($tags,$tag->name);
             }
-    
+
             foreach($ad->branches as $branch){
                 $branchNew['id']=$branch->id;
                 $branchNew['free_time']=$branch->free_time;
