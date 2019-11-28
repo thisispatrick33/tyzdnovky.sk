@@ -69855,7 +69855,8 @@ var Home = function Home(_ref) {
       _ref$updateAd = _ref.updateAd,
       updateAd = _ref$updateAd === void 0 ? function (f) {
     return f;
-  } : _ref$updateAd;
+  } : _ref$updateAd,
+      signOut = _ref.signOut;
   var today = new Date();
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
@@ -69997,198 +69998,7 @@ var Home = function Home(_ref) {
   }();
 
   var showAdvertisementInfo = function showAdvertisementInfo() {
-    //setCreate({id: id, active: true});
-    jquery__WEBPACK_IMPORTED_MODULE_7___default()("#advertisement-info").show();
-  };
-
-  var hideAdvertisementInfo = function hideAdvertisementInfo() {
-    //setCreate({id: id, active: true});
-    jquery__WEBPACK_IMPORTED_MODULE_7___default()("#advertisement-info").hide();
-  };
-
-  if (JSON.parse(localStorage.appState).user != undefined) {
-    if (data[0] == undefined) {
-      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, "loading");
-    }
-
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: " home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 pt-5"
-    }, JSON.parse(localStorage.appState).user.active == 0 ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Additional__WEBPACK_IMPORTED_MODULE_2__["Additional"], {
-      user: JSON.parse(localStorage.appState).user,
-      func: handleChange,
-      region: region
-    }) : "", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "content col-11 row justify-content-center py-5"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "header col-11 row justify-content-between"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "menu col-1 row"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
-      className: "col-10 p-0",
-      viewBox: "0 0 86.628 43.314",
-      xmlns: "http://www.w3.org/2000/svg"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("g", {
-      transform: "translate(0 -96.243)"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("g", {
-      transform: "translate(0 96.243)",
-      fill: "#2c393f"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
-      transform: "translate(0 -96.243)",
-      d: "M2.707,101.657H83.921a2.707,2.707,0,0,0,0-5.414H2.707a2.707,2.707,0,0,0,0,5.414Z",
-      "data-name": "Path 41"
-    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
-      transform: "translate(0 -161.5)",
-      d: "M83.921,180.455H2.707a2.707,2.707,0,1,0,0,5.414H83.921a2.707,2.707,0,1,0,0-5.414Z",
-      "data-name": "Path 42"
-    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
-      transform: "translate(-93.232 -226.77)",
-      d: "m177.15 264.67h-54.143a2.707 2.707 0 1 0 0 5.414h54.143a2.707 2.707 0 1 0 0-5.414z",
-      "data-name": "Path 43"
-    }))))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "finder col-9 d-flex justify-content-center"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-      type: "text",
-      className: "col-11 finder",
-      placeholder: "\u2026find work, company or group"
-    })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "user-header-nofication col-1"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
-      src: JSON.parse(localStorage.appState).user.profile_pic !== null ? JSON.parse(localStorage.appState).user.profile_pic.substring(JSON.parse(localStorage.appState).user.profile_pic.indexOf("images")) : "./images/user.svg",
-      className: "profile-photo",
-      alt: ""
-    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "action-point text-center"
-    }, "7"))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "message col-11 mt-5"
-    }, JSON.parse(localStorage.appState).user.name == null ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Hello !") : react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Hello ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, JSON.parse(localStorage.appState).user.name), " !"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
-      onClick: function onClick() {
-        return setAd("");
-      }
-    }, "Schovaj"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
-      onClick: function onClick() {
-        return setCreate({
-          id: null,
-          active: false
-        });
-      }
-    }, "Schovaj"), ad.title == undefined ? "" : react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, ad.title), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, ad.description), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, ad.salary), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, ad.address), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, ad.date), ad.branches.map(function (_ref4) {
-      var name = _ref4.name;
-      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, name);
-    }), ad.tags.map(function (value) {
-      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, value);
-    }))), create.active ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Forms_Advertisement__WEBPACK_IMPORTED_MODULE_9__["Advertisement"], {
-      createAd: handleCreate,
-      region: region,
-      updateAd: handleUpdate,
-      id: create.id
-    }) : "", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_4___default.a, _extends({}, settings, {
-      className: "work-options justify-content-between col-12 my-5 px-5 row"
-    }), data.map(function (_ref5) {
-      var id = _ref5.id,
-          title = _ref5.title,
-          description = _ref5.description,
-          address = _ref5.address,
-          date = _ref5.date,
-          created_at = _ref5.created_at;
-      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "work-option row justify-content-center col-12 p-0 mx-3 mb-5"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "content shadow p-0 col-10"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "work-option-image-wrapper"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
-        className: "work-option-image",
-        src: "./images/poster.jpg"
-      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
-        className: "work-option-save",
-        width: "13.135",
-        height: "15.526",
-        viewBox: "0 0 13.135 15.526"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("g", {
-        transform: "translate(-33.261)"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
-        d: "M46.2.513a1.157,1.157,0,0,0-.539-.421A1.136,1.136,0,0,0,45.206,0H34.451A1.136,1.136,0,0,0,34,.092a1.156,1.156,0,0,0-.539.421,1.089,1.089,0,0,0-.2.636V14.377a1.09,1.09,0,0,0,.2.636,1.156,1.156,0,0,0,.539.421,1.135,1.135,0,0,0,.451.092,1.224,1.224,0,0,0,.852-.339l4.526-4.351,4.526,4.351a1.221,1.221,0,0,0,.852.328,1.194,1.194,0,0,0,.99-.5,1.088,1.088,0,0,0,.2-.636V1.149A1.089,1.089,0,0,0,46.2.513ZM45.083,14.059,40.742,9.892l-.913-.872-.913.872-4.341,4.166V1.314H45.083V14.059Z",
-        fill: "#fff"
-      }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
-        className: "work-option-edit",
-        onClick: function onClick() {
-          return showAdvertisementInfo();
-        },
-        width: "16",
-        height: "16",
-        viewBox: "0 0 16 16"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("g", {
-        transform: "translate(-0.063 0.001)"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
-        d: "M.572,16a.509.509,0,0,1-.493-.632l.955-3.834a.51.51,0,0,1,.134-.237L11.92.545a1.868,1.868,0,0,1,2.638,0l.959.959a1.868,1.868,0,0,1,0,2.638L4.765,14.895a.505.505,0,0,1-.237.134l-3.834.955A.47.47,0,0,1,.572,16Zm1.415-4.083L1.27,14.791l2.875-.716L14.8,3.422a.85.85,0,0,0,0-1.2l-.959-.959a.849.849,0,0,0-1.2,0Zm2.419,2.619h0Zm0,0",
-        transform: "translate(0)",
-        fill: "#fff"
-      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
-        d: "M319.56,68.392a.505.505,0,0,1-.36-.149l-2.879-2.878a.509.509,0,0,1,.72-.72l2.879,2.879a.508.508,0,0,1-.36.868Zm0,0",
-        transform: "translate(-306.057 -62.446)",
-        fill: "#fff"
-      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
-        d: "M33.481,354.451a.5.5,0,0,1-.36-.149l-2.879-2.879a.509.509,0,0,1,.72-.72l2.879,2.879a.509.509,0,0,1-.36.869Zm0,0",
-        transform: "translate(-29.076 -339.408)",
-        fill: "#fff"
-      })))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "work-option-content"
-      }, (today.getTime() - new Date(created_at.substring(0, created_at.indexOf('T'))).getTime()) / (1000 * 3600 * 24) <= 3 ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "text-center work-option-new"
-      }, " NEW!") : "", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h5", {
-        className: "work-option-title text-center mt-4 mb-2"
-      }, title), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
-        className: "work-option-description"
-      }, description.substring(0, 74), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
-        onClick: function onClick() {
-          return viewAd(id);
-        }
-      }, "... Zisti viac.")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "row text-center h6 work-option-info pt-4 pb-5"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "col-6 p-0"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
-        xmlns: "http://www.w3.org/2000/svg",
-        width: "13.512",
-        height: "19.292",
-        viewBox: "0 0 13.512 19.292"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
-        d: "M23.023,12a2.466,2.466,0,1,0,2.466,2.466A2.469,2.469,0,0,0,23.023,12Zm0,4.228a1.762,1.762,0,1,1,1.762-1.762A1.764,1.764,0,0,1,23.023,16.228Z",
-        transform: "translate(-16.204 -7.772)",
-        fill: "#00c7c7"
-      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
-        d: "M19.737,1.979a6.756,6.756,0,0,0-9.555,0,7.7,7.7,0,0,0-.636,9.5l5.413,7.817,5.405-7.806A7.7,7.7,0,0,0,19.737,1.979Zm.056,9.095-4.834,6.98-4.841-6.991a6.953,6.953,0,0,1,.562-8.586,6.052,6.052,0,0,1,8.558,0A6.956,6.956,0,0,1,19.793,11.074Z",
-        transform: "translate(-8.203 0)",
-        fill: "#00c7c7"
-      })), address)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "col-6 p-0"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
-        xmlns: "http://www.w3.org/2000/svg",
-        width: "15.888",
-        height: "17.023",
-        viewBox: "0 0 15.888 17.023"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
-        d: "M17.6,1.135H15.618V.284A.283.283,0,0,0,15.335,0H13.349a.283.283,0,0,0-.284.284v.851H6.823V.284A.283.283,0,0,0,6.539,0H4.553A.283.283,0,0,0,4.27.284v.851H2.284A.283.283,0,0,0,2,1.419V16.739a.283.283,0,0,0,.284.284H17.6a.283.283,0,0,0,.284-.284V1.419A.283.283,0,0,0,17.6,1.135ZM13.632.567h1.419v1.7H13.632V.567Zm-8.8,0H6.256v1.7H4.837V.567ZM2.567,1.7h1.7v.851a.283.283,0,0,0,.284.284H6.539a.283.283,0,0,0,.284-.284V1.7h6.242v.851a.283.283,0,0,0,.284.284h1.986a.283.283,0,0,0,.284-.284V1.7h1.7V4.256H2.567Zm0,14.753V4.823H17.321V16.455Z",
-        transform: "translate(-2)",
-        fill: "#00c7c7"
-      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
-        d: "M18.66,23H11v8.228H21.781V23H18.66Zm-1.986.567H18.66v1.986H16.674Zm1.986,4.539H16.674V26.121H18.66Zm-4.539-1.986h1.986v1.986H14.121Zm0-2.553h1.986v1.986H14.121Zm-2.553,0h1.986v1.986H11.567Zm0,2.553h1.986v1.986H11.567Zm1.986,4.539H11.567V28.674h1.986Zm2.553,0H14.121V28.674h1.986Zm2.553,0H16.674V28.674H18.66Zm2.553,0H19.228V28.674h1.986Zm0-2.553H19.228V26.121h1.986Zm0-4.539v1.986H19.228V23.567Z",
-        transform: "translate(-8.447 -16.475)",
-        fill: "#00c7c7"
-      })), date))))));
-    }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "row justify-content-center"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-      className: "col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "sign")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "col-auto"
-    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-      className: "col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "sign")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "col-auto"
-    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-      className: "col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "sign"))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "advertisement-info-wrapper",
       id: "advertisement-info"
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -70208,13 +70018,13 @@ var Home = function Home(_ref) {
       className: "col-12 col-sm-8 order-2 order-sm-1"
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", {
       className: "advertisement-info-title text-center"
-    }, "AUTOMECHANIK")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    }, ad.title)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "col-12 col-sm-4 order-1 order-sm-2 "
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "cross float-right float-sm-none"
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
       onClick: function onClick() {
-        return hideAdvertisementInfo();
+        return setAd("");
       },
       className: "ml-3",
       style: {
@@ -70235,11 +70045,13 @@ var Home = function Home(_ref) {
       className: "border-r pt-4 justify-content-center row "
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "advertisement-info-tags row justify-content-center pb-5 col-11"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "advertisement-info-tag py-2 mx-3 mt-1 mb-2 px-4 shadow col-auto"
-    }, "ATTAChinterupt")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+    }, ad.tags.map(function (value) {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "advertisement-info-tag py-2 mx-3 mt-1 mb-2 px-4 shadow col-auto"
+      }, value);
+    })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
       className: "advertisement-info-description mb-5 text-center"
-    }, "Donec convallis iaculis tellus vel interdum. Maecenas dictum dui sed urna condimentum lacinia. In suscipit metus vel tempor rhoncus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac vestibulum felis. Mauris commodo porttitor scelerisque. Duis et metus at quam convallis dapibus a ut metus."), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    }, ad.description), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
       className: "my-2 mb-3 submit-button sign-in-button px-5 py-2 d-block"
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, " m\xE1m  ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
       className: "strong"
@@ -70247,9 +70059,12 @@ var Home = function Home(_ref) {
       className: "col-md-4 text-uppercase order-3 order-md-4"
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "advertisement-info-branches border-b text-center py-3 px-2"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "my-4"
-    }, "automobilov\xFD priemysel")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    }, ad.branches.map(function (_ref4) {
+      var name = _ref4.name;
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "my-4"
+      }, name);
+    })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "advertisement-info-additional row pt-4 border-b-res m-0"
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "row col-12 my-3"
@@ -70272,7 +70087,7 @@ var Home = function Home(_ref) {
       fill: "#00c7c7"
     })))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "col-6 text-left pl-0"
-    }, "NEMECko")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    }, ad.address)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "row col-12 my-3"
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "col-6 text-right pr-2"
@@ -70464,7 +70279,7 @@ var Home = function Home(_ref) {
       fill: "#00c7c7"
     }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "col-6 text-left pl-0"
-    }, "28.11.2019")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    }, ad.date)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "row col-12 my-3"
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "col-6 text-right pr-2"
@@ -70488,10 +70303,192 @@ var Home = function Home(_ref) {
       fill: "#00c7c7"
     }))))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "col-6 text-left pl-0"
-    }, "4845\u20AC")))))))))));
+    }, ad.salary))))))))));
+  };
+
+  if (JSON.parse(localStorage.appState).isLoggedIn == true) {
+    if (data[0] == undefined) {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, "loading");
+    }
+
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: " home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 pt-5"
+    }, JSON.parse(localStorage.appState).user.active == 0 ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Additional__WEBPACK_IMPORTED_MODULE_2__["Additional"], {
+      user: JSON.parse(localStorage.appState).user,
+      func: handleChange,
+      region: region
+    }) : "", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "content col-11 row justify-content-center py-5"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "header col-11 row justify-content-between"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "menu col-1 row"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
+      className: "col-10 p-0",
+      viewBox: "0 0 86.628 43.314",
+      xmlns: "http://www.w3.org/2000/svg"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("g", {
+      transform: "translate(0 -96.243)"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("g", {
+      transform: "translate(0 96.243)",
+      fill: "#2c393f"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+      transform: "translate(0 -96.243)",
+      d: "M2.707,101.657H83.921a2.707,2.707,0,0,0,0-5.414H2.707a2.707,2.707,0,0,0,0,5.414Z",
+      "data-name": "Path 41"
+    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+      transform: "translate(0 -161.5)",
+      d: "M83.921,180.455H2.707a2.707,2.707,0,1,0,0,5.414H83.921a2.707,2.707,0,1,0,0-5.414Z",
+      "data-name": "Path 42"
+    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+      transform: "translate(-93.232 -226.77)",
+      d: "m177.15 264.67h-54.143a2.707 2.707 0 1 0 0 5.414h54.143a2.707 2.707 0 1 0 0-5.414z",
+      "data-name": "Path 43"
+    }))))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "finder col-9 d-flex justify-content-center"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      type: "text",
+      className: "col-11 finder",
+      placeholder: "\u2026find work, company or group"
+    })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "user-header-nofication col-1"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+      src: JSON.parse(localStorage.appState).user.profile_pic !== null ? JSON.parse(localStorage.appState).user.profile_pic.substring(JSON.parse(localStorage.appState).user.profile_pic.indexOf("images")) : "./images/user.svg",
+      className: "profile-photo",
+      alt: ""
+    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "action-point text-center"
+    }, "7"))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "message col-11 mt-5"
+    }, JSON.parse(localStorage.appState).user.name == null ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Hello !") : react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Hello ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, JSON.parse(localStorage.appState).user.name), " !"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+      onClick: function onClick() {
+        return setCreate({
+          id: null,
+          active: false
+        });
+      }
+    }, "Schovaj")), create.active ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Forms_Advertisement__WEBPACK_IMPORTED_MODULE_9__["Advertisement"], {
+      createAd: handleCreate,
+      region: region,
+      updateAd: handleUpdate,
+      id: create.id
+    }) : "", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_4___default.a, _extends({}, settings, {
+      className: "work-options justify-content-between col-12 my-5 px-5 row"
+    }), data.map(function (_ref5) {
+      var id = _ref5.id,
+          title = _ref5.title,
+          description = _ref5.description,
+          address = _ref5.address,
+          date = _ref5.date,
+          created_at = _ref5.created_at;
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "work-option row justify-content-center col-12 p-0 mx-3 mb-5"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "content shadow p-0 col-10"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "work-option-image-wrapper"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+        className: "work-option-image",
+        src: "./images/poster.jpg"
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
+        className: "work-option-save",
+        width: "13.135",
+        height: "15.526",
+        viewBox: "0 0 13.135 15.526"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("g", {
+        transform: "translate(-33.261)"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+        d: "M46.2.513a1.157,1.157,0,0,0-.539-.421A1.136,1.136,0,0,0,45.206,0H34.451A1.136,1.136,0,0,0,34,.092a1.156,1.156,0,0,0-.539.421,1.089,1.089,0,0,0-.2.636V14.377a1.09,1.09,0,0,0,.2.636,1.156,1.156,0,0,0,.539.421,1.135,1.135,0,0,0,.451.092,1.224,1.224,0,0,0,.852-.339l4.526-4.351,4.526,4.351a1.221,1.221,0,0,0,.852.328,1.194,1.194,0,0,0,.99-.5,1.088,1.088,0,0,0,.2-.636V1.149A1.089,1.089,0,0,0,46.2.513ZM45.083,14.059,40.742,9.892l-.913-.872-.913.872-4.341,4.166V1.314H45.083V14.059Z",
+        fill: "#fff"
+      }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
+        className: "work-option-edit",
+        onClick: function onClick() {
+          return setCreate({
+            id: id,
+            active: true
+          });
+        },
+        width: "16",
+        height: "16",
+        viewBox: "0 0 16 16"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("g", {
+        transform: "translate(-0.063 0.001)"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+        d: "M.572,16a.509.509,0,0,1-.493-.632l.955-3.834a.51.51,0,0,1,.134-.237L11.92.545a1.868,1.868,0,0,1,2.638,0l.959.959a1.868,1.868,0,0,1,0,2.638L4.765,14.895a.505.505,0,0,1-.237.134l-3.834.955A.47.47,0,0,1,.572,16Zm1.415-4.083L1.27,14.791l2.875-.716L14.8,3.422a.85.85,0,0,0,0-1.2l-.959-.959a.849.849,0,0,0-1.2,0Zm2.419,2.619h0Zm0,0",
+        transform: "translate(0)",
+        fill: "#fff"
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+        d: "M319.56,68.392a.505.505,0,0,1-.36-.149l-2.879-2.878a.509.509,0,0,1,.72-.72l2.879,2.879a.508.508,0,0,1-.36.868Zm0,0",
+        transform: "translate(-306.057 -62.446)",
+        fill: "#fff"
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+        d: "M33.481,354.451a.5.5,0,0,1-.36-.149l-2.879-2.879a.509.509,0,0,1,.72-.72l2.879,2.879a.509.509,0,0,1-.36.869Zm0,0",
+        transform: "translate(-29.076 -339.408)",
+        fill: "#fff"
+      })))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "work-option-content"
+      }, (today.getTime() - new Date(created_at.substring(0, created_at.indexOf('T'))).getTime()) / (1000 * 3600 * 24) <= 3 ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "text-center work-option-new"
+      }, " NEW!") : "", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h5", {
+        className: "work-option-title text-center mt-4 mb-2"
+      }, title), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+        className: "work-option-description"
+      }, description.substring(0, 74), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+        onClick: function onClick() {
+          return viewAd(id);
+        }
+      }, "... Zisti viac.")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "row text-center h6 work-option-info pt-4 pb-5"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "col-6 p-0"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
+        xmlns: "http://www.w3.org/2000/svg",
+        width: "13.512",
+        height: "19.292",
+        viewBox: "0 0 13.512 19.292"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+        d: "M23.023,12a2.466,2.466,0,1,0,2.466,2.466A2.469,2.469,0,0,0,23.023,12Zm0,4.228a1.762,1.762,0,1,1,1.762-1.762A1.764,1.764,0,0,1,23.023,16.228Z",
+        transform: "translate(-16.204 -7.772)",
+        fill: "#00c7c7"
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+        d: "M19.737,1.979a6.756,6.756,0,0,0-9.555,0,7.7,7.7,0,0,0-.636,9.5l5.413,7.817,5.405-7.806A7.7,7.7,0,0,0,19.737,1.979Zm.056,9.095-4.834,6.98-4.841-6.991a6.953,6.953,0,0,1,.562-8.586,6.052,6.052,0,0,1,8.558,0A6.956,6.956,0,0,1,19.793,11.074Z",
+        transform: "translate(-8.203 0)",
+        fill: "#00c7c7"
+      })), address)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "col-6 p-0"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
+        xmlns: "http://www.w3.org/2000/svg",
+        width: "15.888",
+        height: "17.023",
+        viewBox: "0 0 15.888 17.023"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+        d: "M17.6,1.135H15.618V.284A.283.283,0,0,0,15.335,0H13.349a.283.283,0,0,0-.284.284v.851H6.823V.284A.283.283,0,0,0,6.539,0H4.553A.283.283,0,0,0,4.27.284v.851H2.284A.283.283,0,0,0,2,1.419V16.739a.283.283,0,0,0,.284.284H17.6a.283.283,0,0,0,.284-.284V1.419A.283.283,0,0,0,17.6,1.135ZM13.632.567h1.419v1.7H13.632V.567Zm-8.8,0H6.256v1.7H4.837V.567ZM2.567,1.7h1.7v.851a.283.283,0,0,0,.284.284H6.539a.283.283,0,0,0,.284-.284V1.7h6.242v.851a.283.283,0,0,0,.284.284h1.986a.283.283,0,0,0,.284-.284V1.7h1.7V4.256H2.567Zm0,14.753V4.823H17.321V16.455Z",
+        transform: "translate(-2)",
+        fill: "#00c7c7"
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+        d: "M18.66,23H11v8.228H21.781V23H18.66Zm-1.986.567H18.66v1.986H16.674Zm1.986,4.539H16.674V26.121H18.66Zm-4.539-1.986h1.986v1.986H14.121Zm0-2.553h1.986v1.986H14.121Zm-2.553,0h1.986v1.986H11.567Zm0,2.553h1.986v1.986H11.567Zm1.986,4.539H11.567V28.674h1.986Zm2.553,0H14.121V28.674h1.986Zm2.553,0H16.674V28.674H18.66Zm2.553,0H19.228V28.674h1.986Zm0-2.553H19.228V26.121h1.986Zm0-4.539v1.986H19.228V23.567Z",
+        transform: "translate(-8.447 -16.475)",
+        fill: "#00c7c7"
+      })), date))))));
+    }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "row justify-content-center"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+      className: "col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "sign")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "col-auto"
+    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+      className: "col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "sign")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "col-auto"
+    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+      className: "col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button",
+      onClick: signOut
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "sign out"))), ad === "" ? '' : showAdvertisementInfo());
+  } else {
+    console.log("uspesne odhlaseny");
+    Object(_reach_router__WEBPACK_IMPORTED_MODULE_3__["navigate"])('/');
   }
 
-  Object(_reach_router__WEBPACK_IMPORTED_MODULE_3__["navigate"])('/');
   return null;
 };
 
@@ -70743,10 +70740,8 @@ var Main = function Main() {
       user: {}
     };
     localStorage["appState"] = JSON.stringify(appState);
-    setAuthState({
-      isLoggedIn: appState.isLoggedIn,
-      user: appState.user
-    });
+    setAuthState(appState);
+    setMessage("");
   };
 
   var _submitRegistration = function _submitRegistration(data) {
@@ -71016,7 +71011,8 @@ var Main = function Main() {
     edit: _edit,
     region: location,
     createAd: _createAd,
-    updateAd: _updateAd
+    updateAd: _updateAd,
+    signOut: _logoutUser
   }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Forms_PasswordReset__WEBPACK_IMPORTED_MODULE_8__["PasswordReset"], {
     path: '/reset-password',
     reset: _resetPassword
@@ -71133,7 +71129,9 @@ var Tags = function Tags(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "tags"
   }, tags.map(function (tag, i) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, tag);
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: 'tag'
+    }, tag);
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
     placeholder: "Add tag...",
@@ -71148,7 +71146,7 @@ var Tags = function Tags(_ref) {
     onKeyDown: function onKeyDown(e) {
       return handleKeyDown(e);
     }
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Press ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("code", null, "enter"), " or ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("code", null, ","), " to add a tag. Press", " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("code", null, "backspace"), " to edit previous tag."));
+  })));
 };
 
 /***/ }),
@@ -71171,8 +71169,8 @@ var Tags = function Tags(_ref) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Jakub\Desktop\tyzdnovky.sk\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Jakub\Desktop\tyzdnovky.sk\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Mamuss\PhpstormProjects\tyzdnovky.sk\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Mamuss\PhpstormProjects\tyzdnovky.sk\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

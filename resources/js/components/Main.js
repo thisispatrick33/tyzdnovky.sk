@@ -106,8 +106,8 @@ const Main = () => {
             user: {}
         };
         localStorage["appState"] = JSON.stringify(appState);
-
-        setAuthState({isLoggedIn: appState.isLoggedIn, user: appState.user});
+        setAuthState(appState);
+        setMessage("");
     };
 
     const _submitRegistration = (data) => {
@@ -390,7 +390,7 @@ const Main = () => {
     return (
             <Router>
                 <Authentication path={`/`} login={_loginUser} register={_submitRegistration} reset={_reset} message={message}/>
-                <Home path={`/home`} edit={_edit} region={location} createAd={_createAd} updateAd={_updateAd} />
+                <Home path={`/home`} edit={_edit} region={location} createAd={_createAd} updateAd={_updateAd} signOut={_logoutUser}/>
                 <PasswordReset path={'/reset-password'} reset={_resetPassword}/>
             </Router>
     );

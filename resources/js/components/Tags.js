@@ -56,7 +56,7 @@ export const Tags = ({addTags = f => f, list}) => {
         <div className="form">
             <div className="tags">
                     {tags.map((tag, i) => (
-                       <div>
+                       <div className={'tag'}>
                             {tag}
                        </div>
                     ))}
@@ -70,10 +70,6 @@ export const Tags = ({addTags = f => f, list}) => {
                     onKeyDown={(e) => handleKeyDown(e)}
                 />
             </div>
-            <small>
-                Press <code>enter</code> or <code>,</code> to add a tag. Press{" "}
-                <code>backspace</code> to edit previous tag.
-            </small>
         </div>
     );
 };
