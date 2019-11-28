@@ -5,7 +5,7 @@ import axios from "axios";
 
 import { Router, navigate } from '@reach/router';
 import { Authentication } from './Forms/Authentication';
-import {Home} from "./Logged/Home";
+import { Home } from "./Logged/Home";
 import {PasswordReset} from "./Forms/PasswordReset";
 
 const config = {
@@ -18,7 +18,7 @@ const config = {
 const Main = () => {
 
     const [authState, setAuthState] = useState({isLoggedIn : false, user : {}});
-    const [ad, setAd] = useState([]);
+    const [ad, setAd] = useState(null);
     const [ads, setAds] = useState([]);
     const [messages, setMessages] = useState([]);
 
@@ -154,7 +154,8 @@ const Main = () => {
             })
     };
 
-    const _viewAd = async (id) =>  _getData('api/advertisement/'+id).then(({data}) => setAd(data));
+    const _viewAd = async id => _getData('api/advertisement/'+id).then(({data}) => setAd(data));
+    const _closeAd = async () =>  setAd(null);
 
     const _getAds = async () => _getData('api/advertisement');
 
@@ -164,7 +165,7 @@ const Main = () => {
             <Router>
                 <Authentication path={`/`} authenticate={_authentication} forgotten={_forgottenPassword} message={messages}/>
                 <PasswordReset path={'/reset-password'} reset={_resetPassword}/>
-                <Home path={`/home`} updateProfile={_updateProfile} viewAd={_viewAd} createAd={_createAd} updateAd={_updateAd} user={authState.user} ads={ads} ad={ad}/>
+                <Home path={`/home`} updateProfile={_updateProfile} viewAd={_viewAd} createAd={_createAd} updateAd={_updateAd} closeAd={_closeAd} user={authState.user} ads={ads} ad={ad} signOut={_logoutUser}/>
             </Router>
     );
 

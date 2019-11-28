@@ -4,11 +4,13 @@ import { navigate } from '@reach/router';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
 import {Advertisement} from "../Forms/Advertisement";
 import {AdvertisementLookup} from "../Forms/AdvertisementLookup";
+import {AdvertisementView} from "../Forms/AdvertisementView";
 
+export const Home =({ ads, ad, user, updateProfile = f => f, createAd = f => f, updateAd = f => f, viewAd = f => f, closeAd = f => f }) => {
 
-export const Home =({ ads, ad, user, updateProfile = f => f, createAd = f => f, updateAd = f => f, viewAd = f => f }) => {
     const settings = {
         dots: false,
         arrows : true,
@@ -33,21 +35,22 @@ export const Home =({ ads, ad, user, updateProfile = f => f, createAd = f => f, 
                 }
             },
             {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 1,
-                }
+              breakpoint: 768,
+              settings: {
+                slidesToShow: 1,
+              }
             }
-        ]
+          ]
     };
+
+
     const [create, setCreate] = useState({id: null, active: false});
 
     const handleChange = data => updateProfile(data);
     const handleCreate = data => createAd(data);
     const handleUpdate = data => updateAd(data);
     const handleView = id => viewAd(id);
-
-
+    const handleClose = () => closeAd();
 
     if(user !== undefined){
         if(ads[0] === undefined){
@@ -55,9 +58,14 @@ export const Home =({ ads, ad, user, updateProfile = f => f, createAd = f => f, 
         }
         return (
             <div className={` home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 pt-5`}>
-
                 {
                     user.active === 0 ? <Additional user={user} func={handleChange}/> : ``
+                }
+                {
+                    ad !== null ? <AdvertisementView ad={ad} close={handleClose} /> : null
+                }
+                {
+                    create.active ? <Advertisement createAd={handleCreate} updateAd={handleUpdate} closeAd={() => setCreate({id: null, active: false})} id={create.id}/> : ""
                 }
                 <div className="content col-11 row justify-content-center py-5">
                     <div className="header col-11 row justify-content-between">
@@ -86,9 +94,7 @@ export const Home =({ ads, ad, user, updateProfile = f => f, createAd = f => f, 
                             user.name == null ? <p>Hello !</p> : <p>Hello <span>{user.name}</span> !</p>
                         }
                     </div>
-                    {
-                        create.active ? <Advertisement createAd={handleCreate} updateAd={handleUpdate} id={create.id}/> : ""
-                    }
+
                     <Slider {...settings} className={`work-options justify-content-between col-12 my-5 px-5 row`}>
                                 {
                                     ads.map(({id, title, description, address, date, created_at}) => {
@@ -102,13 +108,14 @@ export const Home =({ ads, ad, user, updateProfile = f => f, createAd = f => f, 
                                                 created_at={created_at}
                                                 view={handleView}
                                             />
+
                                         )
                                     })
                                 }
                     </Slider>
                 </div>
                 <div className="row justify-content-center">
-                    <button className={`col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button`}>
+                    <button className={`col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button`} onClick={()=>setCreate({id: null, active: true})}>
                         <span>sign</span>
                     </button>
                     <div className="col-auto"></div>
@@ -116,15 +123,20 @@ export const Home =({ ads, ad, user, updateProfile = f => f, createAd = f => f, 
                         <span>sign</span>
                     </button>
                     <div className="col-auto"></div>
-                    <button className={`col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button`}>
-                        <span>sign</span>
+                    <button className={`col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button`} >
+                        <span>sign out</span>
                     </button>
                 </div>
+
+
             </div>
 
         );
     }
-    navigate('/');
+    else {
+        navigate('/');
+    }
+
     return null;
 
 

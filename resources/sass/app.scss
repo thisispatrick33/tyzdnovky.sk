@@ -7,6 +7,11 @@ $secondary-color : #2c393f;
 $silver : #EDEDED;
 $error : #D50B0B;
 
+$break-s : 576px;
+$break-m : 768px;
+$break-l : 992px;
+$break-xl : 1200px;
+
 @import './_authentication';
 @import './_additional';
 @import './_password-reset';
