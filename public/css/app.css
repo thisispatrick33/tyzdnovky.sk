@@ -11498,7 +11498,7 @@ hr {
   left: 0;
   font-family: "Montserrat";
   color: #2C393F;
-  display: none;
+  display: block;
 }
 
 .home .advertisement-info-wrapper .advertisement-info-box {
