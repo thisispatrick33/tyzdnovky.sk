@@ -1,13 +1,13 @@
 import React, { useState} from 'react';
-import {Additional} from "../Additional";
+import {Additional} from "../Authentication/Additional";
 import { navigate } from '@reach/router';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import {Advertisement} from "../Forms/Advertisement";
-import {AdvertisementLookup} from "../Forms/AdvertisementLookup";
-import {AdvertisementView} from "../Forms/AdvertisementView";
+import {Advertisement} from "../Advertisement/Advertisement";
+import {AdvertisementLookup} from "../Advertisement/AdvertisementLookup";
+import {AdvertisementView} from "../Advertisement/AdvertisementView";
 
 export const Home =({ ads, ad, user, updateProfile = f => f, createAd = f => f, updateAd = f => f, viewAd = f => f, closeAd = f => f }) => {
 

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Tags} from '../Tags';
+import {Tags} from './SubComponents/Tags';
 import axios from "axios";
 
 export const Advertisement = ({id, createAd = f => f, region, updateAd = f =>f, closeAd}) =>{
