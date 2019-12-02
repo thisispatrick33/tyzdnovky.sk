@@ -68340,6 +68340,7 @@ var AdvertisementLookup = function AdvertisementLookup(_ref) {
   }, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "work-option-description col-11 text-center"
   }, description.substring(0, 74), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "colorful-text",
     onClick: function onClick() {
       return view(id);
     }
@@ -68596,8 +68597,10 @@ var AdvertisementView = function AdvertisementView(_ref) {
     className: "advertisement-info-tags row justify-content-center pb-5 col-11"
   }, ad.tags.map(function (value) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "advertisement-info-tag py-2 mx-3 mt-1 mb-2 px-4 shadow col-auto colorful-text"
-    }, value);
+      className: "advertisement-info-tag py-2 mx-3 mt-1 mb-2 px-4 shadow col-auto "
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "colorful-text"
+    }, value));
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "advertisement-info-description mb-5 text-center"
   }, ad.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -70500,7 +70503,7 @@ var Home = function Home(_ref) {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
-    adaptiveHeight: true,
+    adaptiveHeight: false,
     nextArrow: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NextArrow, null),
     prevArrow: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(PreviousArrow, null),
     responsive: [{

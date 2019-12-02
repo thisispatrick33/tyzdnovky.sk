@@ -26,7 +26,7 @@ export const AdvertisementView = ({ad, close}) => {
                                         <div className="advertisement-info-tags row justify-content-center pb-5 col-11">
                                             {
                                                 ad.tags.map( (value) => {
-                                                    return <div className="advertisement-info-tag py-2 mx-3 mt-1 mb-2 px-4 shadow col-auto colorful-text" >{value}</div>;
+                                                    return <div className="advertisement-info-tag py-2 mx-3 mt-1 mb-2 px-4 shadow col-auto " ><span className="colorful-text">{value}</span></div>;
                                                 })
                                             }
 

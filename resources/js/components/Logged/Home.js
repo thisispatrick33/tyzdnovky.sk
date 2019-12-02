@@ -18,7 +18,7 @@ export const Home =({ additional, ads, ad, user, updateProfile = f => f, createA
         speed: 500,
         slidesToShow: 4,
         slidesToScroll: 1,
-        adaptiveHeight : true,
+        adaptiveHeight : false,
         nextArrow: <NextArrow />,
         prevArrow: <PreviousArrow />,
         responsive: [

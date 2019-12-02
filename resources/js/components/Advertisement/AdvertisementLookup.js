@@ -17,7 +17,7 @@ export const AdvertisementLookup = ({id, title, description, address, date, crea
                     <h5 className="col-11 p-0 work-option-title text-center mt-4 mb-2 text-uppercase">{title}</h5>
                     <p className="work-option-description col-11 text-center">
                         {description.substring(0, 74)}
-                        <a onClick={() => view(id)}>... Zisti viac.</a>
+                        <a className="colorful-text" onClick={() => view(id)}>... Zisti viac.</a>
                     </p>
                     <div className="col-11 mx-0 row work-option-info text-uppercase mb-3">
                         <div className="col-6 row m-0 p-0 justify-content-center align-items-center">
