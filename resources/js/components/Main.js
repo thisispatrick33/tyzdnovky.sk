@@ -4,9 +4,9 @@ import $ from "jquery";
 import axios from "axios";
 
 import { Router, navigate } from '@reach/router';
-import { Authentication } from './Forms/Authentication';
+import { Authentication } from './Authentication/Authentication';
 import { Home } from "./Logged/Home";
-import {PasswordReset} from "./Forms/PasswordReset";
+import { PasswordReset } from "./Authentication/PasswordReset";
 
 const config = {
     headers : {
@@ -124,37 +124,12 @@ const Main = () => {
     };
 
 
-    const _createAd = (data) => {
-        axios
-            .post(`/api/advertisement`, data ,{
-                headers : {
-                    'Content-Type' : `application/json`,
-                    "X-localization" : location,
-                    "Authorization" : 'Bearer '+JSON.parse(localStorage.appState).user.auth_token
-                }
-            })
-            .then((response) => {
-                console.log(response);
-                return response;
-            })
-    };
+    const _createAd = (data) => _postData(`/api/advertisement`, data);
 
-    const _updateAd = (data) => {
-        axios
-            .put(`/api/advertisement`, data ,{
-                headers : {
-                    'Content-Type' : `application/json`,
-                    "X-localization" : location,
-                    "Authorization" : 'Bearer '+JSON.parse(localStorage.appState).user.auth_token
-                }
-            })
-            .then((response) => {
-                console.log(response);
-                return response;
-            })
-    };
+    const _updateAd = (data) => axios.put(`/api/advertisement`, data ,config);
 
     const _viewAd = async id => _getData('api/advertisement/'+id).then(({data}) => setAd(data));
+
     const _closeAd = async () =>  setAd(null);
 
     const _getAds = async () => _getData('api/advertisement');
