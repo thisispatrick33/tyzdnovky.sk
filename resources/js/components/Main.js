@@ -20,13 +20,15 @@ const Main = () => {
     const [authState, setAuthState] = useState({isLoggedIn : false, user : {}});
     const [ad, setAd] = useState(null);
     const [ads, setAds] = useState([]);
+    const [additional, setAdditional] = useState(null);
     const [messages, setMessages] = useState([]);
 
     useEffect(() => {
-            config.headers['X-localization'] = _getData('http://ip-api.com/json');
+            config.headers['X-localization'] = "SK";
             let { appState, ads } = localStorage;
-            if(JSON.parse(appState).isLoggedIn){
+            if(appState ? JSON.parse(appState).isLoggedIn : false){
                 setAuthState(JSON.parse(appState));
+                JSON.parse(appState).user.active === 0 ? _additional() : null;
                 navigate(`/home`);
                 config.headers['Authorization'] =  'Bearer '+JSON.parse(appState).user.auth_token;
                 (ads === undefined || JSON.parse(ads).length !== _getData('/api/size-ads')) ? _getAds().then(({data}) => { setAds(data); localStorage["ads"] = JSON.stringify(data) }) : setAds(JSON.parse(ads));
@@ -52,6 +54,7 @@ const Main = () => {
                 setMessages(data.messages);
                 if (response.data.success) {
                     let userData = {isLoggedIn : true, user : data};
+                    navigate('/home');
                     setAuthState(userData);
                     localStorage["appState"] = JSON.stringify(userData);
                 }
@@ -68,6 +71,7 @@ const Main = () => {
             user: {}
         };
         setAuthState(appState);
+        navigate('/');
         localStorage["appState"] = JSON.stringify(appState);
     };
 
@@ -123,6 +127,7 @@ const Main = () => {
             })
     };
 
+    const _additional = async () => _getData('/api/register-additional').then(({data}) => setAdditional(data));
 
     const _createAd = (data) => _postData(`/api/advertisement`, data);
 
@@ -140,7 +145,18 @@ const Main = () => {
             <Router>
                 <Authentication path={`/`} authenticate={_authentication} forgotten={_forgottenPassword} message={messages}/>
                 <PasswordReset path={'/reset-password'} reset={_resetPassword}/>
-                <Home path={`/home`} updateProfile={_updateProfile} viewAd={_viewAd} createAd={_createAd} updateAd={_updateAd} closeAd={_closeAd} user={authState.user} ads={ads} ad={ad} signOut={_logoutUser}/>
+                <Home path={`/home`}
+                      viewAd={_viewAd}
+                      createAd={_createAd}
+                      updateAd={_updateAd}
+                      closeAd={_closeAd}
+                      user={authState.user}
+                      ads={ads}
+                      ad={ad}
+                      additional={additional}
+                      updateProfile={_updateProfile}
+                      signOut={_logoutUser}
+                />
             </Router>
     );
 

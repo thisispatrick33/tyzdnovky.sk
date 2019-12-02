@@ -1,11 +1,9 @@
 .home{
     .work-options{
-        font-family: 'Montserrat';
+        font-family: 'Montserrat', serif;
         height: 100%;
         color: #2C393F;
-
         .work-option{
-
             .content{
                 height: auto;
             }
@@ -15,7 +13,7 @@
         }
         .work-option-image{
             max-width: 100%;
-            border-radius: 29px 29px 0 0;
+            border-radius: 29px 29px 0 29px;
         }
         .work-option-save{
             position: absolute;
@@ -29,9 +27,6 @@
         }
         .work-option-content{
             position: relative;
-            width: 70%;
-            margin: 0 auto;
-
             .work-option-new{
                 width: 4em;
                 padding: 1em 0;
@@ -45,15 +40,15 @@
                 right: calc(-30% - 1em);
             }
             .work-option-title{
-                font-size: 19px;
+                font-size: .95em;
             }
             .work-option-description{
-                font-size: 15px;
+                font-size: .8em;
                 line-height: 18px;
             }
             .work-option-info{
-                font-size: 11px;
-
+                font: 0.65em Montserrat;
+                font-weight: 500;
                 svg{
                     margin-right: 15px;
                 }
@@ -114,7 +109,7 @@
             word-break: break-all;
             font-size: 1em;
         }
-       
+
         .border-b{
             border-bottom: 1px solid $silver;
         }
@@ -123,7 +118,7 @@
                 border-bottom: 1px solid $silver;
               }
         }
-        
+
         .cross{
             text-align: center;
         }
@@ -140,8 +135,8 @@
                 font-size: 1.3em;
             }
         }
-        
-        
+
+
     }
     .advertisement-create-wrapper{
         position: absolute;
@@ -261,7 +256,7 @@
         &:hover{
             cursor: pointer;
         }
-        
+
     }
 
     .sign-in-button {

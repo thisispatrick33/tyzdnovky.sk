@@ -2,6 +2,10 @@
 
 .additional-info-form{
   overflow: hidden;
+  .slick-track{
+    display: flex !important;
+    align-items: center !important;
+  }
   .doth{
     font-weight: 500;
     text-transform: uppercase;

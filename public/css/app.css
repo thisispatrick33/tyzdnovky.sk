@@ -10909,6 +10909,11 @@ hr {
   background: rgba(255, 255, 255, 0.85);
 }
 
+.additional-info-form .slick-track {
+  display: flex !important;
+  align-items: center !important;
+}
+
 .additional-info-form .doth {
   font-weight: 500;
   text-transform: uppercase;
@@ -11411,7 +11416,7 @@ hr {
 }
 
 .home .work-options {
-  font-family: "Montserrat";
+  font-family: "Montserrat", serif;
   height: 100%;
   color: #2C393F;
 }
@@ -11426,7 +11431,7 @@ hr {
 
 .home .work-options .work-option-image {
   max-width: 100%;
-  border-radius: 29px 29px 0 0;
+  border-radius: 29px 29px 0 29px;
 }
 
 .home .work-options .work-option-save {
@@ -11443,8 +11448,6 @@ hr {
 
 .home .work-options .work-option-content {
   position: relative;
-  width: 70%;
-  margin: 0 auto;
 }
 
 .home .work-options .work-option-content .work-option-new {
@@ -11461,16 +11464,17 @@ hr {
 }
 
 .home .work-options .work-option-content .work-option-title {
-  font-size: 19px;
+  font-size: 0.95em;
 }
 
 .home .work-options .work-option-content .work-option-description {
-  font-size: 15px;
+  font-size: 0.8em;
   line-height: 18px;
 }
 
 .home .work-options .work-option-content .work-option-info {
-  font-size: 11px;
+  font: 0.65em Montserrat;
+  font-weight: 500;
 }
 
 .home .work-options .work-option-content .work-option-info svg {

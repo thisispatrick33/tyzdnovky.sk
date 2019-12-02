@@ -1,42 +1,20 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import $ from 'jquery';
-import axios from "axios";
 
-export const Additional = ({user, func = f => f, region}) => {
+export const Additional = ({user, func = f => f, data}) => {
 
     const [additionalData,setAdditionalData] = useState({drivingLicense: false, email: user.email, profile_pic: null});
     const [languages, setLanguages] = useState([]);
-    const [languagesInUse, setLanguagesInUse] = useState([{full : "", short : "cze"}, {full : "", short : "spa"}, {full : "", short : "eng"}, {full : "", short : "hun"}, {full : "", short : "arb"}, {full : "", short : "ptg"}, {full : "", short : "rus"}, {full : "", short : "jap"}, {full : "", short : "ger"}, {full : "", short : "kor"}, {full : "", short : "fre"}, {full : "", short : "tur"}, {full : "", short : "vie"}]);
+    const shortLanguages = ["cze", "spa", "eng", "hun", "arb", "ptg", "rus", "jap", "ger", "kor", "fre", "tur", "vie"];
     const [additionalLanguage, setAdditionalLanguage] = useState("");
     const [missing, setMissing] = useState(``);
-    const [dataAdditional, setDataAdditional] = useState({});
     const [categories, setCategories] = useState([]);
     const [consent, setConsent] = useState(false);
 
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const result = await axios(
-                'api/register-additional',{
-                    headers:{
-                        "X-localization" : region,
-                    }
-                }
-            );
-            let help = languagesInUse;
-            for(let i=0; i<help.length; i++){
-                help[i].full = result.data.languages[i];
-            }
-            setLanguagesInUse(help);
-            setDataAdditional(result.data);
-            console.log(result.data);
-
-        };
-        fetchData();
-    }, [region]);
 
 
 
@@ -178,18 +156,18 @@ export const Additional = ({user, func = f => f, region}) => {
         prevArrow: <PreviousArrow />
     };
 
-    if(dataAdditional.branches==undefined ){
+    if(data.branches==undefined ){
         return <div>Loading</div>
     }
     return (
         <div className={`additional-info-form | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0`} style={{overflowY : `scroll`, height : window.innerHeight <= 768 ? $(window).height() : `100vh`}}>
             <div className="content-frame | row  col-xl-6 col-lg-6 col-md-7 col-12 | justify-content-center align-items-center | px-0 | shadow-sm py-xl-5 py-lg-5 py-md-5 py-0 my-xl-4 my-lg-4 my-md-5 my-0">
                 <div className="col-10 row main-info p-0 m-0 align-items-center">
-                    <h1 className={'col-12 p-0 text-center mt-5'}><span className="doth">{dataAdditional.text.slide1_title1.substring(0, dataAdditional.text.slide1_title1.indexOf(" "))}</span>{dataAdditional.text.slide1_title1.substring(dataAdditional.text.slide1_title1.indexOf(" "))}<span className="doth">...</span></h1>
+                    <h1 className={'col-12 p-0 text-center mt-5'}><span className="doth">{data.text.slide1_title1.substring(0, data.text.slide1_title1.indexOf(" "))}</span>{data.text.slide1_title1.substring(data.text.slide1_title1.indexOf(" "))}<span className="doth">...</span></h1>
                     <Slider {...settings} className={`col-12 p-0 py-xl-3 py-lg-3 py-md-2 py-md-1 py-1`}>
                         <div className={`col-12 m-0 p-0 row justify-content-center`}>
                             <div className="col-12 mx-0 p-0 row my-xl-4 my-lg-4 my-md-3 my-sm-3 my-3 justify-content-around">
-                                <h3 className="col-12 mb-3 p-0 text-center"><span className="doth">{dataAdditional.text.slide1_subtitle1.substring(0, dataAdditional.text.slide1_subtitle1.indexOf(" "))}</span>{dataAdditional.text.slide1_subtitle1.substring(dataAdditional.text.slide1_subtitle1.indexOf(" "))}<span className="doth">?</span></h3>
+                                <h3 className="col-12 mb-3 p-0 text-center"><span className="doth">{data.text.slide1_subtitle1.substring(0, data.text.slide1_subtitle1.indexOf(" "))}</span>{data.text.slide1_subtitle1.substring(data.text.slide1_subtitle1.indexOf(" "))}<span className="doth">?</span></h3>
                                 <div className={` input col-xl-10 col-lg-10 col-md-11 col-sm-11 col-12 mt-3 row p-0 m-0 `}>
                                     <div className="col-2 pl-3 d-flex justify-content-center align-items-center">
                                         <svg style={{width : `24px`, height : `24px`}} fill="#2c393f" className={`col-12 p-0 d-xl-flex d-lg-flex d-md-flex d-none`} viewBox="-20 -99 640 640" >
@@ -205,7 +183,7 @@ export const Additional = ({user, func = f => f, region}) => {
                                         id={`name`}
                                         type={`text`}
                                         name={`name`}
-                                        placeholder={user.type=== "user" ? dataAdditional.text.slide1_placeholder1 : dataAdditional.text.slide1_placeholder1_business}
+                                        placeholder={user.type=== "user" ? data.text.slide1_placeholder1 : data.text.slide1_placeholder1_business}
                                         onChange={(e) => setAdditionalData({...additionalData, name: e.target.value})}
                                         value={additionalData.name ? additionalData.name  : ``}
                                         className={` pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12`}
@@ -226,7 +204,7 @@ export const Additional = ({user, func = f => f, region}) => {
                                         id={`surname`}
                                         type={`text`}
                                         name={`surname`}
-                                        placeholder={user.type=== "user" ? dataAdditional.text.slide1_placeholder2 : dataAdditional.text.slide1_placeholder2_business}
+                                        placeholder={user.type=== "user" ? data.text.slide1_placeholder2 : data.text.slide1_placeholder2_business}
                                         onChange={(e) => setAdditionalData(user.type=== "user" ? {...additionalData, lastName: e.target.value} : {...additionalData, ico: e.target.value})}
                                         value={user.type=== "user" ? (additionalData.lastName ? additionalData.lastName  : ``) : (additionalData.ico ? additionalData.ico  : ``)}
                                         className={`pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12`}
@@ -237,7 +215,7 @@ export const Additional = ({user, func = f => f, region}) => {
                                 <hr className={`col-6 m-0 my-3`}/>
                             </div>
                             <div className="col-12 mx-0 p-0 row my-xl-4 my-lg-4 my-md-3 my-sm-3 my-3 justify-content-around">
-                                <h3 className="col-12 mb-3 p-0 text-center"><span className="doth">{dataAdditional.text.slide1_subtitle2.substring(0, dataAdditional.text.slide1_subtitle2.indexOf(" "))}</span>{dataAdditional.text.slide1_subtitle2.substring(dataAdditional.text.slide1_subtitle2.indexOf(" "))}<span className="doth">.</span></h3>
+                                <h3 className="col-12 mb-3 p-0 text-center"><span className="doth">{data.text.slide1_subtitle2.substring(0, data.text.slide1_subtitle2.indexOf(" "))}</span>{data.text.slide1_subtitle2.substring(data.text.slide1_subtitle2.indexOf(" "))}<span className="doth">.</span></h3>
                                 <div className={` input col-xl-10 col-lg-10 col-md-11 col-sm-11 col-12 my-3 row p-0 mx-0`}>
                                     <div className="col-2 pl-3 d-flex justify-content-center align-items-center">
                                         <svg fill="#2c393f" style={{width : `24px`, height : `24px`}} className={`col-12 p-0 d-xl-flex d-lg-flex d-md-flex d-none`} enableBackground="new 0 0 511.991 511.991"  viewBox="0 0 511.99 511.99" space="preserve" >
@@ -273,7 +251,7 @@ export const Additional = ({user, func = f => f, region}) => {
                                         id={`phone`}
                                         type={`text`}
                                         name={`phone`}
-                                        placeholder={dataAdditional.text.slide1_placeholder3}
+                                        placeholder={data.text.slide1_placeholder3}
                                         onChange={(e) => setAdditionalData({...additionalData, phone : e.target.value})}
                                         value={additionalData.phone ? additionalData.phone  : ``}
                                         className={` pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12`}
@@ -284,13 +262,13 @@ export const Additional = ({user, func = f => f, region}) => {
                         {user.type === "user" ?
                             <div className={`col-12 m-0 p-0 row justify-content-center`}>
                                 <div className="col-12 mx-0 p-0 row my-4 languages justify-content-around">
-                                    <h3 className="col-12 mb-3 p-0 text-center"><span className="doth">{dataAdditional.text.slide2_title1.substring(0, dataAdditional.text.slide2_title1.indexOf(" "))}</span>{dataAdditional.text.slide2_title1.substring(dataAdditional.text.slide2_title1.indexOf(" "))}<span className="doth">.</span></h3>
+                                    <h3 className="col-12 mb-3 p-0 text-center"><span className="doth">{data.text.slide2_title1.substring(0, data.text.slide2_title1.indexOf(" "))}</span>{data.text.slide2_title1.substring(data.text.slide2_title1.indexOf(" "))}<span className="doth">.</span></h3>
                                     < div className="col-xl-10 col-lg-11 col-md-11 col-12 p-0 row justify-content-center">
-                                        {
-                                            languagesInUse.map( ({full,short}) => {
-                                                return <div className={`language d-block col-auto row mx-2 my-2 px-3 align-items-center py-2 justify-content-center shadow-sm ${languages.includes(full) ? `on` : ``}`} onClick={() => handleLang(full)}>{window.innerHeight <= 768 ? short : full}</div>;
-                                            })
-                                        }
+
+                                            {
+                                                data.languages.map( (language, index) => <div key={index} className={`language d-block col-auto row mx-2 my-2 px-3 align-items-center py-2 justify-content-center shadow-sm ${languages.includes(language) ? `on` : ``}`} onClick={() => handleLang(language)}>{window.innerWidth <= 768 ? shortLanguages[index] : language}</div>)
+                                            }
+
                                     </div>
                                     <div className={` input col-xl-10 col-lg-10 col-md-11 col-sm-11 col-12 mt-4 row p-0 m-0 `}>
                                         <div className="col-2 pl-3 d-flex justify-content-center align-items-center">
@@ -301,7 +279,7 @@ export const Additional = ({user, func = f => f, region}) => {
                                             id={`name`}
                                             type={`text`}
                                             name={`another`}
-                                            placeholder={dataAdditional.text.slide2_placeholder1+`?`}
+                                            placeholder={data.text.slide2_placeholder1+`?`}
                                             onChange={(e) => setAdditionalLanguage(e.target.value)}
                                             className={`  pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12`}
                                         />
@@ -313,11 +291,11 @@ export const Additional = ({user, func = f => f, region}) => {
                         {user.type === "user" ?
                             <div className={`col-12 m-0 p-0 row justify-content-center align-items-center d-flex`}>
                                 <div className="col-12 mx-0 p-0 row my-4 languages justify-content-around">
-                                    <h3 className="col-12 mb-3 p-0 text-center"><span className="doth">{dataAdditional.text.slide3_title1.substring(0, dataAdditional.text.slide3_title1.indexOf(" "))}</span>{dataAdditional.text.slide3_title1.substring(dataAdditional.text.slide3_title1.indexOf(" "))}<span className="doth">?</span></h3>
-                                    <h6 className="col-12 mb-3 p-0 text-center">{dataAdditional.text.slide3_subtitle1} ?</h6>
+                                    <h3 className="col-12 mb-3 p-0 text-center"><span className="doth">{data.text.slide3_title1.substring(0, data.text.slide3_title1.indexOf(" "))}</span>{data.text.slide3_title1.substring(data.text.slide3_title1.indexOf(" "))}<span className="doth">?</span></h3>
+                                    <h6 className="col-12 mb-3 p-0 text-center">{data.text.slide3_subtitle1} ?</h6>
                                     <div className="categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center">
                                         {
-                                            dataAdditional.branches.map( ({id, name, free_time}) => {
+                                            data.branches.map( ({id, name, free_time}) => {
                                                 if(free_time==0){
                                                     return <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.includes(id) ? `on` : ``}`} onClick={() => handleWork(id)}>
                                                         {name}
@@ -331,14 +309,14 @@ export const Additional = ({user, func = f => f, region}) => {
                             </div> : ``
                         }
                         {user.type === "user" ?
-                            <div className={`col-11 m-0 p-0 row justify-content-center align-items-center d-flex`}>
+                            <div className={`col-12 m-0 p-0 row justify-content-center `}>
                                 <div className="col-12 mx-0 p-0 row my-4 languages justify-content-around">
-                                    <h3 className="col-12 mb-3 p-0 text-center"><span className="doth">{dataAdditional.text.slide4_title1.substring(0, dataAdditional.text.slide4_title1.indexOf(" "))}</span>{dataAdditional.text.slide4_title1.substring(dataAdditional.text.slide4_title1.indexOf(" "))}<span className="doth">?</span></h3>
-                                    <h6 className="col-12 mb-3 p-0 text-center">{dataAdditional.text.slide4_subtitle1} ?</h6>
+                                    <h3 className="col-12 mb-3 p-0 text-center"><span className="doth">{data.text.slide4_title1.substring(0, data.text.slide4_title1.indexOf(" "))}</span>{data.text.slide4_title1.substring(data.text.slide4_title1.indexOf(" "))}<span className="doth">?</span></h3>
+                                    <h6 className="col-12 mb-3 p-0 text-center">{data.text.slide4_subtitle1} ?</h6>
                                     <div className="categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center">
                                         {
-                                            dataAdditional.branches.map( ({id, name, free_time}) => {
-                                                if(free_time==1){
+                                            data.branches.map( ({id, name, free_time}) => {
+                                                if(free_time === 1){
                                                     return <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.includes(id) ? `on` : ``}`} onClick={() => handleWork(id)}>
                                                         {name}
                                                     </div>;
@@ -382,7 +360,7 @@ export const Additional = ({user, func = f => f, region}) => {
                                     id={`name`}
                                     type={`text`}
                                     name={`username`}
-                                    placeholder={dataAdditional.text.slide5_placeholder1}
+                                    placeholder={data.text.slide5_placeholder1}
                                     onChange={(e) => setAdditionalData({...additionalData, username: e.target.value})}
                                     value={additionalData.username ? additionalData.username  : ``}
                                     className={` pl-xl-2 pl-lg-2 pl-md-2 pl-sm-3 pl-3 py-2 col-xl-10 col-lg-10 col-md-10 col-12 text-lowercase`}
@@ -396,7 +374,7 @@ export const Additional = ({user, func = f => f, region}) => {
                                     <div className="col-1 d-flex justify-content-center p-0">
                                         <div className="square" style={additionalData.drivingLicense ? {background : `#00C7C7`} :  {background : `white`}}></div>
                                     </div>
-                                    <div className="col-10 pl-3 py-0 pr-0">{dataAdditional.text.slide5_checkbox1}</div>
+                                    <div className="col-10 pl-3 py-0 pr-0">{data.text.slide5_checkbox1}</div>
                                 </div>
                                 : ``
                             }
@@ -404,11 +382,11 @@ export const Additional = ({user, func = f => f, region}) => {
                                 <div className="col-1 d-flex justify-content-center p-0">
                                     <div className="square" style={consent ? {background : `#00C7C7`} :  {background : `white`}}></div>
                                 </div>
-                                <div className="col-10 pl-3 py-0 pr-0">{dataAdditional.text.slide5_checkbox2}</div>
+                                <div className="col-10 pl-3 py-0 pr-0">{data.text.slide5_checkbox2}</div>
                             </div>
                             <button
                                 className={`submit-button sign-in-button col-xl-5 col-lg-6 col-md-9 col-11 text-center py-2 mb-5 mt-3 `}
-                                onClick={formValidator}><span>{dataAdditional.text.slide5_submit}</span></button>
+                                onClick={formValidator}><span>{data.text.slide5_submit}</span></button>
                         </div>
                     </Slider>
                 </div>

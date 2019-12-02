@@ -67985,7 +67985,7 @@ var Advertisement = function Advertisement(_ref) {
       createAd = _ref$createAd === void 0 ? function (f) {
     return f;
   } : _ref$createAd,
-      region = _ref.region,
+      user = _ref.user,
       _ref$updateAd = _ref.updateAd,
       updateAd = _ref$updateAd === void 0 ? function (f) {
     return f;
@@ -68296,7 +68296,7 @@ var AdvertisementLookup = function AdvertisementLookup(_ref) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "work-option row justify-content-center col-12 p-0 mx-3 mb-5"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "content shadow p-0 col-10"
+    className: "content shadow p-0 col-10 mb-5"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "work-option-image-wrapper"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -68332,22 +68332,23 @@ var AdvertisementLookup = function AdvertisementLookup(_ref) {
     transform: "translate(-29.076 -339.408)",
     fill: "#fff"
   })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "work-option-content"
+    className: "work-option-content row m-0 justify-content-center"
   }, (today.getTime() - new Date(created_at.substring(0, created_at.indexOf('T'))).getTime()) / (1000 * 3600 * 24) <= 3 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-center work-option-new"
-  }, " NEW!") : "", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-    className: "work-option-title text-center mt-4 mb-2"
+  }, " NEW!") : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+    className: "col-11 p-0 work-option-title text-center mt-4 mb-2 text-uppercase"
   }, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "work-option-description"
+    className: "work-option-description col-11 text-center"
   }, description.substring(0, 74), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     onClick: function onClick() {
       return view(id);
     }
   }, "... Zisti viac.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row text-center h6 work-option-info pt-4 pb-5"
+    className: "col-11 mx-0 row work-option-info text-uppercase mb-3"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-6 p-0"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    className: "col-6 row m-0 p-0 justify-content-center align-items-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    className: "col-auto px-0 m-0",
     xmlns: "http://www.w3.org/2000/svg",
     width: "13.512",
     height: "19.292",
@@ -68360,22 +68361,173 @@ var AdvertisementLookup = function AdvertisementLookup(_ref) {
     d: "M19.737,1.979a6.756,6.756,0,0,0-9.555,0,7.7,7.7,0,0,0-.636,9.5l5.413,7.817,5.405-7.806A7.7,7.7,0,0,0,19.737,1.979Zm.056,9.095-4.834,6.98-4.841-6.991a6.953,6.953,0,0,1,.562-8.586,6.052,6.052,0,0,1,8.558,0A6.956,6.956,0,0,1,19.793,11.074Z",
     transform: "translate(-8.203 0)",
     fill: "#00c7c7"
-  })), address)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-6 p-0"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "col-auto py-0 pl-2 m-0 pr-0"
+  }, address)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-6 row m-0 p-0 justify-content-center align-items-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
-    width: "15.888",
-    height: "17.023",
-    viewBox: "0 0 15.888 17.023"
+    width: "18.298",
+    height: "19.215",
+    viewBox: "0 0 18.298 19.215",
+    className: "col-auto px-0 m-0",
+    fill: '#00c7c7'
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "M17.6,1.135H15.618V.284A.283.283,0,0,0,15.335,0H13.349a.283.283,0,0,0-.284.284v.851H6.823V.284A.283.283,0,0,0,6.539,0H4.553A.283.283,0,0,0,4.27.284v.851H2.284A.283.283,0,0,0,2,1.419V16.739a.283.283,0,0,0,.284.284H17.6a.283.283,0,0,0,.284-.284V1.419A.283.283,0,0,0,17.6,1.135ZM13.632.567h1.419v1.7H13.632V.567Zm-8.8,0H6.256v1.7H4.837V.567ZM2.567,1.7h1.7v.851a.283.283,0,0,0,.284.284H6.539a.283.283,0,0,0,.284-.284V1.7h6.242v.851a.283.283,0,0,0,.284.284h1.986a.283.283,0,0,0,.284-.284V1.7h1.7V4.256H2.567Zm0,14.753V4.823H17.321V16.455Z",
-    transform: "translate(-2)",
-    fill: "#00c7c7"
+    d: "M13.534,1.848A1.61,1.61,0,0,0,11.988.5a.327.327,0,0,0-.315.337.327.327,0,0,0,.315.337.982.982,0,0,1,.946,1.011A.982.982,0,0,1,11.988,3.2a.338.338,0,0,0,0,.674,1.61,1.61,0,0,0,1.546-1.348h4.133V5.557H.631V2.523H5.994a.338.338,0,0,0,0-.674H5.421a.951.951,0,0,1,.888-.674.982.982,0,0,1,.946,1.011A.982.982,0,0,1,6.31,3.2a.338.338,0,0,0,0,.674A1.636,1.636,0,0,0,7.887,2.186,1.636,1.636,0,0,0,6.31.5,1.61,1.61,0,0,0,4.764,1.848H0V19.715H18.3V1.848Zm4.133,17.193H.631V6.231H17.667Z",
+    transform: "translate(0 -0.5)"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "M18.66,23H11v8.228H21.781V23H18.66Zm-1.986.567H18.66v1.986H16.674Zm1.986,4.539H16.674V26.121H18.66Zm-4.539-1.986h1.986v1.986H14.121Zm0-2.553h1.986v1.986H14.121Zm-2.553,0h1.986v1.986H11.567Zm0,2.553h1.986v1.986H11.567Zm1.986,4.539H11.567V28.674h1.986Zm2.553,0H14.121V28.674h1.986Zm2.553,0H16.674V28.674H18.66Zm2.553,0H19.228V28.674h1.986Zm0-2.553H19.228V26.121h1.986Zm0-4.539v1.986H19.228V23.567Z",
-    transform: "translate(-8.447 -16.475)",
-    fill: "#00c7c7"
-  })), date))))));
+    d: "M25.343,1.186a1.029,1.029,0,1,1,0,2.059.343.343,0,1,0,0,.686,1.716,1.716,0,1,0,0-3.432.343.343,0,1,0,0,.686Z",
+    transform: "translate(-17.193 -0.5)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M31.343,1.186a1.029,1.029,0,1,1,0,2.059.343.343,0,1,0,0,.686,1.716,1.716,0,1,0,0-3.432.343.343,0,1,0,0,.686Z",
+    transform: "translate(-21.319 -0.5)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(6.604 7.748)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(8.806 7.748)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(11.007 7.748)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(13.209 7.748)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(15.209 7.748)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(2.402 10.444)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(4.403 10.444)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(6.604 10.444)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(8.806 10.444)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(11.007 10.444)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(13.209 10.444)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(15.209 10.444)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(2.402 12.802)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(4.403 12.802)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(6.604 12.802)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(8.806 12.802)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(11.007 12.802)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(13.209 12.802)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(15.209 12.802)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(2.402 15.441)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(4.403 15.441)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(6.604 15.441)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(8.806 15.441)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(11.007 15.441)"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "col-auto py-0 pl-2 m-0 pr-0"
+  }, date))))));
 };
 
 /***/ }),
@@ -68396,6 +68548,7 @@ __webpack_require__.r(__webpack_exports__);
 var AdvertisementView = function AdvertisementView(_ref) {
   var ad = _ref.ad,
       close = _ref.close;
+  var date = new Date(ad.created_at);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "advertisement-info-wrapper",
     id: "advertisement-info"
@@ -68675,7 +68828,7 @@ var AdvertisementView = function AdvertisementView(_ref) {
     fill: "#00c7c7"
   }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-6 text-left pl-0"
-  }, ad.date)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, date.getDay() + "." + date.getMonth() + "." + date.getFullYear())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row col-12 my-3"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-6 text-right pr-2"
@@ -68860,11 +69013,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var slick_carousel_slick_slick_theme_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(slick_carousel_slick_slick_theme_css__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
 
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
@@ -68880,10 +69035,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -68897,14 +69048,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
 var Additional = function Additional(_ref) {
   var user = _ref.user,
       _ref$func = _ref.func,
       func = _ref$func === void 0 ? function (f) {
     return f;
   } : _ref$func,
-      region = _ref.region;
+      data = _ref.data;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
     drivingLicense: false,
@@ -68920,121 +69070,27 @@ var Additional = function Additional(_ref) {
       languages = _useState4[0],
       setLanguages = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([{
-    full: "",
-    "short": "cze"
-  }, {
-    full: "",
-    "short": "spa"
-  }, {
-    full: "",
-    "short": "eng"
-  }, {
-    full: "",
-    "short": "hun"
-  }, {
-    full: "",
-    "short": "arb"
-  }, {
-    full: "",
-    "short": "ptg"
-  }, {
-    full: "",
-    "short": "rus"
-  }, {
-    full: "",
-    "short": "jap"
-  }, {
-    full: "",
-    "short": "ger"
-  }, {
-    full: "",
-    "short": "kor"
-  }, {
-    full: "",
-    "short": "fre"
-  }, {
-    full: "",
-    "short": "tur"
-  }, {
-    full: "",
-    "short": "vie"
-  }]),
+  var shortLanguages = ["cze", "spa", "eng", "hun", "arb", "ptg", "rus", "jap", "ger", "kor", "fre", "tur", "vie"];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
       _useState6 = _slicedToArray(_useState5, 2),
-      languagesInUse = _useState6[0],
-      setLanguagesInUse = _useState6[1];
+      additionalLanguage = _useState6[0],
+      setAdditionalLanguage = _useState6[1];
 
   var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
       _useState8 = _slicedToArray(_useState7, 2),
-      additionalLanguage = _useState8[0],
-      setAdditionalLanguage = _useState8[1];
+      missing = _useState8[0],
+      setMissing = _useState8[1];
 
-  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState10 = _slicedToArray(_useState9, 2),
-      missing = _useState10[0],
-      setMissing = _useState10[1];
+      categories = _useState10[0],
+      setCategories = _useState10[1];
 
-  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({}),
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState12 = _slicedToArray(_useState11, 2),
-      dataAdditional = _useState12[0],
-      setDataAdditional = _useState12[1];
-
-  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
-      _useState14 = _slicedToArray(_useState13, 2),
-      categories = _useState14[0],
-      setCategories = _useState14[1];
-
-  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
-      _useState16 = _slicedToArray(_useState15, 2),
-      consent = _useState16[0],
-      setConsent = _useState16[1];
-
-  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    var fetchData =
-    /*#__PURE__*/
-    function () {
-      var _ref2 = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var result, help, i;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_6___default()('api/register-additional', {
-                  headers: {
-                    "X-localization": region
-                  }
-                });
-
-              case 2:
-                result = _context.sent;
-                help = languagesInUse;
-
-                for (i = 0; i < help.length; i++) {
-                  help[i].full = result.data.languages[i];
-                }
-
-                setLanguagesInUse(help);
-                setDataAdditional(result.data);
-                console.log(result.data);
-
-              case 8:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }));
-
-      return function fetchData() {
-        return _ref2.apply(this, arguments);
-      };
-    }();
-
-    fetchData();
-  }, [region]);
+      consent = _useState12[0],
+      setConsent = _useState12[1];
 
   var readURL = function readURL(input) {
     setAdditionalData(_objectSpread({}, additionalData, {
@@ -69184,58 +69240,58 @@ var Additional = function Additional(_ref) {
   var submit =
   /*#__PURE__*/
   function () {
-    var _ref3 = _asyncToGenerator(
+    var _ref2 = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
-          switch (_context2.prev = _context2.next) {
+          switch (_context.prev = _context.next) {
             case 0:
               if (!(user.type === "user")) {
-                _context2.next = 10;
+                _context.next = 10;
                 break;
               }
 
               if (!(additionalLanguage != "")) {
-                _context2.next = 6;
+                _context.next = 6;
                 break;
               }
 
-              _context2.next = 4;
+              _context.next = 4;
               return func(_objectSpread({}, additionalData, {
                 categories: categories,
                 languages: [].concat(_toConsumableArray(languages), [additionalLanguage])
               }));
 
             case 4:
-              _context2.next = 8;
+              _context.next = 8;
               break;
 
             case 6:
-              _context2.next = 8;
+              _context.next = 8;
               return func(_objectSpread({}, additionalData, {
                 categories: categories,
                 languages: languages
               }));
 
             case 8:
-              _context2.next = 12;
+              _context.next = 12;
               break;
 
             case 10:
-              _context2.next = 12;
+              _context.next = 12;
               return func(_objectSpread({}, additionalData));
 
             case 12:
             case "end":
-              return _context2.stop();
+              return _context.stop();
           }
         }
-      }, _callee2);
+      }, _callee);
     }));
 
     return function submit() {
-      return _ref3.apply(this, arguments);
+      return _ref2.apply(this, arguments);
     };
   }();
 
@@ -69251,7 +69307,7 @@ var Additional = function Additional(_ref) {
     prevArrow: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(PreviousArrow, null)
   };
 
-  if (dataAdditional.branches == undefined) {
+  if (data.branches == undefined) {
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, "Loading");
   }
 
@@ -69269,7 +69325,7 @@ var Additional = function Additional(_ref) {
     className: 'col-12 p-0 text-center mt-5'
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
-  }, dataAdditional.text.slide1_title1.substring(0, dataAdditional.text.slide1_title1.indexOf(" "))), dataAdditional.text.slide1_title1.substring(dataAdditional.text.slide1_title1.indexOf(" ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+  }, data.text.slide1_title1.substring(0, data.text.slide1_title1.indexOf(" "))), data.text.slide1_title1.substring(data.text.slide1_title1.indexOf(" ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
   }, "...")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_2___default.a, _extends({}, settings, {
     className: "col-12 p-0 py-xl-3 py-lg-3 py-md-2 py-md-1 py-1"
@@ -69281,7 +69337,7 @@ var Additional = function Additional(_ref) {
     className: "col-12 mb-3 p-0 text-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
-  }, dataAdditional.text.slide1_subtitle1.substring(0, dataAdditional.text.slide1_subtitle1.indexOf(" "))), dataAdditional.text.slide1_subtitle1.substring(dataAdditional.text.slide1_subtitle1.indexOf(" ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+  }, data.text.slide1_subtitle1.substring(0, data.text.slide1_subtitle1.indexOf(" "))), data.text.slide1_subtitle1.substring(data.text.slide1_subtitle1.indexOf(" ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
   }, "?")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: " input col-xl-10 col-lg-10 col-md-11 col-sm-11 col-12 mt-3 row p-0 m-0 "
@@ -69312,7 +69368,7 @@ var Additional = function Additional(_ref) {
     id: "name",
     type: "text",
     name: "name",
-    placeholder: user.type === "user" ? dataAdditional.text.slide1_placeholder1 : dataAdditional.text.slide1_placeholder1_business,
+    placeholder: user.type === "user" ? data.text.slide1_placeholder1 : data.text.slide1_placeholder1_business,
     onChange: function onChange(e) {
       return setAdditionalData(_objectSpread({}, additionalData, {
         name: e.target.value
@@ -69349,7 +69405,7 @@ var Additional = function Additional(_ref) {
     id: "surname",
     type: "text",
     name: "surname",
-    placeholder: user.type === "user" ? dataAdditional.text.slide1_placeholder2 : dataAdditional.text.slide1_placeholder2_business,
+    placeholder: user.type === "user" ? data.text.slide1_placeholder2 : data.text.slide1_placeholder2_business,
     onChange: function onChange(e) {
       return setAdditionalData(user.type === "user" ? _objectSpread({}, additionalData, {
         lastName: e.target.value
@@ -69369,7 +69425,7 @@ var Additional = function Additional(_ref) {
     className: "col-12 mb-3 p-0 text-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
-  }, dataAdditional.text.slide1_subtitle2.substring(0, dataAdditional.text.slide1_subtitle2.indexOf(" "))), dataAdditional.text.slide1_subtitle2.substring(dataAdditional.text.slide1_subtitle2.indexOf(" ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+  }, data.text.slide1_subtitle2.substring(0, data.text.slide1_subtitle2.indexOf(" "))), data.text.slide1_subtitle2.substring(data.text.slide1_subtitle2.indexOf(" ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
   }, ".")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: " input col-xl-10 col-lg-10 col-md-11 col-sm-11 col-12 my-3 row p-0 mx-0"
@@ -69442,7 +69498,7 @@ var Additional = function Additional(_ref) {
     id: "phone",
     type: "text",
     name: "phone",
-    placeholder: dataAdditional.text.slide1_placeholder3,
+    placeholder: data.text.slide1_placeholder3,
     onChange: function onChange(e) {
       return setAdditionalData(_objectSpread({}, additionalData, {
         phone: e.target.value
@@ -69458,19 +69514,18 @@ var Additional = function Additional(_ref) {
     className: "col-12 mb-3 p-0 text-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
-  }, dataAdditional.text.slide2_title1.substring(0, dataAdditional.text.slide2_title1.indexOf(" "))), dataAdditional.text.slide2_title1.substring(dataAdditional.text.slide2_title1.indexOf(" ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+  }, data.text.slide2_title1.substring(0, data.text.slide2_title1.indexOf(" "))), data.text.slide2_title1.substring(data.text.slide2_title1.indexOf(" ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
   }, ".")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-xl-10 col-lg-11 col-md-11 col-12 p-0 row justify-content-center"
-  }, languagesInUse.map(function (_ref4) {
-    var full = _ref4.full,
-        _short = _ref4["short"];
+  }, data.languages.map(function (language, index) {
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "language d-block col-auto row mx-2 my-2 px-3 align-items-center py-2 justify-content-center shadow-sm ".concat(languages.includes(full) ? "on" : ""),
+      key: index,
+      className: "language d-block col-auto row mx-2 my-2 px-3 align-items-center py-2 justify-content-center shadow-sm ".concat(languages.includes(language) ? "on" : ""),
       onClick: function onClick() {
-        return handleLang(full);
+        return handleLang(language);
       }
-    }, window.innerHeight <= 768 ? _short : full);
+    }, window.innerWidth <= 768 ? shortLanguages[index] : language);
   })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: " input col-xl-10 col-lg-10 col-md-11 col-sm-11 col-12 mt-4 row p-0 m-0 "
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -69495,7 +69550,7 @@ var Additional = function Additional(_ref) {
     id: "name",
     type: "text",
     name: "another",
-    placeholder: dataAdditional.text.slide2_placeholder1 + "?",
+    placeholder: data.text.slide2_placeholder1 + "?",
     onChange: function onChange(e) {
       return setAdditionalLanguage(e.target.value);
     },
@@ -69508,16 +69563,16 @@ var Additional = function Additional(_ref) {
     className: "col-12 mb-3 p-0 text-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
-  }, dataAdditional.text.slide3_title1.substring(0, dataAdditional.text.slide3_title1.indexOf(" "))), dataAdditional.text.slide3_title1.substring(dataAdditional.text.slide3_title1.indexOf(" ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+  }, data.text.slide3_title1.substring(0, data.text.slide3_title1.indexOf(" "))), data.text.slide3_title1.substring(data.text.slide3_title1.indexOf(" ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
   }, "?")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h6", {
     className: "col-12 mb-3 p-0 text-center"
-  }, dataAdditional.text.slide3_subtitle1, " ?"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, data.text.slide3_subtitle1, " ?"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center"
-  }, dataAdditional.branches.map(function (_ref5) {
-    var id = _ref5.id,
-        name = _ref5.name,
-        free_time = _ref5.free_time;
+  }, data.branches.map(function (_ref3) {
+    var id = _ref3.id,
+        name = _ref3.name,
+        free_time = _ref3.free_time;
 
     if (free_time == 0) {
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -69528,25 +69583,25 @@ var Additional = function Additional(_ref) {
       }, name);
     }
   })))) : "", user.type === "user" ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "col-11 m-0 p-0 row justify-content-center align-items-center d-flex"
+    className: "col-12 m-0 p-0 row justify-content-center "
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-12 mx-0 p-0 row my-4 languages justify-content-around"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
     className: "col-12 mb-3 p-0 text-center"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
-  }, dataAdditional.text.slide4_title1.substring(0, dataAdditional.text.slide4_title1.indexOf(" "))), dataAdditional.text.slide4_title1.substring(dataAdditional.text.slide4_title1.indexOf(" ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+  }, data.text.slide4_title1.substring(0, data.text.slide4_title1.indexOf(" "))), data.text.slide4_title1.substring(data.text.slide4_title1.indexOf(" ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "doth"
   }, "?")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h6", {
     className: "col-12 mb-3 p-0 text-center"
-  }, dataAdditional.text.slide4_subtitle1, " ?"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, data.text.slide4_subtitle1, " ?"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center"
-  }, dataAdditional.branches.map(function (_ref6) {
-    var id = _ref6.id,
-        name = _ref6.name,
-        free_time = _ref6.free_time;
+  }, data.branches.map(function (_ref4) {
+    var id = _ref4.id,
+        name = _ref4.name,
+        free_time = _ref4.free_time;
 
-    if (free_time == 1) {
+    if (free_time === 1) {
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "category col-auto mx-2 my-2 py-2 shadow-sm ".concat(categories.includes(id) ? "on" : ""),
         onClick: function onClick() {
@@ -69621,7 +69676,7 @@ var Additional = function Additional(_ref) {
     id: "name",
     type: "text",
     name: "username",
-    placeholder: dataAdditional.text.slide5_placeholder1,
+    placeholder: data.text.slide5_placeholder1,
     onChange: function onChange(e) {
       return setAdditionalData(_objectSpread({}, additionalData, {
         username: e.target.value
@@ -69651,7 +69706,7 @@ var Additional = function Additional(_ref) {
     }
   })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-10 pl-3 py-0 pr-0"
-  }, dataAdditional.text.slide5_checkbox1)) : "", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, data.text.slide5_checkbox1)) : "", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-xl-10 col-lg-10 col-12 row driving-licence align-items-center mb-3",
     onClick: function onClick() {
       return setConsent(!consent);
@@ -69667,10 +69722,10 @@ var Additional = function Additional(_ref) {
     }
   })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-10 pl-3 py-0 pr-0"
-  }, dataAdditional.text.slide5_checkbox2)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+  }, data.text.slide5_checkbox2)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
     className: "submit-button sign-in-button col-xl-5 col-lg-6 col-md-9 col-11 text-center py-2 mb-5 mt-3 ",
     onClick: formValidator
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, dataAdditional.text.slide5_submit)))))));
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, data.text.slide5_submit)))))));
 };
 
 var NextArrow = function NextArrow(props) {
@@ -70413,7 +70468,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var Home = function Home(_ref) {
-  var ads = _ref.ads,
+  var additional = _ref.additional,
+      ads = _ref.ads,
       ad = _ref.ad,
       user = _ref.user,
       _ref$updateProfile = _ref.updateProfile,
@@ -70435,7 +70491,8 @@ var Home = function Home(_ref) {
       _ref$closeAd = _ref.closeAd,
       closeAd = _ref$closeAd === void 0 ? function (f) {
     return f;
-  } : _ref$closeAd;
+  } : _ref$closeAd,
+      signOut = _ref.signOut;
   var settings = {
     dots: false,
     arrows: true,
@@ -70501,11 +70558,13 @@ var Home = function Home(_ref) {
       className: " home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 pt-5"
     }, user.active === 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Authentication_Additional__WEBPACK_IMPORTED_MODULE_1__["Additional"], {
       user: user,
+      data: additional,
       func: handleChange
     }) : "", ad !== null ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Advertisement_AdvertisementView__WEBPACK_IMPORTED_MODULE_8__["AdvertisementView"], {
       ad: ad,
       close: handleClose
     }) : null, create.active ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Advertisement_Advertisement__WEBPACK_IMPORTED_MODULE_6__["Advertisement"], {
+      user: user,
       createAd: handleCreate,
       updateAd: handleUpdate,
       closeAd: function closeAd() {
@@ -70516,7 +70575,7 @@ var Home = function Home(_ref) {
       },
       id: create.id
     }) : "", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "content col-11 row justify-content-center py-5"
+      className: "content col-11 row justify-content-center pt-5 mb-2"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "header col-11 row justify-content-between"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -70557,9 +70616,9 @@ var Home = function Home(_ref) {
     }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "action-point text-center"
     }, "7"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "message col-11 mt-5"
+      className: "message col-11 my-4"
     }, user.name == null ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello !") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, user.name), " !")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_3___default.a, _extends({}, settings, {
-      className: "work-options justify-content-between col-12 my-5 px-5 row"
+      className: "work-options justify-content-between col-12 mt-2 px-5 row"
     }), ads.map(function (_ref2) {
       var id = _ref2.id,
           title = _ref2.title,
@@ -70568,6 +70627,7 @@ var Home = function Home(_ref) {
           date = _ref2.date,
           created_at = _ref2.created_at;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Advertisement_AdvertisementLookup__WEBPACK_IMPORTED_MODULE_7__["AdvertisementLookup"], {
+        key: id,
         id: id,
         title: title,
         description: description,
@@ -70579,22 +70639,17 @@ var Home = function Home(_ref) {
     }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "row justify-content-center"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      className: "col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button",
+      className: "col-auto text-center py-2 mb-5 mx-3 mt-3 px-4 shadow home-button",
       onClick: function onClick() {
         return setCreate({
           id: null,
           active: true
         });
       }
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "sign")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "col-auto"
-    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      className: "col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "sign")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "col-auto"
-    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      className: "col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "sign out"))));
+    }, "create"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      className: "col-auto text-center py-2 mb-5 mx-3 mt-3 px-4 shadow home-button",
+      onClick: signOut
+    }, "sign out")));
   } else {
     Object(_reach_router__WEBPACK_IMPORTED_MODULE_2__["navigate"])('/');
   }
@@ -70767,19 +70822,25 @@ var Main = function Main() {
       ads = _useState6[0],
       setAds = _useState6[1];
 
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(null),
       _useState8 = _slicedToArray(_useState7, 2),
-      messages = _useState8[0],
-      setMessages = _useState8[1];
+      additional = _useState8[0],
+      setAdditional = _useState8[1];
+
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+      _useState10 = _slicedToArray(_useState9, 2),
+      messages = _useState10[0],
+      setMessages = _useState10[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    config.headers['X-localization'] = _getData('http://ip-api.com/json');
+    config.headers['X-localization'] = "SK";
     var _localStorage = localStorage,
         appState = _localStorage.appState,
         ads = _localStorage.ads;
 
-    if (JSON.parse(appState).isLoggedIn) {
+    if (appState ? JSON.parse(appState).isLoggedIn : false) {
       setAuthState(JSON.parse(appState));
+      JSON.parse(appState).user.active === 0 ? _additional() : null;
       Object(_reach_router__WEBPACK_IMPORTED_MODULE_5__["navigate"])("/home");
       config.headers['Authorization'] = 'Bearer ' + JSON.parse(appState).user.auth_token;
       ads === undefined || JSON.parse(ads).length !== _getData('/api/size-ads') ? _getAds().then(function (_ref) {
@@ -70864,6 +70925,7 @@ var Main = function Main() {
           isLoggedIn: true,
           user: data
         };
+        Object(_reach_router__WEBPACK_IMPORTED_MODULE_5__["navigate"])('/home');
         setAuthState(userData);
         localStorage["appState"] = JSON.stringify(userData);
       }
@@ -70880,6 +70942,7 @@ var Main = function Main() {
       user: {}
     };
     setAuthState(appState);
+    Object(_reach_router__WEBPACK_IMPORTED_MODULE_5__["navigate"])('/');
     localStorage["appState"] = JSON.stringify(appState);
   };
 
@@ -70936,6 +70999,34 @@ var Main = function Main() {
     });
   };
 
+  var _additional =
+  /*#__PURE__*/
+  function () {
+    var _ref4 = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              return _context3.abrupt("return", _getData('/api/register-additional').then(function (_ref5) {
+                var data = _ref5.data;
+                return setAdditional(data);
+              }));
+
+            case 1:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
+    }));
+
+    return function _additional() {
+      return _ref4.apply(this, arguments);
+    };
+  }();
+
   var _createAd = function _createAd(data) {
     return _postData("/api/advertisement", data);
   };
@@ -70947,42 +71038,17 @@ var Main = function Main() {
   var _viewAd =
   /*#__PURE__*/
   function () {
-    var _ref4 = _asyncToGenerator(
-    /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(id) {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              return _context3.abrupt("return", _getData('api/advertisement/' + id).then(function (_ref5) {
-                var data = _ref5.data;
-                return setAd(data);
-              }));
-
-            case 1:
-            case "end":
-              return _context3.stop();
-          }
-        }
-      }, _callee3);
-    }));
-
-    return function _viewAd(_x4) {
-      return _ref4.apply(this, arguments);
-    };
-  }();
-
-  var _closeAd =
-  /*#__PURE__*/
-  function () {
     var _ref6 = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(id) {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              return _context4.abrupt("return", setAd(null));
+              return _context4.abrupt("return", _getData('api/advertisement/' + id).then(function (_ref7) {
+                var data = _ref7.data;
+                return setAd(data);
+              }));
 
             case 1:
             case "end":
@@ -70992,22 +71058,22 @@ var Main = function Main() {
       }, _callee4);
     }));
 
-    return function _closeAd() {
+    return function _viewAd(_x4) {
       return _ref6.apply(this, arguments);
     };
   }();
 
-  var _getAds =
+  var _closeAd =
   /*#__PURE__*/
   function () {
-    var _ref7 = _asyncToGenerator(
+    var _ref8 = _asyncToGenerator(
     /*#__PURE__*/
     _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
-              return _context5.abrupt("return", _getData('api/advertisement'));
+              return _context5.abrupt("return", setAd(null));
 
             case 1:
             case "end":
@@ -71017,8 +71083,33 @@ var Main = function Main() {
       }, _callee5);
     }));
 
+    return function _closeAd() {
+      return _ref8.apply(this, arguments);
+    };
+  }();
+
+  var _getAds =
+  /*#__PURE__*/
+  function () {
+    var _ref9 = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+        while (1) {
+          switch (_context6.prev = _context6.next) {
+            case 0:
+              return _context6.abrupt("return", _getData('api/advertisement'));
+
+            case 1:
+            case "end":
+              return _context6.stop();
+          }
+        }
+      }, _callee6);
+    }));
+
     return function _getAds() {
-      return _ref7.apply(this, arguments);
+      return _ref9.apply(this, arguments);
     };
   }();
 
@@ -71032,7 +71123,6 @@ var Main = function Main() {
     reset: _resetPassword
   }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Logged_Home__WEBPACK_IMPORTED_MODULE_7__["Home"], {
     path: "/home",
-    updateProfile: _updateProfile,
     viewAd: _viewAd,
     createAd: _createAd,
     updateAd: _updateAd,
@@ -71040,6 +71130,8 @@ var Main = function Main() {
     user: authState.user,
     ads: ads,
     ad: ad,
+    additional: additional,
+    updateProfile: _updateProfile,
     signOut: _logoutUser
   }));
 };

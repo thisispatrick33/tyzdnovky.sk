@@ -9,7 +9,7 @@ import {Advertisement} from "../Advertisement/Advertisement";
 import {AdvertisementLookup} from "../Advertisement/AdvertisementLookup";
 import {AdvertisementView} from "../Advertisement/AdvertisementView";
 
-export const Home =({ ads, ad, user, updateProfile = f => f, createAd = f => f, updateAd = f => f, viewAd = f => f, closeAd = f => f }) => {
+export const Home =({ additional, ads, ad, user, updateProfile = f => f, createAd = f => f, updateAd = f => f, viewAd = f => f, closeAd = f => f, signOut }) => {
 
     const settings = {
         dots: false,
@@ -59,15 +59,15 @@ export const Home =({ ads, ad, user, updateProfile = f => f, createAd = f => f, 
         return (
             <div className={` home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 pt-5`}>
                 {
-                    user.active === 0 ? <Additional user={user} func={handleChange}/> : ``
+                    user.active === 0 ? <Additional user={user} data={additional} func={handleChange}/> : ``
                 }
                 {
                     ad !== null ? <AdvertisementView ad={ad} close={handleClose} /> : null
                 }
                 {
-                    create.active ? <Advertisement createAd={handleCreate} updateAd={handleUpdate} closeAd={() => setCreate({id: null, active: false})} id={create.id}/> : ""
+                    create.active ? <Advertisement user={user} createAd={handleCreate} updateAd={handleUpdate} closeAd={() => setCreate({id: null, active: false})} id={create.id}/> : ""
                 }
-                <div className="content col-11 row justify-content-center py-5">
+                <div className="content col-11 row justify-content-center pt-5 mb-2">
                     <div className="header col-11 row justify-content-between">
                         <div className="menu col-1 row">
                             <svg className={`col-10 p-0`} viewBox="0 0 86.628 43.314" xmlns="http://www.w3.org/2000/svg">
@@ -89,17 +89,18 @@ export const Home =({ ads, ad, user, updateProfile = f => f, createAd = f => f, 
                             <div className="action-point text-center">7</div>
                         </div>
                     </div>
-                    <div className="message col-11 mt-5">
+                    <div className="message col-11 my-4">
                         {
                             user.name == null ? <p>Hello !</p> : <p>Hello <span>{user.name}</span> !</p>
                         }
                     </div>
 
-                    <Slider {...settings} className={`work-options justify-content-between col-12 my-5 px-5 row`}>
+                    <Slider {...settings} className={`work-options justify-content-between col-12 mt-2 px-5 row`}>
                                 {
                                     ads.map(({id, title, description, address, date, created_at}) => {
                                         return(
                                             <AdvertisementLookup
+                                                key={id}
                                                 id={id}
                                                 title={title}
                                                 description={description}
@@ -115,16 +116,11 @@ export const Home =({ ads, ad, user, updateProfile = f => f, createAd = f => f, 
                     </Slider>
                 </div>
                 <div className="row justify-content-center">
-                    <button className={`col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button`} onClick={()=>setCreate({id: null, active: true})}>
-                        <span>sign</span>
+                    <button className={`col-auto text-center py-2 mb-5 mx-3 mt-3 px-4 shadow home-button`} onClick={()=>setCreate({id: null, active: true})}>
+                        create
                     </button>
-                    <div className="col-auto"></div>
-                    <button className={`col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button`}>
-                        <span>sign</span>
-                    </button>
-                    <div className="col-auto"></div>
-                    <button className={`col-auto text-center py-2 mb-5 mt-3 px-4 shadow home-button`} >
-                        <span>sign out</span>
+                    <button className={`col-auto text-center py-2 mb-5 mx-3 mt-3 px-4 shadow home-button`} onClick={signOut}>
+                        sign out
                     </button>
                 </div>
 
