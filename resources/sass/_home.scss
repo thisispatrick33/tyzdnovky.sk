@@ -1,4 +1,14 @@
 .home{
+    .content{
+        @media (max-width: $break-m){
+            border-radius: 0!important;
+        }
+    }
+    .menu-svg{
+        width: 40px;
+        height: 40px;
+    }
+    
     .work-options{
         font-family: 'Montserrat', serif;
         height: 100%;
@@ -66,7 +76,7 @@
         border: none;
         background: #ffffff;
     }
-    .advertisement-info-wrapper{
+    .offer-info-wrapper{
         position: absolute;
         z-index: 10;
         background: rgba(255,255,255, .8 );
@@ -78,21 +88,21 @@
         color: #2C393F;
         display:block;
 
-        .advertisement-info-box{
+        .offer-info-box{
             background: #fff;
             min-height: 90vh;
             width: 100%;
             border-radius: 29px;
         }
-        .advertisement-info-image{
+        .offer-info-image{
             height: 100%;
             width: 100%;
             object-fit: cover;
             border-radius: 29px 0px 0px 29px;
         }
-        .advertisement-info-tags{
+        .offer-info-tags{
 
-            .advertisement-info-tag{
+            .offer-info-tag{
                 font-size: 1em;
                 font-weight: 300;
                 border-radius: 50px;
@@ -103,7 +113,7 @@
                 background: #ffffff;
             }
         }
-        .advertisement-info-description{
+        .offer-info-description{
             width: 80%;
             margin:0 auto;
             word-break: break-all;
@@ -122,13 +132,13 @@
         .cross{
             text-align: center;
         }
-        .advertisement-info-branches,.advertisement-info-additional,.advertisement-info-description{
+        .offer-info-branches,.offer-info-additional,.offer-info-description{
             font-weight: 500;
         }
-        .advertisement-info-additional,.advertisement-info-branches{
+        .offer-info-additional,.offer-info-branches{
             font-size: 1em;
         }
-        .advertisement-info-branches{
+        .offer-info-branches{
             font-size: 1.2em;
             word-break: normal;
             @media (min-width: $break-xl){
@@ -138,7 +148,7 @@
 
 
     }
-    .advertisement-create-wrapper{
+    .offer-create-wrapper{
         position: absolute;
         z-index: 10;
         background: rgba(255,255,255, .8 );
@@ -149,7 +159,7 @@
         font-family: 'Montserrat';
         color: #2C393F;
 
-        .advertisement-create-box{
+        .offer-create-box{
             background: #fff;
             min-height: 90vh;
             width: 100%;

@@ -68554,16 +68554,16 @@ var AdvertisementView = function AdvertisementView(_ref) {
       close = _ref.close;
   var date = new Date(ad.date);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "advertisement-info-wrapper",
-    id: "advertisement-info"
+    className: "offer-info-wrapper",
+    id: "offer-info"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container-fluid row justify-content-center m-0 p-0"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "advertisement-info-box col-11 m-0 p-0 mt-5 shadow row"
+    className: "offer-info-box col-11 m-0 p-0 mt-5 shadow row"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-3  p-0 d-none d-lg-block"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    className: "advertisement-info-image",
+    className: "offer-info-image",
     src: "./images/poster.jpg"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-12 col-lg-9 row justify-content-center pb-0"
@@ -68572,7 +68572,7 @@ var AdvertisementView = function AdvertisementView(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-12 col-sm-8 order-2 order-sm-1"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-    className: "advertisement-info-title text-center"
+    className: "offer-info-title text-center"
   }, ad.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-12 col-sm-4 order-1 order-sm-2 "
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -68597,15 +68597,15 @@ var AdvertisementView = function AdvertisementView(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "border-r pt-4 justify-content-center row "
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "advertisement-info-tags row justify-content-center pb-5 col-11"
+    className: "offer-info-tags row justify-content-center pb-5 col-11"
   }, ad.tags.map(function (value) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "advertisement-info-tag py-2 mx-3 mt-1 mb-2 px-4 shadow col-auto "
+      className: "offer-info-tag py-2 mx-3 mt-1 mb-2 px-4 shadow col-auto "
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "colorful-text"
     }, value));
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "advertisement-info-description mb-5 text-center"
+    className: "offer-info-description mb-5 text-center"
   }, ad.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: "my-2 mb-3 submit-button sign-in-button px-5 py-2 d-block"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " m\xE1m  ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -68613,14 +68613,14 @@ var AdvertisementView = function AdvertisementView(_ref) {
   }, "zaujem !"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-md-4 text-uppercase order-3 order-md-4"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "advertisement-info-branches border-b text-center py-3 px-2"
+    className: "offer-info-branches border-b text-center py-3 px-2"
   }, ad.branches.map(function (_ref2) {
     var name = _ref2.name;
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "my-4"
     }, name);
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "advertisement-info-additional row pt-4 border-b-res m-0"
+    className: "offer-info-additional row pt-4 border-b-res m-0"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row col-12 my-3"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -70561,7 +70561,7 @@ var Home = function Home(_ref) {
     }
 
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: " home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 pt-5"
+      className: " home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 pt-md-5"
     }, user.active === 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Authentication_Additional__WEBPACK_IMPORTED_MODULE_1__["Additional"], {
       user: user,
       data: additional,
@@ -70581,13 +70581,13 @@ var Home = function Home(_ref) {
       },
       id: create.id
     }) : "", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "content col-11 row justify-content-center pt-5 mb-2"
+      className: "content col-12 col-md-11 row justify-content-center pt-5 mb-2"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "header col-11 row justify-content-between"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "menu col-1 row"
+      className: "menu col-2 col-md-1 row px-0"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-      className: "col-10 p-0",
+      className: " p-0 menu-svg",
       viewBox: "0 0 86.628 43.314",
       xmlns: "http://www.w3.org/2000/svg"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {

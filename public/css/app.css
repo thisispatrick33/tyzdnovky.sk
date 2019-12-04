@@ -11415,6 +11415,17 @@ hr {
   background: white;
 }
 
+@media (max-width: 768px) {
+  .home .content {
+    border-radius: 0 !important;
+  }
+}
+
+.home .menu-svg {
+  width: 40px;
+  height: 40px;
+}
+
 .home .work-options {
   font-family: "Montserrat", serif;
   height: 100%;
@@ -11492,7 +11503,7 @@ hr {
   background: #ffffff;
 }
 
-.home .advertisement-info-wrapper {
+.home .offer-info-wrapper {
   position: absolute;
   z-index: 10;
   background: rgba(255, 255, 255, 0.8);
@@ -11505,14 +11516,14 @@ hr {
   display: block;
 }
 
-.home .advertisement-info-wrapper .advertisement-info-box {
+.home .offer-info-wrapper .offer-info-box {
   background: #fff;
   min-height: 90vh;
   width: 100%;
   border-radius: 29px;
 }
 
-.home .advertisement-info-wrapper .advertisement-info-image {
+.home .offer-info-wrapper .offer-info-image {
   height: 100%;
   width: 100%;
   -o-object-fit: cover;
@@ -11520,7 +11531,7 @@ hr {
   border-radius: 29px 0px 0px 29px;
 }
 
-.home .advertisement-info-wrapper .advertisement-info-tags .advertisement-info-tag {
+.home .offer-info-wrapper .offer-info-tags .offer-info-tag {
   font-size: 1em;
   font-weight: 300;
   border-radius: 50px;
@@ -11531,50 +11542,50 @@ hr {
   background: #ffffff;
 }
 
-.home .advertisement-info-wrapper .advertisement-info-description {
+.home .offer-info-wrapper .offer-info-description {
   width: 80%;
   margin: 0 auto;
   word-break: break-all;
   font-size: 1em;
 }
 
-.home .advertisement-info-wrapper .border-b {
+.home .offer-info-wrapper .border-b {
   border-bottom: 1px solid #EDEDED;
 }
 
 @media (max-width: 768px) {
-  .home .advertisement-info-wrapper .border-b-res {
+  .home .offer-info-wrapper .border-b-res {
     border-bottom: 1px solid #EDEDED;
   }
 }
 
-.home .advertisement-info-wrapper .cross {
+.home .offer-info-wrapper .cross {
   text-align: center;
 }
 
-.home .advertisement-info-wrapper .advertisement-info-branches,
-.home .advertisement-info-wrapper .advertisement-info-additional,
-.home .advertisement-info-wrapper .advertisement-info-description {
+.home .offer-info-wrapper .offer-info-branches,
+.home .offer-info-wrapper .offer-info-additional,
+.home .offer-info-wrapper .offer-info-description {
   font-weight: 500;
 }
 
-.home .advertisement-info-wrapper .advertisement-info-additional,
-.home .advertisement-info-wrapper .advertisement-info-branches {
+.home .offer-info-wrapper .offer-info-additional,
+.home .offer-info-wrapper .offer-info-branches {
   font-size: 1em;
 }
 
-.home .advertisement-info-wrapper .advertisement-info-branches {
+.home .offer-info-wrapper .offer-info-branches {
   font-size: 1.2em;
   word-break: normal;
 }
 
 @media (min-width: 1200px) {
-  .home .advertisement-info-wrapper .advertisement-info-branches {
+  .home .offer-info-wrapper .offer-info-branches {
     font-size: 1.3em;
   }
 }
 
-.home .advertisement-create-wrapper {
+.home .offer-create-wrapper {
   position: absolute;
   z-index: 10;
   background: rgba(255, 255, 255, 0.8);
@@ -11586,14 +11597,14 @@ hr {
   color: #2C393F;
 }
 
-.home .advertisement-create-wrapper .advertisement-create-box {
+.home .offer-create-wrapper .offer-create-box {
   background: #fff;
   min-height: 90vh;
   width: 100%;
   border-radius: 29px;
 }
 
-.home .advertisement-create-wrapper .branches .branch {
+.home .offer-create-wrapper .branches .branch {
   font-size: 1em;
   font-weight: 300;
   border-radius: 50px;
@@ -11604,13 +11615,13 @@ hr {
   background: #ffffff;
 }
 
-.home .advertisement-create-wrapper .branches .list {
+.home .offer-create-wrapper .branches .list {
   overflow-y: auto;
   max-height: 60vh;
 }
 
 @media screen and (max-width: 992px) {
-  .home .advertisement-create-wrapper .branches .list {
+  .home .offer-create-wrapper .branches .list {
     overflow-y: hidden;
     overflow-x: scroll;
     max-height: 5em;
@@ -11618,21 +11629,21 @@ hr {
     width: 133.33333333%;
   }
 
-  .home .advertisement-create-wrapper .branches .list .branch {
+  .home .offer-create-wrapper .branches .list .branch {
     display: inline-block;
   }
 }
 
-.home .advertisement-create-wrapper .h10 {
+.home .offer-create-wrapper .h10 {
   height: 10%;
 }
 
-.home .advertisement-create-wrapper .h90 {
+.home .offer-create-wrapper .h90 {
   height: 90%;
 }
 
-.home .advertisement-create-wrapper input,
-.home .advertisement-create-wrapper .input {
+.home .offer-create-wrapper input,
+.home .offer-create-wrapper .input {
   background: #EDEDED;
   border: none;
   color: #2c393f;
@@ -11640,29 +11651,29 @@ hr {
   height: 3em;
 }
 
-.home .advertisement-create-wrapper input:focus,
-.home .advertisement-create-wrapper .input:focus {
+.home .offer-create-wrapper input:focus,
+.home .offer-create-wrapper .input:focus {
   outline: 0;
 }
 
-.home .advertisement-create-wrapper input[type=text],
-.home .advertisement-create-wrapper .input[type=text] {
+.home .offer-create-wrapper input[type=text],
+.home .offer-create-wrapper .input[type=text] {
   text-transform: capitalize;
 }
 
-.home .advertisement-create-wrapper input[type=text]:hover,
-.home .advertisement-create-wrapper .input[type=text]:hover {
+.home .offer-create-wrapper input[type=text]:hover,
+.home .offer-create-wrapper .input[type=text]:hover {
   cursor: text;
 }
 
-.home .advertisement-create-wrapper textarea {
+.home .offer-create-wrapper textarea {
   background: #EDEDED;
   border: none;
   color: #2c393f;
   border-radius: 27px;
 }
 
-.home .advertisement-create-wrapper textarea:focus {
+.home .offer-create-wrapper textarea:focus {
   outline: 0;
 }
 
