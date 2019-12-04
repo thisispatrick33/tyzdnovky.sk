@@ -68293,6 +68293,7 @@ var AdvertisementLookup = function AdvertisementLookup(_ref) {
     return f;
   } : _ref$view;
   var today = new Date();
+  var formatDate = new Date(date);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "work-option row justify-content-center col-12 p-0 mx-3 mb-5"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -68348,8 +68349,10 @@ var AdvertisementLookup = function AdvertisementLookup(_ref) {
     className: "col-11 mx-0 row work-option-info text-uppercase mb-3"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-6 row m-0 p-0 justify-content-center align-items-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-3 p-0 text-right"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    className: "col-auto px-0 m-0",
+    className: " px-0 m-0 text-right",
     xmlns: "http://www.w3.org/2000/svg",
     width: "13.512",
     height: "19.292",
@@ -68362,16 +68365,16 @@ var AdvertisementLookup = function AdvertisementLookup(_ref) {
     d: "M19.737,1.979a6.756,6.756,0,0,0-9.555,0,7.7,7.7,0,0,0-.636,9.5l5.413,7.817,5.405-7.806A7.7,7.7,0,0,0,19.737,1.979Zm.056,9.095-4.834,6.98-4.841-6.991a6.953,6.953,0,0,1,.562-8.586,6.052,6.052,0,0,1,8.558,0A6.956,6.956,0,0,1,19.793,11.074Z",
     transform: "translate(-8.203 0)",
     fill: "#00c7c7"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "col-auto py-0 pl-2 m-0 pr-0"
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "col-9 py-0 m-0 px-0 pl-3 pl-md-0  text-left text-md-center"
   }, address)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-6 row m-0 p-0 justify-content-center align-items-center"
+    className: "col-6 row m-0 p-0 justify-content-center align-items-center pl-2"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     width: "18.298",
     height: "19.215",
     viewBox: "0 0 18.298 19.215",
-    className: "col-auto px-0 m-0",
+    className: "col-3 px-0 m-0",
     fill: '#00c7c7'
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
     d: "M13.534,1.848A1.61,1.61,0,0,0,11.988.5a.327.327,0,0,0-.315.337.327.327,0,0,0,.315.337.982.982,0,0,1,.946,1.011A.982.982,0,0,1,11.988,3.2a.338.338,0,0,0,0,.674,1.61,1.61,0,0,0,1.546-1.348h4.133V5.557H.631V2.523H5.994a.338.338,0,0,0,0-.674H5.421a.951.951,0,0,1,.888-.674.982.982,0,0,1,.946,1.011A.982.982,0,0,1,6.31,3.2a.338.338,0,0,0,0,.674A1.636,1.636,0,0,0,7.887,2.186,1.636,1.636,0,0,0,6.31.5,1.61,1.61,0,0,0,4.764,1.848H0V19.715H18.3V1.848Zm4.133,17.193H.631V6.231H17.667Z",
@@ -68527,8 +68530,8 @@ var AdvertisementLookup = function AdvertisementLookup(_ref) {
     ry: "0.343",
     transform: "translate(11.007 15.441)"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "col-auto py-0 pl-2 m-0 pr-0"
-  }, date))))));
+    className: "col-9 py-0 pl-2 m-0 pr-0"
+  }, formatDate.getDay() + "." + formatDate.getMonth() + "." + formatDate.getFullYear()))))));
 };
 
 /***/ }),
@@ -68549,7 +68552,7 @@ __webpack_require__.r(__webpack_exports__);
 var AdvertisementView = function AdvertisementView(_ref) {
   var ad = _ref.ad,
       close = _ref.close;
-  var date = new Date(ad.created_at);
+  var date = new Date(ad.date);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "advertisement-info-wrapper",
     id: "advertisement-info"

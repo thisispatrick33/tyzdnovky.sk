@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const AdvertisementView = ({ad, close}) => {
-    const date = new Date(ad.created_at);
+    const date = new Date(ad.date);
     return(
         <div className="advertisement-info-wrapper" id="advertisement-info">
             <div className="container-fluid row justify-content-center m-0 p-0">
