@@ -16,6 +16,7 @@ $break-xl : 1200px;
 @import './_additional';
 @import './_password-reset';
 @import './_home';
+@import './_preloader';
 /**
 * Add a transition to the label and input.
 * I'm not even sure that touch-action: manipulation works on

@@ -8,6 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 import {Advertisement} from "../Advertisement/Advertisement";
 import {AdvertisementLookup} from "../Advertisement/AdvertisementLookup";
 import {AdvertisementView} from "../Advertisement/AdvertisementView";
+import {Loader} from "../Others/Loader";
 
 export const Home =({ additional, ads, ad, user, updateProfile = f => f, createAd = f => f, updateAd = f => f, viewAd = f => f, closeAd = f => f, signOut }) => {
 
@@ -44,17 +45,18 @@ export const Home =({ additional, ads, ad, user, updateProfile = f => f, createA
     };
 
 
-    const [create, setCreate] = useState({id: null, active: false});
+    const [form, setForm] = useState(false);
 
     const handleChange = data => updateProfile(data);
     const handleCreate = data => createAd(data);
+    const handleEdit = id => { viewAd(id); setForm({control : true, edit : true}); };
     const handleUpdate = data => updateAd(data);
     const handleView = id => viewAd(id);
     const handleClose = () => closeAd();
 
     if(user !== undefined){
         if(ads[0] === undefined){
-            return <div>loading</div>;
+            return <Loader />;
         }
         return (
             <div className={` home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 pt-5`}>
@@ -62,10 +64,10 @@ export const Home =({ additional, ads, ad, user, updateProfile = f => f, createA
                     user.active === 0 ? <Additional user={user} data={additional} func={handleChange}/> : ``
                 }
                 {
-                    ad !== null ? <AdvertisementView ad={ad} close={handleClose} /> : null
+                    ad !== null && form ? <AdvertisementView ad={ad} close={handleClose} /> : null
                 }
                 {
-                    create.active ? <Advertisement user={user} createAd={handleCreate} updateAd={handleUpdate} closeAd={() => setCreate({id: null, active: false})} id={create.id}/> : ""
+                    form ? <Advertisement edit={form.edit} user={user} createAd={handleCreate} updateAd={handleUpdate} closeAd={() => setForm(false)} data={ad}/> : ""
                 }
                 <div className="content col-11 row justify-content-center pt-5 mb-2">
                     <div className="header col-11 row justify-content-between">
@@ -108,6 +110,7 @@ export const Home =({ additional, ads, ad, user, updateProfile = f => f, createA
                                                 date={date}
                                                 created_at={created_at}
                                                 view={handleView}
+                                                edit={handleEdit}
                                             />
 
                                         )
@@ -116,7 +119,7 @@ export const Home =({ additional, ads, ad, user, updateProfile = f => f, createA
                     </Slider>
                 </div>
                 <div className="row justify-content-center">
-                    <button className={`col-auto text-center py-2 mb-5 mx-3 mt-3 px-4 shadow home-button`} onClick={()=>setCreate({id: null, active: true})}>
+                    <button className={`col-auto text-center py-2 mb-5 mx-3 mt-3 px-4 shadow home-button`} onClick={() => setForm({control : true, edit : false})}>
                         create
                     </button>
                     <button className={`col-auto text-center py-2 mb-5 mx-3 mt-3 px-4 shadow home-button`} onClick={signOut}>

@@ -31,7 +31,7 @@ const Main = () => {
                 JSON.parse(appState).user.active === 0 ? _additional() : null;
                 navigate(`/home`);
                 config.headers['Authorization'] =  'Bearer '+JSON.parse(appState).user.auth_token;
-                (ads === undefined || JSON.parse(ads).length !== _getData('/api/size-ads')) ? _getAds().then(({data}) => { setAds(data); localStorage["ads"] = JSON.stringify(data) }) : setAds(JSON.parse(ads));
+                (ads === undefined || JSON.parse(ads).length !== _getData('/api/size-ads')) ? _getAds() : setAds(JSON.parse(ads));
             }
     },[]);
 
@@ -129,15 +129,15 @@ const Main = () => {
 
     const _additional = async () => _getData('/api/register-additional').then(({data}) => setAdditional(data));
 
-    const _createAd = (data) => _postData(`/api/advertisement`, data);
+    const _createAd = data => _postData(`/api/advertisement`, data);
 
-    const _updateAd = (data) => axios.put(`/api/advertisement`, data ,config);
+    const _updateAd = data => axios.put(`/api/advertisement`, data ,config);
 
     const _viewAd = async id => _getData('api/advertisement/'+id).then(({data}) => setAd(data));
 
     const _closeAd = async () =>  setAd(null);
 
-    const _getAds = async () => _getData('api/advertisement');
+    const _getAds = async () => _getData('api/advertisement').then(({data}) => { setAds(data); localStorage["ads"] = JSON.stringify(data) });
 
 
 
