@@ -16,12 +16,16 @@ use Illuminate\Support\Str;
 |
 */
 
-$factory->define(User::class, function (Faker $faker) {
+$factory->define(App\User::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => now(),
-        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        'remember_token' => Str::random(10),
+        'name'=> $faker->firstName,
+        'lastname'=> $faker->lastName,
+        'email'=> $faker->email,
+        'username'=> $faker->userName,
+        'password'=> Hash::make("password"),
+        'phone'=> $faker->phoneNumber,
+        'profile_pic'=> null,
+        'driving_license'=> $faker->boolean($chanceOfGettingTrue = 50),
+        'active'=> 1
     ];
 });

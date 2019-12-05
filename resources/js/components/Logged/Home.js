@@ -59,7 +59,7 @@ export const Home =({ additional, ads, ad, user, updateProfile = f => f, createA
             return <Loader />;
         }
         return (
-            <div className={` home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 pt-5`}>
+            <div className={` home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 pt-md-5`}>
                 {
                     user.active === 0 ? <Additional user={user} data={additional} func={handleChange}/> : ``
                 }
@@ -69,10 +69,10 @@ export const Home =({ additional, ads, ad, user, updateProfile = f => f, createA
                 {
                     form ? <Advertisement edit={form.edit} user={user} createAd={handleCreate} updateAd={handleUpdate} closeAd={() => setForm(false)} data={ad}/> : ""
                 }
-                <div className="content col-11 row justify-content-center pt-5 mb-2">
+                <div className="content col-12 col-md-11 row justify-content-center pt-5 mb-2">
                     <div className="header col-11 row justify-content-between">
-                        <div className="menu col-1 row">
-                            <svg className={`col-10 p-0`} viewBox="0 0 86.628 43.314" xmlns="http://www.w3.org/2000/svg">
+                        <div className="menu col-2 col-md-1 row px-0">
+                            <svg className={` p-0 menu-svg`} viewBox="0 0 86.628 43.314" xmlns="http://www.w3.org/2000/svg">
                                 <g transform="translate(0 -96.243)">
                                     <g transform="translate(0 96.243)" fill="#2c393f">
                                         <path transform="translate(0 -96.243)" d="M2.707,101.657H83.921a2.707,2.707,0,0,0,0-5.414H2.707a2.707,2.707,0,0,0,0,5.414Z" data-name="Path 41"/>

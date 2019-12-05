@@ -1,10 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Branch;
-use App\Business;
-use App\User;
-use App\Language;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,100 +12,38 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $branches_sk = [
-            'name' => [
-                'automobilový priemysel',
-                'gastronómia a hoteliérstvo',
-                'účtovníctvo',
-                'elektrotechnika a energetika',
-                'IT',
-                'pomocné práce',
-                'služby',
-                'stavebníctvo',
-                'výroba',
-                'sociálna starostlivosť',
-                'Bývanie, stavba, záhrada',
-                'Brigáda',
-                'Biznis služby',
-                'Auto moto',
-                'Služby pre teba',
-                'Oslavy, Eventy',
-                'Hodiny a lekcie',
-                'Hobby'
-            ],
-            'placeholder' => [
-                'Ja som placeholder',
-                'Ja som placeholder',
-                'Ja som placeholder',
-                'Ja som placeholder',
-                'Ja som placeholder',
-                'Ja som placeholder',
-                'Ja som placeholder',
-                'Ja som placeholder',
-                'Ja som placeholder',
-                'Ja som placeholder',
-                'Ja som placeholder',
-                'Ja som placeholder',
-                'Ja som placeholder',
-                'Ja som placeholder',
-                'Ja som placeholder',
-                'Ja som placeholder',
-                'Ja som placeholder',
-                'Ja som placeholder'
-            ],
-            'free_time' => [
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                true,
-                true,
-                true,
-                true,
-                true,
-                true,
-                true,
-                true
-            ]
-        ];
+       
 
-        $languages_sk = [
-            'česky',
-            'španielsky',
-            'anglicky',
-            'maďarsky',
-            'arabsky',
-            'portugalsky',
-            'rusky',
-            'japonsky',
-            'nemecky',
-            'kórejsky',
-            'francúzsky',
-            'turecky',
-            'vietnamsky' 
-        ];
-        
-        for($i=0;$i<sizeof($branches_sk['name']);$i++){
-            $branch = new Branch;
-            $branch->name = $branches_sk['name'][$i];
-            $branch->placeholder = $branches_sk['placeholder'][$i];
-            $branch->lang = "sk";
-            $branch->free_time = $branches_sk['free_time'][$i];
-            $branch->save();
-        }
 
-        for($i=0;$i<sizeof($languages_sk);$i++){
-            $language = new Language;
-            $language->name = $languages_sk[$i];
-            $language->lang = "SK";
-            $language->basic = true;
-            $language->save();
-        }
+        $this->call([
+            BranchesSeeder::class,
+            LanguagesSeeder::class
+        ]);
+
+        $users = factory(App\User::class, 5)
+           ->create()
+           ->each(function ($user) {
+                $branchesArray = range(1,18);
+                $languagesArray = range(1,13);
+                shuffle($languagesArray);
+                shuffle($branchesArray);
+                $user->languages()->attach(array_slice($languagesArray , 1, rand(1,5)));
+                $user->branches()->attach(array_slice($branchesArray , 1, rand(1,5)));
+
+            });
+        $businesses = factory(App\Business::class, 3)->create();
+        $tags = factory(App\Tag::class, 55)->create();
+        $advertisements = factory(App\Advertisement::class, 20)
+           ->create()
+           ->each(function ($advertisement) {
+                $branchesArray = range(1,18);
+                shuffle($branchesArray);
+                $tagsCount = sizeof(App\Tag::all());
+                $tagsArray = range(1,$tagsCount);
+                shuffle($tagsArray);
+                $advertisement->tags()->attach(array_slice($tagsArray, 1, rand(1,10)));
+                $advertisement->branches()->attach(array_slice($branchesArray, 1, rand(1,3)));
+            });
+       
     }
 }

@@ -1,18 +1,18 @@
 import React from 'react';
 
 export const AdvertisementView = ({ad, close}) => {
-    const date = new Date(ad.created_at);
+    const date = new Date(ad.date);
     return(
-        <div className="advertisement-info-wrapper" id="advertisement-info">
+        <div className="offer-info-wrapper" id="offer-info">
             <div className="container-fluid row justify-content-center m-0 p-0">
-                <div className="advertisement-info-box col-11 m-0 p-0 mt-5 shadow row">
+                <div className="offer-info-box col-11 m-0 p-0 mt-5 shadow row">
                     <div className="col-3  p-0 d-none d-lg-block">
-                        <img className="advertisement-info-image" src="./images/poster.jpg"/>
+                        <img className="offer-info-image" src="./images/poster.jpg"/>
                     </div>
                     <div className="col-12 col-lg-9 row justify-content-center pb-0">
                         <div className={"col-12 row justify-content-center py-5"}>
                             <div className={"col-12 col-sm-8 order-2 order-sm-1"}>
-                                <h1 className="advertisement-info-title text-center">{ad.title}</h1>
+                                <h1 className="offer-info-title text-center">{ad.title}</h1>
                             </div>
                             <div className={"col-12 col-sm-4 order-1 order-sm-2 "}>
                                 <div className={"cross float-right float-sm-none"}>
@@ -23,16 +23,16 @@ export const AdvertisementView = ({ad, close}) => {
                             <div className="row justify-content-center order-3 order-md-4">
                                 <div className="col-md-8 order-4 order-m-3">
                                     <div className={"border-r pt-4 justify-content-center row "}>
-                                        <div className="advertisement-info-tags row justify-content-center pb-5 col-11">
+                                        <div className="offer-info-tags row justify-content-center pb-5 col-11">
                                             {
                                                 ad.tags.map( (value) => {
-                                                    return <div className="advertisement-info-tag py-2 mx-3 mt-1 mb-2 px-4 shadow col-auto " ><span className="colorful-text">{value}</span></div>;
+                                                    return <div className="offer-info-tag py-2 mx-3 mt-1 mb-2 px-4 shadow col-auto " ><span className="colorful-text">{value}</span></div>;
                                                 })
                                             }
 
 
                                         </div>
-                                        <p className="advertisement-info-description mb-5 text-center">
+                                        <p className="offer-info-description mb-5 text-center">
                                             {ad.description}
                                         </p>
                                         <button className="my-2 mb-3 submit-button sign-in-button px-5 py-2 d-block">
@@ -42,7 +42,7 @@ export const AdvertisementView = ({ad, close}) => {
                                 </div>
                                 <div className="col-md-4 text-uppercase order-3 order-md-4">
 
-                                    <div className="advertisement-info-branches border-b text-center py-3 px-2">
+                                    <div className="offer-info-branches border-b text-center py-3 px-2">
                                         {
                                             ad.branches.map( ({name}) => {
                                                 return <div className={"my-4"}>{name}</div>;
@@ -50,7 +50,7 @@ export const AdvertisementView = ({ad, close}) => {
                                         }
 
                                     </div>
-                                    <div className="advertisement-info-additional row pt-4 border-b-res m-0">
+                                    <div className="offer-info-additional row pt-4 border-b-res m-0">
                                         <div className="row col-12 my-3">
                                             <div className={"col-6 text-right pr-3"}>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20.311" height="29" viewBox="0 0 20.311 29"><g transform="translate(-8.203)"><path d="M24.264,12a3.707,3.707,0,1,0,3.707,3.707A3.712,3.712,0,0,0,24.264,12Zm0,6.355a2.648,2.648,0,1,1,2.648-2.648A2.651,2.651,0,0,1,24.264,18.355Z" transform="translate(-5.811 -5.645)" fill="#00c7c7"/><path d="M25.541,2.975a10.156,10.156,0,0,0-14.363,0C7.628,6.524,7.186,13.2,10.222,17.249L18.359,29l8.125-11.735C29.532,13.2,29.091,6.524,25.541,2.975Zm.084,13.671L18.359,27.139,11.082,16.63a10.452,10.452,0,0,1,.845-12.906,9.1,9.1,0,0,1,12.865,0A10.456,10.456,0,0,1,25.625,16.646Z" transform="translate(0 0)" fill="#00c7c7"/></g></svg>
