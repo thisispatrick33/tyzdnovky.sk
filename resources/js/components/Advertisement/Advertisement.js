@@ -2,10 +2,10 @@ import React, {useEffect, useState} from 'react';
 import {Tags} from './SubComponents/Tags';
 import {Loader} from "../Others/Loader";
 
-export const Advertisement = ({data, edit, branches, createAd = f => f, user, updateAd = f => f, closeAd}) => {
+export const Advertisement = ({data, edit, createAd = f => f, user, updateAd = f => f, closeAd}) => {
     const [offer , setOffer] = useState(data);
     const [tags, setTags] = useState([]);
-    const [brancheType, setBrancheType] = useState(edit ? (branches[0].free_time === 0 ? true : false) : true);
+    const [brancheType, setBrancheType] = useState(edit ? (JSON.parse(localStorage.branches)[0].free_time === 0 ? true : false) : true);
 
     const _tags = (list) =>{
         setTags(list);
@@ -42,24 +42,26 @@ export const Advertisement = ({data, edit, branches, createAd = f => f, user, up
                                 <div className="col-xl-3 col-lg-6 pr-3">
                                     <div className={"border-r pt-2 justify-content-start row branches"}>
                                         <div className="branch py-2  mt-1 mb-5 px-4 shadow col-11 text-uppercase">
-                                                    <span className="float-left  bold colorful-text">
-                                                        fulltime
-                                                    </span>
-                                            <span className="float-right  bold">
-
-                                                {JSON.stringify(brancheType)}
-                                                    </span>
+                                            <span className={`float-left  bold  ${brancheType ? `colorful-text` : ``}`} onClick={()=>setBrancheType(true)}>
+                                                fulltime
+                                            </span>
+                                            <span className={`float-right  bold  ${brancheType ? `` : `colorful-text` }`} onClick={()=>setBrancheType(false)}>
+                                                freetime
+                                            </span>
                                         </div>
                                         <div className="list row justify-content-start col-12 text-uppercase text-center d-lg-flex d-inline scroll">
                                             {
-                                                JSON.parse(localStorage.branches).map(({id, name, placeholder}) => {
-                                                    return(
-                                                        <div className="branch py-2 mx-3 mt-1 mb-3 px-4 shadow col-lg-11 col-auto">
+                                                JSON.parse(localStorage.branches).map(({id, name, free_time}) => {
+                                                    if((brancheType && free_time === 0) || (!brancheType && free_time === 1)){
+                                                        return(
+                                                            <div className="branch py-2 mx-3 mt-1 mb-3 px-4 shadow col-lg-11 col-auto">
                                                         <span className="colorful-text">
                                                             {name}
                                                         </span>
-                                                        </div>
-                                                    )
+                                                            </div>
+                                                        )
+                                                    }
+
                                                 })
                                             }
                                         </div>

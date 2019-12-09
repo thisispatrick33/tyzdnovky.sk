@@ -10,7 +10,7 @@ import {AdvertisementLookup} from "../Advertisement/AdvertisementLookup";
 import {AdvertisementView} from "../Advertisement/AdvertisementView";
 import {Loader} from "../Others/Loader";
 
-export const Home =({ additional, ads, ad, user, branches, updateProfile = f => f, createAd = f => f, updateAd = f => f, viewAd = f => f, closeAd = f => f, signOut }) => {
+export const Home =({ additional, ads, ad, user, updateProfile = f => f, createAd = f => f, updateAd = f => f, viewAd = f => f, closeAd = f => f, signOut }) => {
 
     const settings = {
         dots: false,
@@ -67,7 +67,7 @@ export const Home =({ additional, ads, ad, user, branches, updateProfile = f => 
                     form.open && !form.control ? <AdvertisementView ad={ad} close={() => setForm({open : false, control : false, edit : false})} /> : null
                 }
                 {
-                    form.open && form.control ? <Advertisement edit={form.edit} user={user} branches={branches} createAd={handleCreate} updateAd={handleUpdate} closeAd={() => setForm(false)} data={ad}/> : ""
+                    form.open && form.control ? <Advertisement edit={form.edit} user={user} createAd={handleCreate} updateAd={handleUpdate} closeAd={() => setForm(false)} data={ad}/> : ""
                 }
                 <div className="content col-12 col-md-11 row justify-content-center pt-5 mb-2">
                     <div className="header col-11 row justify-content-between">

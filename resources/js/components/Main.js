@@ -36,10 +36,10 @@ const Main = () => {
                 (ads === undefined || JSON.parse(ads).length !== _getData('/api/size-ads')) ? _getAds() : setAds(JSON.parse(ads));
             }
             if(branches === undefined || JSON.parse(branches).length !== _getData('/api/size-branches')){
-                _getData('/api/branches').then(({data}) => setBranches(data));
-            }else {
-                setBranches(JSON.parse(branches));
+                _getData('/api/branches').then(({data}) => {localStorage["branches"] = JSON.stringify(data)});
             }
+            //_getData('/api/size-branches')
+    },[]);
 
     const _disableForm = control => {
         $("#authentication-form .submit-button")
@@ -162,7 +162,6 @@ const Main = () => {
                       additional={additional}
                       updateProfile={_updateProfile}
                       signOut={_logoutUser}
-                      branches={branches}
                 />
             </Router>
     );
