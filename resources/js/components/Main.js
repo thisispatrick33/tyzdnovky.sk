@@ -22,10 +22,12 @@ const Main = () => {
     const [ads, setAds] = useState([]);
     const [additional, setAdditional] = useState(null);
     const [messages, setMessages] = useState([]);
+    const [branches, setBranches] = useState(null);
 
     useEffect(() => {
             config.headers['X-localization'] = "SK";
-            let { appState, ads } = localStorage;
+            let { appState, ads, branches} = localStorage;
+            console.log(branches);
             if(appState ? JSON.parse(appState).isLoggedIn : false){
                 setAuthState(JSON.parse(appState));
                 JSON.parse(appState).user.active === 0 ? _additional() : null;
@@ -33,7 +35,11 @@ const Main = () => {
                 config.headers['Authorization'] =  'Bearer '+JSON.parse(appState).user.auth_token;
                 (ads === undefined || JSON.parse(ads).length !== _getData('/api/size-ads')) ? _getAds() : setAds(JSON.parse(ads));
             }
-    },[]);
+            if(branches === undefined || JSON.parse(branches).length !== _getData('/api/size-branches')){
+                _getData('/api/branches').then(({data}) => setBranches(data));
+            }else {
+                setBranches(JSON.parse(branches));
+            }
 
     const _disableForm = control => {
         $("#authentication-form .submit-button")
@@ -156,6 +162,7 @@ const Main = () => {
                       additional={additional}
                       updateProfile={_updateProfile}
                       signOut={_logoutUser}
+                      branches={branches}
                 />
             </Router>
     );

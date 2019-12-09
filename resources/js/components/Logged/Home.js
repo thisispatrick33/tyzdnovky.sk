@@ -10,7 +10,7 @@ import {AdvertisementLookup} from "../Advertisement/AdvertisementLookup";
 import {AdvertisementView} from "../Advertisement/AdvertisementView";
 import {Loader} from "../Others/Loader";
 
-export const Home =({ additional, ads, ad, user, updateProfile = f => f, createAd = f => f, updateAd = f => f, viewAd = f => f, closeAd = f => f, signOut }) => {
+export const Home =({ additional, ads, ad, user, branches, updateProfile = f => f, createAd = f => f, updateAd = f => f, viewAd = f => f, closeAd = f => f, signOut }) => {
 
     const settings = {
         dots: false,
@@ -36,22 +36,22 @@ export const Home =({ additional, ads, ad, user, updateProfile = f => f, createA
                 }
             },
             {
-              breakpoint: 768,
-              settings: {
-                slidesToShow: 1,
-              }
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 1,
+                }
             }
-          ]
+        ]
     };
 
 
-    const [form, setForm] = useState(false);
+    const [form, setForm] = useState({open : false, control : false, edit : false});
 
     const handleChange = data => updateProfile(data);
     const handleCreate = data => createAd(data);
-    const handleEdit = id => { viewAd(id); setForm({control : true, edit : true}); };
+    const handleEdit = id => { viewAd(id); setForm({open : true, control : true, edit : true}); };
     const handleUpdate = data => updateAd(data);
-    const handleView = id => viewAd(id);
+    const handleView = id => { viewAd(id); setForm({open : true, control : false, edit : false}); };
     const handleClose = () => closeAd();
 
     if(user !== undefined){
@@ -64,10 +64,10 @@ export const Home =({ additional, ads, ad, user, updateProfile = f => f, createA
                     user.active === 0 ? <Additional user={user} data={additional} func={handleChange}/> : ``
                 }
                 {
-                    ad !== null && form ? <AdvertisementView ad={ad} close={handleClose} /> : null
+                    form.open && !form.control ? <AdvertisementView ad={ad} close={() => setForm({open : false, control : false, edit : false})} /> : null
                 }
                 {
-                    form ? <Advertisement edit={form.edit} user={user} createAd={handleCreate} updateAd={handleUpdate} closeAd={() => setForm(false)} data={ad}/> : ""
+                    form.open && form.control ? <Advertisement edit={form.edit} user={user} branches={branches} createAd={handleCreate} updateAd={handleUpdate} closeAd={() => setForm(false)} data={ad}/> : ""
                 }
                 <div className="content col-12 col-md-11 row justify-content-center pt-5 mb-2">
                     <div className="header col-11 row justify-content-between">
@@ -87,7 +87,7 @@ export const Home =({ additional, ads, ad, user, updateProfile = f => f, createA
                             <input type="text" className="col-11 finder" placeholder="…find work, company or group"/>
                         </div>
                         <div className="user-header-nofication col-1">
-                            <img src={ user.profile_pic !==null ? user.profile_pic.substring(user.profile_pic.indexOf("images")) : "./images/user.svg"} className={`profile-photo`} alt=""/>
+                            <img src={ user.profile_pic !== null ? user.profile_pic.substring(user.profile_pic.indexOf("images")) : "./images/user.svg"} className={`profile-photo`} alt=""/>
                             <div className="action-point text-center">7</div>
                         </div>
                     </div>
@@ -98,28 +98,28 @@ export const Home =({ additional, ads, ad, user, updateProfile = f => f, createA
                     </div>
 
                     <Slider {...settings} className={`work-options justify-content-between col-12 mt-2 px-5 row`}>
-                                {
-                                    ads.map(({id, title, description, address, date, created_at}) => {
-                                        return(
-                                            <AdvertisementLookup
-                                                key={id}
-                                                id={id}
-                                                title={title}
-                                                description={description}
-                                                address={address}
-                                                date={date}
-                                                created_at={created_at}
-                                                view={handleView}
-                                                edit={handleEdit}
-                                            />
+                        {
+                            ads.map(({id, title, description, address, date, created_at}) => {
+                                return(
+                                    <AdvertisementLookup
+                                        key={id}
+                                        id={id}
+                                        title={title}
+                                        description={description}
+                                        address={address}
+                                        date={date}
+                                        created_at={created_at}
+                                        view={handleView}
+                                        edit={handleEdit}
+                                    />
 
-                                        )
-                                    })
-                                }
+                                )
+                            })
+                        }
                     </Slider>
                 </div>
                 <div className="row justify-content-center">
-                    <button className={`col-auto text-center py-2 mb-5 mx-3 mt-3 px-4 shadow home-button`} onClick={() => setForm({control : true, edit : false})}>
+                    <button className={`col-auto text-center py-2 mb-5 mx-3 mt-3 px-4 shadow home-button`} onClick={() => setForm({open : true, control : true, edit : false})}>
                         create
                     </button>
                     <button className={`col-auto text-center py-2 mb-5 mx-3 mt-3 px-4 shadow home-button`} onClick={signOut}>

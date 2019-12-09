@@ -1,6 +1,10 @@
 import React from 'react';
+import {Loader} from "../Others/Loader";
 
 export const AdvertisementView = ({ad, close}) => {
+    if(!ad){
+        return <Loader/>;
+    }
     const date = new Date(ad.date);
     return(
         <div className="offer-info-wrapper" id="offer-info">

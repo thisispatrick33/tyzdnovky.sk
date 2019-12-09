@@ -15,6 +15,14 @@ use App\Language;
 
 class RegisterController extends Controller
 {
+    public function branchesCount()
+    {
+        return sizeOf(Branch::all());
+    }
+    public function branches()
+    {
+        return Branch::all();
+    }
     public function register(Request $request){
 
         $validator = Validator::make($request->all(), [

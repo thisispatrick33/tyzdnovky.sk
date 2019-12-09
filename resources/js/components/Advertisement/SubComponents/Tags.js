@@ -6,10 +6,13 @@ export const Tags = ({addTags = f => f, list}) => {
     const BACKSPACE_KEY = 8;
     const [tags, setTags] = useState([]);
     const [value, setValue] = useState('');
+
     const handleChange = e => setValue(e.target.value);
+
     useEffect(() => {
         setTags(list)
     }, [list]);
+
     const handleKeyUp = e => {
         const key = e.keyCode;
         if (key === ENTER_KEY || key === COMMA_KEY) {

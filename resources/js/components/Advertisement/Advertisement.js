@@ -2,19 +2,31 @@ import React, {useEffect, useState} from 'react';
 import {Tags} from './SubComponents/Tags';
 import {Loader} from "../Others/Loader";
 
-export const Advertisement = ({data, edit, createAd = f => f, user, updateAd = f => f, closeAd}) => {
+export const Advertisement = ({data, edit, branches, createAd = f => f, user, updateAd = f => f, closeAd}) => {
     const [offer , setOffer] = useState(data);
+    const [tags, setTags] = useState([]);
+    const [brancheType, setBrancheType] = useState(edit ? (branches[0].free_time === 0 ? true : false) : true);
+
+    const _tags = (list) =>{
+        setTags(list);
+    };
+
     useEffect(() => {
         setOffer(data);
+        if(data !== null && edit){
+            setTags(data.tags);
+        }
     }, [data]);
+
+
     if(edit && offer === null){
         return <Loader />;
     }
     return (
         console.log(offer),
-        <div className="advertisement-create-wrapper">
+        <div className="offer-create-wrapper">
             <div className="container-fluid row justify-content-center m-0 p-0">
-                <div className="advertisement-create-box col-11 m-0 p-0 mt-5 shadow row pb-5 pb-xl-0">
+                <div className="offer-create-box col-11 m-0 p-0 mt-5 shadow row pb-5 pb-xl-0">
                     <div className="col-12 row justify-content-center pb-0">
                         <div className={"col-12 row justify-content-center py-5"}>
                             <div className={"col-12 col-lg-10 h10 order-2 order-lg-1"}>
@@ -34,21 +46,22 @@ export const Advertisement = ({data, edit, createAd = f => f, user, updateAd = f
                                                         fulltime
                                                     </span>
                                             <span className="float-right  bold">
-                                                        freetime
+
+                                                {JSON.stringify(brancheType)}
                                                     </span>
                                         </div>
                                         <div className="list row justify-content-start col-12 text-uppercase text-center d-lg-flex d-inline scroll">
-                                            <div className="py-2 mx-3 mt-1 mb-3 px-4 shadow col-lg-11 col-auto submit-button sign-in-button ">
-                                                        <span className="">
-                                                            ATTAChinterupt
-                                                        </span>
-                                            </div>
-                                            <div className="branch py-2 mx-3 mt-1 mb-3 px-4 shadow col-lg-11 col-auto">
+                                            {
+                                                JSON.parse(localStorage.branches).map(({id, name, placeholder}) => {
+                                                    return(
+                                                        <div className="branch py-2 mx-3 mt-1 mb-3 px-4 shadow col-lg-11 col-auto">
                                                         <span className="colorful-text">
-                                                            ATTAChinterupt
+                                                            {name}
                                                         </span>
-                                            </div>
-
+                                                        </div>
+                                                    )
+                                                })
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -57,16 +70,29 @@ export const Advertisement = ({data, edit, createAd = f => f, user, updateAd = f
                                            type="text"
                                            placeholder="Aké povolanie vyhľadávate ?"
                                            onChange={e => setOffer({...offer, title : e.target.value})}
-                                           value={offer.title ? offer.title : ``}
+                                           value={edit ? (offer.title ? offer.title : ``) : ''}
                                     />
+                                    <Tags addTags={_tags} list={tags}/>
                                     <textarea className="col-11 px-3 py-3 my-2 my-xl-0" cols="30" rows="5" placeholder="Pridajte popis a podmienky práce" onChange={e => setOffer({...offer, description : e.target.value})}
-                                              value={offer.description ? offer.description : ``}></textarea>
+                                              value={edit ? (offer.description ? offer.description : ``) : ''}></textarea>
                                     <div className="col-11 row justify-content-between p-0 pt-4">
-                                        <input className="col-xl-3 col-lg-12 px-3 my-2 my-xl-0" type="text" placeholder="Zadajte miesto práce"/>
+                                        <input className="col-xl-3 col-lg-12 px-3 my-2 my-xl-0"
+                                               type="text" placeholder="Zadajte miesto práce"
+                                               onChange={e => setOffer({...offer, address : e.target.value})}
+                                               value={edit ? (offer.address ? offer.address : ``) : ''}
+                                        />
 
-                                        <input className="col-xl-3 col-lg-12 px-3 my-2 my-xl-0" type="text" placeholder="Zadajte dátum nástupu"/>
+                                        <input className="col-xl-3 col-lg-12 px-3 my-2 my-xl-0"
+                                               type="date" placeholder="Zadajte dátum nástupu"
+                                               onChange={e => setOffer({...offer, date : e.target.value})}
+                                               value={edit ? (offer.date ? offer.date : ``) : ''}
+                                        />
 
-                                        <input className="col-xl-3 col-lg-12 px-3 my-2 my-xl-0" type="text" placeholder="Zadajte plat"/>
+                                        <input className="col-xl-3 col-lg-12 px-3 my-2 my-xl-0"
+                                               type="text" placeholder="Zadajte plat"
+                                               onChange={e => setOffer({...offer, salary : e.target.value})}
+                                               value={edit ? (offer.salary ? offer.salary : ``) : ''}
+                                        />
                                     </div>
 
                                     <button className="my-2 mb-3 submit-button sign-in-button px-5 d-block text-uppercase py-3 py-xl-1">

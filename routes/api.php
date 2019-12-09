@@ -22,6 +22,8 @@ use Illuminate\Http\Request;
 Route::group(['middleware' => ['api-header','localization']], function () {
     //TEXT
     Route::get("/register-additional","TextController@additionalInfoText");
+    Route::get("/size-branches","RegisterController@branchesCount");
+    Route::get("/branches","RegisterController@branches");
     Route::get("/size-ads","AdvertisementController@size");
     //LOGIN-REGISTER
     Route::post("/register","RegisterController@register");
