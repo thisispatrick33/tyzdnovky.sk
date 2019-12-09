@@ -68175,7 +68175,7 @@ var AdvertisementLookup = function AdvertisementLookup(_ref) {
   }, "... Zisti viac.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-11 mx-0 row work-option-info text-uppercase mb-3"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-6 row m-0 p-0 justify-content-center align-items-center"
+    className: "col-xl-6 col-lg-6 col-md-6 col-sm-10 col-10 row m-0 p-0 justify-content-center align-items-center"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-3 p-0 text-right"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
@@ -68195,7 +68195,7 @@ var AdvertisementLookup = function AdvertisementLookup(_ref) {
   }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "col-9 py-0 m-0 px-0 pl-3 pl-md-0  text-left text-md-center"
   }, address)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-6 row m-0 p-0 justify-content-center align-items-center pl-2"
+    className: "col-xl-6 col-lg-6 col-md-6 col-sm-10 col-10 row m-0 p-0 justify-content-center align-items-center pl-2"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     width: "18.298",

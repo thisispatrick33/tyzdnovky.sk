@@ -21,13 +21,13 @@ export const AdvertisementLookup = ({id, title, description, address, date, crea
                         <a className="colorful-text" onClick={() => view(id)}>... Zisti viac.</a>
                     </p>
                     <div className="col-11 mx-0 row work-option-info text-uppercase mb-3">
-                        <div className="col-6 row m-0 p-0 justify-content-center align-items-center">
+                        <div className="col-xl-6 col-lg-6 col-md-6 col-sm-10 col-10 row m-0 p-0 justify-content-center align-items-center">
                             <div className="col-3 p-0 text-right">
                                 <svg className={` px-0 m-0 text-right`} xmlns="http://www.w3.org/2000/svg" width="13.512" height="19.292" viewBox="0 0 13.512 19.292"><path d="M23.023,12a2.466,2.466,0,1,0,2.466,2.466A2.469,2.469,0,0,0,23.023,12Zm0,4.228a1.762,1.762,0,1,1,1.762-1.762A1.764,1.764,0,0,1,23.023,16.228Z" transform="translate(-16.204 -7.772)" fill="#00c7c7"/><path d="M19.737,1.979a6.756,6.756,0,0,0-9.555,0,7.7,7.7,0,0,0-.636,9.5l5.413,7.817,5.405-7.806A7.7,7.7,0,0,0,19.737,1.979Zm.056,9.095-4.834,6.98-4.841-6.991a6.953,6.953,0,0,1,.562-8.586,6.052,6.052,0,0,1,8.558,0A6.956,6.956,0,0,1,19.793,11.074Z" transform="translate(-8.203 0)" fill="#00c7c7"/></svg>
                             </div>
                             <p className={`col-9 py-0 m-0 px-0 pl-3 pl-md-0  text-left text-md-center`}>{address}</p>
                         </div>
-                        <div className="col-6 row m-0 p-0 justify-content-center align-items-center pl-2">
+                        <div className="col-xl-6 col-lg-6 col-md-6 col-sm-10 col-10 row m-0 p-0 justify-content-center align-items-center pl-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18.298" height="19.215"
                                          viewBox="0 0 18.298 19.215" className={`col-3 px-0 m-0`} fill={'#00c7c7'}>
                                         <path
