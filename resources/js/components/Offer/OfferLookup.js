@@ -12,10 +12,11 @@ export const OfferLookup = ({id, title, description, address, date, created_at, 
                     <svg onClick={() => edit(id)} className="work-option-edit" width="16" height="16" viewBox="0 0 16 16"><g transform="translate(-0.063 0.001)"><path d="M.572,16a.509.509,0,0,1-.493-.632l.955-3.834a.51.51,0,0,1,.134-.237L11.92.545a1.868,1.868,0,0,1,2.638,0l.959.959a1.868,1.868,0,0,1,0,2.638L4.765,14.895a.505.505,0,0,1-.237.134l-3.834.955A.47.47,0,0,1,.572,16Zm1.415-4.083L1.27,14.791l2.875-.716L14.8,3.422a.85.85,0,0,0,0-1.2l-.959-.959a.849.849,0,0,0-1.2,0Zm2.419,2.619h0Zm0,0" transform="translate(0)" fill="#fff"/><path d="M319.56,68.392a.505.505,0,0,1-.36-.149l-2.879-2.878a.509.509,0,0,1,.72-.72l2.879,2.879a.508.508,0,0,1-.36.868Zm0,0" transform="translate(-306.057 -62.446)" fill="#fff"/><path d="M33.481,354.451a.5.5,0,0,1-.36-.149l-2.879-2.879a.509.509,0,0,1,.72-.72l2.879,2.879a.509.509,0,0,1-.36.869Zm0,0" transform="translate(-29.076 -339.408)" fill="#fff"/></g></svg>
                 </div>
                 <div className="work-option-content row m-0 justify-content-center">
+                    
                     {
                         ((today.getTime() - (new Date(created_at.substring(0, created_at.indexOf('T'))).getTime()))/ (1000 * 3600 * 24)) <=3 ? <div className="text-center work-option-new"> NEW!</div> : null
                     }
-                    <h5 className="col-11 p-0 work-option-title text-center mt-4 mb-2 text-uppercase">{title}</h5>
+                    <h5 className="col-8 col-md-6 p-0 work-option-title text-center mt-4 mb-2 text-uppercase">{title}</h5>
                     <p className="work-option-description col-11 text-center">
                         {description.substring(0, 74)}
                         <a className="colorful-text" onClick={() => view(id)}>... Zisti viac.</a>

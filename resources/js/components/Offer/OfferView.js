@@ -9,13 +9,14 @@ export const OfferView = ({offer, close}) => {
     return(
         <div className="offer-info-wrapper" id="offer-info">
             <div className="container-fluid row justify-content-center m-0 p-0">
-                <div className="offer-info-box col-11 m-0 p-0 mt-5 shadow row">
+                <div className="offer-info-box col-12 col-md-11 m-0 p-0 mt-5 shadow row">
                     <div className="col-3  p-0 d-none d-lg-block">
                         <img className="offer-info-image" src="./images/poster.jpg"/>
                     </div>
                     <div className="col-12 col-lg-9 row justify-content-center pb-0">
-                        <div className={"col-12 row justify-content-center py-5"}>
-                            <div className={"col-12 col-sm-8 order-2 order-sm-1"}>
+                        <div className={"col-12 row justify-content-center py-5 new-box"}>
+                            <div className="text-center offer-info-new"> <span className="align-middle">NEW!</span> </div>
+                            <div className={"col-12 col-sm-8 order-2 order-sm-1 "}>
                                 <h1 className="offer-info-title text-center">{offer.title}</h1>
                             </div>
                             <div className={"col-12 col-sm-4 order-1 order-sm-2 "}>

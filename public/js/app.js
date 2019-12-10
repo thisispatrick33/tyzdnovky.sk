@@ -69418,22 +69418,22 @@ var Home = function Home(_ref) {
       updateProfile = _ref$updateProfile === void 0 ? function (f) {
     return f;
   } : _ref$updateProfile,
-      _ref$createOffers = _ref.createOffers,
-      createOffers = _ref$createOffers === void 0 ? function (f) {
+      _ref$createOffer = _ref.createOffer,
+      createOffer = _ref$createOffer === void 0 ? function (f) {
     return f;
-  } : _ref$createOffers,
-      _ref$updateOffers = _ref.updateOffers,
-      updateOffers = _ref$updateOffers === void 0 ? function (f) {
+  } : _ref$createOffer,
+      _ref$updateOffer = _ref.updateOffer,
+      updateOffer = _ref$updateOffer === void 0 ? function (f) {
     return f;
-  } : _ref$updateOffers,
-      _ref$viewOffers = _ref.viewOffers,
-      viewOffers = _ref$viewOffers === void 0 ? function (f) {
+  } : _ref$updateOffer,
+      _ref$viewOffer = _ref.viewOffer,
+      viewOffer = _ref$viewOffer === void 0 ? function (f) {
     return f;
-  } : _ref$viewOffers,
-      _ref$closeOffers = _ref.closeOffers,
-      closeOffers = _ref$closeOffers === void 0 ? function (f) {
+  } : _ref$viewOffer,
+      _ref$closeOffer = _ref.closeOffer,
+      closeOffer = _ref$closeOffer === void 0 ? function (f) {
     return f;
-  } : _ref$closeOffers,
+  } : _ref$closeOffer,
       signOut = _ref.signOut;
   var settings = {
     dots: false,
@@ -69477,11 +69477,11 @@ var Home = function Home(_ref) {
   };
 
   var handleCreate = function handleCreate(data) {
-    return createOffers(data);
+    return createOffer(data);
   };
 
   var handleEdit = function handleEdit(id) {
-    viewOffers(id);
+    viewOffer(id);
     setForm({
       open: true,
       control: true,
@@ -69490,11 +69490,11 @@ var Home = function Home(_ref) {
   };
 
   var handleUpdate = function handleUpdate(data) {
-    return updateOffers(data);
+    return updateOffer(data);
   };
 
   var handleView = function handleView(id) {
-    viewOffers(id);
+    viewOffer(id);
     setForm({
       open: true,
       control: false,
@@ -69503,7 +69503,7 @@ var Home = function Home(_ref) {
   };
 
   var handleClose = function handleClose() {
-    return closeOffers();
+    return closeOffer();
   };
 
   if (user !== undefined) {
@@ -70230,9 +70230,9 @@ var Offer = function Offer(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-xl-3 col-lg-6 pr-3"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "border-r pt-2 justify-content-start row branches"
+    className: "border-r pt-2 justify-content-center row branches"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "branch py-2  mt-1 mb-5 px-4 shadow col-11 text-uppercase"
+    className: "branch py-2  mt-1 mb-5 px-4 shadow col-11 col-lg-8 col-xl-11 text-uppercase ml-4 ml-lg-0"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "float-left  bold  ".concat(brancheType ? "colorful-text" : ""),
     onClick: function onClick() {
@@ -70244,7 +70244,7 @@ var Offer = function Offer(_ref) {
       return setBrancheType(false);
     }
   }, "freetime")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "list row justify-content-start col-12 text-uppercase text-center d-lg-flex d-inline scroll"
+    className: "list row justify-content-start col-11 col-xl-12 text-uppercase text-center d-lg-flex d-inline scroll ml-2 ml-lg-0 "
   }, JSON.parse(localStorage.branches).map(function (_ref2) {
     var id = _ref2.id,
         name = _ref2.name,
@@ -70252,7 +70252,7 @@ var Offer = function Offer(_ref) {
 
     if (brancheType && free_time === 0 || !brancheType && free_time === 1) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "branch py-2 mx-3 mt-1 mb-3 px-4 shadow col-lg-11 col-auto"
+        className: "branch py-2 mx-3 mt-1 mb-3 px-4 shadow col-lg-10 col-auto"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "colorful-text"
       }, name));
@@ -70400,7 +70400,7 @@ var OfferLookup = function OfferLookup(_ref) {
   }, (today.getTime() - new Date(created_at.substring(0, created_at.indexOf('T'))).getTime()) / (1000 * 3600 * 24) <= 3 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-center work-option-new"
   }, " NEW!") : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-    className: "col-11 p-0 work-option-title text-center mt-4 mb-2 text-uppercase"
+    className: "col-8 col-md-6 p-0 work-option-title text-center mt-4 mb-2 text-uppercase"
   }, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "work-option-description col-11 text-center"
   }, description.substring(0, 74), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
@@ -70629,7 +70629,7 @@ var OfferView = function OfferView(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container-fluid row justify-content-center m-0 p-0"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "offer-info-box col-11 m-0 p-0 mt-5 shadow row"
+    className: "offer-info-box col-12 col-md-11 m-0 p-0 mt-5 shadow row"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-3  p-0 d-none d-lg-block"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -70638,9 +70638,13 @@ var OfferView = function OfferView(_ref) {
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-12 col-lg-9 row justify-content-center pb-0"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-12 row justify-content-center py-5"
+    className: "col-12 row justify-content-center py-5 new-box"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-12 col-sm-8 order-2 order-sm-1"
+    className: "text-center offer-info-new"
+  }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "align-middle"
+  }, "NEW!"), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12 col-sm-8 order-2 order-sm-1 "
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
     className: "offer-info-title text-center"
   }, offer.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

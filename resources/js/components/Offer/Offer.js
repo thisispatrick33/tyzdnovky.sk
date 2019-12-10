@@ -40,8 +40,8 @@ export const Offer = ({data, edit, createOffer = f => f, user, updateOffer = f =
 
                             <div className="row justify-content-center col-12 h90 pt-5 order-3">
                                 <div className="col-xl-3 col-lg-6 pr-3">
-                                    <div className={"border-r pt-2 justify-content-start row branches"}>
-                                        <div className="branch py-2  mt-1 mb-5 px-4 shadow col-11 text-uppercase">
+                                    <div className={"border-r pt-2 justify-content-center row branches"}>
+                                        <div className="branch py-2  mt-1 mb-5 px-4 shadow col-11 col-lg-8 col-xl-11 text-uppercase ml-4 ml-lg-0">
                                             <span className={`float-left  bold  ${brancheType ? `colorful-text` : ``}`} onClick={()=>setBrancheType(true)}>
                                                 fulltime
                                             </span>
@@ -49,12 +49,12 @@ export const Offer = ({data, edit, createOffer = f => f, user, updateOffer = f =
                                                 freetime
                                             </span>
                                         </div>
-                                        <div className="list row justify-content-start col-12 text-uppercase text-center d-lg-flex d-inline scroll">
+                                        <div className="list row justify-content-start col-11 col-xl-12 text-uppercase text-center d-lg-flex d-inline scroll ml-2 ml-lg-0 ">
                                             {
                                                 JSON.parse(localStorage.branches).map(({id, name, free_time}) => {
                                                     if((brancheType && free_time === 0) || (!brancheType && free_time === 1)){
                                                         return(
-                                                            <div className="branch py-2 mx-3 mt-1 mb-3 px-4 shadow col-lg-11 col-auto">
+                                                            <div className="branch py-2 mx-3 mt-1 mb-3 px-4 shadow col-lg-10 col-auto">
                                                         <span className="colorful-text">
                                                             {name}
                                                         </span>

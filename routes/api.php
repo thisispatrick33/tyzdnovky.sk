@@ -24,7 +24,7 @@ Route::group(['middleware' => ['api-header','localization']], function () {
     Route::get("/register-additional","TextController@additionalInfoText");
     Route::get("/size-branches","RegisterController@branchesCount");
     Route::get("/branches","RegisterController@branches");
-    Route::get("/size-ads","AdvertisementController@size");
+    Route::get("/size-offers","AdvertisementController@size");
     //LOGIN-REGISTER
     Route::post("/register","RegisterController@register");
     Route::post("/login","LoginController@login");
