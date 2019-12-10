@@ -22,12 +22,10 @@ const Main = () => {
     const [offers, setOffers] = useState([]);
     const [additional, setAdditional] = useState(null);
     const [messages, setMessages] = useState([]);
-    const [branches, setBranches] = useState(null);
 
     useEffect(() => {
             config.headers['X-localization'] = "SK";
             let { appState, offers, branches} = localStorage;
-            console.log(branches);
             if(appState ? JSON.parse(appState).isLoggedIn : false){
                 setAuthState(JSON.parse(appState));
                 JSON.parse(appState).user.active === 0 ? _additional() : null;
@@ -38,7 +36,7 @@ const Main = () => {
             if(branches === undefined || JSON.parse(branches).length !== _getData('/api/size-branches')){
                 _getData('/api/branches').then(({data}) => {localStorage["branches"] = JSON.stringify(data)});
             }
-    },[]);
+    },[offers]);
 
     const _disableForm = control => {
         $("#authentication-form .submit-button")
@@ -134,9 +132,9 @@ const Main = () => {
 
     const _additional = async () => _getData('/api/register-additional').then(({data}) => setAdditional(data));
 
-    const _createOffer = data => _postData(`/api/advertisement`, data).then((response)=>{console.log(response);});
+    const _createOffer = data => _postData(`/api/advertisement`, data).then((response)=> {if(response.data.success){setOffers({...offers.push( data)})}}).then(()=>{return(true)});
 
-    const _updateOffer = data => axios.put(`/api/advertisement`, data ,config);
+    const _updateOffer = data => axios.put(`/api/advertisement`, data ,config).then((response)=> {if(response.data.success){setOffers({...offers.push( data)})}}).then(()=>{return(true)});
 
     const _viewOffer = async id => _getData('api/advertisement/'+id).then(({data}) => setOffer(data));
 
