@@ -67945,6 +67945,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _SubComponents_Tags__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SubComponents/Tags */ "./resources/js/components/Advertisement/SubComponents/Tags.js");
 /* harmony import */ var _Others_Loader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Others/Loader */ "./resources/js/components/Others/Loader.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -67986,10 +67994,15 @@ var Advertisement = function Advertisement(_ref) {
       tags = _useState4[0],
       setTags = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(edit ? JSON.parse(localStorage.branches)[0].free_time === 0 ? true : false : true),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
       _useState6 = _slicedToArray(_useState5, 2),
-      brancheType = _useState6[0],
-      setBrancheType = _useState6[1];
+      branches = _useState6[0],
+      setBranches = _useState6[1];
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
+      _useState8 = _slicedToArray(_useState7, 2),
+      brancheType = _useState8[0],
+      setBrancheType = _useState8[1];
 
   var _tags = function _tags(list) {
     setTags(list);
@@ -68000,14 +68013,79 @@ var Advertisement = function Advertisement(_ref) {
 
     if (data !== null && edit) {
       setTags(data.tags);
+      var array = [];
+      data.branches.map(function (_ref2) {
+        var id = _ref2.id;
+        array.push(id);
+      });
+      setBranches(array);
+      setBrancheType(data.branches[0].free_time === 0);
     }
   }, [data]);
+
+  var submit = function submit() {
+    console.log(offer);
+    console.log(tags);
+    console.log(branches);
+
+    if (edit) {
+      console.log("hi");
+    } else {
+      if (user.type === "user") {
+        createAd(_objectSpread({}, offer, {
+          branches: branches,
+          user_id: user.id,
+          tags: tags
+        }));
+      } else {
+        createAd(_objectSpread({}, offer, {
+          branches: branches,
+          business_id: user.id,
+          tags: tags
+        }));
+      }
+    }
+  };
+
+  var handleSalary = function handleSalary(salary) {
+    var tmp = salary.split("");
+    var salary_filtered = '';
+    var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", '.', ',', '$', '€', '£'];
+
+    for (var i = 0; i < tmp.length; i++) {
+      if (tmp[i] == "." || tmp[i] == "," || tmp[i] == "$" || tmp[i] == "€" || tmp[i] == "£") {
+        salary_filtered += tmp[i];
+      }
+
+      if (tmp[i] in numbers) {
+        salary_filtered += tmp[i];
+      }
+    }
+
+    setOffer(_objectSpread({}, offer, {
+      salary: salary_filtered
+    }));
+  };
+
+  var handleWork = function handleWork(value) {
+    var array = _toConsumableArray(branches);
+
+    array.includes(value) ? array = array.filter(function (work) {
+      return value !== work;
+    }) : branches.length > 2 ? "" : array.push(value);
+    setBranches(array);
+  };
+
+  var changeType = function changeType(bool) {
+    setBranches([]);
+    setBrancheType(bool);
+  };
 
   if (edit && offer === null) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Others_Loader__WEBPACK_IMPORTED_MODULE_2__["Loader"], null);
   }
 
-  return console.log(offer), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "offer-create-wrapper"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container-fluid row justify-content-center m-0 p-0"
@@ -68049,25 +68127,28 @@ var Advertisement = function Advertisement(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "float-left  bold  ".concat(brancheType ? "colorful-text" : ""),
     onClick: function onClick() {
-      return setBrancheType(true);
+      return changeType(true);
     }
   }, "fulltime"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "float-right  bold  ".concat(brancheType ? "" : "colorful-text"),
     onClick: function onClick() {
-      return setBrancheType(false);
+      return changeType(false);
     }
   }, "freetime")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "list row justify-content-start col-12 text-uppercase text-center d-lg-flex d-inline scroll"
-  }, JSON.parse(localStorage.branches).map(function (_ref2) {
-    var id = _ref2.id,
-        name = _ref2.name,
-        free_time = _ref2.free_time;
+  }, JSON.parse(localStorage.branches).map(function (_ref3) {
+    var id = _ref3.id,
+        name = _ref3.name,
+        free_time = _ref3.free_time;
 
     if (brancheType && free_time === 0 || !brancheType && free_time === 1) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "branch py-2 mx-3 mt-1 mb-3 px-4 shadow col-lg-11 col-auto"
+        className: "py-2 mx-3 mt-1 mb-3 px-4 shadow col-lg-11 col-auto ".concat(branches.includes(id) ? "submit-button sign-in-button" : "branch"),
+        onClick: function onClick() {
+          return handleWork(id);
+        }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "colorful-text"
+        className: "".concat(branches.includes(id) ? "" : "colorful-text")
       }, name));
     }
   })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -68081,7 +68162,7 @@ var Advertisement = function Advertisement(_ref) {
         title: e.target.value
       }));
     },
-    value: edit ? offer.title ? offer.title : "" : ''
+    value: edit ? offer.title ? offer.title : "" : offer !== null ? offer.title : ""
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SubComponents_Tags__WEBPACK_IMPORTED_MODULE_1__["Tags"], {
     addTags: _tags,
     list: tags
@@ -68095,7 +68176,7 @@ var Advertisement = function Advertisement(_ref) {
         description: e.target.value
       }));
     },
-    value: edit ? offer.description ? offer.description : "" : ''
+    value: edit ? offer.description ? offer.description : "" : offer !== null ? offer.description : ""
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-11 row justify-content-between p-0 pt-4"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -68107,7 +68188,7 @@ var Advertisement = function Advertisement(_ref) {
         address: e.target.value
       }));
     },
-    value: edit ? offer.address ? offer.address : "" : ''
+    value: edit ? offer.address ? offer.address : "" : offer !== null ? offer.address : ""
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     className: "col-xl-3 col-lg-12 px-3 my-2 my-xl-0",
     type: "date",
@@ -68117,22 +68198,21 @@ var Advertisement = function Advertisement(_ref) {
         date: e.target.value
       }));
     },
-    value: edit ? offer.date ? offer.date : "" : ''
+    value: edit ? offer.date ? offer.date : "" : offer !== null ? offer.date : ""
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     className: "col-xl-3 col-lg-12 px-3 my-2 my-xl-0",
     type: "text",
     placeholder: "Zadajte plat",
     onChange: function onChange(e) {
-      return setOffer(_objectSpread({}, offer, {
-        salary: e.target.value
-      }));
+      return handleSalary(e.target.value);
     },
-    value: edit ? offer.salary ? offer.salary : "" : ''
+    value: edit ? offer.salary ? offer.salary : "" : offer !== null ? offer.salary : ""
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "my-2 mb-3 submit-button sign-in-button px-5 d-block text-uppercase py-3 py-xl-1"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " vytvori\u0165  ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "my-2 mb-3 submit-button sign-in-button px-5 d-block text-uppercase py-3 py-xl-1",
+    onClick: submit
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " ", edit ? 'uložiť' : 'vytvoriť', "  ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "strong"
-  }, "inzer\xE1t !"))))))))));
+  }, edit ? 'zmeny !' : 'inzerát !'))))))))));
 };
 
 /***/ }),
@@ -68824,17 +68904,19 @@ var Tags = function Tags(_ref) {
   };
 
   var addTag = function addTag() {
-    var valuex = value;
-    var tag = valuex.trim();
-    tag = tag.replace(/,/g, "");
+    if (tags.length < 10) {
+      var valuex = value;
+      var tag = valuex.trim();
+      tag = tag.replace(/,/g, "");
 
-    if (!tag) {
-      return;
+      if (!tag) {
+        return;
+      }
+
+      addTags([].concat(_toConsumableArray(tags), [tag]));
+      setTags([].concat(_toConsumableArray(tags), [tag]));
+      setValue('');
     }
-
-    addTags([].concat(_toConsumableArray(tags), [tag]));
-    setTags([].concat(_toConsumableArray(tags), [tag]));
-    setValue('');
   };
 
   var editPrevTag = function editPrevTag() {
@@ -70755,7 +70837,6 @@ var Main = function Main() {
         appState = _localStorage.appState,
         ads = _localStorage.ads,
         branches = _localStorage.branches;
-    console.log(branches);
 
     if (appState ? JSON.parse(appState).isLoggedIn : false) {
       setAuthState(JSON.parse(appState));
@@ -70951,7 +71032,9 @@ var Main = function Main() {
   }();
 
   var _createAd = function _createAd(data) {
-    return _postData("/api/advertisement", data);
+    return _postData("/api/advertisement", data).then(function (response) {
+      console.log(response);
+    });
   };
 
   var _updateAd = function _updateAd(data) {

@@ -27,7 +27,6 @@ const Main = () => {
     useEffect(() => {
             config.headers['X-localization'] = "SK";
             let { appState, ads, branches} = localStorage;
-            console.log(branches);
             if(appState ? JSON.parse(appState).isLoggedIn : false){
                 setAuthState(JSON.parse(appState));
                 JSON.parse(appState).user.active === 0 ? _additional() : null;
@@ -135,7 +134,7 @@ const Main = () => {
 
     const _additional = async () => _getData('/api/register-additional').then(({data}) => setAdditional(data));
 
-    const _createAd = data => _postData(`/api/advertisement`, data);
+    const _createAd = data => _postData(`/api/advertisement`, data).then((response)=>{console.log(response)});
 
     const _updateAd = data => axios.put(`/api/advertisement`, data ,config);
 

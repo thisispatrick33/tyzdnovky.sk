@@ -48,7 +48,7 @@ export const Home =({ additional, ads, ad, user, updateProfile = f => f, createA
     const [form, setForm] = useState({open : false, control : false, edit : false});
 
     const handleChange = data => updateProfile(data);
-    const handleCreate = data => createAd(data);
+    const handleCreate = data => createAd(data) ;
     const handleEdit = id => { viewAd(id); setForm({open : true, control : true, edit : true}); };
     const handleUpdate = data => updateAd(data);
     const handleView = id => { viewAd(id); setForm({open : true, control : false, edit : false}); };

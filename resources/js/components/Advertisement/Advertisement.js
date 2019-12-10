@@ -5,7 +5,8 @@ import {Loader} from "../Others/Loader";
 export const Advertisement = ({data, edit, createAd = f => f, user, updateAd = f => f, closeAd}) => {
     const [offer , setOffer] = useState(data);
     const [tags, setTags] = useState([]);
-    const [brancheType, setBrancheType] = useState(edit ? (JSON.parse(localStorage.branches)[0].free_time === 0 ? true : false) : true);
+    const [branches, setBranches] = useState([]);
+    const [brancheType, setBrancheType] = useState(true);
 
     const _tags = (list) =>{
         setTags(list);
@@ -15,15 +16,63 @@ export const Advertisement = ({data, edit, createAd = f => f, user, updateAd = f
         setOffer(data);
         if(data !== null && edit){
             setTags(data.tags);
+            let array = [];
+            data.branches.map(({id})=>{
+                array.push(id);
+            });
+            setBranches(array);
+            setBrancheType(data.branches[0].free_time === 0);
         }
     }, [data]);
+
+    const submit = () => {
+       console.log(offer);
+       console.log(tags);
+       console.log(branches);
+       if(edit){
+           console.log("hi");
+       }else {
+            if(user.type === "user"){
+                createAd({...offer, branches: branches, user_id: user.id, tags: tags});
+            }
+            else {
+                createAd({...offer, branches: branches, business_id: user.id, tags: tags});
+            }
+       }
+    };
+
+    const handleSalary=(salary)=>{
+        let tmp = salary.split("");
+        let salary_filtered = '';
+        let numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", '.', ',', '$', '€', '£'];
+        for (let i =0; i<tmp.length; i++){
+            if(tmp[i]=="."||tmp[i]==","||tmp[i]=="$"||tmp[i]=="€"||tmp[i]=="£"){
+                salary_filtered+=tmp[i];
+            }
+            if(tmp[i] in numbers){
+                salary_filtered+=tmp[i];
+            }
+        }
+        setOffer({...offer, salary: salary_filtered});
+    };
+
+    const handleWork = (value) => {
+        let array = [...branches];
+        array.includes(value) ? array=array.filter(work => value !== work) : ( branches.length >2? "" : array.push(value));
+        setBranches(array);
+
+    };
+
+    const changeType = (bool) => {
+        setBranches([]);
+        setBrancheType(bool)
+    };
 
 
     if(edit && offer === null){
         return <Loader />;
     }
     return (
-        console.log(offer),
         <div className="offer-create-wrapper">
             <div className="container-fluid row justify-content-center m-0 p-0">
                 <div className="offer-create-box col-11 m-0 p-0 mt-5 shadow row pb-5 pb-xl-0">
@@ -42,10 +91,10 @@ export const Advertisement = ({data, edit, createAd = f => f, user, updateAd = f
                                 <div className="col-xl-3 col-lg-6 pr-3">
                                     <div className={"border-r pt-2 justify-content-start row branches"}>
                                         <div className="branch py-2  mt-1 mb-5 px-4 shadow col-11 text-uppercase">
-                                            <span className={`float-left  bold  ${brancheType ? `colorful-text` : ``}`} onClick={()=>setBrancheType(true)}>
+                                            <span className={`float-left  bold  ${brancheType ? `colorful-text` : ``}`} onClick={()=>changeType(true)}>
                                                 fulltime
                                             </span>
-                                            <span className={`float-right  bold  ${brancheType ? `` : `colorful-text` }`} onClick={()=>setBrancheType(false)}>
+                                            <span className={`float-right  bold  ${brancheType ? `` : `colorful-text` }`} onClick={()=>changeType(false)}>
                                                 freetime
                                             </span>
                                         </div>
@@ -54,8 +103,8 @@ export const Advertisement = ({data, edit, createAd = f => f, user, updateAd = f
                                                 JSON.parse(localStorage.branches).map(({id, name, free_time}) => {
                                                     if((brancheType && free_time === 0) || (!brancheType && free_time === 1)){
                                                         return(
-                                                            <div className="branch py-2 mx-3 mt-1 mb-3 px-4 shadow col-lg-11 col-auto">
-                                                        <span className="colorful-text">
+                                                            <div className={`py-2 mx-3 mt-1 mb-3 px-4 shadow col-lg-11 col-auto ${branches.includes(id) ? `submit-button sign-in-button` : `branch`}`} onClick={() =>handleWork(id)}>
+                                                        <span className={`${branches.includes(id) ? `` : `colorful-text`}`}>
                                                             {name}
                                                         </span>
                                                             </div>
@@ -72,33 +121,33 @@ export const Advertisement = ({data, edit, createAd = f => f, user, updateAd = f
                                            type="text"
                                            placeholder="Aké povolanie vyhľadávate ?"
                                            onChange={e => setOffer({...offer, title : e.target.value})}
-                                           value={edit ? (offer.title ? offer.title : ``) : ''}
+                                           value={edit ? (offer.title ? offer.title : ``) : (offer !== null ? offer.title : ``)}
                                     />
                                     <Tags addTags={_tags} list={tags}/>
                                     <textarea className="col-11 px-3 py-3 my-2 my-xl-0" cols="30" rows="5" placeholder="Pridajte popis a podmienky práce" onChange={e => setOffer({...offer, description : e.target.value})}
-                                              value={edit ? (offer.description ? offer.description : ``) : ''}></textarea>
+                                              value={edit ? (offer.description ? offer.description : ``) : (offer !== null ? offer.description : ``)}></textarea>
                                     <div className="col-11 row justify-content-between p-0 pt-4">
                                         <input className="col-xl-3 col-lg-12 px-3 my-2 my-xl-0"
                                                type="text" placeholder="Zadajte miesto práce"
                                                onChange={e => setOffer({...offer, address : e.target.value})}
-                                               value={edit ? (offer.address ? offer.address : ``) : ''}
+                                               value={edit ? (offer.address ? offer.address : ``) : (offer !== null ? offer.address : ``)}
                                         />
 
                                         <input className="col-xl-3 col-lg-12 px-3 my-2 my-xl-0"
                                                type="date" placeholder="Zadajte dátum nástupu"
                                                onChange={e => setOffer({...offer, date : e.target.value})}
-                                               value={edit ? (offer.date ? offer.date : ``) : ''}
+                                               value={edit ? (offer.date ? offer.date : ``) : (offer !== null ? offer.date : ``)}
                                         />
 
                                         <input className="col-xl-3 col-lg-12 px-3 my-2 my-xl-0"
                                                type="text" placeholder="Zadajte plat"
-                                               onChange={e => setOffer({...offer, salary : e.target.value})}
-                                               value={edit ? (offer.salary ? offer.salary : ``) : ''}
+                                               onChange={e => handleSalary(e.target.value)}
+                                               value={edit ? (offer.salary ? offer.salary : ``) : (offer !== null ? offer.salary : ``)}
                                         />
                                     </div>
 
-                                    <button className="my-2 mb-3 submit-button sign-in-button px-5 d-block text-uppercase py-3 py-xl-1">
-                                        <span> vytvoriť  <span className={"strong"}>inzerát !</span></span>
+                                    <button className="my-2 mb-3 submit-button sign-in-button px-5 d-block text-uppercase py-3 py-xl-1" onClick={submit}>
+                                        <span> { edit ? 'uložiť' : 'vytvoriť'}  <span className={"strong"}>{ edit ? 'zmeny !' : 'inzerát !'}</span></span>
                                     </button>
 
                                 </div>
