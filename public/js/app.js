@@ -67931,955 +67931,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/components/Advertisement/Advertisement.js":
-/*!****************************************************************!*\
-  !*** ./resources/js/components/Advertisement/Advertisement.js ***!
-  \****************************************************************/
-/*! exports provided: Advertisement */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Advertisement", function() { return Advertisement; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _SubComponents_Tags__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SubComponents/Tags */ "./resources/js/components/Advertisement/SubComponents/Tags.js");
-/* harmony import */ var _Others_Loader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Others/Loader */ "./resources/js/components/Others/Loader.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-var Advertisement = function Advertisement(_ref) {
-  var data = _ref.data,
-      edit = _ref.edit,
-      _ref$createAd = _ref.createAd,
-      createAd = _ref$createAd === void 0 ? function (f) {
-    return f;
-  } : _ref$createAd,
-      user = _ref.user,
-      _ref$updateAd = _ref.updateAd,
-      updateAd = _ref$updateAd === void 0 ? function (f) {
-    return f;
-  } : _ref$updateAd,
-      closeAd = _ref.closeAd;
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(data),
-      _useState2 = _slicedToArray(_useState, 2),
-      offer = _useState2[0],
-      setOffer = _useState2[1];
-
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
-      _useState4 = _slicedToArray(_useState3, 2),
-      tags = _useState4[0],
-      setTags = _useState4[1];
-
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(edit ? JSON.parse(localStorage.branches)[0].free_time === 0 ? true : false : true),
-      _useState6 = _slicedToArray(_useState5, 2),
-      brancheType = _useState6[0],
-      setBrancheType = _useState6[1];
-
-  var _tags = function _tags(list) {
-    setTags(list);
-  };
-
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    setOffer(data);
-
-    if (data !== null && edit) {
-      setTags(data.tags);
-    }
-  }, [data]);
-
-  if (edit && offer === null) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Others_Loader__WEBPACK_IMPORTED_MODULE_2__["Loader"], null);
-  }
-
-  return console.log(offer), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "offer-create-wrapper"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "container-fluid row justify-content-center m-0 p-0"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "offer-create-box col-11 m-0 p-0 mt-5 shadow row pb-5 pb-xl-0"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-12 row justify-content-center pb-0"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-12 row justify-content-center py-5"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-12 col-lg-10 h10 order-2 order-lg-1"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-    className: "text-center text-uppercase "
-  }, edit ? "edit\xE1cia inzer\xE1tu" : "vytvorenie inzer\xE1tu")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-12 col-lg-2  h10 order-1 order-lg-2"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "cross float-right"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    onClick: closeAd,
-    className: "ml-3",
-    style: {
-      transform: "scale(.8)"
-    },
-    width: "42",
-    height: "42",
-    viewBox: "0 0 42 42"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "M42,2.467,23.467,21,42,39.534,39.533,42,21,23.468,2.467,42,0,39.534,18.533,21,0,2.467,2.467,0,21,18.534,39.533,0Z",
-    transform: "translate(0 -0.001)",
-    fill: "#2c393f"
-  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row justify-content-center col-12 h90 pt-5 order-3"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-xl-3 col-lg-6 pr-3"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "border-r pt-2 justify-content-start row branches"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "branch py-2  mt-1 mb-5 px-4 shadow col-11 text-uppercase"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "float-left  bold  ".concat(brancheType ? "colorful-text" : ""),
-    onClick: function onClick() {
-      return setBrancheType(true);
-    }
-  }, "fulltime"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "float-right  bold  ".concat(brancheType ? "" : "colorful-text"),
-    onClick: function onClick() {
-      return setBrancheType(false);
-    }
-  }, "freetime")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "list row justify-content-start col-12 text-uppercase text-center d-lg-flex d-inline scroll"
-  }, JSON.parse(localStorage.branches).map(function (_ref2) {
-    var id = _ref2.id,
-        name = _ref2.name,
-        free_time = _ref2.free_time;
-
-    if (brancheType && free_time === 0 || !brancheType && free_time === 1) {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "branch py-2 mx-3 mt-1 mb-3 px-4 shadow col-lg-11 col-auto"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "colorful-text"
-      }, name));
-    }
-  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-xl-9 col-lg-6 text-uppercase pt-5 row justify-content-center"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    className: "col-11 px-3 my-2 my-xl-0",
-    type: "text",
-    placeholder: "Ak\xE9 povolanie vyh\u013Ead\xE1vate ?",
-    onChange: function onChange(e) {
-      return setOffer(_objectSpread({}, offer, {
-        title: e.target.value
-      }));
-    },
-    value: edit ? offer.title ? offer.title : "" : ''
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SubComponents_Tags__WEBPACK_IMPORTED_MODULE_1__["Tags"], {
-    addTags: _tags,
-    list: tags
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-    className: "col-11 px-3 py-3 my-2 my-xl-0",
-    cols: "30",
-    rows: "5",
-    placeholder: "Pridajte popis a podmienky pr\xE1ce",
-    onChange: function onChange(e) {
-      return setOffer(_objectSpread({}, offer, {
-        description: e.target.value
-      }));
-    },
-    value: edit ? offer.description ? offer.description : "" : ''
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-11 row justify-content-between p-0 pt-4"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    className: "col-xl-3 col-lg-12 px-3 my-2 my-xl-0",
-    type: "text",
-    placeholder: "Zadajte miesto pr\xE1ce",
-    onChange: function onChange(e) {
-      return setOffer(_objectSpread({}, offer, {
-        address: e.target.value
-      }));
-    },
-    value: edit ? offer.address ? offer.address : "" : ''
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    className: "col-xl-3 col-lg-12 px-3 my-2 my-xl-0",
-    type: "date",
-    placeholder: "Zadajte d\xE1tum n\xE1stupu",
-    onChange: function onChange(e) {
-      return setOffer(_objectSpread({}, offer, {
-        date: e.target.value
-      }));
-    },
-    value: edit ? offer.date ? offer.date : "" : ''
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    className: "col-xl-3 col-lg-12 px-3 my-2 my-xl-0",
-    type: "text",
-    placeholder: "Zadajte plat",
-    onChange: function onChange(e) {
-      return setOffer(_objectSpread({}, offer, {
-        salary: e.target.value
-      }));
-    },
-    value: edit ? offer.salary ? offer.salary : "" : ''
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "my-2 mb-3 submit-button sign-in-button px-5 d-block text-uppercase py-3 py-xl-1"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " vytvori\u0165  ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "strong"
-  }, "inzer\xE1t !"))))))))));
-};
-
-/***/ }),
-
-/***/ "./resources/js/components/Advertisement/AdvertisementLookup.js":
-/*!**********************************************************************!*\
-  !*** ./resources/js/components/Advertisement/AdvertisementLookup.js ***!
-  \**********************************************************************/
-/*! exports provided: AdvertisementLookup */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdvertisementLookup", function() { return AdvertisementLookup; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-var AdvertisementLookup = function AdvertisementLookup(_ref) {
-  var id = _ref.id,
-      title = _ref.title,
-      description = _ref.description,
-      address = _ref.address,
-      date = _ref.date,
-      created_at = _ref.created_at,
-      _ref$view = _ref.view,
-      view = _ref$view === void 0 ? function (f) {
-    return f;
-  } : _ref$view,
-      _ref$edit = _ref.edit,
-      edit = _ref$edit === void 0 ? function (f) {
-    return f;
-  } : _ref$edit;
-  var today = new Date();
-  var formatDate = new Date(date);
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "work-option row justify-content-center col-12 p-0 mx-3 mb-5"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "content shadow p-0 col-10 mb-5"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "work-option-image-wrapper"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    className: "work-option-image",
-    src: "./images/poster.jpg"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    className: "work-option-save",
-    width: "13.135",
-    height: "15.526",
-    viewBox: "0 0 13.135 15.526"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-    transform: "translate(-33.261)"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "M46.2.513a1.157,1.157,0,0,0-.539-.421A1.136,1.136,0,0,0,45.206,0H34.451A1.136,1.136,0,0,0,34,.092a1.156,1.156,0,0,0-.539.421,1.089,1.089,0,0,0-.2.636V14.377a1.09,1.09,0,0,0,.2.636,1.156,1.156,0,0,0,.539.421,1.135,1.135,0,0,0,.451.092,1.224,1.224,0,0,0,.852-.339l4.526-4.351,4.526,4.351a1.221,1.221,0,0,0,.852.328,1.194,1.194,0,0,0,.99-.5,1.088,1.088,0,0,0,.2-.636V1.149A1.089,1.089,0,0,0,46.2.513ZM45.083,14.059,40.742,9.892l-.913-.872-.913.872-4.341,4.166V1.314H45.083V14.059Z",
-    fill: "#fff"
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    onClick: function onClick() {
-      return edit(id);
-    },
-    className: "work-option-edit",
-    width: "16",
-    height: "16",
-    viewBox: "0 0 16 16"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-    transform: "translate(-0.063 0.001)"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "M.572,16a.509.509,0,0,1-.493-.632l.955-3.834a.51.51,0,0,1,.134-.237L11.92.545a1.868,1.868,0,0,1,2.638,0l.959.959a1.868,1.868,0,0,1,0,2.638L4.765,14.895a.505.505,0,0,1-.237.134l-3.834.955A.47.47,0,0,1,.572,16Zm1.415-4.083L1.27,14.791l2.875-.716L14.8,3.422a.85.85,0,0,0,0-1.2l-.959-.959a.849.849,0,0,0-1.2,0Zm2.419,2.619h0Zm0,0",
-    transform: "translate(0)",
-    fill: "#fff"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "M319.56,68.392a.505.505,0,0,1-.36-.149l-2.879-2.878a.509.509,0,0,1,.72-.72l2.879,2.879a.508.508,0,0,1-.36.868Zm0,0",
-    transform: "translate(-306.057 -62.446)",
-    fill: "#fff"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "M33.481,354.451a.5.5,0,0,1-.36-.149l-2.879-2.879a.509.509,0,0,1,.72-.72l2.879,2.879a.509.509,0,0,1-.36.869Zm0,0",
-    transform: "translate(-29.076 -339.408)",
-    fill: "#fff"
-  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "work-option-content row m-0 justify-content-center"
-  }, (today.getTime() - new Date(created_at.substring(0, created_at.indexOf('T'))).getTime()) / (1000 * 3600 * 24) <= 3 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-center work-option-new"
-  }, " NEW!") : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-    className: "col-11 p-0 work-option-title text-center mt-4 mb-2 text-uppercase"
-  }, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "work-option-description col-11 text-center"
-  }, description.substring(0, 74), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    className: "colorful-text",
-    onClick: function onClick() {
-      return view(id);
-    }
-  }, "... Zisti viac.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-11 mx-0 row work-option-info text-uppercase mb-3"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-xl-6 col-lg-6 col-md-6 col-sm-10 col-10 row m-0 p-0 justify-content-center align-items-center"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-3 p-0 text-right"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    className: " px-0 m-0 text-right",
-    xmlns: "http://www.w3.org/2000/svg",
-    width: "13.512",
-    height: "19.292",
-    viewBox: "0 0 13.512 19.292"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "M23.023,12a2.466,2.466,0,1,0,2.466,2.466A2.469,2.469,0,0,0,23.023,12Zm0,4.228a1.762,1.762,0,1,1,1.762-1.762A1.764,1.764,0,0,1,23.023,16.228Z",
-    transform: "translate(-16.204 -7.772)",
-    fill: "#00c7c7"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "M19.737,1.979a6.756,6.756,0,0,0-9.555,0,7.7,7.7,0,0,0-.636,9.5l5.413,7.817,5.405-7.806A7.7,7.7,0,0,0,19.737,1.979Zm.056,9.095-4.834,6.98-4.841-6.991a6.953,6.953,0,0,1,.562-8.586,6.052,6.052,0,0,1,8.558,0A6.956,6.956,0,0,1,19.793,11.074Z",
-    transform: "translate(-8.203 0)",
-    fill: "#00c7c7"
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "col-9 py-0 m-0 px-0 pl-3 pl-md-0  text-left text-md-center"
-  }, address)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-xl-6 col-lg-6 col-md-6 col-sm-10 col-10 row m-0 p-0 justify-content-center align-items-center pl-2"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    xmlns: "http://www.w3.org/2000/svg",
-    width: "18.298",
-    height: "19.215",
-    viewBox: "0 0 18.298 19.215",
-    className: "col-3 px-0 m-0",
-    fill: '#00c7c7'
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "M13.534,1.848A1.61,1.61,0,0,0,11.988.5a.327.327,0,0,0-.315.337.327.327,0,0,0,.315.337.982.982,0,0,1,.946,1.011A.982.982,0,0,1,11.988,3.2a.338.338,0,0,0,0,.674,1.61,1.61,0,0,0,1.546-1.348h4.133V5.557H.631V2.523H5.994a.338.338,0,0,0,0-.674H5.421a.951.951,0,0,1,.888-.674.982.982,0,0,1,.946,1.011A.982.982,0,0,1,6.31,3.2a.338.338,0,0,0,0,.674A1.636,1.636,0,0,0,7.887,2.186,1.636,1.636,0,0,0,6.31.5,1.61,1.61,0,0,0,4.764,1.848H0V19.715H18.3V1.848Zm4.133,17.193H.631V6.231H17.667Z",
-    transform: "translate(0 -0.5)"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "M25.343,1.186a1.029,1.029,0,1,1,0,2.059.343.343,0,1,0,0,.686,1.716,1.716,0,1,0,0-3.432.343.343,0,1,0,0,.686Z",
-    transform: "translate(-17.193 -0.5)"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "M31.343,1.186a1.029,1.029,0,1,1,0,2.059.343.343,0,1,0,0,.686,1.716,1.716,0,1,0,0-3.432.343.343,0,1,0,0,.686Z",
-    transform: "translate(-21.319 -0.5)"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.343",
-    cy: "0.343",
-    rx: "0.343",
-    ry: "0.343",
-    transform: "translate(6.604 7.748)"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.343",
-    cy: "0.343",
-    rx: "0.343",
-    ry: "0.343",
-    transform: "translate(8.806 7.748)"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.343",
-    cy: "0.343",
-    rx: "0.343",
-    ry: "0.343",
-    transform: "translate(11.007 7.748)"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.343",
-    cy: "0.343",
-    rx: "0.343",
-    ry: "0.343",
-    transform: "translate(13.209 7.748)"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.343",
-    cy: "0.343",
-    rx: "0.343",
-    ry: "0.343",
-    transform: "translate(15.209 7.748)"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.343",
-    cy: "0.343",
-    rx: "0.343",
-    ry: "0.343",
-    transform: "translate(2.402 10.444)"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.343",
-    cy: "0.343",
-    rx: "0.343",
-    ry: "0.343",
-    transform: "translate(4.403 10.444)"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.343",
-    cy: "0.343",
-    rx: "0.343",
-    ry: "0.343",
-    transform: "translate(6.604 10.444)"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.343",
-    cy: "0.343",
-    rx: "0.343",
-    ry: "0.343",
-    transform: "translate(8.806 10.444)"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.343",
-    cy: "0.343",
-    rx: "0.343",
-    ry: "0.343",
-    transform: "translate(11.007 10.444)"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.343",
-    cy: "0.343",
-    rx: "0.343",
-    ry: "0.343",
-    transform: "translate(13.209 10.444)"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.343",
-    cy: "0.343",
-    rx: "0.343",
-    ry: "0.343",
-    transform: "translate(15.209 10.444)"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.343",
-    cy: "0.343",
-    rx: "0.343",
-    ry: "0.343",
-    transform: "translate(2.402 12.802)"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.343",
-    cy: "0.343",
-    rx: "0.343",
-    ry: "0.343",
-    transform: "translate(4.403 12.802)"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.343",
-    cy: "0.343",
-    rx: "0.343",
-    ry: "0.343",
-    transform: "translate(6.604 12.802)"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.343",
-    cy: "0.343",
-    rx: "0.343",
-    ry: "0.343",
-    transform: "translate(8.806 12.802)"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.343",
-    cy: "0.343",
-    rx: "0.343",
-    ry: "0.343",
-    transform: "translate(11.007 12.802)"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.343",
-    cy: "0.343",
-    rx: "0.343",
-    ry: "0.343",
-    transform: "translate(13.209 12.802)"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.343",
-    cy: "0.343",
-    rx: "0.343",
-    ry: "0.343",
-    transform: "translate(15.209 12.802)"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.343",
-    cy: "0.343",
-    rx: "0.343",
-    ry: "0.343",
-    transform: "translate(2.402 15.441)"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.343",
-    cy: "0.343",
-    rx: "0.343",
-    ry: "0.343",
-    transform: "translate(4.403 15.441)"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.343",
-    cy: "0.343",
-    rx: "0.343",
-    ry: "0.343",
-    transform: "translate(6.604 15.441)"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.343",
-    cy: "0.343",
-    rx: "0.343",
-    ry: "0.343",
-    transform: "translate(8.806 15.441)"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.343",
-    cy: "0.343",
-    rx: "0.343",
-    ry: "0.343",
-    transform: "translate(11.007 15.441)"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "col-9 py-0 pl-2 m-0 pr-0"
-  }, formatDate.getDay() + "." + formatDate.getMonth() + "." + formatDate.getFullYear()))))));
-};
-
-/***/ }),
-
-/***/ "./resources/js/components/Advertisement/AdvertisementView.js":
-/*!********************************************************************!*\
-  !*** ./resources/js/components/Advertisement/AdvertisementView.js ***!
-  \********************************************************************/
-/*! exports provided: AdvertisementView */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdvertisementView", function() { return AdvertisementView; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Others_Loader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Others/Loader */ "./resources/js/components/Others/Loader.js");
-
-
-var AdvertisementView = function AdvertisementView(_ref) {
-  var ad = _ref.ad,
-      close = _ref.close;
-
-  if (!ad) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Others_Loader__WEBPACK_IMPORTED_MODULE_1__["Loader"], null);
-  }
-
-  var date = new Date(ad.date);
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "offer-info-wrapper",
-    id: "offer-info"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "container-fluid row justify-content-center m-0 p-0"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "offer-info-box col-11 m-0 p-0 mt-5 shadow row"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-3  p-0 d-none d-lg-block"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    className: "offer-info-image",
-    src: "./images/poster.jpg"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-12 col-lg-9 row justify-content-center pb-0"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-12 row justify-content-center py-5"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-12 col-sm-8 order-2 order-sm-1"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-    className: "offer-info-title text-center"
-  }, ad.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-12 col-sm-4 order-1 order-sm-2 "
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "cross float-right float-sm-none"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    onClick: close,
-    className: "ml-3",
-    style: {
-      transform: "scale(.8)"
-    },
-    width: "42",
-    height: "42",
-    viewBox: "0 0 42 42"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "M42,2.467,23.467,21,42,39.534,39.533,42,21,23.468,2.467,42,0,39.534,18.533,21,0,2.467,2.467,0,21,18.534,39.533,0Z",
-    transform: "translate(0 -0.001)",
-    fill: "#2c393f"
-  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row justify-content-center order-3 order-md-4"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-md-8 order-4 order-m-3"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "border-r pt-4 justify-content-center row "
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "offer-info-tags row justify-content-center pb-5 col-11"
-  }, ad.tags.map(function (value) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "offer-info-tag py-2 mx-3 mt-1 mb-2 px-4 shadow col-auto "
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-      className: "colorful-text"
-    }, value));
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "offer-info-description mb-5 text-center"
-  }, ad.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "my-2 mb-3 submit-button sign-in-button px-5 py-2 d-block"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " m\xE1m  ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "strong"
-  }, "zaujem !"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-md-4 text-uppercase order-3 order-md-4"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "offer-info-branches border-b text-center py-3 px-2"
-  }, ad.branches.map(function (_ref2) {
-    var name = _ref2.name;
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "my-4"
-    }, name);
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "offer-info-additional row pt-4 border-b-res m-0"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row col-12 my-3"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-6 text-right pr-3"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    xmlns: "http://www.w3.org/2000/svg",
-    width: "20.311",
-    height: "29",
-    viewBox: "0 0 20.311 29"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-    transform: "translate(-8.203)"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "M24.264,12a3.707,3.707,0,1,0,3.707,3.707A3.712,3.712,0,0,0,24.264,12Zm0,6.355a2.648,2.648,0,1,1,2.648-2.648A2.651,2.651,0,0,1,24.264,18.355Z",
-    transform: "translate(-5.811 -5.645)",
-    fill: "#00c7c7"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "M25.541,2.975a10.156,10.156,0,0,0-14.363,0C7.628,6.524,7.186,13.2,10.222,17.249L18.359,29l8.125-11.735C29.532,13.2,29.091,6.524,25.541,2.975Zm.084,13.671L18.359,27.139,11.082,16.63a10.452,10.452,0,0,1,.845-12.906,9.1,9.1,0,0,1,12.865,0A10.456,10.456,0,0,1,25.625,16.646Z",
-    transform: "translate(0 0)",
-    fill: "#00c7c7"
-  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-6 text-left pl-0"
-  }, ad.address)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row col-12 my-3"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-6 text-right pr-2"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    className: "mr-2",
-    xmlns: "http://www.w3.org/2000/svg",
-    width: "25.033",
-    height: "26.288",
-    viewBox: "0 0 25.033 26.288"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "M18.515,2.345A2.2,2.2,0,0,0,16.4.5a.447.447,0,0,0-.432.461.447.447,0,0,0,.432.461A1.343,1.343,0,0,1,17.7,2.806,1.343,1.343,0,0,1,16.4,4.19a.462.462,0,0,0,0,.922,2.2,2.2,0,0,0,2.114-1.845H24.17V7.418H.863V3.267H8.2a.447.447,0,0,0,.432-.461A.447.447,0,0,0,8.2,2.345H7.417a1.3,1.3,0,0,1,1.215-.922A1.343,1.343,0,0,1,9.927,2.806,1.343,1.343,0,0,1,8.632,4.19a.462.462,0,0,0,0,.922A2.238,2.238,0,0,0,10.79,2.806,2.238,2.238,0,0,0,8.632.5,2.2,2.2,0,0,0,6.518,2.345H0V26.788H25.033V2.345ZM24.17,25.865H.863V8.34H24.17Z",
-    transform: "translate(0 -0.5)",
-    fill: "#00c7c7"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "M25.469,1.439a1.408,1.408,0,1,1,0,2.817.469.469,0,1,0,0,.939,2.347,2.347,0,1,0,0-4.695.469.469,0,1,0,0,.939Z",
-    transform: "translate(-14.319 -0.5)",
-    fill: "#00c7c7"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "M31.469,1.439a1.408,1.408,0,1,1,0,2.817.469.469,0,1,0,0,.939,2.347,2.347,0,1,0,0-4.695.469.469,0,1,0,0,.939Z",
-    transform: "translate(-17.756 -0.5)",
-    fill: "#00c7c7"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.469",
-    cy: "0.469",
-    rx: "0.469",
-    ry: "0.469",
-    transform: "translate(9.035 10.6)",
-    fill: "#00c7c7"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.469",
-    cy: "0.469",
-    rx: "0.469",
-    ry: "0.469",
-    transform: "translate(12.047 10.6)",
-    fill: "#00c7c7"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.469",
-    cy: "0.469",
-    rx: "0.469",
-    ry: "0.469",
-    transform: "translate(15.059 10.6)",
-    fill: "#00c7c7"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.469",
-    cy: "0.469",
-    rx: "0.469",
-    ry: "0.469",
-    transform: "translate(18.07 10.6)",
-    fill: "#00c7c7"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.469",
-    cy: "0.469",
-    rx: "0.469",
-    ry: "0.469",
-    transform: "translate(20.807 10.6)",
-    fill: "#00c7c7"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.469",
-    cy: "0.469",
-    rx: "0.469",
-    ry: "0.469",
-    transform: "translate(3.286 14.288)",
-    fill: "#00c7c7"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.469",
-    cy: "0.469",
-    rx: "0.469",
-    ry: "0.469",
-    transform: "translate(6.023 14.288)",
-    fill: "#00c7c7"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.469",
-    cy: "0.469",
-    rx: "0.469",
-    ry: "0.469",
-    transform: "translate(9.035 14.288)",
-    fill: "#00c7c7"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.469",
-    cy: "0.469",
-    rx: "0.469",
-    ry: "0.469",
-    transform: "translate(12.047 14.288)",
-    fill: "#00c7c7"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.469",
-    cy: "0.469",
-    rx: "0.469",
-    ry: "0.469",
-    transform: "translate(15.059 14.288)",
-    fill: "#00c7c7"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.469",
-    cy: "0.469",
-    rx: "0.469",
-    ry: "0.469",
-    transform: "translate(18.07 14.288)",
-    fill: "#00c7c7"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.469",
-    cy: "0.469",
-    rx: "0.469",
-    ry: "0.469",
-    transform: "translate(20.807 14.288)",
-    fill: "#00c7c7"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.469",
-    cy: "0.469",
-    rx: "0.469",
-    ry: "0.469",
-    transform: "translate(3.286 17.514)",
-    fill: "#00c7c7"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.469",
-    cy: "0.469",
-    rx: "0.469",
-    ry: "0.469",
-    transform: "translate(6.023 17.514)",
-    fill: "#00c7c7"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.469",
-    cy: "0.469",
-    rx: "0.469",
-    ry: "0.469",
-    transform: "translate(9.035 17.514)",
-    fill: "#00c7c7"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.469",
-    cy: "0.469",
-    rx: "0.469",
-    ry: "0.469",
-    transform: "translate(12.047 17.514)",
-    fill: "#00c7c7"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.469",
-    cy: "0.469",
-    rx: "0.469",
-    ry: "0.469",
-    transform: "translate(15.059 17.514)",
-    fill: "#00c7c7"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.469",
-    cy: "0.469",
-    rx: "0.469",
-    ry: "0.469",
-    transform: "translate(18.07 17.514)",
-    fill: "#00c7c7"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.469",
-    cy: "0.469",
-    rx: "0.469",
-    ry: "0.469",
-    transform: "translate(20.807 17.514)",
-    fill: "#00c7c7"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.469",
-    cy: "0.469",
-    rx: "0.469",
-    ry: "0.469",
-    transform: "translate(3.286 21.124)",
-    fill: "#00c7c7"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.469",
-    cy: "0.469",
-    rx: "0.469",
-    ry: "0.469",
-    transform: "translate(6.023 21.124)",
-    fill: "#00c7c7"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.469",
-    cy: "0.469",
-    rx: "0.469",
-    ry: "0.469",
-    transform: "translate(9.035 21.124)",
-    fill: "#00c7c7"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.469",
-    cy: "0.469",
-    rx: "0.469",
-    ry: "0.469",
-    transform: "translate(12.047 21.124)",
-    fill: "#00c7c7"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
-    cx: "0.469",
-    cy: "0.469",
-    rx: "0.469",
-    ry: "0.469",
-    transform: "translate(15.059 21.124)",
-    fill: "#00c7c7"
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-6 text-left pl-0"
-  }, date.getDay() + "." + date.getMonth() + "." + date.getFullYear())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row col-12 my-3"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-6 text-right pr-2"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    className: "mr-2",
-    xmlns: "http://www.w3.org/2000/svg",
-    width: "25.771",
-    height: "27.605",
-    viewBox: "0 0 25.771 27.605"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-    transform: "translate(-17.007)"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-    transform: "translate(17.007)"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "M42.134,19.25,36.408,8.167a4.615,4.615,0,0,1-.226-.589.458.458,0,0,0,.054-.216v-2.3a.46.46,0,0,0-.23-.4,4.517,4.517,0,0,1,.2-.6A2.715,2.715,0,0,1,36.875,3a1.67,1.67,0,0,0,.752-1.88A1.875,1.875,0,0,0,35.833,0a2.192,2.192,0,0,0-1.45.547,2.2,2.2,0,0,0-2.914.012A2.611,2.611,0,0,0,29.882,0a2.852,2.852,0,0,0-1.656.562A2.2,2.2,0,0,0,25.308.547,2.239,2.239,0,0,0,23.823,0h0a1.8,1.8,0,0,0-1.687,1.168,1.646,1.646,0,0,0,.69,1.838,2.757,2.757,0,0,1,.657,1.059,4.529,4.529,0,0,1,.2.591.46.46,0,0,0-.242.405v2.3a.457.457,0,0,0,.063.232,4.5,4.5,0,0,1-.216.563L17.669,19.032a5.876,5.876,0,0,0,5.22,8.573H37.046a5.727,5.727,0,0,0,5.088-8.355ZM24.361,6.9V5.521H35.316V6.9Zm-.975-4.625c-.333-.256-.467-.547-.377-.819A.89.89,0,0,1,23.857.92a1.279,1.279,0,0,1,1.067.575.478.478,0,0,0,.767,0,1.277,1.277,0,0,1,2.133,0,.478.478,0,0,0,.767,0A1.725,1.725,0,0,1,29.882.92a1.578,1.578,0,0,1,1.216.575.478.478,0,0,0,.767,0,1.277,1.277,0,0,1,2.133,0,.478.478,0,0,0,.767,0A1.287,1.287,0,0,1,35.853.92h0a.967.967,0,0,1,.9.5c.115.332-.241.685-.463.865a3.5,3.5,0,0,0-.938,1.43,5.349,5.349,0,0,0-.282.887H24.615a5.3,5.3,0,0,0-.282-.887A3.474,3.474,0,0,0,23.385,2.276Zm17.765,22.1a4.772,4.772,0,0,1-4.105,2.307H22.889a4.955,4.955,0,0,1-4.4-7.23L24.11,8.569a5.577,5.577,0,0,0,.287-.747h4.149A5.23,5.23,0,0,0,26.661,11.5a.46.46,0,1,0,.92,0,4.743,4.743,0,0,1,1.994-3.349c.321,1.285,1.24,3.81,3.51,3.81h.021a.46.46,0,0,0,0-.92h-.017c-1.678,0-2.4-2.189-2.642-3.221h4.85a5.693,5.693,0,0,0,.291.757l5.731,11.094A4.771,4.771,0,0,1,41.151,24.378Z",
-    transform: "translate(-17.007 0)",
-    fill: "#00c7c7"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "M199.744,259.221a.46.46,0,0,0,.92,0,2.3,2.3,0,0,0-1.84-2.254v-.506a.46.46,0,0,0-.92,0v.506a2.3,2.3,0,0,0,0,4.508V264.2a1.383,1.383,0,0,1-.92-1.3.46.46,0,0,0-.92,0,2.3,2.3,0,0,0,1.84,2.254v.506a.46.46,0,1,0,.92,0v-.506a2.3,2.3,0,0,0,0-4.508v-2.728A1.383,1.383,0,0,1,199.744,259.221Zm-2.761,0a1.383,1.383,0,0,1,.92-1.3v2.6A1.383,1.383,0,0,1,196.983,259.221Zm2.761,3.681a1.383,1.383,0,0,1-.92,1.3v-2.6A1.383,1.383,0,0,1,199.744,262.9Z",
-    transform: "translate(-186.409 -242.197)",
-    fill: "#00c7c7"
-  }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-6 text-left pl-0"
-  }, ad.salary))))))))));
-};
-
-/***/ }),
-
-/***/ "./resources/js/components/Advertisement/SubComponents/Tags.js":
-/*!*********************************************************************!*\
-  !*** ./resources/js/components/Advertisement/SubComponents/Tags.js ***!
-  \*********************************************************************/
-/*! exports provided: Tags */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Tags", function() { return Tags; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
-
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-var Tags = function Tags(_ref) {
-  var _React$createElement;
-
-  var _ref$addTags = _ref.addTags,
-      addTags = _ref$addTags === void 0 ? function (f) {
-    return f;
-  } : _ref$addTags,
-      list = _ref.list;
-  var ENTER_KEY = 13;
-  var COMMA_KEY = 188;
-  var BACKSPACE_KEY = 8;
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
-      _useState2 = _slicedToArray(_useState, 2),
-      tags = _useState2[0],
-      setTags = _useState2[1];
-
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
-      _useState4 = _slicedToArray(_useState3, 2),
-      value = _useState4[0],
-      setValue = _useState4[1];
-
-  var handleChange = function handleChange(e) {
-    return setValue(e.target.value);
-  };
-
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    setTags(list);
-  }, [list]);
-
-  var handleKeyUp = function handleKeyUp(e) {
-    var key = e.keyCode;
-
-    if (key === ENTER_KEY || key === COMMA_KEY) {
-      addTag();
-    }
-  };
-
-  var handleKeyDown = function handleKeyDown(e) {
-    var key = e.keyCode;
-
-    if (key === BACKSPACE_KEY && !value) {
-      editPrevTag();
-    }
-  };
-
-  var addTag = function addTag() {
-    var valuex = value;
-    var tag = valuex.trim();
-    tag = tag.replace(/,/g, "");
-
-    if (!tag) {
-      return;
-    }
-
-    addTags([].concat(_toConsumableArray(tags), [tag]));
-    setTags([].concat(_toConsumableArray(tags), [tag]));
-    setValue('');
-  };
-
-  var editPrevTag = function editPrevTag() {
-    var tagx = tags;
-    var tag = tagx.pop();
-    addTags(tagx);
-    setTags(tagx);
-    setValue(tag);
-  };
-
-  if (tags == undefined) {
-    return "loading";
-  }
-
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "ml-4 tags col-11  my-2 my-xl-0 mx-0 px-0"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "input px-3 row align-items-start col-12",
-    style: {
-      height: "auto"
-    }
-  }, tags.map(function (tag, i) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-      className: "col-auto input-tag text-capitalize mt-1 px-2 shadow mx-2"
-    }, tag);
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", (_React$createElement = {
-    className: "",
-    type: "text",
-    placeholder: "Pridajte tagy\u2026 napr\xEDklad : z\xE1hrada, Nemecko, les",
-    style: {
-      width: "100%"
-    },
-    value: value,
-    onChange: function onChange(e) {
-      return handleChange(e);
-    }
-  }, _defineProperty(_React$createElement, "className", "tag-input"), _defineProperty(_React$createElement, "onKeyUp", function onKeyUp(e) {
-    return handleKeyUp(e);
-  }), _defineProperty(_React$createElement, "onKeyDown", function onKeyDown(e) {
-    return handleKeyDown(e);
-  }), _React$createElement))));
-};
-
-/***/ }),
-
 /***/ "./resources/js/components/Authentication/Additional.js":
 /*!**************************************************************!*\
   !*** ./resources/js/components/Authentication/Additional.js ***!
@@ -70328,9 +69379,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var slick_carousel_slick_slick_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(slick_carousel_slick_slick_css__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var slick_carousel_slick_slick_theme_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! slick-carousel/slick/slick-theme.css */ "./node_modules/slick-carousel/slick/slick-theme.css");
 /* harmony import */ var slick_carousel_slick_slick_theme_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(slick_carousel_slick_slick_theme_css__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _Advertisement_Advertisement__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Advertisement/Advertisement */ "./resources/js/components/Advertisement/Advertisement.js");
-/* harmony import */ var _Advertisement_AdvertisementLookup__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Advertisement/AdvertisementLookup */ "./resources/js/components/Advertisement/AdvertisementLookup.js");
-/* harmony import */ var _Advertisement_AdvertisementView__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../Advertisement/AdvertisementView */ "./resources/js/components/Advertisement/AdvertisementView.js");
+/* harmony import */ var _Offer_Offer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Offer/Offer */ "./resources/js/components/Offer/Offer.js");
+/* harmony import */ var _Offer_OfferLookup__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Offer/OfferLookup */ "./resources/js/components/Offer/OfferLookup.js");
+/* harmony import */ var _Offer_OfferView__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../Offer/OfferView */ "./resources/js/components/Offer/OfferView.js");
 /* harmony import */ var _Others_Loader__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../Others/Loader */ "./resources/js/components/Others/Loader.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -70360,29 +69411,29 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var Home = function Home(_ref) {
   var additional = _ref.additional,
-      ads = _ref.ads,
-      ad = _ref.ad,
+      offers = _ref.offers,
+      offer = _ref.offer,
       user = _ref.user,
       _ref$updateProfile = _ref.updateProfile,
       updateProfile = _ref$updateProfile === void 0 ? function (f) {
     return f;
   } : _ref$updateProfile,
-      _ref$createAd = _ref.createAd,
-      createAd = _ref$createAd === void 0 ? function (f) {
+      _ref$createOffers = _ref.createOffers,
+      createOffers = _ref$createOffers === void 0 ? function (f) {
     return f;
-  } : _ref$createAd,
-      _ref$updateAd = _ref.updateAd,
-      updateAd = _ref$updateAd === void 0 ? function (f) {
+  } : _ref$createOffers,
+      _ref$updateOffers = _ref.updateOffers,
+      updateOffers = _ref$updateOffers === void 0 ? function (f) {
     return f;
-  } : _ref$updateAd,
-      _ref$viewAd = _ref.viewAd,
-      viewAd = _ref$viewAd === void 0 ? function (f) {
+  } : _ref$updateOffers,
+      _ref$viewOffers = _ref.viewOffers,
+      viewOffers = _ref$viewOffers === void 0 ? function (f) {
     return f;
-  } : _ref$viewAd,
-      _ref$closeAd = _ref.closeAd,
-      closeAd = _ref$closeAd === void 0 ? function (f) {
+  } : _ref$viewOffers,
+      _ref$closeOffers = _ref.closeOffers,
+      closeOffers = _ref$closeOffers === void 0 ? function (f) {
     return f;
-  } : _ref$closeAd,
+  } : _ref$closeOffers,
       signOut = _ref.signOut;
   var settings = {
     dots: false,
@@ -70426,11 +69477,11 @@ var Home = function Home(_ref) {
   };
 
   var handleCreate = function handleCreate(data) {
-    return createAd(data);
+    return createOffers(data);
   };
 
   var handleEdit = function handleEdit(id) {
-    viewAd(id);
+    viewOffers(id);
     setForm({
       open: true,
       control: true,
@@ -70439,11 +69490,11 @@ var Home = function Home(_ref) {
   };
 
   var handleUpdate = function handleUpdate(data) {
-    return updateAd(data);
+    return updateOffers(data);
   };
 
   var handleView = function handleView(id) {
-    viewAd(id);
+    viewOffers(id);
     setForm({
       open: true,
       control: false,
@@ -70452,11 +69503,11 @@ var Home = function Home(_ref) {
   };
 
   var handleClose = function handleClose() {
-    return closeAd();
+    return closeOffers();
   };
 
   if (user !== undefined) {
-    if (ads[0] === undefined) {
+    if (offers[0] === undefined) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Others_Loader__WEBPACK_IMPORTED_MODULE_9__["Loader"], null);
     }
 
@@ -70466,8 +69517,8 @@ var Home = function Home(_ref) {
       user: user,
       data: additional,
       func: handleChange
-    }) : "", form.open && !form.control ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Advertisement_AdvertisementView__WEBPACK_IMPORTED_MODULE_8__["AdvertisementView"], {
-      ad: ad,
+    }) : "", form.open && !form.control ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Offer_OfferView__WEBPACK_IMPORTED_MODULE_8__["OfferView"], {
+      offer: offer,
       close: function close() {
         return setForm({
           open: false,
@@ -70475,15 +69526,15 @@ var Home = function Home(_ref) {
           edit: false
         });
       }
-    }) : null, form.open && form.control ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Advertisement_Advertisement__WEBPACK_IMPORTED_MODULE_6__["Advertisement"], {
+    }) : null, form.open && form.control ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Offer_Offer__WEBPACK_IMPORTED_MODULE_6__["Offer"], {
       edit: form.edit,
       user: user,
-      createAd: handleCreate,
-      updateAd: handleUpdate,
-      closeAd: function closeAd() {
+      createOffers: handleCreate,
+      updateOffers: handleUpdate,
+      closeOffers: function closeOffers() {
         return setForm(false);
       },
-      data: ad
+      data: offer
     }) : "", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "content col-12 col-md-11 row justify-content-center pt-5 mb-2"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -70512,12 +69563,12 @@ var Home = function Home(_ref) {
       d: "m177.15 264.67h-54.143a2.707 2.707 0 1 0 0 5.414h54.143a2.707 2.707 0 1 0 0-5.414z",
       "data-name": "Path 43"
     }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "finder col-9 d-flex justify-content-center"
+      className: "finder col-10 col-sm-9  d-flex justify-content-center"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
       type: "text",
       className: "col-11 finder",
       placeholder: "\u2026find work, company or group"
-    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    })), window.innerWidth >= 576 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "user-header-nofication col-1"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       src: user.profile_pic !== null ? user.profile_pic.substring(user.profile_pic.indexOf("images")) : "./images/user.svg",
@@ -70525,18 +69576,18 @@ var Home = function Home(_ref) {
       alt: ""
     }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "action-point text-center"
-    }, "7"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, "7")) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "message col-11 my-4"
     }, user.name == null ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello !") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, user.name), " !")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_3___default.a, _extends({}, settings, {
       className: "work-options justify-content-between col-12 mt-2 px-5 row"
-    }), ads.map(function (_ref2) {
+    }), offers.map(function (_ref2) {
       var id = _ref2.id,
           title = _ref2.title,
           description = _ref2.description,
           address = _ref2.address,
           date = _ref2.date,
           created_at = _ref2.created_at;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Advertisement_AdvertisementLookup__WEBPACK_IMPORTED_MODULE_7__["AdvertisementLookup"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Offer_OfferLookup__WEBPACK_IMPORTED_MODULE_7__["OfferLookup"], {
         key: id,
         id: id,
         title: title,
@@ -70576,8 +69627,7 @@ var NextArrow = function NextArrow(props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
     className: className,
     style: _objectSpread({}, style, {
-      display: "block",
-      transform: "scale(5)"
+      display: "block"
     }),
     onClick: onClick,
     width: "112.756",
@@ -70622,8 +69672,7 @@ var PreviousArrow = function PreviousArrow(props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
     className: className,
     style: _objectSpread({}, style, {
-      display: "block",
-      transform: "scale(5)"
+      display: "block"
     }),
     onClick: onClick,
     width: "112.756",
@@ -70726,13 +69775,13 @@ var Main = function Main() {
 
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(null),
       _useState4 = _slicedToArray(_useState3, 2),
-      ad = _useState4[0],
-      setAd = _useState4[1];
+      offer = _useState4[0],
+      setOffer = _useState4[1];
 
   var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState6 = _slicedToArray(_useState5, 2),
-      ads = _useState6[0],
-      setAds = _useState6[1];
+      offers = _useState6[0],
+      setOffers = _useState6[1];
 
   var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(null),
       _useState8 = _slicedToArray(_useState7, 2),
@@ -70753,7 +69802,7 @@ var Main = function Main() {
     config.headers['X-localization'] = "SK";
     var _localStorage = localStorage,
         appState = _localStorage.appState,
-        ads = _localStorage.ads,
+        offers = _localStorage.offers,
         branches = _localStorage.branches;
     console.log(branches);
 
@@ -70762,7 +69811,7 @@ var Main = function Main() {
       JSON.parse(appState).user.active === 0 ? _additional() : null;
       Object(_reach_router__WEBPACK_IMPORTED_MODULE_5__["navigate"])("/home");
       config.headers['Authorization'] = 'Bearer ' + JSON.parse(appState).user.auth_token;
-      ads === undefined || JSON.parse(ads).length !== _getData('/api/size-ads') ? _getAds() : setAds(JSON.parse(ads));
+      offers === undefined || JSON.parse(offers).length !== _getData('/api/size-offers') ? _getOffers() : setOffers(JSON.parse(offers));
     }
 
     if (branches === undefined || JSON.parse(branches).length !== _getData('/api/size-branches')) {
@@ -70950,15 +69999,15 @@ var Main = function Main() {
     };
   }();
 
-  var _createAd = function _createAd(data) {
+  var _createOffer = function _createOffer(data) {
     return _postData("/api/advertisement", data);
   };
 
-  var _updateAd = function _updateAd(data) {
+  var _updateOffer = function _updateOffer(data) {
     return axios__WEBPACK_IMPORTED_MODULE_4___default.a.put("/api/advertisement", data, config);
   };
 
-  var _viewAd =
+  var _viewOffer =
   /*#__PURE__*/
   function () {
     var _ref6 = _asyncToGenerator(
@@ -70970,7 +70019,7 @@ var Main = function Main() {
             case 0:
               return _context4.abrupt("return", _getData('api/advertisement/' + id).then(function (_ref7) {
                 var data = _ref7.data;
-                return setAd(data);
+                return setOffer(data);
               }));
 
             case 1:
@@ -70981,12 +70030,12 @@ var Main = function Main() {
       }, _callee4);
     }));
 
-    return function _viewAd(_x4) {
+    return function _viewOffer(_x4) {
       return _ref6.apply(this, arguments);
     };
   }();
 
-  var _closeAd =
+  var _closeOffer =
   /*#__PURE__*/
   function () {
     var _ref8 = _asyncToGenerator(
@@ -70996,7 +70045,7 @@ var Main = function Main() {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
-              return _context5.abrupt("return", setAd(null));
+              return _context5.abrupt("return", setOffer(null));
 
             case 1:
             case "end":
@@ -71006,12 +70055,12 @@ var Main = function Main() {
       }, _callee5);
     }));
 
-    return function _closeAd() {
+    return function _closeOffer() {
       return _ref8.apply(this, arguments);
     };
   }();
 
-  var _getAds =
+  var _getOffers =
   /*#__PURE__*/
   function () {
     var _ref9 = _asyncToGenerator(
@@ -71023,8 +70072,8 @@ var Main = function Main() {
             case 0:
               return _context6.abrupt("return", _getData('api/advertisement').then(function (_ref10) {
                 var data = _ref10.data;
-                setAds(data);
-                localStorage["ads"] = JSON.stringify(data);
+                setOffers(data);
+                localStorage["offers"] = JSON.stringify(data);
               }));
 
             case 1:
@@ -71035,7 +70084,7 @@ var Main = function Main() {
       }, _callee6);
     }));
 
-    return function _getAds() {
+    return function _getOffers() {
       return _ref9.apply(this, arguments);
     };
   }();
@@ -71050,13 +70099,13 @@ var Main = function Main() {
     reset: _resetPassword
   }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Logged_Home__WEBPACK_IMPORTED_MODULE_7__["Home"], {
     path: "/home",
-    viewAd: _viewAd,
-    createAd: _createAd,
-    updateAd: _updateAd,
-    closeAd: _closeAd,
+    viewOffer: _viewOffer,
+    createOffer: _createOffer,
+    updateOffer: _updateOffer,
+    closeOffer: _closeOffer,
     user: authState.user,
-    ads: ads,
-    ad: ad,
+    offers: offers,
+    offer: offer,
     additional: additional,
     updateProfile: _updateProfile,
     signOut: _logoutUser
@@ -71066,6 +70115,955 @@ var Main = function Main() {
 if (document.getElementById('root')) {
   react_dom__WEBPACK_IMPORTED_MODULE_2___default.a.render(react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Main, null), document.getElementById('root'));
 }
+
+/***/ }),
+
+/***/ "./resources/js/components/Offer/Offer.js":
+/*!************************************************!*\
+  !*** ./resources/js/components/Offer/Offer.js ***!
+  \************************************************/
+/*! exports provided: Offer */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Offer", function() { return Offer; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _SubComponents_Tags__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SubComponents/Tags */ "./resources/js/components/Offer/SubComponents/Tags.js");
+/* harmony import */ var _Others_Loader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Others/Loader */ "./resources/js/components/Others/Loader.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+var Offer = function Offer(_ref) {
+  var data = _ref.data,
+      edit = _ref.edit,
+      _ref$createOffer = _ref.createOffer,
+      createOffer = _ref$createOffer === void 0 ? function (f) {
+    return f;
+  } : _ref$createOffer,
+      user = _ref.user,
+      _ref$updateOffer = _ref.updateOffer,
+      updateOffer = _ref$updateOffer === void 0 ? function (f) {
+    return f;
+  } : _ref$updateOffer,
+      closeOffer = _ref.closeOffer;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(data),
+      _useState2 = _slicedToArray(_useState, 2),
+      offer = _useState2[0],
+      setOffer = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      tags = _useState4[0],
+      setTags = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(edit ? JSON.parse(localStorage.branches)[0].free_time === 0 ? true : false : true),
+      _useState6 = _slicedToArray(_useState5, 2),
+      brancheType = _useState6[0],
+      setBrancheType = _useState6[1];
+
+  var _tags = function _tags(list) {
+    setTags(list);
+  };
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    setOffer(data);
+
+    if (data !== null && edit) {
+      setTags(data.tags);
+    }
+  }, [data]);
+
+  if (edit && offer === null) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Others_Loader__WEBPACK_IMPORTED_MODULE_2__["Loader"], null);
+  }
+
+  return console.log(offer), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "offer-create-wrapper"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "container-fluid row justify-content-center m-0 p-0"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "offer-create-box col-11 m-0 p-0 mt-5 shadow row pb-5 pb-xl-0"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12 row justify-content-center pb-0"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12 row justify-content-center py-5"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12 col-lg-10 h10 order-2 order-lg-1"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "text-center text-uppercase "
+  }, edit ? "edit\xE1cia inzer\xE1tu" : "vytvorenie inzer\xE1tu")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12 col-lg-2  h10 order-1 order-lg-2"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "cross float-right"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    onClick: closeOffer,
+    className: "ml-3",
+    style: {
+      transform: "scale(.8)"
+    },
+    width: "42",
+    height: "42",
+    viewBox: "0 0 42 42"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M42,2.467,23.467,21,42,39.534,39.533,42,21,23.468,2.467,42,0,39.534,18.533,21,0,2.467,2.467,0,21,18.534,39.533,0Z",
+    transform: "translate(0 -0.001)",
+    fill: "#2c393f"
+  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row justify-content-center col-12 h90 pt-5 order-3"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-xl-3 col-lg-6 pr-3"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "border-r pt-2 justify-content-start row branches"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "branch py-2  mt-1 mb-5 px-4 shadow col-11 text-uppercase"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "float-left  bold  ".concat(brancheType ? "colorful-text" : ""),
+    onClick: function onClick() {
+      return setBrancheType(true);
+    }
+  }, "fulltime"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "float-right  bold  ".concat(brancheType ? "" : "colorful-text"),
+    onClick: function onClick() {
+      return setBrancheType(false);
+    }
+  }, "freetime")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "list row justify-content-start col-12 text-uppercase text-center d-lg-flex d-inline scroll"
+  }, JSON.parse(localStorage.branches).map(function (_ref2) {
+    var id = _ref2.id,
+        name = _ref2.name,
+        free_time = _ref2.free_time;
+
+    if (brancheType && free_time === 0 || !brancheType && free_time === 1) {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "branch py-2 mx-3 mt-1 mb-3 px-4 shadow col-lg-11 col-auto"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "colorful-text"
+      }, name));
+    }
+  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-xl-9 col-lg-6 text-uppercase pt-5 row justify-content-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "col-11 px-3 my-2 my-xl-0",
+    type: "text",
+    placeholder: "Ak\xE9 povolanie vyh\u013Ead\xE1vate ?",
+    onChange: function onChange(e) {
+      return setOffer(_objectSpread({}, offer, {
+        title: e.target.value
+      }));
+    },
+    value: edit ? offer.title ? offer.title : "" : ''
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SubComponents_Tags__WEBPACK_IMPORTED_MODULE_1__["Tags"], {
+    addTags: _tags,
+    list: tags
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+    className: "col-11 px-3 py-3 my-2 my-xl-0",
+    cols: "30",
+    rows: "5",
+    placeholder: "Pridajte popis a podmienky pr\xE1ce",
+    onChange: function onChange(e) {
+      return setOffer(_objectSpread({}, offer, {
+        description: e.target.value
+      }));
+    },
+    value: edit ? offer.description ? offer.description : "" : ''
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-11 row justify-content-between p-0 pt-4"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "col-xl-3 col-lg-12 px-3 my-2 my-xl-0",
+    type: "text",
+    placeholder: "Zadajte miesto pr\xE1ce",
+    onChange: function onChange(e) {
+      return setOffer(_objectSpread({}, offer, {
+        address: e.target.value
+      }));
+    },
+    value: edit ? offer.address ? offer.address : "" : ''
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "col-xl-3 col-lg-12 px-3 my-2 my-xl-0",
+    type: "date",
+    placeholder: "Zadajte d\xE1tum n\xE1stupu",
+    onChange: function onChange(e) {
+      return setOffer(_objectSpread({}, offer, {
+        date: e.target.value
+      }));
+    },
+    value: edit ? offer.date ? offer.date : "" : ''
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "col-xl-3 col-lg-12 px-3 my-2 my-xl-0",
+    type: "text",
+    placeholder: "Zadajte plat",
+    onChange: function onChange(e) {
+      return setOffer(_objectSpread({}, offer, {
+        salary: e.target.value
+      }));
+    },
+    value: edit ? offer.salary ? offer.salary : "" : ''
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "my-2 mb-3 submit-button sign-in-button px-5 d-block text-uppercase py-3 py-xl-1"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " vytvori\u0165  ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "strong"
+  }, "inzer\xE1t !"))))))))));
+};
+
+/***/ }),
+
+/***/ "./resources/js/components/Offer/OfferLookup.js":
+/*!******************************************************!*\
+  !*** ./resources/js/components/Offer/OfferLookup.js ***!
+  \******************************************************/
+/*! exports provided: OfferLookup */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OfferLookup", function() { return OfferLookup; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+var OfferLookup = function OfferLookup(_ref) {
+  var id = _ref.id,
+      title = _ref.title,
+      description = _ref.description,
+      address = _ref.address,
+      date = _ref.date,
+      created_at = _ref.created_at,
+      _ref$view = _ref.view,
+      view = _ref$view === void 0 ? function (f) {
+    return f;
+  } : _ref$view,
+      _ref$edit = _ref.edit,
+      edit = _ref$edit === void 0 ? function (f) {
+    return f;
+  } : _ref$edit;
+  var today = new Date();
+  var formatDate = new Date(date);
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "work-option row justify-content-center col-12 p-0 ml-1 mb-5"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "content shadow p-0 col-10 mb-5"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "work-option-image-wrapper"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "work-option-image",
+    src: "./images/poster.jpg"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    className: "work-option-save",
+    width: "13.135",
+    height: "15.526",
+    viewBox: "0 0 13.135 15.526"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
+    transform: "translate(-33.261)"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M46.2.513a1.157,1.157,0,0,0-.539-.421A1.136,1.136,0,0,0,45.206,0H34.451A1.136,1.136,0,0,0,34,.092a1.156,1.156,0,0,0-.539.421,1.089,1.089,0,0,0-.2.636V14.377a1.09,1.09,0,0,0,.2.636,1.156,1.156,0,0,0,.539.421,1.135,1.135,0,0,0,.451.092,1.224,1.224,0,0,0,.852-.339l4.526-4.351,4.526,4.351a1.221,1.221,0,0,0,.852.328,1.194,1.194,0,0,0,.99-.5,1.088,1.088,0,0,0,.2-.636V1.149A1.089,1.089,0,0,0,46.2.513ZM45.083,14.059,40.742,9.892l-.913-.872-.913.872-4.341,4.166V1.314H45.083V14.059Z",
+    fill: "#fff"
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    onClick: function onClick() {
+      return edit(id);
+    },
+    className: "work-option-edit",
+    width: "16",
+    height: "16",
+    viewBox: "0 0 16 16"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
+    transform: "translate(-0.063 0.001)"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M.572,16a.509.509,0,0,1-.493-.632l.955-3.834a.51.51,0,0,1,.134-.237L11.92.545a1.868,1.868,0,0,1,2.638,0l.959.959a1.868,1.868,0,0,1,0,2.638L4.765,14.895a.505.505,0,0,1-.237.134l-3.834.955A.47.47,0,0,1,.572,16Zm1.415-4.083L1.27,14.791l2.875-.716L14.8,3.422a.85.85,0,0,0,0-1.2l-.959-.959a.849.849,0,0,0-1.2,0Zm2.419,2.619h0Zm0,0",
+    transform: "translate(0)",
+    fill: "#fff"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M319.56,68.392a.505.505,0,0,1-.36-.149l-2.879-2.878a.509.509,0,0,1,.72-.72l2.879,2.879a.508.508,0,0,1-.36.868Zm0,0",
+    transform: "translate(-306.057 -62.446)",
+    fill: "#fff"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M33.481,354.451a.5.5,0,0,1-.36-.149l-2.879-2.879a.509.509,0,0,1,.72-.72l2.879,2.879a.509.509,0,0,1-.36.869Zm0,0",
+    transform: "translate(-29.076 -339.408)",
+    fill: "#fff"
+  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "work-option-content row m-0 justify-content-center"
+  }, (today.getTime() - new Date(created_at.substring(0, created_at.indexOf('T'))).getTime()) / (1000 * 3600 * 24) <= 3 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-center work-option-new"
+  }, " NEW!") : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+    className: "col-11 p-0 work-option-title text-center mt-4 mb-2 text-uppercase"
+  }, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "work-option-description col-11 text-center"
+  }, description.substring(0, 74), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "colorful-text",
+    onClick: function onClick() {
+      return view(id);
+    }
+  }, "... Zisti viac.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-11 mx-0 row work-option-info text-uppercase mb-3 justify-content-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: " col-sm-6 col-10 row m-0 p-0 justify-content-center align-items-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-3 p-0 pr-2 pr-md-0 text-right"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    className: " px-0 m-0 text-right",
+    xmlns: "http://www.w3.org/2000/svg",
+    width: "13.512",
+    height: "19.292",
+    viewBox: "0 0 13.512 19.292"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M23.023,12a2.466,2.466,0,1,0,2.466,2.466A2.469,2.469,0,0,0,23.023,12Zm0,4.228a1.762,1.762,0,1,1,1.762-1.762A1.764,1.764,0,0,1,23.023,16.228Z",
+    transform: "translate(-16.204 -7.772)",
+    fill: "#00c7c7"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M19.737,1.979a6.756,6.756,0,0,0-9.555,0,7.7,7.7,0,0,0-.636,9.5l5.413,7.817,5.405-7.806A7.7,7.7,0,0,0,19.737,1.979Zm.056,9.095-4.834,6.98-4.841-6.991a6.953,6.953,0,0,1,.562-8.586,6.052,6.052,0,0,1,8.558,0A6.956,6.956,0,0,1,19.793,11.074Z",
+    transform: "translate(-8.203 0)",
+    fill: "#00c7c7"
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "col-9 py-0 m-0 px-0 pl-3 pl-md-0  text-left text-md-center"
+  }, address)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: " col-sm-6 col-10 row m-0 p-0 justify-content-center align-items-center pl-2"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    width: "18.298",
+    height: "19.215",
+    viewBox: "0 0 18.298 19.215",
+    className: "col-3 px-0 m-0",
+    fill: '#00c7c7'
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M13.534,1.848A1.61,1.61,0,0,0,11.988.5a.327.327,0,0,0-.315.337.327.327,0,0,0,.315.337.982.982,0,0,1,.946,1.011A.982.982,0,0,1,11.988,3.2a.338.338,0,0,0,0,.674,1.61,1.61,0,0,0,1.546-1.348h4.133V5.557H.631V2.523H5.994a.338.338,0,0,0,0-.674H5.421a.951.951,0,0,1,.888-.674.982.982,0,0,1,.946,1.011A.982.982,0,0,1,6.31,3.2a.338.338,0,0,0,0,.674A1.636,1.636,0,0,0,7.887,2.186,1.636,1.636,0,0,0,6.31.5,1.61,1.61,0,0,0,4.764,1.848H0V19.715H18.3V1.848Zm4.133,17.193H.631V6.231H17.667Z",
+    transform: "translate(0 -0.5)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M25.343,1.186a1.029,1.029,0,1,1,0,2.059.343.343,0,1,0,0,.686,1.716,1.716,0,1,0,0-3.432.343.343,0,1,0,0,.686Z",
+    transform: "translate(-17.193 -0.5)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M31.343,1.186a1.029,1.029,0,1,1,0,2.059.343.343,0,1,0,0,.686,1.716,1.716,0,1,0,0-3.432.343.343,0,1,0,0,.686Z",
+    transform: "translate(-21.319 -0.5)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(6.604 7.748)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(8.806 7.748)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(11.007 7.748)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(13.209 7.748)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(15.209 7.748)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(2.402 10.444)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(4.403 10.444)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(6.604 10.444)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(8.806 10.444)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(11.007 10.444)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(13.209 10.444)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(15.209 10.444)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(2.402 12.802)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(4.403 12.802)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(6.604 12.802)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(8.806 12.802)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(11.007 12.802)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(13.209 12.802)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(15.209 12.802)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(2.402 15.441)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(4.403 15.441)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(6.604 15.441)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(8.806 15.441)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.343",
+    cy: "0.343",
+    rx: "0.343",
+    ry: "0.343",
+    transform: "translate(11.007 15.441)"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "col-9 py-0 pl-2 m-0 pr-0"
+  }, formatDate.getDay() + "." + formatDate.getMonth() + "." + formatDate.getFullYear()))))));
+};
+
+/***/ }),
+
+/***/ "./resources/js/components/Offer/OfferView.js":
+/*!****************************************************!*\
+  !*** ./resources/js/components/Offer/OfferView.js ***!
+  \****************************************************/
+/*! exports provided: OfferView */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OfferView", function() { return OfferView; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Others_Loader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Others/Loader */ "./resources/js/components/Others/Loader.js");
+
+
+var OfferView = function OfferView(_ref) {
+  var offer = _ref.offer,
+      close = _ref.close;
+
+  if (!offer) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Others_Loader__WEBPACK_IMPORTED_MODULE_1__["Loader"], null);
+  }
+
+  var date = new Date(offer.date);
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "offer-info-wrapper",
+    id: "offer-info"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "container-fluid row justify-content-center m-0 p-0"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "offer-info-box col-11 m-0 p-0 mt-5 shadow row"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-3  p-0 d-none d-lg-block"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "offer-info-image",
+    src: "./images/poster.jpg"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12 col-lg-9 row justify-content-center pb-0"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12 row justify-content-center py-5"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12 col-sm-8 order-2 order-sm-1"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "offer-info-title text-center"
+  }, offer.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12 col-sm-4 order-1 order-sm-2 "
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "cross float-right float-sm-none"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    onClick: close,
+    className: "ml-3",
+    style: {
+      transform: "scale(.8)"
+    },
+    width: "42",
+    height: "42",
+    viewBox: "0 0 42 42"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M42,2.467,23.467,21,42,39.534,39.533,42,21,23.468,2.467,42,0,39.534,18.533,21,0,2.467,2.467,0,21,18.534,39.533,0Z",
+    transform: "translate(0 -0.001)",
+    fill: "#2c393f"
+  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row justify-content-center order-3 order-md-4"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-md-8 order-4 order-m-3"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "border-r pt-4 justify-content-center row "
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "offer-info-tags row justify-content-center pb-5 col-11"
+  }, offer.tags.map(function (value) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "offer-info-tag py-2 mx-3 mt-1 mb-2 px-4 shadow col-auto "
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "colorful-text"
+    }, value));
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "offer-info-description mb-5 text-center"
+  }, offer.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "my-2 mb-3 submit-button sign-in-button px-5 py-2 d-block"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " m\xE1m  ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "strong"
+  }, "zaujem !"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-md-4 text-uppercase order-3 order-md-4"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "offer-info-branches border-b text-center py-3 px-2"
+  }, offer.branches.map(function (_ref2) {
+    var name = _ref2.name;
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "my-4"
+    }, name);
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "offer-info-additional row pt-4 border-b-res m-0"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row col-12 my-3"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-6 text-right pr-3"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    width: "20.311",
+    height: "29",
+    viewBox: "0 0 20.311 29"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
+    transform: "translate(-8.203)"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M24.264,12a3.707,3.707,0,1,0,3.707,3.707A3.712,3.712,0,0,0,24.264,12Zm0,6.355a2.648,2.648,0,1,1,2.648-2.648A2.651,2.651,0,0,1,24.264,18.355Z",
+    transform: "translate(-5.811 -5.645)",
+    fill: "#00c7c7"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M25.541,2.975a10.156,10.156,0,0,0-14.363,0C7.628,6.524,7.186,13.2,10.222,17.249L18.359,29l8.125-11.735C29.532,13.2,29.091,6.524,25.541,2.975Zm.084,13.671L18.359,27.139,11.082,16.63a10.452,10.452,0,0,1,.845-12.906,9.1,9.1,0,0,1,12.865,0A10.456,10.456,0,0,1,25.625,16.646Z",
+    transform: "translate(0 0)",
+    fill: "#00c7c7"
+  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-6 text-left pl-0"
+  }, offer.address)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row col-12 my-3"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-6 text-right pr-2"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    className: "mr-2",
+    xmlns: "http://www.w3.org/2000/svg",
+    width: "25.033",
+    height: "26.288",
+    viewBox: "0 0 25.033 26.288"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M18.515,2.345A2.2,2.2,0,0,0,16.4.5a.447.447,0,0,0-.432.461.447.447,0,0,0,.432.461A1.343,1.343,0,0,1,17.7,2.806,1.343,1.343,0,0,1,16.4,4.19a.462.462,0,0,0,0,.922,2.2,2.2,0,0,0,2.114-1.845H24.17V7.418H.863V3.267H8.2a.447.447,0,0,0,.432-.461A.447.447,0,0,0,8.2,2.345H7.417a1.3,1.3,0,0,1,1.215-.922A1.343,1.343,0,0,1,9.927,2.806,1.343,1.343,0,0,1,8.632,4.19a.462.462,0,0,0,0,.922A2.238,2.238,0,0,0,10.79,2.806,2.238,2.238,0,0,0,8.632.5,2.2,2.2,0,0,0,6.518,2.345H0V26.788H25.033V2.345ZM24.17,25.865H.863V8.34H24.17Z",
+    transform: "translate(0 -0.5)",
+    fill: "#00c7c7"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M25.469,1.439a1.408,1.408,0,1,1,0,2.817.469.469,0,1,0,0,.939,2.347,2.347,0,1,0,0-4.695.469.469,0,1,0,0,.939Z",
+    transform: "translate(-14.319 -0.5)",
+    fill: "#00c7c7"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M31.469,1.439a1.408,1.408,0,1,1,0,2.817.469.469,0,1,0,0,.939,2.347,2.347,0,1,0,0-4.695.469.469,0,1,0,0,.939Z",
+    transform: "translate(-17.756 -0.5)",
+    fill: "#00c7c7"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.469",
+    cy: "0.469",
+    rx: "0.469",
+    ry: "0.469",
+    transform: "translate(9.035 10.6)",
+    fill: "#00c7c7"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.469",
+    cy: "0.469",
+    rx: "0.469",
+    ry: "0.469",
+    transform: "translate(12.047 10.6)",
+    fill: "#00c7c7"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.469",
+    cy: "0.469",
+    rx: "0.469",
+    ry: "0.469",
+    transform: "translate(15.059 10.6)",
+    fill: "#00c7c7"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.469",
+    cy: "0.469",
+    rx: "0.469",
+    ry: "0.469",
+    transform: "translate(18.07 10.6)",
+    fill: "#00c7c7"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.469",
+    cy: "0.469",
+    rx: "0.469",
+    ry: "0.469",
+    transform: "translate(20.807 10.6)",
+    fill: "#00c7c7"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.469",
+    cy: "0.469",
+    rx: "0.469",
+    ry: "0.469",
+    transform: "translate(3.286 14.288)",
+    fill: "#00c7c7"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.469",
+    cy: "0.469",
+    rx: "0.469",
+    ry: "0.469",
+    transform: "translate(6.023 14.288)",
+    fill: "#00c7c7"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.469",
+    cy: "0.469",
+    rx: "0.469",
+    ry: "0.469",
+    transform: "translate(9.035 14.288)",
+    fill: "#00c7c7"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.469",
+    cy: "0.469",
+    rx: "0.469",
+    ry: "0.469",
+    transform: "translate(12.047 14.288)",
+    fill: "#00c7c7"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.469",
+    cy: "0.469",
+    rx: "0.469",
+    ry: "0.469",
+    transform: "translate(15.059 14.288)",
+    fill: "#00c7c7"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.469",
+    cy: "0.469",
+    rx: "0.469",
+    ry: "0.469",
+    transform: "translate(18.07 14.288)",
+    fill: "#00c7c7"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.469",
+    cy: "0.469",
+    rx: "0.469",
+    ry: "0.469",
+    transform: "translate(20.807 14.288)",
+    fill: "#00c7c7"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.469",
+    cy: "0.469",
+    rx: "0.469",
+    ry: "0.469",
+    transform: "translate(3.286 17.514)",
+    fill: "#00c7c7"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.469",
+    cy: "0.469",
+    rx: "0.469",
+    ry: "0.469",
+    transform: "translate(6.023 17.514)",
+    fill: "#00c7c7"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.469",
+    cy: "0.469",
+    rx: "0.469",
+    ry: "0.469",
+    transform: "translate(9.035 17.514)",
+    fill: "#00c7c7"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.469",
+    cy: "0.469",
+    rx: "0.469",
+    ry: "0.469",
+    transform: "translate(12.047 17.514)",
+    fill: "#00c7c7"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.469",
+    cy: "0.469",
+    rx: "0.469",
+    ry: "0.469",
+    transform: "translate(15.059 17.514)",
+    fill: "#00c7c7"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.469",
+    cy: "0.469",
+    rx: "0.469",
+    ry: "0.469",
+    transform: "translate(18.07 17.514)",
+    fill: "#00c7c7"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.469",
+    cy: "0.469",
+    rx: "0.469",
+    ry: "0.469",
+    transform: "translate(20.807 17.514)",
+    fill: "#00c7c7"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.469",
+    cy: "0.469",
+    rx: "0.469",
+    ry: "0.469",
+    transform: "translate(3.286 21.124)",
+    fill: "#00c7c7"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.469",
+    cy: "0.469",
+    rx: "0.469",
+    ry: "0.469",
+    transform: "translate(6.023 21.124)",
+    fill: "#00c7c7"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.469",
+    cy: "0.469",
+    rx: "0.469",
+    ry: "0.469",
+    transform: "translate(9.035 21.124)",
+    fill: "#00c7c7"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.469",
+    cy: "0.469",
+    rx: "0.469",
+    ry: "0.469",
+    transform: "translate(12.047 21.124)",
+    fill: "#00c7c7"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ellipse", {
+    cx: "0.469",
+    cy: "0.469",
+    rx: "0.469",
+    ry: "0.469",
+    transform: "translate(15.059 21.124)",
+    fill: "#00c7c7"
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-6 text-left pl-0"
+  }, date.getDay() + "." + date.getMonth() + "." + date.getFullYear())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row col-12 my-3"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-6 text-right pr-2"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    className: "mr-2",
+    xmlns: "http://www.w3.org/2000/svg",
+    width: "25.771",
+    height: "27.605",
+    viewBox: "0 0 25.771 27.605"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
+    transform: "translate(-17.007)"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
+    transform: "translate(17.007)"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M42.134,19.25,36.408,8.167a4.615,4.615,0,0,1-.226-.589.458.458,0,0,0,.054-.216v-2.3a.46.46,0,0,0-.23-.4,4.517,4.517,0,0,1,.2-.6A2.715,2.715,0,0,1,36.875,3a1.67,1.67,0,0,0,.752-1.88A1.875,1.875,0,0,0,35.833,0a2.192,2.192,0,0,0-1.45.547,2.2,2.2,0,0,0-2.914.012A2.611,2.611,0,0,0,29.882,0a2.852,2.852,0,0,0-1.656.562A2.2,2.2,0,0,0,25.308.547,2.239,2.239,0,0,0,23.823,0h0a1.8,1.8,0,0,0-1.687,1.168,1.646,1.646,0,0,0,.69,1.838,2.757,2.757,0,0,1,.657,1.059,4.529,4.529,0,0,1,.2.591.46.46,0,0,0-.242.405v2.3a.457.457,0,0,0,.063.232,4.5,4.5,0,0,1-.216.563L17.669,19.032a5.876,5.876,0,0,0,5.22,8.573H37.046a5.727,5.727,0,0,0,5.088-8.355ZM24.361,6.9V5.521H35.316V6.9Zm-.975-4.625c-.333-.256-.467-.547-.377-.819A.89.89,0,0,1,23.857.92a1.279,1.279,0,0,1,1.067.575.478.478,0,0,0,.767,0,1.277,1.277,0,0,1,2.133,0,.478.478,0,0,0,.767,0A1.725,1.725,0,0,1,29.882.92a1.578,1.578,0,0,1,1.216.575.478.478,0,0,0,.767,0,1.277,1.277,0,0,1,2.133,0,.478.478,0,0,0,.767,0A1.287,1.287,0,0,1,35.853.92h0a.967.967,0,0,1,.9.5c.115.332-.241.685-.463.865a3.5,3.5,0,0,0-.938,1.43,5.349,5.349,0,0,0-.282.887H24.615a5.3,5.3,0,0,0-.282-.887A3.474,3.474,0,0,0,23.385,2.276Zm17.765,22.1a4.772,4.772,0,0,1-4.105,2.307H22.889a4.955,4.955,0,0,1-4.4-7.23L24.11,8.569a5.577,5.577,0,0,0,.287-.747h4.149A5.23,5.23,0,0,0,26.661,11.5a.46.46,0,1,0,.92,0,4.743,4.743,0,0,1,1.994-3.349c.321,1.285,1.24,3.81,3.51,3.81h.021a.46.46,0,0,0,0-.92h-.017c-1.678,0-2.4-2.189-2.642-3.221h4.85a5.693,5.693,0,0,0,.291.757l5.731,11.094A4.771,4.771,0,0,1,41.151,24.378Z",
+    transform: "translate(-17.007 0)",
+    fill: "#00c7c7"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M199.744,259.221a.46.46,0,0,0,.92,0,2.3,2.3,0,0,0-1.84-2.254v-.506a.46.46,0,0,0-.92,0v.506a2.3,2.3,0,0,0,0,4.508V264.2a1.383,1.383,0,0,1-.92-1.3.46.46,0,0,0-.92,0,2.3,2.3,0,0,0,1.84,2.254v.506a.46.46,0,1,0,.92,0v-.506a2.3,2.3,0,0,0,0-4.508v-2.728A1.383,1.383,0,0,1,199.744,259.221Zm-2.761,0a1.383,1.383,0,0,1,.92-1.3v2.6A1.383,1.383,0,0,1,196.983,259.221Zm2.761,3.681a1.383,1.383,0,0,1-.92,1.3v-2.6A1.383,1.383,0,0,1,199.744,262.9Z",
+    transform: "translate(-186.409 -242.197)",
+    fill: "#00c7c7"
+  }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-6 text-left pl-0"
+  }, offer.salary))))))))));
+};
+
+/***/ }),
+
+/***/ "./resources/js/components/Offer/SubComponents/Tags.js":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/Offer/SubComponents/Tags.js ***!
+  \*************************************************************/
+/*! exports provided: Tags */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Tags", function() { return Tags; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+var Tags = function Tags(_ref) {
+  var _React$createElement;
+
+  var _ref$addTags = _ref.addTags,
+      addTags = _ref$addTags === void 0 ? function (f) {
+    return f;
+  } : _ref$addTags,
+      list = _ref.list;
+  var ENTER_KEY = 13;
+  var COMMA_KEY = 188;
+  var BACKSPACE_KEY = 8;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      tags = _useState2[0],
+      setTags = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState4 = _slicedToArray(_useState3, 2),
+      value = _useState4[0],
+      setValue = _useState4[1];
+
+  var handleChange = function handleChange(e) {
+    return setValue(e.target.value);
+  };
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    setTags(list);
+  }, [list]);
+
+  var handleKeyUp = function handleKeyUp(e) {
+    var key = e.keyCode;
+
+    if (key === ENTER_KEY || key === COMMA_KEY) {
+      addTag();
+    }
+  };
+
+  var handleKeyDown = function handleKeyDown(e) {
+    var key = e.keyCode;
+
+    if (key === BACKSPACE_KEY && !value) {
+      editPrevTag();
+    }
+  };
+
+  var addTag = function addTag() {
+    var valuex = value;
+    var tag = valuex.trim();
+    tag = tag.replace(/,/g, "");
+
+    if (!tag) {
+      return;
+    }
+
+    addTags([].concat(_toConsumableArray(tags), [tag]));
+    setTags([].concat(_toConsumableArray(tags), [tag]));
+    setValue('');
+  };
+
+  var editPrevTag = function editPrevTag() {
+    var tagx = tags;
+    var tag = tagx.pop();
+    addTags(tagx);
+    setTags(tagx);
+    setValue(tag);
+  };
+
+  if (tags == undefined) {
+    return "loading";
+  }
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "ml-4 tags col-11  my-2 my-xl-0 mx-0 px-0"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "input px-3 row align-items-start col-12",
+    style: {
+      height: "auto"
+    }
+  }, tags.map(function (tag, i) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "col-auto input-tag text-capitalize mt-1 px-2 shadow mx-2"
+    }, tag);
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", (_React$createElement = {
+    className: "",
+    type: "text",
+    placeholder: "Pridajte tagy\u2026 napr\xEDklad : z\xE1hrada, Nemecko, les",
+    style: {
+      width: "100%"
+    },
+    value: value,
+    onChange: function onChange(e) {
+      return handleChange(e);
+    }
+  }, _defineProperty(_React$createElement, "className", "tag-input"), _defineProperty(_React$createElement, "onKeyUp", function onKeyUp(e) {
+    return handleKeyUp(e);
+  }), _defineProperty(_React$createElement, "onKeyDown", function onKeyDown(e) {
+    return handleKeyDown(e);
+  }), _React$createElement))));
+};
 
 /***/ }),
 
@@ -71139,8 +71137,8 @@ var Loader = function Loader() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Mamuss\PhpstormProjects\tyzdnovky.sk\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Mamuss\PhpstormProjects\tyzdnovky.sk\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Jakub\Desktop\tyzdnovky.sk\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Jakub\Desktop\tyzdnovky.sk\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

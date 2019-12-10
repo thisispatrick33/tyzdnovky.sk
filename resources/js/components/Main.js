@@ -18,22 +18,22 @@ const config = {
 const Main = () => {
 
     const [authState, setAuthState] = useState({isLoggedIn : false, user : {}});
-    const [ad, setAd] = useState(null);
-    const [ads, setAds] = useState([]);
+    const [offer, setOffer] = useState(null);
+    const [offers, setOffers] = useState([]);
     const [additional, setAdditional] = useState(null);
     const [messages, setMessages] = useState([]);
     const [branches, setBranches] = useState(null);
 
     useEffect(() => {
             config.headers['X-localization'] = "SK";
-            let { appState, ads, branches} = localStorage;
+            let { appState, offers, branches} = localStorage;
             console.log(branches);
             if(appState ? JSON.parse(appState).isLoggedIn : false){
                 setAuthState(JSON.parse(appState));
                 JSON.parse(appState).user.active === 0 ? _additional() : null;
                 navigate(`/home`);
                 config.headers['Authorization'] =  'Bearer '+JSON.parse(appState).user.auth_token;
-                (ads === undefined || JSON.parse(ads).length !== _getData('/api/size-ads')) ? _getAds() : setAds(JSON.parse(ads));
+                (offers === undefined || JSON.parse(offers).length !== _getData('/api/size-offers')) ? _getOffers() : setOffers(JSON.parse(offers));
             }
             if(branches === undefined || JSON.parse(branches).length !== _getData('/api/size-branches')){
                 _getData('/api/branches').then(({data}) => {localStorage["branches"] = JSON.stringify(data)});
@@ -135,15 +135,15 @@ const Main = () => {
 
     const _additional = async () => _getData('/api/register-additional').then(({data}) => setAdditional(data));
 
-    const _createAd = data => _postData(`/api/advertisement`, data);
+    const _createOffer = data => _postData(`/api/advertisement`, data);
 
-    const _updateAd = data => axios.put(`/api/advertisement`, data ,config);
+    const _updateOffer = data => axios.put(`/api/advertisement`, data ,config);
 
-    const _viewAd = async id => _getData('api/advertisement/'+id).then(({data}) => setAd(data));
+    const _viewOffer = async id => _getData('api/advertisement/'+id).then(({data}) => setOffer(data));
 
-    const _closeAd = async () =>  setAd(null);
+    const _closeOffer = async () =>  setOffer(null);
 
-    const _getAds = async () => _getData('api/advertisement').then(({data}) => { setAds(data); localStorage["ads"] = JSON.stringify(data) });
+    const _getOffers = async () => _getData('api/advertisement').then(({data}) => { setOffers(data); localStorage["offers"] = JSON.stringify(data) });
 
 
 
@@ -152,13 +152,13 @@ const Main = () => {
                 <Authentication path={`/`} authenticate={_authentication} forgotten={_forgottenPassword} message={messages}/>
                 <PasswordReset path={'/reset-password'} reset={_resetPassword}/>
                 <Home path={`/home`}
-                      viewAd={_viewAd}
-                      createAd={_createAd}
-                      updateAd={_updateAd}
-                      closeAd={_closeAd}
+                      viewOffer={_viewOffer}
+                      createOffer={_createOffer}
+                      updateOffer={_updateOffer}
+                      closeOffer={_closeOffer}
                       user={authState.user}
-                      ads={ads}
-                      ad={ad}
+                      offers={offers}
+                      offer={offer}
                       additional={additional}
                       updateProfile={_updateProfile}
                       signOut={_logoutUser}

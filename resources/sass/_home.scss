@@ -1,4 +1,19 @@
 .home{
+
+    .slick-arrow{
+        transform: scale(5);
+    }
+    @media (max-width: $break-m){
+        .slick-arrow{
+            transform: scale(3);
+        }
+        .slick-next{
+            right: 18px;
+        }
+        .slick-prev{
+            left: 18px;
+        }
+    }
     .content{
         @media (max-width: $break-m){
             border-radius: 0!important;
@@ -16,6 +31,9 @@
         .work-option{
             .content{
                 height: auto;
+                @media (max-width: $break-m){
+                    border-radius: 27px!important;
+                }
             }
         }
         .work-option-image-wrapper{

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Tags} from './SubComponents/Tags';
 import {Loader} from "../Others/Loader";
 
-export const Advertisement = ({data, edit, createAd = f => f, user, updateAd = f => f, closeAd}) => {
+export const Offer = ({data, edit, createOffer = f => f, user, updateOffer = f => f, closeOffer}) => {
     const [offer , setOffer] = useState(data);
     const [tags, setTags] = useState([]);
     const [brancheType, setBrancheType] = useState(edit ? (JSON.parse(localStorage.branches)[0].free_time === 0 ? true : false) : true);
@@ -34,7 +34,7 @@ export const Advertisement = ({data, edit, createAd = f => f, user, updateAd = f
                             </div>
                             <div className={"col-12 col-lg-2  h10 order-1 order-lg-2"}>
                                 <div className={"cross float-right"}>
-                                    <svg onClick={closeAd} className="ml-3" style={{transform:"scale(.8)"}} width="42" height="42" viewBox="0 0 42 42"><path d="M42,2.467,23.467,21,42,39.534,39.533,42,21,23.468,2.467,42,0,39.534,18.533,21,0,2.467,2.467,0,21,18.534,39.533,0Z" transform="translate(0 -0.001)" fill="#2c393f"/></svg>
+                                    <svg onClick={closeOffer} className="ml-3" style={{transform:"scale(.8)"}} width="42" height="42" viewBox="0 0 42 42"><path d="M42,2.467,23.467,21,42,39.534,39.533,42,21,23.468,2.467,42,0,39.534,18.533,21,0,2.467,2.467,0,21,18.534,39.533,0Z" transform="translate(0 -0.001)" fill="#2c393f"/></svg>
                                 </div>
                             </div>
 

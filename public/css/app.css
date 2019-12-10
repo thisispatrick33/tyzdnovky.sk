@@ -11415,6 +11415,24 @@ hr {
   background: white;
 }
 
+.home .slick-arrow {
+  transform: scale(5);
+}
+
+@media (max-width: 768px) {
+  .home .slick-arrow {
+    transform: scale(3);
+  }
+
+  .home .slick-next {
+    right: 18px;
+  }
+
+  .home .slick-prev {
+    left: 18px;
+  }
+}
+
 @media (max-width: 768px) {
   .home .content {
     border-radius: 0 !important;
@@ -11434,6 +11452,12 @@ hr {
 
 .home .work-options .work-option .content {
   height: auto;
+}
+
+@media (max-width: 768px) {
+  .home .work-options .work-option .content {
+    border-radius: 27px !important;
+  }
 }
 
 .home .work-options .work-option-image-wrapper {
