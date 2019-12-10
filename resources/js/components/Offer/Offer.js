@@ -97,7 +97,7 @@ export const Offer = ({data, edit, createOffer = f => f, user, updateOffer = f =
                                 <div className="col-xl-3 col-lg-6 pr-3">
                                     <div className={"border-r pt-2 justify-content-center row branches"}>
                                         <div className="branch py-2  mt-1 mb-5 px-4 shadow col-11 col-lg-8 col-xl-11 text-uppercase ml-4 ml-lg-0">
-                                            <span className={`float-left  bold  ${brancheType ? `colorful-text` : ``}`} onClick={()=>setBrancheType(true)}>
+                                            <span className={`float-left  bold  ${brancheType ? `colorful-text` : ``}`} onClick={()=>changeType(true)}>
                                                 fulltime
                                             </span>
                                             <span className={`float-right  bold  ${brancheType ? `` : `colorful-text` }`} onClick={()=>changeType(false)}>
@@ -109,8 +109,8 @@ export const Offer = ({data, edit, createOffer = f => f, user, updateOffer = f =
                                                 JSON.parse(localStorage.branches).map(({id, name, free_time}) => {
                                                     if((brancheType && free_time === 0) || (!brancheType && free_time === 1)){
                                                         return(
-                                                            <div className="branch py-2 mx-3 mt-1 mb-3 px-4 shadow col-lg-10 col-auto">
-                                                        <span className="colorful-text">
+                                                            <div className={`py-2 mx-3 mt-1 mb-3 px-4 shadow col-lg-10 col-auto ${branches.includes(id) ? `submit-button sign-in-button` : `branch`}`} onClick={() =>handleWork(id)}>
+                                                        <span className={`${branches.includes(id) ? `` : `colorful-text`}`}>
                                                             {name}
                                                         </span>
                                                             </div>

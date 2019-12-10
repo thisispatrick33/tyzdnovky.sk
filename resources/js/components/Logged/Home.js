@@ -10,7 +10,7 @@ import {OfferLookup} from "../Offer/OfferLookup";
 import {OfferView} from "../Offer/OfferView";
 import {Loader} from "../Others/Loader";
 
-export const Home =({ additional, offers, offer, user, updateProfile = f => f, createOffer = f => f, updateOffer = f => f, viewOffers = f => f, closeOffer = f => f, signOut }) => {
+export const Home =({ additional, offers, offer, user, updateProfile = f => f, createOffer = f => f, updateOffer = f => f, viewOffer = f => f, closeOffer = f => f, signOut }) => {
 
     const settings = {
         dots: false,
@@ -48,13 +48,11 @@ export const Home =({ additional, offers, offer, user, updateProfile = f => f, c
     const [form, setForm] = useState({open : false, control : false, edit : false});
 
     const handleChange = data => updateProfile(data);
-
     const handleCreate = data => createOffer(data);
-    const handleEdit = id => { viewOffers(id); setForm({open : true, control : true, edit : true}); };
+    const handleEdit = id => { viewOffer(id); setForm({open : true, control : true, edit : true}); };
     const handleUpdate = data => updateOffer(data);
-    const handleView = id => { viewOffers(id); setForm({open : true, control : false, edit : false}); };
+    const handleView = id => { viewOffer(id); setForm({open : true, control : false, edit : false}); };
     const handleClose = () => closeOffer();
-
 
     if(user !== undefined){
         if(offers[0] === undefined){

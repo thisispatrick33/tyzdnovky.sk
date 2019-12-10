@@ -69426,10 +69426,10 @@ var Home = function Home(_ref) {
       updateOffer = _ref$updateOffer === void 0 ? function (f) {
     return f;
   } : _ref$updateOffer,
-      _ref$viewOffers = _ref.viewOffers,
-      viewOffers = _ref$viewOffers === void 0 ? function (f) {
+      _ref$viewOffer = _ref.viewOffer,
+      viewOffer = _ref$viewOffer === void 0 ? function (f) {
     return f;
-  } : _ref$viewOffers,
+  } : _ref$viewOffer,
       _ref$closeOffer = _ref.closeOffer,
       closeOffer = _ref$closeOffer === void 0 ? function (f) {
     return f;
@@ -69481,7 +69481,7 @@ var Home = function Home(_ref) {
   };
 
   var handleEdit = function handleEdit(id) {
-    viewOffers(id);
+    viewOffer(id);
     setForm({
       open: true,
       control: true,
@@ -69494,7 +69494,7 @@ var Home = function Home(_ref) {
   };
 
   var handleView = function handleView(id) {
-    viewOffers(id);
+    viewOffer(id);
     setForm({
       open: true,
       control: false,
@@ -70400,7 +70400,7 @@ var Offer = function Offer(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "float-left  bold  ".concat(brancheType ? "colorful-text" : ""),
     onClick: function onClick() {
-      return setBrancheType(true);
+      return changeType(true);
     }
   }, "fulltime"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "float-right  bold  ".concat(brancheType ? "" : "colorful-text"),
@@ -70416,9 +70416,12 @@ var Offer = function Offer(_ref) {
 
     if (brancheType && free_time === 0 || !brancheType && free_time === 1) {
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "branch py-2 mx-3 mt-1 mb-3 px-4 shadow col-lg-10 col-auto"
+        className: "py-2 mx-3 mt-1 mb-3 px-4 shadow col-lg-10 col-auto ".concat(branches.includes(id) ? "submit-button sign-in-button" : "branch"),
+        onClick: function onClick() {
+          return handleWork(id);
+        }
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-        className: "colorful-text"
+        className: "".concat(branches.includes(id) ? "" : "colorful-text")
       }, name));
     }
   })))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -70563,7 +70566,7 @@ var OfferLookup = function OfferLookup(_ref) {
   }, (today.getTime() - new Date(created_at.substring(0, created_at.indexOf('T'))).getTime()) / (1000 * 3600 * 24) <= 3 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-center work-option-new"
   }, " NEW!") : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-    className: "col-11 p-0 work-option-title text-center mt-4 mb-2 text-uppercase"
+    className: "col-8 col-md-6 p-0 work-option-title text-center mt-4 mb-2 text-uppercase"
   }, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "work-option-description col-11 text-center"
   }, description.substring(0, 74), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
@@ -70792,7 +70795,7 @@ var OfferView = function OfferView(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container-fluid row justify-content-center m-0 p-0"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "offer-info-box col-11 m-0 p-0 mt-5 shadow row"
+    className: "offer-info-box col-12 col-md-11 m-0 p-0 mt-5 shadow row"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-3  p-0 d-none d-lg-block"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -70801,9 +70804,13 @@ var OfferView = function OfferView(_ref) {
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-12 col-lg-9 row justify-content-center pb-0"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-12 row justify-content-center py-5"
+    className: "col-12 row justify-content-center py-5 new-box"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-12 col-sm-8 order-2 order-sm-1"
+    className: "text-center offer-info-new"
+  }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "align-middle"
+  }, "NEW!"), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12 col-sm-8 order-2 order-sm-1 "
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
     className: "offer-info-title text-center"
   }, offer.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

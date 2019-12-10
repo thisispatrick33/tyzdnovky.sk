@@ -11494,12 +11494,19 @@ hr {
   color: #FFFFFF;
   border-radius: 50%;
   position: absolute;
-  top: -5%;
-  right: calc(-30% - 1em);
+  top: 3%;
+  right: -1.5em;
+}
+
+@media (max-width: 1100px) {
+  .home .work-options .work-option-content .work-option-new {
+    right: -1em;
+  }
 }
 
 .home .work-options .work-option-content .work-option-title {
   font-size: 0.95em;
+  word-break: break-word;
 }
 
 .home .work-options .work-option-content .work-option-description {
@@ -11538,6 +11545,45 @@ hr {
   font-family: "Montserrat";
   color: #2C393F;
   display: block;
+}
+
+@media (max-width: 768px) {
+  .home .offer-info-wrapper .offer-info-box {
+    width: 100vw;
+    border-radius: 0 !important;
+    margin: 0 !important;
+  }
+}
+
+.home .offer-info-wrapper .offer-info-new {
+  width: 4em;
+  height: 4em;
+  padding: 1.2em 0;
+  font-size: 1.2em;
+  font-weight: 500;
+  background: #00C7C7;
+  color: #FFFFFF;
+  border-radius: 50%;
+  position: absolute;
+  top: -2em;
+  left: -2em;
+}
+
+@media (max-width: 992px) {
+  .home .offer-info-wrapper .offer-info-new {
+    top: -1.5em;
+    left: 65%;
+  }
+}
+
+@media (max-width: 768px) {
+  .home .offer-info-wrapper .offer-info-new {
+    display: none;
+  }
+}
+
+.home .offer-info-wrapper .new-box {
+  position: relative;
 }
 
 .home .offer-info-wrapper .offer-info-box {
