@@ -38,7 +38,6 @@ const Main = () => {
             if(branches === undefined || JSON.parse(branches).length !== _getData('/api/size-branches')){
                 _getData('/api/branches').then(({data}) => {localStorage["branches"] = JSON.stringify(data)});
             }
-            //_getData('/api/size-branches')
     },[]);
 
     const _disableForm = control => {
@@ -135,7 +134,7 @@ const Main = () => {
 
     const _additional = async () => _getData('/api/register-additional').then(({data}) => setAdditional(data));
 
-    const _createOffer = data => _postData(`/api/advertisement`, data);
+    const _createOffer = data => _postData(`/api/advertisement`, data).then((response)=>{console.log(response);});
 
     const _updateOffer = data => axios.put(`/api/advertisement`, data ,config);
 

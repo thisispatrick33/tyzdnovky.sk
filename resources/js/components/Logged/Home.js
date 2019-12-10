@@ -67,7 +67,7 @@ export const Home =({ additional, offers, offer, user, updateProfile = f => f, c
                     form.open && !form.control ? <OfferView offer={offer} close={() => setForm({open : false, control : false, edit : false})} /> : null
                 }
                 {
-                    form.open && form.control ? <Offer edit={form.edit} user={user} createOffers={handleCreate} updateOffers={handleUpdate} closeOffers={() => setForm(false)} data={offer}/> : ""
+                    form.open && form.control ? <Offer edit={form.edit} user={user} createOffer={handleCreate} updateOffer={handleUpdate} closeOffer={() => setForm(false)} data={offer}/> : ""
                 }
                 <div className="content col-12 col-md-11 row justify-content-center pt-5 mb-2">
                     <div className="header col-11 row justify-content-between">
@@ -147,7 +147,7 @@ export const Home =({ additional, offers, offer, user, updateProfile = f => f, c
 const NextArrow = props => {
     const { className, style, onClick } = props;
     return <svg className={className}  style={{ ...style, display: "block"}} onClick={onClick} width="112.756" height="76.79" viewBox="0 0 112.756 76.79"><defs><filter id="a" x="0" y="0" width="112.756" height="76.79" filterUnits="userSpaceOnUse"><feOffset dy="3" input="SourceAlpha"/><feGaussianBlur stdDeviation="3" result="b"/><feFlood flood-opacity="0.161"/><feComposite operator="in" in2="b"/><feComposite in="SourceGraphic"/></filter></defs><g transform="translate(103.756 140.704) rotate(180)"><g transform="matrix(-1, 0, 0, -1, 103.76, 140.7)" filter="url(#a)"><path d="M90.654,101.207H14l18.29-18.291a4.1,4.1,0,0,0-5.8-5.8L1.2,102.408a4.1,4.1,0,0,0,0,5.8L26.494,133.5a4.1,4.1,0,1,0,5.8-5.8L14,109.41h76.65a4.1,4.1,0,1,0,0-8.2Z" transform="translate(103.76 140.7) rotate(180)" fill="#2c393f"/></g></g></svg>
-}
+};
 
 const PreviousArrow = props => {
     const { className, style, onClick } = props;

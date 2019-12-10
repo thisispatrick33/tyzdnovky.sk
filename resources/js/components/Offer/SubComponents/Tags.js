@@ -28,18 +28,21 @@ export const Tags = ({addTags = f => f, list}) => {
     };
 
     const addTag = () => {
-        let valuex = value;
+        if(tags.length < 10){
+            let valuex = value;
 
-        let tag = valuex.trim();
+            let tag = valuex.trim();
 
-        tag = tag.replace(/,/g, "");
+            tag = tag.replace(/,/g, "");
 
-        if (!tag) {
-            return;
+            if (!tag) {
+                return;
+            }
+            addTags([...tags, tag]);
+            setTags([...tags, tag]);
+            setValue('');
         }
-        addTags([...tags, tag]);
-        setTags([...tags, tag]);
-        setValue('');
+
     };
 
     const editPrevTag = () => {
