@@ -10,7 +10,7 @@ import {OfferLookup} from "../Offer/OfferLookup";
 import {OfferView} from "../Offer/OfferView";
 import {Loader} from "../Others/Loader";
 
-export const Home =({ additional, offers, offer, user, updateProfile = f => f, createOffer = f => f, updateOffer = f => f, viewOffer = f => f, closeOffer = f => f, signOut }) => {
+export const Home =({ additional, offers, offer, user, updateProfile = f => f, createOffer = f => f, updateOffer = f => f, viewOffer = f => f, closeOffer = f => f, signOut, clearOffer }) => {
 
     const settings = {
         dots: false,
@@ -54,6 +54,11 @@ export const Home =({ additional, offers, offer, user, updateProfile = f => f, c
     const handleView = id => { viewOffer(id); setForm({open : true, control : false, edit : false}); };
     const handleClose = () => closeOffer();
 
+    const closeLookup = () =>{
+        setForm({open : false, control : false, edit : false});
+        clearOffer();
+    };
+
     if(user !== undefined){
         if(offers[0] === undefined){
             return <Loader />;
@@ -64,10 +69,10 @@ export const Home =({ additional, offers, offer, user, updateProfile = f => f, c
                     user.active === 0 ? <Additional user={user} data={additional} func={handleChange}/> : ``
                 }
                 {
-                    form.open && !form.control ? <OfferView offer={offer} close={() => setForm({open : false, control : false, edit : false})} /> : null
+                    form.open && !form.control ? <OfferView offer={offer} close={closeLookup} /> : null
                 }
                 {
-                    form.open && form.control ? <Offer edit={form.edit} user={user} createOffer={handleCreate} updateOffer={handleUpdate} closeOffer={() => setForm(false)} data={offer}/> : ""
+                    form.open && form.control ? <Offer edit={form.edit} user={user} createOffer={handleCreate} updateOffer={handleUpdate} closeOffer={() => setForm(false)} data={offer} clearOffer={clearOffer}/> : ""
                 }
                 <div className="content col-12 col-md-11 row justify-content-center pt-5 mb-2">
                     <div className="header col-11 row justify-content-between">

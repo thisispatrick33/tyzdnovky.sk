@@ -159,6 +159,7 @@ const Main = () => {
                       additional={additional}
                       updateProfile={_updateProfile}
                       signOut={_logoutUser}
+                      clearOffer={()=>setOffer(null)}
                 />
             </Router>
     );

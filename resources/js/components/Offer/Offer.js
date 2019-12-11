@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Tags} from './SubComponents/Tags';
 import {Loader} from "../Others/Loader";
 
-export const Offer = ({data, edit, createOffer = f => f, user, updateOffer = f => f, closeOffer}) => {
+export const Offer = ({data, edit, createOffer = f => f, user, updateOffer = f => f, closeOffer, clearOffer}) => {
     const [offer , setOffer] = useState(data);
     const [tags, setTags] = useState([]);
     const [branches, setBranches] = useState([]);
@@ -25,23 +25,28 @@ export const Offer = ({data, edit, createOffer = f => f, user, updateOffer = f =
         }
     }, [data]);
 
+    const close = () =>{
+        closeOffer();
+        clearOffer();
+    };
+
     const submit = async () => {
        console.log(offer);
        console.log(tags);
        console.log(branches);
        if(edit){
            if(await updateOffer({...offer, branches: branches, tags: tags})){
-               closeOffer();
+               close();
            }
        }else {
             if(user.type === "user"){
                 if(await createOffer({...offer, branches: branches, user_id: user.id, tags: tags})){
-                    closeOffer();
+                    close();
                 }
             }
             else {
                 if(await createOffer({...offer, branches: branches, business_id: user.id, tags: tags})){
-                    closeOffer();
+                    close();
                 }
             }
        }
@@ -89,7 +94,7 @@ export const Offer = ({data, edit, createOffer = f => f, user, updateOffer = f =
                             </div>
                             <div className={"col-12 col-lg-2  h10 order-1 order-lg-2"}>
                                 <div className={"cross float-right"}>
-                                    <svg onClick={closeOffer} className="ml-3" style={{transform:"scale(.8)"}} width="42" height="42" viewBox="0 0 42 42"><path d="M42,2.467,23.467,21,42,39.534,39.533,42,21,23.468,2.467,42,0,39.534,18.533,21,0,2.467,2.467,0,21,18.534,39.533,0Z" transform="translate(0 -0.001)" fill="#2c393f"/></svg>
+                                    <svg onClick={close} className="ml-3" style={{transform:"scale(.8)"}} width="42" height="42" viewBox="0 0 42 42"><path d="M42,2.467,23.467,21,42,39.534,39.533,42,21,23.468,2.467,42,0,39.534,18.533,21,0,2.467,2.467,0,21,18.534,39.533,0Z" transform="translate(0 -0.001)" fill="#2c393f"/></svg>
                                 </div>
                             </div>
 

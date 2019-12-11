@@ -69434,7 +69434,8 @@ var Home = function Home(_ref) {
       closeOffer = _ref$closeOffer === void 0 ? function (f) {
     return f;
   } : _ref$closeOffer,
-      signOut = _ref.signOut;
+      signOut = _ref.signOut,
+      clearOffer = _ref.clearOffer;
   var settings = {
     dots: false,
     arrows: true,
@@ -69506,6 +69507,15 @@ var Home = function Home(_ref) {
     return closeOffer();
   };
 
+  var closeLookup = function closeLookup() {
+    setForm({
+      open: false,
+      control: false,
+      edit: false
+    });
+    clearOffer();
+  };
+
   if (user !== undefined) {
     if (offers[0] === undefined) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Others_Loader__WEBPACK_IMPORTED_MODULE_9__["Loader"], null);
@@ -69519,13 +69529,7 @@ var Home = function Home(_ref) {
       func: handleChange
     }) : "", form.open && !form.control ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Offer_OfferView__WEBPACK_IMPORTED_MODULE_8__["OfferView"], {
       offer: offer,
-      close: function close() {
-        return setForm({
-          open: false,
-          control: false,
-          edit: false
-        });
-      }
+      close: closeLookup
     }) : null, form.open && form.control ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Offer_Offer__WEBPACK_IMPORTED_MODULE_6__["Offer"], {
       edit: form.edit,
       user: user,
@@ -69534,7 +69538,8 @@ var Home = function Home(_ref) {
       closeOffer: function closeOffer() {
         return setForm(false);
       },
-      data: offer
+      data: offer,
+      clearOffer: clearOffer
     }) : "", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "content col-12 col-md-11 row justify-content-center pt-5 mb-2"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -70119,7 +70124,10 @@ var Main = function Main() {
     offer: offer,
     additional: additional,
     updateProfile: _updateProfile,
-    signOut: _logoutUser
+    signOut: _logoutUser,
+    clearOffer: function clearOffer() {
+      return setOffer(null);
+    }
   }));
 };
 
@@ -70188,7 +70196,8 @@ var Offer = function Offer(_ref) {
       updateOffer = _ref$updateOffer === void 0 ? function (f) {
     return f;
   } : _ref$updateOffer,
-      closeOffer = _ref.closeOffer;
+      closeOffer = _ref.closeOffer,
+      clearOffer = _ref.clearOffer;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(data),
       _useState2 = _slicedToArray(_useState, 2),
@@ -70229,6 +70238,11 @@ var Offer = function Offer(_ref) {
     }
   }, [data]);
 
+  var close = function close() {
+    closeOffer();
+    clearOffer();
+  };
+
   var submit =
   /*#__PURE__*/
   function () {
@@ -70260,7 +70274,7 @@ var Offer = function Offer(_ref) {
                 break;
               }
 
-              closeOffer();
+              close();
 
             case 8:
               _context.next = 21;
@@ -70285,7 +70299,7 @@ var Offer = function Offer(_ref) {
                 break;
               }
 
-              closeOffer();
+              close();
 
             case 15:
               _context.next = 21;
@@ -70305,7 +70319,7 @@ var Offer = function Offer(_ref) {
                 break;
               }
 
-              closeOffer();
+              close();
 
             case 21:
             case "end":
@@ -70377,7 +70391,7 @@ var Offer = function Offer(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "cross float-right"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
-    onClick: closeOffer,
+    onClick: close,
     className: "ml-3",
     style: {
       transform: "scale(.8)"
