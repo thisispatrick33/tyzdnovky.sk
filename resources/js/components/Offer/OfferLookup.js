@@ -16,7 +16,7 @@ export const OfferLookup = ({id, title, description, address, date, created_at, 
                     {
                         ((today.getTime() - (new Date(created_at.substring(0, created_at.indexOf('T'))).getTime()))/ (1000 * 3600 * 24)) <=3 ? <div className="text-center work-option-new"> NEW!</div> : null
                     }
-                    <h5 className="col-8 col-md-6 p-0 work-option-title text-center mt-4 mb-2 text-uppercase">{title}</h5>
+                    <h5 className="col-9 p-0 work-option-title text-center mt-4 mb-2 text-uppercase">{title}</h5>
                     <p className="work-option-description col-11 text-center">
                         {description.substring(0, 74)}
                         <a className="colorful-text" onClick={() => view(id)}>... Zisti viac.</a>

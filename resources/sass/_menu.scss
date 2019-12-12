@@ -1,0 +1,89 @@
+.menu-wrapper{
+    height: 100vh;
+    max-height: 100vh;
+    width:24%;
+    position: fixed;
+    z-index: 2;
+    font-family: 'Krub', sans-serif;
+    background: #fff;
+    font-weight: 300;
+    color: $secondary-color;
+    @media(max-width: 1200px){
+        width: 34%;
+    }
+    @media(max-width: 860px){
+        width: 44%;
+    }
+    @media(max-width: 670px){
+        width: 64%;
+    }
+    @media(max-width: 520px){
+        width: 80%;
+    }
+    .profile-box{
+        font-size: 1.72em;
+        @media (max-height: 750px){
+            font-size: 1.3em;
+        }
+        div{
+            max-width: 66.66%;
+            @media (max-height: 750px){
+                display:inline-block;
+                padding-left: 1rem;
+            }
+            .profile-pic{
+                width: 6em;
+                height: 6em;
+                object-fit: cover;
+                border-radius: 50%;
+                @media (max-width: $break-m) and (min-height: 751px) {
+                    width:4.5em;
+                    height: 4.5em;
+                }
+                @media (max-width: $break-s) and (min-height: 751px) {
+                    width:3em;
+                    height: 3em;
+                }
+                
+                @media (max-height: 750px){
+                        width: 2em;
+                        height: 2em;
+                        margin-left: 1em;
+                }
+            }
+        }
+        span{
+            @media (max-height: 750px){
+                display: inline-block;
+                margin-top: 2rem;
+                text-align: left;
+            }
+            strong{
+                font-weight: 500;
+            }
+        }
+    }
+    .menu-options{
+        font-size: 1.28em;
+        .menu-option{
+            border-bottom: 1px solid $secondary-color ;
+            svg{
+                height: 1em;
+            }
+        }
+        .active{
+            color: $primary-color;
+            border-bottom-color: $primary-color;
+        }
+    }
+    .settings-box{
+        font-size: 1.1em;
+        max-height: 1.6em;
+        svg{
+            height: 1.4em;
+        }
+        .border-r{
+            border-right: 1px solid $silver;
+        }
+    }
+}

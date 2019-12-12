@@ -11853,6 +11853,35 @@ hr {
   border-radius: 29px;
 }
 
+.push-home {
+  position: relative;
+  left: 22%;
+}
+
+@media (max-width: 1200px) {
+  .push-home {
+    left: 32%;
+  }
+}
+
+@media (max-width: 860px) {
+  .push-home {
+    left: 40%;
+  }
+}
+
+@media (max-width: 670px) {
+  .push-home {
+    left: 58%;
+  }
+}
+
+@media (max-width: 520px) {
+  .push-home {
+    left: 72%;
+  }
+}
+
 .loader-background {
   background: white;
   width: 100vw;
@@ -12117,6 +12146,135 @@ html {
   box-sizing: border-box;
 }
 
+.menu-wrapper {
+  height: 100vh;
+  max-height: 100vh;
+  width: 24%;
+  position: fixed;
+  z-index: 2;
+  font-family: "Krub", sans-serif;
+  background: #fff;
+  font-weight: 300;
+  color: #2c393f;
+}
+
+@media (max-width: 1200px) {
+  .menu-wrapper {
+    width: 34%;
+  }
+}
+
+@media (max-width: 860px) {
+  .menu-wrapper {
+    width: 44%;
+  }
+}
+
+@media (max-width: 670px) {
+  .menu-wrapper {
+    width: 64%;
+  }
+}
+
+@media (max-width: 520px) {
+  .menu-wrapper {
+    width: 80%;
+  }
+}
+
+.menu-wrapper .profile-box {
+  font-size: 1.72em;
+}
+
+@media (max-height: 750px) {
+  .menu-wrapper .profile-box {
+    font-size: 1.3em;
+  }
+}
+
+.menu-wrapper .profile-box div {
+  max-width: 66.66%;
+}
+
+@media (max-height: 750px) {
+  .menu-wrapper .profile-box div {
+    display: inline-block;
+    padding-left: 1rem;
+  }
+}
+
+.menu-wrapper .profile-box div .profile-pic {
+  width: 6em;
+  height: 6em;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+
+@media (max-width: 768px) and (min-height: 751px) {
+  .menu-wrapper .profile-box div .profile-pic {
+    width: 4.5em;
+    height: 4.5em;
+  }
+}
+
+@media (max-width: 576px) and (min-height: 751px) {
+  .menu-wrapper .profile-box div .profile-pic {
+    width: 3em;
+    height: 3em;
+  }
+}
+
+@media (max-height: 750px) {
+  .menu-wrapper .profile-box div .profile-pic {
+    width: 2em;
+    height: 2em;
+    margin-left: 1em;
+  }
+}
+
+@media (max-height: 750px) {
+  .menu-wrapper .profile-box span {
+    display: inline-block;
+    margin-top: 2rem;
+    text-align: left;
+  }
+}
+
+.menu-wrapper .profile-box span strong {
+  font-weight: 500;
+}
+
+.menu-wrapper .menu-options {
+  font-size: 1.28em;
+}
+
+.menu-wrapper .menu-options .menu-option {
+  border-bottom: 1px solid #2c393f;
+}
+
+.menu-wrapper .menu-options .menu-option svg {
+  height: 1em;
+}
+
+.menu-wrapper .menu-options .active {
+  color: #00C7C7;
+  border-bottom-color: #00C7C7;
+}
+
+.menu-wrapper .settings-box {
+  font-size: 1.1em;
+  max-height: 1.6em;
+}
+
+.menu-wrapper .settings-box svg {
+  height: 1.4em;
+}
+
+.menu-wrapper .settings-box .border-r {
+  border-right: 1px solid #EDEDED;
+}
+
 /**
 * Add a transition to the label and input.
 * I'm not even sure that touch-action: manipulation works on
@@ -12127,6 +12285,7 @@ html {
 body {
   font-family: "Krub", sans-serif;
   overflow-x: hidden;
+  background: #FDFDFD;
 }
 
 body div#root .home {
