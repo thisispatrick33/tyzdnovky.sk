@@ -68247,7 +68247,7 @@ var Additional = function Additional(_ref) {
     prevArrow: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(PreviousArrow, null)
   };
 
-  if (data.branches == undefined) {
+  if (data.branches === undefined) {
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, "Loading");
   }
 
@@ -69473,6 +69473,11 @@ var Home = function Home(_ref) {
       form = _useState2[0],
       setForm = _useState2[1];
 
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      viewMenu = _useState4[0],
+      setViewMenu = _useState4[1];
+
   var handleChange = function handleChange(data) {
     return updateProfile(data);
   };
@@ -69521,8 +69526,11 @@ var Home = function Home(_ref) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Others_Loader__WEBPACK_IMPORTED_MODULE_9__["Loader"], null);
     }
 
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Menu__WEBPACK_IMPORTED_MODULE_10__["Menu"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "push-home home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 pt-md-5 shadow-lg"
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, viewMenu ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Menu__WEBPACK_IMPORTED_MODULE_10__["Menu"], {
+      user: user,
+      signOut: signOut
+    }) : '', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "".concat(viewMenu ? "push-home" : "", " home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 pt-md-5 shadow-lg")
     }, user.active === 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Authentication_Additional__WEBPACK_IMPORTED_MODULE_1__["Additional"], {
       user: user,
       data: additional,
@@ -69549,7 +69557,10 @@ var Home = function Home(_ref) {
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
       className: " p-0 menu-svg",
       viewBox: "0 0 86.628 43.314",
-      xmlns: "http://www.w3.org/2000/svg"
+      xmlns: "http://www.w3.org/2000/svg",
+      onClick: function onClick() {
+        return setViewMenu(!viewMenu);
+      }
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
       transform: "translate(0 -96.243)"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
@@ -69601,18 +69612,22 @@ var Home = function Home(_ref) {
         date: date,
         created_at: created_at,
         view: handleView,
-        edit: handleEdit
+        edit: handleEdit,
+        closeMenu: function closeMenu() {
+          return setViewMenu(false);
+        }
       });
     }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "row justify-content-center"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       className: "col-auto text-center py-2 mb-5 mx-3 mt-3 px-4 shadow home-button",
       onClick: function onClick() {
-        return setForm({
+        setForm({
           open: true,
           control: true,
           edit: false
         });
+        setViewMenu(false);
       }
     }, "create"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       className: "col-auto text-center py-2 mb-5 mx-3 mt-3 px-4 shadow home-button",
@@ -69730,7 +69745,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-var Menu = function Menu() {
+var Menu = function Menu(_ref) {
+  var user = _ref.user,
+      signOut = _ref.signOut;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "menu-wrapper row"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -69738,12 +69755,12 @@ var Menu = function Menu() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "mt-5 mb-3 text-center"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: "./images/profile_pics/@Mubo.jpg",
+    src: user.profile_pic !== null ? user.profile_pic.substring(user.profile_pic.indexOf("images")) : "./images/user.svg",
     alt: "pfp",
     className: "profile-pic"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-8"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Patrik ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Mosorj\xE1k")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, user.name, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, user.lastName !== undefined ? user.lastName : "")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "menu-options row justify-content-center mb-5  col-12 m-0 p-0"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "menu-option active col-8 py-3 mt-1"
@@ -69832,7 +69849,8 @@ var Menu = function Menu() {
     transform: "translate(-99.809 -99.809)",
     fill: "#2c393f"
   })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-auto"
+    className: "col-auto",
+    onClick: signOut
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
     className: "mr-3",
     xmlns: "http://www.w3.org/2000/svg",
@@ -70126,14 +70144,16 @@ var Main = function Main() {
       headers: {
         'Content-Type': 'multipart/form-data',
         'Accept': 'multipart/form-data',
-        "X-localization": location,
+        "X-localization": 'SK',
         "Authorization": 'Bearer ' + JSON.parse(localStorage.appState).user.auth_token
       }
     }).then(function (response) {
+      console.log(response);
+
       if (response.data.success) {
         var appState = {
           isLoggedIn: true,
-          user: data
+          user: response.data.data
         };
         localStorage["appState"] = JSON.stringify(appState);
         setAuthState(appState);
@@ -70600,27 +70620,13 @@ var Offer = function Offer(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "float-left  bold  ".concat(brancheType ? "colorful-text" : ""),
     onClick: function onClick() {
-      return setBrancheType(true);
+      return changeType(true);
     }
   }, "fulltime"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "float-right  bold  ".concat(brancheType ? "" : "colorful-text"),
     onClick: function onClick() {
       return changeType(false);
     }
-<<<<<<< HEAD
-  }, "freetime")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "list row justify-content-start col-11 col-xl-12 text-uppercase text-center d-lg-flex d-inline scroll ml-2 ml-lg-0 "
-  }, JSON.parse(localStorage.branches).map(function (_ref3) {
-    var id = _ref3.id,
-        name = _ref3.name,
-        free_time = _ref3.free_time;
-
-    if (brancheType && free_time === 0 || !brancheType && free_time === 1) {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "branch py-2 mx-3 mt-1 mb-3 px-4 shadow col-lg-10 col-auto"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "colorful-text"
-=======
   }, "freetime")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "list row justify-content-start col-11 col-xl-12 text-uppercase text-center d-lg-flex d-inline scroll ml-2 ml-lg-0 "
   }, JSON.parse(localStorage.branches).map(function (_ref4) {
@@ -70636,7 +70642,6 @@ var Offer = function Offer(_ref) {
         }
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
         className: "".concat(branches.includes(id) ? "" : "colorful-text")
->>>>>>> 1c4c7e1737d3a8fb337651fddba97f3c18810233
       }, name));
     }
   })))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -70734,7 +70739,8 @@ var OfferLookup = function OfferLookup(_ref) {
       _ref$edit = _ref.edit,
       edit = _ref$edit === void 0 ? function (f) {
     return f;
-  } : _ref$edit;
+  } : _ref$edit,
+      closeMenu = _ref.closeMenu;
   var today = new Date();
   var formatDate = new Date(date);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -70758,7 +70764,8 @@ var OfferLookup = function OfferLookup(_ref) {
     fill: "#fff"
   }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
     onClick: function onClick() {
-      return edit(id);
+      edit(id);
+      closeMenu();
     },
     className: "work-option-edit",
     width: "16",
@@ -70789,7 +70796,8 @@ var OfferLookup = function OfferLookup(_ref) {
   }, description.substring(0, 74), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     className: "colorful-text",
     onClick: function onClick() {
-      return view(id);
+      view(id);
+      closeMenu();
     }
   }, "... Zisti viac.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-11 mx-0 row work-option-info text-uppercase mb-3 justify-content-center"
@@ -71526,8 +71534,8 @@ var Loader = function Loader() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Jakub\Desktop\tyzdnovky.sk\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Jakub\Desktop\tyzdnovky.sk\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Mamuss\PhpstormProjects\tyzdnovky.sk\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Mamuss\PhpstormProjects\tyzdnovky.sk\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

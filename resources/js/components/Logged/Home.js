@@ -47,6 +47,7 @@ export const Home =({ additional, offers, offer, user, updateProfile = f => f, c
 
 
     const [form, setForm] = useState({open : false, control : false, edit : false});
+    const [viewMenu, setViewMenu] = useState(false);
 
     const handleChange = data => updateProfile(data);
     const handleCreate = data => createOffer(data);
@@ -65,7 +66,11 @@ export const Home =({ additional, offers, offer, user, updateProfile = f => f, c
             return <Loader />;
         }
         return (
-            <div className={` home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 pt-md-5 shadow-lg`}>
+            <div>
+                {
+                    viewMenu ? <Menu user={user} signOut={signOut}/> : ''
+                }
+                <div className={`${viewMenu ? `push-home` : ``} home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 pt-md-5 shadow-lg`}>
                 {
                     user.active === 0 ? <Additional user={user} data={additional} func={handleChange}/> : ``
                 }
@@ -78,7 +83,7 @@ export const Home =({ additional, offers, offer, user, updateProfile = f => f, c
                 <div className="content col-12 col-md-11 row justify-content-center pt-5 mb-2">
                     <div className="header col-11 row justify-content-between">
                         <div className="menu col-2 col-md-1 row px-0">
-                            <svg className={` p-0 menu-svg`} viewBox="0 0 86.628 43.314" xmlns="http://www.w3.org/2000/svg">
+                            <svg className={` p-0 menu-svg`} viewBox="0 0 86.628 43.314" xmlns="http://www.w3.org/2000/svg" onClick={()=>setViewMenu(!viewMenu)}>
                                 <g transform="translate(0 -96.243)">
                                     <g transform="translate(0 96.243)" fill="#2c393f">
                                         <path transform="translate(0 -96.243)" d="M2.707,101.657H83.921a2.707,2.707,0,0,0,0-5.414H2.707a2.707,2.707,0,0,0,0,5.414Z" data-name="Path 41"/>
@@ -86,27 +91,24 @@ export const Home =({ additional, offers, offer, user, updateProfile = f => f, c
                                         <path transform="translate(-93.232 -226.77)" d="m177.15 264.67h-54.143a2.707 2.707 0 1 0 0 5.414h54.143a2.707 2.707 0 1 0 0-5.414z" data-name="Path 43"/>
                                     </g>
                                 </g>
-                                </svg>
-
-                            </div>
-                            <div className={`finder col-10 col-sm-9  d-flex justify-content-center`}>
-                                <input type="text" className="col-11 finder" placeholder="…find work, company or group"/>
-                            </div>
+                            </svg>
+                        </div>
+                        <div className={`finder col-10 col-sm-9  d-flex justify-content-center`}>
+                            <input type="text" className="col-11 finder" placeholder="…find work, company or group"/>
+                        </div>
                             {
                                 window.innerWidth >= 576 ? <div className="user-header-nofication col-1">
                                 <img src={ user.profile_pic !== null ? user.profile_pic.substring(user.profile_pic.indexOf("images")) : "./images/user.svg"} className={`profile-photo`} alt=""/>
                                 <div className="action-point text-center">7</div>
                                 </div>:null
                             }
-                            
-                        </div>
-                        <div className="message col-11 my-4">
+                    </div>
+                    <div className="message col-11 my-4">
                             {
                                 user.name == null ? <p>Hello !</p> : <p>Hello <span>{user.name}</span> !</p>
                             }
-                        </div>
-
-                        <Slider {...settings} className={`work-options justify-content-between col-12 mt-2 px-5 row`}>
+                    </div>
+                    <Slider {...settings} className={`work-options justify-content-between col-12 mt-2 px-5 row`}>
                             {
                                 offers.map(({id, title, description, address, date, created_at}) => {
                                     return(
@@ -120,23 +122,22 @@ export const Home =({ additional, offers, offer, user, updateProfile = f => f, c
                                             created_at={created_at}
                                             view={handleView}
                                             edit={handleEdit}
+                                            closeMenu={()=>setViewMenu(false)}
                                         />
 
                                     )
                                 })
                             }
-                        </Slider>
-                    </div>
+                    </Slider>
+                </div>
                     <div className="row justify-content-center">
-                        <button className={`col-auto text-center py-2 mb-5 mx-3 mt-3 px-4 shadow home-button`} onClick={() => setForm({open : true, control : true, edit : false})}>
+                        <button className={`col-auto text-center py-2 mb-5 mx-3 mt-3 px-4 shadow home-button`} onClick={() => {setForm({open : true, control : true, edit : false}); setViewMenu(false);}}>
                             create
                         </button>
                         <button className={`col-auto text-center py-2 mb-5 mx-3 mt-3 px-4 shadow home-button`} onClick={signOut}>
                             sign out
                         </button>
                     </div>
-
-
                 </div>
             </div>
         );

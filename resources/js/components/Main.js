@@ -110,15 +110,16 @@ const Main = () => {
                 headers : {
                     'Content-Type' : 'multipart/form-data',
                     'Accept' : 'multipart/form-data',
-                    "X-localization" : location,
+                    "X-localization" : 'SK',
                     "Authorization" : 'Bearer '+JSON.parse(localStorage.appState).user.auth_token
                 }
             })
             .then(response =>{
+                console.log(response);
                 if(response.data.success){
                     let appState = {
                         isLoggedIn: true,
-                        user: data
+                        user: response.data.data
                     };
                     localStorage["appState"] = JSON.stringify(appState);
                     setAuthState(appState);

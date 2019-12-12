@@ -156,7 +156,7 @@ export const Additional = ({user, func = f => f, data}) => {
         prevArrow: <PreviousArrow />
     };
 
-    if(data.branches==undefined ){
+    if(data.branches===undefined ){
         return <div>Loading</div>
     }
     return (
