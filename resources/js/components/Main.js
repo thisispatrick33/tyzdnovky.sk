@@ -115,7 +115,6 @@ const Main = () => {
                 }
             })
             .then(response =>{
-                console.log(response);
                 if(response.data.success){
                     let appState = {
                         isLoggedIn: true,

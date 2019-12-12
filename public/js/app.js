@@ -69986,8 +69986,6 @@ var Main = function Main() {
         "Authorization": 'Bearer ' + JSON.parse(localStorage.appState).user.auth_token
       }
     }).then(function (response) {
-      console.log(response);
-
       if (response.data.success) {
         var appState = {
           isLoggedIn: true,
@@ -70271,10 +70269,6 @@ var Offer = function Offer(_ref) {
       brancheType = _useState8[0],
       setBrancheType = _useState8[1];
 
-  var _tags = function _tags(list) {
-    setTags(list);
-  };
-
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     setOffer(data);
 
@@ -70305,75 +70299,71 @@ var Offer = function Offer(_ref) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              console.log(offer);
-              console.log(tags);
-              console.log(branches);
-
               if (!edit) {
-                _context.next = 10;
+                _context.next = 7;
                 break;
               }
 
-              _context.next = 6;
+              _context.next = 3;
               return updateOffer(_objectSpread({}, offer, {
                 branches: branches,
                 tags: tags
               }));
 
-            case 6:
+            case 3:
               if (!_context.sent) {
-                _context.next = 8;
+                _context.next = 5;
                 break;
               }
 
               close();
 
-            case 8:
-              _context.next = 21;
+            case 5:
+              _context.next = 18;
               break;
 
-            case 10:
+            case 7:
               if (!(user.type === "user")) {
-                _context.next = 17;
+                _context.next = 14;
                 break;
               }
 
-              _context.next = 13;
+              _context.next = 10;
               return createOffer(_objectSpread({}, offer, {
                 branches: branches,
                 user_id: user.id,
                 tags: tags
               }));
 
-            case 13:
+            case 10:
               if (!_context.sent) {
-                _context.next = 15;
+                _context.next = 12;
                 break;
               }
 
               close();
 
-            case 15:
-              _context.next = 21;
+            case 12:
+              _context.next = 18;
               break;
 
-            case 17:
-              _context.next = 19;
+            case 14:
+              _context.next = 16;
               return createOffer(_objectSpread({}, offer, {
                 branches: branches,
                 business_id: user.id,
                 tags: tags
               }));
 
-            case 19:
+            case 16:
               if (!_context.sent) {
-                _context.next = 21;
+                _context.next = 18;
                 break;
               }
 
               close();
 
-            case 21:
+            case 18:
             case "end":
               return _context.stop();
           }
@@ -70503,7 +70493,9 @@ var Offer = function Offer(_ref) {
     },
     value: edit ? offer.title ? offer.title : "" : offer !== null ? offer.title : ""
   }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_SubComponents_Tags__WEBPACK_IMPORTED_MODULE_2__["Tags"], {
-    addTags: _tags,
+    addTags: function addTags(list) {
+      return setTags(list);
+    },
     list: tags
   }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("textarea", {
     className: "col-11 px-3 py-3 my-2 my-xl-0",
