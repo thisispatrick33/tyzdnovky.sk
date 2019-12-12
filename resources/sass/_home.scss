@@ -1,5 +1,5 @@
 .home{
-
+    
     .slick-arrow{
         transform: scale(5);
     }
@@ -377,5 +377,20 @@
         border-radius: 29px;
     }
 }
-
+.push-home{
+    position: relative;
+    left: 22%;
+    @media(max-width: 1200px){
+        left: 32%;
+    }
+    @media(max-width: 860px){
+        left: 40%;
+    }
+    @media(max-width: 670px){
+        left: 58%;
+    }
+    @media(max-width: 520px){
+        left: 72%;
+    }
+}
 

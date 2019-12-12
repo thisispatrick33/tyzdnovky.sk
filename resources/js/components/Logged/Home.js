@@ -9,6 +9,7 @@ import {Offer} from "../Offer/Offer";
 import {OfferLookup} from "../Offer/OfferLookup";
 import {OfferView} from "../Offer/OfferView";
 import {Loader} from "../Others/Loader";
+import {Menu} from "./Menu"
 
 export const Home =({ additional, offers, offer, user, updateProfile = f => f, createOffer = f => f, updateOffer = f => f, viewOffer = f => f, closeOffer = f => f, signOut }) => {
 
@@ -59,80 +60,82 @@ export const Home =({ additional, offers, offer, user, updateProfile = f => f, c
             return <Loader />;
         }
         return (
-            <div className={` home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 pt-md-5`}>
-                {
-                    user.active === 0 ? <Additional user={user} data={additional} func={handleChange}/> : ``
-                }
-                {
-                    form.open && !form.control ? <OfferView offer={offer} close={() => setForm({open : false, control : false, edit : false})} /> : null
-                }
-                {
-                    form.open && form.control ? <Offer edit={form.edit} user={user} createOffer={handleCreate} updateOffer={handleUpdate} closeOffer={() => setForm(false)} data={offer}/> : ""
-                }
-                <div className="content col-12 col-md-11 row justify-content-center pt-5 mb-2">
-                    <div className="header col-11 row justify-content-between">
-                        <div className="menu col-2 col-md-1 row px-0">
-                            <svg className={` p-0 menu-svg`} viewBox="0 0 86.628 43.314" xmlns="http://www.w3.org/2000/svg">
-                                <g transform="translate(0 -96.243)">
-                                    <g transform="translate(0 96.243)" fill="#2c393f">
-                                        <path transform="translate(0 -96.243)" d="M2.707,101.657H83.921a2.707,2.707,0,0,0,0-5.414H2.707a2.707,2.707,0,0,0,0,5.414Z" data-name="Path 41"/>
-                                        <path transform="translate(0 -161.5)" d="M83.921,180.455H2.707a2.707,2.707,0,1,0,0,5.414H83.921a2.707,2.707,0,1,0,0-5.414Z" data-name="Path 42"/>
-                                        <path transform="translate(-93.232 -226.77)" d="m177.15 264.67h-54.143a2.707 2.707 0 1 0 0 5.414h54.143a2.707 2.707 0 1 0 0-5.414z" data-name="Path 43"/>
+            <div>
+                <Menu/>
+                <div className={`push-home home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 pt-md-5 shadow-lg`}>
+                    {
+                        user.active === 0 ? <Additional user={user} data={additional} func={handleChange}/> : ``
+                    }
+                    {
+                        form.open && !form.control ? <OfferView offer={offer} close={() => setForm({open : false, control : false, edit : false})} /> : null
+                    }
+                    {
+                        form.open && form.control ? <Offer edit={form.edit} user={user} createOffer={handleCreate} updateOffer={handleUpdate} closeOffer={() => setForm(false)} data={offer}/> : ""
+                    }
+                    <div className="content col-12 col-md-11 row justify-content-center pt-5 mb-2">
+                        <div className="header col-11 row justify-content-between">
+                            <div className="menu col-2 col-md-1 row px-0">
+                                <svg className={` p-0 menu-svg`} viewBox="0 0 86.628 43.314" xmlns="http://www.w3.org/2000/svg">
+                                    <g transform="translate(0 -96.243)">
+                                        <g transform="translate(0 96.243)" fill="#2c393f">
+                                            <path transform="translate(0 -96.243)" d="M2.707,101.657H83.921a2.707,2.707,0,0,0,0-5.414H2.707a2.707,2.707,0,0,0,0,5.414Z" data-name="Path 41"/>
+                                            <path transform="translate(0 -161.5)" d="M83.921,180.455H2.707a2.707,2.707,0,1,0,0,5.414H83.921a2.707,2.707,0,1,0,0-5.414Z" data-name="Path 42"/>
+                                            <path transform="translate(-93.232 -226.77)" d="m177.15 264.67h-54.143a2.707 2.707 0 1 0 0 5.414h54.143a2.707 2.707 0 1 0 0-5.414z" data-name="Path 43"/>
+                                        </g>
                                     </g>
-                                </g>
-                            </svg>
+                                </svg>
 
+                            </div>
+                            <div className={`finder col-10 col-sm-9  d-flex justify-content-center`}>
+                                <input type="text" className="col-11 finder" placeholder="…find work, company or group"/>
+                            </div>
+                            {
+                                window.innerWidth >= 576 ? <div className="user-header-nofication col-1">
+                                <img src={ user.profile_pic !== null ? user.profile_pic.substring(user.profile_pic.indexOf("images")) : "./images/user.svg"} className={`profile-photo`} alt=""/>
+                                <div className="action-point text-center">7</div>
+                                </div>:null
+                            }
+                            
                         </div>
-                        <div className={`finder col-10 col-sm-9  d-flex justify-content-center`}>
-                            <input type="text" className="col-11 finder" placeholder="…find work, company or group"/>
+                        <div className="message col-11 my-4">
+                            {
+                                user.name == null ? <p>Hello !</p> : <p>Hello <span>{user.name}</span> !</p>
+                            }
                         </div>
-                        {
-                            window.innerWidth >= 576 ? <div className="user-header-nofication col-1">
-                            <img src={ user.profile_pic !== null ? user.profile_pic.substring(user.profile_pic.indexOf("images")) : "./images/user.svg"} className={`profile-photo`} alt=""/>
-                            <div className="action-point text-center">7</div>
-                            </div>:null
-                        }
-                        
+
+                        <Slider {...settings} className={`work-options justify-content-between col-12 mt-2 px-5 row`}>
+                            {
+                                offers.map(({id, title, description, address, date, created_at}) => {
+                                    return(
+                                        <OfferLookup
+                                            key={id}
+                                            id={id}
+                                            title={title}
+                                            description={description}
+                                            address={address}
+                                            date={date}
+                                            created_at={created_at}
+                                            view={handleView}
+                                            edit={handleEdit}
+                                        />
+
+                                    )
+                                })
+                            }
+                        </Slider>
                     </div>
-                    <div className="message col-11 my-4">
-                        {
-                            user.name == null ? <p>Hello !</p> : <p>Hello <span>{user.name}</span> !</p>
-                        }
+                    <div className="row justify-content-center">
+                        <button className={`col-auto text-center py-2 mb-5 mx-3 mt-3 px-4 shadow home-button`} onClick={() => setForm({open : true, control : true, edit : false})}>
+                            create
+                        </button>
+                        <button className={`col-auto text-center py-2 mb-5 mx-3 mt-3 px-4 shadow home-button`} onClick={signOut}>
+                            sign out
+                        </button>
                     </div>
 
-                    <Slider {...settings} className={`work-options justify-content-between col-12 mt-2 px-5 row`}>
-                        {
-                            offers.map(({id, title, description, address, date, created_at}) => {
-                                return(
-                                    <OfferLookup
-                                        key={id}
-                                        id={id}
-                                        title={title}
-                                        description={description}
-                                        address={address}
-                                        date={date}
-                                        created_at={created_at}
-                                        view={handleView}
-                                        edit={handleEdit}
-                                    />
 
-                                )
-                            })
-                        }
-                    </Slider>
                 </div>
-                <div className="row justify-content-center">
-                    <button className={`col-auto text-center py-2 mb-5 mx-3 mt-3 px-4 shadow home-button`} onClick={() => setForm({open : true, control : true, edit : false})}>
-                        create
-                    </button>
-                    <button className={`col-auto text-center py-2 mb-5 mx-3 mt-3 px-4 shadow home-button`} onClick={signOut}>
-                        sign out
-                    </button>
-                </div>
-
-
             </div>
-
         );
     }
     else {

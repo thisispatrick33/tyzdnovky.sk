@@ -17,6 +17,7 @@ $break-xl : 1200px;
 @import './_password-reset';
 @import './_home';
 @import './_preloader';
+@import './_menu';
 /**
 * Add a transition to the label and input.
 * I'm not even sure that touch-action: manipulation works on
@@ -27,6 +28,7 @@ $break-xl : 1200px;
 body{
   font-family: 'Krub', sans-serif;
   overflow-x: hidden;
+  background: #FDFDFD;
   div#root{
     .home{
       background: {
