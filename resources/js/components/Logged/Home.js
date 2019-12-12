@@ -59,7 +59,7 @@ export const Home =({ additional, offers, offer, user, updateProfile = f => f, c
         clearOffer();
     };
 
-    if(user !== undefined){
+    if (user.name  !== undefined){
         if(offers[0] === undefined){
             return <Loader />;
         }
@@ -141,7 +141,7 @@ export const Home =({ additional, offers, offer, user, updateProfile = f => f, c
         );
     }
     else {
-        navigate('/');
+        navigate(`/`);
     }
 
     return null;

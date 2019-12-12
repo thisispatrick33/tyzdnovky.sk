@@ -68721,7 +68721,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ForgottenPassword__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ForgottenPassword */ "./resources/js/components/Authentication/ForgottenPassword.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _reach_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @reach/router */ "./node_modules/@reach/router/es/index.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -68735,7 +68734,6 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 
@@ -69516,7 +69514,7 @@ var Home = function Home(_ref) {
     clearOffer();
   };
 
-  if (user !== undefined) {
+  if (user.name !== undefined) {
     if (offers[0] === undefined) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Others_Loader__WEBPACK_IMPORTED_MODULE_9__["Loader"], null);
     }
@@ -69619,7 +69617,7 @@ var Home = function Home(_ref) {
       onClick: signOut
     }, "sign out")));
   } else {
-    Object(_reach_router__WEBPACK_IMPORTED_MODULE_2__["navigate"])('/');
+    Object(_reach_router__WEBPACK_IMPORTED_MODULE_2__["navigate"])("/");
   }
 
   return null;
@@ -69889,6 +69887,35 @@ var Main = function Main() {
     };
   }();
 
+  var _deleteData =
+  /*#__PURE__*/
+  function () {
+    var _ref4 = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(url) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_4___default.a["delete"](url, config);
+
+            case 2:
+              return _context3.abrupt("return", _context3.sent);
+
+            case 3:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
+    }));
+
+    return function _deleteData(_x4) {
+      return _ref4.apply(this, arguments);
+    };
+  }();
+
   var _authentication = function _authentication(data, control) {
     _disableForm(true);
 
@@ -69918,8 +69945,8 @@ var Main = function Main() {
       user: {}
     };
     setAuthState(appState);
-    Object(_reach_router__WEBPACK_IMPORTED_MODULE_5__["navigate"])('/');
     localStorage["appState"] = JSON.stringify(appState);
+    Object(_reach_router__WEBPACK_IMPORTED_MODULE_5__["navigate"])("/");
   };
 
   var _forgottenPassword = function _forgottenPassword(email) {
@@ -69978,28 +70005,28 @@ var Main = function Main() {
   var _additional =
   /*#__PURE__*/
   function () {
-    var _ref4 = _asyncToGenerator(
+    var _ref5 = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
         while (1) {
-          switch (_context3.prev = _context3.next) {
+          switch (_context4.prev = _context4.next) {
             case 0:
-              return _context3.abrupt("return", _getData('/api/register-additional').then(function (_ref5) {
-                var data = _ref5.data;
+              return _context4.abrupt("return", _getData('/api/register-additional').then(function (_ref6) {
+                var data = _ref6.data;
                 return setAdditional(data);
               }));
 
             case 1:
             case "end":
-              return _context3.stop();
+              return _context4.stop();
           }
         }
-      }, _callee3);
+      }, _callee4);
     }));
 
     return function _additional() {
-      return _ref4.apply(this, arguments);
+      return _ref5.apply(this, arguments);
     };
   }();
 
@@ -70026,42 +70053,17 @@ var Main = function Main() {
   var _viewOffer =
   /*#__PURE__*/
   function () {
-    var _ref6 = _asyncToGenerator(
+    var _ref7 = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(id) {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
-        while (1) {
-          switch (_context4.prev = _context4.next) {
-            case 0:
-              return _context4.abrupt("return", _getData('api/advertisement/' + id).then(function (_ref7) {
-                var data = _ref7.data;
-                return setOffer(data);
-              }));
-
-            case 1:
-            case "end":
-              return _context4.stop();
-          }
-        }
-      }, _callee4);
-    }));
-
-    return function _viewOffer(_x4) {
-      return _ref6.apply(this, arguments);
-    };
-  }();
-
-  var _closeOffer =
-  /*#__PURE__*/
-  function () {
-    var _ref8 = _asyncToGenerator(
-    /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(id) {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
-              return _context5.abrupt("return", setOffer(null));
+              return _context5.abrupt("return", _getData('api/advertisement/' + id).then(function (_ref8) {
+                var data = _ref8.data;
+                return setOffer(data);
+              }));
 
             case 1:
             case "end":
@@ -70071,12 +70073,12 @@ var Main = function Main() {
       }, _callee5);
     }));
 
-    return function _closeOffer() {
-      return _ref8.apply(this, arguments);
+    return function _viewOffer(_x5) {
+      return _ref7.apply(this, arguments);
     };
   }();
 
-  var _getOffers =
+  var _closeOffer =
   /*#__PURE__*/
   function () {
     var _ref9 = _asyncToGenerator(
@@ -70086,11 +70088,7 @@ var Main = function Main() {
         while (1) {
           switch (_context6.prev = _context6.next) {
             case 0:
-              return _context6.abrupt("return", _getData('api/advertisement').then(function (_ref10) {
-                var data = _ref10.data;
-                setOffers(data);
-                localStorage["offers"] = JSON.stringify(data);
-              }));
+              return _context6.abrupt("return", setOffer(null));
 
             case 1:
             case "end":
@@ -70100,8 +70098,62 @@ var Main = function Main() {
       }, _callee6);
     }));
 
-    return function _getOffers() {
+    return function _closeOffer() {
       return _ref9.apply(this, arguments);
+    };
+  }();
+
+  var _getOffers =
+  /*#__PURE__*/
+  function () {
+    var _ref10 = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
+        while (1) {
+          switch (_context7.prev = _context7.next) {
+            case 0:
+              return _context7.abrupt("return", _getData('api/advertisement').then(function (_ref11) {
+                var data = _ref11.data;
+                setOffers(data);
+                localStorage["offers"] = JSON.stringify(data);
+              }));
+
+            case 1:
+            case "end":
+              return _context7.stop();
+          }
+        }
+      }, _callee7);
+    }));
+
+    return function _getOffers() {
+      return _ref10.apply(this, arguments);
+    };
+  }();
+
+  var _deleteOffer =
+  /*#__PURE__*/
+  function () {
+    var _ref12 = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8(id) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
+        while (1) {
+          switch (_context8.prev = _context8.next) {
+            case 0:
+              return _context8.abrupt("return", _deleteData('api/advertisement/' + id));
+
+            case 1:
+            case "end":
+              return _context8.stop();
+          }
+        }
+      }, _callee8);
+    }));
+
+    return function _deleteOffer(_x6) {
+      return _ref12.apply(this, arguments);
     };
   }();
 

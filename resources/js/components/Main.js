@@ -48,6 +48,8 @@ const Main = () => {
 
     const _getData = async url => await axios.get(url, config);
 
+    const _deleteData = async url => await axios.delete(url, config);
+
 
     const _authentication = (data, control) => {
         _disableForm(true);
@@ -74,8 +76,8 @@ const Main = () => {
             user: {}
         };
         setAuthState(appState);
-        navigate('/');
         localStorage["appState"] = JSON.stringify(appState);
+        navigate(`/`);
     };
 
     const _forgottenPassword = email => _postData('/api/password-reset-mail', email);
@@ -141,6 +143,8 @@ const Main = () => {
     const _closeOffer = async () =>  setOffer(null);
 
     const _getOffers = async () => _getData('api/advertisement').then(({data}) => { setOffers(data); localStorage["offers"] = JSON.stringify(data) });
+
+    const _deleteOffer = async id => _deleteData('api/advertisement/'+id);
 
 
 
