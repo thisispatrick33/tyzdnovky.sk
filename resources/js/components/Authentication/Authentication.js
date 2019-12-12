@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {ForgottenPassword} from "./ForgottenPassword";
 import $ from 'jquery';
-import {Router, navigate} from '@reach/router';
 
 export const Authentication = ({message, authenticate = f => f, forgotten = f => f}) => {
 

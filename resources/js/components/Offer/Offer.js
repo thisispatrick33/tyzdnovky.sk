@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Tags} from './SubComponents/Tags';
 import {Loader} from "../Others/Loader";
 
-export const Offer = ({data, edit, createOffer = f => f, user, updateOffer = f => f, closeOffer}) => {
+export const Offer = ({data, edit, createOffer = f => f, user, updateOffer = f => f, closeOffer, clearOffer}) => {
     const [offer , setOffer] = useState(data);
     const [tags, setTags] = useState([]);
     const [branches, setBranches] = useState([]);
@@ -25,18 +25,29 @@ export const Offer = ({data, edit, createOffer = f => f, user, updateOffer = f =
         }
     }, [data]);
 
-    const submit = () => {
+    const close = () =>{
+        closeOffer();
+        clearOffer();
+    };
+
+    const submit = async () => {
        console.log(offer);
        console.log(tags);
        console.log(branches);
        if(edit){
-           console.log("hi");
+           if(await updateOffer({...offer, branches: branches, tags: tags})){
+               close();
+           }
        }else {
             if(user.type === "user"){
-                createOffer({...offer, branches: branches, user_id: user.id, tags: tags});
+                if(await createOffer({...offer, branches: branches, user_id: user.id, tags: tags})){
+                    close();
+                }
             }
             else {
-                createOffer({...offer, branches: branches, business_id: user.id, tags: tags});
+                if(await createOffer({...offer, branches: branches, business_id: user.id, tags: tags})){
+                    close();
+                }
             }
        }
     };
@@ -83,7 +94,7 @@ export const Offer = ({data, edit, createOffer = f => f, user, updateOffer = f =
                             </div>
                             <div className={"col-12 col-lg-2  h10 order-1 order-lg-2"}>
                                 <div className={"cross float-right"}>
-                                    <svg onClick={closeOffer} className="ml-3" style={{transform:"scale(.8)"}} width="42" height="42" viewBox="0 0 42 42"><path d="M42,2.467,23.467,21,42,39.534,39.533,42,21,23.468,2.467,42,0,39.534,18.533,21,0,2.467,2.467,0,21,18.534,39.533,0Z" transform="translate(0 -0.001)" fill="#2c393f"/></svg>
+                                    <svg onClick={close} className="ml-3" style={{transform:"scale(.8)"}} width="42" height="42" viewBox="0 0 42 42"><path d="M42,2.467,23.467,21,42,39.534,39.533,42,21,23.468,2.467,42,0,39.534,18.533,21,0,2.467,2.467,0,21,18.534,39.533,0Z" transform="translate(0 -0.001)" fill="#2c393f"/></svg>
                                 </div>
                             </div>
 
@@ -91,7 +102,7 @@ export const Offer = ({data, edit, createOffer = f => f, user, updateOffer = f =
                                 <div className="col-xl-3 col-lg-6 pr-3">
                                     <div className={"border-r pt-2 justify-content-center row branches"}>
                                         <div className="branch py-2  mt-1 mb-5 px-4 shadow col-11 col-lg-8 col-xl-11 text-uppercase ml-4 ml-lg-0">
-                                            <span className={`float-left  bold  ${brancheType ? `colorful-text` : ``}`} onClick={()=>setBrancheType(true)}>
+                                            <span className={`float-left  bold  ${brancheType ? `colorful-text` : ``}`} onClick={()=>changeType(true)}>
                                                 fulltime
                                             </span>
                                             <span className={`float-right  bold  ${brancheType ? `` : `colorful-text` }`} onClick={()=>changeType(false)}>
@@ -103,8 +114,8 @@ export const Offer = ({data, edit, createOffer = f => f, user, updateOffer = f =
                                                 JSON.parse(localStorage.branches).map(({id, name, free_time}) => {
                                                     if((brancheType && free_time === 0) || (!brancheType && free_time === 1)){
                                                         return(
-                                                            <div className="branch py-2 mx-3 mt-1 mb-3 px-4 shadow col-lg-10 col-auto">
-                                                        <span className="colorful-text">
+                                                            <div className={`py-2 mx-3 mt-1 mb-3 px-4 shadow col-lg-10 col-auto ${branches.includes(id) ? `submit-button sign-in-button` : `branch`}`} onClick={() =>handleWork(id)}>
+                                                        <span className={`${branches.includes(id) ? `` : `colorful-text`}`}>
                                                             {name}
                                                         </span>
                                                             </div>

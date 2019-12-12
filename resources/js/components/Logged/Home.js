@@ -11,7 +11,7 @@ import {OfferView} from "../Offer/OfferView";
 import {Loader} from "../Others/Loader";
 import {Menu} from "./Menu"
 
-export const Home =({ additional, offers, offer, user, updateProfile = f => f, createOffer = f => f, updateOffer = f => f, viewOffer = f => f, closeOffer = f => f, signOut }) => {
+export const Home =({ additional, offers, offer, user, updateProfile = f => f, createOffer = f => f, updateOffer = f => f, viewOffer = f => f, closeOffer = f => f, signOut, clearOffer }) => {
 
     const settings = {
         dots: false,
@@ -55,33 +55,35 @@ export const Home =({ additional, offers, offer, user, updateProfile = f => f, c
     const handleView = id => { viewOffer(id); setForm({open : true, control : false, edit : false}); };
     const handleClose = () => closeOffer();
 
-    if(user !== undefined){
+    const closeLookup = () =>{
+        setForm({open : false, control : false, edit : false});
+        clearOffer();
+    };
+
+    if (user.name  !== undefined){
         if(offers[0] === undefined){
             return <Loader />;
         }
         return (
-            <div>
-                <Menu/>
-                <div className={`push-home home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 pt-md-5 shadow-lg`}>
-                    {
-                        user.active === 0 ? <Additional user={user} data={additional} func={handleChange}/> : ``
-                    }
-                    {
-                        form.open && !form.control ? <OfferView offer={offer} close={() => setForm({open : false, control : false, edit : false})} /> : null
-                    }
-                    {
-                        form.open && form.control ? <Offer edit={form.edit} user={user} createOffer={handleCreate} updateOffer={handleUpdate} closeOffer={() => setForm(false)} data={offer}/> : ""
-                    }
-                    <div className="content col-12 col-md-11 row justify-content-center pt-5 mb-2">
-                        <div className="header col-11 row justify-content-between">
-                            <div className="menu col-2 col-md-1 row px-0">
-                                <svg className={` p-0 menu-svg`} viewBox="0 0 86.628 43.314" xmlns="http://www.w3.org/2000/svg">
-                                    <g transform="translate(0 -96.243)">
-                                        <g transform="translate(0 96.243)" fill="#2c393f">
-                                            <path transform="translate(0 -96.243)" d="M2.707,101.657H83.921a2.707,2.707,0,0,0,0-5.414H2.707a2.707,2.707,0,0,0,0,5.414Z" data-name="Path 41"/>
-                                            <path transform="translate(0 -161.5)" d="M83.921,180.455H2.707a2.707,2.707,0,1,0,0,5.414H83.921a2.707,2.707,0,1,0,0-5.414Z" data-name="Path 42"/>
-                                            <path transform="translate(-93.232 -226.77)" d="m177.15 264.67h-54.143a2.707 2.707 0 1 0 0 5.414h54.143a2.707 2.707 0 1 0 0-5.414z" data-name="Path 43"/>
-                                        </g>
+            <div className={` home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 pt-md-5 shadow-lg`}>
+                {
+                    user.active === 0 ? <Additional user={user} data={additional} func={handleChange}/> : ``
+                }
+                {
+                    form.open && !form.control ? <OfferView offer={offer} close={closeLookup} /> : null
+                }
+                {
+                    form.open && form.control ? <Offer edit={form.edit} user={user} createOffer={handleCreate} updateOffer={handleUpdate} closeOffer={() => setForm(false)} data={offer} clearOffer={clearOffer}/> : ""
+                }
+                <div className="content col-12 col-md-11 row justify-content-center pt-5 mb-2">
+                    <div className="header col-11 row justify-content-between">
+                        <div className="menu col-2 col-md-1 row px-0">
+                            <svg className={` p-0 menu-svg`} viewBox="0 0 86.628 43.314" xmlns="http://www.w3.org/2000/svg">
+                                <g transform="translate(0 -96.243)">
+                                    <g transform="translate(0 96.243)" fill="#2c393f">
+                                        <path transform="translate(0 -96.243)" d="M2.707,101.657H83.921a2.707,2.707,0,0,0,0-5.414H2.707a2.707,2.707,0,0,0,0,5.414Z" data-name="Path 41"/>
+                                        <path transform="translate(0 -161.5)" d="M83.921,180.455H2.707a2.707,2.707,0,1,0,0,5.414H83.921a2.707,2.707,0,1,0,0-5.414Z" data-name="Path 42"/>
+                                        <path transform="translate(-93.232 -226.77)" d="m177.15 264.67h-54.143a2.707 2.707 0 1 0 0 5.414h54.143a2.707 2.707 0 1 0 0-5.414z" data-name="Path 43"/>
                                     </g>
                                 </svg>
 
@@ -139,7 +141,7 @@ export const Home =({ additional, offers, offer, user, updateProfile = f => f, c
         );
     }
     else {
-        navigate('/');
+        navigate(`/`);
     }
 
     return null;
