@@ -69514,6 +69514,7 @@ var Home = function Home(_ref) {
       edit: false
     });
     clearOffer();
+    document.body.classList.remove("overflow-y-h");
   };
 
   if (user.name !== undefined) {
@@ -69521,8 +69522,8 @@ var Home = function Home(_ref) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Others_Loader__WEBPACK_IMPORTED_MODULE_9__["Loader"], null);
     }
 
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Menu__WEBPACK_IMPORTED_MODULE_10__["Menu"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "push-home home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 pt-md-5 shadow-lg"
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: " home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 pt-md-5 shadow-lg"
     }, user.active === 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Authentication_Additional__WEBPACK_IMPORTED_MODULE_1__["Additional"], {
       user: user,
       data: additional,
@@ -69736,7 +69737,7 @@ var Menu = function Menu() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "profile-box row justify-content-center mb-4 col-12 m-0 p-0 text-center"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "mt-5 mb-3 text-center"
+    className: "".concat(window.innerHeight >= 730 ? "col-12" : "", " mt-5 mb-3 text-center")
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: "./images/profile_pics/@Mubo.jpg",
     alt: "pfp",
@@ -70606,31 +70607,17 @@ var Offer = function Offer(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "border-r pt-2 justify-content-center row branches"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "branch py-2  mt-1 mb-5 px-4 shadow col-11 col-lg-8 col-xl-11 text-uppercase ml-4 ml-lg-0"
+    className: "branch py-2  mt-1 mb-5 px-4 shadow col-6 col-lg-8 col-xl-11 text-uppercase ml-4 ml-lg-0"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "float-left  bold  ".concat(brancheType ? "colorful-text" : ""),
     onClick: function onClick() {
-      return setBrancheType(true);
+      return changeType(true);
     }
   }, "fulltime"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "float-right  bold  ".concat(brancheType ? "" : "colorful-text"),
     onClick: function onClick() {
       return changeType(false);
     }
-<<<<<<< HEAD
-  }, "freetime")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "list row justify-content-start col-11 col-xl-12 text-uppercase text-center d-lg-flex d-inline scroll ml-2 ml-lg-0 "
-  }, JSON.parse(localStorage.branches).map(function (_ref3) {
-    var id = _ref3.id,
-        name = _ref3.name,
-        free_time = _ref3.free_time;
-
-    if (brancheType && free_time === 0 || !brancheType && free_time === 1) {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "branch py-2 mx-3 mt-1 mb-3 px-4 shadow col-lg-10 col-auto"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "colorful-text"
-=======
   }, "freetime")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "list row justify-content-start col-11 col-xl-12 text-uppercase text-center d-lg-flex d-inline scroll ml-2 ml-lg-0 "
   }, JSON.parse(localStorage.branches).map(function (_ref4) {
@@ -70646,7 +70633,6 @@ var Offer = function Offer(_ref) {
         }
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
         className: "".concat(branches.includes(id) ? "" : "colorful-text")
->>>>>>> 1c4c7e1737d3a8fb337651fddba97f3c18810233
       }, name));
     }
   })))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -71014,6 +71000,7 @@ var OfferView = function OfferView(_ref) {
   }
 
   var date = new Date(offer.date);
+  document.body.classList.add("overflow-y-h");
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "offer-info-wrapper",
     id: "offer-info"

@@ -22,12 +22,12 @@
     }
     .profile-box{
         font-size: 1.72em;
-        @media (max-height: 750px){
+        @media (max-height: 730px){
             font-size: 1.3em;
         }
         div{
             max-width: 66.66%;
-            @media (max-height: 750px){
+            @media (max-height: 730px){
                 display:inline-block;
                 padding-left: 1rem;
             }
@@ -36,16 +36,16 @@
                 height: 6em;
                 object-fit: cover;
                 border-radius: 50%;
-                @media (max-width: $break-m) and (min-height: 751px) {
+                @media (max-width: $break-m) and (min-height: 731px) {
                     width:4.5em;
                     height: 4.5em;
                 }
-                @media (max-width: $break-s) and (min-height: 751px) {
+                @media (max-width: $break-s) and (min-height: 731px) {
                     width:3em;
                     height: 3em;
                 }
                 
-                @media (max-height: 750px){
+                @media (max-height: 730px){
                         width: 2em;
                         height: 2em;
                         margin-left: 1em;
@@ -53,9 +53,9 @@
             }
         }
         span{
-            @media (max-height: 750px){
+            @media (max-height: 730px){
                 display: inline-block;
-                margin-top: 2rem;
+                margin-top: 3rem;
                 text-align: left;
             }
             strong{

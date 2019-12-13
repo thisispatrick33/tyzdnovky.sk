@@ -119,6 +119,12 @@ class AdvertisementController extends Controller
             'salary' => 'required|string',
             'branches' => 'required|array',
             'tags' => 'required|array',
+            'business_id' => Rule::requiredIf(function () use ($request) {
+                return $request->user_id==null?true:false;
+            }),
+            'user_id' => Rule::requiredIf(function () use ($request) {
+                return $request->business_id==null?true:false;
+            }),
         ]);
 
         if ($validator->fails()) {
@@ -130,11 +136,24 @@ class AdvertisementController extends Controller
         };
 
         $success = false;
+       
 
         DB::beginTransaction();
 
         try {
             $ad = Advertisement::where('id',$request->id)->first();
+            if($ad->business_id == null){
+                $user_owns_ad = $ad->user_id == $request->user_id?true:false;
+            }elseif($ad->user_id == null){
+                $user_owns_ad = $ad->business_id == $request->business_id?true:false;
+            }
+            if($user_owns_ad == false){
+                return response()->json([
+                    'success' => false,
+                    'data'=>[],
+                    'messages' => "Daný inzerát nepatrí tomuto použivateľovi"
+                ]);
+            }
 
             $ad->title = $request->title;
             $ad->description = $request->description;
@@ -164,7 +183,8 @@ class AdvertisementController extends Controller
                 $ad->branches()->detach();
 
                 $ad->tags()->attach($tag_arr);
-                $ad->branches()->attach($request->branches);
+                $request->branches[0]!=""?$ad->branches()->attach($request->branches):null;
+                
 
                 $success = true;
             }
@@ -174,6 +194,7 @@ class AdvertisementController extends Controller
 
         }catch (\Exception $e) {
             // maybe log this exception, but basically it's just here so we can rollback if we get a surprise
+            return $e;
         }
 
         if ($success) {
@@ -193,20 +214,32 @@ class AdvertisementController extends Controller
         }
     }
 
-    public function delete($id){
-        if($ad = Advertisement::find($id)){
+    public function delete(){
+        if($ad = Advertisement::find($request->$id)){
+            if($ad->business_id == null){
+                $user_owns_ad = $ad->user_id == $request->user_id?true:false;
+            }elseif($ad->user_id == null){
+                $user_owns_ad = $ad->business_id == $request->business_id?true:false;
+            }
+            if($user_owns_ad == false){
+                return response()->json([
+                    'success' => false,
+                    'data'=>[],
+                    'messages' => "Daný inzerát nepatrí tomuto použivateľovi"
+                ]);
+            }
             $ad->delete();
             return response()->json([
                 'success' => true,
                 'data'=> "",
-                'messages' => ""
+                'messages' => "Inzerát uspešne vymazany"
             ]);
         }
         else{
             return response()->json([
                 'success' => false,
                 'data'=> "",
-                'messages' => ""
+                'messages' => "dan inzerat neexistuje"
             ]);
         }
     }

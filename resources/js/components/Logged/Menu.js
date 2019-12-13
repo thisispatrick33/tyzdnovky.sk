@@ -6,7 +6,7 @@ export const Menu = () => {
     return (
         <div className="menu-wrapper row">
             <div className="profile-box row justify-content-center mb-4 col-12 m-0 p-0 text-center">
-                <div className="mt-5 mb-3 text-center">
+                <div className={`${window.innerHeight>=730?"col-12":""} mt-5 mb-3 text-center`}>
                     <img src="./images/profile_pics/@Mubo.jpg" alt="pfp" className="profile-pic"/>
                 </div>
                 <div className="col-8">

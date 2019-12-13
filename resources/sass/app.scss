@@ -25,6 +25,12 @@ $break-xl : 1200px;
 * pesky delay.
 */
 
+.overflow-y-h{
+  overflow-y: hidden;
+  @media (max-width: $break-m) {
+    overflow-y: scroll;
+  }
+}
 body{
   font-family: 'Krub', sans-serif;
   overflow-x: hidden;

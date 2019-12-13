@@ -58,6 +58,7 @@ export const Home =({ additional, offers, offer, user, updateProfile = f => f, c
     const closeLookup = () =>{
         setForm({open : false, control : false, edit : false});
         clearOffer();
+        document.body.classList.remove("overflow-y-h");
     };
 
     if (user.name  !== undefined){
@@ -65,12 +66,14 @@ export const Home =({ additional, offers, offer, user, updateProfile = f => f, c
             return <Loader />;
         }
         return (
+            <div>
+         
             <div className={` home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 pt-md-5 shadow-lg`}>
                 {
                     user.active === 0 ? <Additional user={user} data={additional} func={handleChange}/> : ``
                 }
                 {
-                    form.open && !form.control ? <OfferView offer={offer} close={closeLookup} /> : null
+                    form.open && !form.control ? <OfferView offer={offer} close={closeLookup} />  : null
                 }
                 {
                     form.open && form.control ? <Offer edit={form.edit} user={user} createOffer={handleCreate} updateOffer={handleUpdate} closeOffer={() => setForm(false)} data={offer} clearOffer={clearOffer}/> : ""

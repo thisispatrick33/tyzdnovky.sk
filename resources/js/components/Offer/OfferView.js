@@ -6,6 +6,9 @@ export const OfferView = ({offer, close}) => {
         return <Loader/>;
     }
     const date = new Date(offer.date);
+
+    document.body.classList.add("overflow-y-h");
+
     return(
         <div className="offer-info-wrapper" id="offer-info">
             <div className="container-fluid row justify-content-center m-0 p-0">

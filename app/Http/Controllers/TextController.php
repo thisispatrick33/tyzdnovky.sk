@@ -35,6 +35,8 @@ class TextController extends Controller
             'slide1_subtitle1' => trans('additional-info.slide1_subtitle1'),
             'slide1_placeholder1' => trans('additional-info.slide1_placeholder1'),
             'slide1_placeholder2' => trans('additional-info.slide1_placeholder2'),
+            'slide1_placeholder1_business' => trans('zadajte nazov vasej spolocnosti'),
+            'slide1_placeholder2_business' => trans('zadajte ICO vasej spolocnosti'),
             'slide1_subtitle2' => trans('additional-info.slide1_subtitle2'),
             'slide1_placeholder3' => trans('additional-info.slide1_placeholder3'),
             'slide2_title1' => trans('additional-info.slide2_title1'),

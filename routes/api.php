@@ -57,7 +57,7 @@ Route::group(['middleware' => ['api-header','localization']], function () {
         //BUSINESS DELETE
         Route::delete("/business/{id}","BusinessController@delete");
         //AD DELETE
-        Route::delete("/advertisement/{id}","AdvertisementController@delete");
+        Route::delete("/advertisement","AdvertisementController@delete");
 
     });
 

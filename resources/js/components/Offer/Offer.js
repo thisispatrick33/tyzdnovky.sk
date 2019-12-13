@@ -101,7 +101,7 @@ export const Offer = ({data, edit, createOffer = f => f, user, updateOffer = f =
                             <div className="row justify-content-center col-12 h90 pt-5 order-3">
                                 <div className="col-xl-3 col-lg-6 pr-3">
                                     <div className={"border-r pt-2 justify-content-center row branches"}>
-                                        <div className="branch py-2  mt-1 mb-5 px-4 shadow col-11 col-lg-8 col-xl-11 text-uppercase ml-4 ml-lg-0">
+                                        <div className="branch py-2  mt-1 mb-5 px-4 shadow col-6 col-lg-8 col-xl-11 text-uppercase ml-4 ml-lg-0">
                                             <span className={`float-left  bold  ${brancheType ? `colorful-text` : ``}`} onClick={()=>changeType(true)}>
                                                 fulltime
                                             </span>

@@ -24,6 +24,12 @@
         height: 40px;
     }
     
+    input[type="date"]::-webkit-inner-spin-button,
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        display: none;
+        -webkit-appearance: none;
+    }
+
     .work-options{
         font-family: 'Montserrat', serif;
         height: 100%;
@@ -157,7 +163,7 @@
 
             .offer-info-tag{
                 font-size: 1em;
-                font-weight: 300;
+                font-weight: 400;
                 border-radius: 50px;
                 text-transform: uppercase;
                 text-decoration: none;
@@ -229,6 +235,9 @@
                 z-index: 1;
                 border: none;
                 background: #ffffff;
+                span{
+                    cursor: pointer;
+                }
             }
             .list{
                 overflow-y: auto;
@@ -279,7 +288,7 @@
           }
     }
     .submit-button {
-        font-size: 1.1em;
+        font-size: 1em;
         font-weight: 300;
         border-radius: 50px;
         text-transform: uppercase;
@@ -289,7 +298,7 @@
         -webkit-backface-visibility: hidden;
         z-index: 1;
         border: none;
-
+        display: inline-block;
         span {
           position: relative;
           z-index: 300;
