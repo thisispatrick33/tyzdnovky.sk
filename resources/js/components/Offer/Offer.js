@@ -8,10 +8,6 @@ export const Offer = ({data, edit, createOffer = f => f, user, updateOffer = f =
     const [branches, setBranches] = useState([]);
     const [brancheType, setBrancheType] = useState(true);
 
-    const _tags = (list) =>{
-        setTags(list);
-    };
-
     useEffect(() => {
         setOffer(data);
         if(data !== null && edit){
@@ -31,9 +27,6 @@ export const Offer = ({data, edit, createOffer = f => f, user, updateOffer = f =
     };
 
     const submit = async () => {
-       console.log(offer);
-       console.log(tags);
-       console.log(branches);
        if(edit){
            if(await updateOffer({...offer, branches: branches, tags: tags})){
                close();
@@ -134,7 +127,7 @@ export const Offer = ({data, edit, createOffer = f => f, user, updateOffer = f =
                                            onChange={e => setOffer({...offer, title : e.target.value})}
                                            value={edit ? (offer.title ? offer.title : ``) : (offer !== null ? offer.title : ``)}
                                     />
-                                    <Tags addTags={_tags} list={tags}/>
+                                    <Tags addTags={(list) => setTags(list)} list={tags}/>
                                     <textarea className="col-11 px-3 py-3 my-2 my-xl-0" cols="30" rows="5" placeholder="Pridajte popis a podmienky práce" onChange={e => setOffer({...offer, description : e.target.value})}
                                               value={edit ? (offer.description ? offer.description : ``) : (offer !== null ? offer.description : ``)}></textarea>
                                     <div className="col-11 row justify-content-between p-0 pt-4">

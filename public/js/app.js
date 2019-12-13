@@ -68247,7 +68247,7 @@ var Additional = function Additional(_ref) {
     prevArrow: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(PreviousArrow, null)
   };
 
-  if (data.branches == undefined) {
+  if (data.branches === undefined) {
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, "Loading");
   }
 
@@ -69473,6 +69473,11 @@ var Home = function Home(_ref) {
       form = _useState2[0],
       setForm = _useState2[1];
 
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      viewMenu = _useState4[0],
+      setViewMenu = _useState4[1];
+
   var handleChange = function handleChange(data) {
     return updateProfile(data);
   };
@@ -69522,8 +69527,16 @@ var Home = function Home(_ref) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Others_Loader__WEBPACK_IMPORTED_MODULE_9__["Loader"], null);
     }
 
+<<<<<<< HEAD
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: " home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 pt-md-5 shadow-lg"
+=======
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, viewMenu ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Menu__WEBPACK_IMPORTED_MODULE_10__["Menu"], {
+      user: user,
+      signOut: signOut
+    }) : '', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "".concat(viewMenu ? "push-home" : "", " home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 pt-md-5 shadow-lg")
+>>>>>>> 7ef373290d2ead1afe85ed25bb734248149a2fd4
     }, user.active === 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Authentication_Additional__WEBPACK_IMPORTED_MODULE_1__["Additional"], {
       user: user,
       data: additional,
@@ -69550,7 +69563,10 @@ var Home = function Home(_ref) {
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
       className: " p-0 menu-svg",
       viewBox: "0 0 86.628 43.314",
-      xmlns: "http://www.w3.org/2000/svg"
+      xmlns: "http://www.w3.org/2000/svg",
+      onClick: function onClick() {
+        return setViewMenu(!viewMenu);
+      }
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
       transform: "translate(0 -96.243)"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
@@ -69602,18 +69618,22 @@ var Home = function Home(_ref) {
         date: date,
         created_at: created_at,
         view: handleView,
-        edit: handleEdit
+        edit: handleEdit,
+        closeMenu: function closeMenu() {
+          return setViewMenu(false);
+        }
       });
     }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "row justify-content-center"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       className: "col-auto text-center py-2 mb-5 mx-3 mt-3 px-4 shadow home-button",
       onClick: function onClick() {
-        return setForm({
+        setForm({
           open: true,
           control: true,
           edit: false
         });
+        setViewMenu(false);
       }
     }, "create"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       className: "col-auto text-center py-2 mb-5 mx-3 mt-3 px-4 shadow home-button",
@@ -69731,7 +69751,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-var Menu = function Menu() {
+var Menu = function Menu(_ref) {
+  var user = _ref.user,
+      signOut = _ref.signOut;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "menu-wrapper row"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -69739,12 +69761,12 @@ var Menu = function Menu() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "".concat(window.innerHeight >= 730 ? "col-12" : "", " mt-5 mb-3 text-center")
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: "./images/profile_pics/@Mubo.jpg",
+    src: user.profile_pic !== null ? user.profile_pic.substring(user.profile_pic.indexOf("images")) : "./images/user.svg",
     alt: "pfp",
     className: "profile-pic"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-8"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Patrik ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Mosorj\xE1k")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, user.name, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, user.lastName !== undefined ? user.lastName : "")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "menu-options row justify-content-center mb-5  col-12 m-0 p-0"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "menu-option active col-8 py-3 mt-1"
@@ -69833,7 +69855,8 @@ var Menu = function Menu() {
     transform: "translate(-99.809 -99.809)",
     fill: "#2c393f"
   })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-auto"
+    className: "col-auto",
+    onClick: signOut
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
     className: "mr-3",
     xmlns: "http://www.w3.org/2000/svg",
@@ -70127,7 +70150,7 @@ var Main = function Main() {
       headers: {
         'Content-Type': 'multipart/form-data',
         'Accept': 'multipart/form-data',
-        "X-localization": location,
+        "X-localization": 'SK',
         "Authorization": 'Bearer ' + JSON.parse(localStorage.appState).user.auth_token
       }
     }).then(function (response) {
@@ -70136,7 +70159,7 @@ var Main = function Main() {
       if (response.data.success) {
         var appState = {
           isLoggedIn: true,
-          user: data
+          user: response.data.data
         };
         localStorage["appState"] = JSON.stringify(appState);
         setAuthState(appState);
@@ -70416,10 +70439,6 @@ var Offer = function Offer(_ref) {
       brancheType = _useState8[0],
       setBrancheType = _useState8[1];
 
-  var _tags = function _tags(list) {
-    setTags(list);
-  };
-
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     setOffer(data);
 
@@ -70450,75 +70469,71 @@ var Offer = function Offer(_ref) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              console.log(offer);
-              console.log(tags);
-              console.log(branches);
-
               if (!edit) {
-                _context.next = 10;
+                _context.next = 7;
                 break;
               }
 
-              _context.next = 6;
+              _context.next = 3;
               return updateOffer(_objectSpread({}, offer, {
                 branches: branches,
                 tags: tags
               }));
 
-            case 6:
+            case 3:
               if (!_context.sent) {
-                _context.next = 8;
+                _context.next = 5;
                 break;
               }
 
               close();
 
-            case 8:
-              _context.next = 21;
+            case 5:
+              _context.next = 18;
               break;
 
-            case 10:
+            case 7:
               if (!(user.type === "user")) {
-                _context.next = 17;
+                _context.next = 14;
                 break;
               }
 
-              _context.next = 13;
+              _context.next = 10;
               return createOffer(_objectSpread({}, offer, {
                 branches: branches,
                 user_id: user.id,
                 tags: tags
               }));
 
-            case 13:
+            case 10:
               if (!_context.sent) {
-                _context.next = 15;
+                _context.next = 12;
                 break;
               }
 
               close();
 
-            case 15:
-              _context.next = 21;
+            case 12:
+              _context.next = 18;
               break;
 
-            case 17:
-              _context.next = 19;
+            case 14:
+              _context.next = 16;
               return createOffer(_objectSpread({}, offer, {
                 branches: branches,
                 business_id: user.id,
                 tags: tags
               }));
 
-            case 19:
+            case 16:
               if (!_context.sent) {
-                _context.next = 21;
+                _context.next = 18;
                 break;
               }
 
               close();
 
-            case 21:
+            case 18:
             case "end":
               return _context.stop();
           }
@@ -70648,7 +70663,9 @@ var Offer = function Offer(_ref) {
     },
     value: edit ? offer.title ? offer.title : "" : offer !== null ? offer.title : ""
   }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_SubComponents_Tags__WEBPACK_IMPORTED_MODULE_2__["Tags"], {
-    addTags: _tags,
+    addTags: function addTags(list) {
+      return setTags(list);
+    },
     list: tags
   }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("textarea", {
     className: "col-11 px-3 py-3 my-2 my-xl-0",
@@ -70728,7 +70745,8 @@ var OfferLookup = function OfferLookup(_ref) {
       _ref$edit = _ref.edit,
       edit = _ref$edit === void 0 ? function (f) {
     return f;
-  } : _ref$edit;
+  } : _ref$edit,
+      closeMenu = _ref.closeMenu;
   var today = new Date();
   var formatDate = new Date(date);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -70752,7 +70770,8 @@ var OfferLookup = function OfferLookup(_ref) {
     fill: "#fff"
   }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
     onClick: function onClick() {
-      return edit(id);
+      edit(id);
+      closeMenu();
     },
     className: "work-option-edit",
     width: "16",
@@ -70783,7 +70802,8 @@ var OfferLookup = function OfferLookup(_ref) {
   }, description.substring(0, 74), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     className: "colorful-text",
     onClick: function onClick() {
-      return view(id);
+      view(id);
+      closeMenu();
     }
   }, "... Zisti viac.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-11 mx-0 row work-option-info text-uppercase mb-3 justify-content-center"
@@ -71521,8 +71541,8 @@ var Loader = function Loader() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Jakub\Desktop\tyzdnovky.sk\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Jakub\Desktop\tyzdnovky.sk\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Mamuss\PhpstormProjects\tyzdnovky.sk\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Mamuss\PhpstormProjects\tyzdnovky.sk\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
