@@ -7,6 +7,7 @@ export const Offer = ({data, edit, createOffer = f => f, user, updateOffer = f =
     const [tags, setTags] = useState([]);
     const [branches, setBranches] = useState([]);
     const [brancheType, setBrancheType] = useState(true);
+    const [sent, setSent] = useState(false);
 
     useEffect(() => {
         setOffer(data);
@@ -27,9 +28,17 @@ export const Offer = ({data, edit, createOffer = f => f, user, updateOffer = f =
     };
 
     const submit = async () => {
+        setSent(true);
        if(edit){
-           if(await updateOffer({...offer, branches: branches, tags: tags})){
-               close();
+           if(user.type === "user"){
+               if(await updateOffer({...offer, branches: branches, user_id: user.id, tags: tags})){
+                   close();
+               }
+           }
+           else {
+               if(await updateOffer({...offer, branches: branches, business_id: user.id, tags: tags})){
+                   close();
+               }
            }
        }else {
             if(user.type === "user"){
@@ -151,7 +160,7 @@ export const Offer = ({data, edit, createOffer = f => f, user, updateOffer = f =
                                     </div>
 
                                     <button className="my-2 mb-3 submit-button sign-in-button px-5 d-block text-uppercase py-3 py-xl-1" onClick={submit}>
-                                        <span> { edit ? 'uložiť' : 'vytvoriť'}  <span className={"strong"}>{ edit ? 'zmeny !' : 'inzerát !'}</span></span>
+                                        <span> {sent ? 'loading' : (edit ? 'uložiť' : 'vytvoriť')}  <span className={"strong"}>{sent ? '...' : (edit ? 'zmeny !' : 'inzerát !')}{ }</span></span>
                                     </button>
 
                                 </div>

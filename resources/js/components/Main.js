@@ -144,7 +144,7 @@ const Main = () => {
 
     const _getOffers = async () => _getData('api/advertisement').then(({data}) => { setOffers(data); localStorage["offers"] = JSON.stringify(data) });
 
-    const _deleteOffer = async id => _deleteData('api/advertisement/'+id);
+    const _deleteOffer = data => _deleteData('api/advertisement', data);
 
 
 

@@ -69527,16 +69527,11 @@ var Home = function Home(_ref) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Others_Loader__WEBPACK_IMPORTED_MODULE_9__["Loader"], null);
     }
 
-<<<<<<< HEAD
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: " home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 pt-md-5 shadow-lg"
-=======
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, viewMenu ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Menu__WEBPACK_IMPORTED_MODULE_10__["Menu"], {
       user: user,
       signOut: signOut
     }) : '', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "".concat(viewMenu ? "push-home" : "", " home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 pt-md-5 shadow-lg")
->>>>>>> 7ef373290d2ead1afe85ed25bb734248149a2fd4
     }, user.active === 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Authentication_Additional__WEBPACK_IMPORTED_MODULE_1__["Additional"], {
       user: user,
       data: additional,
@@ -69608,7 +69603,8 @@ var Home = function Home(_ref) {
           description = _ref2.description,
           address = _ref2.address,
           date = _ref2.date,
-          created_at = _ref2.created_at;
+          created_at = _ref2.created_at,
+          user_id = _ref2.user_id;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Offer_OfferLookup__WEBPACK_IMPORTED_MODULE_7__["OfferLookup"], {
         key: id,
         id: id,
@@ -69621,7 +69617,9 @@ var Home = function Home(_ref) {
         edit: handleEdit,
         closeMenu: function closeMenu() {
           return setViewMenu(false);
-        }
+        },
+        user: user.id,
+        user_id: user_id
       });
     }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "row justify-content-center"
@@ -70300,30 +70298,9 @@ var Main = function Main() {
     };
   }();
 
-  var _deleteOffer =
-  /*#__PURE__*/
-  function () {
-    var _ref12 = _asyncToGenerator(
-    /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8(id) {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
-        while (1) {
-          switch (_context8.prev = _context8.next) {
-            case 0:
-              return _context8.abrupt("return", _deleteData('api/advertisement/' + id));
-
-            case 1:
-            case "end":
-              return _context8.stop();
-          }
-        }
-      }, _callee8);
-    }));
-
-    return function _deleteOffer(_x6) {
-      return _ref12.apply(this, arguments);
-    };
-  }();
+  var _deleteOffer = function _deleteOffer(data) {
+    return _deleteData('api/advertisement', data);
+  };
 
   return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_reach_router__WEBPACK_IMPORTED_MODULE_5__["Router"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Authentication_Authentication__WEBPACK_IMPORTED_MODULE_6__["Authentication"], {
     path: "/",
@@ -70439,6 +70416,11 @@ var Offer = function Offer(_ref) {
       brancheType = _useState8[0],
       setBrancheType = _useState8[1];
 
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+      _useState10 = _slicedToArray(_useState9, 2),
+      sent = _useState10[0],
+      setSent = _useState10[1];
+
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     setOffer(data);
 
@@ -70469,71 +70451,99 @@ var Offer = function Offer(_ref) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              setSent(true);
+
               if (!edit) {
-                _context.next = 7;
+                _context.next = 15;
                 break;
               }
 
-              _context.next = 3;
+              if (!(user.type === "user")) {
+                _context.next = 9;
+                break;
+              }
+
+              _context.next = 5;
               return updateOffer(_objectSpread({}, offer, {
                 branches: branches,
+                user_id: user.id,
                 tags: tags
               }));
 
-            case 3:
+            case 5:
               if (!_context.sent) {
-                _context.next = 5;
+                _context.next = 7;
                 break;
               }
 
               close();
 
-            case 5:
-              _context.next = 18;
+            case 7:
+              _context.next = 13;
               break;
 
-            case 7:
-              if (!(user.type === "user")) {
-                _context.next = 14;
+            case 9:
+              _context.next = 11;
+              return updateOffer(_objectSpread({}, offer, {
+                branches: branches,
+                business_id: user.id,
+                tags: tags
+              }));
+
+            case 11:
+              if (!_context.sent) {
+                _context.next = 13;
                 break;
               }
 
-              _context.next = 10;
+              close();
+
+            case 13:
+              _context.next = 26;
+              break;
+
+            case 15:
+              if (!(user.type === "user")) {
+                _context.next = 22;
+                break;
+              }
+
+              _context.next = 18;
               return createOffer(_objectSpread({}, offer, {
                 branches: branches,
                 user_id: user.id,
                 tags: tags
               }));
 
-            case 10:
+            case 18:
               if (!_context.sent) {
-                _context.next = 12;
+                _context.next = 20;
                 break;
               }
 
               close();
 
-            case 12:
-              _context.next = 18;
+            case 20:
+              _context.next = 26;
               break;
 
-            case 14:
-              _context.next = 16;
+            case 22:
+              _context.next = 24;
               return createOffer(_objectSpread({}, offer, {
                 branches: branches,
                 business_id: user.id,
                 tags: tags
               }));
 
-            case 16:
+            case 24:
               if (!_context.sent) {
-                _context.next = 18;
+                _context.next = 26;
                 break;
               }
 
               close();
 
-            case 18:
+            case 26:
             case "end":
               return _context.stop();
           }
@@ -70711,9 +70721,9 @@ var Offer = function Offer(_ref) {
   })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
     className: "my-2 mb-3 submit-button sign-in-button px-5 d-block text-uppercase py-3 py-xl-1",
     onClick: submit
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, " ", edit ? 'uložiť' : 'vytvoriť', "  ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, " ", sent ? 'loading' : edit ? 'uložiť' : 'vytvoriť', "  ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "strong"
-  }, edit ? 'zmeny !' : 'inzerát !'))))))))));
+  }, sent ? '...' : edit ? 'zmeny !' : 'inzerát !'))))))))));
 };
 
 /***/ }),
@@ -70746,7 +70756,9 @@ var OfferLookup = function OfferLookup(_ref) {
       edit = _ref$edit === void 0 ? function (f) {
     return f;
   } : _ref$edit,
-      closeMenu = _ref.closeMenu;
+      closeMenu = _ref.closeMenu,
+      user = _ref.user,
+      user_id = _ref.user_id;
   var today = new Date();
   var formatDate = new Date(date);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -70768,7 +70780,7 @@ var OfferLookup = function OfferLookup(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
     d: "M46.2.513a1.157,1.157,0,0,0-.539-.421A1.136,1.136,0,0,0,45.206,0H34.451A1.136,1.136,0,0,0,34,.092a1.156,1.156,0,0,0-.539.421,1.089,1.089,0,0,0-.2.636V14.377a1.09,1.09,0,0,0,.2.636,1.156,1.156,0,0,0,.539.421,1.135,1.135,0,0,0,.451.092,1.224,1.224,0,0,0,.852-.339l4.526-4.351,4.526,4.351a1.221,1.221,0,0,0,.852.328,1.194,1.194,0,0,0,.99-.5,1.088,1.088,0,0,0,.2-.636V1.149A1.089,1.089,0,0,0,46.2.513ZM45.083,14.059,40.742,9.892l-.913-.872-.913.872-4.341,4.166V1.314H45.083V14.059Z",
     fill: "#fff"
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+  }))), user === user_id ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
     onClick: function onClick() {
       edit(id);
       closeMenu();
@@ -70791,7 +70803,7 @@ var OfferLookup = function OfferLookup(_ref) {
     d: "M33.481,354.451a.5.5,0,0,1-.36-.149l-2.879-2.879a.509.509,0,0,1,.72-.72l2.879,2.879a.509.509,0,0,1-.36.869Zm0,0",
     transform: "translate(-29.076 -339.408)",
     fill: "#fff"
-  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }))) : ""), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "work-option-content row m-0 justify-content-center"
   }, (today.getTime() - new Date(created_at.substring(0, created_at.indexOf('T'))).getTime()) / (1000 * 3600 * 24) <= 3 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-center work-option-new"

@@ -136,7 +136,8 @@ class AdvertisementController extends Controller
         };
 
         $success = false;
-       
+
+        $user_owns_ad = false;
 
         DB::beginTransaction();
 

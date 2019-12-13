@@ -111,7 +111,7 @@ export const Home =({ additional, offers, offer, user, updateProfile = f => f, c
                     </div>
                     <Slider {...settings} className={`work-options justify-content-between col-12 mt-2 px-5 row`}>
                             {
-                                offers.map(({id, title, description, address, date, created_at}) => {
+                                offers.map(({id, title, description, address, date, created_at, user_id}) => {
                                     return(
                                         <OfferLookup
                                             key={id}
@@ -124,6 +124,8 @@ export const Home =({ additional, offers, offer, user, updateProfile = f => f, c
                                             view={handleView}
                                             edit={handleEdit}
                                             closeMenu={()=>setViewMenu(false)}
+                                            user={user.id}
+                                            user_id={user_id}
                                         />
 
                                     )
