@@ -46,7 +46,7 @@ export const Home =({ additional, offers, offerSize, offer, user, updateProfile 
     };
 
     useEffect(() => {
-    },[additional,offers]);
+    },[additional]);
 
     const [form, setForm] = useState({open : false, control : false, edit : false});
     const [viewMenu, setViewMenu] = useState(false);
@@ -66,7 +66,7 @@ export const Home =({ additional, offers, offerSize, offer, user, updateProfile 
 
 
     if (user.name  !== undefined){
-        if((offers[0] === undefined && offerSize > 0) || (user.active == 0 && additional === null)){
+        if(offers[0] === undefined && offerSize > 0){
             return <Loader />;
         }
         return (
@@ -75,6 +75,7 @@ export const Home =({ additional, offers, offerSize, offer, user, updateProfile 
                     viewMenu ? <Menu user={user} signOut={signOut}/> : ''
                 }
                 <div className={`${viewMenu ? `push-home` : ``} home | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0 pt-md-5 shadow-lg`}>
+
                 {
                     user.active == 0 && additional !== null ? <Additional user={user} data={additional} func={handleChange}/> : ``
                 }

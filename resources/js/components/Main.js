@@ -23,20 +23,25 @@ const Main = () => {
     const [additional, setAdditional] = useState(null);
     const [messages, setMessages] = useState([]);
 
+
     useEffect(() => {
-            config.headers['X-localization'] = "SK";
+            _logoutUser();
+            config.headers['X-localization'] = "sk";
             let { appState, offers, branches} = localStorage;
+
             if(appState ? JSON.parse(appState).isLoggedIn : false){
                 setAuthState(JSON.parse(appState));
-                JSON.parse(appState).user.active === 0 ? _additional() : null;
+
+                JSON.parse(appState).user.active == 0 ? _additional() : null;
                 navigate(`/home`);
                 config.headers['Authorization'] =  'Bearer '+JSON.parse(appState).user.auth_token;
-                (offers === undefined || JSON.parse(offers).length !== _getData('/api/size-offers')) ? _getOffers() : setOffers(JSON.parse(offers));
+                (offers === undefined || JSON.parse(offers).length !== offerSize) ? _getOffers() : setOffers(JSON.parse(offers));
             }
-            if(branches === undefined || JSON.parse(branches).length !== _getData('/api/size-branches')){
+
+            if(branches === undefined || JSON.parse(branches).length !== offerSize){
                 _getData('/api/branches').then(({data}) => {localStorage["branches"] = JSON.stringify(data)});
             }
-    },[offers]);
+    },[]);
 
     const _disableForm = control => {
         $("#authentication-form .submit-button")
@@ -50,6 +55,7 @@ const Main = () => {
 
     const _deleteData = async url => await axios.delete(url, config);
 
+    const offerSize = _getData('/api/size-offers');
 
     const _authentication = (data, control) => {
         _disableForm(true);
@@ -59,6 +65,7 @@ const Main = () => {
                 setMessages(data.messages);
                 if (response.data.success) {
                     let userData = {isLoggedIn : true, user : data};
+                    data.active == 0 ? _additional() : '';
                     navigate('/home');
                     setAuthState(userData);
                     localStorage["appState"] = JSON.stringify(userData);
@@ -85,6 +92,7 @@ const Main = () => {
     const _resetPassword = password => _postData('/api/password-reset', password);
 
     const _updateProfile = data => {
+        console.log(data);
         let formData = new FormData();
 
         formData.append('email', data.email);
@@ -92,11 +100,11 @@ const Main = () => {
         formData.append('phone', data.phone);
         formData.append('username', '@'+ data.username);
 
-        if(data.type === 2){
+        if(data.lastName !== undefined){
             data.languages.map( language => formData.append('languages[]', language));
             data.categories.map( category => formData.append('categories[]', category));
             formData.append('lastName', data.lastName);
-            formData.set('drivingLicense', data.drivingLicense);
+            formData.append('drivingLicense', data.drivingLicense);
         } else {
             formData.append('ico', data.ico);
         }
@@ -134,9 +142,9 @@ const Main = () => {
 
     const _additional = async () => _getData('/api/register-additional').then(({data}) => setAdditional(data));
 
-    const _createOffer = data => _postData(`/api/advertisement`, data).then((response)=> {if(response.data.success){setOffers({...offers.push( data)})}}).then(()=>{return(true)});
+    const _createOffer = data => _postData(`/api/advertisement`, data).then(response => response).then(({data})=> {if(data.success) setOffers([data.data, ...offers ])}).then(()=>{return(true)});
 
-    const _updateOffer = data => axios.put(`/api/advertisement`, data ,config).then((response)=> {if(response.data.success){setOffers({...offers.push( data)})}}).then(()=>{return(true)});
+    const _updateOffer = data => axios.put(`/api/advertisement`, data ,config).then(response => response).then(({data}) => {if(data.success){setOffers([data.data, ...offers ])}}).then(()=>{return(true)});
 
     const _viewOffer = async id => _getData('api/advertisement/'+id).then(({data}) => setOffer(data));
 
@@ -164,6 +172,7 @@ const Main = () => {
                       updateProfile={_updateProfile}
                       signOut={_logoutUser}
                       clearOffer={()=>setOffer(null)}
+                      offerSize = {offerSize}
                 />
             </Router>
     );

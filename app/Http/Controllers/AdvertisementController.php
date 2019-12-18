@@ -96,7 +96,7 @@ class AdvertisementController extends Controller
             DB::commit();
             return response()->json([
                 'success' => true,
-                'data'=>[],
+                'data'=>$ad,
                 'messages' => trans('messages.dataAdded')
             ]);
         } else {
@@ -202,7 +202,7 @@ class AdvertisementController extends Controller
             DB::commit();
             return response()->json([
                 'success' => true,
-                'data'=>[],
+                'data'=>$ad,
                 'messages' => trans('messages.dataAdded')
             ]);
         } else {
@@ -246,7 +246,7 @@ class AdvertisementController extends Controller
     }
 
     public function getAll(){
-        $ads = Advertisement::with(['tags','branches'])->get();
+        $ads = Advertisement::with(['tags','branches'])->orderBy('created_at','desc')->get();
 
         $res=[];
 

@@ -160,6 +160,7 @@ export const Additional = ({user, func = f => f, data}) => {
         return <div>Loading</div>
     }
     return (
+        console.log(data),
         <div className={`additional-info-form | container-fluid | row col-12 | justify-content-center align-items-center | m-0 p-0`} style={{overflowY : `scroll`, height : window.innerHeight <= 768 ? $(window).height() : `100vh`}}>
             <div className="content-frame | row  col-xl-6 col-lg-6 col-md-7 col-12 | justify-content-center align-items-center | px-0 | shadow-sm py-xl-5 py-lg-5 py-md-5 py-0 my-xl-4 my-lg-4 my-md-5 my-0">
                 <div className="col-10 row main-info p-0 m-0 align-items-center">
@@ -316,7 +317,7 @@ export const Additional = ({user, func = f => f, data}) => {
                                     <div className="categories row col-12 mb-3 p-0 m-0 justify-content-center align-items-center">
                                         {
                                             data.branches.map( ({id, name, free_time}) => {
-                                                if(free_time === 1){
+                                                if(free_time==1){
                                                     return <div className={`category col-auto mx-2 my-2 py-2 shadow-sm ${categories.includes(id) ? `on` : ``}`} onClick={() => handleWork(id)}>
                                                         {name}
                                                     </div>;

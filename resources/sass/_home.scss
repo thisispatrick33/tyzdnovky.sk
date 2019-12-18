@@ -24,8 +24,7 @@
         height: 40px;
     }
     
-    input[type="date"]::-webkit-inner-spin-button,
-    input[type="date"]::-webkit-calendar-picker-indicator {
+    input[type="date"]::-webkit-inner-spin-button{
         display: none;
         -webkit-appearance: none;
     }

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Tags} from './SubComponents/Tags';
 import {Loader} from "../Others/Loader";
+import { navigate } from '@reach/router';
 
 export const Offer = ({data, edit, createOffer = f => f, user, updateOffer = f => f, closeOffer, clearOffer}) => {
     const [offer , setOffer] = useState(data);
@@ -18,7 +19,7 @@ export const Offer = ({data, edit, createOffer = f => f, user, updateOffer = f =
                 array.push(id);
             });
             setBranches(array);
-            setBrancheType(data.branches[0].free_time === 0);
+            setBrancheType(data.branches[0].free_time == 0);
         }
     }, [data]);
 
@@ -33,22 +34,26 @@ export const Offer = ({data, edit, createOffer = f => f, user, updateOffer = f =
            if(user.type === "user"){
                if(await updateOffer({...offer, branches: branches, user_id: user.id, tags: tags})){
                    close();
+                   navigate('/home');
                }
            }
            else {
                if(await updateOffer({...offer, branches: branches, business_id: user.id, tags: tags})){
                    close();
+                   navigate('/home');
                }
            }
        }else {
             if(user.type === "user"){
                 if(await createOffer({...offer, branches: branches, user_id: user.id, tags: tags})){
                     close();
+                    navigate('/home');
                 }
             }
             else {
                 if(await createOffer({...offer, branches: branches, business_id: user.id, tags: tags})){
                     close();
+                    navigate('/home');
                 }
             }
        }
@@ -114,7 +119,7 @@ export const Offer = ({data, edit, createOffer = f => f, user, updateOffer = f =
                                         <div className="list row justify-content-start col-11 col-xl-12 text-uppercase text-center d-lg-flex d-inline scroll ml-2 ml-lg-0 ">
                                             {
                                                 JSON.parse(localStorage.branches).map(({id, name, free_time}) => {
-                                                    if((brancheType && free_time === 0) || (!brancheType && free_time === 1)){
+                                                    if((brancheType && free_time == 0) || (!brancheType && free_time == 1)){
                                                         return(
                                                             <div className={`py-2 mx-3 mt-1 mb-3 px-4 shadow col-lg-10 col-auto ${branches.includes(id) ? `submit-button sign-in-button` : `branch`}`} onClick={() =>handleWork(id)}>
                                                         <span className={`${branches.includes(id) ? `` : `colorful-text`}`}>
