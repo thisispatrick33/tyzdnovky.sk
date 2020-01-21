@@ -25,7 +25,6 @@ const Main = () => {
 
 
     useEffect(() => {
-            _logoutUser();
             config.headers['X-localization'] = "sk";
             let { appState, offers, branches} = localStorage;
 
